@@ -1,0 +1,15 @@
+.flex{
+    display: flex
+}
+.flex-column{
+    flex-direction: column;
+}
+.w-30{
+    width: 30%;
+}
+.justify-center{
+    justify-content: center;
+}
+.instagram-logo{
+    width: 40px;
+}
