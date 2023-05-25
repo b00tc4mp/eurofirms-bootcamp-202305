@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Formulario</title>
+</head>
+<body>
+    <main class="justify-center flex nav-home">
+        <h1>Welcome to the home page</h1>
+        <nav>
+            <div class="flex justify-between">
+                <a>start</a>
+                <a>Services</a>
+                <a>Contact</a>
+                <a>FAQ</a>
+            </div>
+        </nav>
+</main>
+    <main class="justify-center flex">
+        <!-- TODO implement a register form (3 fields: name, email, password) -->
+        
+        <form class="flex flex-column w=30  justify-center" id="form-register" action="#" method="POST">
+            <h2>Register</h2>
+            <label for="name">Name : </label>
+            <input type="text" id="name" name="name"/><br>
+
+            <label for="email">E-mail : </label>
+            <input type="text" id="email" name="email"/><br>
+
+            <label for="pass">password : </label>
+            <input type="password" id ="pass"name="name"/><br>
+            <button class="button" type="submit">Register</button>
+        </form>
+    </main>
+
+    <main class="justify-center flex">
+        <!-- TODO implement a login form (2 fields: email, password) -->
+       
+        <form class="flex flex-column w=30 justify-center" id="form-login" action="#" method="POST">
+            <h2>Login</h2>
+            <label for="correo">E-mail : </label>
+            <input type="text" id="correo" name="name"/><br>
+
+            <label for="pass2">password : </label>
+            <input type="password" id="pass2"name="name"/><br>
+            <button class="button" type="submit">Login</button>
+        </form>
+    </main>
+    <footer class="my-footer">
+        <p>You can contact us on</p>
+        <ul>
+            <li><a href="https://www.instagram.com/" target="_blank"><img class="social-media" src="https://1000marcas.net/wp-content/uploads/2019/11/Instagram-Logo-2016.png" alt="instagram"></a></li>
+            <li><a href="https://www.facebook.com/" target="_blank"><img class="social-media" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_de_Facebook.png" alt="Facebook"></a></li>
+        </ul>
+    </footer>
+</body>
+
+</html>
