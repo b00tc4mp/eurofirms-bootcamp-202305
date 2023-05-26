@@ -1,0 +1,130 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.flex{
+    display: flex;
+}
+.grid{
+    display: grid;
+}
+.flex-column{
+    flex-direction: column;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-start{
+    justify-content:start
+}
+.justify-end{
+    justify-content: end;
+}
+.items-center{
+    align-items: center;
+}
+.items-end{
+    align-items: end;
+}
+.absolute{
+    position: absolute;
+}
+.self-center{
+    align-self: center;
+}
+.bg-black{
+    background-color: black;
+}
+.bg-aqua{
+    background-color: aqua;
+}
+.sea {
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(0, 123, 255);
+}
+.street{
+    bottom: 100px;
+    height: 100px;
+    width: 100%;
+    background-color: grey;
+}
+.build-1{
+    bottom: 150px;
+    height: 420px;
+    left: 20px;
+    width: 150px;
+}
+.antenna{
+    gap: 4px;
+    margin-bottom: 15px;
+}
+.horizontal-antenna-stick{
+    width: 20px;
+    height: 2px;
+}
+.vertical-antenna-stick{
+    top: 0;
+    right: 50%;
+    width: 2px;
+    height: 30px;
+}
+.rooftop{
+    width: 100px;
+    height: 40px;
+    background-color: brown;
+    padding-left: 4px;
+}
+.rooftop-door{
+    width: 18px;
+    height: 30px;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    padding-right: 2px;
+}
+.bracelet-rooftop-door{
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+}
+.floors-build-1{
+    background-color: olivedrab;
+    gap: 30px;
+    padding-top: 20px;
+}
+.floor-window-container{
+    gap: 20px;
+}
+.window-build-1{
+    width: 50px;
+    height: 50px;
+    grid-template-areas: 
+    'a b'
+    'c d';
+    grid-gap: 3px
+}
+.window-separation-a{
+    grid-area: a;
+    background-color: aqua;
+}
+.window-separation-b{
+    grid-area: b;
+}
+.window-separation-c{
+    grid-area: c;
+}
+.window-separation-d{
+    grid-area: d;
+}
+.build-door{
+    width: 46px;
+    height: 80px;
+    background-color: maroon;
+    padding-right: 4px;
+}
+.bracelet-build-door{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
