@@ -1,0 +1,62 @@
+/* Note: This example only works with Windows Insider Preview Builds 16237+ or the Fall Creators Update. */
+
+body { 
+	font-family: segoe-ui_normal,Segoe UI,Segoe,Segoe WP,Helvetica Neue,Helvetica,sans-serif;
+	display: grid;
+	grid-template-areas: 
+    "header header header"
+    "nav section aside"
+    "footer footer footer";
+	grid-template-rows: 80px 1fr 50px;
+	grid-template-columns: 15% 1fr 18%;
+	grid-gap: 5px;
+  height: 100vh;
+  margin: 10px;  
+}
+
+header {
+	background:#C9C9C9;
+	grid-area: header;
+}
+
+nav {
+	background: #E8AA42;
+	grid-area: nav; 
+}
+
+section {
+	background: #025464;
+	grid-area: section;    
+}
+
+aside {
+	background: #526D82;
+	grid-area: aside; 
+}
+
+footer {
+	background: #9DB2BF;
+	grid-area: footer;
+}
+
+header, nav, section, aside, footer {
+	padding: 5px;
+}
+
+.paragraph {
+    font-weight: bold;
+    background-color:#F2D8D8;
+}
+
+.flex {
+    display: flex;
+}
+.post{
+    background-color:#F2D8D8;
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+}
+.flex-column {
+    flex-direction: column;
+  }
