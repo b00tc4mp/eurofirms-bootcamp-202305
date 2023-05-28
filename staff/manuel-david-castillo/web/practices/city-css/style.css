@@ -1,0 +1,304 @@
+body {
+  display: flex;
+  justify-content: start;
+  height: 100%;
+  width: 800px;
+  padding: 0;
+  margin: 0;
+}
+
+.ocean {
+  position: absolute;
+  background-color: blue;
+  bottom: 0px;
+  height: 100px;
+  width: 1000px;
+}
+
+.street {
+  position: absolute;
+  bottom: 80px;
+  width: 1000px;
+  height: 60px;
+  background-color: gray;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.streetline {
+  height: 10px;
+  width: 40px;
+  background-color: rgba(224, 224, 0, 0.689);
+  border: solid white 2px;
+}
+
+.build-1 {
+  position: absolute;
+  bottom: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  margin-left: 20px;
+}
+
+.build-1-body {
+  background-color: cadetblue;
+  bottom: 130px;
+  height: 320px;
+  width: 140px;
+  border: solid black 2px;
+  border-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  padding-top: 20px;
+}
+
+.build-1-windows {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.window {
+  border: solid black 2px;
+  height: 45px;
+  width: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "a b"
+    "c d";
+}
+
+.window-a {
+  grid-area: a;
+  background-color: cyan;
+  border: solid black 1px;
+}
+
+.window-b {
+  grid-area: b;
+  background-color: cyan;
+  border: solid black 1px;
+}
+
+.window-c {
+  grid-area: c;
+  background-color: cyan;
+  border: solid black 1px;
+}
+
+.window-d {
+  grid-area: d;
+  background-color: cyan;
+  border: solid black 1px;
+}
+
+.build-1-gate {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.gate {
+  background-color: burlywood;
+  height: 80%;
+  width: 20%;
+  border: solid black 2px;
+  border-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bracelet-gate-1 {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: black;
+  margin-left: 10px;
+}
+
+.bracelet-gate-2 {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: black;
+  margin-right: 10px;
+}
+
+.roof-build-1 {
+  bottom: 522px;
+  height: 40px;
+  width: 100px;
+  background-color: brown;
+  border: solid black 2px;
+  border-bottom: 0;
+  display: flex;
+  align-items: end;
+  padding-left: 10px;
+}
+
+.antenna {
+  height: 40px;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.stick {
+  height: 2px;
+  width: 100%;
+  background-color: black;
+  margin: 2px;
+}
+
+.big-stick {
+  background-color: black;
+  height: 40px;
+  width: 2px;
+  position: absolute;
+  top: 0px;
+}
+
+.car-1 {
+  position: absolute;
+  height: 80px;
+  width: 150px;
+  bottom: 115px;
+  left: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.car-1-glass {
+  width: 80px;
+  height: 0px;
+  border-right: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-bottom: 20px solid #42adca;
+}
+
+.car-1-body {
+  width: 100%;
+  height: 30px;
+  background-color: red;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 0px 30px 5px 40px;
+}
+
+.wheels {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.wheel {
+  background-color: black;
+  height: 15px;
+  width: 30px;
+  background: black;
+  -moz-border-radius: 0 0 30px 30px;
+  -webkit-border-radius: 0 0 30px 30px;
+  border-radius: 0 0 30px 30px;
+}
+
+.tank {
+  position: absolute;
+  height: 100px;
+  width: 230px;
+  bottom: 125px;
+  left: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tank-top {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: end;
+}
+
+.tank-top-center {
+  height: 30px;
+  width: 80px;
+  background-color: green;
+  border-radius: 10px 10px 0 0;
+}
+
+.tank-top-right {
+  height: 20px;
+  width: 90px;
+  background-color: darkgreen;
+}
+
+.tank-top-left {
+  height: 20px;
+  width: 90px;
+}
+
+.tank-body {
+  width: 80px;
+  height: 0px;
+  border-right: 30px solid transparent;
+  border-left: 30px solid transparent;
+  border-bottom: 30px solid #1c5a17;
+}
+
+.tank-wheels {
+  display: flex;
+  width: 130px;
+  justify-content: space-between;
+  border: black dotted 7px;
+  border-radius: 20px;
+}
+
+.wheel-tank {
+  height: 35px;
+  width: 35px;
+  border-radius: 20px;
+  background-color: black;
+}
+
+.build-2 {
+  position: absolute;
+  bottom: 130px;
+  left: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  margin-left: 20px;
+}
+
+.roof-build-2 {
+  background-color: coral;
+}
+
+.gate-2 {
+  background-color: sienna;
+  border-radius: 3px 3px 0 0;
+}
+
+.build-2-body {
+  width: 200px;
+  border-radius: 5px 5px 0 0;
+  background-color: darkred;
+}

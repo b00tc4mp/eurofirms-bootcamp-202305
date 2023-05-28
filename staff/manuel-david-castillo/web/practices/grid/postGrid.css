@@ -1,0 +1,43 @@
+/* Sin terminar */
+
+.home {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vh;
+  padding: 10;
+}
+
+.post {
+  width: 30%;
+}
+
+.container-of-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(autofit, minmax(10rem, 1fr));
+  grid-auto-rows: 5rem;
+  grid-gap: 10px;
+}
+
+.container-1 {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(autofit, minmax(10rem, 1fr));
+  grid-auto-rows: 5rem;
+  grid-gap: 10px;
+}
+
+.container-2 {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(autofit, minmax(10rem, 1fr));
+  grid-auto-rows: 5rem;
+  grid-gap: 10px;
+}
