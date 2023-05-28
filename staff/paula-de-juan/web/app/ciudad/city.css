@@ -95,15 +95,18 @@
   left: 20px;
   width: 150px;
   background-color: #993030;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px 50px 50px 50px;
 }
 
-.floors-build-1 {
-  background-color: olivedrab;
-  gap: 30px;
-  padding-top: 20px;
-}
-.floor-window-container {
-  gap: 20px;
+
+.window {
+  background-color: #baeedd;
+  height: 40px;
+  width: 40px;
+  gap: 25px;
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
 }
 
 .build-2 {
@@ -115,7 +118,6 @@
 }
 
 .floors-build-2 {
-  background-color: olivedrab;
   gap: 30px;
   padding-top: 20px;
 }
