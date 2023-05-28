@@ -95,19 +95,30 @@
   left: 20px;
   width: 150px;
   background-color: #993030;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 50px 50px 50px 50px;
+  grid-template-columns: 5px 40px 5px 40px 5px;
+  grid-template-rows: max-content;
+  display: grid;
 }
 
 
-.window {
+.window-column-left {
+  margin: 10px;  
   background-color: #baeedd;
   height: 40px;
   width: 40px;
-  gap: 25px;
   grid-column: 2 / 3;
-  grid-row: 3 / 4;
+  grid-row:auto;
 }
+
+  .window-column-right {
+    margin: 10px;  
+    background-color: #baeedd;
+    height: 40px;
+    width: 40px;
+    grid-column: 3 / 4;
+    grid-row: auto;
+    }
+
 
 .build-2 {
   bottom: 150px;
