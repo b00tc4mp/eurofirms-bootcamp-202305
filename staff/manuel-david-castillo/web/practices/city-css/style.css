@@ -28,6 +28,14 @@ body {
   align-items: center;
 }
 
+.pavement {
+  position: absolute;
+  bottom: 140px;
+  width: 1000px;
+  height: 10px;
+  background-color: dimgray;
+}
+
 .streetline {
   height: 10px;
   width: 40px;
@@ -37,7 +45,7 @@ body {
 
 .build-1 {
   position: absolute;
-  bottom: 130px;
+  bottom: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,9 +227,9 @@ body {
 
 .tank {
   position: absolute;
-  height: 100px;
+  height: 120px;
   width: 230px;
-  bottom: 125px;
+  bottom: 110px;
   left: 400px;
   display: flex;
   flex-direction: column;
@@ -232,7 +240,7 @@ body {
   width: 100%;
   height: 30px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: end;
   align-items: end;
 }
 
@@ -245,13 +253,8 @@ body {
 
 .tank-top-right {
   height: 20px;
-  width: 90px;
+  width: 75px;
   background-color: darkgreen;
-}
-
-.tank-top-left {
-  height: 20px;
-  width: 90px;
 }
 
 .tank-body {
@@ -266,7 +269,7 @@ body {
   display: flex;
   width: 130px;
   justify-content: space-between;
-  border: black dotted 7px;
+  border: black dashed 7px;
   border-radius: 20px;
 }
 
@@ -279,7 +282,7 @@ body {
 
 .build-2 {
   position: absolute;
-  bottom: 130px;
+  bottom: 150px;
   left: 700px;
   display: flex;
   flex-direction: column;
@@ -290,6 +293,14 @@ body {
 
 .roof-build-2 {
   background-color: coral;
+  bottom: 522px;
+  height: 40px;
+  width: 100px;
+  border: solid black 2px;
+  border-bottom: 0;
+  display: flex;
+  align-items: end;
+  padding-left: 10px;
 }
 
 .gate-2 {
