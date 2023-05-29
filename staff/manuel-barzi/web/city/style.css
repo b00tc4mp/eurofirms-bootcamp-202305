@@ -1,0 +1,78 @@
+/* flex building */
+
+.building-1 {
+    background-color: magenta;
+    height: 100px;
+    width: 40px;
+    box-sizing: border-box;
+}
+
+.building-1__floor {
+    /* background-color: gold; */
+    /* border: 1px solid black; */
+    height: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.building-1__window {
+    background-color: cyan;
+    height: 5px;
+    width: 5px;
+    /* border: 1px solid black; */
+    box-sizing: border-box;
+}
+
+/* grid rows & columns building */
+
+.building-2 {
+    background-color: gold;
+    height: 100px;
+    width: 40px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.building-2__window {
+    background-color: dodgerblue;
+    height: 5px;
+    width: 5px;
+    /* border: 1px solid black; */
+    box-sizing: border-box;
+}
+
+/* grid areas building */
+
+.building-3 {
+    background-color: green;
+    height: 100px;
+    width: 40px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas:
+        "a a a a"
+        "a a a a"
+        "a a a a"
+        "a a a a"
+        "a a a a"
+        "a a a a"
+        "a a a a"
+        "a a a a"
+        "a a a a";
+    justify-items: center;
+    align-items: center;
+}
+
+.building-3__window {
+    background-color: greenyellow;
+    height: 5px;
+    width: 5px;
+    /* border: 1px solid black; */
+    box-sizing: border-box;
+}
