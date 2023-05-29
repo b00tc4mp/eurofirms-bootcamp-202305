@@ -302,3 +302,74 @@ body {
   border-radius: 5px 5px 0 0;
   background-color: darkred;
 }
+
+.airplane {
+  position: absolute;
+  height: 160px;
+  width: 200px;
+  top: 80px;
+  left: 300px;
+}
+
+.airplane-body {
+  position: absolute;
+  background-color: deepskyblue;
+  height: 30px;
+  width: 150px;
+  top: 65px;
+  left: 40px;
+  border-radius: 0 50px 50px 0;
+}
+
+.airplane-windows {
+  position: absolute;
+  height: 70%;
+  width: 90%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.airplane-window {
+  z-index: 2;
+  background-color: aliceblue;
+  height: 8px;
+  width: 6px;
+  border-radius: 5px;
+}
+
+.airplane-back {
+  width: 0;
+  height: 0;
+  border-left: 60px solid deepskyblue;
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  position: absolute;
+  top: 40px;
+  left: 10px;
+}
+
+.airplane-wing-1 {
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-bottom-width: 0px;
+  border-top-width: 80px;
+  border-left: 50px solid deepskyblue;
+  position: absolute;
+  left: 90px;
+  top: 10px;
+}
+
+.airplane-wing-2 {
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-bottom-width: 80px;
+  border-top-width: 0px;
+  border-left: 50px solid deepskyblue;
+  position: absolute;
+  left: 90px;
+  top: 70px;
+}
