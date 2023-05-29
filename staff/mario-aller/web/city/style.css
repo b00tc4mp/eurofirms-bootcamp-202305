@@ -153,3 +153,19 @@
     width: 50%;
     height: 100;
 }
+
+@keyframes moto-move {
+    0% {left: 10%;}
+    100% {left: 70%;}
+}
+
+.moto {
+    width: 30%;
+    position: absolute;
+    bottom: 10%;
+    left:50%;
+    animation-name: moto-move;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
