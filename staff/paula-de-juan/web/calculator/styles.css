@@ -1,0 +1,15 @@
+
+input {
+    width: 50px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 40px 40px 40px;
+    padding: 10px;
+}
+
+.grid-item {
+    padding: 10px;
+
+}
