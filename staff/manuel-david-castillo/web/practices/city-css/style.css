@@ -1,3 +1,15 @@
+@keyframes day-night {
+  0% {
+    background-color: aqua;
+  }
+  50% {
+    background-color: navy;
+  }
+  100% {
+    background-color: aqua;
+  }
+}
+
 body {
   display: flex;
   justify-content: start;
@@ -5,6 +17,10 @@ body {
   width: 800px;
   padding: 0;
   margin: 0;
+  animation-name: day-night;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 .ocean {
@@ -314,12 +330,35 @@ body {
   background-color: darkred;
 }
 
+@keyframes airplane-move {
+  0% {
+    left: -40%;
+  }
+  50% {
+    left: 100%;
+  }
+  51% {
+    left: -40%;
+  }
+  99% {
+    left: 100%;
+  }
+  100% {
+    left: -40%;
+  }
+}
+
 .airplane {
   position: absolute;
   height: 160px;
   width: 200px;
   top: 80px;
-  left: 300px;
+  left: -20%;
+  animation-name: airplane-move;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 1;
 }
 
 .airplane-body {
@@ -383,4 +422,46 @@ body {
   position: absolute;
   left: 90px;
   top: 70px;
+}
+
+.window-a:hover {
+  background-color: azure;
+}
+
+.window-b:hover {
+  background-color: azure;
+}
+
+.window-c:hover {
+  background-color: azure;
+}
+
+.window-d:hover {
+  background-color: azure;
+}
+
+@keyframes sun-move {
+  0% {
+    transform: rotate(-60deg);
+  }
+  100% {
+    transform: rotate(40deg);
+  }
+}
+
+.sun {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  bottom: 300px;
+  transform-origin: 50% 600%;
+  transform: rotate(-60deg);
+  z-index: -1;
+  animation-name: sun-move;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
