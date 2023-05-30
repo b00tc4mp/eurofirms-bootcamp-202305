@@ -3,9 +3,6 @@ var b = document.querySelector('input[name=b]');
 var result = document.querySelector('.result');
 
 
-
-
-
 var buttonAdd = document.querySelector('#add');
 
 buttonAdd.onclick = function(){
