@@ -1,6 +1,6 @@
 // Database
 var users = [];
-users.push({name: 'John Doe', email: 'john@doe.com', password: '123'});
+users.push({ name: 'John Doe', email: 'john@doe.com', password: '123' });
 
 
 // home
@@ -10,7 +10,7 @@ var homeView = document.querySelector('.home-view')
 var registerView = document.querySelector('.register-view');
 var registerForm = registerView.querySelector('.register-form');
 
-registerForm.onsubmit = function(event){
+registerForm.onsubmit = function (event) {
     event.preventDefault();
     var nameInput = registerForm.querySelector('#name');
     var name = nameInput.value
@@ -22,14 +22,14 @@ registerForm.onsubmit = function(event){
     var password = passwordInput.value
 
     var userExists = false;
-    for( var i = 0 ; i < users.length ; i++){
-        if(email === users[i].email){
-                userExists = true;
-                break;
-        } 
+    for (var i = 0; i < users.length; i++) {
+        if (email === users[i].email) {
+            userExists = true;
+            break;
+        }
     };
 
-    if (userExists){
+    if (userExists) {
         alert('E-mail already registered')
     }
     else {
@@ -38,18 +38,18 @@ registerForm.onsubmit = function(event){
         user.name = name;
         user.email = email;
         user.password = password;
-    
+
         users.push(user);
-    
+
         alert('User registered!')
 
-        if (user === undefined){
+        if (user === undefined) {
             alert('Wrong credentials')
-    }
+        }
         else if (user.password === password) {
             registerView.classList.add('off')
             loginView.classList.remove('off')
-            } else
+        } else
             alert('Wrong credentials')
 
     }
@@ -59,36 +59,37 @@ registerForm.onsubmit = function(event){
 var loginView = document.querySelector('.login-view');
 var loginForm = loginView.querySelector('.login-form');
 
-loginForm.onsubmit = function(event){
+loginForm.onsubmit = function (event) {
     event.preventDefault();
     var emailInput = loginForm.querySelector('#email');
     var email = emailInput.value
 
     var passwordInput = loginForm.querySelector('#password');
     var password = passwordInput.value
+
+var user;
+
+for (var i = 0; i < users.length; i++) {
+    var _user = users[i];
+
+    if (email === _user.email) {
+        user = _user;
+        break;
+    }
 }
-    var user;
 
-    for (var i = 0; i < users.length; i++) {
-        var _user = users[i]
 
-        if (_user.email === email) {
-            user = _user
-
-            break
-        }
-    
-
-if (user === undefined){
+    if (user === undefined) {
         alert('Wrong credentials')
-}
+    }
     else if (user.password === password) {
         loginView.classList.add('off')
         homeView.classList.remove('off')
-    } else
-        alert('Wrong credentials')
+    } else{
+        alert('Wrong credentials');
     }
 
+}
 
 
 
