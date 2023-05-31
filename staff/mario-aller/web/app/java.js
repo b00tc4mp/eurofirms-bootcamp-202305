@@ -1,0 +1,8 @@
+
+// Declaraciones globales
+
+
+
+
+// Punteros principales
+
