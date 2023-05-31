@@ -98,15 +98,20 @@
   grid-template-columns: 20px 45px 20px 45px 20px;
   grid-template-rows: 10px 45px 45px 45px 45px;
   display: grid;
+  position: absolute;
 }
 
 
-.window-column{
+.window-column-left{
  
   background-color: #baeedd;
   height: 40px;
   width: 40px;
+  grid-column:  2/ 3;
   }
+.window-column-right {
+  grid-column: 4/5; 
+}
 
 .build-2 {
   bottom: 150px;

@@ -1,0 +1,14 @@
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+
+.w-70 {
+  width: 80%;
+}
+
+.justify-center {
+  justify-content: center;
+}
