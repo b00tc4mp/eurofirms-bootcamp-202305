@@ -2,10 +2,15 @@
     padding: 0;
     margin: 0;
 }
+@keyframes day-night{
+    0% {background-color: lightskyblue ;}
+    70% {background-color: rgb(9, 37, 54);}
+    100% {background-color: lightskyblue ;}
+}
 body{
     background-color: lightskyblue;
     animation-name: day-night;
-    animation-duration: 15s;
+    animation-duration: 30s;
     animation-iteration-count:infinite;
     animation-timing-function: linear;
 }
@@ -55,12 +60,23 @@ body{
     height: 100px;
     background-color: rgb(0, 123, 255);
 }
+.street-line-separate{
+    bottom: 153px;
+    height: 13px;
+    width: 100%;
+    border-bottom-style: dashed;
+    color: rgb(171, 170, 166);
+}
 .street-line-1{
     bottom: 100px;
     height: 10px;
     width: 100%;
-    border-bottom-style: dashed;
-    border-bottom-width: 2px;
+    background-color: rgb(71, 52, 0);
+}
+.street-line-2{
+    bottom: 200px;
+    height: 10px;
+    width: 100%;
     background-color: rgb(71, 52, 0);
 }
 .street{
@@ -110,7 +126,7 @@ body{
 }
 .floors-build-1{
     background-color: rgb(173, 163, 154);
-    gap: 30px;
+    gap: 13.6px;
     padding-top: 20px;
 }
 .floor-window-container{
@@ -171,7 +187,7 @@ body{
 .car-1{
     width:150px;
     height:60px;
-    bottom:125px;
+    bottom:159px;
     left:200px;
 
 }
@@ -181,7 +197,16 @@ body{
     height:45%;
     border-radius: 5px;
 }
-.car-1-roof{
+
+.car-1-wheel-tire{
+    position: relative;
+    top: -5px;
+    height: 100%;
+    width: 13%;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: yellow;
+}.car-1-roof{
     width:50%;
     background-color: brown;
     height:35%;
@@ -225,6 +250,13 @@ body{
     transform: rotate(10deg); 
     
 }
+/*.ovni-tube-1{
+    align-items: center;
+    background-color: rgb(173, 163, 154);
+    gap: 30px;
+    padding-top: 30px;
+    top:10%;
+}*/
 .ovni-top{
     position: relative;
     top: 21px;
@@ -250,13 +282,76 @@ body{
     background-color: gainsboro;
     border-radius: 50% ;
 }
+@keyframes sun-movement {
+    0%{transform:rotate(-60deg)}
+   100%{transform:rotate(100deg)}     
+}
 .sun{
     width: 100px;
     height: 100px;
     border-radius: 50%;
     background-color: yellow;
     position: absolute;
-    left: 110%;
-    transform-origin: 0 100;
+    left: 50%;
+    transform-origin: 50% 100%;
+    animation-name: sun-movement;
+    transform: rotate(-60deg);
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.moto{
+    position:absolute;
+    left:150px;
+    width: 400px;
+    height: 200px;
+    display: grid;
+    grid-area: 
+        '. . . . b'
+        'a a a a a'
+        'c c c c .'
+        'c c c c .'
+}
+.moto-body{
+    grid-area: a;
+    display: flex;
+}
+.moto-body-back{
+    width: 80%;
+    height: 20%;
+    background-color: crimson;
+}
 
+
+.moto-body-back-wheel{
+    height: 40px;
+    width: 40px;
+    position: relative;
+    left:15%;
+    top:-10%;
+    z-index: 1;
+}
+.moto-body-back-wheel-neumatic{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: rgb(7, 7, 7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.moto-body-back-wheel-protector-1{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: rgb(252, 250, 250);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.moto-body-back-wheel-protector-2{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: darkgray;
 }
