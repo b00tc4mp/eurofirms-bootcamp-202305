@@ -10,18 +10,14 @@
   <body>
     <header>
       <nav>
-        <button class="link-login button-footer" href="login.html">
-          Login
-        </button>
+        <a href="login.html">Login</a>
       </nav>
       <nav>
-        <button class="link-register button-footer" href="register.html">
-          Register
-        </button>
+        <a href="register.html">Register</a>
       </nav>
     </header>
     <main class="register">
-      <form class="register-form" action="">
+      <form action="">
         <h2>Register</h2>
         <div>
           <label for="name">Name:</label>
@@ -29,17 +25,12 @@
         </div>
         <div>
           <label for="email">Email:</label>
-          <input
-            id="register-email"
-            class="input"
-            placeholder="email"
-            type="email"
-          />
+          <input id="email" class="input" placeholder="email" type="email" />
         </div>
         <div>
           <label for="password">Password:</label>
           <input
-            id="register-password"
+            id="password"
             class="input"
             placeholder="password"
             type="password"
@@ -49,22 +40,17 @@
       </form>
     </main>
 
-    <main class="login off">
-      <form class="login-form" action="">
+    <main class="login">
+      <form action="">
         <h2>Login</h2>
         <div>
           <label for="email">Email:</label>
-          <input
-            id="login-email"
-            class="input"
-            placeholder="email"
-            type="email"
-          />
+          <input id="email" class="input" placeholder="email" type="email" />
         </div>
         <div>
           <label for="password">Password:</label>
           <input
-            id="login-password"
+            id="password"
             class="input"
             placeholder="password"
             type="password"
@@ -74,7 +60,7 @@
       </form>
     </main>
 
-    <main class="home off">
+    <main class="home">
       <h2>My posts</h2>
       <div class="all-posts">
         <div class="post">
@@ -108,5 +94,4 @@
       </a>
     </footer>
   </body>
-  <script src="main.js"></script>
 </html>

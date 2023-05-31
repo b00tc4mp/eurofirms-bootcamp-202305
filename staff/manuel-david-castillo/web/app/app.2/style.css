@@ -67,10 +67,6 @@ button {
   margin-bottom: 10px;
 }
 
-.button-footer {
-  margin-top: 10px;
-}
-
 .instagram-logo {
   width: 40px;
 }
@@ -102,8 +98,4 @@ button {
 
 .message {
   margin-left: 5px;
-}
-
-.off {
-  display: none;
 }
