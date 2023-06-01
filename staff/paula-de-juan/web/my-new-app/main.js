@@ -1,6 +1,6 @@
 // Database
 var users = [];
-users.push({ name: 'John Doe', email: 'john@doe.com', password: '123' });
+users.push({ name: 'John', lastName: 'Doe' ,email: 'john@doe.com', password: '123' , subscribe: 'true'});
 
 
 // home
@@ -15,11 +15,17 @@ registerForm.onsubmit = function (event) {
     var nameInput = registerForm.querySelector('#name');
     var name = nameInput.value
 
+    var lastNameInput = registerForm.querySelector('#lastName');
+    var lastName = lastNameInput.value
+
     var emailInput = registerForm.querySelector('#email');
     var email = emailInput.value
 
     var passwordInput = registerForm.querySelector('#password');
     var password = passwordInput.value
+
+    var subscribeInput = registerForm.querySelector('#subscribe');
+    var subscribe = subscribeInput.value
 
     var userExists = false;
     for (var i = 0; i < users.length; i++) {
@@ -36,8 +42,10 @@ registerForm.onsubmit = function (event) {
         var user = {}
 
         user.name = name;
+        user.lastName = lastName;
         user.email = email;
         user.password = password;
+        user.subscribe = subscribe;
 
         users.push(user);
 

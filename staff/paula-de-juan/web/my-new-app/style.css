@@ -1,0 +1,12 @@
+body { 
+    margin: 0px;
+    background-color: #FFC26F;
+}
+
+.bg-personalized-color {
+    background-color: #884A39;
+}
+
+.off{
+    display: none;
+  }
