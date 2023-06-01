@@ -1,24 +1,16 @@
-.flex{
-    display: flex
-}
-.flex-column{
+.register-form {
+    display: flex;
     flex-direction: column;
 }
-.w-30{
-    width: 30%;
+
+.login-form {
+    display: flex;
+    flex-direction: column;
 }
-.justify-center{
-    justify-content: center;
-}
-.instagram-logo{
-    width: 40px;
-}
-.home{
+
+.off {
     display: none;
 }
-.login{
-    display: none;
-}
-.register{
-    display: none;
-}
+
+
+

@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>App</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <main class="flex justify-center">
-        <form class="flex flex-column w-30">
-            <label for="email">email:</label>
-            <input id="email" for="email" type="email">
-            <label for="password">password</label>
-            <input ed="password" for="pasword" type="password">
-            <button>login</button>
-        </form>
-    </main>
+    <main class="register-view">
+        <h1>Register</h1>
 
-    <main class="flex justify-center">
-        <form class="flex flex-column w-30">
-            <label for="name">name:</label>
-            <input id="name" name="name" type="text">
-            <label for="email">email:</label>
+        <form class="register-form">
+            <label for="name">Name:</label>
+            <input id="name" for="email" type="text">
+
+            <label for="email">E-mail:</label>
             <input id="email" for="email" type="email">
+
             <label for="password">password</label>
             <input id="password" for="pasword" type="password">
-            <button>register</button>
+
+            <button type="submit">Register</button>
         </form>
     </main>
 
-    <main>
-        <!-- TODO implement a home page (h1, nav (profile)) -->
+    <main class="login-view off">
+        <h1>Login</h1>
+
+        <form class="login-form">
+           <label for="email">E-mail</label>
+           <input id="email" type="email">
+
+           <label for="password">Password</label>
+           <input id="password" type="password">
+
+           <button type="submit">Login</button>
+
+        </form>
     </main>
+
+    <main class="home-view off">
+        <h1>Hello, Home!</h1>
+
+    </main>
+
+    <script src="main.js"></script>
 </body>
-
-
 </html>

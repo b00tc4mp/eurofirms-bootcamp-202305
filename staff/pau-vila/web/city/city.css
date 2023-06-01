@@ -1,0 +1,240 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+.flex{
+    display: flex;
+}
+.grid{
+    display: grid;
+}
+.flex-column{
+    flex-direction: column;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-start{
+    justify-content:start
+}
+.justify-end{
+    justify-content: end;
+}
+.items-center{
+    align-items: center;
+}
+.items-end{
+    align-items: end;
+}
+.absolute{
+    position: absolute;
+}
+.self-center{
+    align-self: center;
+}
+.bg-aqua{
+    background-color: rgb(29, 184, 245);
+}
+.bg-black{
+    background-color: black;
+}
+.justify-around{
+    justify-content: space-around;
+}
+
+.sea {
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(25, 182, 239);
+}
+.street{
+    bottom: 100px;
+    height: 100px;
+    width: 100%;
+    background-color: rgb(99, 97, 97);
+}
+.build-1{
+    bottom: 150px;
+    height: 420px;
+    left: 20px;
+    width: 150px;
+}
+.antenna{
+    gap: 4px;
+    margin-bottom: 15px;
+}
+.horizontal-antenna-stick{
+    width: 20px;
+    height: 2px;
+}
+.vertical-antenna-stick{
+    top: 0;
+    right: 50%;
+    width: 2px;
+    height: 30px;
+}
+.rooftop{
+    width: 100px;
+    height: 40px;
+    background-color: brown;
+    padding-left: 4px;
+}
+.rooftop-door{
+    width: 18px;
+    height: 30px;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    padding-right: 2px;
+}
+.bracelet-rooftop-door{
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+}
+.floors-build-1{
+    background-color: rgb(242, 200, 13);
+    gap: 30px;
+    padding-top: 20px;
+}
+.floor-window-container{
+    gap: 20px;
+}
+.window-build-1{
+    width: 50px;
+    height: 50px;
+    grid-template-areas: 
+    'a b'
+    'c d';
+    background-color: aqua;
+}
+.window-separation-a{
+    grid-area: a;
+    background-color: rgb(206, 112, 246);
+}
+.window-separation-b{
+    grid-area: b;
+}
+.window-separation-c{
+    grid-area: c;
+}
+.window-separation-d{
+    grid-area: d;
+}
+.build-door{
+    width: 46px;
+    height: 80px;
+    background-color: rgb(169, 97, 45);
+    padding-right: 4px;
+}
+.bracelet-build-door{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.car-1{
+    width:150px;
+    height:60px;
+    bottom:125px;
+    left:200px;
+
+}
+.car-1-body{
+    width:100%;
+    background-color: rgb(240, 247, 23);
+    height:45%;
+    border-radius: 5px;
+}
+.car-1-roof{
+    width:50%;
+    background-color: rgb(240, 247, 23);
+    height:35%;
+    border-radius: 10px 10px 0 0;
+}
+.car-1-wheels{
+    width: 100%;
+    height: 40%;
+}
+.car-1-wheel{
+    position: relative;
+    top: -5px;
+    height: 100%;
+    width: 13%;
+    border: 1px solid;
+    border-radius: 50%;
+}
+            
+.cloud {
+    background: (#0088FF);
+                width: 350px; height: 120px;
+                background: rgb(113, 230, 230);
+                background: linear-gradient(top, rgb(139, 247, 247) 5%, #DFF 100%);
+                background: -webkit-linear-gradient(top, #FFF 1%, #BFF 100%);
+                background: -moz-linear-gradient(top, #BFF 5%, #DFF 100%);
+                background: -ms-linear-gradient(top, #BFF 5%, #DFF 100%);
+                background: -o-linear-gradient(top, #BFF 5%, #DFF 100%);
+                top: -500px; left: -500px;
+                border-radius: 100px;
+                position: absolute;
+                margin: 120px auto 20px;
+                left:200px;
+            }
+
+            #cloud:after, #cloud:before {
+                content: '';
+                position: absolute;
+                background: #9fe7eb;
+                z-index: -1
+            }
+
+            #cloud:after {
+                width: 100px; height: 100px;
+                top: -50px; left: 50px;
+                border-radius: 100px;
+            }
+
+            #cloud:before {
+                width: 200px; height: 200px;
+                top: -90px; right: 30px;
+                border-radius: 100px;
+            }
+
+            .shadow {
+                width: 350px;
+                position: absolute;
+                bottom: -10px; 
+                background: #000;
+                z-index: -1;
+                box-shadow: 0, 0, 25px, 8px, rgba(0, 0, 0, 0.4);
+                border-radius: 50%;
+            }
+
+.ovni{
+    position: absolute;
+    left: 40%;
+    top: 10%;
+    width: 200px;
+    height: 100px;
+    border: 2px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .ovni-top{
+        position: relative;
+        top: 20px;
+        width: 40%;
+        height: 55%;
+        background-color: darkgrey;
+        border-radius: 50% 50% 10% 10%;
+        display: flex;
+        gap: 3px;
+        align-items: end;
+        justify-content:center;
+        padding-bottom: 10px;
+    }
+    .ovni-window{
+        width: ;
+    }
+}
