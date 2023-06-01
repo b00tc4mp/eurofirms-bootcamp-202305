@@ -1,33 +1,26 @@
-// Database
-var users = [];
+/*
+
+    --* Database *--
+
+*/
+
+var users =  [];
 users.push({ name: 'John Doe', email: 'john@doe.com', password: '123' });
 
+/*
 
-// home
-var homeView = document.querySelector('.home-view')
+    --* Logic *--
 
-// Register Form
-var registerView = document.querySelector('.register-view');
-var registerForm = registerView.querySelector('.register-form');
+*/
 
-registerForm.onsubmit = function (event) {
-    event.preventDefault();
-    var nameInput = registerForm.querySelector('#name');
-    var name = nameInput.value
-
-    var emailInput = registerForm.querySelector('#email');
-    var email = emailInput.value
-
-    var passwordInput = registerForm.querySelector('#password');
-    var password = passwordInput.value
-
+function registerUser(name, email, password) {
     var userExists = false;
     for (var i = 0; i < users.length; i++) {
         if (email === users[i].email) {
             userExists = true;
             break;
         }
-    };
+    }
 
     if (userExists) {
         alert('E-mail already registered')
@@ -41,7 +34,7 @@ registerForm.onsubmit = function (event) {
 
         users.push(user);
 
-        
+
 
         if (user === undefined) {
             alert('Wrong credentials')
@@ -53,6 +46,62 @@ registerForm.onsubmit = function (event) {
             alert('Wrong credentials')
 
     }
+}
+
+function authenticateUser(email, password) {
+
+    var user;
+    for (var i = 0; i < users.length; i++) {
+        var _user = users[i];
+
+        if (email === _user.email) {
+            user = _user;
+            break;
+        }
+    }
+
+    if (user === undefined) {
+        alert('Wrong credentials')
+    }
+    else if (user.password === password) {
+        loginView.classList.add('off')
+        homeView.classList.remove('off')
+    } else {
+        alert('Wrong credentials');
+    }
+}
+
+/*
+ 
+--* Presentation *--
+ 
+*/
+
+// Register Form
+var registerView = document.querySelector('.register-view');
+var registerForm = registerView.querySelector('.register-form');
+
+
+registerForm.onsubmit = function (event) {
+    event.preventDefault();
+    var nameInput = registerForm.querySelector('#name');
+    var name = nameInput.value
+
+    var emailInput = registerForm.querySelector('#email');
+    var email = emailInput.value
+
+    var passwordInput = registerForm.querySelector('#password');
+    var password = passwordInput.value
+
+    var result = registerUser(name, email, password)
+
+    if (result === false)
+        alert('User already exists')
+    else {
+        registerView.classList.add('off')
+        loginView.classList.remove('off')
+    }
+
 }
 
 // Login Form
@@ -67,30 +116,17 @@ loginForm.onsubmit = function (event) {
     var passwordInput = loginForm.querySelector('#password');
     var password = passwordInput.value
 
-var user;
+    var result = authenticateUser(email, password)
 
-for (var i = 0; i < users.length; i++) {
-    var _user = users[i];
-
-    if (email === _user.email) {
-        user = _user;
-        break;
-    }
-}
-
-
-    if (user === undefined) {
+    if (result === false)
         alert('Wrong credentials')
-    }
-    else if (user.password === password) {
+    else {
         loginView.classList.add('off')
         homeView.classList.remove('off')
-    } else{
-        alert('Wrong credentials');
     }
-
 }
 
-
+// home
+var homeView = document.querySelector('.home-view')
 
 
