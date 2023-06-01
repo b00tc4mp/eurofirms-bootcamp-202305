@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    box-sizing:border-box;
+    background-color: azure;
+
+}
+.header, .footer {
+    background-color: aquamarine;
+    height: 5rem;
+    width: 100%;
+    position: fixed;
+    padding: .25rem;
+}
+
+.header{
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.footer{
+    bottom: 0;
+}
+
+.logo {
+    font-family: 'Lobster Two';
+    color: gray;
+    font-size: 2.5rem;
+}
+
+.post{
+    background-color: yellowgreen;
+    margin: 1rem;
+
+}
