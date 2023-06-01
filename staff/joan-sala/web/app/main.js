@@ -1,4 +1,6 @@
-// database
+/**
+ * DATA
+ */
 
 var users = []
 
@@ -6,10 +8,76 @@ users.push({ name: 'Pin Ocho', email: 'pin@ocho.com', password: '123123123' })
 users.push({ name: 'John Doe', email: 'john@doe.com', password: '123123123' })
 users.push({ name: 'Ada Love', email: 'ada@love.com', password: '123123123' })
 
+/**
+ * LOGIC
+ */
+
+function registerUser(name, email, password) {
+    var user
+
+    for (var i = 0; i < users.length; i++) {
+        var _user = users[i]
+
+        if (_user.email === email) {
+            user = _user
+
+            break
+        }
+    }
+
+    if (user !== undefined)
+        return false
+    else {
+        user = {}
+
+        user.name = name
+        user.email = email
+        user.password = password
+
+        users.push(user)
+
+        return true
+    }
+}
+
+function authenticateUser(email, password) {
+    var user
+
+    for (var i = 0; i < users.length; i++) {
+        var _user = users[i]
+
+        if (_user.email === email) {
+            user = _user
+
+            break
+        }
+    }
+
+    if (user === undefined)
+        return false
+    else if (user.password !== password)
+        return false
+    else
+        return true
+}
+funnction retriewUser(email){
+    for(var i=0; i <user.length;i++){
+        if(email===user[i].email){
+            return false
+        }
+    }
+
+}
+
+/**
+ * PRESENTATION
+ */
+
 // register
 
 var registerView = document.querySelector('.register-view')
 var registerForm = registerView.querySelector('.register-form')
+
 registerForm.onsubmit = function (event) {
     event.preventDefault()
 
@@ -22,69 +90,44 @@ registerForm.onsubmit = function (event) {
     var passwordInput = registerForm.querySelector('#password')
     var password = passwordInput.value
 
-    var userExists=false
+    var result = registerUser(name, email, password)
 
-    for (var i=0;i<users.length;i++)
-    {
-        if(email === users[i].email)
-        {
-            userExists=true
-            break
-        }
-    }
-    if (userExists){
-        alert('email already registered')
-    }
+    if (result === false)
+        alert('User already exists')
     else {
-        // Archivo de usuario
-        var newUser = {}
-        newUser.name=name
-        newUser.email=email
-        newUser.password=password
-        users.push(newUser)
-        
-        alert('User registered')
-
-        loginView.classList.remove('off')
         registerView.classList.add('off')
+        loginView.classList.remove('off')
     }
 }
 
-// Login
+// login
 
-var loginView=document.querySelector('.login-view')
-var loginForm=loginView.querySelector('.login-form')
+var loginView = document.querySelector('.login-view')
+var loginForm = loginView.querySelector('.login-form')
 
-loginForm.onsubmit = function(event){
-    //no poner nada dentro de parentesis
+loginForm.onsubmit = function (event) {
     event.preventDefault()
-    
-    var passwordInput = loginForm.querySelector('#password')
-    var password = passwordInput.value
 
     var emailInput = loginForm.querySelector('#email')
     var email = emailInput.value
 
-    var user
-    for( var i=0; i < users.length;i++){
-        var _user = users[i]
+    var passwordInput = loginForm.querySelector('#password')
+    var password = passwordInput.value
 
-        if(email === _user.email){
-            user = _user
+    var result = authenticateUser(email, password)
 
-            break
-        }
-    }
-    if(!user){
+    if (result === false) //(!result)
         alert('Wrong credentials')
-    }
-    else if(user.password === password){
+    else {
         loginView.classList.add('off')
         homeView.classList.remove('off')
-    }
-    else{
-        alert('Wrong credentials')
+        
+        var user=retriewUser(email)
+    
     }
 }
 
+// home
+
 var homeView = document.querySelector('.home-view')
+
