@@ -71,6 +71,27 @@ function authenticateUser(email, password) {
     }
 }
 
+function retrieveUser(email){
+    var user
+    for (var i = 0; i < users.length; i++){
+        if (email === users[i].email){
+        user = users[i]
+        break
+        }
+    }
+    if(!user){
+        return false
+    }
+    else{
+        var userToReturn = {
+            name: user.name,
+            email: user.email
+        }
+
+        return userToReturn
+    }
+}
+
 /*
  
 --* Presentation *--
@@ -121,12 +142,25 @@ loginForm.onsubmit = function (event) {
     if (result === false)
         alert('Wrong credentials')
     else {
-        loginView.classList.add('off')
-        homeView.classList.remove('off')
+        var user =  retrieveUser(email)
+
+       if(!user){
+        alert('User dont found')
+
+
+        
+       }
+       else{
+        var userNameHTMLTag = document.querySelector('.greeting-user')
+
+        userNameHTMLTag.textContent = 'Hello ' + user.name
+       }
+
+       loginView.classList.add('off')
+       homeView.classList.remove('off')
     }
 }
 
 // home
-var homeView = document.querySelector('.home-view')
-
-
+var homeView = document.querySelector('.home-view');
+ 
