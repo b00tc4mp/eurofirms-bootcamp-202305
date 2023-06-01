@@ -3,6 +3,18 @@
     padding: 0;
     margin: 0;
 }
+.sun {
+    width: 100px;
+    height: 100px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #e9ec13;
+    margin:0 auto;
+}
+body{
+    background-color: rgb(103, 103, 241);
+}
 .flex{
     display: flex;
 }
@@ -47,7 +59,7 @@
     bottom: 0;
     width: 100%;
     height: 100px;
-    background-color: rgb(0, 123, 255);
+    background-color: rgb(68, 212, 104);
 }
 .street{
     bottom: 100px;
@@ -55,11 +67,28 @@
     width: 100%;
     background-color: grey;
 }
+.street-line{
+    
+    background-color:yellow;
+    border:1px solid black;
+    width:100x;
+    height:10px;
+    bottom:420px;
+    justify-content: space-between;
+}
 .build-1{
     bottom: 150px;
     height: 420px;
     left: 20px;
     width: 150px;
+}
+.build-2{
+    bottom: 150px;
+    height:420px;
+    left:550px;
+    width: 150px;
+    background-color:rgb(233, 119, 153);
+    border:1px solid black;
 }
 .antenna{
     gap: 4px;
@@ -102,6 +131,14 @@
     gap: 20px;
 }
 .window-build-1{
+    width: 50px;
+    height: 50px;
+    grid-template-areas: 
+    'a b'
+    'c d';
+    grid-gap: 3px
+}
+.window-build-2{
     width: 50px;
     height: 50px;
     grid-template-areas: 
@@ -170,7 +207,6 @@
     height:60px;
     bottom:125px;
     left:370px;
-    border:1px solid black;
 }
 .car-2-body{
     width:100%;
@@ -205,3 +241,68 @@
     border-radius: 50%; 
     background-color: #fff;;
 }*/
+/*grid layout*/
+.grid-container{
+    display:grid;
+    position:absolute;
+    width:170px;
+    height: 420px;
+    left:550px;
+    bottom:150px;
+    padding:10px;
+   grid-template-columns:auto auto auto;
+   grid-template-rows:auto auto auto;
+   
+    background-color: aqua;
+}
+.wind-building{
+    background-color:orange;
+    border: 1px solid black;
+    /*padding:5px;*/
+    height:35% ;
+    /*margin-left:5px;*/
+    color:#fff;
+    text-align:center;
+}
+.door-building{
+    background-color:rgb(180, 59, 59);
+    height:60% ;
+    width:70%;
+    margin:auto;
+}
+.door-handle{
+    background-color:#fff;
+    border:1px solid black;
+    width:15%;
+    height:10px;
+}
+.item-1{
+    grid-column:1 / 2;
+}
+.item-2{
+    grid-column:2 / 3;
+}
+.item-3{
+    grid-column:1 / 2;
+}
+.item-4{
+    grid-column:2 / 3; 
+}
+.item-5{
+    grid-column:1 / 2;
+}
+.item-6{
+    grid-column:2 / 3;
+}
+.item-7{
+    grid-column:1 / 2;
+}
+.item-8{
+    grid-column:2 / 3;
+}
+.item-9{
+    grid-column:1 / 4;
+}
+.item-10{
+    grid-column:1 / 3;
+}
