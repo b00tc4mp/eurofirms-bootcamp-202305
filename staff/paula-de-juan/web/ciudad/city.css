@@ -110,6 +110,21 @@
   margin: 10px;
   }
 
+.door {
+  width: 50px;
+  height: 70px;
+  background-color: #22224c;
+  position: absolute;
+  top: 350px;
+}
+.door-1 {
+  width: 50px;
+  height: 70px;
+  background-color: #22224c;
+  position: absolute;
+  top: 350px;
+  left: 50px;
+}
 
 .build-2 {
   bottom: 150px;
@@ -123,6 +138,22 @@
   gap: 30px;
   padding-top: 20px;
 }
+
+.build-3 {
+  bottom: 150px;
+  height: 320px;
+  left: 800px;
+  width: 350px;
+  background-color: #480733;
+}
+
+.door-3 {
+  width: 110px;
+  height: 70px;
+  background-color: #5d5d79;
+  position: absolute;
+  top: 250px;
+  }
 
 .car-2 {
   width: 150px;
