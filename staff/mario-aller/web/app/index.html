@@ -17,41 +17,31 @@
     <!-- Formulario de registo -->
     <main class="register-view">
         <form id="register-form" class="basic-form" action="submit">
-
             <div class="basic-form__panel">
+                <label for="reg-name">Nombre</label>
+                <input type="text" id="reg-name">
 
-                <label for="name">Nombre</label>
-                <input type="text" id="name">
+                <label for="reg-email">Correo</label>
+                <input type="email" id="reg-email">
 
-                <label for="email">Correo</label>
-                <input type="email" id="email">
-
-                <label for="password">Clave</label>
-                <input type="password" id="password">
-
+                <label for="reg-password">Clave</label>
+                <input type="password" id="reg-password">
             </div>
-
             <button class="basic-button">Registrarse</button>
-
         </form>
     </main>
 
     <!-- Formulario de login -->
     <main class="log-view off">
         <form id="log-form" class="basic-form" action="submit">
-
             <div class="basic-form__panel">
+                <label for="log-email">Correo</label>
+                <input type="email" id="log-email">
 
-                <label for="email">Correo</label>
-                <input type="email" id="email">
-
-                <label for="password">Clave</label>
-                <input type="password" id="password">
-
+                <label for="log-password">Clave</label>
+                <input type="password" id="log-password">
             </div>
-
             <button class="basic-button">Entrar</button>
-
         </form>
     </main>
 
@@ -60,7 +50,7 @@
         <h3>HOME!</h3>
         <img src="big-sur.jpeg" width="100%" alt="big sur">
     </main>
-
+    
     <!-- link a js -->
     <script src="java.js"></script>
 </body>

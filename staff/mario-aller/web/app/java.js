@@ -34,15 +34,13 @@ registerForm.onsubmit = function (event) {
     event.preventDefault()
 
     // Captura de datos
-
     var newUser = {}
 
-    newUser.name = registerForm.querySelector('#name').value
-    newUser.email = registerForm.querySelector('#email').value
-    newUser.password = registerForm.querySelector('#password').value
+    newUser.name = registerForm.querySelector('#reg-name').value
+    newUser.email = registerForm.querySelector('#reg-email').value
+    newUser.password = registerForm.querySelector('#reg-password').value
 
     // Validación de datos
-
     var userExist = false
     var numUsers = users.length
 
@@ -56,7 +54,6 @@ registerForm.onsubmit = function (event) {
     }
 
     // Actualización de BD y navegación
-
     if (!userExist) {
 
         users.push(newUser)
@@ -76,14 +73,12 @@ logForm.onsubmit = function (event) {
     event.preventDefault()
 
     // Captura de datos
-
     var logUser = {}
 
-    logUser.email = logForm.querySelector('#email').value
-    logUser.password = logForm.querySelector('#password').value
+    logUser.email = logForm.querySelector('#log-email').value
+    logUser.password = logForm.querySelector('#log-password').value
 
     // Validación de datos
-
     var userExist = false
     var numUsers = users.length
 
@@ -96,15 +91,17 @@ logForm.onsubmit = function (event) {
         }
     }
 
+    var passwordCorrect = false
+
+    if (users[i].password === logUser.password) {
+        passwordCorrect = true
+    }
+
     // Navegación
-
-    if (userExist) {
-
+    if (userExist && passwordCorrect) {
         logView.classList.add('off')
         homeView.classList.remove('off')
-
     } else {
-        alert('No existe usuario.')
+        alert('Credenciales incorrectas.')
     }
 }
-
