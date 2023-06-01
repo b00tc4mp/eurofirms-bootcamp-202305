@@ -1,4 +1,4 @@
-/* DATABASE */
+/* Database */
 var users = [];
 
 users.push({
@@ -14,48 +14,7 @@ users.push({
 users.push({ name: "Santi", email: "santi@gmail.com", password: "123123123" });
 users.push({ name: "Paco", email: "paco@gmail.com", password: "123123123" });
 
-/* LOGIC */
-var registerUser = function (name, email, password) {
-  var user;
-  for (var i = 0; i < users.length; i++) {
-    var _user = users[i];
-    if (_user.email === email) {
-      user = _user;
-      break;
-    }
-  }
-
-  if (user) {
-    return false;
-  } else {
-    user = {
-      name: name,
-      email: email,
-      password: password,
-    };
-
-    users.push(user);
-    return true;
-  }
-};
-
-var authenticateUser = function (email, password) {
-  var user;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].email === email) {
-      user = users[i];
-    }
-  }
-
-  if (user === undefined || user.password !== password) {
-    return false;
-  } else {
-    return true;
-  }
-};
-
-/* DOM */
-/* Footer */
+/* Loógica del footer */
 var buttonLogin = document.querySelector(".link-login");
 var buttonRegister = document.querySelector(".link-register");
 var registerContainer = document.querySelector(".register");
@@ -75,7 +34,7 @@ buttonRegister.onclick = function (event) {
   homeView.classList.add("off");
 };
 
-/* Register */
+/* Lógica de register */
 var registerForm = document.querySelector(".register-form");
 
 registerForm.onsubmit = function (event) {
@@ -84,6 +43,8 @@ registerForm.onsubmit = function (event) {
   var name = registerForm.querySelector("#name").value;
   var email = registerForm.querySelector("#register-email").value;
   var password = registerForm.querySelector("#register-password").value;
+
+  var userExists = true;
 
   if (name === "") {
     alert("name empty");
@@ -94,16 +55,32 @@ registerForm.onsubmit = function (event) {
   } else if (password === "") {
     alert("password empty");
     userExists = false;
-  } else if (registerUser(name, email, password)) {
+  }
+
+  for (var i = 0; i < users.length; i++) {
+    if (email === users[i].email) {
+      alert("user already exists");
+      userExists = false;
+      break;
+    }
+  }
+
+  if (userExists) {
+    var user = {};
+
+    user.name = name;
+    user.email = email;
+    user.password = password;
+
+    users.push(user);
+
     registerContainer.classList.add("off");
     loginContainer.classList.remove("off");
     registerForm.reset();
-  } else {
-    alert("wrong credentials");
   }
 };
 
-/* Login */
+/* Lógica de login */
 var loginForm = document.querySelector(".login-form");
 
 loginForm.onsubmit = function (event) {
@@ -111,19 +88,33 @@ loginForm.onsubmit = function (event) {
 
   var email = document.querySelector("#login-email").value;
   var password = document.querySelector("#login-password").value;
+  var user;
+
+  for (var i = 0; i < users.length; i++) {
+    var _user = users[i];
+
+    if (_user.email === email) {
+      user = _user;
+
+      break;
+    }
+  }
 
   if (email === "") {
     alert("email empty");
+  } else if (user === undefined) {
+    alert("user not found");
   } else if (password === "") {
     alert("password empty");
-  } else if (authenticateUser(email, password)) {
+  } else if (user.password === password) {
     loginContainer.classList.add("off");
     homeView.classList.remove("off");
+
     loginForm.reset();
   } else {
-    alert("wrong credentials");
+    alert("wrong password");
   }
 };
 
-/* Home */
+/* home */
 homeView = document.querySelector(".home");

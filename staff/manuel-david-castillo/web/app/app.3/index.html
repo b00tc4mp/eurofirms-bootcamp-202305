@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My app</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <button class="link-login button-footer" href="login.html">
+          Login
+        </button>
+      </nav>
+      <nav>
+        <button class="link-register button-footer" href="register.html">
+          Register
+        </button>
+      </nav>
+    </header>
+    <main class="register">
+      <form class="register-form" action="">
+        <h2>Register</h2>
+        <div>
+          <label for="name">Name:</label>
+          <input id="name" class="input" placeholder="name" type="text" />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input
+            id="register-email"
+            class="input"
+            placeholder="email"
+            type="email"
+          />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input
+            id="register-password"
+            class="input"
+            placeholder="password"
+            type="password"
+          />
+        </div>
+        <button class="button">Register</button>
+      </form>
+    </main>
+
+    <main class="login off">
+      <form class="login-form" action="">
+        <h2>Login</h2>
+        <div>
+          <label for="email">Email:</label>
+          <input
+            id="login-email"
+            class="input"
+            placeholder="email"
+            type="email"
+          />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input
+            id="login-password"
+            class="input"
+            placeholder="password"
+            type="password"
+          />
+        </div>
+        <button class="button">Enter</button>
+      </form>
+    </main>
+
+    <main class="home off">
+      <h2>My posts</h2>
+      <div class="all-posts">
+        <div class="post">
+          <p class="name">Name</p>
+          <p class="message">hello what´s up?</p>
+        </div>
+        <div class="post">
+          <p class="name">Name</p>
+          <p class="message">hello, what´s up?</p>
+        </div>
+        <div class="post">
+          <p class="name">Name</p>
+          <p class="message">hello what´s up?</p>
+        </div>
+        <div class="post">
+          <p class="name">Name</p>
+          <p class="message">hello what´s up?</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Contact:</p>
+      <p>Telephone:</p>
+      <a href="https://www.instagram.com/" target="_blank">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+          alt=""
+          class="instagram-logo"
+        />
+      </a>
+    </footer>
+  </body>
+  <script src="main.js"></script>
+</html>
