@@ -1,37 +1,13 @@
-.flex{
-    display: flex
-}
-.flex-column{
+.register-form {
+    display: flex;
     flex-direction: column;
 }
-.w-30{
-    width: 30%;
-}
-.w-full{
-    width: 100%;
-}
-.justify-center{
-    justify-content: center;
-}
-.instagram-logo{
-    width: 40px;
-}
-.home{
-}
-.login{
-    display:none
-}
-.register{
-    display: none;
-}
-.container{
-    height: 200px;
-    width: 100%;
+
+.login-form {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
-.box{
-    height: 100%;
-    width: 100%;
-    border: 2px solid;
+
+.off {
+    display: none;
 }
