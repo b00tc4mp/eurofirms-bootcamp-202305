@@ -1,74 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
-</head>
+    <title>App</title>
 
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <main class="flex justify-center">
-        <article class="container w-full p-10">
-            <h2 class="my-name">Bermy Rosillo</h2>
-            <div class="grid-container">
-                <div class="grid-container-1">
-                    <section class="post ask-post">
-                        <div class="flex justify-between">
-                            <h4>Bermy</h4>
-                            <button>Share</button>
-                        </div>
-                        <hr>
-                        <p>Hola, como estan ?</p>
-                    </section>
-                    <section class="post answer-post">
-                        <h4>Paula</h4>
-                        <hr>
-                        <p>Yo muy bien, que tal estas ?</p>
-                    </section>
-                </div>
-                <div class="grid-container-2">
-                    <section class="post answer-post">
-                        <h4>Mario</h4>
-                        <hr>
-                        <p>Bien y ya esta</p>
-                    </section>
-                    <section class="post ask-post">
-                        <div class="flex justify-between">
-                            <h4>Bermy</h4>
-                            <button>Share</button>
-                        </div>
-                        <hr>
-                        <p>Me alegra, <span class="italic"> saludos a todos. </span></p>
-                    </section>
+    <main class="register-view off">
+        <h1>Register</h1>
+
+        <form class="register-form">
+            <label for="register-name">Name</label>
+            <input id="register-name" type="text">
+
+            <label for="register-email">E-mail</label>
+            <input id="register-email" type="email">
+
+            <label for="register-password">Password</label>
+            <input id="register-password" type="password">
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Go to <a class="register-login-link" href="">Login</a></p>
+    </main>
+
+    <main class="login-view off">
+        <h1>Login</h1>
+
+        <form class="login-form">
+            <label for="login-email">E-mail</label>
+            <input id="login-email" type="email">
+
+            <label for="login-password">Password</label>
+            <input id="login-password" type="password">
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Go to <a class="login-register-link" href="">Register</a></p>
+    </main>
+
+    <div class="home-view _off">
+        <header>
+            <h1 class="home-title">Hello, Home!</h1>
+
+            <button class="home-logout-button">Logout</button>
+        </header>
+
+        <main>
+            <div class="posts-container">
+                <ul class="posts-list">
+    
+                </ul>
+            </div>
+        </main>
+
+        <footer class="home-footer">
+            <button class="home-create-post-button">+</button>
+        </footer>
+
+        <div class="home-create-post-modal off">
+            <div class="home-create-post-container">
+                <h2>Create post</h2>
+
+                <form class="home-create-post-form">
+                    <label for="create-post-url">Image</label>
+                    <input id="create-post-url" type="url">
+
+                    <label for="create-post-text">Text</label>
+                    <textarea id="create-post-text"></textarea>
+
+                    <button type="submit">Create</button>
+                    <button class="home-create-post-cancel-button">Cancel</button>
+                </form>
             </div>
         </div>
-        </article>
-    </main>
+    </div>
 
-    <main class="off login flex justify-center">
-        <form class="flex flex-column w-30">
-            <label for="email">Email:</label>
-            <input id="email" for="email" type="email">
-            <label for="password">Password:</label>
-            <input id="password" for="password" type="password">
-            <button>Login</button>
-        </form>
-    </main>
-
-    <main class="off register flex justify-center">
-        <form class="flex flex-column w-30">
-            <label for="name">Name:</label>
-            <input id="name" name="name" type="text">
-            <label for="email">Email:</label>
-            <input id="email" for="email" type="email">
-            <label for="password">Password:</label>
-            <input id="password" for="password" type="password">
-            <button>Register</button>
-        </form>
-    </main>
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
+    <script src="main.js"></script>
 </body>
-
 </html>
