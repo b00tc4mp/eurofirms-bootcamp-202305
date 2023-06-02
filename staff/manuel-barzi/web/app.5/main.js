@@ -68,8 +68,11 @@ function retrieveUser(email) {
         var _user = users[i]
 
         if (_user.email === email) {
-            user = _user
+            user = {}
 
+            user.name = _user.name
+            user.email = _user.email
+            
             break
         }
     }

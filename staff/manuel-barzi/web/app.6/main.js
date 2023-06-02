@@ -1,89 +1,4 @@
 /**
- * DATA
- */
-
-var users = []
-
-users.push({ name: 'Pin Ocho', email: 'pin@ocho.com', password: '123123123' })
-users.push({ name: 'John Doe', email: 'john@doe.com', password: '123123123' })
-users.push({ name: 'Ada Love', email: 'ada@love.com', password: '123123123' })
-
-/**
- * LOGIC
- */
-
-function registerUser(name, email, password) {
-    var user
-
-    for (var i = 0; i < users.length; i++) {
-        var _user = users[i]
-
-        if (_user.email === email) {
-            user = _user
-
-            break
-        }
-    }
-
-    if (user !== undefined)
-        return false
-    else {
-        user = {}
-
-        user.name = name
-        user.email = email
-        user.password = password
-
-        users.push(user)
-
-        return true
-    }
-}
-
-function authenticateUser(email, password) {
-    var user
-
-    for (var i = 0; i < users.length; i++) {
-        var _user = users[i]
-
-        if (_user.email === email) {
-            user = _user
-
-            break
-        }
-    }
-
-    if (user === undefined)
-        return false
-    else if (user.password !== password)
-        return false
-    else
-        return true
-}
-
-function retrieveUser(email) {
-    var user
-
-    for (var i = 0; i < users.length; i++) {
-        var _user = users[i]
-
-        if (_user.email === email) {
-            user = {}
-
-            user.name = _user.name
-            user.email = _user.email
-            
-            break
-        }
-    }
-
-    if (user === undefined)
-        return null
-    else 
-        return user
-}
-
-/**
  * PRESENTATION
  */
 
@@ -95,13 +10,13 @@ var registerForm = registerView.querySelector('.register-form')
 registerForm.onsubmit = function (event) {
     event.preventDefault()
 
-    var nameInput = registerForm.querySelector('#name')
+    var nameInput = registerForm.querySelector('#register-name')
     var name = nameInput.value
 
-    var emailInput = registerForm.querySelector('#email')
+    var emailInput = registerForm.querySelector('#register-email')
     var email = emailInput.value
 
-    var passwordInput = registerForm.querySelector('#password')
+    var passwordInput = registerForm.querySelector('#register-password')
     var password = passwordInput.value
 
    var result = registerUser(name, email, password)
@@ -109,9 +24,20 @@ registerForm.onsubmit = function (event) {
     if (result === false)
         alert('User already exists')
     else {
+        registerForm.reset()
+
         registerView.classList.add('off')
         loginView.classList.remove('off')
     }
+}
+
+var registerLoginLink = registerView.querySelector('.register-login-link')
+
+registerLoginLink.onclick = function(event) {
+    event.preventDefault()
+
+    registerView.classList.add('off')
+    loginView.classList.remove('off')
 }
 
 // login
@@ -122,10 +48,10 @@ var loginForm = loginView.querySelector('.login-form')
 loginForm.onsubmit = function (event) {
     event.preventDefault()
 
-    var emailInput = loginForm.querySelector('#email')
+    var emailInput = loginForm.querySelector('#login-email')
     var email = emailInput.value
 
-    var passwordInput = loginForm.querySelector('#password')
+    var passwordInput = loginForm.querySelector('#login-password')
     var password = passwordInput.value
 
     var result = authenticateUser(email, password)
@@ -133,6 +59,8 @@ loginForm.onsubmit = function (event) {
     if (result === false)
         alert('Wrong credentials')
     else {
+        loginForm.reset()
+
         const user = retrieveUser(email)
 
         if (user === null)
@@ -148,6 +76,22 @@ loginForm.onsubmit = function (event) {
     }
 }
 
+var loginRegisterLink = loginView.querySelector('.login-register-link')
+
+loginRegisterLink.onclick = function(event) {
+    event.preventDefault()
+
+    loginView.classList.add('off')
+    registerView.classList.remove('off')
+}
+
 // home
 
 var homeView = document.querySelector('.home-view')
+
+var homeLogoutButton = homeView.querySelector('.home-logout-button')
+
+homeLogoutButton.onclick = function() {
+    homeView.classList.add('off')
+    loginView.classList.remove('off')
+}

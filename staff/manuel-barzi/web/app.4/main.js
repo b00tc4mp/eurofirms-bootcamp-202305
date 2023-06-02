@@ -61,6 +61,25 @@ function authenticateUser(email, password) {
         return true
 }
 
+function retrieveUser(email) {
+    var user
+
+    for (var i = 0; i < users.length; i++) {
+        var _user = users[i]
+
+        if (_user.email === email) {
+            user = _user
+
+            break
+        }
+    }
+
+    if (user === undefined)
+        return null
+    else 
+        return user
+}
+
 /**
  * PRESENTATION
  */
@@ -111,8 +130,18 @@ loginForm.onsubmit = function (event) {
     if (result === false)
         alert('Wrong credentials')
     else {
-        loginView.classList.add('off')
-        homeView.classList.remove('off')
+        const user = retrieveUser(email)
+
+        if (user === null)
+            alert('User not found')
+        else {
+            loginView.classList.add('off')
+
+            const homeTitle = homeView.querySelector('.home-title')
+            homeTitle.innerText = 'Hello, ' + user.name + '!'
+    
+            homeView.classList.remove('off')
+        }
     }
 }
 

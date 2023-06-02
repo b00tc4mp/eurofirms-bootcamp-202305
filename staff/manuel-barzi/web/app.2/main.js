@@ -1,69 +1,10 @@
-/**
- * DATA
- */
+// database
 
 var users = []
 
 users.push({ name: 'Pin Ocho', email: 'pin@ocho.com', password: '123123123' })
 users.push({ name: 'John Doe', email: 'john@doe.com', password: '123123123' })
 users.push({ name: 'Ada Love', email: 'ada@love.com', password: '123123123' })
-
-/**
- * LOGIC
- */
-
-function registerUser(name, email, password) {
-    var user
-
-    for (var i = 0; i < users.length; i++) {
-        var _user = users[i]
-
-        if (_user.email === email) {
-            user = _user
-
-            break
-        }
-    }
-
-    if (user !== undefined)
-        return false
-    else {
-        user = {}
-
-        user.name = name
-        user.email = email
-        user.password = password
-
-        users.push(user)
-
-        return true
-    }
-}
-
-function authenticateUser(email, password) {
-    var user
-
-    for (var i = 0; i < users.length; i++) {
-        var _user = users[i]
-
-        if (_user.email === email) {
-            user = _user
-
-            break
-        }
-    }
-
-    if (user === undefined)
-        return false
-    else if (user.password !== password)
-        return false
-    else
-        return true
-}
-
-/**
- * PRESENTATION
- */
 
 // register
 
@@ -82,11 +23,29 @@ registerForm.onsubmit = function (event) {
     var passwordInput = registerForm.querySelector('#password')
     var password = passwordInput.value
 
-   var result = registerUser(name, email, password)
+    var user
 
-    if (result === false)
+    for (var i = 0; i < users.length; i++) {
+        var _user = users[i]
+
+        if (_user.email === email) {
+            user = _user
+
+            break
+        }
+    }
+
+    if (user !== undefined)
         alert('User already exists')
     else {
+        user = {}
+
+        user.name = name
+        user.email = email
+        user.password = password
+
+        users.push(user)
+
         registerView.classList.add('off')
         loginView.classList.remove('off')
     }
@@ -106,14 +65,25 @@ loginForm.onsubmit = function (event) {
     var passwordInput = loginForm.querySelector('#password')
     var password = passwordInput.value
 
-    var result = authenticateUser(email, password)
+    var user
 
-    if (result === false)
+    for (var i = 0; i < users.length; i++) {
+        var _user = users[i]
+
+        if (_user.email === email) {
+            user = _user
+
+            break
+        }
+    }
+
+    if (user === undefined)
         alert('Wrong credentials')
-    else {
+    else if (user.password === password) {
         loginView.classList.add('off')
         homeView.classList.remove('off')
-    }
+    } else
+        alert('Wrong credentials')
 }
 
 // home

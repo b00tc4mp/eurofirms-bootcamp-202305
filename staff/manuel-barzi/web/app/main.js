@@ -19,11 +19,13 @@ registerForm.onsubmit = function (event) {
     var passwordInput = registerForm.querySelector('#register-password')
     var password = passwordInput.value
 
-   var result = registerUser(name, email, password)
+    var result = registerUser(name, email, password)
 
     if (result === false)
         alert('User already exists')
     else {
+        registerForm.reset()
+
         registerView.classList.add('off')
         loginView.classList.remove('off')
     }
@@ -31,7 +33,7 @@ registerForm.onsubmit = function (event) {
 
 var registerLoginLink = registerView.querySelector('.register-login-link')
 
-registerLoginLink.onclick = function(event) {
+registerLoginLink.onclick = function (event) {
     event.preventDefault()
 
     registerView.classList.add('off')
@@ -57,6 +59,8 @@ loginForm.onsubmit = function (event) {
     if (result === false)
         alert('Wrong credentials')
     else {
+        loginForm.reset()
+
         const user = retrieveUser(email)
 
         if (user === null)
@@ -66,7 +70,7 @@ loginForm.onsubmit = function (event) {
 
             const homeTitle = homeView.querySelector('.home-title')
             homeTitle.innerText = 'Hello, ' + user.name + '!'
-    
+
             homeView.classList.remove('off')
         }
     }
@@ -74,7 +78,7 @@ loginForm.onsubmit = function (event) {
 
 var loginRegisterLink = loginView.querySelector('.login-register-link')
 
-loginRegisterLink.onclick = function(event) {
+loginRegisterLink.onclick = function (event) {
     event.preventDefault()
 
     loginView.classList.add('off')
@@ -84,3 +88,47 @@ loginRegisterLink.onclick = function(event) {
 // home
 
 var homeView = document.querySelector('.home-view')
+var homeCreatePostModal = homeView.querySelector('.home-create-post-modal')
+var homeLogoutButton = homeView.querySelector('.home-logout-button')
+var homeCreatePostForm = homeView.querySelector('.home-create-post-form')
+
+homeLogoutButton.onclick = function () {
+    homeView.classList.add('off')
+    loginView.classList.remove('off')
+}
+
+var homeCreatePostButton = homeView.querySelector('.home-create-post-button')
+
+homeCreatePostButton.onclick = function () {
+    homeCreatePostModal.classList.remove('off')
+}
+
+var homeCreatePostCancelButton = homeCreatePostForm.querySelector('.home-create-post-cancel-button')
+
+homeCreatePostCancelButton.onclick = function (event) {
+    event.preventDefault()
+
+    homeCreatePostForm.reset()
+
+    homeCreatePostModal.classList.add('off')
+}
+
+homeCreatePostForm.onsubmit = function (event) {
+    event.preventDefault()
+
+    var imageInput = homeCreatePostForm.querySelector('#create-post-url')
+    var image = imageInput.value
+
+    var textInput = homeCreatePostForm.querySelector('#create-post-text')
+    var text = textInput.value
+
+    var result = createPost(image, text)
+
+    if (result === false)
+        alert('Cannot create post')
+    else {
+        homeCreatePostForm.reset()
+
+        homeCreatePostModal.classList.add('off')
+    }
+}
