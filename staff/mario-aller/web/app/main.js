@@ -1,17 +1,7 @@
 
 // -------------------------
-// Data Base
+// User Interface
 // -------------------------
-
-
-// Declaraciones
-var users = []
-
-// Carga inicial de valores en la lista
-users.push({ name: 'Frodo Bolson', email: 'frodo@bolson-cerrado.com', password: 'mitril' })
-users.push({ name: 'Bilbo Bolson', email: 'bilbo@bolson-cerrado.com', password: 'dardo' })
-users.push({ name: 'Meriadoc Brandigamo', email: 'merry@comarca.com', password: 'rohan' })
-users.push({ name: 'Peregrin Tuk', email: 'pippin@comarca.com', password: 'gondor' })
 
 // Carga inicial de punteros
 var registerForm = document.querySelector('#register-form')
@@ -21,70 +11,6 @@ var logForm = document.querySelector('#log-form')
 var logView = document.querySelector('.log-view')
 
 var homeView = document.querySelector('.home-view')
-
-
-// -------------------------
-// Business Logic
-// -------------------------
-
-
-// Verificacion de usuario (ret T/F)
-var userExist = function (email) {
-    var num = users.length
-
-    if (num !== 0) {
-        for (var i = 0; i < num; i++) {
-            if (email === users[i].email) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-// Verificacion de clave de usuario (ret T/F)
-var userOK = function (email, password) {
-    var num = users.length
-
-    if (num !== 0) {
-        for (i = 0; i < num; i++) {
-            if (email === users[i].email) {
-                if (password === users[i].password) return true;
-                break;
-            }
-        }
-    }
-    return false;
-}
-
-// Delvuelve usuario (ret objeto de la lista del usuario email)
-var userRetrieve = function (email) {
-    var num = users.length
-
-    if (num !== 0) {
-        for (var i = 0; i < num; i++) {
-            if (email === users[i].email) {
-                return users[i];
-            }
-        }
-    }
-}
-
-// Añadir usuario a la lista
-var userToList = function (name, email, password) {
-    var user = {}
-
-    user.name = name
-    user.email = email
-    user.password = password
-
-    users.push(user)
-}
-
-
-// -------------------------
-// User Interface
-// -------------------------
 
 
 // Registro
@@ -109,7 +35,6 @@ registerForm.onsubmit = function (event) {
 }
 
 // Login
-
 logForm.onsubmit = function (event) {
     event.preventDefault()
 
@@ -119,13 +44,16 @@ logForm.onsubmit = function (event) {
     logUser.password = logForm.querySelector('#log-password').value
 
     // Validación de datos y navegación
-    if (userOK (logUser.email, logUser.password)) {
-        logView.classList.add('off')
-        homeView.classList.remove('off')
-
+    if (userPasswordOK(logUser.email, logUser.password)) {
         var user = userRetrieve(logUser.email)
-        
-        alert('Hola ' + user.name)
+
+        if (user === null) {
+            alert('No hay usuario.')
+        } else {
+            homeView.querySelector('.greetings').innerHTML = 'Hola ' + user.name + '!'
+            logView.classList.add('off')
+            homeView.classList.remove('off')
+        }
     } else {
         alert('Credenciales incorrectas.')
     }
