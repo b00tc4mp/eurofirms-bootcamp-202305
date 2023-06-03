@@ -121,7 +121,7 @@ homeModalNewpostForm.onsubmit = function (event) {
 
     // Subir datos a BD
     if (!postToList(maximus, img, msg)) alert('No se puede crear post')
-    
+
     // Salir
     homeModalNewpostForm.reset()
     homeModalNewpost.classList.add('off')

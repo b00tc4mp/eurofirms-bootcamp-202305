@@ -35,8 +35,7 @@ body {
     padding: 1rem;
 }
 
-.flex-hor {
-    }
+.flex-hor {}
 
 .basic-button {
     margin: 1rem;
@@ -111,7 +110,7 @@ body {
 /* Capas y comandos */
 
 .flex-hor {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
