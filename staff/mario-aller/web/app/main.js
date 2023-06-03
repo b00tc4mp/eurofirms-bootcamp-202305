@@ -93,12 +93,17 @@ logButtonToreg.onclick = function () {
 }
 
 // Boton logout: salir de login
-var homeButtonTologout = homeNav.querySelector('.button-tologout')
-homeButtonTologout.onclick = function () {
+var homeButtonLogout = homeNav.querySelector('.button-logout')
+homeButtonLogout.onclick = function () {
     homeFrame.classList.add('off')
     logFrame.classList.remove('off')
 }
 
+// Boton Nuevo Post
+var homeButtonNewpost = homeNav.querySelector('.button-newpost')
+homeButtonNewpost.onclick = function () {
+    homeModalNewpost.classList.remove('off')
+}
 
 // Posts
 
