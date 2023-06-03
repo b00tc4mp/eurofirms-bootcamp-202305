@@ -3,7 +3,6 @@
 // Data Base
 // -------------------------
 
-
 // Usuarios
 
 // Declaraciones
@@ -22,5 +21,5 @@ users.push({ name: 'Peregrin Tuk', email: 'pippin@comarca.com', password: 'gondo
 var posts = []
 
 // Carga inicial de Posts
-posts.push({ id: 0, image: 'https://cdn.eso.org/images/thumb700x/eso1103a.jpg', text: 'Orion' })
-posts.push({ id: 1, image: 'https://img2.rtve.es/i/?w=1600&i=1522754812071.jpg', text: 'Via Lactea' })
+posts.push({ id: 1, image: 'https://cdn.eso.org/images/thumb700x/eso1103a.jpg', text: 'Orion' })
+posts.push({ id: 2, image: 'https://img2.rtve.es/i/?w=1600&i=1522754812071.jpg', text: 'Via Lactea' })

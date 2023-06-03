@@ -33,7 +33,7 @@ var userPasswordOK = function (email, password) {
     return false;
 }
 
-// Devuelve usuario público (ret objeto de la lista del usuario email)
+// Delvuelve usuario (ret objeto de la lista del usuario email)
 var userRetrieve = function (email) {
     var num = users.length
     var user = {}
@@ -48,6 +48,7 @@ var userRetrieve = function (email) {
         }
     }
     return null
+
 }
 
 // Añadir usuario a la lista

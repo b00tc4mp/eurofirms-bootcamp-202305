@@ -4,24 +4,16 @@
 // -------------------------
 
 // Carga inicial de punteros
-var regFrame = document.querySelector('.register')
+var regForm = document.querySelector('#reg-form')
 var regView = document.querySelector('.reg-view')
-var regForm = document.querySelector('.reg-form')
-var regNav = document.querySelector('.reg-nav')
 
-var logFrame = document.querySelector('.login')
+var logForm = document.querySelector('#log-form')
 var logView = document.querySelector('.log-view')
-var logForm = document.querySelector('.log-form')
-var logNav = document.querySelector('.log-nav')
 
-var homeFrame = document.querySelector('.home')
 var homeView = document.querySelector('.home-view')
-var homeNav = document.querySelector('.home-nav')
-var homeHeader = document.querySelector('.home-header')
+
 
 // Registro
-
-// Submit
 regForm.onsubmit = function (event) {
     event.preventDefault()
 
@@ -35,16 +27,14 @@ regForm.onsubmit = function (event) {
     if (!userExist(newUser.email)) {
         userToList(newUser.name, newUser.email, newUser.password)
 
-        regFrame.classList.add('off')
-        logFrame.classList.remove('off')
+        regView.classList.add('off')
+        logView.classList.remove('off')
     } else {
         alert('Error: usuario ya registrado.')
     }
 }
 
 // Login
-
-// Submit
 logForm.onsubmit = function (event) {
     event.preventDefault()
 
@@ -55,14 +45,14 @@ logForm.onsubmit = function (event) {
 
     // Validación de datos y navegación
     if (userPasswordOK(logUser.email, logUser.password)) {
-        var userPublic = userRetrieve(logUser.email)
+        var user = userRetrieve(logUser.email)
 
-        if (userPublic === null) {
+        if (user === null) {
             alert('No hay usuario.')
         } else {
-            homeFrame.querySelector('.greetings').innerHTML = 'Hola ' + userPublic.name + '!'
-            logFrame.classList.add('off')
-            homeFrame.classList.remove('off')
+            homeView.querySelector('.greetings').innerHTML = 'Hola ' + user.name + '!'
+            logView.classList.add('off')
+            homeView.classList.remove('off')
         }
     } else {
         alert('Credenciales incorrectas.')

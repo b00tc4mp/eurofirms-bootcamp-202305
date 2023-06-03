@@ -23,36 +23,25 @@ body {
     align-items: center;
 }
 
-.basic-form-container {
+.basic-form__panel {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* width: 70%; */
+    width: 60%;
     margin-top: 0.5rem;
     background-color: lightgray;
     border-radius: 2rem;
-    box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
+    box-shadow: 1rem 1rem 1rem darkgray;
     padding: 1rem;
 }
 
 .basic-button {
-    margin: 1rem;
+    margin-top: 1rem;
     padding: 0.1rem 0.8rem;
     border-radius: 0.5rem;
     background-color: lightgray;
-}
 
-.basic-nav {
-    margin: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    background-color: lightgray;
-    border-radius: 2rem;
-    position: fixed;
-    bottom: 0;
-    box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
 }
 
 .home-view {
