@@ -18,6 +18,8 @@ var homeFrame = document.querySelector('.home')
 var homeView = document.querySelector('.home-view')
 var homeNav = document.querySelector('.home-nav')
 var homeHeader = document.querySelector('.home-header')
+var homeModalNewpost = document.querySelector('.home-modal-newpost')
+var homeModalNewpostForm = document.querySelector('.home-modal-newpost-form')
 
 // Registro
 
@@ -73,6 +75,7 @@ logForm.onsubmit = function (event) {
 
 // Navegación
 
+// Botón ir a registro
 var regButtonTolog = regNav.querySelector('.button-tolog')
 regButtonTolog.onclick = function () {
     regForm.reset()
@@ -81,6 +84,7 @@ regButtonTolog.onclick = function () {
 
 }
 
+// Botón ir a login
 var logButtonToreg = logNav.querySelector('.button-toreg')
 logButtonToreg.onclick = function () {
     logForm.reset()
@@ -88,8 +92,47 @@ logButtonToreg.onclick = function () {
     regFrame.classList.remove('off')
 }
 
+// Boton logout: salir de login
 var homeButtonTologout = homeNav.querySelector('.button-tologout')
 homeButtonTologout.onclick = function () {
     homeFrame.classList.add('off')
     logFrame.classList.remove('off')
 }
+
+
+// Posts
+
+// Botón creación posts
+homeModalNewpostForm.onsubmit = function (event) {
+    event.preventDefault()
+
+    // Captura de datos
+    var num = posts.length
+    var maximus = 0;
+    if (num !== 0) {
+        for (i = 0; i < num; i++) {
+            if (posts[i].id > maximus) {
+                maximus = posts[i].id
+            }
+        }
+    }
+    var img = homeModalNewpostForm.querySelector('#newpost-img').value
+    var msg = homeModalNewpostForm.querySelector('#newpost-msg').value
+
+    // Subir datos a BD
+    if (!postToList(maximus, img, msg)) alert('No se puede crear post')
+    
+    // Salir
+    homeModalNewpostForm.reset()
+    homeModalNewpost.classList.add('off')
+}
+
+// Botón Cancelar creación posts
+homeButtonNewPostCancel = homeModalNewpostForm.querySelector('.newpost-button-cancel')
+homeButtonNewPostCancel.onclick = function (event) {
+    event.preventDefault()
+
+    // Salir
+    homeModalNewpostForm.reset()
+    homeModalNewpost.classList.add('off')
+}  

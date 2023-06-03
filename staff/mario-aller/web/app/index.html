@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplication</title>
+    <title>Posts App</title>
 
     <!-- link a style -->
     <link rel="stylesheet" href="style.css">
@@ -16,14 +16,14 @@
 
     <!-- Registo -->
 
-    <div class="register _off">
+    <div class="register off">
 
         <!-- Formulario -->
         <main class="reg-view">
-            <form class="reg-form basic-form" action="submit">
+            <form class="reg-form" action="submit">
 
                 <!-- Panel de presentacion -->
-                <div class="basic-form-container">
+                <div class="basic-form">
 
                     <!-- Datos del formularo -->
                     <label for="reg-name">Nombre</label>
@@ -38,15 +38,14 @@
                     <button class="basic-button">Registrarse</button>
                 </div>
             </form>
+            <!-- Barra de navegación -->
+            <footer class="reg-nav nav">
+                <div class="basic-nav">
+                    <button class="button-tolog basic-button">Acceso</button>
+                    <button class="basic-button">Otra acción</button>
+                </div>
+            </footer>
         </main>
-
-        <!-- Barra de navegación -->
-        <footer class="reg-nav">
-            <div class="basic-nav">
-                <button class="button-tolog basic-button">Acceso</button>
-                <button class="basic-button">Otra acción</button>
-            </div>
-        </footer>
     </div>
 
     <!-- Login -->
@@ -55,10 +54,10 @@
 
         <!-- Formulario -->
         <main class="log-view">
-            <form class="log-form basic-form" action="submit">
+            <form class="log-form" action="submit">
 
                 <!-- Panel de presentacion -->
-                <div class="basic-form-container">
+                <div class="basic-form">
 
                     <!-- Datos del formularo -->
                     <label for="log-email">Correo</label>
@@ -73,7 +72,7 @@
         </main>
 
         <!-- Barra de navegación -->
-        <footer class="log-nav">
+        <footer class="log-nav nav-container">
             <div class="basic-nav">
                 <button class="button-toreg basic-button">Registro</button>
                 <button class="basic-button">Otra acción</button>
@@ -83,25 +82,46 @@
 
     <!-- Home -->
 
-    <div class="home off">
+    <div class="home _off">
 
         <!-- Encabezado -->
-        <header class="home-header">
-            <h3 class="greetings">Home!</h3>
+        <header class="home-header head-container">
+            <div class="basic-head">
+                <h3 class="greetings">Home!</h3>
+            </div>
         </header>
-        
+
         <!-- Cuerpo -->
         <main class="home-view">
 
         </main>
 
         <!-- Barra de navegación -->
-        <footer class="home-nav">
+        <footer class="home-nav nav-container">
             <div class="basic-nav">
-                <button class="button-new-post basic-button">Nuevo Post</button>
+                <button class="button-newpost basic-button">Nuevo Post</button>
                 <button class="button-tologout basic-button">Salir</button>
             </div>
         </footer>
+    </div>
+
+    <!-- Ventana modal de Post nuevo -->
+
+    <div class="home-modal-newpost">
+        <form class="home-modal-newpost-form basic-form" action="submit">
+            <h4>Nuevo Post</h4>
+
+            <label for="newpost-img">Imagen url</label>
+            <input type="url" id="newpost-img">
+
+            <label for="newpost-msg">Mensaje</label>
+            <input type="text" id="newpost-msg">
+
+            <div class="flex-hor">
+                <button type="submit" class="newpost-button basic-button">Nuevo</button>
+                <button type="reset" class="newpost-button-cancel basic-button">Salir</button>
+            </div>
+        </form>
     </div>
 
 
