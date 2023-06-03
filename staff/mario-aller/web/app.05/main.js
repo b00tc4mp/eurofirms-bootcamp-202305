@@ -61,35 +61,10 @@ logForm.onsubmit = function (event) {
             alert('No hay usuario.')
         } else {
             homeFrame.querySelector('.greetings').innerHTML = 'Hola ' + userPublic.name + '!'
-            logForm.reset()
             logFrame.classList.add('off')
             homeFrame.classList.remove('off')
         }
     } else {
         alert('Credenciales incorrectas.')
     }
-}
-
-
-// Navegación
-
-var regButtonTolog = regNav.querySelector('.button-tolog')
-regButtonTolog.onclick = function () {
-    regForm.reset()
-    regFrame.classList.add('off')
-    logFrame.classList.remove('off')
-
-}
-
-var logButtonToreg = logNav.querySelector('.button-toreg')
-logButtonToreg.onclick = function () {
-    logForm.reset()
-    logFrame.classList.add('off')
-    regFrame.classList.remove('off')
-}
-
-var homeButtonTologout = homeNav.querySelector('.button-tologout')
-homeButtonTologout.onclick = function () {
-    homeFrame.classList.add('off')
-    logFrame.classList.remove('off')
 }

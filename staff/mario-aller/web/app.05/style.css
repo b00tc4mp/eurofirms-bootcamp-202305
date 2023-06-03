@@ -1,0 +1,66 @@
+/* Valores por defeto */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    box-sizing: border-box;
+    height: 100%;
+    background-color: beige;
+    font-family: sans-serif;
+}
+
+/* Estilos */
+
+.basic-form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.basic-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width: 70%; */
+    margin-top: 0.5rem;
+    background-color: lightgray;
+    border-radius: 2rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
+    padding: 1rem;
+}
+
+.basic-button {
+    margin: 1rem;
+    padding: 0.1rem 0.8rem;
+    border-radius: 0.5rem;
+    background-color: lightgray;
+}
+
+.basic-nav {
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: lightgray;
+    border-radius: 2rem;
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
+}
+
+.home-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.off {
+    display: none;
+}
