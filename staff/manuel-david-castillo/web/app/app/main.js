@@ -1,82 +1,13 @@
-/* DATABASE */
-var users = [];
-
-users.push({
-  name: "Mariano",
-  email: "mariano@gmail.com",
-  password: "123123123",
-});
-users.push({
-  name: "Pedrito",
-  email: "pedrito@gmail.com",
-  password: "123123123",
-});
-users.push({ name: "Santi", email: "santi@gmail.com", password: "123123123" });
-users.push({ name: "Paco", email: "paco@gmail.com", password: "123123123" });
-
-/* LOGIC */
-var registerUser = function (name, email, password) {
-  var user;
-  for (var i = 0; i < users.length; i++) {
-    var _user = users[i];
-    if (_user.email === email) {
-      user = _user;
-      break;
-    }
-  }
-
-  if (user) {
-    return false;
-  } else {
-    user = {
-      name: name,
-      email: email,
-      password: password,
-    };
-
-    users.push(user);
-    return true;
-  }
-};
-
-var authenticateUser = function (email, password) {
-  var user;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].email === email) {
-      user = users[i];
-    }
-  }
-
-  if (user === undefined || user.password !== password) {
-    return false;
-  } else {
-    return true;
-  }
-};
-
-/* DOM */
-/* Footer */
-var buttonLogin = document.querySelector(".link-login");
-var buttonRegister = document.querySelector(".link-register");
+/* REGISTER */
 var registerContainer = document.querySelector(".register");
-var loginContainer = document.querySelector(".login");
+var registerForm = document.querySelector(".register-form");
+var anchorLogin = document.querySelector(".link-login");
 
-buttonLogin.onclick = function (event) {
+anchorLogin.onclick = function (event) {
   event.preventDefault();
   loginContainer.classList.remove("off");
   registerContainer.classList.add("off");
-  homeView.classList.add("off");
 };
-
-buttonRegister.onclick = function (event) {
-  event.preventDefault();
-  loginContainer.classList.add("off");
-  registerContainer.classList.remove("off");
-  homeView.classList.add("off");
-};
-
-/* Register */
-var registerForm = document.querySelector(".register-form");
 
 registerForm.onsubmit = function (event) {
   event.preventDefault();
@@ -103,8 +34,16 @@ registerForm.onsubmit = function (event) {
   }
 };
 
-/* Login */
+/* LOGIN */
+var loginContainer = document.querySelector(".login");
 var loginForm = document.querySelector(".login-form");
+var anchorRegister = document.querySelector(".link-register");
+
+anchorRegister.onclick = function (event) {
+  event.preventDefault();
+  loginContainer.classList.add("off");
+  registerContainer.classList.remove("off");
+};
 
 loginForm.onsubmit = function (event) {
   event.preventDefault();
@@ -125,5 +64,72 @@ loginForm.onsubmit = function (event) {
   }
 };
 
-/* Home */
-homeView = document.querySelector(".home");
+/* HOME */
+homeView = document.querySelector(".home-view");
+var buttonLogout = document.querySelector(".button-logout");
+
+buttonLogout.onclick = function () {
+  loginContainer.classList.remove("off");
+  homeView.classList.add("off");
+};
+
+/* Lógica de new post */
+var containerNewPost = document.querySelector(".container-new-post");
+var buttonNewPost = document.querySelector(".button-new-post");
+buttonNewPost.onclick = function () {
+  containerNewPost.classList.remove("off");
+};
+
+var buttonCancelNewPost = document.querySelector(".button-cancel-new-post");
+buttonCancelNewPost.onclick = function () {
+  containerNewPost.classList.add("off");
+  formNewPost.reset();
+};
+
+var formNewPost = document.querySelector(".form-new-post");
+
+formNewPost.onsubmit = function (event) {
+  event.preventDefault();
+
+  var image = formNewPost.querySelector("#url-image-new-post").value;
+  var text = formNewPost.querySelector("#textarea-new-post").value;
+
+  var result = createNewPost(image, text);
+
+  if (!result) {
+    alert("can not create post");
+  } else {
+    alert("new post create");
+    containerNewPost.classList.add("off");
+    formNewPost.reset();
+
+    showPost();
+  }
+};
+
+/* Lógica para lanzar los post  */
+function showPost() {
+  var posts = retrievePosts();
+
+  var postsContainer = document.querySelector(".all-posts");
+  postsContainer.innerHTML = "";
+
+  for (var i = 0; i < posts.length; i++) {
+    var post = document.createElement("div");
+    post.classList.add("post");
+
+    var image = document.createElement("img");
+    image.classList.add("img-post");
+    image.src = posts[i].image;
+    post.appendChild(image);
+
+    var text = document.createElement("p");
+    text.classList.add("text-post");
+    text.textContent = posts[i].text;
+    post.appendChild(text);
+
+    postsContainer.appendChild(post);
+  }
+}
+
+showPost();

@@ -8,7 +8,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="register off">
+    <header>
+      <nav>
+        <button class="link-login button-footer" href="login.html">
+          Login
+        </button>
+      </nav>
+      <nav>
+        <button class="link-register button-footer" href="register.html">
+          Register
+        </button>
+      </nav>
+    </header>
+    <main class="register">
       <form class="register-form" action="">
         <h2>Register</h2>
         <div>
@@ -35,7 +47,6 @@
         </div>
         <button class="button">Register</button>
       </form>
-      <a class="link-login" href="#">Go to Login</a>
     </main>
 
     <main class="login off">
@@ -61,48 +72,41 @@
         </div>
         <button class="button">Enter</button>
       </form>
-      <a class="link-register" href="#">Go to register</a>
     </main>
 
-    <div class="home-view">
-      <header>
-        <nav>
-          <button class="button-logout button-footer">Logout</button>
-        </nav>
-      </header>
-
-      <main class="home">
-        <h2>My posts</h2>
-        <div class="all-posts"></div>
-        <div class="container-new-post off">
-          <form class="form-new-post" action="">
-            <h3 class="h3-new-post">New post</h3>
-            <input id="url-image-new-post" type="url" />
-            <textarea
-              id="textarea-new-post"
-              name=""
-              id=""
-              cols="25"
-              rows="5"
-            ></textarea>
-            <div>
-              <button type="submit" class="button-create-new-post">
-                Create
-              </button>
-              <button type="button" class="button-cancel-new-post">
-                Cancel
-              </button>
-            </div>
-          </form>
+    <main class="home off">
+      <h2>My posts</h2>
+      <div class="all-posts">
+        <div class="post">
+          <p class="name">Name</p>
+          <p class="message">hello what´s up?</p>
         </div>
-      </main>
+        <div class="post">
+          <p class="name">Name</p>
+          <p class="message">hello, what´s up?</p>
+        </div>
+        <div class="post">
+          <p class="name">Name</p>
+          <p class="message">hello what´s up?</p>
+        </div>
+        <div class="post">
+          <p class="name">Name</p>
+          <p class="message">hello what´s up?</p>
+        </div>
+      </div>
+    </main>
 
-      <footer>
-        <button class="button-new-post">New Post</button>
-      </footer>
-    </div>
+    <footer>
+      <p>Contact:</p>
+      <p>Telephone:</p>
+      <a href="https://www.instagram.com/" target="_blank">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+          alt=""
+          class="instagram-logo"
+        />
+      </a>
+    </footer>
   </body>
-  <script src="data.js"></script>
-  <script src="logic.js"></script>
   <script src="main.js"></script>
 </html>

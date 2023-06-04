@@ -12,6 +12,7 @@ header {
   justify-content: space-around;
   align-items: center;
   width: 200px;
+  margin-bottom: 10px;
   background-color: darkturquoise;
   width: 100%;
   height: 40px;
@@ -34,12 +35,11 @@ main {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
 }
 
-.login-form,
-.register-form {
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,11 +79,9 @@ button {
   display: none;
 } */
 
-.home {
-  padding: 0;
-  margin: 0;
-  height: 90vh;
-}
+/* .home {
+  display: none;
+} */
 
 .all-posts {
   margin-bottom: 60px;
@@ -96,10 +94,6 @@ button {
   border-radius: 10px;
   margin: 10px;
   box-shadow: 4px 4px 4px darkblue;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .name {
@@ -108,49 +102,6 @@ button {
 
 .message {
   margin-left: 5px;
-}
-
-.h3-new-post {
-  margin: 5px;
-}
-
-.container-new-post {
-  position: fixed;
-  width: auto;
-  height: auto;
-  background-color: rgb(0, 0, 0, 0.6);
-  width: 130vh;
-  height: 86%;
-  z-index: 2;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.form-new-post {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  background-color: deepskyblue;
-  border: solid 3px;
-  border-radius: 10px;
-}
-
-.img-post {
-  width: 70px;
-  height: 70px;
-  border: solid;
-  border-radius: 10px;
-  margin-top: 10px;
-}
-
-textarea {
-  resize: none;
 }
 
 .off {
