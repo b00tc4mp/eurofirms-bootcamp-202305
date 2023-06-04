@@ -124,19 +124,6 @@ body {
     margin: 1rem;
 }
 
-.home-postpanel-form {
-    margin: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* width: 70%; */
-    background-color: rgb(161, 195, 161);
-    border-radius: 2rem;
-    box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
-    padding: 1rem;
-}
-
 .home-modal-newpost {
     position: fixed;
     top: 0;
