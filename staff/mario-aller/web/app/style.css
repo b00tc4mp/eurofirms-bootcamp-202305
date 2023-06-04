@@ -124,14 +124,14 @@ body {
 }
 
 .posts-list {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
- }
+}
 
 .post-item {
-    display:flex;
+    display: flex;
     justify-content: left;
     align-items: center;
     margin: 0.5rem;
