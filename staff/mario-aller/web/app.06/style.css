@@ -51,8 +51,8 @@ body {
     justify-content: space-between;
     background-color: lightgray;
     border-radius: 2rem;
-    /* position: fixed;
-    bottom: 0; */
+    position: fixed;
+    bottom: 0;
     box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
 }
 
@@ -63,46 +63,34 @@ body {
     justify-content: center;
     background-color: lightgray;
     border-radius: 2rem;
-    /* position: fixed;
-    top: 0; */
+    position: fixed;
+    top: 0;
     box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
     padding: 1rem;
 }
 
+.head-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Cuerpo principal */
 
 .home {
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr 1fr;
-    justify-content: center;
-    align-content: center;
-
-}
-
-.home-header {
-    grid-column: 1/2;
-    grid-row: 1/2;
 }
 
 .home-view {
-    grid-column: 1/2;
-    grid-row: 2/3;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.home-nav {
-    grid-column: 1/2;
-    grid-row: 3/4;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -110,7 +98,6 @@ body {
     position: absolute;
     top: 20%;
     height: 50%;
-    margin: 1rem;
 }
 
 .home-modal-newpost {
@@ -118,38 +105,11 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
+    background-color: rgb(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-.posts-list {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
- }
-
-.post-item {
-    display:flex;
-    justify-content: left;
-    align-items: center;
-    margin: 0.5rem;
-    border-radius: 0.5rem;
-    background-color: antiquewhite;
-
-}
-
-.post-item-img {
-    width: 20%;
-    padding: 0.5rem;
-}
-
-.post-item-msg {
-    width: 80%;
-    padding: 0.5rem;
-}
-
 
 /* Capas y comandos */
 

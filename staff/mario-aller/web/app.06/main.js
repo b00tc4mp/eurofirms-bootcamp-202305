@@ -108,7 +108,7 @@ homeButtonNewpost.onclick = function () {
 // Posts
 
 // Botón creación posts
-homeModalNewpostForm.onsubmit = function (event) {
+var homeModalNewpostForm.onsubmit = function (event) {
     event.preventDefault()
 
     // Captura de datos
@@ -138,32 +138,14 @@ homeButtonNewPostCancel.onclick = function (event) {
     // Salir
     homeModalNewpostForm.reset()
     homeModalNewpost.classList.add('off')
-}
+}  
 
 // Mostrar post en Home
-var homeButtonShowPost = homeNav.querySelector('.button-showpost')
+var homeButtonShowPost = homeModalNewpostForm.querySelector('.newpost-button-cancel')
 homeButtonShowPost.onclick = function (event) {
 
-    var lista = homeView.querySelector('.posts-list')
-    lista.innerHTML = ''
 
-    for (i = posts.length - 1; i >= 0; i--) {
-
-        var post = document.createElement('li')
-        post.className = 'post-item'
-
-        var img = document.createElement('img')
-        var msg = document.createElement('p')
-
-        img.src = posts[i].image
-        img.className = 'post-item-img'
-
-        msg.innerHTML = posts[i].text
-        msg.className = 'post-item-msg'
-
-        post.append(img, msg)
-        lista.append(post)
-    }
-
-    homeView.classList.remove('off')
+    // Salir
+    homeModalNewpostForm.reset()
+    homeModalNewpost.classList.add('off')
 }  
