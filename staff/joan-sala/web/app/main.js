@@ -97,6 +97,33 @@ homeLogoutButton.onclick = function () {
     loginView.classList.remove('off')
 }
 
+function printPosts(){
+    var postsList = homeView.querySelector('.posts-list')
+    postsList.innerHTML = ''
+    
+    var posts = retrievePosts()
+
+    for(var i = posts.length-1; i >= 0; i--){
+        var post = posts[i]
+
+        var postContainer = document.createElement('li')
+        postContainer.className = 'post-item'
+
+        var postImage = document.createElement('img')
+        postImage.src = post.image
+        postImage.className = 'post-image'
+
+        var postText = document.createElement('p')
+        postText.innerText = post.text
+
+        postContainer.append(postImage, postText)
+
+        postsList.append(postContainer)
+    }
+}
+
+printPosts()
+
 var homeCreatePostButton = homeView.querySelector('.home-create-post-button')
 
 homeCreatePostButton.onclick = function () {
@@ -130,5 +157,7 @@ homeCreatePostForm.onsubmit = function (event) {
         homeCreatePostForm.reset()
 
         homeCreatePostModal.classList.add('off')
+
+        printPosts()
     }
 }
