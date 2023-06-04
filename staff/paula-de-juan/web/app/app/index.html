@@ -10,39 +10,63 @@
 </head>
 
 <body>
-    <main class="flex justify-center register-view">
-        <div>
-            <h1 class="flex justify-center flex-column">Register</h1>
-            <form action="submit" class="flex flex-column w-80 justify-center register-form">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="nombre">
-                <label for="email" type="text">Email</label>
-                <input type="text" name="email" id="email" placeholder="email">
-                <label for="password" type="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="password">
-                <button>Register</button>
-            </form>
-        </div>
-    </main>
-    <main class="flex justify-center login-view off">
-        <div>
-        <h1 class="flex justify-center flex-column">Login</h1>
-        <form action="submit" class="flex flex-column w-80 justify-center login-form">
-            <label for="email" type="text">Email</label>
-            <input type="text" name="email" id="email" placeholder="email">
-            <label for="password" type="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="password">
-            <button>Login</button>
+    <main class="register-view">
+        <h1>Register</h1>
+        <form action="submit" class="register-form">
+            <label for="register-name">Name</label>
+            <input type="text" name="name" id="register-name" placeholder="Name">
+
+            <label for="register-email" type="text">Email</label>
+            <input type="text" name="email" id="register-email" placeholder="e-mail">
+            <label for="register-password">Password</label>
+            <input type="password" name="password" id="register-password" placeholder="password">
+            <button type="submit">Register</button>
         </form>
+        <p>Go to <a class="register-login-link" href="">Login</a></p>
+    </main>
+    <main class="login-view off">
+        <h1>Login</h1>
+        <form action="submit" class="login-form">
+            <label for="login-email" type="text">Email</label>
+            <input type="text" name="email" id="login-email" placeholder="e-mail">
+
+            <label for="login-password" type="password">Password</label>
+            <input type="password" name="password" id="login-password" placeholder="password">
+
+            <button type="submit">Login</button>
+        </form>
+        <p>Go to<a class="login-register-link" href="">Register</a></p>
+    </main>
+    <div class="home-view off">
+        <header>
+            <h1 class="home-title">Hello, Home!</h1>
+            <button class="home-logout-button">Logout</button>
+        </header>
+
+        <main></main>
+
+        <footer class="home-footer">
+            <button class="home-create-post-button">+</button>
+        </footer>
+
+        <div class="home-create-post-modal off">
+            <div class="home-create-post-container">
+                <h2>Create post</h2>
+                <form class="home-create-post-form">
+                    <label for="create-post-url">Image</label>
+                    <input id="create-post-url" type="url">
+
+                    <label for="create-post-text">Text</label>
+                    <textarea id="create-post-text"></textarea>
+
+                    <button type="submit">Create</button>
+                    <button class="home-create-post-cancel-button">Cancel</button>
+                </form>
+            </div>
+        </div>
     </div>
-    </main>
-    <main class="home-view off">
-        <!-- TODO implement a home page (h1, nav (profile)) -->
-        <h1 class="greeting-user">     </h1>
-
-    </main>
-
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
     <script src="main.js"></script>
 </body>
-
 </html>

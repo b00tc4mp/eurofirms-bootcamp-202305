@@ -1,18 +1,59 @@
-.flex {
-  display: flex;
-}
-.flex-column {
-  flex-direction: column;
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
+
+/* resets */
+
+* {
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.w-70 {
-  width: 80%;
+html, body {
+    height: 100%;
 }
 
-.justify-center {
-  justify-content: center;
+body {
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.off{
-  display: none;
+/* styles (BEM) */
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-footer {
+    background-color: dodgerblue;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+}
+
+.home-create-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-create-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.off {
+    display: none;
 }
