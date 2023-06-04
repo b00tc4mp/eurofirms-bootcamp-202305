@@ -18,6 +18,10 @@ body {
 li {
     list-style: none
 }
+header {
+	font-family: 'Kranky', cursive;
+	font-size: 24px;
+}
 
 /* styles (BEM) */
 
