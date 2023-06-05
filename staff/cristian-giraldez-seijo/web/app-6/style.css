@@ -1,0 +1,37 @@
+.flex{
+    display: flex
+}
+.flex-column{
+    flex-direction: column;
+}
+.w-30{
+    width: 30%;
+}
+.w-full{
+    width: 100%;
+}
+.justify-center{
+    justify-content: center;
+}
+.instagram-logo{
+    width: 40px;
+}
+.home{
+}
+.login{
+    display:none
+}
+.register{
+    display: none;
+}
+.container{
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.box{
+    height: 100%;
+    width: 100%;
+    border: 2px solid;
+}
