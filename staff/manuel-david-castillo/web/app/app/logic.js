@@ -59,3 +59,12 @@ var createNewPost = function (image, text) {
 var retrievePosts = function () {
   return posts;
 };
+
+function retrieveName(email) {
+  for (var i = 0; i < users.length; i++) {
+    if (email === users[i].email) {
+      return users[i].name;
+    }
+  }
+  return undefined;
+}

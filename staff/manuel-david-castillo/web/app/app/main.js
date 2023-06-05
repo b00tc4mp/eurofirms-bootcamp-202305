@@ -59,6 +59,8 @@ loginForm.onsubmit = function (event) {
     loginContainer.classList.add("off");
     homeView.classList.remove("off");
     loginForm.reset();
+    userEmail = email;
+    changeNameUser(userEmail);
   } else {
     alert("wrong credentials");
   }
@@ -72,6 +74,14 @@ buttonLogout.onclick = function () {
   loginContainer.classList.remove("off");
   homeView.classList.add("off");
 };
+
+/* Editar el nombre  */
+var userEmail;
+function changeNameUser(email) {
+  nameUser = retrieveName(email);
+  var homeTitle = document.querySelector(".h2-home");
+  homeTitle.textContent = "Hello " + nameUser;
+}
 
 /* Lógica de new post */
 var containerNewPost = document.querySelector(".container-new-post");
