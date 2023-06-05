@@ -38,5 +38,5 @@ TODO list tech details
 - DONE implement plus button at the bottom of home (footer)
 - DONE implement modal window for creating a post (inputs: image, text)
 - DONE implement createPost logic to persist the info (image, text) in database
-- NOT DONE implement retrievePosts logic to get all the posts from database
+- DONE implement retrievePosts logic to get all the posts from database
 - DONE implement a panel for listing posts in home
