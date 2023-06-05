@@ -160,7 +160,6 @@ body {
 .home-header {
     grid-column: 1/2;
     grid-row: 1/2;
-    background-color: aliceblue;
 }
 
 .home-view {
@@ -179,7 +178,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
 }
 
 .home-postpanel {
