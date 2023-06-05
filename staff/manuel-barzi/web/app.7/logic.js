@@ -86,7 +86,3 @@ function createPost(image, text) {
 
     return true
 }
-
-function retrievePosts() {
-    return posts
-}

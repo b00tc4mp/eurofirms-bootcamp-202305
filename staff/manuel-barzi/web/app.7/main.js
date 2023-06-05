@@ -61,35 +61,15 @@ loginForm.onsubmit = function (event) {
     else {
         loginForm.reset()
 
-        var user = retrieveUser(email)
+        const user = retrieveUser(email)
 
         if (user === null)
             alert('User not found')
         else {
             loginView.classList.add('off')
 
-            var homeTitle = homeView.querySelector('.home-title')
+            const homeTitle = homeView.querySelector('.home-title')
             homeTitle.innerText = 'Hello, ' + user.name + '!'
-
-            homePosts.innerHTML = ''
-
-            var posts = retrievePosts()
-
-            for (var i = 0; i < posts.length; i++) {
-                var post = posts[i]
-
-                var image = document.createElement('img')
-                image.classList.add('home-post-image')
-                image.src = post.image
-
-                var text = document.createElement('p')
-                text.innerText = post.text
-
-                var article = document.createElement('article')
-                article.append(image, text)
-
-                homePosts.append(article)
-            }
 
             homeView.classList.remove('off')
         }
@@ -111,8 +91,6 @@ var homeView = document.querySelector('.home-view')
 var homeCreatePostModal = homeView.querySelector('.home-create-post-modal')
 var homeLogoutButton = homeView.querySelector('.home-logout-button')
 var homeCreatePostForm = homeView.querySelector('.home-create-post-form')
-var homeMain = homeView.querySelector('.home-main')
-var homePosts = homeMain.querySelector('.home-posts')
 
 homeLogoutButton.onclick = function () {
     homeView.classList.add('off')
@@ -152,26 +130,5 @@ homeCreatePostForm.onsubmit = function (event) {
         homeCreatePostForm.reset()
 
         homeCreatePostModal.classList.add('off')
-
-        homePosts.innerHTML = ''
-
-        var posts = retrievePosts()
-
-        for (var i = 0; i < posts.length; i++) {
-            var post = posts[i]
-
-            var image = document.createElement('img')
-            image.classList.add('home-post-image')
-            image.src = post.image
-
-            var text = document.createElement('p')
-            text.innerText = post.text
-
-            var article = document.createElement('article')
-            article.append(image, text)
-
-            homePosts.append(article)
-        }
-
     }
 }
