@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts App</title>
+    <title>Posts app</title>
 
     <!-- link a style -->
     <link rel="stylesheet" href="style.css">
@@ -26,26 +26,28 @@
                 <div class="basic-form">
 
                     <!-- Datos del formularo -->
-                    <label for="reg-name">Nombre</label>
+                    <label class="basic-label" for="reg-name">Nombre</label>
                     <input type="text" id="reg-name">
 
-                    <label for="reg-email">Correo</label>
+                    <label class="basic-label" for="reg-email">Correo</label>
                     <input type="email" id="reg-email">
 
-                    <label for="reg-password">Clave</label>
+                    <label class="basic-label" for="reg-password">Clave</label>
                     <input type="password" id="reg-password">
 
                     <button class="basic-button">Registrarse</button>
                 </div>
             </form>
-            <!-- Barra de navegación -->
-            <footer class="reg-nav">
-                <div class="basic-nav">
-                    <button class="button-tolog basic-button">Acceso</button>
-                    <button class="basic-button">Otra acción</button>
-                </div>
-            </footer>
         </main>
+
+        <!-- Barra de navegación -->
+        <footer class="reg-nav">
+            <div class="basic-nav">
+                <button type="submit" class="button-tolog basic-button">Acceso</button>
+                <button type="button" class="basic-button">Otra acción</button>
+            </div>
+        </footer>
+
     </div>
 
     <!-- Login -->
@@ -60,10 +62,10 @@
                 <div class="basic-form">
 
                     <!-- Datos del formularo -->
-                    <label for="log-email">Correo</label>
+                    <label class="basic-label" for="log-email">Correo</label>
                     <input type="email" id="log-email">
 
-                    <label for="log-password">Clave</label>
+                    <label class="basic-label" for="log-password">Clave</label>
                     <input type="password" id="log-password">
 
                     <button class="basic-button">Acceso</button>
@@ -72,10 +74,10 @@
         </main>
 
         <!-- Barra de navegación -->
-        <footer class="log-nav">
+        <footer class="log-nav flex-hor">
             <div class="basic-nav">
-                <button class="button-toreg basic-button">Registro</button>
-                <button class="basic-button">Otra acción</button>
+                <button type="submit" class="button-toreg basic-button">Registro</button>
+                <button type="button" class="basic-button">Otra acción</button>
             </div>
         </footer>
     </div>
@@ -92,19 +94,17 @@
         </header>
 
         <!-- Cuerpo -->
-        <main class="home-view home-postpanel off">
-            <div class="home-postpanel-form">
-                <ul class="posts-list">
-                </ul>
-            </div>
+        <main class="home-view">
+            <section class="posts-list basic-container">
+                <article>No hay posts</article>
+            </section>
         </main>
 
         <!-- Barra de navegación -->
         <footer class="home-nav">
             <div class="basic-nav">
-                <button class="button-newpost basic-button">Nuevo Post</button>
-                <button class="button-showpost basic-button">Ver Posts</button>
-                <button class="button-logout basic-button">Salir</button>
+                <button type="button" class="button-newpost basic-button">Nuevo Post</button>
+                <button type="button" class="button-logout basic-button">Salir</button>
             </div>
         </footer>
     </div>
@@ -115,10 +115,10 @@
         <form class="home-modal-newpost-form basic-form" action="submit">
             <h4>Nuevo Post</h4>
 
-            <label for="newpost-img">Imagen url</label>
+            <label class="basic-label" for="newpost-img">Imagen url</label>
             <input type="url" id="newpost-img">
 
-            <label for="newpost-msg">Mensaje</label>
+            <label class="basic-label" for="newpost-msg">Mensaje</label>
             <input type="text" id="newpost-msg">
 
             <div class="flex-hor">

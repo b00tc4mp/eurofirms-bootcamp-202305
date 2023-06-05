@@ -15,11 +15,38 @@ var logForm = document.querySelector('.log-form')
 var logNav = document.querySelector('.log-nav')
 
 var homeFrame = document.querySelector('.home')
+var homeHeader = document.querySelector('.home-header')
 var homeView = document.querySelector('.home-view')
 var homeNav = document.querySelector('.home-nav')
-var homeHeader = document.querySelector('.home-header')
 var homeModalNewpost = document.querySelector('.home-modal-newpost')
 var homeModalNewpostForm = document.querySelector('.home-modal-newpost-form')
+
+// Funciones comunes
+
+// Mostrar post en Home
+var ShowPosts = function () {
+    var lista = homeView.querySelector('.posts-list')
+    lista.innerHTML = ''
+    var postsList = userRetrieveAll()
+
+    for (i = postsList.length - 1; i >= 0; i--) {
+        var post = document.createElement('article')
+        post.className = 'post-item'
+
+        var img = document.createElement('img')
+        var msg = document.createElement('p')
+
+        img.src = postsList[i].image
+        img.className = 'post-item-img'
+
+        msg.innerHTML = postsList[i].text
+        msg.className = 'post-item-msg'
+
+        post.append(img, msg)
+        lista.append(post)
+    }
+    homeView.classList.remove('off')
+}
 
 // Registro
 
@@ -66,12 +93,12 @@ logForm.onsubmit = function (event) {
             logForm.reset()
             logFrame.classList.add('off')
             homeFrame.classList.remove('off')
+            ShowPosts()
         }
     } else {
         alert('Credenciales incorrectas.')
     }
 }
-
 
 // Navegación
 
@@ -130,6 +157,9 @@ homeModalNewpostForm.onsubmit = function (event) {
     // Salir
     homeModalNewpostForm.reset()
     homeModalNewpost.classList.add('off')
+
+    // Actualizar lista de post
+    ShowPosts()
 }
 
 // Botón Cancelar creación posts
@@ -139,31 +169,3 @@ homeButtonNewPostCancel.onclick = function (event) {
     homeModalNewpostForm.reset()
     homeModalNewpost.classList.add('off')
 }
-
-// Mostrar post en Home
-var homeButtonShowPost = homeNav.querySelector('.button-showpost')
-homeButtonShowPost.onclick = function (event) {
-
-    var lista = homeView.querySelector('.posts-list')
-    lista.innerHTML = ''
-
-    for (i = posts.length - 1; i >= 0; i--) {
-
-        var post = document.createElement('li')
-        post.className = 'post-item'
-
-        var img = document.createElement('img')
-        var msg = document.createElement('p')
-
-        img.src = posts[i].image
-        img.className = 'post-item-img'
-
-        msg.innerHTML = posts[i].text
-        msg.className = 'post-item-msg'
-
-        post.append(img, msg)
-        lista.append(post)
-    }
-
-    homeView.classList.remove('off')
-}  

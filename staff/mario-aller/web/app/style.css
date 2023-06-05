@@ -7,11 +7,10 @@
     margin: 0;
 }
 
-html,
 body {
     box-sizing: border-box;
-    width: 100%;
-    height: 99%;
+    width: 100vw;
+    height: 100svh;
     background-color: beige;
     font-family: sans-serif;
 }
@@ -20,7 +19,7 @@ body {
 /* Estilos */
 /* ------- */
 
-/* Formularios */
+/* Formatos básicos */
 
 .basic-form {
     margin: 0.5rem;
@@ -35,6 +34,19 @@ body {
     padding: 1rem;
 }
 
+.basic-container {
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width: 70%; */
+    background-color: rgb(161, 195, 161);
+    border-radius: 2rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem rgb(66, 98, 86);
+    padding: 1rem;
+}
+
 .basic-button {
     margin: 1rem;
     padding: 0.1rem 0.8rem;
@@ -42,13 +54,12 @@ body {
     background-color: lightgray;
 }
 
-/* Extremos */
-
-.reg-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.basic-label {
+    font-size: 0.8rem;
+ 
 }
+
+/* Extremos básicos */
 
 .basic-head {
     margin: 1rem;
@@ -58,15 +69,8 @@ body {
     background-color: lightgray;
     border-radius: 2rem;
     position: fixed;
-    top: 0;
     box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
     padding: 1rem;
-}
-
-.log-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .basic-nav {
@@ -77,8 +81,67 @@ body {
     background-color: lightgray;
     border-radius: 2rem;
     position: fixed;
-    bottom: 0;
     box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
+}
+
+/* Registro */
+
+.register {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg-view {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg-nav {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+}
+
+/* Login  */
+
+.login {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.log-view {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.log-nav {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
 }
 
 /* Cuerpo principal */
@@ -88,7 +151,7 @@ body {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
     justify-content: center;
     align-content: center;
 
@@ -97,6 +160,7 @@ body {
 .home-header {
     grid-column: 1/2;
     grid-row: 1/2;
+    background-color: aliceblue;
 }
 
 .home-view {
@@ -115,6 +179,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: aliceblue;
 }
 
 .home-postpanel {
@@ -124,18 +189,7 @@ body {
     margin: 1rem;
 }
 
-.home-postpanel-form {
-    margin: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* width: 70%; */
-    background-color: rgb(161, 195, 161);
-    border-radius: 2rem;
-    box-shadow: 0.5rem 0.5rem 0.5rem rgb(66, 98, 86);
-    padding: 1rem;
-}
+/* Home modal */
 
 .home-modal-newpost {
     position: fixed;
@@ -162,7 +216,7 @@ body {
     justify-content: left;
     align-items: center;
     margin: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     background-color: antiquewhite;
 
 }
@@ -170,13 +224,13 @@ body {
 .post-item-img {
     width: 20%;
     padding: 0.5rem;
+    border-radius: 1rem;
 }
 
 .post-item-msg {
     width: 80%;
     padding: 0.5rem;
 }
-
 
 /* Capas y comandos */
 
