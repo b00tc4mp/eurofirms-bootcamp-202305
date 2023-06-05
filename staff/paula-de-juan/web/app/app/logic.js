@@ -89,9 +89,19 @@ function createPost(image, text) {
 
     var post = {}
 
-    post.image = image;
-    post.text = text;
+    var lastPost = posts[posts.length-1]
+
+    var lastPostId = lastPost.id
+    
+    post.image = image
+    post.text = text
+    post.id = lastPostId + 1
+
     posts.push(post)
 
-    return true;
+    return true
+}
+
+function retrievePosts(){
+    return posts
 }

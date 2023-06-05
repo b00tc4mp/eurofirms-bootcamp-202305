@@ -31,6 +31,15 @@ registerForm.onsubmit = function (event) {
 
 }
 
+var registerLoginLink = registerView.querySelector('.register-login-link')
+
+registerLoginLink.onclick = function (event){
+    event.preventDefault()
+    loginView.classList.remove('off')
+    registerView.classList.add('off')
+}
+
+
 // Login Form
 var loginView = document.querySelector('.login-view');
 var loginForm = loginView.querySelector('.login-form');
@@ -61,7 +70,31 @@ loginForm.onsubmit = function (event) {
 
             homeTitle.innerText = 'Hello ' + user.name + '!';
 
+            homePosts.innerHTML = ''            
+
+            var posts = retrievePosts()
+
+            for (var i = 0; i < posts.length; i++){
+                
+                var post = posts[i]
+
+                var image = document.createElement('img')
+                var text = document.createElement('p')
+
+                image.src = post.image
+                image.classList.add('home-post-image')
+                text.innerHTML = post.text
+
+                var article = document.createElement('article')
+                article.classList.add('posts-container')
+
+                article.append(image, text)
+                homePosts.append(article)
+
+            }
             homeView.classList.remove('off')
+
+
         }
     }
 }
@@ -79,6 +112,8 @@ var homeView = document.querySelector('.home-view');
 var homeCreatePostModal = homeView.querySelector('.home-create-post-modal')
 var homeLogoutButton = homeView.querySelector('.home-logout-button')
 var homeCreatePostForm = homeView.querySelector('.home-create-post-form')
+var homeMain = homeView.querySelector('.home-main')
+var homePosts = homeView.querySelector('.home-posts')
 
 homeLogoutButton.onclick = function () {
     homeView.classList.add('off')
@@ -96,19 +131,48 @@ var homeCreatePostCancelButton = homeCreatePostForm.querySelector('.home-create-
 homeCreatePostCancelButton.onclick = function (event) {
     event.preventDefault()
 
-    var ImageInput = homeCreatePostForm.querySelector('#create-post-url')
-    var image = ImageInput.value
+    homeCreatePostForm.reset()
+
+    homeCreatePostModal.classList.add('off')
+}
+
+
+homeCreatePostForm.onsubmit = function (event) {
+    event.preventDefault()
+
+    var imageInput = homeCreatePostForm.querySelector('#create-post-url')
+    var image = imageInput.value
 
     var textInput = homeCreatePostForm.querySelector('#create-post-text')
     var text = textInput.value
-    
+
     var result = createPost(image, text)
 
-    if (result === false){
+    if (result === false)
         alert('Cannot create post')
-    } else {
+    else {
         homeCreatePostForm.reset()
 
         homeCreatePostModal.classList.add('off')
+
+        homePosts.innerHTML = ''
+
+        var postsLocal = retrievePosts()
+        for(var i = 0; i < postsLocal.length; i++){
+            var post = postsLocal[i]
+
+            var image = document.createElement('img')
+            image.src = post.image
+            image.classList.add('home-post-image')
+           
+            var text = document.createElement('p')
+            text.innerHTML = post.text
+            
+            var article = document.createElement('article')
+            article.append(image, text)
+            
+            article.classList.add('posts-container')
+            homePosts.append(article)
+        }
     }
 }
