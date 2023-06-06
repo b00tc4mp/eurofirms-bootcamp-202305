@@ -2,6 +2,10 @@
  * PRESENTATION
  */
 
+// globals
+
+var userId = null
+
 // register
 
 var registerView = document.querySelector('.register-view')
@@ -59,6 +63,8 @@ loginForm.onsubmit = function (event) {
     if (result === false)
         alert('Wrong credentials')
     else {
+        userId = result
+
         loginForm.reset()
 
         var user = retrieveUser(email)
@@ -115,6 +121,8 @@ var homeMain = homeView.querySelector('.home-main')
 var homePosts = homeMain.querySelector('.home-posts')
 
 homeLogoutButton.onclick = function () {
+    userId = null
+
     homeView.classList.add('off')
     loginView.classList.remove('off')
 }
@@ -144,7 +152,7 @@ homeCreatePostForm.onsubmit = function (event) {
     var textInput = homeCreatePostForm.querySelector('#create-post-text')
     var text = textInput.value
 
-    var result = createPost(image, text)
+    var result = createPost(userId, image, text)
 
     if (result === false)
         alert('Cannot create post')

@@ -16,5 +16,5 @@ function authenticateUser(email, password) {
     else if (user.password !== password)
         return false
     else
-        return true
+        return user.id
 }
