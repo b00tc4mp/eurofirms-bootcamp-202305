@@ -4,8 +4,6 @@
  
 */
 
-var userId = null;
-
 // Register Form
 var registerView = document.querySelector('.register-view');
 var registerForm = registerView.querySelector('.register-form');
@@ -59,18 +57,16 @@ loginForm.onsubmit = function (event) {
     if (result === false)
         alert('Wrong credentials')
     else {
-        userId = result
-
         loginForm.reset()
 
-        var user = retrieveUser(userId)
+        const user = retrieveUser(email)
 
         if (user === null) {
             alert('User dont found')
         }
         else {
             loginView.classList.add('off')
-            var homeTitle = homeView.querySelector('.home-title');            
+            const homeTitle = homeView.querySelector('.home-title')
 
             homeTitle.innerText = 'Hello ' + user.name + '!';
 
@@ -81,10 +77,6 @@ loginForm.onsubmit = function (event) {
             for (var i = 0; i < posts.length; i++){
                 
                 var post = posts[i]
-
-                var author = document.createElement('h2')
-                author.innerText = post.user.name
-
 
                 var image = document.createElement('img')
                 var text = document.createElement('p')
@@ -154,7 +146,7 @@ homeCreatePostForm.onsubmit = function (event) {
     var textInput = homeCreatePostForm.querySelector('#create-post-text')
     var text = textInput.value
 
-    var result = createPost(userId, image, text)
+    var result = createPost(image, text)
 
     if (result === false)
         alert('Cannot create post')
@@ -165,12 +157,9 @@ homeCreatePostForm.onsubmit = function (event) {
 
         homePosts.innerHTML = ''
 
-        var posts = retrievePosts()
-        for(var i = 0; i < posts.length; i++){
-            var post = posts[i]
-            
-            var user = document.createElement('h2')
-            user.innerText = post.user.name
+        var postsLocal = retrievePosts()
+        for(var i = 0; i < postsLocal.length; i++){
+            var post = postsLocal[i]
 
             var image = document.createElement('img')
             image.src = post.image
@@ -180,7 +169,7 @@ homeCreatePostForm.onsubmit = function (event) {
             text.innerHTML = post.text
             
             var article = document.createElement('article')
-            article.append(user, image, text)
+            article.append(image, text)
             
             article.classList.add('posts-container')
             homePosts.append(article)

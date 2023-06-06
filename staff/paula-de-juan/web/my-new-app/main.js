@@ -25,7 +25,8 @@ registerForm.onsubmit = function (event) {
     var password = passwordInput.value
 
     var subscribeInput = registerForm.querySelector('#subscribe');
-    var subscribe = subscribeInput.value
+    var subscribe = subscribeInput.checked
+    
 
     var userExists = false;
     for (var i = 0; i < users.length; i++) {

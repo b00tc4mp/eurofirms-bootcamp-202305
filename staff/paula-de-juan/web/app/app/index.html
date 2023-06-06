@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <main class="register-view off">
+    <main class="register-view">
       <h1>Register</h1>
       <form action="submit" class="register-form">
         <label for="register-name">Name</label>
@@ -55,7 +55,7 @@
     </main>
 
 
-    <div class="home-view _off">
+    <div class="home-view off">
       <header>
         <h1 class="home-title">Hello, Home!</h1>
         <button class="home-logout-button">Logout</button>
@@ -85,7 +85,12 @@
       </div>
     </div>
     <script src="data.js"></script>
-    <script src="logic.js"></script>
+    <script src="logic/authenticateUser.js"></script>
+    <script src="logic/registerUser.js"></script>
+    <script src="logic/retrieveUser.js"></script>
+    <script src="logic/createPost.js"></script>
+    <script src="logic/retrievePosts.js"></script>
     <script src="main.js"></script>
+    
   </body>
 </html>
