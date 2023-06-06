@@ -1,91 +1,119 @@
-//database
-var users = [];
+/**
+ * PRESENTACIÓN
+ */
 
-users.push({ name: 'Cruela Devil', email: 'cruela@devil.com', password: '1234' })
-users.push({ name: 'Miercoles Adams', email: 'miercoles@adams.com', password: '1234' })
-users.push({ name: 'Harley Queen', email: 'harley@queen.com', password: '1234' })
-
-//register
+//Referencias
 
 var registerView = document.querySelector('.register-view')
 var registerForm = registerView.querySelector('.register-form')
 
+var homeView = document.querySelector('.home-view')
+
+var loginView = document.querySelector('.login-view')
+var loginForm = loginView.querySelector('.login-form')
+
+//Eventos
+//REGISTER
+
 registerForm.onsubmit = function (event) {
     event.preventDefault()
 
-    var nameInput = registerForm.querySelector('#name')
-    var name = nameInput.value
+    //Captura de datos
+    var newUser = {}
 
-    var emailInput = registerForm.querySelector('#email')
+    var nameInput = registerForm.querySelector('#register-name')
+    var name = nameInput.value 
+
+    var emailInput = registerForm.querySelector('#register-email')
     var email = emailInput.value
 
-    var passwordInput = registerForm.querySelector('#password')
+    var passwordInput = registerForm.querySelector('#register-password')
     var password = passwordInput.value
 
-    var userExists = false
+    //Validación de datos
+    var userExist = false
+    var numUsers = users.length
 
-    for (var i = 0; i < users.length; i++) {
-        var user = users[i]
-
-        if (email === user.email) {
-            userExists = true
-
-            break
+    if (numUsers > 0) {
+        for (var i = 0; i < numUsers; i++) {
+            if (newUser.email === users[i].email) {
+                userExist = true
+                break
+            }
         }
     }
 
-    if (userExists) {
-        alert('email alredy registred')
-    } else {
-        //archivo de usuario
-        var newUser = {}
-
-        newUser.name = name
-        newUser.email = email
-        newUser.password = password
+    //Actualización de Base de Datos y navegación
+    if (!userExist) {
 
         users.push(newUser)
-
-        //alert('User registered')
 
         loginView.classList.remove('off')
         registerView.classList.add('off')
     }
+    else {
+        alert('User already registered')
+    }
 }
-
-//login
+//LOGIN
 var loginView = document.querySelector('.login-view')
 var loginForm = loginView.querySelector('.login-form')
 
 loginForm.onsubmit = function (event) {
     event.preventDefault()
 
-    var passwordInput = loginForm.querySelector('#password')
-    var password = passwordInput.value
+    //Captura de datos
 
-    var emailInput = loginForm.querySelector('#email')
+    var email = loginForm.querySelector('#login-email')
     var email = emailInput.value
 
-    var user
+    var password = loginForm.querySelector('#login-password')
+    var password = passwordInput.value
 
-    for (var i = 0; i < users.length; i++) {
-        var _user = users[i]
+    //Validación de datos
+    var result = authenticateUser(email, password)
 
-        if (email === _user.email) {
-            user = _user
 
-            break
+    //Navegación
+
+    if (result === false) {
+        alert('Wrong credentials')
+    }
+    else {
+        loginForm.reset()
+
+        var user = retrieveUser(email)
+
+        if(user === null)
+            alert('User dont found')
+        else{
+        loginView.classList.add('off')
+
+        var homeTittle = homeView.querySelector('.home-tittle')
+        homeTittle.innerText = 'Hola '+ user.name
+
+        homePosts.innerHTML = ''
+
+        var posts = retrivePosts()
+
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i]
+
+            var image = document.createElement('img')
+            image.classList.add('home-post-image')
+            image.src = post.image
+
+            var text = document.createElement('p')
+            text.innerText = post.text
+
+            var article = document.createElement('article')
+            article.append(image, text)
+
+            homePosts.append(article)
+        }
+
+        homeView.classList.remove('off')
+
         }
     }
-
-    if (user === undefined) {
-        alert('Wrong credentials')
-    } else if (user.password === password) {
-        loginView.classList.add('off')
-        homeView.classList.remove('off')
-    } else {
-        alert('Wrong credentials')
-    }
 }
-
-var homeView = document.querySelector('.home-view')
