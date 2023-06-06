@@ -2,9 +2,6 @@
  * PRESENTATION
  */
 
-/* Globals */
-var userId = null
-
 /* Register*/
 
 var registerView = document.querySelector('.register-view')
@@ -80,8 +77,6 @@ loginForm.onsubmit = function (event) {
 
             for (var i = 0; i < posts.length; i++) {
                 var post = posts[i]
-                var author = document.createElement('h2')
-                author.innerText = post.user.name
 
                 var image = document.createElement('img')
                 image.classList.add('home-post-image')
@@ -91,7 +86,7 @@ loginForm.onsubmit = function (event) {
                 text.innerText = post.text
 
                 var article = document.createElement('article')
-                article.append(author,image, text)
+                article.append(image, text)
 
                 homePosts.append(article)
             }
@@ -165,9 +160,6 @@ homeCreatePostForm.onsubmit = function (event) {
         for (var i = 0; i < posts.length; i++) {
             var post = posts[i]
 
-            var author = document.createElement('h2')
-            author.innerText = post.users.name
-
             var image = document.createElement('img')
             image.classList.add('home-post-image')
             image.src = post.image
@@ -176,7 +168,7 @@ homeCreatePostForm.onsubmit = function (event) {
             text.innerText = post.text
 
             var article = document.createElement('article')
-            article.append(author,image, text)
+            article.append(image, text)
 
             homePosts.append(article)
         }
