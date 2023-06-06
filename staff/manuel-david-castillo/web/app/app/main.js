@@ -80,7 +80,7 @@ var userEmail;
 function changeNameUser(email) {
   nameUser = retrieveName(email);
   var homeTitle = document.querySelector(".h2-home");
-  homeTitle.textContent = "Hello " + nameUser;
+  homeTitle.textContent = "Hello, " + nameUser + "!";
 }
 
 /* Lógica de new post */
@@ -125,19 +125,18 @@ function showPost() {
   postsContainer.innerHTML = "";
 
   for (var i = 0; i < posts.length; i++) {
-    var post = document.createElement("div");
+    var post = document.createElement("article");
     post.classList.add("post");
 
     var image = document.createElement("img");
     image.classList.add("img-post");
     image.src = posts[i].image;
-    post.appendChild(image);
 
     var text = document.createElement("p");
     text.classList.add("text-post");
     text.textContent = posts[i].text;
-    post.appendChild(text);
 
+    post.append(image, text);
     postsContainer.appendChild(post);
   }
 }
