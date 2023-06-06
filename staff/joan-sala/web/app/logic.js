@@ -79,19 +79,14 @@ function createPost(image, text) {
 
     var post = {}
 
-    var lastPost = posts[posts.length-1]
-
-    var lastPostId = lastPost.id
-    
     post.image = image
     post.text = text
-    post.id = lastPostId + 1
 
     posts.push(post)
 
     return true
 }
 
-function retrievePosts(){
+function retrievePosts() {
     return posts
 }

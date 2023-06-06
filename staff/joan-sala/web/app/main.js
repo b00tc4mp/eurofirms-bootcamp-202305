@@ -2,7 +2,7 @@
  * PRESENTATION
  */
 
-// register
+/* Register*/
 
 var registerView = document.querySelector('.register-view')
 var registerForm = registerView.querySelector('.register-form')
@@ -40,7 +40,7 @@ registerLoginLink.onclick = function (event) {
     loginView.classList.remove('off')
 }
 
-// login
+/* Login */
 
 var loginView = document.querySelector('.login-view')
 var loginForm = loginView.querySelector('.login-form')
@@ -61,15 +61,35 @@ loginForm.onsubmit = function (event) {
     else {
         loginForm.reset()
 
-        const user = retrieveUser(email)
+        var user = retrieveUser(email)
 
         if (user === null)
             alert('User not found')
         else {
             loginView.classList.add('off')
 
-            const homeTitle = homeView.querySelector('.home-title')
+            var homeTitle = homeView.querySelector('.home-title')
             homeTitle.innerText = 'Hello, ' + user.name + '!'
+
+            homePosts.innerHTML = ''
+
+            var posts = retrievePosts()
+
+            for (var i = 0; i < posts.length; i++) {
+                var post = posts[i]
+
+                var image = document.createElement('img')
+                image.classList.add('home-post-image')
+                image.src = post.image
+
+                var text = document.createElement('p')
+                text.innerText = post.text
+
+                var article = document.createElement('article')
+                article.append(image, text)
+
+                homePosts.append(article)
+            }
 
             homeView.classList.remove('off')
         }
@@ -85,44 +105,19 @@ loginRegisterLink.onclick = function (event) {
     registerView.classList.remove('off')
 }
 
-// home
+/* Home */
 
 var homeView = document.querySelector('.home-view')
 var homeCreatePostModal = homeView.querySelector('.home-create-post-modal')
 var homeLogoutButton = homeView.querySelector('.home-logout-button')
 var homeCreatePostForm = homeView.querySelector('.home-create-post-form')
+var homeMain = homeView.querySelector('.home-main')
+var homePosts = homeMain.querySelector('.home-posts')
 
 homeLogoutButton.onclick = function () {
     homeView.classList.add('off')
     loginView.classList.remove('off')
 }
-
-function printPosts(){
-    var postsList = homeView.querySelector('.posts-list')
-    postsList.innerHTML = ''
-    
-    var posts = retrievePosts()
-
-    for(var i = posts.length-1; i >= 0; i--){
-        var post = posts[i]
-
-        var postContainer = document.createElement('li')
-        postContainer.className = 'post-item'
-
-        var postImage = document.createElement('img')
-        postImage.src = post.image
-        postImage.className = 'post-image'
-
-        var postText = document.createElement('p')
-        postText.innerText = post.text
-
-        postContainer.append(postImage, postText)
-
-        postsList.append(postContainer)
-    }
-}
-
-printPosts()
 
 var homeCreatePostButton = homeView.querySelector('.home-create-post-button')
 
@@ -158,6 +153,25 @@ homeCreatePostForm.onsubmit = function (event) {
 
         homeCreatePostModal.classList.add('off')
 
-        printPosts()
+        homePosts.innerHTML = ''
+
+        var posts = retrievePosts()
+
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i]
+
+            var image = document.createElement('img')
+            image.classList.add('home-post-image')
+            image.src = post.image
+
+            var text = document.createElement('p')
+            text.innerText = post.text
+
+            var article = document.createElement('article')
+            article.append(image, text)
+
+            homePosts.append(article)
+        }
+
     }
 }

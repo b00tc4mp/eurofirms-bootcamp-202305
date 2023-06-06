@@ -13,13 +13,13 @@
         <h1>Register</h1>
 
         <form class="register-form">
-            <label for="register-name" alt ="Name" placeholder="Usuario" required>Name</label>
+            <label for="register-name">Name</label>
             <input id="register-name" type="text">
 
-            <label for="register-email" alt ="Email" value ="Email" required>E-mail</label>
+            <label for="register-email">E-mail</label>
             <input id="register-email" type="email">
 
-            <label for="register-password" alt ="Password" alt ="Password" value ="Password">Password</label>
+            <label for="register-password">Password</label>
             <input id="register-password" type="password">
 
             <button type="submit">Register</button>
@@ -28,14 +28,14 @@
         <p>Go to <a class="register-login-link" href="">Login</a></p>
     </main>
 
-    <main class="login-view off">
+    <main class="login-view _off">
         <h1>Login</h1>
 
         <form class="login-form">
-            <label for="login-email" alt ="Email" required>E-mail</label>
+            <label for="login-email">E-mail</label>
             <input id="login-email" type="email">
 
-            <label for="login-password" alt="Password">Password</label>
+            <label for="login-password">Password</label>
             <input id="login-password" type="password">
 
             <button type="submit">Login</button>
@@ -44,19 +44,33 @@
         <p>Go to <a class="login-register-link" href="">Register</a></p>
     </main>
 
-    <div class="home-view _off">
-        <header>
+    <div class="home-view off">
+        <header class="home-header">
             <h1 class="home-title">Hello, Home!</h1>
 
             <button class="home-logout-button">Logout</button>
         </header>
 
-        <main>
-            <div class="posts-container">
-                <ul class="posts-list">
-    
-                </ul>
-            </div>
+        <main class="home-main">
+            <section class="home-posts">
+                <article>
+                    <img class="home-post-image" src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg" alt="Calico Electrónico">
+
+                    <p>Hello, Cálico!</p>
+                </article>
+
+                <article>
+                    <img class="home-post-image" src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg" alt="Calico Electrónico">
+
+                    <p>Hello, Cálico!</p>
+                </article>
+
+                <article>
+                    <img class="home-post-image" src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg" alt="Calico Electrónico">
+
+                    <p>Hello, Cálico!</p>
+                </article>
+            </section>
         </main>
 
         <footer class="home-footer">
@@ -71,7 +85,7 @@
                     <label for="create-post-url">Image</label>
                     <input id="create-post-url" type="url">
 
-                    <label for="create-post-text">Text</label>
+                    <label for="create-psot-text">Text</label>
                     <textarea id="create-post-text"></textarea>
 
                     <button type="submit">Create</button>
