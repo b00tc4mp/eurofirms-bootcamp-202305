@@ -48,8 +48,8 @@ TODO list tech details
 
 ##### Tasks
 
-- DONE add edit button on all the posts that belong the user that is connected (in the session)
-- DONE implement retrievePost logic to get the information of a post
+- TODO add edit button on all the posts that belong the user that is connected (in the session)
+- TODO implement retrievePost logic to get the information of a post
 - TODO implement modal window for editing a post (inputs: image, text) showing the current information of the post when opened
 - TODO implement updatePost logic to save the information of a post in db
 - TODO add a call to refresh the posts list after saving the changes in the edited post

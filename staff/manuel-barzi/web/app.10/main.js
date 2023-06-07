@@ -6,40 +6,6 @@
 
 var userId = null
 
-// helpers
-
-function renderPosts() {
-    homePosts.innerHTML = ''
-
-    var posts = retrievePosts()
-
-    for (var i = 0; i < posts.length; i++) {
-        var post = posts[i]
-
-        var author = document.createElement('h2')
-        author.innerText = post.user.name
-
-        var image = document.createElement('img')
-        image.classList.add('home-post-image')
-        image.src = post.image
-
-        var text = document.createElement('p')
-        text.innerText = post.text
-
-        var article = document.createElement('article')
-        article.append(author, image, text)
-
-        if (post.user.id === userId) {
-            var editButton = document.createElement('button')
-            editButton.innerText = 'Edit'
-
-            article.append(editButton)
-        }
-
-        homePosts.append(article)
-    }
-}
-
 // register
 
 var registerView = document.querySelector('.register-view')
@@ -111,7 +77,28 @@ loginForm.onsubmit = function (event) {
             var homeTitle = homeView.querySelector('.home-title')
             homeTitle.innerText = 'Hello, ' + user.name + '!'
 
-            renderPosts()
+            homePosts.innerHTML = ''
+
+            var posts = retrievePosts()
+
+            for (var i = 0; i < posts.length; i++) {
+                var post = posts[i]
+
+                var author = document.createElement('h2')
+                author.innerText = post.user.name
+
+                var image = document.createElement('img')
+                image.classList.add('home-post-image')
+                image.src = post.image
+
+                var text = document.createElement('p')
+                text.innerText = post.text
+
+                var article = document.createElement('article')
+                article.append(author, image, text)
+
+                homePosts.append(article)
+            }
 
             homeView.classList.remove('off')
         }
@@ -177,6 +164,27 @@ homeCreatePostForm.onsubmit = function (event) {
 
         homeCreatePostModal.classList.add('off')
 
-        renderPosts()
+        homePosts.innerHTML = ''
+
+        var posts = retrievePosts()
+
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i]
+
+            var author = document.createElement('h2')
+            author.innerText = post.user.name
+
+            var image = document.createElement('img')
+            image.classList.add('home-post-image')
+            image.src = post.image
+
+            var text = document.createElement('p')
+            text.innerText = post.text
+
+            var article = document.createElement('article')
+            article.append(author, image, text)
+
+            homePosts.append(article)
+        }
     }
 }
