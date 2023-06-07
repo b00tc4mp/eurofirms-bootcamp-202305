@@ -136,12 +136,9 @@ function showPost() {
     var post = document.createElement("article");
     post.classList.add("post");
 
-    var nameDiv = document.createElement("div");
-    nameDiv.classList.add("nameDiv");
-
     var name = document.createElement("p");
     name.classList.add("name-post");
-    name.innerText = posts[i].user.name;
+    name.textContent = posts[i].user.name;
 
     var image = document.createElement("img");
     image.classList.add("img-post");
@@ -149,17 +146,9 @@ function showPost() {
 
     var text = document.createElement("p");
     text.classList.add("text-post");
-    text.innerText = posts[i].text;
+    text.textContent = posts[i].text;
 
-    if (posts[i].user.id === userId) {
-      var editButton = document.createElement("button");
-      editButton.classList.add("editButton");
-      editButton.innerText = "Edit";
-      editButton.dataset.id = post.id;
-    }
-
-    post.append(nameDiv, image, text, editButton);
-    nameDiv.append(name);
+    post.append(name, image, text);
     postsContainer.appendChild(post);
   }
 }
