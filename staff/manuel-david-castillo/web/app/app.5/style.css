@@ -149,16 +149,12 @@ nav {
   border-radius: 10px;
 }
 
-.name-post {
-  font-size: 30px;
-  margin: 3px;
-}
-
 .img-post {
   width: 70px;
   height: 70px;
   border: solid;
   border-radius: 10px;
+  margin-top: 10px;
 }
 
 textarea {

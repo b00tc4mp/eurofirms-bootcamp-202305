@@ -1,6 +1,3 @@
-/* Globals */
-var userId = null;
-
 /* REGISTER */
 var registerContainer = document.querySelector(".register");
 var registerForm = document.querySelector(".register-form");
@@ -61,13 +58,9 @@ loginForm.onsubmit = function (event) {
   } else if (authenticateUser(email, password)) {
     loginContainer.classList.add("off");
     homeView.classList.remove("off");
-
     loginForm.reset();
-
-    changeNameUser(email);
-    userId = authenticateUser(email, password);
-
-    showPost();
+    userEmail = email;
+    changeNameUser(userEmail);
   } else {
     alert("wrong credentials");
   }
@@ -80,15 +73,14 @@ var buttonLogout = document.querySelector(".button-logout");
 buttonLogout.onclick = function () {
   loginContainer.classList.remove("off");
   homeView.classList.add("off");
-  userId = null;
 };
 
 /* Editar el nombre  */
 var userEmail;
 function changeNameUser(email) {
-  _user = retrieveUser(email);
+  nameUser = retrieveName(email);
   var homeTitle = document.querySelector(".h2-home");
-  homeTitle.textContent = "Hello,  " + _user.name + "!";
+  homeTitle.textContent = "Hello, " + nameUser + "!";
 }
 
 /* Lógica de new post */
@@ -112,7 +104,7 @@ formNewPost.onsubmit = function (event) {
   var image = formNewPost.querySelector("#url-image-new-post").value;
   var text = formNewPost.querySelector("#textarea-new-post").value;
 
-  var result = createNewPost(userId, image, text);
+  var result = createNewPost(image, text);
 
   if (!result) {
     alert("can not create post");
@@ -136,10 +128,6 @@ function showPost() {
     var post = document.createElement("article");
     post.classList.add("post");
 
-    var name = document.createElement("p");
-    name.classList.add("name-post");
-    name.textContent = posts[i].user.name;
-
     var image = document.createElement("img");
     image.classList.add("img-post");
     image.src = posts[i].image;
@@ -148,7 +136,9 @@ function showPost() {
     text.classList.add("text-post");
     text.textContent = posts[i].text;
 
-    post.append(name, image, text);
+    post.append(image, text);
     postsContainer.appendChild(post);
   }
 }
+
+showPost();
