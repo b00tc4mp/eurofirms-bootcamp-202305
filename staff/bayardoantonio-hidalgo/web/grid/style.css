@@ -1,0 +1,21 @@
+.heaer{
+    grid-column: 1/ 4;
+    grid-row:1 /2;
+    border: 2px solid
+}
+.nav {
+    grid-column: 1 /2;
+    grid-row: 2 /3;
+    border:2px solid
+}
+
+.aside{
+    grid-column: 3 /4;
+    grid-row:  2/3;
+    border:2px  solid;
+}
+.footer{
+    grid-column: 1/ 4;
+    grid-row  3/4;
+    border: 2px  solid
+}
