@@ -2,7 +2,7 @@
  * DATA
  */
 
-var users = []
+const users = []
 users.count = 0
 
 // populate users
@@ -28,7 +28,7 @@ users.push({
     password: '123123123'
 })
 
-var posts = []
+const posts = []
 posts.count = 0
 
 // populate posts
