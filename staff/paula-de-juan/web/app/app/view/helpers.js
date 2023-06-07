@@ -25,6 +25,9 @@ for(let i = 0; i < posts.length; i++){
 
         article.append(user, image, text, editButton)
 
+        editButton.onclick = function() {
+        }
+
     } else {
         article.append(user, image, text)
     }
