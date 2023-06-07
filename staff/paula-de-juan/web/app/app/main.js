@@ -78,31 +78,26 @@ loginForm.onsubmit = function (event) {
 
             var posts = retrievePosts()
 
-            for (var i = 0; i < posts.length; i++){
-                
+            for(var i = 0; i < posts.length; i++){
                 var post = posts[i]
-
-                var author = document.createElement('h2')
-                author.innerText = post.user.name
-
-
+                
+                var user = document.createElement('h2')
+                user.innerText = post.user.name
+    
                 var image = document.createElement('img')
-                var text = document.createElement('p')
-
                 image.src = post.image
                 image.classList.add('home-post-image')
+               
+                var text = document.createElement('p')
                 text.innerHTML = post.text
-
+                
                 var article = document.createElement('article')
+                article.append(user, image, text)
+                
                 article.classList.add('posts-container')
-
-                article.append(image, text)
                 homePosts.append(article)
-
             }
             homeView.classList.remove('off')
-
-
         }
     }
 }
