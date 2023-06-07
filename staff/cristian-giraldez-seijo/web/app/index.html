@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App</title>
 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <main class="register-view off">
         <h1>Register</h1>
@@ -54,19 +57,25 @@
         <main class="home-main">
             <section class="home-posts">
                 <article>
-                    <img class="home-post-image" src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg" alt="Calico Electrónico">
+                    <img class="home-post-image"
+                        src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg"
+                        alt="Calico Electrónico">
 
                     <p>Hello, Cálico!</p>
                 </article>
 
                 <article>
-                    <img class="home-post-image" src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg" alt="Calico Electrónico">
+                    <img class="home-post-image"
+                        src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg"
+                        alt="Calico Electrónico">
 
                     <p>Hello, Cálico!</p>
                 </article>
 
                 <article>
-                    <img class="home-post-image" src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg" alt="Calico Electrónico">
+                    <img class="home-post-image"
+                        src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg"
+                        alt="Calico Electrónico">
 
                     <p>Hello, Cálico!</p>
                 </article>
@@ -93,10 +102,42 @@
                 </form>
             </div>
         </div>
+
+        <div class="home-edit-post-modal off">
+            <div class="home-edit-post-container">
+                <h2>Edit post</h2>
+
+                <form class="home-edit-post-form">
+                    <input type="hidden" id="edit-post-id">
+
+                    <label for="edit-post-url">Image</label>
+                    <input id="edit-post-url" type="url">
+
+                    <label for="edit-psot-text">Text</label>
+                    <textarea id="edit-post-text"></textarea>
+
+                    <button type="submit">Save</button>
+                    <button class="home-edit-post-cancel-button">Cancel</button>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <script src="data.js"></script>
-    <script src="logic.js"></script>
+    <script src="data/users.js"></script>
+    <script src="data/posts.js"></script>
+
+    <script src="logic/authenticateUser.js"></script>
+    <script src="logic/registerUser.js"></script>
+    <script src="logic/retrieveUser.js"></script>
+    <script src="logic/createPost.js"></script>
+    <script src="logic/retrievePosts.js"></script>
+    <script src="logic/updatePost.js"></script>
+
+    <script src="view/helpers.js"></script>
+    <script src="view/register.js"></script>
+    <script src="view/login.js"></script>
+    <script src="view/home.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>
