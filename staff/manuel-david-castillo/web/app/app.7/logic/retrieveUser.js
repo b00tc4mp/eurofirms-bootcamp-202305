@@ -1,8 +1,8 @@
 function retrieveUser(email) {
-  let user;
+  var user;
 
   for (var i = 0; i < users.length; i++) {
-    const _user = users[i];
+    var _user = users[i];
 
     if (email === _user.email) {
       user = {};

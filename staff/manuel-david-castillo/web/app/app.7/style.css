@@ -114,8 +114,7 @@ nav {
   margin: 5px;
 }
 
-.container-new-post,
-.container-edit-post {
+.container-new-post {
   position: fixed;
   width: auto;
   height: auto;
@@ -130,8 +129,7 @@ nav {
   justify-content: center;
 }
 
-.form-new-post,
-.form-edit-post {
+.form-new-post {
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -97,30 +97,6 @@
             </div>
           </form>
         </div>
-        <div class="container-edit-post off">
-          <form class="form-edit-post" action="">
-            <input type="hidden" id="edit-post-id" />
-            <h3 class="h3-edit-post">Edit post</h3>
-            <p class="p-form">Image</p>
-            <input id="url-image-edit-post" type="url" />
-            <p class="p-form">Text</p>
-            <textarea
-              id="textarea-edit-post"
-              name=""
-              id=""
-              cols="25"
-              rows="5"
-            ></textarea>
-            <div class="buttons-create-cancel">
-              <button type="submit" class="button-create-edit-post">
-                Edit
-              </button>
-              <button type="button" class="button-cancel-edit-post">
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
       </main>
 
       <footer>
@@ -128,20 +104,13 @@
       </footer>
     </div>
   </body>
-  <script src="main.js"></script>
-
-  <script src="data/users.js"></script>
-  <script src="data/posts.js"></script>
+  <script src="data.js"></script>
 
   <script src="logic/authenticateUser.js"></script>
   <script src="logic/createNewPost.js"></script>
   <script src="logic/registerUser.js"></script>
   <script src="logic/retrievePost.js"></script>
   <script src="logic/retrieveUser.js"></script>
-  <script src="logic/updatePost.js"></script>
 
-  <script src="view/home.js"></script>
-  <script src="view/login.js"></script>
-  <script src="view/register.js"></script>
-  <script src="view/helpers/showPosts.js"></script>
+  <script src="main.js"></script>
 </html>

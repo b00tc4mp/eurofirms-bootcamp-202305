@@ -1,12 +1,12 @@
-const createNewPost = function (userId, image, text) {
+var createNewPost = function (userId, image, text) {
   if (!image) {
     return false;
   }
   if (!text) {
     return false;
   } else {
-    const post = {
-      id: ++posts.count,
+    var post = {
+      postId: ++posts.count,
       userId: userId,
       image: image,
       text: text,

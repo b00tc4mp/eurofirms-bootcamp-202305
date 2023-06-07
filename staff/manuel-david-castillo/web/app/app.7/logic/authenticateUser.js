@@ -1,6 +1,6 @@
-const authenticateUser = function (email, password) {
-  let user;
-  for (let i = 0; i < users.length; i++) {
+var authenticateUser = function (email, password) {
+  var user;
+  for (var i = 0; i < users.length; i++) {
     if (users[i].email === email) {
       user = users[i];
     }
