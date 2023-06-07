@@ -1,8 +1,8 @@
 function authenticateUser(email, password) {
-    let user
+    var user
 
-    for (let i = 0; i < users.length; i++) {
-        const _user = users[i]
+    for (var i = 0; i < users.length; i++) {
+        var _user = users[i]
 
         if (_user.email === email) {
             user = _user
