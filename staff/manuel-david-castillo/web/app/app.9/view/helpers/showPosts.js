@@ -27,9 +27,6 @@ function showPosts() {
     post.append(nameDiv, image, text);
 
     if (postsWorking[i].user.id === userId) {
-      const divButtonEditDelete = document.createElement("div");
-      divButtonEditDelete.classList.add("div-button-edit-delete");
-
       const editButton = document.createElement("button");
       editButton.classList.add("editButton");
       editButton.innerText = "Edit";
@@ -48,21 +45,7 @@ function showPosts() {
         body.classList.add("hidden");
       };
 
-      const deleteButton = document.createElement("button");
-      deleteButton.classList.add("deleteButton");
-      deleteButton.innerText = "Delete";
-
-      post.append(divButtonEditDelete);
-      divButtonEditDelete.append(editButton);
-      divButtonEditDelete.append(deleteButton);
-
-      deleteButton.onclick = function () {
-        const inputDeletePost = formDeletePost.querySelector("#delete-post-id");
-        inputDeletePost.value = postsWorking[i].id;
-
-        containerDeletePost.classList.remove("off");
-        body.classList.add("hidden");
-      };
+      post.append(editButton);
     }
 
     nameDiv.append(name);

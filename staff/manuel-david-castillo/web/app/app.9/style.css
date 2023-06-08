@@ -110,14 +110,12 @@ nav {
   margin-left: 5px;
 }
 
-.h3-new-post,
-.h3-delete-post {
+.h3-new-post {
   margin: 5px;
 }
 
 .container-new-post,
-.container-edit-post,
-.container-delete-post {
+.container-edit-post {
   position: fixed;
   top: 0;
   left: 0;
@@ -136,8 +134,7 @@ nav {
 }
 
 .form-new-post,
-.form-edit-post,
-.form-delete-post {
+.form-edit-post {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -179,14 +176,7 @@ nav {
   border-radius: 10px;
 }
 
-.div-button-edit-delete {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-}
-
-.editButton,
-.deleteButton {
+.editButton {
   margin-top: 0;
   margin-bottom: 10px;
 }

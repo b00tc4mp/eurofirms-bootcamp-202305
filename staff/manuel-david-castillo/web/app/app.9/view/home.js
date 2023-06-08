@@ -57,13 +57,14 @@ formNewPost.onsubmit = function (event) {
 
 /* Lógica para editar un post */
 const containerEditPost = document.querySelector(".container-edit-post");
-const formEditPost = document.querySelector(".form-edit-post");
 
 const buttonCancelEditPost = document.querySelector(".button-cancel-edit-post");
 buttonCancelEditPost.onclick = function () {
   containerEditPost.classList.add("off");
   body.classList.remove("hidden");
 };
+
+const formEditPost = document.querySelector(".form-edit-post");
 
 formEditPost.onsubmit = function (event) {
   event.preventDefault();
@@ -78,37 +79,6 @@ formEditPost.onsubmit = function (event) {
     alert("can not edit post");
   } else {
     containerEditPost.classList.add("off");
-    body.classList.remove("hidden");
-
-    showPosts();
-  }
-};
-
-/* Lógica pata borrar un post */
-const containerDeletePost = document.querySelector(".container-delete-post");
-const formDeletePost = document.querySelector(".form-delete-post");
-
-const buttonCancelDeletePost = document.querySelector(
-  ".button-cancel-delete-post"
-);
-buttonCancelDeletePost.onclick = function () {
-  containerDeletePost.classList.add("off");
-  body.classList.remove("hidden");
-};
-
-formDeletePost.onsubmit = function (event) {
-  event.preventDefault();
-
-  const postId = parseInt(
-    formDeletePost.querySelector("#delete-post-id").value
-  );
-
-  const result = deletePost(postId);
-
-  if (!result) {
-    alert("can not delete post");
-  } else {
-    containerDeletePost.classList.add("off");
     body.classList.remove("hidden");
 
     showPosts();
