@@ -21,7 +21,6 @@ function renderPosts() {
 
         if (post.user.id === userId) {
             const editButton = document.createElement('button')
-
             editButton.innerText = 'Edit'
 
             editButton.onclick = function () {
@@ -37,7 +36,17 @@ function renderPosts() {
                 homeEditPostModal.classList.remove('off')
             }
 
-            article.append(editButton)
+            const deleteButton = document.createElement('button')
+            deleteButton.innerText = 'Delete'
+
+            deleteButton.onclick = function () {
+                const idInput = homeDeletePostForm.querySelector('#delete-post-id')
+                idInput.value = post.id
+
+                homeDeletePostModal.classList.remove('off')
+            }
+
+            article.append(editButton, deleteButton)
         }
 
         homePosts.append(article)

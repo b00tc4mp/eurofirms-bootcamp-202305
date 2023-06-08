@@ -16,6 +16,6 @@ function retrieveUser(email) {
 
     if (user === undefined)
         return null
-    else
-        return user
+
+    return user
 }

@@ -1,4 +1,4 @@
-function updatePost(postId, image, text) {
+function deletePost(postId) {
     let post
 
     for (let i = 0; i < posts.length; i++) {
@@ -14,8 +14,11 @@ function updatePost(postId, image, text) {
     if (post === undefined)
         return false
 
-    post.image = image
-    post.text = text
+    const index = posts.findIndex(function (post) {
+        return post.id === postId
+    })
+
+    posts.splice(index, 1)
 
     return true
 }
