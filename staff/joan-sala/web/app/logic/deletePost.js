@@ -11,12 +11,13 @@ function deletePost(postId) {
         }
     }
 
-    if (post !== undefined)
+    if (post === undefined)
         return false
 
-    
-
-    posts.push(user)
+    const index = posts.findIndex(function(post){
+        return post.id === postId
+    })
+    posts.splice(index,1)
 
     return true
 }
