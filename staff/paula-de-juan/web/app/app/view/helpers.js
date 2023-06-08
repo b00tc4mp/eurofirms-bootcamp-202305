@@ -23,10 +23,15 @@ for(let i = 0; i < posts.length; i++){
         const editButton = document.createElement('button')
         editButton.innerText = 'Edit'
 
-        article.append(user, image, text, editButton)
+        /*  editButton.onclick = function() {  }   */
 
-        editButton.onclick = function() {
-        }
+        const deleteButton = document.createElement('button')
+        deleteButton.innerText = 'Delete'
+
+
+        article.append(user, image, text, editButton, deleteButton)
+
+
 
     } else {
         article.append(user, image, text)

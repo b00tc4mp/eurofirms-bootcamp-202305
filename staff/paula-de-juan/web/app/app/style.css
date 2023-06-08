@@ -134,6 +134,35 @@ body {
     width: 50%;
 }
 
+/*
+EDIT POST MODAL
+.home-edit-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+DELETE POST MODAL
+.home-delete-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+*/
+
 .off {
     display: none;
 }
