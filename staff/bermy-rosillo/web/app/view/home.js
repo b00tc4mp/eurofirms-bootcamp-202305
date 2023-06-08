@@ -1,12 +1,12 @@
 //home page
-var homeView = document.querySelector('.home-view')
-var homeCreatePostModal = homeView.querySelector('.home-create-post-modal')
-var homeLogoutButton = homeView.querySelector('.home-logout-button')
-var homeCreatePostForm = homeView.querySelector('.home-create-post-form')
-var homeMain = homeView.querySelector('.home-main')
-var homePosts = homeMain.querySelector('.home-posts')
-var homeEditPostModal = homeView.querySelector('.home-edit-post-modal')
-var homeEditPostForm = homeEditPostModal.querySelector('.home-edit-post-form')
+const homeView = document.querySelector('.home-view')
+const homeCreatePostModal = homeView.querySelector('.home-create-post-modal')
+const homeLogoutButton = homeView.querySelector('.home-logout-button')
+const homeCreatePostForm = homeView.querySelector('.home-create-post-form')
+const homeMain = homeView.querySelector('.home-main')
+const homePosts = homeMain.querySelector('.home-posts')
+const homeEditPostModal = homeView.querySelector('.home-edit-post-modal')
+const homeEditPostForm = homeEditPostModal.querySelector('.home-edit-post-form')
 
 
 homeLogoutButton.onclick = function () {
@@ -16,13 +16,13 @@ homeLogoutButton.onclick = function () {
     loginView.classList.remove('off')
 }
 
-var homeCreatePostButton = homeView.querySelector('.home-create-post-button')
+const homeCreatePostButton = homeView.querySelector('.home-create-post-button')
 
 homeCreatePostButton.onclick = function () {
     homeCreatePostModal.classList.remove('off')
 }
 
-var homeCreatePostCancelButton = homeCreatePostForm.querySelector('.home-create-post-cancel-button')
+const homeCreatePostCancelButton = homeCreatePostForm.querySelector('.home-create-post-cancel-button')
 
 homeCreatePostCancelButton.onclick = function (event) {
     event.preventDefault()
@@ -35,13 +35,13 @@ homeCreatePostCancelButton.onclick = function (event) {
 homeCreatePostForm.onsubmit = function (event) {
     event.preventDefault()
 
-    var imageInput = homeCreatePostForm.querySelector('#create-post-url')
-    var image = imageInput.value
+   const imageInput = homeCreatePostForm.querySelector('#create-post-url')
+   const image = imageInput.value
 
-    var textInput = homeCreatePostForm.querySelector('#create-post-text')
-    var text = textInput.value
+   const textInput = homeCreatePostForm.querySelector('#create-post-text')
+   const text = textInput.value
 
-    var result = createPost(userId, image, text)
+   const result = createPost(userId, image, text)
 
     if (result === false) {
         alert('Cannot create post')
@@ -53,7 +53,7 @@ homeCreatePostForm.onsubmit = function (event) {
     }
 }
 
-var homeEditPostCancelButton = homeEditPostForm.querySelector('.home-edit-post-cancel-button')
+const homeEditPostCancelButton = homeEditPostForm.querySelector('.home-edit-post-cancel-button')
 
 homeEditPostCancelButton.onclick=function(event){
     event.preventDefault();

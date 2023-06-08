@@ -1,20 +1,20 @@
-var registerView = document.querySelector('.register-view')
-var registerForm = registerView.querySelector('.register-form')
+const registerView = document.querySelector('.register-view')
+const registerForm = registerView.querySelector('.register-form')
 
 
 registerForm.onsubmit = function (event) {
     event.preventDefault()
 
-    var nameInput = registerForm.querySelector('#register-name')
-    var name = nameInput.value
+    const nameInput = registerForm.querySelector('#register-name')
+    const name = nameInput.value
 
-    var emailInput = registerForm.querySelector('#register-email')
-    var email = emailInput.value
+    const emailInput = registerForm.querySelector('#register-email')
+    const email = emailInput.value
 
-    var passwordInput = registerForm.querySelector('#register-password')
-    var password = passwordInput.value
+    const passwordInput = registerForm.querySelector('#register-password')
+    const password = passwordInput.value
 
-    var result = registerUser(name, email, password)
+    const result = registerUser(name, email, password)
     if (result === false) {
         alert('User already exists')
     } else {
@@ -23,7 +23,7 @@ registerForm.onsubmit = function (event) {
         loginView.classList.remove('off')
     }
 }
-var registerLoginLink = registerView.querySelector('.register-login-link')
+const registerLoginLink = registerView.querySelector('.register-login-link')
 
 registerLoginLink.onclick = function (event) {
     event.preventDefault()

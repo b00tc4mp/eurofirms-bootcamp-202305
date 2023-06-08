@@ -1,17 +1,17 @@
 // Login
-var loginView = document.querySelector('.login-view')
-var loginForm = loginView.querySelector('.login-form')
+const loginView = document.querySelector('.login-view')
+const loginForm = loginView.querySelector('.login-form')
 
 loginForm.onsubmit = function (event) {
     event.preventDefault()
 
-    var emailInput = loginForm.querySelector('#login-email')
-    var email = emailInput.value
+    const emailInput = loginForm.querySelector('#login-email')
+    const email = emailInput.value
 
-    var passwordInput = loginForm.querySelector('#login-password')
-    var password = passwordInput.value
+    const passwordInput = loginForm.querySelector('#login-password')
+    const password = passwordInput.value
 
-    var result = authenticateUser(email, password)
+    const result = authenticateUser(email, password)
 
     if (result === false) {
         alert('Wrong credential')
@@ -38,7 +38,7 @@ loginForm.onsubmit = function (event) {
 }//function closed
 
 //link
-var loginRegisterLink = loginView.querySelector('.login-register-link')
+const loginRegisterLink = loginView.querySelector('.login-register-link')
 
 loginRegisterLink.onclick = function (event) {
     event.preventDefault()

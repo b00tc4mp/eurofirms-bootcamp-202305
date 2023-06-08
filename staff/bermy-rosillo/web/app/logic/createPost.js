@@ -4,7 +4,7 @@ function createPost(userId,image,text){
     if(text.length === 0)
         return false
     
-    var post = {}
+    const post = {}
 
     post.id = ++posts.cont
     post.user = userId

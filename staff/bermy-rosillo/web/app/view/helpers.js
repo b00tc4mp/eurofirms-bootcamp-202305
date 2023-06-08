@@ -1,32 +1,40 @@
 //show posts
 /* 2 falta if que compare id post con el idUser
 si es true
-pinto edit button
+pinto edit button y el delete button
 
-1 chance var en lugaar de let*/
+1 chance const en lugaar de let*/
 function renderPosts(){
     homePosts.innerHTML = ''
 
-    var posts = retrievePosts()
+    const posts = retrievePosts()
 
-    for( var i = 0 ; i < posts.length ; i++){
-        var post = posts[i]
+    for( let i = 0 ; i < posts.length ; i++){
+        const post = posts[i]
 
-        var article = document.createElement('article')
+        const article = document.createElement('article')
 
-        var author = document.createElement('h2')
-        author.innerText = posts.user.name
+        const author = document.createElement('h2')
+        author.innerText = post.user.name
 
-        var image = document.createElement('img')
+        const image = document.createElement('img')
         image.classList.add('home-post-image')
-        image.src = posts.image
+        image.src = post.image
 
-        var text = document.createElement('p')
-        text.innerText = posts.text
+        const text = document.createElement('p')
+        text.innerText = post.text
         
         article.append(author,image,text)
         //add article to section
         homePosts.append(article)
+
+        if(post.user.id === userId){
+        
+            const postEditButton = document.createElement('button')
+            postEditButton.innerText ='Edit post'
+            article.append(postEditButton)
+        }
+
 
 
     }

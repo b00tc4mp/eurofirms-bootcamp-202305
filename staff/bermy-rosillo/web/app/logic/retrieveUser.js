@@ -1,7 +1,7 @@
 function retrieveUser(userId){
-    var user 
-    for(var i = 0 ; i < users.length ; i++){
-       var _user = users[i]
+    let user 
+    for(let i = 0 ; i < users.length ; i++){
+       const _user = users[i]
 
         if(_user.id === userId){
             user = {}
