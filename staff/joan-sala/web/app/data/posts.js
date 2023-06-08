@@ -20,8 +20,8 @@ posts.push({
 posts.push({
     id: ++posts.count,
     user: users[2].id,
-    image: 'https://www.rivasactual.com/wp-content/uploads/2023/04/66.jpg',
-    text: 'Me in the Matrix'
+    image: 'https://www.fundacionaquae.org/wp-content/uploads/2018/12/Ada-Lovelace.jpg',
+    text: 'Posing'
 })
 
 posts.push({

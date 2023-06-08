@@ -85,7 +85,7 @@
                     <label for="create-post-url">Image</label>
                     <input id="create-post-url" type="url">
 
-                    <label for="create-psot-text">Text</label>
+                    <label for="create-post-text">Text</label>
                     <textarea id="create-post-text"></textarea>
 
                     <button type="submit">Create</button>
@@ -103,11 +103,23 @@
                     <label for="edit-post-url">Image</label>
                     <input id="edit-post-url" type="url">
 
-                    <label for="edit-psot-text">Text</label>
+                    <label for="edit-post-text">Text</label>
                     <textarea id="edit-post-text"></textarea>
 
                     <button type="submit">Save</button>
                     <button class="home-edit-post-cancel-button">Cancel</button>
+                </form>
+            </div>
+        </div>
+        <div class="home-delete-post-model off">
+            <div class="home-delete-post-container">
+                <h2>Delete post</h2>
+
+                <form class="home-delete-post-form">
+                    <input type="hidden" id="delete-post-id">
+                    
+                    <button type="submit">Delete</button>
+                    <button class="home-delete-post-cancel-button">Cancel</button>
                 </form>
             </div>
         </div>
@@ -122,6 +134,7 @@
     <script src="logic/createPost.js"></script>
     <script src="logic/retrievePosts.js"></script>
     <script src="logic/updatePost.js"></script>
+    <script src="login/deletePost.js"></script>
 
     <script src="view/helpers.js"></script>
     <script src="view/register.js"></script>
