@@ -7,10 +7,10 @@
     margin: 0;
 }
 
-body {
+html, body {
     box-sizing: border-box;
     width: 100vw;
-    height: 100svh;
+    height: 100vh;
     background-color: beige;
     font-family: sans-serif;
 }

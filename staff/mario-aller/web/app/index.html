@@ -18,11 +18,9 @@
 
     <div class="register off">
 
-        <!-- Formulario -->
         <main class="reg-view">
             <form class="reg-form" action="submit">
 
-                <!-- Panel de presentacion -->
                 <div class="basic-form">
 
                     <!-- Datos del formularo -->
@@ -40,7 +38,6 @@
             </form>
         </main>
 
-        <!-- Barra de navegación -->
         <footer class="reg-nav">
             <div class="basic-nav">
                 <button type="submit" class="button-tolog basic-button">Acceso</button>
@@ -54,14 +51,11 @@
 
     <div class="login _off">
 
-        <!-- Formulario -->
         <main class="log-view">
             <form class="log-form" action="submit">
 
-                <!-- Panel de presentacion -->
                 <div class="basic-form">
 
-                    <!-- Datos del formularo -->
                     <label class="basic-label" for="log-email">Correo</label>
                     <input type="email" id="log-email">
 
@@ -73,7 +67,6 @@
             </form>
         </main>
 
-        <!-- Barra de navegación -->
         <footer class="log-nav flex-hor">
             <div class="basic-nav">
                 <button type="submit" class="button-toreg basic-button">Registro</button>
@@ -86,21 +79,18 @@
 
     <div class="home off">
 
-        <!-- Encabezado -->
         <header class="home-header flex-hor">
             <div class="basic-head">
                 <h3 class="greetings">Home!</h3>
             </div>
         </header>
 
-        <!-- Cuerpo -->
         <main class="home-view">
             <section class="posts-list basic-container">
                 <article>No hay posts</article>
             </section>
         </main>
 
-        <!-- Barra de navegación -->
         <footer class="home-nav">
             <div class="basic-nav">
                 <button type="button" class="button-newpost basic-button">Nuevo Post</button>
@@ -128,11 +118,22 @@
         </form>
     </div>
 
-    <!-- links a js -->
+    <!-- Links a js -->
 
-    <script src="data.js"></script>
-    <script src="logic.js"></script>
-    <script src="main.js"></script>
+    <script src="data/users.js"></script>
+    <script src="data/posts.js"></script>
+
+    <script src="logic/utilities-logic.js"></script>
+    <script src="logic/user-exist.js"></script>
+    <script src="logic/user-passord-ok"></script>    
+    <script src="logic/user-retrive"></script>    
+    <script src="logic/user-retrive-all.js"></script>
+    <script src="logic/post-to-list.js"></script>
+
+    <script src="view/login.js"></script>
+    <script src="view/register.js"></script>
+    <script src="view/home.js"></script>
+
 </body>
 
 </html>
