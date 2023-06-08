@@ -18,8 +18,8 @@ function retrieveUser(userId) {
         user = {}
 
         user.id = ++users.count;
-        user.name = _user.name;
-        user.email = _user.email;
+        user.name = user.name;
+        user.email = user.email;
         
 
         return user;
