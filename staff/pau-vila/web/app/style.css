@@ -1,55 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Tangerine&display=swap');
-/* Resets */
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
+
+/* resets */
 
 * {
-    font-family: 'Tangerine', cursive;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
-body{
-    margin: 0; 
-    box-sizing: border-box;  
+body {
+    margin: 0;
+    box-sizing: border-box;
 }
 
-/*Estilos (BEM)*/
+/* styles (BEM) */
+
+/* register */
 
 .register-form {
-    width: 60%;
-    background-color: rgb(241, 120, 209);
-    border-radius: 2rem;
-    box-shadow: 1rem 1rem 1rem rgb(239, 85, 198);
-    padding: 1rem;
-    margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+}
+
+/* login */
+
+.login-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-view {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-    margin-top: 0.5rem;
-    background-color: rgb(241, 120, 209);
-    border-radius: 2rem;
-    box-shadow: 1rem 1rem 1rem rgb(239, 85, 198);
-    padding: 1rem;
 }
 
-.home-view {
+/* home */
+
+.home-header {
+    position: fixed;
+    top: 0;
+    height: 3rem;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    background-color: tomato;
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.home-title {
+    font-size: 1.5rem;
+}
+
+.home-main {
+    padding: 3rem 0;
 }
 
 .home-footer {
-    background-color: rgb(47, 196, 230);
+    background-color: dodgerblue;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -60,11 +79,11 @@ body{
 }
 
 .home-create-post-modal {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.497);
     position: fixed;
     width: 100%;
     height: 100%;
-    top: 0%;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,9 +94,51 @@ body{
     padding: 1rem;
 }
 
+.home-create-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-edit-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-edit-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.home-edit-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.home-post-image {
+    width: 100%;
+}
+
+/* utils */
+
 .off {
     display: none;
 }
-
-
-
