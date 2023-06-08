@@ -83,47 +83,43 @@
           </form>
         </div>
       </div>
-
-<!-- EDIT POST MODAL 
   
       <div class="home-edit-post-modal off">
         <div class="home-edit-post-container">
-          <h2>Create post</h2>
-          <form class="home-create-post-form">
-            <label for="create-post-url">Image</label>
-            <input id="create-post-url" type="url" />
+          <h2>Edit post</h2>
+          <form class="home-edit-post-form">
+            <input type="hidden" id="edit-post-id">
 
-            <label for="create-post-text">Text</label>
-            <textarea id="create-post-text"></textarea>
+            <label for="edit-post-url">Image</label>
+            <input id="edit-post-url" type="url" />
 
-            <button type="submit">Create</button>
-            <button class="home-create-post-cancel-button">Cancel</button>
+            <label for="edit-post-text">Text</label>
+            <textarea id="edit-post-text"></textarea>
+
+            <button type="submit">Save changes</button>
+            <button class="home-edit-post-cancel-button">Cancel</button>
           </form>
         </div>
       </div>
- -->
-
-
-
- <!-- DELETE POST MODAL   
 
       <div class="home-delete-post-modal off">
-        <div class="home-create-post-container">
+        <div class="home-delete-post-container">
           <h2>Create post</h2>
-          <form class="home-create-post-form">
-            <label for="create-post-url">Image</label>
-            <input id="create-post-url" type="url" />
+          <form class="home-delete-post-form">
 
-            <label for="create-post-text">Text</label>
-            <textarea id="create-post-text"></textarea>
+            <input type="hidden" id="delete-post-id">
+
+            <label for="delete-post-url">Image</label>
+            <input id="delete-post-url" type="url" />
+
+            <label for="delete-post-text">Text</label>
+            <textarea id="delete-post-text"></textarea>
 
             <button type="submit">Create</button>
-            <button class="home-create-post-cancel-button">Cancel</button>
+            <button class="home-delete-post-cancel-button">Cancel</button>
           </form>
         </div>
       </div>
---> 
-
     </div>
     <script src="data/users.js"></script>
     <script src="data/posts.js"></script>
@@ -133,6 +129,7 @@
     <script src="logic/retrieveUser.js"></script>
     <script src="logic/createPost.js"></script>
     <script src="logic/retrievePosts.js"></script>
+    <script src="logic/updatePost.js"></script>
     <script src="logic/deletePost.js"></script>
 
     <script src="view/helpers.js"></script>

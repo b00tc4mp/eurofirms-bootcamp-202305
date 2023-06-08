@@ -4,6 +4,11 @@ const homeLogoutButton = homeView.querySelector('.home-logout-button')
 const homeCreatePostForm = homeView.querySelector('.home-create-post-form')
 const homeMain = homeView.querySelector('.home-main')
 const homePosts = homeView.querySelector('.home-posts')
+const homeEditPostModal = homeView.querySelector('.home-edit-post-modal') 
+const homeEditPostForm = homeEditPostModal.querySelector('.home-edit-post-form')
+const homeDeletePostModal = homeView.querySelector('.home-delete-post-modal')
+const homeDeletePostForm = homeDeletePostModal.querySelector('.home-delete-post-form')
+
 
 homeLogoutButton.onclick = function () {
     homeView.classList.add('off')
@@ -47,5 +52,36 @@ homeCreatePostForm.onsubmit = function (event) {
 
         renderPosts()
            
+    }
+}
+
+
+const homeEditPostCancelButton = homeEditPostForm.querySelector('.home-edit-post-cancel-button')
+
+homeEditPostCancelButton.onclick = function (event) {
+    event.preventDefault()
+
+    homeEditPostForm.reset()
+
+    homeEditPostModal.classList.add('off')
+}
+
+homeEditPostForm.onsubmit = function (event) {
+    event.preventDefault()
+
+    const imageInput = homeEditPostForm.querySelector('#edit-post-url')
+    const image = imageInput.value
+
+    const textInput = homeEditPostForm.querySelector('#edit-post-text')
+    const text = textInput.value
+
+    const result = updatePost(postId, image, text)
+
+    if (result === false){
+        alert('Cannot update post')        
+    } else {
+        homeEditPostModal.classList.add('off')
+
+        renderPosts()
     }
 }

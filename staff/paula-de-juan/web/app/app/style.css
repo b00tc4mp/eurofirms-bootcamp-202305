@@ -134,8 +134,7 @@ body {
     width: 50%;
 }
 
-/*
-EDIT POST MODAL
+
 .home-edit-post-modal {
     background-color: rgba(0, 0, 0, 0.497);
     position: fixed;
@@ -147,7 +146,23 @@ EDIT POST MODAL
     justify-content: center;
 }
 
+.home-edit-post-container {
+    background-color: white;
+    padding: 1rem;
+}
 
+.home-edit-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+
+
+/*
 DELETE POST MODAL
 .home-delete-post-modal {
     background-color: rgba(0, 0, 0, 0.497);
@@ -159,7 +174,6 @@ DELETE POST MODAL
     align-items: center;
     justify-content: center;
 }
-
 
 */
 
