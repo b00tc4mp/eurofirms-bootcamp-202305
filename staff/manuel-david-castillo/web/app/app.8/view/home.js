@@ -2,8 +2,6 @@
 homeView = document.querySelector(".home-view");
 const buttonLogout = document.querySelector(".button-logout");
 
-const body = document.body;
-
 buttonLogout.onclick = function () {
   loginContainer.classList.remove("off");
   homeView.classList.add("off");
@@ -22,14 +20,11 @@ const containerNewPost = document.querySelector(".container-new-post");
 const buttonNewPost = document.querySelector(".button-new-post");
 buttonNewPost.onclick = function () {
   containerNewPost.classList.remove("off");
-  body.classList.add("hidden");
 };
 
 const buttonCancelNewPost = document.querySelector(".button-cancel-new-post");
 buttonCancelNewPost.onclick = function () {
   containerNewPost.classList.add("off");
-  body.classList.remove("hidden");
-
   formNewPost.reset();
 };
 
@@ -47,21 +42,19 @@ formNewPost.onsubmit = function (event) {
     alert("can not create post");
   } else {
     containerNewPost.classList.add("off");
-    body.classList.remove("hidden");
-
     formNewPost.reset();
 
     showPosts();
   }
 };
 
-/* Lógica para editar un post */
+/* Lógica para editar un post */ /* No me funciona */
 const containerEditPost = document.querySelector(".container-edit-post");
 
 const buttonCancelEditPost = document.querySelector(".button-cancel-edit-post");
 buttonCancelEditPost.onclick = function () {
   containerEditPost.classList.add("off");
-  body.classList.remove("hidden");
+  formEditPost.reset();
 };
 
 const formEditPost = document.querySelector(".form-edit-post");
@@ -71,7 +64,7 @@ formEditPost.onsubmit = function (event) {
 
   const image = formEditPost.querySelector("#url-image-edit-post").value;
   const text = formEditPost.querySelector("#textarea-edit-post").value;
-  const postId = parseInt(formEditPost.querySelector("#edit-post-id").value);
+  const postId = formEditPost.querySelector("#edit-post-id").value;
 
   const result = updatePost(postId, image, text);
 
@@ -79,7 +72,7 @@ formEditPost.onsubmit = function (event) {
     alert("can not edit post");
   } else {
     containerEditPost.classList.add("off");
-    body.classList.remove("hidden");
+    formEditPost.reset();
 
     showPosts();
   }

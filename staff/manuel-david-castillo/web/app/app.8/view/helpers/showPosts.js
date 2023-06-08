@@ -31,18 +31,17 @@ function showPosts() {
       editButton.classList.add("editButton");
       editButton.innerText = "Edit";
 
+      const imageToEdit = formEditPost.querySelector("#url-image-edit-post");
+      imageToEdit.value = postsWorking[i].image;
+
+      const textToEdit = formEditPost.querySelector("#textarea-edit-post");
+      textToEdit.value = postsWorking[i].text;
+
+      /* Esto no funciona porque siempre coge el valor del último post del usuario */
       editButton.onclick = function () {
+        containerEditPost.classList.remove("off");
         const inputEditPost = formEditPost.querySelector("#edit-post-id");
         inputEditPost.value = postsWorking[i].id;
-
-        const imageToEdit = formEditPost.querySelector("#url-image-edit-post");
-        imageToEdit.value = postsWorking[i].image;
-
-        const textToEdit = formEditPost.querySelector("#textarea-edit-post");
-        textToEdit.value = postsWorking[i].text;
-
-        containerEditPost.classList.remove("off");
-        body.classList.add("hidden");
       };
 
       post.append(editButton);
