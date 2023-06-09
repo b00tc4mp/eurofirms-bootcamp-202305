@@ -1,9 +1,9 @@
 // Añadir un post a la lista (ret T/F)
-var postToList = function (id, img, msg) {
+const postToList = function (id, img, msg) {
     if (img.length === 0) return false
     if (msg.lenght === 0) return false
 
-    var post = {}
+    const post = {}
 
     post.id = id
     post.image = img

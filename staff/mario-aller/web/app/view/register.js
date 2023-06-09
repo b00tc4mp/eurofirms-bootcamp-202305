@@ -1,9 +1,9 @@
 // Carga inicial de referencias
 
-var regFrame = document.querySelector('.register')
-var regView = document.querySelector('.reg-view')
-var regForm = document.querySelector('.reg-form')
-var regNav = document.querySelector('.reg-nav')
+const regFrame = document.querySelector('.register')
+const regView = document.querySelector('.reg-view')
+const regForm = document.querySelector('.reg-form')
+const regNav = document.querySelector('.reg-nav')
 
 // Registro
 
@@ -12,7 +12,7 @@ regForm.onsubmit = function (event) {
     event.preventDefault()
 
     // Captura de datos
-    var newUser = {}
+    const newUser = {}
     newUser.name = regForm.querySelector('#reg-name').value
     newUser.email = regForm.querySelector('#reg-email').value
     newUser.password = regForm.querySelector('#reg-password').value
@@ -29,7 +29,7 @@ regForm.onsubmit = function (event) {
 }
 
 // Botón ir a login
-var logButtonToreg = document.querySelector('.button-toreg')
+const logButtonToreg = document.querySelector('.button-toreg')
 logButtonToreg.onclick = function () {
     logForm.reset()
     logFrame.classList.add('off')

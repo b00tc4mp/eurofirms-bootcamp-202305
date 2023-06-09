@@ -1,5 +1,5 @@
 // Declaraciones globales
-var users = []
+const users = []
 users.idCounter = 0
 
 // Populate users

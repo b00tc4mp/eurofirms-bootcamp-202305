@@ -1,5 +1,5 @@
 // Declaraciones globales
-var posts = []
+const posts = []
 posts.idCounter = 0
 
 // Populate posts
