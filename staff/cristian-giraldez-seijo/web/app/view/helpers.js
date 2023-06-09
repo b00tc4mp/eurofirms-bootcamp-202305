@@ -37,7 +37,12 @@ function renderPosts() {
                 homeEditPostModal.classList.remove('off')
             }
 
+            const deleteButton = document.createElement('button')
+
+            deleteButton.innerText = 'Delete'
+
             article.append(editButton)
+            article.append(deleteButton)
         }
 
         homePosts.append(article)
