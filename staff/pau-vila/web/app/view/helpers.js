@@ -1,15 +1,15 @@
 function renderPosts() {
     homePosts.innerHTML = ''
 
-    const posts = retrivePosts()
+    const posts = retrievePosts()
 
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i]
 
-        const author = document.createElement
-        author.innerText = user.name
+        const author = document.createElement('h2')
+        author.innerText = post.user.name 
         
-        const image = document.createElement('h2')
+        const image = document.createElement('img')
         image.classList.add('home-post-image')
         image.src = post.image
 
@@ -21,15 +21,14 @@ function renderPosts() {
 
         if (post.user.id === userId) {
             const editButton = document.createElement('button')
-
             editButton.innerText = 'Edit'
 
             editButton.onclick = function () {
                 const idInput = homeEditPostForm.querySelector('#edit-post-id')
-                idInput.value = post.homeEditPostForm
+                idInput.value = post.id
 
-                const imageIinput = homeEditPostForm.querySelector('#edit.post-url')
-                imageIinput.value =post.text
+                const imageInput = homeEditPostForm.querySelector('#edit-post-url')
+                imageInput.value = post.image
 
                 const textInput = homeEditPostForm.querySelector('#edit-post-text')
                 textInput.value = post.text
@@ -38,7 +37,14 @@ function renderPosts() {
 
             }
 
-            article.append(editButton)
+            const deleteButton = document.createElement('button')
+            deleteButton.innerText = 'Delete'
+
+            deleteButton.onclick = function () {
+                homeDeletePostModal.classList.remove('off')
+            }
+
+            article.append(editButton, deleteButton)
         }
 
         homePosts.append(article)

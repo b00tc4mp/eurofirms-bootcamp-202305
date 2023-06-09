@@ -1,4 +1,4 @@
-function registerUser(email) {
+function retrieveUser(email) {
     let user
 
     for(let i = 0; i < users.length; i++){
