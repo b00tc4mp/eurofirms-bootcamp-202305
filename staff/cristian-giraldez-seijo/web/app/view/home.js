@@ -6,6 +6,8 @@ const homeMain = homeView.querySelector('.home-main')
 const homePosts = homeMain.querySelector('.home-posts')
 const homeEditPostModal = homeView.querySelector('.home-edit-post-modal')
 const homeEditPostForm = homeEditPostModal.querySelector('.home-edit-post-form')
+const homeDeletePostModal = homeView.querySelector('.home-delete-post-modal')
+const homeDeletePostForm = homeDeletePostModal.querySelector('home-delete-post-form')
 
 homeLogoutButton.onclick = function () {
     userId = null
