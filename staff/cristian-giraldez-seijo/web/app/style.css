@@ -102,7 +102,7 @@ body {
     gap: 1rem;
 }
 
-.home-edit-post-modal {
+.home-edit-post-modal, .home-delete-post-modal{
     background-color: rgba(0, 0, 0, 0.497);
     position: fixed;
     width: 100%;
@@ -113,12 +113,12 @@ body {
     justify-content: center;
 }
 
-.home-edit-post-container {
+.home-edit-post-container, .home-delete-post-container{
     background-color: white;
     padding: 1rem;
 }
 
-.home-edit-post-form {
+.home-edit-post-form , .home-delete-post-form{
     display: flex;
     flex-direction: column;
     align-items: center;
