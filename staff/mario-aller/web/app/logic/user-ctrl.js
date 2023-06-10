@@ -1,37 +1,34 @@
 // Verificacion de usuario (ret T/F)
 const userExist = function (email) {
-    const num = users.length
+    return users.some(function (user) { return user.email === email })
+}
 
-    for (let i = 0; i < num; i++) {
-        if (email === users[i].email) return true;
-    }
-    return false;
+// Devuelve el id del usuario por email
+const userGetId = function (email) {
+    const pos = users.findIndex(function (user) { return user.email === email })
+    if (pos !== -1) return users[pos].id
+    return null
 }
 
 // Verificacion de clave de usuario (ret T/F)
 const userPasswordOK = function (email, password) {
-    const num = users.length
+    const pos = users.findIndex(function (user) { return email === user.email })
 
-    for (let i = 0; i < num; i++) {
-        if (email === users[i].email) {
-            if (password === users[i].password) return true;
-            break;
-        }
-    }
-    return false;
+    if (pos !== -1 && password === users[pos].password) return true
+    return false
 }
 
-// Devuelve usuario público (ret objeto de la lista del usuario email)
-const userRetrieve = function (email) {
-    const num = users.length
+// Devuelve usuario público (ret objeto de la lista del usuario con id)
+const userRetrieve = function (id) {
     let user = null
+    const pos = users.findIndex(function (user) { return id === user.id })
 
-    for (let i = 0; i < num; i++) {
-        if (email === users[i].email) {
-            user = {}
-            user.name = users[i].name
-            user.email = users[i].email
-        }
+    if (pos !== -1) {
+        user = {}
+
+        user.id = users[pos].id
+        user.name = users[pos].name
+        user.email = users[pos].email
     }
     return user
 }
@@ -45,6 +42,7 @@ const userRetrieveAll = function () {
 const userToList = function (name, email, password) {
     const user = {}
 
+    user.id = ++users.idCounter
     user.name = name
     user.email = email
     user.password = password

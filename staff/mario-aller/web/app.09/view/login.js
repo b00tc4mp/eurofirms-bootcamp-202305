@@ -12,13 +12,13 @@ logForm.onsubmit = function (event) {
     event.preventDefault()
 
     // Captura de datos
-    const userLog = {}
-    userLog.email = logForm.querySelector('#log-email').value
-    userLog.password = logForm.querySelector('#log-password').value
+    const logUser = {}
+    logUser.email = logForm.querySelector('#log-email').value
+    logUser.password = logForm.querySelector('#log-password').value
 
     // Validación de datos y navegación
-    if (userPasswordOK(userLog.email, userLog.password)) {
-        const userPublic = userRetrieve(userGetId(userLog.email))
+    if (userPasswordOK(logUser.email, logUser.password)) {
+        const userPublic = userRetrieve(logUser.email)
 
         if (userPublic === null) {
             alert('No hay usuario.')
