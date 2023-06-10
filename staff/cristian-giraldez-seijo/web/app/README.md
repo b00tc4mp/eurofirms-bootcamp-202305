@@ -62,6 +62,6 @@ TODO list tech details
 ##### Tasks
 
 - DONE add delete button in all the posts that belong to the user that is connected (in the session)
-- TODO implement deletePost logic to remove a post from database
+- DONE implement deletePost logic to remove a post from database
 - DONE implement the modal window for asking the user if she/he really wants to delete the post (two buttons: delete, cancel)
-- TODO add a call to refresh the posts list after deleting the post
+- DONE add a call to refresh the posts list after deleting the post

@@ -41,6 +41,12 @@ function renderPosts() {
 
             deleteButton.innerText = 'Delete'
 
+            deleteButton.onclick = function () {
+
+                const idInput = homeDeletePostForm.querySelector('#delete-post-id')
+                idInput.value = post.id
+                homeDeletePostModal.classList.remove('off')
+            }
             article.append(editButton)
             article.append(deleteButton)
         }
