@@ -78,7 +78,7 @@ body {
     height: 3rem;
 }
 
-.home-create-post-modal, .home-edit-post-modal, .home-delete-post-model {
+.home-create-post-modal, .home-edit-post-modal, .home-delete-post-modal {
     background-color: rgba(0, 0, 0, 0.497);
     position: fixed;
     width: 100%;

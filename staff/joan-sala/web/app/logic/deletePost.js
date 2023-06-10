@@ -3,8 +3,8 @@ function deletePost(postId) {
 
     for (let i = 0; i < posts.length; i++) {
         const _post = posts[i]
-
-        if (_post.Id === postId) {
+        //si lo encontramos
+        if (_post.id === postId) {
             post = _post
 
             break
@@ -17,6 +17,8 @@ function deletePost(postId) {
     const index = posts.findIndex(function(post){
         return post.id === postId
     })
+    
+    //borrado
     posts.splice(index,1)
 
     return true

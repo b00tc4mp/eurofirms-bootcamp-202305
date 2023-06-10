@@ -33,7 +33,7 @@ function renderPosts() {
 
                 const textInput = homeEditPostForm.querySelector('#edit-post-text')
                 textInput.value = post.text
-
+                //abrir el modal
                 homeEditPostModal.classList.remove('off')
             }
             const deleteButton = document.createElement('button')
@@ -43,7 +43,7 @@ function renderPosts() {
                 const idInput = homeDeletePostForm.querySelector('#delete-post-id')
                 idInput.value = post.id
 
-                homeDeletePostModal.classList.remove
+                homeDeletePostModal.classList.remove('off')
             }
             
             article.append(editButton, deleteButton)

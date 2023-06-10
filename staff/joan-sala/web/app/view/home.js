@@ -6,6 +6,9 @@ const homeMain = homeView.querySelector('.home-main')
 const homePosts = homeMain.querySelector('.home-posts')
 const homeEditPostModal = homeView.querySelector('.home-edit-post-modal')
 const homeEditPostForm = homeEditPostModal.querySelector('.home-edit-post-form')
+const homeDeletePostModal = document.querySelector('.home-delete-post-modal')
+const homeDeletePostForm = homeDeletePostModal.querySelector('.home-delete-post-form')
+
 
 homeLogoutButton.onclick = function () {
     userId = null
@@ -83,4 +86,27 @@ homeEditPostForm.onsubmit = function (event) {
 
         homeEditPostModal.classList.add('off')
     }
+}
+homeDeletePostForm.onsubmit = function(event){
+    event.preventDefault()
+    const idInput = document.querySelector('#delete-post-id')
+    const idPost = parseInt(idInput.value)
+
+    const result = deletePost(idPost)
+    if(result === false)
+        alert('Can not delete post')
+    else
+        renderPosts()
+
+        homeDeletePostModal.classList.add('off')
+}
+
+const homeDeletePostCancelButton = homeDeletePostForm.querySelector('.home-delete-post-cancel-button')
+
+homeDeletePostCancelButton.onclick = function (event) {
+    event.preventDefault()
+
+    homeDeletePostForm.reset()
+
+    homeDeletePostModal.classList.add('off')
 }
