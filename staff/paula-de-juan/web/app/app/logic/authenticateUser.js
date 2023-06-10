@@ -11,10 +11,8 @@ function authenticateUser(email, password) {
         }
     }
 
-    if (user === undefined) {
+    if (user === undefined || user.password !== password) {
         return false
-    } else if (user.password !== password) {
-        return false;
     } else {
         return user.id;
     }

@@ -1,4 +1,4 @@
-function retrievePost (postId) {
+function retrievePost () {
     let post
     
     for (var i = 0; i < posts.length; i++){

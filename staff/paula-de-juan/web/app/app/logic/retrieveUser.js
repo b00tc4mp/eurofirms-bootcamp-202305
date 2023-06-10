@@ -15,13 +15,6 @@ function retrieveUser(userId) {
     if (user === undefined) {
         return false;
     } else {
-        user = {}
-
-        user.id = ++users.count;
-        user.name = user.name;
-        user.email = user.email;
-        
-
         return user;
     }
 }

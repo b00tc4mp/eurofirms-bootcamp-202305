@@ -9,7 +9,6 @@ const homeEditPostForm = homeEditPostModal.querySelector('.home-edit-post-form')
 const homeDeletePostModal = homeView.querySelector('.home-delete-post-modal')
 const homeDeletePostForm = homeDeletePostModal.querySelector('.home-delete-post-form')
 
-
 homeLogoutButton.onclick = function () {
     homeView.classList.add('off')
     loginView.classList.remove('off')
@@ -68,6 +67,9 @@ homeEditPostCancelButton.onclick = function (event) {
 
 homeEditPostForm.onsubmit = function (event) {
     event.preventDefault()
+
+    const idInput = homeEditPostForm.querySelector('#edit-post-id')
+    const postId = parseInt(idInput.value)
 
     const imageInput = homeEditPostForm.querySelector('#edit-post-url')
     const image = imageInput.value

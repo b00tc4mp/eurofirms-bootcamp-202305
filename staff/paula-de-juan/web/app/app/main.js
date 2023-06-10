@@ -2,4 +2,4 @@
  
 Global Scope */
 
-var userId = null;
+let userId = null;

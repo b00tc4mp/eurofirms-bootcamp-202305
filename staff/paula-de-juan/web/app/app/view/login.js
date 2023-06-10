@@ -10,12 +10,12 @@ loginForm.onsubmit = function (event) {
     const password = passwordInput.value
 
     const result = authenticateUser(email, password)
+    userId = result
 
     if (result === false)
         alert('Wrong credentials')
     else {
-        userId = result
-
+        
         loginForm.reset()
 
         const user = retrieveUser(userId)
@@ -25,6 +25,7 @@ loginForm.onsubmit = function (event) {
         }
         else {
             loginView.classList.add('off')
+            
             var homeTitle = homeView.querySelector('.home-title');            
 
             homeTitle.innerText = 'Hello ' + user.name + '!';
