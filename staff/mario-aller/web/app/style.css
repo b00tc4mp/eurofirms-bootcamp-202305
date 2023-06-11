@@ -7,7 +7,8 @@
     margin: 0;
 }
 
-html, body {
+html,
+body {
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
@@ -56,7 +57,7 @@ html, body {
 
 .basic-label {
     font-size: 0.8rem;
- 
+
 }
 
 .basic-modal {
@@ -215,7 +216,6 @@ html, body {
     width: 95%;
     border-radius: 1rem;
     background-color: antiquewhite;
-
 }
 
 .post-item-img {
@@ -225,8 +225,19 @@ html, body {
 }
 
 .post-item-msg {
-    width: 80%;
+    width: 60%;
     padding: 0.5rem;
+}
+
+.post-item-user {
+    width: 20%;
+    font-size: 0.5rem;
+    font-style: italic;
+}
+
+.post-item-button {
+    font-size: 0.5rem;
+    margin-right: 0.3rem;
 }
 
 /* Capas y comandos */

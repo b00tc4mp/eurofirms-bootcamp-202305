@@ -1,8 +1,3 @@
-// Verificacion de usuario (ret T/F)
-const userExist = function (email) {
-    return users.some(function (user) { return user.email === email })
-}
-
 // Devuelve el id del usuario por email
 const userGetId = function (email) {
     const pos = users.findIndex(function (user) { return user.email === email })
@@ -20,22 +15,18 @@ const userPasswordOK = function (email, password) {
 
 // Devuelve usuario público (ret objeto de la lista del usuario con id)
 const userRetrieve = function (id) {
+    if (id === null) return null
     let user = null
     const pos = users.findIndex(function (user) { return id === user.id })
 
     if (pos !== -1) {
         user = {}
 
-        user.id = users[pos].id
+        user.id = id
         user.name = users[pos].name
         user.email = users[pos].email
     }
     return user
-}
-
-// Devuelve la lista de usuarios Completa
-const userRetrieveAll = function () {
-    return posts;
 }
 
 // Añadir usuario a la lista

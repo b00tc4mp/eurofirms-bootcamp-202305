@@ -18,7 +18,8 @@ logForm.onsubmit = function (event) {
 
     // Validación de datos y navegación
     if (userPasswordOK(userLog.email, userLog.password)) {
-        const userPublic = userRetrieve(userGetId(userLog.email))
+        userLogged = userGetId(userLog.email)
+        const userPublic = userRetrieve(userLogged)
 
         if (userPublic === null) {
             alert('No hay usuario.')

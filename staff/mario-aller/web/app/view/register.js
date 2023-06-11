@@ -18,7 +18,7 @@ regForm.onsubmit = function (event) {
     newUser.password = regForm.querySelector('#reg-password').value
 
     // Actualización de BD y navegación
-    if (!userExist(newUser.email)) {
+    if (userGetId(newUser.email) === null) {
         userToList(newUser.name, newUser.email, newUser.password)
 
         regFrame.classList.add('off')
@@ -35,4 +35,3 @@ logButtonToreg.onclick = function () {
     logFrame.classList.add('off')
     regFrame.classList.remove('off')
 }
-

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts app</title>
-    
+
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -109,10 +109,46 @@
         </form>
     </div>
 
+    <!-- Ventana modal de edición de Post -->
+
+    <div class="home-modal-editpost basic-modal off">
+        <form class="home-modal-editpost-form basic-form" action="submit">
+            <h4>Editar Post</h4>
+
+            <label class="basic-label" for="editpost-img">Imagen url</label>
+            <input type="url" id="editpost-img">
+
+            <label class="basic-label" for="editpost-msg">Mensaje</label>
+            <input type="text" id="editpost-msg">
+
+            <input type="hidden" id="editpost-idpost">
+
+            <div class="flex-hor">
+                <button type="submit" class="editpost-button basic-button">Guardar</button>
+                <button type="button" class="editpost-button-cancel basic-button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Ventana modal de borrado de Post -->
+
+    <div class="home-modal-deletepost basic-modal off">
+        <form class="home-modal-deletepost-form basic-form" action="submit">
+            <h4>Editar Post</h4>
+
+            <input type="hidden" id="deletepost-idpost">
+
+            <div class="flex-hor">
+                <button type="submit" class="deletepost-button basic-button">Borrar</button>
+                <button type="button" class="deletepost-button-cancel basic-button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
     <!-- Links a js -->
 
     <script src="main.js"></script>
-    
+
     <script src="data/users.js"></script>
     <script src="data/posts.js"></script>
 
