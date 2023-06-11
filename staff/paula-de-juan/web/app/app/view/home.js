@@ -87,3 +87,32 @@ homeEditPostForm.onsubmit = function (event) {
         renderPosts()
     }
 }
+
+// Delete
+
+const homeDeletePostCancelButton = homeDeletePostForm.querySelector('.home-delete-post-cancel-button')
+
+homeDeletePostCancelButton.onclick = function (event) {
+    event.preventDefault()
+
+    homeDeletePostForm.reset()
+
+    homeDeletePostModal.classList.add('off')
+}
+
+homeDeletePostForm.onsubmit = function (event) {
+    event.preventDefault()
+
+    const idInput = homeDeletePostForm.querySelector('#delete-post-id')
+    const postId = parseInt(idInput.value)
+
+    const result = updatePost(postId)
+
+    if (result === false){
+        alert('Cannot delete post')        
+    } else {
+        homeDeletePostModal.classList.add('off')
+
+        renderPosts()
+    }
+}
