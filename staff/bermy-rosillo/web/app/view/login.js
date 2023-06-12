@@ -28,7 +28,7 @@ loginForm.onsubmit = function (event) {
             loginView.classList.add('off')
 
             const homeTitle = homeView.querySelector('.home-title')
-            homeTitle.innerText = ' Hello, ' + user.name + '!'
+            homeTitle.innerText = ' Welcome, ' + user.name + '!'
             
             renderPosts() 
             

@@ -10,16 +10,17 @@
 <body>
     <main class="register-view off">
         <!-- form (3 fields: name, email, password) -->
-        <h1>Register</h1>
+        <h1>Register page</h1>
 
         <form class="register-form">
-            <label for="register-name">Name</label>
+            <p>Personal information</p>
+            <label for="register-name">Name:</label>
             <input id="register-name" type="text">
 
-            <label for="register-email">E-mail</label>
+            <label for="register-email">E-mail:</label>
             <input id="register-email" type="email">
 
-            <label for="register-password">Password</label>
+            <label for="register-password">Password:</label>
             <input id="register-password" type="password">
 
             <button type="submit">Register</button>
@@ -77,13 +78,23 @@
     </div>
 
     <script src="data.js"></script>
+    <script src="data/posts.js"></script>
 
     <script src="logic/authenticateUser.js"></script>
-    <script src="logic/createPost.js"></script>
     <script src="logic/registerUser.js"></script>
-    <script src="logic/retrievePosts.js"></script>
     <script src="logic/retrieveUser.js"></script>
-    
+    <script src="logic/createPost.js"></script>
+    <script src="logic/retrievePosts.js"></script>
+    <script src="logic/updatePost.js"></script>
+    <script src="logic/deletePost.js"></script>
+
+    <script src="view/helpers.js"></script>
+    <script src="view/register.js"></script>
+    <script src="view/login.js"></script>
+    <script src="view/home.js"></script>
+   
     <script src="main.js"></script>
+    
+   
 </body>
 </html>

@@ -12,9 +12,10 @@
 <body>
     <main class="register-view off">
         <!-- form (3 fields: name, email, password) -->
-        <h1>Register</h1>
+        <h1>Register page</h1>
 
         <form class="register-form">
+            <p>Personal information</p>
             <label for="register-name">Name</label>
             <input id="register-name" type="text">
 
@@ -46,7 +47,7 @@
     </main>
 
     <div class="home-view off">
-        <header>
+        <header class="home-header">
             <h1 class="home-title">Hello, home </h1>
             <button class="home-logout-button">Logout</button>
         </header>
@@ -95,6 +96,20 @@
                 </form>
             </div>
         </div>
+
+        <div class="home-delete-post-modal off">
+            <div class="home-delete-post-container">
+                <h2>delete post</h2>
+
+                <form class="home-delete-post-form">
+                    <input type="hidden" id="delete-post-id">
+                    <p>Do you want to delete this post?</p>
+                    
+                    <button class="home-delete-post-button"  type="submit">Delete</button>
+                    <button class="home-delete-post-cancel-button">Cancel</button>
+                </form>
+            </div>
+        </div>
     </div><!--home-view closed-->
 
     <script src="data/users.js"></script>
@@ -105,7 +120,8 @@
     <script src="logic/registerUser.js"></script>
     <script src="logic/retrievePosts.js"></script>
     <script src="logic/retrieveUser.js"></script>
-
+    <script src="logic/updatePost.js"></script>
+    <script src="logic/deletePost.js"></script>
     <script src="view/helpers.js"></script>
     <script src="view/home.js"></script>
     <script src="view/login.js"></script>
