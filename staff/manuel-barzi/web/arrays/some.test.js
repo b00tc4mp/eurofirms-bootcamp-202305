@@ -30,12 +30,22 @@ const people = [
 ]
 
 const result = some(people, function (person) {
+    // if (person.age === 18)
+    //     return true
+    // else
+    //     return false
+
     return person.age === 18
 })
 
 console.log(result) // true
 
 const result2 = some(people, function (person) {
+    // if (person.name === 'James Hook')
+    //     return true
+    // else
+    //     return false
+
     return person.name === 'James Hook'
 })
 
