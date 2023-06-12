@@ -1,13 +1,13 @@
 // Devuelve el id del usuario por email
 const userGetId = function (email) {
-    const pos = users.findIndex(function (user) { return user.email === email })
+    const pos = users.findIndex(user => user.email === email)
     if (pos !== -1) return users[pos].id
     return null
 }
 
 // Verificacion de clave de usuario (ret T/F)
 const userPasswordOK = function (email, password) {
-    const pos = users.findIndex(function (user) { return email === user.email })
+    const pos = users.findIndex(user => user.email === email)
 
     if (pos !== -1 && password === users[pos].password) return true
     return false
@@ -17,7 +17,7 @@ const userPasswordOK = function (email, password) {
 const userRetrieve = function (id) {
     if (id === null) return null
     let user = null
-    const pos = users.findIndex(function (user) { return id === user.id })
+    const pos = users.findIndex(user => user.id === id)
 
     if (pos !== -1) {
         user = {}

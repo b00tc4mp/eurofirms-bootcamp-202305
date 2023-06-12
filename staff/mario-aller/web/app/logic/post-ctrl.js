@@ -17,14 +17,14 @@ const postToList = function (userCreator, msg, img) {
 
 // Devuelve el post a traves de su id
 const postRetrieve = function (id) {
-    const pos = posts.findIndex(function (post) { return id === post.id })
+    const pos = posts.findIndex(post => post.id === id)
     if (pos !== -1) return posts[pos]
     return null
 }
 
 // Borra el post con su id
 const postDelete = function (id) {
-    const pos = posts.findIndex(function (post) { return id === post.id })
+    const pos = posts.findIndex(post => post.id === id)
     if (pos !== -1) {
         posts.splice(pos, 1)
         return true
