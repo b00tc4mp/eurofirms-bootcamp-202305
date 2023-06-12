@@ -1,4 +1,4 @@
-describe('TEST find')
+describe('TEST filter')
 
 describe('CASE with people')
 
@@ -29,22 +29,27 @@ const people = [
     }
 ]
 
-const person = find(people, person => person.age < 10)
+const person = filter(people, person => person.age < 10)
 
 console.log(person)
-// undefined
+// []
 
-const person2 = find(people, person => person.name.includes('J'))
+const person2 = filter(people, person => person.name.includes('J'))
 
 console.log(person2)
-// { James Hook }
+// [{ James Hook }]
 
-const person3 = find(people, person => person.colors.includes('blue'))
+const person3 = filter(people, person => person.colors.includes('blue'))
 
 console.log(person3)
-// { Pepito Grillo }
+// [{ Pepito Grillo }, { Peter Pan }]
 
-const person4 = find(people, person => person.colors.includes('black'))
+const person4 = filter(people, person => person.colors.includes('black'))
 
 console.log(person4)
-// { James Hook }
+// [{ James Hook }]
+
+const person5 = filter(people, person => person.origin === 'Wonderland')
+
+console.log(person5)
+// [{ Pepito Grillo }, ..., { James Hook }]
