@@ -9,3 +9,5 @@ console.log(includes(numbers4, 3)); /* true */
 console.log(includes(numbers4, -1)); /* false */
 console.log(includes(numbers4, 830)); /* false */
 console.log(includes(numbers4, 0)); /* true */
+console.log(includes(numbers4, 0, 3)); /* false */
+console.log(includes(numbers4, 5, 6)); /* false */
