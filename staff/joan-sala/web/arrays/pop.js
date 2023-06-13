@@ -5,6 +5,7 @@ function pop(array){
 
     const lastElement =  array[lastPosition]
 
+    //array.length  = array.length - 1
     array.length--
     
     return lastElement

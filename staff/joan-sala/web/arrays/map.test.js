@@ -27,18 +27,7 @@ const people = [
         colors: ['red', 'black']
     }
 ]
-const resultPop = pop(people)
+const peopleNames = map(people, person => person.name.toUpperCase())
 
-console.log(resultPop)
-
-console.log(people) //ver todos los elementos menos el último
-
-describe('CASE empty array')
-
-const emptyArray = []
-
-const resultPop2 = pop(emptyArray)
-
-console.log(resultPop2)
-
-console.log(emptyArray)
+console.info(peopleNames)
+//vm1518:30 (4) | 'PEPITO GRILLO', 'WENDY DARLING' | 'PETER PAN', 'JAMES HOOK']        
