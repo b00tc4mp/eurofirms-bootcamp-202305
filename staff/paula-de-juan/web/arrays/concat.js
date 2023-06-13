@@ -1,15 +1,15 @@
-function concat(array, ...elements) {
+function concat(...elements) {
+  const results = [];
 
-    const results = []
-
-    for (let i = 0; i < array.length; i++) {
-        const element = array[i]
-
-        results.push(element)
+  for (let i = 0; i < elements.length; i++) {
+    if (elements[i] instanceof Array) {
+      for (let j = 0; j < elements[i].length; j++) {
+        results[results.length] = elements[i][j];
+      }
+    } else {
+      results[results.length] = elements[i];
     }
-    for (let i = 0; i < elements.length; i++){
-        const element = elements[i]
-        results.push(element)
-    }
-    return results
+  }
+
+  return results;
 }

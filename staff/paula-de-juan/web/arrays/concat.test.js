@@ -43,4 +43,12 @@ const people2 = concat(people, {
 }
 )
 
+
 console.log(people2)
+
+
+
+
+const people3 = concat(people, [50, 70], ['Hola', 'Mundo'])
+
+console.log(people3)
