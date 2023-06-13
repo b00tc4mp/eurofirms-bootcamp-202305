@@ -58,6 +58,7 @@ const barbies = [
     }
 ]
 
+describe('Concat')
 
 console.log (concat(people,barbies,people))
 
