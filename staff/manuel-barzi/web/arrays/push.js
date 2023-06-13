@@ -1,19 +1,11 @@
-function push(array, element) {
-    if (arguments.length === 2) {
+function push(array, ...elements) {
+    for (let i = 0; i < elements.length; i++) {
+        const element = elements[i]
+
         const index = array.length
 
         array[index] = element
-
-        return array.length
-    } else if (arguments.length > 2) {
-        for (let i = 1; i < arguments.length; i++) {
-            const element = arguments[i]
-
-            const index = array.length
-
-            array[index] = element
-        }
-
-        return array.length
     }
+
+    return array.length
 }
