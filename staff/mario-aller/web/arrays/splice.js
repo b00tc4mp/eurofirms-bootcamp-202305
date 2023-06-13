@@ -1,6 +1,6 @@
 function splice(array, startIndex, deleteCount, ...items) {
     if (startIndex < 0) startIndex += array.length
-    if (!deleteCount) deleteCount = 1
+    if (deleteCount === undefined) deleteCount = 1
     const modif = []
     const segment = []
 
