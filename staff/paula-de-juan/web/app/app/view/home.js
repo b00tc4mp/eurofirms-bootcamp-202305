@@ -106,7 +106,7 @@ homeDeletePostForm.onsubmit = function (event) {
     const idInput = homeDeletePostForm.querySelector('#delete-post-id')
     const postId = parseInt(idInput.value)
 
-    const result = updatePost(postId)
+    const result = deletePost(postId)
 
     if (result === false){
         alert('Cannot delete post')        
