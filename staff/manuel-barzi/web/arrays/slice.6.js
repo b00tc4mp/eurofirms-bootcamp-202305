@@ -11,8 +11,6 @@ function slice(array, start, end) {
         end = array.length
     else if (end < 0)
         end = array.length + end
-    else if (end > array.length)
-        end = array.length
 
     for (let i = start; i < end; i++) {
         const element = array[i]
