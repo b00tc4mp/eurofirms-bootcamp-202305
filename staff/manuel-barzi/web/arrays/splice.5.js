@@ -17,6 +17,12 @@ function splice(array, start, deleteCount, ...items) {
         }
 
         array.length -= displacement
+
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i]
+
+            array[start + i] = item
+        }
     } else {
         const displacement = items.length - deleteCount
 
@@ -25,12 +31,12 @@ function splice(array, start, deleteCount, ...items) {
 
             array[i + displacement] = element
         }
-    }
 
-    for (let i = 0; i < items.length; i++) {
-        const item = items[i]
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i]
 
-        array[start + i] = item
+            array[start + i] = item
+        }
     }
 
     return deletedElements
