@@ -27,14 +27,18 @@ const people = [
     }
 ]
 
+describe(' CASE with people < 18 ')
 const person = filter(people, person => person.age < 18)
 //[]
 
+describe(' CASE with name starting with ')
 const person2 = filter(people, person => person.name.includes('J'))
 console.log(person2) //{James Hood}
 
+describe(' CASE with color is blue ')
 const person3 = filter(people, person => person.color.includes('blue'))
 console.log(person3) //{Pepito Grillo}
 
+describe(' CASE with color is black ')
 const person4 = filter(people, person => person.color.includes('black'))
 console.log(person4) 
