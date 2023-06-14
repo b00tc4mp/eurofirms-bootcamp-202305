@@ -30,4 +30,9 @@ const people = [
 const peopleNames = map(people, person => person.name.toUpperCase())
 
 console.info(peopleNames)
-//vm1518:30 (4) | 'PEPITO GRILLO', 'WENDY DARLING' | 'PETER PAN', 'JAMES HOOK']        
+//vm1518:30 (4) | 'PEPITO GRILLO', 'WENDY DARLING' | 'PETER PAN', 'JAMES HOOK']   
+
+const peopleInfo = map(people, person => person.name + ' ('+ person.age + ')')
+
+console.log(peopleInfo)
+//['Pepito Grillo (30)', ...]]
