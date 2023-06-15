@@ -1,7 +1,7 @@
 function authenticateUser(email, password) {
-    var user;
+    let user;
 
-    for (var i = 0; i < users.length; i++) {
+    for (let i = 0; i < users.length; i++) {
         var _user = users[i];
 
         if (_user.email === email) {
@@ -11,10 +11,8 @@ function authenticateUser(email, password) {
         }
     }
 
-    if (user === undefined) {
+    if (user === undefined || user.password !== password) {
         return false
-    } else if (user.password !== password) {
-        return false;
     } else {
         return user.id;
     }

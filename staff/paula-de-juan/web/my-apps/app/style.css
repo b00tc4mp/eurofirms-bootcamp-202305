@@ -3,188 +3,239 @@
 /* resets */
 
 * {
-  font-family: "Josefin Sans", sans-serif;
+    font-family: "Josefin Sans", sans-serif;
 }
 
-html,
-body {
-  height: 100%;
+html, body {
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  outline: none;
-  box-sizing: border-box;
-  background: linear-gradient(115deg, #f5f0bb 10%, #73a9ad 90%);
-}
+    margin: 0;
+    box-sizing: border-box;
 }
 
 /* styles (BEM) */
 
-.register-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-
-.register-view {
-  max-width: 800px;
-  background: #fff;
-  width: 800px;
-  padding: 25px 40px 10px 40px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-}
-
-h1 {
-  background: -webkit-linear-gradient(
-    right,
-    #73a9ad,
-    #dbdfaa,
-    #b3c890,
-    #73a9ad
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .register-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
-
-.login-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-
-.login-view {
-  max-width: 800px;
-  background: #fff;
-  width: 800px;
-  padding: 25px 40px 10px 40px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-}
-
 
 .login-form {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
-.post-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 10%;
+.post-image{
+    width:200px;
+    height: 200px;
+    border-radius: 10%;
 }
 
-.posts-container {
-  display: flex;
-  justify-content: center;
+.posts-container{
+    display: flex;
+    justify-content: center;
 }
 
-.posts-list {
-  width: 600px;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+.posts-list{
+    width: 600px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
-.post-item {
-  border: solid;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 6px;
-  border-radius: 10%;
-  box-shadow: 2px 2px 5px black;
+.post-item{
+    border: solid;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    border-radius: 10%;
+    box-shadow: 2px 2px 5px black;
 }
 
 /* home */
 
 .home-header {
-  position: fixed;
-  top: 0;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: tomato;
-  width: 100%;
-  padding: 0 1rem;
-  box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #967E76;
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 .home-title {
-  font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 .home-main {
-  padding: 3rem 0;
+    padding: 3rem 0;
 }
 
 .home-footer {
-  background-color: dodgerblue;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3rem;
+    background-color: #967E76
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
 }
 
 .home-create-post-modal {
-  background-color: rgba(0, 0, 0, 0.497);
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .home-create-post-container {
-  background-color: white;
-  padding: 1rem;
+    background-color: white;
+    padding: 1rem;
 }
 
 .home-create-post-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .home-posts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 }
 
 .home-post-image {
-  width: 100%;
+    width: 100%;
 }
 
-.posts-container {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
+.posts-container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
 }
-/* TO IMPLEMENT CSS and make my own changes to re-adapt from: https://codepen.io/Metty/pen/NWpzexj
+
+
+.home-edit-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-edit-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.home-edit-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+
+
+.home-delete-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-delete-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.home-delete-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(115deg, #9BABB8 10%, #967E76 90%);
+}
+.container{
+  max-width: 800px;
+  background: #fff;
+  width: 800px;
+  padding: 25px 40px 10px 40px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+.container .text{
+  text-align: center;
+  font-size: 41px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  background: -webkit-linear-gradient(right, #9BABB8, #967E76, #56d8e4, #9f01ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.container form{
+  padding: 30px 0 0 0;
+}
+.container form .form-row{
+  display: flex;
+  margin: 32px 0;
+}
+form .form-row .input-data{
+  width: 100%;
+  height: 40px;
+  margin: 0 20px;
+  position: relative;
+}
+form .form-row .textarea{
+  height: 70px;
+}
 .input-data input,
 .textarea textarea{
   display: block;
@@ -248,7 +299,7 @@ h1 {
   width: 300%;
   position: absolute;
   left: -100%;
-  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  background: -webkit-linear-gradient(right, #9BABB8, #967E76, #56d8e4, #9f01ea);
   transition: all 0.4s;
 }
 .submit-btn .input-data:hover .inner{
@@ -283,30 +334,8 @@ h1 {
     width: 40%!important;
   }
 }
-*/
 
-EDIT POST MODAL .home-edit-post-modal {
-  background-color: rgba(0, 0, 0, 0.497);
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-DELETE POST MODAL .home-delete-post-modal {
-  background-color: rgba(0, 0, 0, 0.497);
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .off {
-  display: none;
+    display: none;
 }

@@ -26,9 +26,10 @@ registerForm.onsubmit = function (event) {
 
 const registerLoginLink = registerView.querySelector('.register-login-link')
 
+
 registerLoginLink.onclick = function (event){
     event.preventDefault()
-    loginView.classList.remove('off')
+    loginView.classList.remove('off') 
     registerView.classList.add('off')
 }
 

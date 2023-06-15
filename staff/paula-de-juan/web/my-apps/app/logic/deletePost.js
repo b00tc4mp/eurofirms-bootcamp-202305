@@ -1,8 +1,8 @@
 function deletePost (postId){
-    var post
+    let post
     
-    for (var i = 0; i < posts.length; i++){
-        var _post = posts[i]
+    for (let i = 0; i < posts.length; i++){
+        const _post = posts[i]
 
         if (_post.id === postId){
             post = _post
@@ -10,7 +10,7 @@ function deletePost (postId){
         }
 
     }
-    if (post === undefined){     
+    if ( post === undefined){     
         return false
     
     } else{
