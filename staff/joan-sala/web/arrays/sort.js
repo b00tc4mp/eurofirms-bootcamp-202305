@@ -4,13 +4,13 @@ function sort(array, callback) {
            const returnFromCallback =  callback(array[i], array[i+1])
 
            if(returnFromCallback > 0){
-                return false
+               
            }
            else if(returnFromCallback < 0){
-                return true
+                
            }
            else if(returnFromCallback === 0){
-                return callback
+                
            }
         }
     } else {
