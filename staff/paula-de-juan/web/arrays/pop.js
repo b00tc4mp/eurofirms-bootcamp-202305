@@ -1,15 +1,13 @@
 function pop(array){
 
-    const _element = []
-
-    for (let i = 0; i < array.length; i++){
-        const element = array[array.length-1]
-        array[i] = array[i-1]         
+    if(!array.length){
+        return undefined
     }
-    if (array[array.length-1] === undefined ){
-        array.length = array.length -1
-      }
-    element = _element
+   const index = array.length -1
 
-    return element
+   const element = array [index]
+
+   array.length--
+
+   return element
 }

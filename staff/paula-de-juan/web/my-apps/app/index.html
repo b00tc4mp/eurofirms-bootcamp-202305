@@ -9,7 +9,8 @@
   </head>
 
   <body>
-    <main class="register-view">
+    <div class="register-container">
+    <div class="register-view">
       <h1>Register</h1>
       <form action="submit" class="register-form">
         <label for="register-name">Name</label>
@@ -29,13 +30,13 @@
           id="register-password"
           placeholder="password"
         />
-        <button type="submit">Register</button>
+        <button type="submit" class="submit-btn">Register</button>
       </form>
       <p>Go to <a class="register-login-link" href="">Login</a></p>
-    </main>
-
-
-    <main class="login-view off">
+    </div>
+  </div>
+<div class="login-container">
+    <div class="login-view off">
       <h1>Login</h1>
       <form action="submit" class="login-form">
         <label for="login-email" type="text">Email</label>
@@ -52,7 +53,8 @@
         <button type="submit">Login</button>
       </form>
       <p>Go to<a class="login-register-link" href="">Register</a></p>
-    </main>
+    </div>
+  </div>
 
 
     <div class="home-view off">

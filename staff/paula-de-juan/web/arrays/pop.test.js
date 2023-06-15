@@ -28,4 +28,6 @@ const musicians = [
 
 const result = pop(musicians)
 
+console.log(last)
+
 console.log(musicians)
