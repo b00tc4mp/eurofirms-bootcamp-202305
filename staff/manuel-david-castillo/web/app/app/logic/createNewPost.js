@@ -1,18 +1,11 @@
-const createNewPost = function (userId, image, text) {
+const createNewPost = function (author, image, text) {
   if (!image) {
     return false;
   }
   if (!text) {
     return false;
   } else {
-    const post = {
-      id: ++posts.count,
-      userId: userId,
-      image: image,
-      text: text,
-    };
-
-    posts.push(post);
+    posts.push(new Post(author, image, text));
 
     return true;
   }

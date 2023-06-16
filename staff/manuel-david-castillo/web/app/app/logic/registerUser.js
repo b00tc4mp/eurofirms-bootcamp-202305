@@ -11,14 +11,8 @@ const registerUser = function (name, email, password) {
   if (user) {
     return false;
   } else {
-    user = {
-      id: ++users.count,
-      name: name,
-      email: email,
-      password: password,
-    };
+    users.push(new User(name, email, password));
 
-    users.push(user);
     return true;
   }
 };

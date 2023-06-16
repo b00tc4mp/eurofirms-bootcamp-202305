@@ -8,7 +8,7 @@ const retrievePosts = function () {
     _post.text = posts[i].text;
 
     for (let j = 0; j < users.length; j++) {
-      if (posts[i].userId === users[j].id) {
+      if (posts[i].author === users[j].id) {
         _post.user = {
           id: users[j].id,
           name: users[j].name,
