@@ -13,7 +13,8 @@ function SuperUser(name, email, password) {
     User.call(this, name, email, password)
 }
 
-SuperUser.prototype = new User()
+//SuperUser.prototype = new User()
+SuperUser.prototype = Object.create(User.prototype)
 SuperUser.prototype.constructor = SuperUser
 
 //var user = new Object()

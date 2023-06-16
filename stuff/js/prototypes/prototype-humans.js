@@ -23,7 +23,8 @@ function Woman(name) {
     Human.call(this, name)
 }
 
-Woman.prototype = new Human()
+//Woman.prototype = new Human()
+Woman.prototype = Object.create(Human.prototype)
 Woman.prototype.constructor = Woman
 
 Woman.prototype.giveBirth = function () {
@@ -38,7 +39,8 @@ function Man(name) {
     Human.call(this, name)
 }
 
-Man.prototype = new Human()
+//Man.prototype = new Human()
+Man.prototype = Object.create(Human.prototype)
 Man.prototype.constructor = Man
 
 Man.prototype.giveSperm = function () {
