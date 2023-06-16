@@ -14,7 +14,12 @@ function registerUser(name, email, password) {
     if (user !== undefined)
         return false
 
-    user = new User(name, email, password)
+    user = {}
+
+    user.id = ++users.count
+    user.name = name
+    user.email = email
+    user.password = password
 
     users.push(user)
 

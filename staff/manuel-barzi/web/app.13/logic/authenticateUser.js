@@ -1,4 +1,4 @@
-function registerUser(name, email, password) {
+function authenticateUser(email, password) {
     let user
 
     for (let i = 0; i < users.length; i++) {
@@ -11,12 +11,8 @@ function registerUser(name, email, password) {
         }
     }
 
-    if (user !== undefined)
+    if (user === undefined || user.password !== password)
         return false
 
-    user = new User(name, email, password)
-
-    users.push(user)
-
-    return true
+    return user.id
 }

@@ -1,25 +1,7 @@
 const users = []
-users.count = 0
 
 // populate users
 
-users.push({
-    id: ++users.count,
-    name: 'Pin Ocho',
-    email: 'pin@ocho.com',
-    password: '123123123'
-})
-
-users.push({
-    id: ++users.count,
-    name: 'John Doe',
-    email: 'john@doe.com',
-    password: '123123123'
-})
-
-users.push({
-    id: ++users.count,
-    name: 'Ada Love',
-    email: 'ada@love.com',
-    password: '123123123'
-})
+users.push(new User('Pin Ocho', 'pin@ocho.com', '123123123'))
+users.push(new User('John Doe', 'john@doe.com', '123123123'))
+users.push(new User('Ada Love', 'ada@love.com', '123123123'))
