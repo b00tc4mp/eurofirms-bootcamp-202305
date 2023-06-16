@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <main class="register-view off">
+        <!-- form (3 fields: name, email, password) -->
+        <h1>Register</h1>
+
+        <form class="register-form">
+            <label for="register-name">Name</label>
+            <input id="register-name" type="text">
+
+            <label for="register-email">E-mail</label>
+            <input id="register-email" type="email">
+
+            <label for="register-password">Password</label>
+            <input id="register-password" type="password">
+
+            <button type="submit">Register</button>
+        </form>
+        <p>Go to <a class="register-login-link" href=""> Login</a></p>
+    </main>
+
+    <main class="login-view">
+        <!--login form (2 fields: email, password) -->
+        <h1>Login</h1>
+
+        <form class="login-form">
+            <label for="login-email">E-mail</label>
+            <input id="login-email" type="email">
+
+            <label for="login-password">Password</label>
+            <input id="login-password" type="password">
+
+            <button type="submit">Login</button>
+        </form>
+        <p>Go to<a class="login-register-link" href=""> Register</a></p>
+    </main>
+
+    <div class="home-view off">
+        <header>
+            <h1 class="home-title">Hello, home </h1>
+            <button class="home-logout-button">Logout</button>
+        </header>
+
+        <main class="home-main">
+            <section class="home-posts">
+                <article>
+                    <img class="home-post-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMHK-tpPpSXNaZeIe5QYM5bDrnD7iu-G7haQ&usqp=CAU" alt="imagen">
+                    <p>hello, article</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="home-footer">
+            <button class="home-create-post-button">Add new post</button>
+        </footer>
+
+        <div class="home-create-post-modal off">
+            <div class="home-create-post-container">
+                <h2>Create post</h2>
+
+                <form class="home-create-post-form">
+                    <label for="create-post-url">Image</label>
+                    <input id="create-post-url" type="url">
+                    
+                    <label for="create-post-text">Text</label>
+                    <textarea id="create-post-text"></textarea>
+                    
+                    <button type="submit">Create</button>
+                    <button class="home-create-post-cancel-button">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

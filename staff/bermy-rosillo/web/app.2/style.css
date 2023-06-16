@@ -1,0 +1,20 @@
+.register-view{
+    border:1px solid black;
+    width:500px;
+}
+.register-form {
+    display: flex;
+    flex-direction: column;
+    width:50%;
+    margin:auto;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width:50%;
+}
+
+.off {
+    display: none;
+}
