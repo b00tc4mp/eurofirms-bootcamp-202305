@@ -8,6 +8,11 @@ function Caray(...elements) {
     this.length = elements.length
 }
 
+// Caray.prototype = {}
+// Caray.prototype.constructor = Caray
+
+// Caray.prototype = { constructor: Caray }
+
 Caray.prototype.forEach = function (callback) {
     for (let i = 0; i < this.length; i++) {
         const element = this[i]
