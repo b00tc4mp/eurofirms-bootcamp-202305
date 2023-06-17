@@ -16,14 +16,14 @@ function retrievePosts() {
         post2.id = post.id
         post2.image = post.image
         post2.text = post.text
-        post2.user = {}
+        post2.author = {}
        
         for( let j = 0 ; j < users.length ; j++){
             const user = users[j]
             
-            if (post.user === user.id){
-                post2.user.id = user.id
-                post2.user.name = user.name
+            if (user.id === post.author){
+                post2.author.id = user.id
+                post2.author.name = user.name
                 
                 break
             }

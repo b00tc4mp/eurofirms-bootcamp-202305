@@ -4,12 +4,7 @@ function createPost(userId,image,text){
     if(text.length === 0)
         return false
     
-    const post = {}
-
-    post.id = ++posts.cont
-    post.user = userId
-    post.image = image
-    post.text = text 
+    const post = new Post(userId,image,text)
     posts.push(post)
 
     return true

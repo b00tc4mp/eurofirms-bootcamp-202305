@@ -1,22 +1,5 @@
 var users = []
-users.count = 0
-users.push({
-    id: ++users.count,
-    name: 'Pin Ocho',
-    email: 'pin@ocho.com',
-    password: '1234'
-})
 
-users.push({
-    id: ++users.count,
-    name:'gato felix',
-    email:'gato@felix.com',
-    password:'1234'
-})
-
-users.push({
-    id: ++users.count,
-    name:'bird man',
-    email:'bird@man.com',
-    password:'1234'
-})    
+users.push(new User('Pin Ocho','pin@ocho.com','1234' ))
+users.push(new User('gato felix','gato@felix.com','1234'))
+users.push(new User('bird man','bird@man.com','1234'))    
