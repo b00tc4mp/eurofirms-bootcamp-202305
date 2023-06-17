@@ -2,8 +2,16 @@
 const postToList = function (userCreator, msg, img) {
     if (img.length === 0) return false
     if (msg.lenght === 0) return false
-    
-    posts.push(new Post(userCreator,msg,img))
+
+    const post = {}
+
+    post.id = ++posts.idCounter
+    post.user = userCreator
+    post.text = msg
+    post.image = img
+
+    posts.push(post)
+
     return true;
 }
 
@@ -42,12 +50,12 @@ const ShowPosts = function () {
         msg.className = 'post-item-msg'
 
         const user = document.createElement('p')
-        user.innerHTML = userRetrieve(posts[i].author).name
+        user.innerHTML = userRetrieve(posts[i].user).name
         user.className = 'post-item-user'
 
         post.append(img, msg, user)
 
-        if (userLogged === posts[i].author) {
+        if (userLogged === posts[i].user) {
             // Botón de edición
             const buttonEdit = document.createElement('button')
             buttonEdit.innerHTML = 'Editar'
@@ -58,9 +66,9 @@ const ShowPosts = function () {
                 const idPostEdit = homeModalEditpost.querySelector('#editpost-idpost')
                 idPostEdit.value = buttonEdit.postId
                 const imageEdit = homeModalEditpost.querySelector('#editpost-img')
-                imageEdit.value = postRetrieve(buttonEdit.postId).image
+                imageEdit.value = retrievePost(buttonEdit.postId).image
                 const textEdit = homeModalEditpost.querySelector('#editpost-msg')
-                textEdit.value = postRetrieve(buttonEdit.postId).text
+                textEdit.value = retrievePost(buttonEdit.postId).text
                 homeModalEditpost.classList.remove('off')
             }
             // Botón de borrado

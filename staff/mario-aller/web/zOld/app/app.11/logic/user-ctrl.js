@@ -1,11 +1,3 @@
-// Añadir usuario a la lista
-const userToList = function (name, email, password) {
-    if (users.some((user) => user.email === email)) return false
-
-    users.push(new User(name, email, password))
-    return true
-}
-
 // Devuelve el id del usuario por email
 const userGetId = function (email) {
     const pos = users.findIndex(user => user.email === email)
@@ -35,4 +27,16 @@ const userRetrieve = function (id) {
         user.email = users[pos].email
     }
     return user
+}
+
+// Añadir usuario a la lista
+const userToList = function (name, email, password) {
+    const user = {}
+
+    user.id = ++users.idCounter
+    user.name = name
+    user.email = email
+    user.password = password
+
+    users.push(user)
 }
