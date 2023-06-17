@@ -1,0 +1,2 @@
+/* Globals */
+var userId = null

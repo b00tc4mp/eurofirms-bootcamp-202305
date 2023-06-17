@@ -7,7 +7,7 @@ function renderPosts() {
         const post = posts[i]
 
         const author = document.createElement('h2')
-        author.innerText = post.author.name
+        author.innerText = post.user.name
 
         const image = document.createElement('img')
         image.classList.add('home-post-image')
@@ -19,7 +19,7 @@ function renderPosts() {
         const article = document.createElement('article')
         article.append(author, image, text)
 
-        if (post.author.id === userId) {
+        if (post.user.id === userId) {
             const editButton = document.createElement('button')
 
             editButton.innerText = 'Edit'

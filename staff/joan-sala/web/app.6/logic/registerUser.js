@@ -1,4 +1,4 @@
-function registerUser(author, email, password) {
+function registerUser(name, email, password) {
     let user
 
     for (let i = 0; i < users.length; i++) {
@@ -14,7 +14,13 @@ function registerUser(author, email, password) {
     if (user !== undefined)
         return false
     else {
-        user = new User(author, email, password)
+        user = {}
+
+        user.id = ++users.count
+        user.name = name
+        user.email = email
+        user.password = password
+
         users.push(user)
 
         return true

@@ -1,4 +1,4 @@
- 
+
 
 function retrievePosts() {
     const posts2 = []
@@ -11,14 +11,14 @@ function retrievePosts() {
         post2.id = post.id
         post2.image = post.image
         post2.text = post.text
-        post2.author = {}
+        post2.user = {}
 
         for (let j = 0; j < users.length; j++) {
             const user = users[j]
 
-            if (user.id === post.author) {
-                post2.author.id = author.id
-                post2.author.name = author.name
+            if (user.id === post.user) {
+                post2.user.id = user.id
+                post2.user.name = user.name
 
                 break
             }

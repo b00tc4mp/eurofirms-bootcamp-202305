@@ -2,7 +2,12 @@ function createPost(userId, image, text) {
     if (image.length === 0) return false
     if (text.length === 0) return false
 
-    const post = new Post(userId, image, text)
+    const post = {}
+
+    post.id = ++posts.count
+    post.user = userId
+    post.image = image
+    post.text = text
 
     posts.push(post)
 

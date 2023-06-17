@@ -1,4 +1,4 @@
-Caray.prototype.sort = function (callback) {
+  Caray.prototype.sort = function (callback) {
     if (callback) {
         let itemsChanged
         do {
