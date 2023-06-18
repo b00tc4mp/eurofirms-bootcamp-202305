@@ -4,3 +4,5 @@ function every(array, callback) {
     }
 return true;
 }
+
+//Determina si todos los elementos en el array satisfacen una condición

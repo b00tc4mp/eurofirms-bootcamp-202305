@@ -8,3 +8,6 @@ function filter(array, callback){
     
     return result
 }
+
+//crea un nuevo array 
+//con todos los elementos que cumplan la condición implementada por la función dada

@@ -5,3 +5,6 @@ function forEach(array, callback) {
         callback(element)
     }
 }
+
+//ejecuta la función indicada una vez por cada elemento del array
+

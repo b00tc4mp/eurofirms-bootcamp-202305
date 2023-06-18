@@ -4,12 +4,11 @@ function find(array, callback) {
 
         const result = callback(element)
 
-        if (result === true)
-            return true
-    }
-
-    return undefined
+        if (result)
+            return element
+    } 
 }
-//function find(index) {
-   // console.log('%c' + this, 'font-size: 1rem; color: dodgerblue;')
-//}
+
+//devuelve el valor del primer elemento del array que cumple la función de prueba proporcionada
+
+

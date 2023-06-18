@@ -1,4 +1,4 @@
-describe('TEST find')
+describe('TEST concat')
 
 describe('CASE with people')
 
@@ -29,20 +29,20 @@ const people = [
     }
 ]
 
-const person = find(person => person.age < 18)
+const people2 = concat(people, {
+    name: 'Campa Nilla',
+    age: 18,
+    origin: 'Wonderland',
+    colors: ['yellow', 'green']
+},
+{
+    name: 'Rodolfo',
+    age: 15,
+    origin: 'North Pole',
+    colors: ['brown', 'red']
+}
+)
 
-console.log(person.name)
+console.log(people2)
 
-const person2 = find(people, person => person.name.includes('J'))
 
-console.log(person2)
-//James Hook
-const person3 = find(people, person => person.colors.includes('blue'))
-
-console.log(person3)
-//Pepito Grillo
-
-const person4 = find(people, person => person.colors.includes('black'))
-
-console.log(person4)
-//James Hook

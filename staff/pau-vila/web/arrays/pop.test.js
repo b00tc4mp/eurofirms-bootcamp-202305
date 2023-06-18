@@ -1,5 +1,4 @@
-describe('TEST find')
-
+describe ('test pop')
 describe('CASE with people')
 
 const people = [
@@ -27,22 +26,13 @@ const people = [
         origin: 'Wonderland',
         colors: ['red', 'black']
     }
+
 ]
 
-const person = find(person => person.age < 18)
+const last = pop(people)
 
-console.log(person.name)
+console.log(last)
+//{ James Hook }
 
-const person2 = find(people, person => person.name.includes('J'))
-
-console.log(person2)
-//James Hook
-const person3 = find(people, person => person.colors.includes('blue'))
-
-console.log(person3)
-//Pepito Grillo
-
-const person4 = find(people, person => person.colors.includes('black'))
-
-console.log(person4)
-//James Hook
+console.log(people)
+//[{todos}] except { James Hook }
