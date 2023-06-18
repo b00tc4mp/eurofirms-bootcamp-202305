@@ -17,8 +17,8 @@ function retrievePosts() {
             const user = users[j]
 
             if (user.id === post.author) {
-                post2.author.id = author.id
-                post2.author.name = author.name
+                post2.author.id = user.id
+                post2.author.name = user.name
 
                 break
             }
