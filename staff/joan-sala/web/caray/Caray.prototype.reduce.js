@@ -7,4 +7,12 @@ Caray.prototype.reduce = function(callback, initialValue){
         index = 0
     }
     let accumulator = initialValue
+
+    for(let i = index; i < this.length; i++){
+        const element = this[i]
+        const valueFromCallback = callback(accumulator, element)
+
+        accumulator = valueFromCallback
+    }
+    return accumulator
 }
