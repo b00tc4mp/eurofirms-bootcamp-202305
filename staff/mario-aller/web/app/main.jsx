@@ -10,4 +10,4 @@ let userLogged = null
 
 const virtualRoot = ReactDOM.createRoot(document.getElementById('root'))
 
-virtualRoot.render (<App />)
+virtualRoot.render (<App/>)

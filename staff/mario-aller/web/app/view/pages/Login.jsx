@@ -1,5 +1,4 @@
 function Login() {
-    // Login
     return (
         <div className="login">
             <main className="log-view">

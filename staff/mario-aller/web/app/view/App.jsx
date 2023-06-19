@@ -1,3 +1,5 @@
 function App() {
-    return <Home />
+    // return <Register/>
+    // return <Login/>
+    return <Home/>
 }

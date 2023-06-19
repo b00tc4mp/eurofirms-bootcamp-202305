@@ -1,5 +1,4 @@
 function Register() {
-    // Register
     return (
         <div className="register">
             <main className="reg-view">
