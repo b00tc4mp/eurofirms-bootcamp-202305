@@ -93,7 +93,6 @@ Caray.prototype.indexOf = function (element, startIndex) {
   return -1;
 };
 
-/* A partir de aquí no están comprobados si funcionan */
 Caray.prototype.map = function (callback) {
   const mapped = [];
   for (let i = 0; i < this.length; i++) {
@@ -105,9 +104,13 @@ Caray.prototype.map = function (callback) {
 Caray.prototype.pop = function () {
   if (!this.length) return undefined;
 
-  let value = this[this.length - 1];
+  const index = this.length - 1;
+
+  const value = this[index];
 
   this.length--;
+
+  delete this[index];
 
   return value;
 };
@@ -116,13 +119,14 @@ Caray.prototype.push = function (...elements) {
   if (elements.length > 1) {
     for (let i = 0; i < elements.length; i++) {
       this[this.length] = elements[i];
+      this.length++;
     }
   } else {
-    this[this.length] = elements;
+    this[this.length] = elements[0];
+    this.length++;
   }
 
-  let index = this.length;
-  return index;
+  return this.length;
 };
 
 Caray.prototype.reduce = function (callback, initialValue) {

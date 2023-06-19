@@ -1,5 +1,3 @@
-/* Arreglar esto */
-
 describe("TEST map");
 
 describe("CASE with people");
@@ -35,23 +33,32 @@ const people6 = new Caray(
   }
 );
 
-console.log(
-  people6.map(function (people) {
-    people.age += 10;
-    return people;
-  })
-);
+function peopleSum10(people) {
+  people.age += 10;
 
-console.log(
-  people6.map(function (people) {
-    people.name = people.name.toUpperCase();
-    return people;
-  })
-);
+  return people;
+}
 
-console.log(
-  people6.map(function (people) {
-    people.colors[people.colors.length] = "white";
-    return people;
-  })
-);
+const result1 = people6.map(peopleSum10);
+
+console.log(result1);
+
+function mayus(people) {
+  people.name = people.name.toUpperCase();
+
+  return people;
+}
+
+const resul2 = people6.map(mayus);
+
+console.log(resul2);
+
+function addWhite(people) {
+  people.colors[people.colors.length] = "white";
+
+  return people;
+}
+
+const result3 = people6.map(addWhite);
+
+console.log(result3);
