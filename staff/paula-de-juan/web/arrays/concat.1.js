@@ -13,3 +13,4 @@ function concat(array, ...elements) {
     }
     return results
 }
+

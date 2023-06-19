@@ -1,4 +1,4 @@
-function retrievePosts(postId){
+function retrievePosts(){
     var posts2 = []
     
     for (var i = 0; i < posts.length; i++){

@@ -6,7 +6,7 @@ function createPost(userId, image, text) {
         return false
     }
 
-    const post = {}
+    var post = {}
 
     post.id = ++posts.count;
     post.user = userId;
