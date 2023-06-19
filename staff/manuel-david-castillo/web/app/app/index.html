@@ -8,161 +8,41 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="register off">
-      <form class="register-form" action="">
-        <h2>Register</h2>
-        <div>
-          <label for="name">Name:</label>
-          <input id="name" class="input" placeholder="name" type="text" />
-        </div>
-        <div>
-          <label for="email">Email:</label>
-          <input
-            id="register-email"
-            class="input"
-            placeholder="email"
-            type="email"
-          />
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input
-            id="register-password"
-            class="input"
-            placeholder="password"
-            type="password"
-          />
-        </div>
-        <button class="button">Register</button>
-      </form>
-      <a class="link-login" href="#">Go to Login</a>
-    </main>
+    <div id="root"></div>
 
-    <main class="login">
-      <form class="login-form" action="">
-        <h2>Login</h2>
-        <div>
-          <label for="email">Email:</label>
-          <input
-            id="login-email"
-            class="input"
-            placeholder="email"
-            type="email"
-          />
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input
-            id="login-password"
-            class="input"
-            placeholder="password"
-            type="password"
-          />
-        </div>
-        <button class="button">Enter</button>
-      </form>
-      <a class="link-register" href="#">Go to register</a>
-    </main>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
 
-    <div class="home-view off">
-      <header>
-        <h2 class="h2-home">My posts</h2>
-        <nav>
-          <button class="button-logout">Logout</button>
-        </nav>
-      </header>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-      <main class="home">
-        <section class="all-posts"></section>
+    <script src="data/models/User.js"></script>
+    <script src="data/models/Post.js"></script>
+    <script src="data/users.js"></script>
+    <script src="data/posts.js"></script>
 
-        <div class="container-new-post off">
-          <form class="form-new-post" action="">
-            <h3 class="h3-new-post">New post</h3>
-            <p class="p-form">Image</p>
-            <input id="url-image-new-post" type="url" />
-            <p class="p-form">Text</p>
-            <textarea
-              id="textarea-new-post"
-              name=""
-              id=""
-              cols="25"
-              rows="5"
-            ></textarea>
-            <div class="buttons-create-cancel">
-              <button type="submit" class="button-create-new-post">
-                Create
-              </button>
-              <button type="button" class="button-cancel-new-post">
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
+    <script src="logic/authenticateUser.js"></script>
+    <script src="logic/createNewPost.js"></script>
+    <script src="logic/deletePost.js"></script>
+    <script src="logic/registerUser.js"></script>
+    <script src="logic/retrievePost.js"></script>
+    <script src="logic/retrieveUser.js"></script>
+    <script src="logic/updatePost.js"></script>
 
-        <div class="container-edit-post off">
-          <form class="form-edit-post" action="">
-            <input type="hidden" id="edit-post-id" />
-            <h3 class="h3-edit-post">Edit post</h3>
-            <p class="p-form">Image</p>
-            <input id="url-image-edit-post" type="url" />
-            <p class="p-form">Text</p>
-            <textarea
-              id="textarea-edit-post"
-              name=""
-              id=""
-              cols="25"
-              rows="5"
-            ></textarea>
-            <div class="buttons-create-cancel">
-              <button type="submit" class="button-create-edit-post">
-                Edit
-              </button>
-              <button type="button" class="button-cancel-edit-post">
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
+    <script src="view/helpers/showPosts.js"></script>
+    <script src="view/pages/login.jsx" type="text/babel"></script>
+    <script src="view/pages/register.jsx" type="text/babel"></script>
+    <script src="view/pages/home.jsx" type="text/babel"></script>
 
-        <div class="container-delete-post off">
-          <form class="form-delete-post" action="">
-            <input type="hidden" id="delete-post-id" />
-            <h3 class="h3-delete-post">Delete post</h3>
-            <p>Are you sure to delete this post?</p>
-            <div class="buttons-create-cancel">
-              <button type="submit" class="button-create-delete-post">
-                Delete
-              </button>
-              <button type="button" class="button-cancel-delete-post">
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      </main>
+    <script src="view/App.jsx" type="text/babel"></script>
 
-      <footer>
-        <button class="button-new-post">New Post</button>
-      </footer>
-    </div>
+    <script src="main.jsx" type="text/babel"></script>
   </body>
-  <script src="main.js"></script>
 
-  <script src="data/models/User.js"></script>
-  <script src="data/models/Post.js"></script>
-  <script src="data/users.js"></script>
-  <script src="data/posts.js"></script>
-
-  <script src="logic/authenticateUser.js"></script>
-  <script src="logic/createNewPost.js"></script>
-  <script src="logic/deletePost.js"></script>
-  <script src="logic/registerUser.js"></script>
-  <script src="logic/retrievePost.js"></script>
-  <script src="logic/retrieveUser.js"></script>
-  <script src="logic/updatePost.js"></script>
-
-  <script src="view/home.js"></script>
-  <script src="view/login.js"></script>
-  <script src="view/register.js"></script>
-  <script src="view/helpers/showPosts.js"></script>
+  <script></script>
 </html>
