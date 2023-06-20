@@ -1,0 +1,3 @@
+function retrievePosts() {
+    return posts
+}

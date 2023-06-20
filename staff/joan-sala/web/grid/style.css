@@ -1,0 +1,34 @@
+.container {
+    display: grid;
+    width: 100%;
+    height: 100vw;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 20% 60% 20%;
+}
+
+.header {
+    grid-column: 1/ 4;
+    grid-row: 1/ 2;
+    border: 2px solid
+}
+
+.nav {
+    grid-column: 1/2;
+    grid-row: 2/ 3;
+    border: 2px solid;
+}
+.section{
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    border: 2px solid
+}
+.aside{
+    grid-column: 3 /4;
+    grid-row: 2/3;
+    border: 2px solid;
+}
+.footer{
+    grid-column: 1/ 4;
+    grid-row: 3/4;
+    border: 2px solid;
+}
