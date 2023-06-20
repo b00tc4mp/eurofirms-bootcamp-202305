@@ -5,15 +5,29 @@ function Login(props) {
         props.onRegisterClick()
     }
 
+    const handleLoginSubmit = event => {
+        event.preventDefault()
+
+        const email = event.target.email.value
+        const password = event.target.password.value
+
+        const result = authenticateUser(email, password)
+
+        if (!result)
+            alert('Wrong credentials')
+        else
+            props.onLoggedIn()
+    }
+
     return <main className="login-view">
         <h1>Login</h1>
 
-        <form className="login-form">
-            <label htmlFor="login-email">E-mail</label>
-            <input id="login-email" type="email"></input>
+        <form className="login-form" onSubmit={handleLoginSubmit}>
+            <label htmlFor="email">E-mail</label>
+            <input id="email" type="email" />
 
-            <label htmlFor="login-password">Password</label>
-            <input id="login-password" type="password"></input>
+            <label htmlFor="password">Password</label>
+            <input id="password" type="password" />
 
             <button type="submit">Login</button>
         </form>

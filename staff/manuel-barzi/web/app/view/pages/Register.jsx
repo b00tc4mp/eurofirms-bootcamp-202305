@@ -5,18 +5,33 @@ function Register(props) {
         props.onLoginClick()
     }
 
+    const handleRegisterSubmit = event => {
+        event.preventDefault()
+
+        const name = event.target.name.value
+        const email = event.target.email.value
+        const password = event.target.password.value
+
+        const result = registerUser(name, email, password)
+
+        if (!result)
+            alert('User already exists')
+        else
+            props.onRegistered()
+    }
+
     return <main className="register-view">
         <h1>Register</h1>
 
-        <form className="register-form">
-            <label htmlFor="register-name">Name</label>
-            <input id="register-name" type="text"></input>
+        <form className="register-form" onSubmit={handleRegisterSubmit}>
+            <label htmlFor="name">Name</label>
+            <input id="name" type="text"></input>
 
-            <label htmlFor="register-email">E-mail</label>
-            <input id="register-email" type="email"></input>
+            <label htmlFor="email">E-mail</label>
+            <input id="email" type="email"></input>
 
-            <label htmlFor="register-password">Password</label>
-            <input id="register-password" type="password"></input>
+            <label htmlFor="password">Password</label>
+            <input id="password" type="password"></input>
 
             <button type="submit">Register</button>
         </form>
