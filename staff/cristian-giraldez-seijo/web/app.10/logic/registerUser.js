@@ -13,10 +13,16 @@ function registerUser(name, email, password) {
 
     if (user !== undefined)
         return false
+    else {
+        user = {}
 
-    user = new User(name, email, password)
+        user.id = ++users.count
+        user.name = name
+        user.email = email
+        user.password = password
 
-    users.push(user)
+        users.push(user)
 
-    return true
+        return true
+    }
 }
