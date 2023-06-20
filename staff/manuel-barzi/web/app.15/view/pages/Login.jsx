@@ -1,10 +1,4 @@
-function Login(props) {
-    const handleRegisterClick = event => {
-        event.preventDefault()
-
-        props.onRegisterClick()
-    }
-
+function Login() {
     return <main className="login-view">
         <h1>Login</h1>
 
@@ -18,6 +12,6 @@ function Login(props) {
             <button type="submit">Login</button>
         </form>
 
-        <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
+        <p>Go to <a className="login-register-link" href="">Register</a></p>
     </main>
 }
