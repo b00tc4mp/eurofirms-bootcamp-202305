@@ -33,3 +33,17 @@ Caray.prototype.find = function (callback) {
   }
 }
 
+Caray.prototype.filter = function (callback){
+  const results = new Caray
+  
+  for(let i = 0; i < this.length; i++){
+    const element = this[i]
+    const maatches = callback(element)
+
+    if(maatches){
+      results[results.length] = element
+      results.length++
+    }
+  }
+  return results
+}
