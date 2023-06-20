@@ -1,4 +1,4 @@
-const barbies = [
+const barbies = new Caray(
     {
         name: 'Beachy',
         hair: 'blonde',
@@ -20,12 +20,9 @@ const barbies = [
         dress: 'dress',
         vehicle:'mustang'
     }
-]
-const caray = new Caray(10,20,30,40)
-console.log(caray)
-//caray.talk()
+);   
 
-const result = caray.some(barbies,function(element){
-    return element.hair ==='blonde'
+const result = every(barbies,function(element){
+    return console.log (element.vehicle === 'mustang')
 })
-console.log('Some :' +result)
+console.log(result)

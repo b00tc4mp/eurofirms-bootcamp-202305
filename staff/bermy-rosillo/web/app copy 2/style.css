@@ -17,9 +17,6 @@ body {
     background-image:linear-gradient(0deg, rgb(31, 41, 238), rgb(201, 195, 217));
     height: 100%;
 }
-#root{
-    height:100%;
-}
 
 
 label {
