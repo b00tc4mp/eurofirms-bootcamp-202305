@@ -1,0 +1,175 @@
+/* home */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* home */
+
+.home-view {
+    margin: 0px;
+    width: 100%;
+}
+
+
+
+.home-header {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #56d8e4;
+    width: 100%;
+    
+    box-sizing: border-box;
+    left: 0px;
+}
+
+.home-title {
+    font-size: 1.5rem;
+}
+
+.home-main {
+    
+    width: 80%;
+    position: absolute;
+    top: 80px;
+    
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    margin-bottom: 100px;
+    padding-bottom: 200px;
+}
+
+.home-footer {
+    background-color: #56d8e4;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    margin: 0px;
+    left: 0px;
+}
+
+.home-logout-button {
+    margin-right: 20px;
+}
+
+.home-create-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-create-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.home-create-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-create-post-button {
+    padding: 10px;
+}
+
+.home-posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    position: absolute;
+    height: auto;
+    padding-bottom: 100px;
+}
+
+.home-post-image {
+    width: 100%;
+}
+
+.posts-container{
+    display: flex;
+    flex-direction: column;
+    width: 221px;
+    position: relative;   
+}
+
+
+.home-edit-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-edit-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.home-edit-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+
+
+.home-delete-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-delete-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.home-delete-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+.off {
+    display: none;
+}
