@@ -1,29 +1,16 @@
-function Home(props) {
-  const [createPost, setCreatePost] = React.useState()
-
-  const handleLogout = () => {
-    userId = null
-
-    props.onLogout()
-  }
-
-  const handleCreatePost = ()=> setCreatePost(true)
-
-  const handleCancelCreatePost = ()=> setCreatePost(false)
-  
-  return <div className="home-view">
+function Home() {
+   return <div className="home-view">
       <header>
         <h2 className="h2-home">My posts</h2>
         <nav>
-          <button onClick={handleLogout} className="button-logout">Logout</button>
+          <button className="button-logout">Logout</button>
         </nav>
       </header>
 
       <main className="home">
         <section className="all-posts"></section>
 
-        { createPost ? 
-          <div className="container-new-post">
+        <div className="container-new-post off">
           <form className="form-new-post" action="">
             <h3 className="h3-new-post">New post</h3>
             <p className="p-form">Image</p>
@@ -39,13 +26,12 @@ function Home(props) {
               <button type="submit" className="button-create-new-post">
                 Create
               </button>
-              <button onClick={handleCancelCreatePost} type="button" className="button-cancel-new-post">
+              <button type="button" className="button-cancel-new-post">
                 Cancel
               </button>
             </div>
           </form>
-        </div> : null
-        }
+        </div>
 
         <div className="container-edit-post off">
           <form className="form-edit-post" action="">
@@ -89,7 +75,7 @@ function Home(props) {
       </main>
 
       <footer>
-        <button onClick={handleCreatePost} className="button-new-post">New Post</button>
+        <button className="button-new-post">New Post</button>
       </footer>
     </div>
 }

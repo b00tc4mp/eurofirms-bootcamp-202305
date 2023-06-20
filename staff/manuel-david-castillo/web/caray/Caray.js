@@ -13,10 +13,11 @@ Caray.prototype.every = function (callback) {
 };
 
 Caray.prototype.filter = function (callback) {
-  const result = [];
+  const result = new Caray();
   for (let i = 0; i < this.length; i++) {
     if (callback(this[i])) {
       result[result.length] = this[i];
+      result.length++;
     }
   }
   return result;
@@ -94,9 +95,10 @@ Caray.prototype.indexOf = function (element, startIndex) {
 };
 
 Caray.prototype.map = function (callback) {
-  const mapped = [];
+  const mapped = new Caray();
   for (let i = 0; i < this.length; i++) {
     mapped[mapped.length] = callback(this[i]);
+    mapped.length++;
   }
   return mapped;
 };
@@ -169,12 +171,13 @@ Caray.prototype.shift = function () {
     this[i] = this[i + 1];
   }
 
+  delete this[this.length];
   this.length--;
   return this[0];
 };
 
 Caray.prototype.slice = function (startIndex = 0, endIndex = array.length) {
-  const result = [];
+  const result = new Caray();
   if (endIndex > this.length) {
     endIndex = this.length;
   }
@@ -187,6 +190,7 @@ Caray.prototype.slice = function (startIndex = 0, endIndex = array.length) {
     i++
   ) {
     result[result.length] = this[i];
+    result.length++;
   }
 
   return result;
@@ -199,6 +203,7 @@ Caray.prototype.some = function (callback) {
   return false;
 };
 
+/* Funcinan todos hasta aquí */
 Caray.prototype.splice = function (
   startIndex,
   deleteCount = array.length,

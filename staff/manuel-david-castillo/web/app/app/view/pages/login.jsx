@@ -1,11 +1,34 @@
-function Login() {
+function Login(props) {
+  const handleRegisterClick = event => {
+    event.preventDefault() 
+
+    props.onRegisterClick()
+  }
+
+  const handleLoginSubmit = event => {
+    event.preventDefault()
+
+    const email = event.target.email.value
+    const password = event.target.password.value
+
+    const result = authenticateUser(email, password)
+
+    if(result === false) {
+      alert('wrong credentials')
+    } else {
+      userId = result
+
+      props.onLogin()
+    }
+  }
+
  return <main className="login">
-      <form className="login-form" action="">
+      <form onSubmit={handleLoginSubmit} className="login-form" >
         <h2>Login</h2>
         <div>
           <label htmlFor="email">Email:</label>
           <input
-            id="login-email"
+            id="email"
             className="input"
             placeholder="email"
             type="email"
@@ -14,7 +37,7 @@ function Login() {
         <div>
           <label htmlFor="password">Password:</label>
           <input
-            id="login-password"
+            id="password"
             className="input"
             placeholder="password"
             type="password"
@@ -22,6 +45,6 @@ function Login() {
         </div>
         <button className="button">Enter</button>
       </form>
-      <a className="link-register" href="#">Go to register</a>
+      <a className="link-register" href="#" onClick={handleRegisterClick}>Go to register</a>
     </main>
 }
