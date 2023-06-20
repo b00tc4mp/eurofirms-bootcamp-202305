@@ -13,7 +13,7 @@ function Login(props) {
 
         const result = authenticateUser(email, password)
 
-        if (!result)
+        if (result === false)
             alert('Wrong credentials')
         else
             props.onLoggedIn()
