@@ -7,10 +7,22 @@ function App(){
 
     const handleLoginClick = () => setView('login')
 
-    if (view === 'login')
-        return <Login onRegisterClick = {handleRegisterClick} />
-    else if (view === 'register')
-        return <Register />
-    else if (view === 'home')
+    const handleLoggedIn = () => setView('home')
+
+    const handleRegistered = () => setView('login')
+
+    if (view === 'login'){
+        return <Login 
+        onRegisterClick = {handleRegisterClick} 
+        onLoggedIn={handleLoggedIn} />
+    }
+    else if (view === 'register'){
+       return <Register 
+       onLoginClick = {handleLoginClick}
+       onRegistered = {handleRegistered}
+       />
+    }
+    else if (view === 'home'){
         return <Home />
+    }
 }
