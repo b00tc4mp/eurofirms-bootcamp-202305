@@ -24,6 +24,7 @@ const barbies = [
 ]
 const a = new Caray(barbies)
 console.log(a)
+//PONER UN RESULT 'HAIR'
 
 //const arraySome = new Caray(barbies)
 
