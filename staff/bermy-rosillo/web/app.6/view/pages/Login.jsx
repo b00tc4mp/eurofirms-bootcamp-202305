@@ -1,7 +1,5 @@
 //props is a object with properties
 function Login(props) {
-    console.log('Login->render')
-   
     const handleRegisterClick = event => {
 
         event.preventDefault()
@@ -20,11 +18,9 @@ function Login(props) {
 
         if(result === false)
             alert('wrong credentials')
-        else{
-        userId = result
-
+        else
         props.onLoggedIn() // call to handleLoggedIn() in App
-        }
+
     }
 
     return <main className="login-view">

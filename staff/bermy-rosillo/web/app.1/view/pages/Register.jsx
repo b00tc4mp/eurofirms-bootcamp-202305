@@ -1,5 +1,5 @@
 function Register(props){
-    console.log('Register->render')
+    
     const handleLoginClick = event =>{
         
         event.preventDefault()
