@@ -28,28 +28,28 @@ return <div className="register-view container">
   <div className="form-row">
     <label htmlFor="register-name">Name</label>
     <div className="input-data">
-      <input type="text" name="name" id="register-name" required />
+      <input type="text" name="name" id="register-name" required></input>
       <div className="underline"></div>
     </div>
   </div>
   <div className="form-row">
     <label htmlFor="register-email" type="text">Email</label>
     <div className="input-data">
-      <input type="text" name="email" id="register-email" required />
+      <input type="text" name="email" id="register-email" required></input>
       <div className="underline"></div>
     </div>
   </div>
   <div className="form-row">
     <label htmlFor="register-password">Password</label>
     <div className="input-data">
-      <input type="password" name="password" id="register-password" required />
+      <input type="password" name="password" id="register-password" required></input>
       <div className="underline"></div>
     </div>
   </div>
   <div className="form-row submit-btn">
     <div className="input-data">
       <div className="inner"></div>
-      <input type="submit" />Register
+      <input type="submit" value="Register"></input>
     </div>
   </div>
 </form>

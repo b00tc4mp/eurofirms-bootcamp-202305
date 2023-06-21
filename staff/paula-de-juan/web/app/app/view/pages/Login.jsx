@@ -16,6 +16,7 @@ function Login(props){
       if (result === false){
             alert('Wrong credentials')
       } else {
+            userId = result
             props.onLoggedIn()
       }
     }

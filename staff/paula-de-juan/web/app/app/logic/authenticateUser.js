@@ -13,7 +13,6 @@ function authenticateUser(email, password) {
 
     if (user === undefined || user.password !== password) {
         return false
-    } else {
-        return user.id;
     }
-}
+    return user.id;
+    }

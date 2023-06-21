@@ -1,8 +1,8 @@
-function User (name, email, password){
-    this.id = User.idCounter++
+function User(name, email, password){
+    this.id = ++User.count
     this.name = name
     this.email = email
     this.password = password
 }
 
-User.idCounter = 1;
+User.count = -1;

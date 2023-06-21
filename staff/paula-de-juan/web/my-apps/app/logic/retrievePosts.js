@@ -1,28 +1,18 @@
-function retrievePosts(postId){
-    var posts2 = []
-    
-    for (var i = 0; i < posts.length; i++){
-        var post = posts[i]
-
-        var post2 = {}
+function retrievePosts() {
+    const posts2 = posts.map(post => {
+        const post2 = {}
 
         post2.id = post.id
         post2.image = post.image
         post2.text = post.text
-        post2.user = {}
+        post2.author = {}
 
-        for (var j = 0; users.length; j++){
-            var user = users[j]
-            
-            if (user.id === post.user){
-                post2.user.id = user.id
-                post2.user.name = user.name
-                break;
-            }
-        }
+        const user = users.find(user => user.id === post.author)
 
-        posts2.push(post2)
+        post2.author.id = userId
+        post2.author.name = user.name
 
-    }
+        return post2
+    })
     return posts2
 }

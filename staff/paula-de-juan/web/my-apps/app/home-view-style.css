@@ -14,7 +14,7 @@ body {
 
 .home-view {
     margin: 0px;
-    width: 100%;
+    width: 80%;
 }
 
 
@@ -29,7 +29,6 @@ body {
     justify-content: space-between;
     background-color: #56d8e4;
     width: 100%;
-    
     box-sizing: border-box;
     left: 0px;
 }
@@ -43,7 +42,7 @@ body {
     width: 80%;
     position: absolute;
     top: 80px;
-    
+    left: 0px;
     display: flex;
     justify-content: center;
     height: fit-content;
@@ -55,7 +54,7 @@ body {
     background-color: #56d8e4;
     position: fixed;
     bottom: 0;
-    width: 100%;
+   width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,7 +70,7 @@ body {
 .home-create-post-modal {
     background-color: rgba(0, 0, 0, 0.497);
     position: fixed;
-    width: 100%;
+    width: 80%;
     height: 100%;
     top: 0;
     display: flex;

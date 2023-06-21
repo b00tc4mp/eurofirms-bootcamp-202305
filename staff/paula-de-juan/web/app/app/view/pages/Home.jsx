@@ -1,12 +1,27 @@
 function Home() {
+    
+    const user = retrieveUser(userId)
+    const posts = retrievePosts()
+
     return <div className="home-view">
         <header>
-            <h1 className="home-title">Hello, Home!</h1>
+            <h1 className="home-title">Hello, {user.name}!</h1>
             <button className="home-logout-button">Logout</button>
         </header>
 
         <main className="home-main">
-            <section className="home-posts"></section>
+            <section className="home-posts">
+                {posts.map(post =>
+                <article className="posts-container">
+                    <h2>{post.author.name}</h2>
+                    <img className="post-image" src={post.image} alt={post.text}></img>
+                    <p>{post.text}</p>
+                    {post.author.id === userId && <>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </>}    
+                </article>)}
+            </section>
         </main>
 
         <footer className="home-footer">

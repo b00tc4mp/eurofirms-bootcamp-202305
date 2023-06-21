@@ -16,6 +16,7 @@
       if (result === false){
             alert('Wrong credentials')
       } else {
+            userId = result
             props.onLoggedIn()
       }
     }
@@ -29,22 +30,21 @@
       <div className="form-row">
         <label htmlFor="login-email" type="text">Email</label>
         <div className="input-data">
-          <input type="text" name="email" id="login-email" required />
+          <input type="text" name="email" id="login-email" required></input>
           <div className="underline"></div>
         </div>
       </div>
       <div className="form-row">
         <label htmlFor="login-password" type="password">Password</label>
-
         <div className="input-data">
-          <input type="password" name="password" id="login-password" required />
+          <input type="password" name="password" id="login-password" required></input>
           <div className="underline"></div>
         </div>
       </div>
       <div className="form-row submit-btn">
         <div className="input-data">
           <div className="inner"></div>
-          <input type="submit"/>Login
+          <input type="submit" value="Login"></input>
         </div>
       </div>
     </form>

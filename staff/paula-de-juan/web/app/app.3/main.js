@@ -4,6 +4,8 @@
  
 */
 
+var userId = null;
+
 // Register Form
 var registerView = document.querySelector('.register-view');
 var registerForm = registerView.querySelector('.register-form');
@@ -57,16 +59,18 @@ loginForm.onsubmit = function (event) {
     if (result === false)
         alert('Wrong credentials')
     else {
+        userId = result
+
         loginForm.reset()
 
-        const user = retrieveUser(email)
+        var user = retrieveUser(userId)
 
         if (user === null) {
             alert('User dont found')
         }
         else {
             loginView.classList.add('off')
-            const homeTitle = homeView.querySelector('.home-title')
+            var homeTitle = homeView.querySelector('.home-title');            
 
             homeTitle.innerText = 'Hello ' + user.name + '!';
 
@@ -74,27 +78,26 @@ loginForm.onsubmit = function (event) {
 
             var posts = retrievePosts()
 
-            for (var i = 0; i < posts.length; i++){
-                
+            for(var i = 0; i < posts.length; i++){
                 var post = posts[i]
-
+                
+                var user = document.createElement('h2')
+                user.innerText = post.user.name
+    
                 var image = document.createElement('img')
-                var text = document.createElement('p')
-
                 image.src = post.image
                 image.classList.add('home-post-image')
+               
+                var text = document.createElement('p')
                 text.innerHTML = post.text
-
+                
                 var article = document.createElement('article')
+                article.append(user, image, text)
+                
                 article.classList.add('posts-container')
-
-                article.append(image, text)
                 homePosts.append(article)
-
             }
             homeView.classList.remove('off')
-
-
         }
     }
 }
@@ -146,7 +149,7 @@ homeCreatePostForm.onsubmit = function (event) {
     var textInput = homeCreatePostForm.querySelector('#create-post-text')
     var text = textInput.value
 
-    var result = createPost(image, text)
+    var result = createPost(userId, image, text)
 
     if (result === false)
         alert('Cannot create post')
@@ -157,9 +160,12 @@ homeCreatePostForm.onsubmit = function (event) {
 
         homePosts.innerHTML = ''
 
-        var postsLocal = retrievePosts()
-        for(var i = 0; i < postsLocal.length; i++){
-            var post = postsLocal[i]
+        var posts = retrievePosts()
+        for(var i = 0; i < posts.length; i++){
+            var post = posts[i]
+            
+            var user = document.createElement('h2')
+            user.innerText = post.user.name
 
             var image = document.createElement('img')
             image.src = post.image
@@ -169,7 +175,7 @@ homeCreatePostForm.onsubmit = function (event) {
             text.innerHTML = post.text
             
             var article = document.createElement('article')
-            article.append(image, text)
+            article.append(user, image, text)
             
             article.classList.add('posts-container')
             homePosts.append(article)

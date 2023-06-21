@@ -134,8 +134,59 @@ body {
     width: 50%;
 }
 
+
+.home-edit-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-edit-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.home-edit-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+
+
+.home-delete-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-delete-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.home-delete-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
 .off {
     display: none;
 }
-
-#register-name {background-color: aquamarine;}

@@ -137,3 +137,5 @@ body {
 .off {
     display: none;
 }
+
+#register-name {background-color: aquamarine;}
