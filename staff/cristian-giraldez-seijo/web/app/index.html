@@ -12,129 +12,11 @@
 </head>
 
 <body>
-    <main class="register-view off">
-        <h1>Register</h1>
+    <div id="root"></div>
 
-        <form class="register-form">
-            <label for="register-name">Name</label>
-            <input id="register-name" type="text">
-
-            <label for="register-email">E-mail</label>
-            <input id="register-email" type="email">
-
-            <label for="register-password">Password</label>
-            <input id="register-password" type="password">
-
-            <button type="submit">Register</button>
-        </form>
-
-        <p>Go to <a class="register-login-link" href="">Login</a></p>
-    </main>
-
-    <main class="login-view _off">
-        <h1>Login</h1>
-
-        <form class="login-form">
-            <label for="login-email">E-mail</label>
-            <input id="login-email" type="email">
-
-            <label for="login-password">Password</label>
-            <input id="login-password" type="password">
-
-            <button type="submit">Login</button>
-        </form>
-
-        <p>Go to <a class="login-register-link" href="">Register</a></p>
-    </main>
-
-    <div class="home-view off">
-        <header class="home-header">
-            <h1 class="home-title">Hello, Home!</h1>
-
-            <button class="home-logout-button">Logout</button>
-        </header>
-
-        <main class="home-main">
-            <section class="home-posts">
-                <article>
-                    <img class="home-post-image"
-                        src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg"
-                        alt="Calico Electrónico">
-
-                    <p>Hello, Cálico!</p>
-                </article>
-
-                <article>
-                    <img class="home-post-image"
-                        src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg"
-                        alt="Calico Electrónico">
-
-                    <p>Hello, Cálico!</p>
-                </article>
-
-                <article>
-                    <img class="home-post-image"
-                        src="https://2.bp.blogspot.com/-OBGl0OzZ6iE/T24HFSGjGCI/AAAAAAAAJyA/moLbzk7n0v8/s1600/CalicoRulez.jpg"
-                        alt="Calico Electrónico">
-
-                    <p>Hello, Cálico!</p>
-                </article>
-            </section>
-        </main>
-
-        <footer class="home-footer">
-            <button class="home-create-post-button">+</button>
-        </footer>
-
-        <div class="home-create-post-modal off">
-            <div class="home-create-post-container">
-                <h2>Create post</h2>
-
-                <form class="home-create-post-form">
-                    <label for="create-post-url">Image</label>
-                    <input id="create-post-url" type="url">
-
-                    <label for="create-psot-text">Text</label>
-                    <textarea id="create-post-text"></textarea>
-
-                    <button type="submit">Create</button>
-                    <button class="home-create-post-cancel-button">Cancel</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="home-edit-post-modal off">
-            <div class="home-edit-post-container">
-                <h2>Edit post</h2>
-
-                <form class="home-edit-post-form">
-                    <input type="hidden" id="edit-post-id">
-
-                    <label for="edit-post-url">Image</label>
-                    <input id="edit-post-url" type="url">
-
-                    <label for="edit-psot-text">Text</label>
-                    <textarea id="edit-post-text"></textarea>
-
-                    <button type="submit">Save</button>
-                    <button class="home-edit-post-cancel-button">Cancel</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="home-delete-post-modal off">
-            <div class="home-delete-post-container">
-                <h2>Delete post</h2>
-
-                <form class="home-delete-post-form">
-                    <input type="hidden" id="delete-post-id">
-
-                    <button type="submit">Delete</button>
-                    <button class="home-delete-post-cancel-button">Cancel</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script src="data/models/Post.js"></script>
     <script src="data/models/User.js"></script>
@@ -149,11 +31,11 @@
     <script src="logic/updatePost.js"></script>
     <script src="logic/deletePost.js"></script>
 
-    <script src="view/helpers.js"></script>
-    <script src="view/register.js"></script>
-    <script src="view/login.js"></script>
-    <script src="view/home.js"></script>
-    <script src="main.js"></script>
+    <script src="view/pages/Login.jsx" type="text/babel"></script>
+    <script src="view/pages/Register.jsx" type="text/babel"></script>
+    <script src="view/pages/Home.jsx" type="text/babel"></script>
+    <script src="view/App.jsx" type="text/babel"></script>
+    <script src="main.jsx" type="text/babel"></script>
 </body>
 
 </html>
