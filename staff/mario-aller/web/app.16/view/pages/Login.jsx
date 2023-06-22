@@ -26,12 +26,12 @@ function Login(props) {
                 <form className="log-form" action="submit" onSubmit={toBeLogged}>
                     <div className="basic-form">
                         <label className="basic-label" htmlFor="email">Correo</label>
-                        <input type="email" id="email" autoComplete="off"></input>
+                        <input type="email" id="email"></input>
 
                         <label className="basic-label" htmlFor="password">Clave</label>
-                        <input type="password" id="password" autoComplete="off"></input>
+                        <input type="password" id="password"></input>
 
-                        <button className="basic-button">Acceso</button>
+                        <button className="basic-button" >Acceso</button>
                     </div>
                 </form>
             </main>

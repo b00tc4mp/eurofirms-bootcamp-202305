@@ -26,13 +26,13 @@ function Register(props) {
                 <form className="reg-form" action="submit" onSubmit={userToBeRegistered}>
                     <div className="basic-form">
                         <label className="basic-label" htmlFor="name">Nombre</label>
-                        <input type="text" id="name" autoComplete="off"></input>
+                        <input type="text" id="name"></input>
 
                         <label className="basic-label" htmlFor="email">Correo</label>
-                        <input type="email" id="email" autoComplete="off"></input>
+                        <input type="email" id="email"></input>
 
                         <label className="basic-label" htmlFor="password">Clave</label>
-                        <input type="password" id="password" autoComplete="off"></input>
+                        <input type="password" id="password"></input>
 
                         <button className="basic-button">Registrarse</button>
                     </div>

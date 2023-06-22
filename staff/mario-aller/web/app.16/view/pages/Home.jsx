@@ -1,30 +1,15 @@
 function Home() {
-
-    const userPublicLogged = userRetrieve(userLogged)
-    const postsFull = postRetrieve()
-
     return (
         <div className="home">
             <header className="home-header flex-hor">
                 <div className="basic-head">
-                    <h3 className="greetings">Hola, {userPublicLogged.name}</h3>
+                    <h3 className="greetings">Home!</h3>
                 </div>
             </header>
 
             <main className="home-view">
                 <section className="posts-list basic-container">
-                    {postsFull.map(post => <>
-                    <article className="post-item">
-                        <img className="post-item-img" src={post.image} alt="Foto de Post"/>
-                        <p className="post-item-msg">{post.text}</p>
-                        <p className="post-item-user">{post.author.name}</p>
-
-                        {post.author.id === userLogged && <>
-                            <button className="post-item-button" type="button" postid={String(post.id)}>Editar</button>
-                            <button className="post-item-button" type="button" postid={String(post.id)}>Borrar</button>
-                        </>}
-                    </article>
-                    </>)}
+                    <article>No hay posts</article>
                 </section>
             </main>
 

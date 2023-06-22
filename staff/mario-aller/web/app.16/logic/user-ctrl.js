@@ -23,16 +23,16 @@ const userPasswordOK = function (email, password) {
 
 // Devuelve usuario público (ret objeto de la lista del usuario con id)
 const userRetrieve = function (id) {
-    if (id === undefined) return null
+    if (id === null) return null
     let user = null
     const pos = users.findIndex(user => user.id === id)
 
     if (pos !== -1) {
-        user = {
-            id: id,
-            name: users[pos].name,
-            email: users[pos].email
-        }
+        user = {}
+
+        user.id = id
+        user.name = users[pos].name
+        user.email = users[pos].email
     }
     return user
 }
