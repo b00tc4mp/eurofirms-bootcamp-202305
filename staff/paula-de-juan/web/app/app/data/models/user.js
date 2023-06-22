@@ -5,4 +5,4 @@ function User (name, email, password){
     this.password = password
 }
 
-User.count = -1;
+User.count = 0;

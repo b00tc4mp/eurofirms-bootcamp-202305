@@ -11,6 +11,8 @@ function App(){
 
     const handleRegistered = () => setView('login')
 
+    const handleLoggedOut = () => setView ('login')
+
     if (view === 'login'){
         return <Login 
         onRegisterClick = {handleRegisterClick} 
@@ -23,6 +25,9 @@ function App(){
        />
     }
     else if (view === 'home'){
-        return <Home />
+        return <Home 
+        onLoggedOut = {handleLoggedOut}
+
+        />
     }
 }

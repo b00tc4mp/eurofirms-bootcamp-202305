@@ -1,5 +1,7 @@
 function deletePost (postId){
     let post
+
+    const posts = db.posts
     
     for (let i = 0; i < posts.length; i++){
         const _post = posts[i]

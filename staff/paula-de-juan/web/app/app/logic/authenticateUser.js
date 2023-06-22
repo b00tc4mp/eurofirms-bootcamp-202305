@@ -1,6 +1,8 @@
 function authenticateUser(email, password) {
     let user;
 
+    const users = db.users
+
     for (let i = 0; i < users.length; i++) {
         var _user = users[i];
 

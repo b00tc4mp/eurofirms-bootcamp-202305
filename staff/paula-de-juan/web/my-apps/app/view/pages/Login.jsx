@@ -16,7 +16,7 @@
       if (result === false){
             alert('Wrong credentials')
       } else {
-            userId = result
+            context.userId = result
             props.onLoggedIn()
       }
     }

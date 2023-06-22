@@ -1,13 +1,18 @@
-function Home() {
+function Home(props) {
 
-  const user = retrieveUser(userId)
+  const user = retrieveUser(context.userId)
   const posts = retrievePosts()
+
+  const onLoggedOut = function () {
+      context.userId = null
+      props.onLoggedOut()
+  }
 
   return <div className="home-view">
     <header className="home-header">
       <h1 className="home-title">Hello, {user.name}!
       </h1>
-      <button className="home-logout-button">Logout</button>
+      <button className="home-logout-button" onClick={onLoggedOut} >Logout</button>
     </header>
     <main className="home-main">
       <section className="home-posts">
@@ -17,7 +22,7 @@ function Home() {
             <img className="home-post-image" src={post.image} alt={post.text}>
             </img>
             <p>{post.text}</p>
-            {post.author.id === userId && <>
+            {post.author.id === context.userId && <>
               <button>Edit</button>
               <button>Delete</button>
             </>}

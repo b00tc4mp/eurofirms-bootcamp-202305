@@ -1,4 +1,7 @@
 function createPost(userId, image, text) {
+
+    const posts = db.posts
+
     if (image.length === 0) {
         return false
     }
@@ -9,6 +12,8 @@ function createPost(userId, image, text) {
     const post = new Post (userId, image, text)
 
     posts.push(post)
+
+    db.posts = posts
 
     return true
 }

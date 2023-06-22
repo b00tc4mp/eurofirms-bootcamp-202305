@@ -5,4 +5,4 @@ function Post (author, text, image) {
     this.image = image
 }
 
-Post.count = -1;
+Post.count = 0;
