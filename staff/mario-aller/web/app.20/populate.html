@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Populate</title>
-
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -20,20 +18,20 @@
     <!-- Populate data layer -->
     <script>
         const users = []
-        const posts = []
-        db.userIdCounter = 0
-        db.postIdCounter = 0
 
         users.push(new User('Frodo Bolson', 'frodo@bolson-cerrado.com', 'mitril'))
         users.push(new User('Bilbo Bolson', 'bilbo@bolson-cerrado.com', 'dardo'))
         users.push(new User('Meriadoc Brandigamo', 'merry@comarca.com', 'rohan'))
         users.push(new User('Peregrin Tuk', 'pippin@comarca.com', 'gondor'))
 
+        db.users = users
+
+        const posts = []
+
         posts.push(new Post(1, 'Orion', 'https://cdn.eso.org/images/thumb700x/eso1103a.jpg'))
         posts.push(new Post(3, 'Via Lactea', 'https://img2.rtve.es/i/?w=1600&i=1522754812071.jpg'))
         posts.push(new Post(1, 'Luna', 'https://images.ecestaticos.com/PPi0QU13Mwf7rvIVo6xdGUuSWQU=/49x185:2271x1363/557x418/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F2dd%2F315%2Fa26%2F2dd315a269978872b1037d7b781c34b5.jpg'))
-
-        db.users = users
+    
         db.posts = posts
     </script>
 
