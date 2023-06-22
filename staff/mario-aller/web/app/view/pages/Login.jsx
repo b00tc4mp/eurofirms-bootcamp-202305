@@ -10,10 +10,8 @@ function Login(props) {
         const email = event.target.email.value
         const password = event.target.password.value
 
-        const userValid = userPasswordOK(email, password)
-
-        if (userValid) {
-            userLogged = userGetId(email)
+        if (userPasswordOK(email, password)) {
+            context.userLoggedId = userGetId(email)
             props.onLogClick()
         } else {
             alert('Usuario no válido')

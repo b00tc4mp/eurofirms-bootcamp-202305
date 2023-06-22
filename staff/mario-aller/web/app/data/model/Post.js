@@ -1,8 +1,10 @@
 function Post(author, text, image) {
-    this.id = Post.idCounter++
+    let counter = db.postIdCounter
+    this.id = ++counter
     this.author = author
     this.text = text
     this.image = image
+    db.postIdCounter = counter
 }
 
 Post.idCounter = 1

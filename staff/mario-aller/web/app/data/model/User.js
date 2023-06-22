@@ -1,8 +1,8 @@
 function User(name, email, password) {
-    this.id = User.idCounter++
+    let counter = db.userIdCounter
+    this.id = ++counter
     this.name = name
     this.email = email
     this.password = password
+    db.userIdCounter = counter
 }
-
-User.idCounter = 1

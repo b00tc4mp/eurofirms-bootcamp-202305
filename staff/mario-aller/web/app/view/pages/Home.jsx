@@ -1,7 +1,12 @@
-function Home() {
+function Home(props) {
 
-    const userPublicLogged = userRetrieve(userLogged)
+    const userPublicLogged = userRetrieve(context.userLoggedId)
     const postsFull = postRetrieve()
+
+    const logout = function (){
+        context.userLoggedId = null
+        props.onLogoutClick()
+    }
 
     return (
         <div className="home">
@@ -19,7 +24,7 @@ function Home() {
                         <p className="post-item-msg">{post.text}</p>
                         <p className="post-item-user">{post.author.name}</p>
 
-                        {post.author.id === userLogged && <>
+                        {post.author.id === context.userLoggedId && <>
                             <button className="post-item-button" type="button" postid={String(post.id)}>Editar</button>
                             <button className="post-item-button" type="button" postid={String(post.id)}>Borrar</button>
                         </>}
@@ -31,7 +36,7 @@ function Home() {
             <footer className="home-nav">
                 <div className="basic-nav">
                     <button type="button" className="button-newpost basic-button">Nuevo Post</button>
-                    <button type="button" className="button-logout basic-button">Salir</button>
+                    <button type="button" className="button-logout basic-button" onClick ={logout}>Salir</button>
                 </div>
             </footer>
 

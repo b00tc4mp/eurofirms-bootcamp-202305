@@ -1,14 +1,19 @@
 // Añadir un post a la lista (ret T/F)
 const postToList = function (userCreator, msg, img) {
+    const posts = db.posts
     if (img.length === 0) return false
     if (msg.lenght === 0) return false
 
     posts.push(new Post(userCreator, msg, img))
+    db.posts = posts
     return true;
 }
 
 // Devuelve el post procesado a traves de su id
 const postRetrieve = function (id) {
+    const posts = db.posts
+    const users = db.users
+    
     if (id === undefined) {
         // Si no se pone nada devuelve todos los posts procesados
         return posts.map(post => {
@@ -41,12 +46,13 @@ const postRetrieve = function (id) {
 
 // Borra el post con su id
 const postDelete = function (id) {
+    const posts = db.posts
     const pos = posts.findIndex(post => post.id === id)
     if (pos !== -1) {
         posts.splice(pos, 1)
+        db.posts = posts
         return true
     } else {
         return false
     }
 }
-

@@ -1,6 +1,6 @@
 function App() {
 
-    const [view, setView] = React.useState('login')
+    const [view, setView] = React.useState(sessionStorage.userLoggedId ? 'home' : 'login')
 
     const handleToRegView = () => setView('register')
     const handleToLogView = () => setView('login')
@@ -10,9 +10,9 @@ function App() {
         case 'login':
             return <Login onRegClick={handleToRegView} onLogClick={handleToHomeView} />
         case 'register':
-            return <Register onLogClick={handleToLogView} onToBeRegistered={handleToLogView}/>
+            return <Register onLogClick={handleToLogView} onToBeRegistered={handleToLogView} />
         case 'home':
-            return <Home />
+            return <Home onLogoutClick={handleToLogView} />
         default:
             console.log('Error: Estado view de App no definido')
             return null
