@@ -1,6 +1,6 @@
 /* GLOBALS */
 
-let userId = 3;
+let userId = null;
 
 /* react initialitation */
 

@@ -1,24 +1,19 @@
 const retrievePosts = function () {
-  const posts2 = [];
-  for (let i = 0; i < posts.length; i++) {
-    const _post = {};
+  const posts2 = posts.map((post) => {
+    const post2 = {};
 
-    _post.id = posts[i].id;
-    _post.image = posts[i].image;
-    _post.text = posts[i].text;
+    post2.id = post.id;
+    post2.img = post.image;
+    post2.text = post.text;
+    post2.author = {};
 
-    for (let j = 0; j < users.length; j++) {
-      if (posts[i].author === users[j].id) {
-        _post.user = {
-          id: users[j].id,
-          name: users[j].name,
-        };
+    const user = users.find((user) => user.id === post.author);
 
-        break;
-      }
-    }
-    posts2.push(_post);
-  }
+    post2.author.id = user.id;
+    post2.author.name = user.name;
+
+    return post2;
+  });
 
   return posts2;
 };

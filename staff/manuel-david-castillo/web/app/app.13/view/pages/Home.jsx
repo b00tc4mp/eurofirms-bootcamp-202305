@@ -1,10 +1,6 @@
 function Home(props) {
   const [createPost, setCreatePost] = React.useState()
 
-  const user = retrieveUser(userId)
-
-  const posts = retrievePosts()
-
   const handleLogout = () => {
     userId = null
 
@@ -17,28 +13,14 @@ function Home(props) {
   
   return <div className="home-view">
       <header>
-        <h2 className="h2-home">Hello {user.name}</h2>
+        <h2 className="h2-home">My posts</h2>
         <nav>
           <button onClick={handleLogout} className="button-logout">Logout</button>
         </nav>
       </header>
 
       <main className="home">
-        <section className="all-posts">
-          {posts.map(post => <article className="post">
-            <div className="nameDiv">
-              <p className="name-post">{post.author.name}</p>
-            </div>
-            <img className="img-post" src={post.img} alt={post.text} />
-            <p className="text-post">{post.text}</p>
-            {userId === post.author.id && 
-              <div className="div-button-edit-delete">
-                <button className="editButton">Edit</button>
-                <button className="deleteButton">Delete</button>
-              </div>
-              }
-          </article>)}
-        </section>
+        <section className="all-posts"></section>
 
         { createPost ? 
           <div className="container-new-post">
