@@ -1,12 +1,12 @@
 function Home(props) {
     console.log('Home -> render')
 
-    const user = retrieveUser(context.userId)
+    const user = retrieveUser(userId)
 
     const posts = retrievePosts()
 
     const handleLogoutClick = () => {
-        context.userId = null
+        userId = null
 
         props.onLoggedOut()
     }
@@ -29,7 +29,7 @@ function Home(props) {
 
                     <p>{post.text}</p>
 
-                    {post.author.id === context.userId && <>
+                    {post.author.id === userId && <>
                         <button>Edit</button>
                         <button>Delete</button>
                     </>}

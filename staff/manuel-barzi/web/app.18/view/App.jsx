@@ -1,7 +1,7 @@
 function App() {
     console.log('App -> render')
 
-    const viewState = React.useState(context.userId ? 'home' : 'login')
+    const viewState = React.useState('login')
     const view = viewState[0]
     const setView = viewState[1]
 

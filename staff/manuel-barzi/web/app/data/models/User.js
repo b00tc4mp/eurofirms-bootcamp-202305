@@ -5,4 +5,14 @@ function User(name, email, password) {
     this.password = password
 }
 
-User.count = -1
+{
+    User.count = 0
+
+    const users = db.users
+
+    if (users.length) {
+        const last = users[users.length - 1]
+
+        User.count = last.id
+    }
+}

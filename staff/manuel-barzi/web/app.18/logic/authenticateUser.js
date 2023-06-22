@@ -1,7 +1,5 @@
-function registerUser(name, email, password) {
+function authenticateUser(email, password) {
     let user
-
-    const users = db.users
 
     for (let i = 0; i < users.length; i++) {
         const _user = users[i]
@@ -13,14 +11,8 @@ function registerUser(name, email, password) {
         }
     }
 
-    if (user !== undefined)
+    if (user === undefined || user.password !== password)
         return false
 
-    user = new User(name, email, password)
-
-    users.push(user)
-
-    db.users = users
-
-    return true
+    return user.id
 }
