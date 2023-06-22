@@ -1,7 +1,5 @@
 const retrievePosts = function () {
-  const postsWorked = local.posts;
-
-  const posts2 = postsWorked.map((post) => {
+  const posts2 = posts.map((post) => {
     const post2 = {};
 
     post2.id = post.id;
@@ -9,8 +7,7 @@ const retrievePosts = function () {
     post2.text = post.text;
     post2.author = {};
 
-    const usersWorked = local.users;
-    const user = usersWorked.find((user) => user.id === post.author);
+    const user = users.find((user) => user.id === post.author);
 
     post2.author.id = user.id;
     post2.author.name = user.name;

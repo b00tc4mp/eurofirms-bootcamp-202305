@@ -1,9 +1,7 @@
 const registerUser = function (name, email, password) {
-  const usersWorked = local.users;
-
   let user;
-  for (let i = 0; i < usersWorked.length; i++) {
-    var _user = usersWorked[i];
+  for (let i = 0; i < users.length; i++) {
+    var _user = users[i];
     if (_user.email === email) {
       user = _user;
       break;
@@ -13,9 +11,7 @@ const registerUser = function (name, email, password) {
   if (user) {
     return false;
   } else {
-    usersWorked.push(new User(name, email, password));
-
-    local.users = usersWorked;
+    users.push(new User(name, email, password));
 
     return true;
   }

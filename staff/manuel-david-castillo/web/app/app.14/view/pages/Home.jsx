@@ -1,12 +1,12 @@
 function Home(props) {
   const [createPost, setCreatePost] = React.useState()
 
-  const user = retrieveUser(context.userId)
+  const user = retrieveUser(userId)
 
   const posts = retrievePosts()
 
   const handleLogout = () => {
-    context.userId = null
+    userId = null
 
     props.onLogout()
   }
@@ -31,7 +31,7 @@ function Home(props) {
             </div>
             <img className="img-post" src={post.img} alt={post.text} />
             <p className="text-post">{post.text}</p>
-            {context.userId === post.author.id && 
+            {userId === post.author.id && 
               <div className="div-button-edit-delete">
                 <button className="editButton">Edit</button>
                 <button className="deleteButton">Delete</button>

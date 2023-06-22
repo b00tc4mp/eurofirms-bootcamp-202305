@@ -1,11 +1,8 @@
 const authenticateUser = function (email, password) {
   let user;
-
-  const usersWorked = local.users;
-
-  for (let i = 0; i < usersWorked.length; i++) {
-    if (usersWorked[i].email === email) {
-      user = usersWorked[i];
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].email === email) {
+      user = users[i];
     }
   }
 

@@ -1,8 +1,10 @@
 function deletePost(postId) {
+  const postsWorked = local.posts;
+
   let _post;
-  for (let i = 0; i < posts.length; i++) {
-    if (postId === posts[i].id) {
-      _post = posts[i];
+  for (let i = 0; i < postsWorked.length; i++) {
+    if (postId === postsWorked[i].id) {
+      _post = postsWorked[i];
 
       break;
     }
@@ -12,9 +14,10 @@ function deletePost(postId) {
     return false;
   }
 
-  const index = posts.findIndex((post) => postId === post.id);
+  const index = postsWorked.findIndex((post) => postId === post.id);
 
-  posts.splice(index, 1);
+  postsWorked.splice(index, 1);
 
+  local.posts = postsWorked;
   return true;
 }

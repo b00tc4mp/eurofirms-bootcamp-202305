@@ -1,8 +1,10 @@
 function updatePost(postId, image, text) {
-  for (let i = 0; i < posts.length; i++) {
-    if (postId === posts[i].id) {
-      posts[i].image = image;
-      posts[i].text = text;
+  const postsWorked = local.posts;
+
+  for (let i = 0; i < postsWorked.length; i++) {
+    if (postId === postsWorked[i].id) {
+      postsWorked[i].image = image;
+      postsWorked[i].text = text;
 
       return true;
     }
