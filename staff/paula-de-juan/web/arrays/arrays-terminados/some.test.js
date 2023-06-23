@@ -26,20 +26,21 @@ const musicians = [
     }
 ]
 
+// Expected output: true
 const result = some(musicians, function (musician){
     return musician.group === 'The Doors'
 })
 
 console.log(result)
 
-
+// Expected output: true
 const resultAge = some(musicians, function (musician){
     return musician.age === 27  
 })
 
 console.log(resultAge)
 
-
+// Expected output: false
 const result2 = some(musicians, function (musician){
     return musician.name === 'Janis Joplin'
 })
