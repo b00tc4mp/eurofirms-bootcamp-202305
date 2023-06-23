@@ -1,7 +1,6 @@
 function App(){
    console.log('App->render')
-
-   const viewState = React.useState('login')
+   const viewState = React.useState(context.userId ? 'home' : 'login')
    const view = viewState[0] //actual state
    const setView = viewState[1] //Changes state
    
@@ -10,14 +9,11 @@ function App(){
    
    const handleLoggedIn = () =>setView('home')
    const handleRegistered =() =>setView('login')
+   const handleLoggedOut=()=>setView('login')
 
-   if(view ==='login'){
-     return <Login onRegisterClick={handleRegisterClick} onLoggedIn={handleLoggedIn} />
-
-   }else if(view === 'register'){
-      return <Register onLoginClick={handleLoginClick} onRegistered={handleRegistered }/>
-
-   }else if(view ==='home'){
-      return <Home/>
-   }
+   return <>
+   {view ==='login' && <Login onRegisterClick={handleRegisterClick} onLoggedIn={handleLoggedIn} />}
+   {view === 'register' && <Register onLoginClick={handleLoginClick} onRegistered={handleRegistered }/>}
+   {view ==='home' && <Home logoutClick={handleLoggedOut} />}
+   </>
 }

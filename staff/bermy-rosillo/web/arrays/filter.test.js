@@ -8,30 +8,27 @@ const people = [
     {
         name: 'Wendy Darling',
         age: 16,
-        origin: 'Wonderland',
+        origin: 'Wonderlandssss',
         colors: ['pink', 'skyblue']
     },
     {
         name: 'Peter Pan',
         age: 18,
-        origin: 'Wonderland',
+        origin: 'Wonderlandsssss',
         colors: ['green', 'blue']
     },
     {
         name: 'James Hook',
-        age: 40,
+        /*age: 40,*/
         origin: 'Wonderland',
         colors: ['red', 'black']
+    },
+    {
+        name: 'Bermy',
+        age:34,
+        origin: 'my house',
+        colors: ['blue', 'brown']
     }
 ]
-/*const result = find(people,function(character){
-    return console.log( character.age === 16)
-})
-console.log(result)*/
-//with arrow function
-const result2 = find(people,element=>element.age === 16)
-console.log(result2)
-
-const result3 = find(people,element=>element.name.includes('Pe'))
-console.log(result3)
-
+const result= filter(people,element=>element.colors.includes('blue'))
+console.log(result)

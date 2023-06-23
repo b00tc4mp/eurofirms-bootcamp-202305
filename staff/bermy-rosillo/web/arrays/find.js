@@ -3,7 +3,7 @@ function find(array,callback){
         const person = array[i]
 
         if(callback(person)){
-            return true 
+            return person
         }
     }
 //return undefined if the condiction of the callback don't macth

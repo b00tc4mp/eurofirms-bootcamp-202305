@@ -1,26 +1,70 @@
-function Home(){
+function Home(props){
     console.log('Home->render')
 
-    const user = retrieveUser(userId)
+    const viewModal = React.useState()
+    const modal=viewModal[0]
+    const setModal=viewModal[1]
+
+    const postIdState = React.useState()
+    const postId=postIdState[0]
+    const setPostId=postIdState[1]
+
+    const user = retrieveUser(context.userId)
     const posts = retrievePosts()
+    
+    const handleLoggedOut =()=>{
+        context.userId=null
+        
+        props.logoutClick()
+    }
+
+    const handleCreatePostModal=()=>setModal('create-post-modal')
+    const handleCreatePostCancelled=()=>setModal(null)
+    const handleCreatedPost=()=>setModal(null)
+
+
+    const handleEditPostModal=postId=>{
+        setPostId(postId)
+
+        setModal('edit-post-modal')
+    }
+    const handleEditPostCancelled=()=>setModal(null)
+    const handleEditPost = () =>{
+        setModal(null)
+        setPostId(null)
+    }
+
+    const handleDeletePostModal=postId=>{
+        setPostId(postId)
+
+        setModal('delete-post-modal')
+    }    
+    const handleDeletePostCancelled=()=>setModal(null)
+    const handleDeletePost = () =>{
+        setModal(null)
+        setPostId(null)
+    }
+    
+    
+    //--------------------------------------------
 
     return  <div className="home-view ">
         <header className="home-header">
-            <h1 className="home-title">Hello, {user.name} </h1>
-            <button className="home-logout-button">Logout</button>
+            <h1 className="home-title">Helcome, {user.name} </h1>
+            <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
         </header>
 
         <main className="home-main">
             <section className="home-posts">
                {posts.map(post=>{
-                return <article>
+                return <article key={post.id}>
                     <h2>{post.author.name}</h2>
                     <img className='home-post-image' src={post.image} alt={post.text}></img>
                     <p>{post.text}</p>
-                    {post.author.id === userId && 
+                    {post.author.id === context.userId && 
                     <>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <button onClick ={()=>handleEditPostModal(post.id)}>Edit</button>
+                    <button onClick ={()=>handleDeletePostModal(post.id)}>Delete</button>
                     </>
                     }
                 </article>
@@ -29,58 +73,16 @@ function Home(){
         </main>
 
         <footer className="home-footer">
-            <button className="home-create-post-button">Add new post</button>
+            <button className="home-create-post-button" onClick={handleCreatePostModal}>Add new post</button>
         </footer>
 
-        <div className="home-create-post-modal off">
-            <div className="home-create-post-container">
-                <h2>Create post</h2>
+        {modal === 'create-post-modal' && <CreatePostModal onCreatePost={handleCreatedPost} onCreatePostCancelled={handleCreatePostCancelled} />}
 
-                <form className="home-create-post-form">
-                    <label htmlFor="create-post-url">Image</label>
-                    <input id="create-post-url" type="url"></input>
+        {modal === 'edit-post-modal' && <EditPostModal postId = {postId} onEditPostCancelled={handleEditPostCancelled} onEditPost = {handleEditPost}/>}
 
-                    <label htmlFor="create-post-text">Text</label>
-                    <textarea id="create-post-text"></textarea>
+        {modal === 'delete-post-modal' && <DeletePostModal postId = {postId} onDeletePostCancelled={handleDeletePostCancelled} onDeletePost={handleDeletePost}/>}
+        
 
-                    <button type="submit">Create</button>
-                    <button className="home-create-post-cancel-button">Cancel</button>
-                </form>
-            </div>
-        </div>
-
-       <div className="home-edit-post-modal off">
-            <div className="home-edit-post-container">
-                <h2>Edit post</h2>
-
-                <form className="home-edit-post-form">
-                    <input type="hidden" id="edit-post-id"></input>
-
-                    <label htmlFor="edit-post-url">Image</label>
-                    <input id="edit-post-url" type="url"></input>
-
-                    <label htmlFor="edit-post-text">Text</label>
-                    <textarea id="edit-post-text"></textarea>
-
-                    <button type="submit">Save</button>
-                    <button className="home-edit-post-cancel-button">Cancel</button>
-                </form>
-            </div>
-        </div>
-
-        <div className="home-delete-post-modal off">
-            <div className="home-delete-post-container">
-                <h2>delete post</h2>
-
-                <form className="home-delete-post-form">
-                    <input type="hidden" id="delete-post-id"></input>
-                    <p>Do you want to delete this post?</p>
-                    
-                    <button className="home-delete-post-button"  type="submit">Delete</button>
-                    <button className="home-delete-post-cancel-button">Cancel</button>
-                </form>
-            </div>
-        </div>
     </div>
     
    }

@@ -1,7 +1,6 @@
 //user can update his post
 function updatePost(postId,image,text){
     let post
-    const posts = db.posts
 
     for (let i = 0 ; i < posts.length ;i++) {
         const _post = posts[i]
@@ -18,7 +17,6 @@ function updatePost(postId,image,text){
         post.image = image
         post.text = text 
 
-        db.posts = posts
         return true
     }    
 }

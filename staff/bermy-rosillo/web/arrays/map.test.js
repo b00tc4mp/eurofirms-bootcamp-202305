@@ -28,5 +28,12 @@ const people = [
 /*const newPeople = map(people,element =>element.name.toUpperCase())
 console.log(newPeople)*/
 
-const newPeople2 = map(people,element => element.origin +'Country')
-console.info(newPeople2)
+/*const newPeople2 = map(people,element => element.origin +'Country')
+console.info(newPeople2)*/
+
+const newPeople3 = map(people,element => element.name.toUpperCase())
+console.info(newPeople3)
+
+const newPeople4 = map(people,element=>element.name +'('+element.age+')')
+console.log(newPeople4)
+

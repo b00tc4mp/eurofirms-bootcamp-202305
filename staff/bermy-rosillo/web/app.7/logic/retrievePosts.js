@@ -1,7 +1,4 @@
 function retrievePosts() {
-    const users = db.users
-    const posts = db.posts
-
     const posts2 = posts.map(post => {
 
         const post2 = {}

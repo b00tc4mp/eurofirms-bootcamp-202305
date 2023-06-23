@@ -1,7 +1,8 @@
 /*Function constructor */
-function User(id,name,email,password){
-    this.id = id
+function User(name,email,password){
+    this.id = ++User.count
     this.name = name
     this.email = email
     this.password = password
 }
+User.count = -1
