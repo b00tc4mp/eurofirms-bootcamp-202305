@@ -16,13 +16,7 @@ function registerUser(name, email, password) {
     if (user !== undefined)
         return false
 
-    // db.userIdCount = db.userIdCount + 1
-    // db.userIdCount += 1
-    // db.userIdCount++
-    //const id = db.userIdCount
-    const id = ++db.userIdCount
-
-    user = new User(id, name, email, password)
+    user = new User(name, email, password)
 
     users.push(user)
 
