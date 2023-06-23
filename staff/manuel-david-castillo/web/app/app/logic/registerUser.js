@@ -13,7 +13,7 @@ const registerUser = function (name, email, password) {
   if (user) {
     return false;
   } else {
-    usersWorked.push(new User(name, email, password));
+    usersWorked.push(new User(++local.usersIdCount, name, email, password));
 
     local.users = usersWorked;
 

@@ -11,6 +11,16 @@ const local = {
     return [];
   },
 
+  set usersIdCount(usersIdCount) {
+    localStorage.usersIdCount = usersIdCount;
+  },
+
+  get usersIdCount() {
+    if (localStorage.usersIdCount) return localStorage.usersIdCount;
+
+    return 0;
+  },
+
   set posts(posts) {
     localStorage.posts = JSON.stringify(posts);
   },
@@ -21,5 +31,15 @@ const local = {
     }
 
     return [];
+  },
+
+  set postsIdCount(postsIdCount) {
+    localStorage.postsIdCount = postsIdCount;
+  },
+
+  get postsIdCount() {
+    if (localStorage.postsIdCount) return localStorage.postsIdCount;
+
+    return 0;
   },
 };

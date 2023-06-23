@@ -1,22 +1,9 @@
-const retrievePosts = function () {
+function retrievePost(postId) {
   const postsWorked = local.posts;
 
-  const posts2 = postsWorked.map((post) => {
-    const post2 = {};
+  const result = postsWorked.find((element) => element.id === postId);
 
-    post2.id = post.id;
-    post2.img = post.image;
-    post2.text = post.text;
-    post2.author = {};
+  if (!result) return false;
 
-    const usersWorked = local.users;
-    const user = usersWorked.find((user) => user.id === post.author);
-
-    post2.author.id = user.id;
-    post2.author.name = user.name;
-
-    return post2;
-  });
-
-  return posts2;
-};
+  return result;
+}

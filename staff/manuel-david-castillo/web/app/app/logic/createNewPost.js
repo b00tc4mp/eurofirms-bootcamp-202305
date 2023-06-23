@@ -7,7 +7,7 @@ const createNewPost = function (author, image, text) {
   if (!text) {
     return false;
   } else {
-    posts.push(new Post(author, image, text));
+    postsWorked.push(new Post(++local.postsIdCount, author, image, text));
 
     local.posts = postsWorked;
 
