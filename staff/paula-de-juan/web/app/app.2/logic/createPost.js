@@ -6,12 +6,7 @@ function createPost(userId, image, text) {
         return false
     }
 
-    const post = {}
-
-    post.id = ++posts.count;
-    post.user = userId;
-    post.image = image;
-    post.text = text;
+    const post = new Post (userId, image, text)
 
     posts.push(post)
 

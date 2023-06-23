@@ -21,6 +21,8 @@ function deletePost (postId){
 
         posts.splice (index, 1)
 
+        db.posts = posts
+
         return true
 
     }

@@ -1,5 +1,5 @@
 function App(){
-    const viewState = React.useState('login')
+    const viewState = React.useState(context.userId ? 'home' : 'login')
     const view = viewState[0]
     const setView = viewState[1]
 
@@ -10,6 +10,8 @@ function App(){
     const handleLoggedIn = () => setView('home')
 
     const handleRegistered = () => setView('login')
+
+    const handleLoggedOut = () => setView('login')
 
     if (view === 'login'){
         return <Login 
@@ -23,6 +25,8 @@ function App(){
        />
     }
     else if (view === 'home'){
-        return <Home />
+        return <Home 
+        onLoggedOut = {handleLoggedOut}        
+        />
     }
 }

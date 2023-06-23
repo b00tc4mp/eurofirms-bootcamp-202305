@@ -17,15 +17,32 @@ body {
 
 /* styles (BEM) */
 
+.register-view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+
 .register-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+.login-view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
+
 
 .post-image{
     width:200px;
