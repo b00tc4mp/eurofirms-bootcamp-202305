@@ -65,3 +65,7 @@ TODO list tech details
 - DONE implement deletePost logic to remove a post from database
 - DONE implement the modal window for asking the user if she/he really wants to delete the post (two buttons: delete, cancel)
 - DONE add a call to refresh the posts list after deleting the post
+
+#### Migrate presentation layer to React
+
+- DONE migrate all pages and components to React
