@@ -14,7 +14,7 @@ const db = {
     },
 
     get userIdCount(){
-        if(localStorage.userIdCount) //almacén de datos en   texto
+        if(localStorage.userIdCount)
             return parseInt(localStorage.userIdCount)
         return 0
     },

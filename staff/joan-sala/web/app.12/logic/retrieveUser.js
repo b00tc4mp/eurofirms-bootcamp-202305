@@ -5,7 +5,6 @@ function retrieveUser(userId) {
 
     if(user === undefined)
         return null
-   
     user = {
         name: user.name,
         email: user.email
