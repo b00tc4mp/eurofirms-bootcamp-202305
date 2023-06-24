@@ -3,8 +3,8 @@ const userToList = function (name, email, password) {
     const users = db.users
     if (users.some((user) => user.email === email)) return false
 
-    users.push(new User(++db.userIdCounter, name, email, password))
-    db.users = users
+    users.push(new User(name, email, password))
+    db.users = users 
     return true
 }
 

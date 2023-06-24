@@ -1,21 +1,12 @@
 function Home(props) {
 
     const [modalSt, setModalSt] = React.useState(null)
-    const [idPostSt, setIdPostSt] = React.useState(null)
 
     const handleCreateModal = () => setModalSt('create-modal')
-    const handleEditModal = (idPost) => {
-        setIdPostSt(idPost)
-        setModalSt('edit-modal')
-    }
-    const handleDeleteModal = (idPost) => {
-        setIdPostSt(idPost)
-        setModalSt('delete-modal')
-    }
-    const handleExitModal = () => {
-        setIdPostSt(null)
-        setModalSt(null)
-    }
+    const handleEditModal = () => setModalSt('edit-modal')
+    const handleDeleteModal = () => setModalSt('delete-modal')
+    const handleExitModal = () => setModalSt(null)
+
     const userPublicLogged = userRetrieve(context.userLoggedId)
     const postsFull = postRetrieve()
 
@@ -40,8 +31,8 @@ function Home(props) {
                         <p className="post-item-user">{post.author.name}</p>
 
                         {post.author.id === context.userLoggedId && <>
-                            <button className="post-item-button" type="button" onClick={() => handleEditModal(post.id)}>Editar</button>
-                            <button className="post-item-button" type="button" onClick={() => handleDeleteModal(post.id)}>Borrar</button>
+                            <button className="post-item-button" type="button">Editar</button>
+                            <button className="post-item-button" type="button">Borrar</button>
                         </>}
                     </article>)}
                 </section>
@@ -53,10 +44,8 @@ function Home(props) {
                     <button type="button" className="button-logout basic-button" onClick={handleLogout}>Salir</button>
                 </div>
             </footer>
+            {modalSt === 'create-modal' && <PostCreate onExitModal={handleExitModal}/>}
 
-            {modalSt === 'create-modal' && <PostCreate onExitModal={handleExitModal} />}
-            {modalSt === 'edit-modal' && <PostEdit onExitModal={handleExitModal} idPost={idPostSt} />}
-            {modalSt === 'delete-modal' && <PostDelete onExitModal={handleExitModal} idPost={idPostSt} />}
         </div>
     )
 }

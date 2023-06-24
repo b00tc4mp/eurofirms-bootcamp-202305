@@ -6,5 +6,3 @@ function Post(author, text, image) {
     this.image = image
     db.postIdCounter = counter
 }
-
-Post.idCounter = 1

@@ -1,8 +1,10 @@
 function Login(props) {
 
-    const handleOnGotoReg = () => props.onGotoReg()
+    const gotoReg = function () {
+        props.onRegClick()
+    }
 
-    const handleOnLogin = function (event) {
+    const toBeLogged = function (event) {
         event.preventDefault()
 
         const email = event.target.email.value
@@ -10,7 +12,7 @@ function Login(props) {
 
         if (userPasswordOK(email, password)) {
             context.userLoggedId = userGetId(email)
-            props.onLogged()
+            props.onLogClick()
         } else {
             alert('Usuario no válido')
         }
@@ -19,7 +21,7 @@ function Login(props) {
     return (
         <div className="login">
             <main className="log-view">
-                <form className="log-form" action="submit" onSubmit={handleOnLogin}>
+                <form className="log-form" action="submit" onSubmit={toBeLogged}>
                     <div className="basic-form">
                         <label className="basic-label" htmlFor="email">Correo</label>
                         <input type="email" id="email" autoComplete="off"></input>
@@ -34,7 +36,7 @@ function Login(props) {
 
             <footer className="log-nav flex-hor">
                 <div className="basic-nav">
-                    <button type="submit" className="button-toreg basic-button" onClick={handleOnGotoReg}>Registro</button>
+                    <button type="submit" className="button-toreg basic-button" onClick={gotoReg}>Registro</button>
                     <button type="button" className="basic-button">Otra acción</button>
                 </div>
             </footer>

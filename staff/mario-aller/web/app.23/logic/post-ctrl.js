@@ -32,11 +32,11 @@ const postRetrieve = function (id) {
         const pos = posts.findIndex(post => post.id === id)
         if (pos !== -1) {
             const postAux = {
-                id: posts[pos].id,
+                id: post.id,
                 text: posts[pos].text,
                 image: posts[pos].image,
                 author: {
-                    id: posts[pos].author
+                    id: post.author
                 }
             }
             postAux.author.name = users.find(user => user.id === postAux.author.id).name
@@ -54,19 +54,7 @@ const postDelete = function (id) {
         posts.splice(pos, 1)
         db.posts = posts
         return true
+    } else {
+        return false
     }
-    return false
-}
-
-// Actualiza la imagen y el texto de un post con su di
-const postUpdateContent = function (id, msg, img) {
-    const posts = db.posts
-    const pos = posts.findIndex(post => post.id === id)
-    if (pos !== -1) {
-        posts[pos].image = img
-        posts[pos].text = msg
-        db.posts = posts
-        return true
-    }
-    return false
 }
