@@ -1,9 +1,9 @@
-function deletePost(postId) {
+function updatePost(postId, image, text) {
     let post
 
     for (let i = 0; i < posts.length; i++) {
         const _post = posts[i]
-        //si lo encontramos
+
         if (_post.id === postId) {
             post = _post
 
@@ -13,15 +13,10 @@ function deletePost(postId) {
 
     if (post === undefined)
         return false
+    else {
+        post.image = image
+        post.text = text
 
-    const index = posts.findIndex(function(post){
-        return post.id === postId
-    })
-    
-    //borrado
-    posts.splice(index,1)
-
-    db.posts =   posts
-
-    return true
+        return true
+    }
 }
