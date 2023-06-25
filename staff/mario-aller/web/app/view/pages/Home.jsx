@@ -17,7 +17,7 @@ function Home(props) {
         setModalSt(null)
     }
     const userPublicLogged = userRetrieve(context.userLoggedId)
-    const postsFull = postRetrieve()
+    const postsFull = postRetrieve().reverse()
 
     const handleLogout = function () {
         context.userLoggedId = null
