@@ -1,4 +1,5 @@
 function Home(props) {
+    console.log('Home -> render')
 
     const modalState = React.useState(null)
     const modal = modalState[0]
@@ -18,7 +19,7 @@ function Home(props) {
 
     const handleCreatePostClick = () => setModal('create-post')
 
-    const handleCreatedPost = () => setModal('null')
+    const handlePostCreated = () => setModal(null)
 
     const handleEditPostClick = postId => {
         setPostId(postId)
@@ -29,7 +30,7 @@ function Home(props) {
 
     const handleEditPostCancelled = () => setModal(null)
 
-    const handleEditedPost = () => setModal(null)
+    const handlePostEdited = () => setModal(null)
 
     const handleDeletePostClick = postId => {
         setPostId(postId)
@@ -38,7 +39,7 @@ function Home(props) {
 
     const handleDeletePostCancelled = () => setModal(null)
 
-    const handleDeletedPost = () => setModal(null)
+    const handlePostDeleted = () => setModal(null)
 
 
     return <div className="home-view">
@@ -67,11 +68,10 @@ function Home(props) {
         </footer>
   
 
-    {modal === 'create-post' && <CreatePostModal onPostCreated={handleCreatedPost} onCreatePostCancelled={handleCreatePostCancelled }/>}
-    
-    {modal === 'edit-post' && <EditPostModal postId={postId} onPostEdited={handleEditedPost} onEditPostCancelled={handleEditPostCancelled} />}
+        {modal === 'create-post' && <CreatePostModal onPostCreated={handlePostCreated} onCreatePostCancelled={handleCreatePostCancelled} />}
 
-    {modal === 'delete-post' && <DeletePostModal postId={postId} onPostDeleted={handleDeletedPost} onDeletePostCancelled={handleDeletePostCancelled} />}
+        {modal === 'edit-post' && <EditPostModal postId={postId} onPostEdited={handlePostEdited} onEditPostCancelled={handleEditPostCancelled} />}
 
+        {modal === 'delete-post' && <DeletePostModal postId={postId} onPostDeleted={handlePostDeleted} onDeletePostCancelled={handleDeletePostCancelled} />}
     </div>
 }

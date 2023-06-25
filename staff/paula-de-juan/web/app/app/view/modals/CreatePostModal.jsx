@@ -1,4 +1,5 @@
 function CreatePostModal(props){
+    console.log('CreatePost Modal -> render')
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -27,7 +28,7 @@ function CreatePostModal(props){
             <label htmlFor="create-post-text">Text</label>
             <textarea id="create-post-text"></textarea>
 
-            <button type="submit" >Create</button>
+            <button type="submit">Create</button>
             <button className="home-create-post-cancel-button" onClick={handleCancelClick}>Cancel</button>
         </form>
     </div>
