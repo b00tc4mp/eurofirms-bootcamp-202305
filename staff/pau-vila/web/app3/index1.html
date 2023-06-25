@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+    
+<!--link de icono-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<!-- Link de css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+ <!--Formulario Register-->
+
+    <main class="register-view ">
+        <h1>Register</h1>
+
+        <form class="register-form">
+            <label for="register-name">Name:</label>
+            <input id="register-name"  type="text">
+
+            <label for="register-email">E-mail:</label>
+            <input id="register-email"  type="email">
+
+            <label for="register-password">password</label>
+            <input id="register-password"  type="password">
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Go to <a class="register-login-link" href="">Login</a></p>
+    </main>
+
+    <!--Formulario Login-->
+
+    <main class="login-view off">
+        <h1>Login</h1>
+
+        <form class="login-form">
+           <label for="login-email">E-mail</label>
+           <input id="login-email" type="email">
+
+           <label for="login-password">Password</label>
+           <input id="login-password" type="password">
+
+           <button type="submit">Login</button>
+        </form>
+
+        <p>Go to <a class="login-register-link" href="">Register</a></p>
+    </main>
+
+    <!--Home-->
+        <main>
+            <!--<h1 class="home-user"></h1>-->
+        </main>
+    <div class="home-view off">
+        <header class="home-header">
+           <h1 class="home-title">Hello, Home!</h1>
+
+           <button class="home-Logout-buttom">logout</button>
+        </header>
+
+        <main class="home-main">
+            <section class="home-posts">
+                <article>
+                    <img class="home-post-image" 
+                    src="" 
+                    alt="">
+
+                    <p>Hello, </p>
+                </article>
+
+                <article>
+                    <img class="home-post-image" 
+                    src="" 
+                    alt="">
+
+                    <p>Hello, </p>
+                </article>
+
+                <article>
+                    <img class="home-post-image" 
+                    src="" 
+                    alt="">
+
+                    <p>Hello, </p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="home-footer">
+            <button class="home-create-post-buttom">+</button>
+        </footer>
+
+        <div class="home-create-post-modal off">
+            <div class="home-create-post-container">
+                <h2>Create post</h2>
+
+                <form class="home-create-post-form">
+                    <label for="create-post-url">Image</label>
+                    <input id="create-post-url" type="url">
+
+                    <label for="create-post-text">Text</label>
+                    <textarea id="create-post-text"></textarea>
+
+                    <button type="submit">Create</button>
+                    <button class="home-create-post-cancel-buttom">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+    <!--Link js -->
+    <script src="data.js"></script>
+
+    <script src="logic/authenticateUser.js"></script>
+    <script src="logic/registerUser.js"></script>
+    <script src="logic/retrieveUser.js"></script>
+    <script src="logic/createPost.js"></script>
+    <script src="logic/retrievePosts.js"></script>
+    <script src="logic/updatePost.js"></script>
+
+    <script src="view/helpers.js"></script>
+    <script src="view/register.js"></script>
+    <script src="view/login.js"></script>
+    <script src="view/home.js"></script>
+    <script src="main.js"></script>
+    
+</body>
+</html>
