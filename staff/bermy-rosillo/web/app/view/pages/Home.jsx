@@ -50,7 +50,7 @@ function Home(props){
 
     return  <div className="home-view ">
         <header className="home-header">
-            <h1 className="home-title">Helcome, {user.name} </h1>
+            <h1 className="home-title">Welcome, {user.name} </h1>
             <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
         </header>
 
