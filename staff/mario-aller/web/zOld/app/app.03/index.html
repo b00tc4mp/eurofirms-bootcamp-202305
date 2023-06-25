@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplication</title>
+
+    <!-- link a style -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Formulario de registo -->
+    <main class="register-view">
+        <form id="register-form" class="basic-form" action="submit">
+            <div class="basic-form__panel">
+                <label for="reg-name">Nombre</label>
+                <input type="text" id="reg-name">
+
+                <label for="reg-email">Correo</label>
+                <input type="email" id="reg-email">
+
+                <label for="reg-password">Clave</label>
+                <input type="password" id="reg-password">
+            </div>
+            <button class="basic-button">Registrarse</button>
+        </form>
+    </main>
+
+    <!-- Formulario de login -->
+    <main class="log-view off">
+        <form id="log-form" class="basic-form" action="submit">
+            <div class="basic-form__panel">
+                <label for="log-email">Correo</label>
+                <input type="email" id="log-email">
+
+                <label for="log-password">Clave</label>
+                <input type="password" id="log-password">
+            </div>
+            <button class="basic-button">Entrar</button>
+        </form>
+    </main>
+
+    <!-- Home -->
+    <main class="home-view off">
+        <h3>HOME!</h3>
+        <img src="big-sur.jpeg" width="100%" alt="big sur">
+    </main>
+    
+    <!-- link a js -->
+    <script src="java.js"></script>
+</body>
+
+</html>

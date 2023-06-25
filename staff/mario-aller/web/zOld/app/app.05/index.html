@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplication</title>
+
+    <!-- link a style -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Registo -->
+
+    <div class="register off">
+
+        <!-- Formulario -->
+        <main class="reg-view">
+            <form class="reg-form basic-form" action="submit">
+
+                <!-- Panel de presentacion -->
+                <div class="basic-form-container">
+
+                    <!-- Datos del formularo -->
+                    <label for="reg-name">Nombre</label>
+                    <input type="text" id="reg-name">
+
+                    <label for="reg-email">Correo</label>
+                    <input type="email" id="reg-email">
+
+                    <label for="reg-password">Clave</label>
+                    <input type="password" id="reg-password">
+
+                    <button class="basic-button">Registrarse</button>
+                </div>
+            </form>
+        </main>
+
+        <!-- Barra de navegación -->
+        <footer class="reg-nav">
+            <div class="basic-nav">
+                <button class="basic-button">Acceso</button>
+                <button class="basic-button">Otra acción</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login -->
+
+    <div class="login off">
+
+        <!-- Formulario -->
+        <main class="log-view">
+            <form class="log-form basic-form" action="submit">
+
+                <!-- Panel de presentacion -->
+                <div class="basic-form-container">
+
+                    <!-- Datos del formularo -->
+                    <label for="log-email">Correo</label>
+                    <input type="email" id="log-email">
+
+                    <label for="log-password">Clave</label>
+                    <input type="password" id="log-password">
+
+                    <button class="basic-button">Acceso</button>
+                </div>
+            </form>
+        </main>
+
+        <!-- Barra de navegación -->
+        <footer class="log-nav">
+            <div class="basic-nav">
+                <button class="basic-button">Registro</button>
+                <button class="basic-button">Otra acción</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Home -->
+
+    <div class="home _off">
+
+        <!-- Encabezado -->
+        <header class="home-header">
+            <h3 class="greetings">Home!</h3>
+        </header>
+        
+        <!-- Cuerpo -->
+        <main class="home-view">
+
+        </main>
+
+        <!-- Barra de navegación -->
+        <footer class="home-nav">
+            <div class="basic-nav">
+                <button class="basic-button">Nuevo Post</button>
+                <button class="basic-button">Salir</button>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- links a js -->
+
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

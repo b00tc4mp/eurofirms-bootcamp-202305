@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts app</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Registo -->
+
+    <div class="register off">
+        <main class="reg-view">
+            <form class="reg-form" action="submit">
+                <div class="basic-form">
+                    <label class="basic-label" for="reg-name">Nombre</label>
+                    <input type="text" id="reg-name">
+
+                    <label class="basic-label" for="reg-email">Correo</label>
+                    <input type="email" id="reg-email">
+
+                    <label class="basic-label" for="reg-password">Clave</label>
+                    <input type="password" id="reg-password">
+
+                    <button class="basic-button">Registrarse</button>
+                </div>
+            </form>
+        </main>
+
+        <footer class="reg-nav">
+            <div class="basic-nav">
+                <button type="submit" class="button-tolog basic-button">Acceso</button>
+                <button type="button" class="basic-button">Otra acción</button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Login -->
+
+    <div class="login _off">
+        <main class="log-view">
+            <form class="log-form" action="submit">
+                <div class="basic-form">
+                    <label class="basic-label" for="log-email">Correo</label>
+                    <input type="email" id="log-email">
+
+                    <label class="basic-label" for="log-password">Clave</label>
+                    <input type="password" id="log-password">
+
+                    <button class="basic-button">Acceso</button>
+                </div>
+            </form>
+        </main>
+
+        <footer class="log-nav flex-hor">
+            <div class="basic-nav">
+                <button type="submit" class="button-toreg basic-button">Registro</button>
+                <button type="button" class="basic-button">Otra acción</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Home -->
+
+    <div class="home off">
+        <header class="home-header flex-hor">
+            <div class="basic-head">
+                <h3 class="greetings">Home!</h3>
+            </div>
+        </header>
+
+        <main class="home-view">
+            <section class="posts-list basic-container">
+                <article>No hay posts</article>
+            </section>
+        </main>
+
+        <footer class="home-nav">
+            <div class="basic-nav">
+                <button type="button" class="button-newpost basic-button">Nuevo Post</button>
+                <button type="button" class="button-logout basic-button">Salir</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Ventana modal de Post nuevo -->
+
+    <div class="home-modal-newpost basic-modal off">
+        <form class="home-modal-newpost-form basic-form" action="submit">
+            <h4>Nuevo Post</h4>
+
+            <label class="basic-label" for="newpost-img">Imagen url</label>
+            <input type="url" id="newpost-img">
+
+            <label class="basic-label" for="newpost-msg">Mensaje</label>
+            <input type="text" id="newpost-msg">
+
+            <div class="flex-hor">
+                <button type="submit" class="newpost-button basic-button">Nuevo</button>
+                <button type="button" class="newpost-button-cancel basic-button">Salir</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Ventana modal de edición de Post -->
+
+    <div class="home-modal-editpost basic-modal off">
+        <form class="home-modal-editpost-form basic-form" action="submit">
+            <h4>Editar Post</h4>
+
+            <label class="basic-label" for="editpost-img">Imagen url</label>
+            <input type="url" id="editpost-img">
+
+            <label class="basic-label" for="editpost-msg">Mensaje</label>
+            <input type="text" id="editpost-msg">
+
+            <input type="hidden" id="editpost-idpost">
+
+            <div class="flex-hor">
+                <button type="submit" class="editpost-button basic-button">Guardar</button>
+                <button type="button" class="editpost-button-cancel basic-button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Ventana modal de borrado de Post -->
+
+    <div class="home-modal-deletepost basic-modal off">
+        <form class="home-modal-deletepost-form basic-form" action="submit">
+            <h4>Editar Post</h4>
+
+            <input type="hidden" id="deletepost-idpost">
+
+            <div class="flex-hor">
+                <button type="submit" class="deletepost-button basic-button">Borrar</button>
+                <button type="button" class="deletepost-button-cancel basic-button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Links a js -->
+
+    <script src="main.js"></script>
+
+    <script src="data/model/User.js"></script>
+    <script src="data/model/Post.js"></script>
+
+    <script src="data/users.js"></script>
+    <script src="data/posts.js"></script>
+
+    <script src="logic/user-ctrl.js"></script>
+    <script src="logic/post-ctrl.js"></script>
+
+    <script src="view/login.js"></script>
+    <script src="view/register.js"></script>
+    <script src="view/home.js"></script>
+
+</body>
+
+</html>
