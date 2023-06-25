@@ -1,4 +1,6 @@
 function Register(props){
+  console.log('Register -> render')
+
     const handleLoginClick = event => {
         event.preventDefault()
 
@@ -14,17 +16,20 @@ function Register(props){
 
         const result = registerUser(name, email, password)
 
-        if (result === false){
+        if (!result){
             alert ('User already registered')
         } else {
             props.onRegistered()
         }
     }
+
+
+
 return <div className="register-view container">
 <div className="text">
   <h1>Register</h1>
 </div>
-<form action="submit" className="register-form" onSubmit={handleRegisterSubmit} >
+<form action="submit" className="register-form" onSubmit={handleRegisterSubmit}>
   <div className="form-row">
     <label htmlFor="register-name">Name</label>
     <div className="input-data">
@@ -53,6 +58,6 @@ return <div className="register-view container">
     </div>
   </div>
 </form>
-<p>Go to <a className="register-login-link" href="" onClick={handleLoginClick} >Login</a></p>
+<p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
 </div>
 }

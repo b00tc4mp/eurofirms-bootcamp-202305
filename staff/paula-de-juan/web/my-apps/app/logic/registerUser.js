@@ -17,7 +17,7 @@ function registerUser(name, email, password) {
         return false;
     }
     
-    user = new User(name, email, password)
+    user = new User(++db.userIdCount, name, email, password)
 
     users.push(user);
 

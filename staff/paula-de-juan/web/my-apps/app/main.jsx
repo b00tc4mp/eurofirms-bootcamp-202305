@@ -1,15 +1,14 @@
-/*
- 
-Global Scope */
 
 const context = {
     set userId(value){
-        if(value === null){
-            delete sessionStorage.userId
-        } else {
+        if(value){
             sessionStorage.userId = value
+
+            return
         }
+        delete sessionStorage.userId
     },
+    
     get userId(){
         if (sessionStorage.userId){
             return parseInt(sessionStorage.userId)

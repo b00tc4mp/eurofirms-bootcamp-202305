@@ -9,7 +9,7 @@ function createPost(userId, image, text) {
 
     const posts = db.posts
 
-    const post = new Post (++db.postIdCount, userId, image, text)
+    const post = new Post(++db.postIdCount, userId, image, text)
 
     posts.push(post)
 

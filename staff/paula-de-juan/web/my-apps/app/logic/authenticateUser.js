@@ -4,7 +4,7 @@ function authenticateUser(email, password) {
     const users = db.users
 
     for (let i = 0; i < users.length; i++) {
-        var _user = users[i];
+        const _user = users[i];
 
         if (_user.email === email) {
             user = _user;
@@ -13,8 +13,8 @@ function authenticateUser(email, password) {
         }
     }
 
-    if (user === undefined || user.password !== password){
-        return false}  
+    if (user === undefined || user.password !== password)
+        return false
     
     return user.id;
 }

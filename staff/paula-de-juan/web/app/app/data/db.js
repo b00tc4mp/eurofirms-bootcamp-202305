@@ -42,5 +42,5 @@ const db = {
             return parseInt(localStorage.postIdCount)
         }
         return 0
-    },
+    }
 }
