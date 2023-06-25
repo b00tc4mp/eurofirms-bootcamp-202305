@@ -1,5 +1,5 @@
 function CreatePostModal(props){
-    console.log('CreatedPostModal -> render')
+    console.log('CreatePostModal -> render')
 
     const handleSubmit = event => {
         event.preventDefault()
