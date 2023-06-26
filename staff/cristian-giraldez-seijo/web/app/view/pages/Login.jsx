@@ -1,21 +1,25 @@
 function Login(props) {
+    console.log('Login->render')
+
     const handleRegisterClick = event => {
         event.preventDefault()
         props.onRegisterClick()
     }
+    
 const handleLoginSubmit = event => {
     event.preventDefault()
     const email = event.target.email.value
     const password = event.target.password.value
     const result = authenticateUser(email, password)
+
     if (result === false) {
         alert('Wrong credentials!')
     } else {
-        userId = result
+        context.userId = result
         props.onLoggedIn()
     }
 }
-    return <main className="login-view _off">
+    return <main className="login-view">
     <h1>Login</h1>
     
     <form className="login-form" onSubmit={handleLoginSubmit}>

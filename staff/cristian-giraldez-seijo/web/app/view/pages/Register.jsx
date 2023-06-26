@@ -1,12 +1,26 @@
 function Register(props) {
+    console.log('Register->render')
+    
     const handleLoginClick = event => {
         event.preventDefault()
         props.onLoginClick()
     }
+    const handleRegisterSubmit = event => {
+        event.preventDefault()
+        const name = event.target.name.value
+        const email = event.target.email.value
+        const password = event.target.password.value
+        const result = registerUser(name, email, password)
+        if (!result) {
+            alert('User Already Exists!')
+        } else {
+            props.onRegistered()
+        }
+    }
     return <main className="register-view">
         <h1>Register</h1>
 
-        <form className="register-form">
+        <form className="register-form" onSubmit={handleRegisterSubmit}>
             <label htmlFor="name">Name</label>
             <input id="name" type="text"></input>
 
