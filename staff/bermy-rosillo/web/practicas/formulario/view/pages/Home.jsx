@@ -21,6 +21,11 @@ function Home(props){
                     <img className='home-post-image' src={post.image} alt={post.text}></img>
                     <p>{post.text}</p>
 
+                    {post.author.id === userId && <>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </>}
+
                </article>
                )}
             </section>
