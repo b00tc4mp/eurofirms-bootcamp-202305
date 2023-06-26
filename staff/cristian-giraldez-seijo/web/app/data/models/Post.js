@@ -1,8 +1,6 @@
-function Post(author, image, text) {
-    this.id = ++Post.count
+function Post(id, author, image, text) {
+    this.id = id
     this.author = author
     this.image = image
     this.text = text
 }
-
-Post.count = -1

@@ -1,5 +1,7 @@
 function retrievePosts() {
     const posts2 = []
+const posts = db.posts
+const users = db.users
 
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i]
