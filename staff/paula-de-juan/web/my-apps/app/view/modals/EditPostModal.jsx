@@ -1,9 +1,26 @@
 function EditPostModal(){
+  console.log('Edit Modal -> render')
 
+  const post = retrievePost(props.postId)
 
+  const handleCancelClick = () => props.onEditPostCancelled()
+  
+  const handleSubmit = event =>{
+      event.preventDefault()
 
+      const image = event.target['edit-post-url'].value
+      const text = event.target['edit-post-text'].value
 
-    return <div className="home-edit-post-modal">
+      const result = updatePost(props.postId, image, text)
+
+      if (!result){
+          alert('Can\'t edit post')
+          return
+      }
+      props.onPostEdited()
+  }
+
+   return <div className="home-edit-post-modal">
     <div className="home-edit-post-container">
       <h2>Edit post</h2>
       <form className="home-edit-post-form">

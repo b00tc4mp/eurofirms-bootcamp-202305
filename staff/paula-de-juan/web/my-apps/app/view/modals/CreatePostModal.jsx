@@ -1,18 +1,23 @@
 function CreatePostModal(props){
-    console.log('CreatePostModal -> render')
+  console.log('CreatePost Modal -> render')
 
-    const handleSubmit = event => {
-        event.preventDefault()
+  const handleSubmit = event => {
+      event.preventDefault()
 
-        const image = event.target.image.value
-        const text = event.target.text.value
+      const image = event.target.image.value
+      const text = event.target.text.value
 
-        const result = createPost(context.userId, image, text)
+      const result = createPost(context.userId, image, text)
 
+      if(!result){
+          alert('Can\'t create post')
+          return
+      }
+      props.onPostCreated()
+  }
 
-    }
+  const handleCancelClick = () => props.onCreatePostCancelled()
 
-    const handleCancelClick = () => props.onCreatePostCancelled()
 
 
     return <div className="home-create-post-modal">
