@@ -7,7 +7,7 @@ const db = {
         if(localStorage.users)
             return JSON.parse(localStorage.users)
         
-        return []
+        return [] //array vacio para que no pete
     },
     
     set userIdCount(userIdCount){
@@ -41,5 +41,5 @@ const db = {
             return parseInt(localStorage.postIdCount)
         
         return 0
-    },
+    }
 }
