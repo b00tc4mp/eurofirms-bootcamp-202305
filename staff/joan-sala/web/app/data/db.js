@@ -6,6 +6,7 @@ const db = {
     get users(){
         if(localStorage.users)
             return JSON.parse(localStorage.users)
+        
         return []
     },
     
@@ -14,18 +15,20 @@ const db = {
     },
 
     get userIdCount(){
-        if(localStorage.userIdCount) //almacén de datos en   texto
+        if(localStorage.userIdCount) 
             return parseInt(localStorage.userIdCount)
+        
         return 0
     },
 
-    set posts(users){
-        localStorage.users = JSON.stringify(this.posts)
+    set posts(posts){
+        localStorage.posts = JSON.stringify(posts)
     },
 
     get posts(){
-        if(localStorage.users)
+        if(localStorage.posts)
             return JSON.parse(localStorage.posts)
+        
         return []
     },
 
@@ -36,7 +39,7 @@ const db = {
     get postIdCount(){
         if(localStorage.postIdCount)
             return parseInt(localStorage.postIdCount)
+        
         return 0
-    }
-
+    },
 }

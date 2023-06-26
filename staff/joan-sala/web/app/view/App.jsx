@@ -22,5 +22,5 @@ function App(){
     else if (view === 'register')
         return <Register onLoginClick = {handleLoginClick} onRegistered={handleRegistered}/>
     else if(view === 'home')
-        return <Home onLoggeOut={handleLoggedOut}/>
+        return <Home onLoggedOutClick={handleLoggedOut}/>
 }
