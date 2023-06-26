@@ -1,7 +1,6 @@
 function authenticateUser(email, password) {
     let user
-    const users = db.users
-    
+
     for (let i = 0; i < users.length; i++) {
         const _user = users[i]
 
@@ -12,8 +11,10 @@ function authenticateUser(email, password) {
         }
     }
 
-    if (user === undefined || user.password !== password)
+    if (user === undefined)
         return false
-
-    return user.id
+    //else if (user.password !== password)
+        //return false
+    else
+        return user.id
 }

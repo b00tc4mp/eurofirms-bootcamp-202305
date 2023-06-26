@@ -20,7 +20,8 @@ function Register(props) {
         else
             props.onRegistered()
     }
-    return <main className="register-view">
+    return (
+        <main className="register-view">
             <h1>Register</h1>
 
             <form className="register-form" onSubmit={handleRegisterSubmit}>
@@ -38,4 +39,5 @@ function Register(props) {
 
             <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
         </main>
+    )
 }

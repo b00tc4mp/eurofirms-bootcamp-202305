@@ -1,7 +1,8 @@
 function Login(props) {
     console.log('Login -> render')
-
+    
     const handleRegisterClick = event => {
+
         event.preventDefault()
 
         props.onRegisterClick()
@@ -18,8 +19,7 @@ function Login(props) {
         if (result === false)
             alert('wrong credentials')
         else {
-            context.userId = result
-
+            userId = result
             props.onLoggedIn()
         }
     }
