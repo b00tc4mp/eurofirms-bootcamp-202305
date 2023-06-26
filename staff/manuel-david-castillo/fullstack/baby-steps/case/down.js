@@ -1,5 +1,5 @@
 // $ node down PEPITO
-//pepito
+// pepito
 
 const text = process.argv[2];
 
