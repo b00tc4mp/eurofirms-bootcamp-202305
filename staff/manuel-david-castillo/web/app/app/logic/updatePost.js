@@ -6,6 +6,7 @@ function updatePost(postId, image, text) {
       postsWorked[i].image = image;
       postsWorked[i].text = text;
 
+      local.posts = postsWorked;
       return true;
     }
   }
