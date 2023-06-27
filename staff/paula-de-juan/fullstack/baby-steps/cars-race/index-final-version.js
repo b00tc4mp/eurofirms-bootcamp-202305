@@ -4,13 +4,6 @@ function Car(icon, steps = 0) {
     this.stopped = false
 }
 
-//Car.prototype.setSteps(value) = function () {
-//   if(!this.stopped){
-//      this.steps += value
-// }
-//}
-
-
 Car.prototype.render = function () {
     console.log(' '.repeat(this.steps) + this.icon)
 }
@@ -39,8 +32,7 @@ const interval = setInterval(() => {
         thiefsCaughts++
         carThief2.stopped = true
     }
-    thiefsCaughts === 1 ? console.log('El policia ha atrapado al primer ladron') : 
-    thiefsCaughts === 2 ? console.log('El policia ha atrapado al otro ladron') : null
+    
 
 
     if (carPolice.steps >= carThief.steps && !carThief.stopped) {
@@ -48,6 +40,8 @@ const interval = setInterval(() => {
         carThief.stopped = true
     }
     
+    thiefsCaughts === 1 ? console.log('El policia ha atrapado al primer ladron') : 
+    thiefsCaughts === 2 ? console.log('El policia ha atrapado al otro ladron') : null
 
     if (carTaxi.steps >= 100 || carPolice.steps >= 100 || carThief.steps >= 100) {
         clearInterval(interval)
