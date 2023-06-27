@@ -1,2 +1,6 @@
-const text = process.arv[2]
-console.log(text.toLoweCase())
+// $ node down PEPITO
+// pepito
+
+const text = process.argv[2]
+
+console.log(text.toLowerCase())
