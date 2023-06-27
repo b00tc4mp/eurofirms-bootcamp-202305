@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="register-view off">
+        <h1>Register</h1>
+
+        <form class="register-form">
+            <label for="register-name">Name</label>
+            <input id="register-name" type="text">
+
+            <label for="register-email">E-mail</label>
+            <input id="register-email" type="email">
+
+            <label for="register-password">Password</label>
+            <input id="register-password" type="password">
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Go to <a class="register-login-link" href="">Login</a></p>
+    </main>
+
+    <main class="login-view">
+        <h1>Login</h1>
+
+        <form class="login-form">
+            <label for="login-email">E-mail</label>
+            <input id="login-email" type="email">
+
+            <label for="login-password">Password</label>
+            <input id="login-password" type="password">
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Go to <a class="login-register-link" href="">Register</a></p>
+    </main>
+
+    <main class="home-view off">
+        <h1 class="home-title">Hello, Home!</h1>
+
+        <button class="home-logout-button">Logout</button>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
