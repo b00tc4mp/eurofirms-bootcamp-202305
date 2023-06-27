@@ -5,4 +5,4 @@ function Post(author,image,text){
     this.image=image
     this.text=text
 }
-Post.count=-1
+Post.count=0 //el conteo empieza desde 0

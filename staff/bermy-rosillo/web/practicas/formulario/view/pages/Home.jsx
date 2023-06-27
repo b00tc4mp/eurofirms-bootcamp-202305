@@ -1,10 +1,10 @@
 function Home(props){
     console.log('Home->render')
-    const user=retrieveUser(userId)
+    const user=retrieveUser(context.userId)
     const posts = retrievePosts()
    //------------------------------- 
     const handleLogout= event=>{
-
+        userId = null //anula el usuario conectado
         props.onLogout()
     }
     return  <div className="home-view ">

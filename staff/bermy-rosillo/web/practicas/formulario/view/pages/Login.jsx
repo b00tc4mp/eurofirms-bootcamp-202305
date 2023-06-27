@@ -19,7 +19,7 @@ function Login(props) {
         if (result === false)
             alert('Wrong credentials')
         else {
-            userId=result //uusario conectado
+            context.userId=result //uusario conectado
             console.log(userId)
             props.onLoggedIn()
         }

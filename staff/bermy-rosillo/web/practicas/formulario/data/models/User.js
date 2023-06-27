@@ -4,4 +4,4 @@ function User(name,email,password){
     this.email=email
     this.password=password
 }
-User.count=-1
+User.count=0
