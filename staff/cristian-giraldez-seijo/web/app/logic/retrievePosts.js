@@ -1,10 +1,8 @@
 function retrievePosts() {
-    const posts2 = []
-const posts = db.posts
-const users = db.users
+    const posts = db.posts
+    const users = db.users
 
-    for (let i = 0; i < posts.length; i++) {
-        const post = posts[i]
+    const posts2 = posts.map(post => {
 
         const post2 = {}
 
@@ -13,19 +11,13 @@ const users = db.users
         post2.text = post.text
         post2.author = {}
 
-        for (let j = 0; j < users.length; j++) {
-            const user = users[j]
+        const user = users.find(user => user.id === post.author)
 
-            if (user.id === post.author) {
-                post2.author.id = user.id
-                post2.author.name = user.name
+        post2.author.id = user.id
+        post2.author.name = user.name
+        return post2
 
-                break
-            }
-        }
-
-        posts2.push(post2)
-    }
+    })
 
     return posts2
 }

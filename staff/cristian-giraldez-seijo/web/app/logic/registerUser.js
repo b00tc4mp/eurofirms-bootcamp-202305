@@ -1,6 +1,6 @@
 function registerUser(name, email, password) {
     let user
-const users = db.users
+    const users = db.users
 
     for (let i = 0; i < users.length; i++) {
         const _user = users[i]
@@ -14,7 +14,7 @@ const users = db.users
 
     if (user !== undefined)
         return false
-const id = ++db.usersIdCount
+    const id = ++db.usersIdCount
     user = new User(id, name, email, password)
 
     users.push(user)
