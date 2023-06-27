@@ -1,0 +1,376 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes day-night {
+    0% {
+        background-color: aqua;
+    }
+
+    60% {
+        background-color: rgb(1, 8, 63);
+    }
+
+    100% {
+        background-color: aqua;
+    }
+}
+
+body {
+    background-color: aqua;
+    animation-name: day-night;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-start {
+    justify-content: start
+}
+
+.justify-end {
+    justify-content: end;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-end {
+    align-items: end;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.self-center {
+    align-self: center;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+.bg-aqua {
+    background-color: aqua;
+}
+
+.sea {
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(0, 123, 255);
+}
+
+.street {
+    bottom: 100px;
+    height: 100px;
+    width: 100%;
+    background-color: grey;
+}
+
+.build-1 {
+    bottom: 150px;
+    height: 420px;
+    left: 20px;
+    width: 150px;
+}
+
+.antenna {
+    gap: 4px;
+    margin-bottom: 15px;
+}
+
+.horizontal-antenna-stick {
+    width: 20px;
+    height: 2px;
+}
+
+.vertical-antenna-stick {
+    top: 0;
+    right: 50%;
+    width: 2px;
+    height: 30px;
+}
+
+.rooftop {
+    width: 100px;
+    height: 40px;
+    background-color: brown;
+    padding-left: 4px;
+}
+
+.rooftop-door {
+    width: 18px;
+    height: 30px;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    padding-right: 2px;
+}
+
+.bracelet-rooftop-door {
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+}
+
+.floors-build-1 {
+    background-color: olivedrab;
+    gap: 30px;
+    padding-top: 20px;
+}
+
+.floor-window-container {
+    gap: 20px;
+}
+
+.window-build-1 {
+    width: 50px;
+    height: 50px;
+    grid-template-areas:
+        'a b'
+        'c d';
+    background-color: rgb(63, 62, 62);
+    transition: background-color 1s ease;
+}
+
+.window-separation-a {
+    grid-area: a;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+}
+
+.window-separation-b {
+    grid-area: b;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+}
+
+.window-separation-c {
+    grid-area: c;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+}
+
+.window-separation-d {
+    grid-area: d;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+}
+
+.build-door {
+    width: 46px;
+    height: 80px;
+    background-color: maroon;
+    padding-right: 4px;
+}
+
+.bracelet-build-door {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.window-build-1:hover {
+    background-color: lightblue
+}
+
+.light-on {
+    background-color: lightblue;
+}
+
+.light-on:hover {
+    background-color: rgb(63, 62, 62);
+    transition: background-color 1s ease;
+}
+
+@keyframes ovni-movement {
+    0% {
+        left: 0%
+    }
+
+    50% {
+        left: 70%
+    }
+
+    100% {
+        left: 0%
+    }
+}
+
+@keyframes ovni-rotation {
+    0% {
+        transform: rotate(8deg);
+    }
+
+    50% {
+        transform: rotate(-8deg);
+    }
+
+    100% {
+        transform: rotate(8deg);
+    }
+}
+
+.ovni {
+    position: absolute;
+    left: -20%;
+    top: 5%;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation-name: ovni-movement, ovni-rotation;
+    animation-duration: 4s, 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform: rotate(8deg);
+}
+
+.ovni-top {
+    position: relative;
+    top: 20px;
+    width: 40%;
+    height: 55%;
+    background-color: darkgray;
+    border-radius: 50% 50% 10% 10%;
+    display: flex;
+    gap: 5px;
+    align-items: end;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.ovni-window {
+    width: 16%;
+    height: 30%;
+    background-color: yellow;
+    border-radius: 10%;
+}
+
+.ovni-body {
+    width: 100%;
+    height: 45%;
+    background-color: gainsboro;
+    border-radius: 50%;
+}
+
+@keyframes sun-movement {
+    0% {
+        transform: rotate(-60deg);
+    }
+
+    100% {
+        transform: rotate(300deg);
+    }
+}
+
+.sun {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    animation-name: sun-movement;
+    transform-origin: 50% 1000%;
+    transform: rotate(-60deg);
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.moto {
+    position: absolute;
+    bottom: 150px;
+    left: 200px;
+    width: 400px;
+    height: 200px;
+    border: 2px solid;
+    display: grid;
+    grid-template-areas:
+        '. . . . b'
+        'a a a a b'
+        'a a a a b'
+        'c c c c .'
+        'c c c c .'
+    ;
+}
+
+.moto-body {
+    grid-area: a;
+    display: flex;
+}
+.moto-body-back{
+    width: 50%;
+    height: 100%;
+    border: 2px solid;
+}
+.moto-body-back-wheel-protector{
+    position: relative;
+    width: 60%;
+    height: 50%;
+    border-radius: 100px 100px 0 0;
+    background-color: brown;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding-bottom: 5px;
+    z-index: 2;
+}
+.moto-body-back-wheel-protector-logo{
+    width: 80%;
+    height: 20%;
+    background-color: crimson;
+}
+.moto-body-back-wheel{
+    height: 40px;
+    width: 40px;
+    position: relative;
+    left: 15%;
+    top: -10%;
+    z-index: 1;
+}
+.moto-body-back-wheel-neumatic{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.moto-body-back-wheel-protector-1{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.moto-body-back-wheel-protector-2{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: grey;
+}
