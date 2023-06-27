@@ -4,7 +4,7 @@ function Home(props){
     const posts = retrievePosts()
    //------------------------------- 
     const handleLogout= event=>{
-        userId = null //anula el usuario conectado
+        context.userId = null //anula el usuario conectado
         props.onLogout()
     }
     return  <div className="home-view ">
@@ -21,7 +21,7 @@ function Home(props){
                     <img className='home-post-image' src={post.image} alt={post.text}></img>
                     <p>{post.text}</p>
 
-                    {post.author.id === userId && <>
+                    {post.author.id === context.userId && <>
                         <button>Edit</button>
                         <button>Delete</button>
                     </>}

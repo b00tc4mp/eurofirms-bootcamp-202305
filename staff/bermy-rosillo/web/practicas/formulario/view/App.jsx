@@ -2,8 +2,8 @@
 /*App envia properties a login(componente): onRegisterClick es una property que la maneja el obj props */
 function App(){
    console.log('App->render')
-   const viewState = React.useState('login')
-   const view = viewState[0]
+   const viewState = React.useState( context.userId ?'home':'login') //si existe un suario conectado muestra home , sino muestra login
+   const view = viewState[0]                                         //mantiene sesion(solo para usuarios existentes, no para nuevos)
    const setView = viewState[1]
    
    const registerClick =()=>setView('register')
