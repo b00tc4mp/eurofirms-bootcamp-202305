@@ -1,4 +1,4 @@
-function DeletePostModal(){
+function DeletePostModal(props){
   console.log('DeleteModal -> render')
 
     const handleCancelClick = () => props.onDeletePostCancelled()

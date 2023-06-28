@@ -31,7 +31,7 @@ function CreatePostModal(props){
         <textarea id="text"></textarea>
 
         <button type="submit">Create</button>
-        <button className="home-create-post-cancel-button"onClick={handleCancelClick}>Cancel</button>
+        <button className="home-create-post-cancel-button" onClick={handleCancelClick}>Cancel</button>
       </form>
     </div>
   </div>

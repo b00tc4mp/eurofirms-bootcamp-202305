@@ -19,6 +19,8 @@ function updatePost (postId, image, text) {
 
         post.image = image
         post.text = text
+        
+        db.posts = posts
 
         return true
     }

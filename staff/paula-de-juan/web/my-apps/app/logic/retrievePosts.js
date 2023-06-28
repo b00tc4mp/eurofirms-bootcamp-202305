@@ -13,10 +13,11 @@ function retrievePosts() {
 
         const user = users.find(user => user.id === post.author)
 
-        post2.author.id = userId
+        post2.author.id = user.id
         post2.author.name = user.name
 
         return post2
     })
+
     return posts2
 }

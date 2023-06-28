@@ -68,11 +68,11 @@ body {
 }
 
 .home-create-post-modal {
-    background-color: rgba(0, 0, 0, 0.497);
-    position: fixed;
-    width: 80%;
-    height: 100%;
-    top: 0;
+    background-color: rgba(255, 233, 108, 0.973);
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,11 +118,11 @@ body {
 
 
 .home-edit-post-modal {
-    background-color: rgba(0, 0, 0, 0.497);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
+    background-color: rgba(255, 233, 108, 0.973);
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,11 +145,11 @@ body {
 
 
 .home-delete-post-modal {
-    background-color: rgba(0, 0, 0, 0.497);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
+    background-color: rgba(255, 233, 108, 0.973);
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
