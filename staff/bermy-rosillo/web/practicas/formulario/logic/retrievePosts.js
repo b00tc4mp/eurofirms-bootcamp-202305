@@ -1,6 +1,7 @@
+//solo lectura y no se tiene que guardar nada
 function retrievePosts() {
-    /*const users = db.users
-    const posts = db.posts*/
+    const users = db.users 
+    const posts = db.posts
 
     const posts2 = posts.map(post => {
 

@@ -1,9 +1,6 @@
-/*delete post */
-
 function deletePost(postId) {
     let post
-
-    //const posts = db.posts
+    const posts = db.posts
 
     for (let i = 0; i < posts.length; i++) {
         const _post = posts[i]
@@ -12,8 +9,8 @@ function deletePost(postId) {
             post = _post
             break
         }
-
     }
+    
     if (post === undefined)
         return false
 
@@ -23,7 +20,6 @@ function deletePost(postId) {
     
     posts.splice(index, 1)
     
-    //db.posts = posts
-
+    db.posts = posts
     return true
 }

@@ -1,5 +1,5 @@
 function retrievePost(postId){
-    //const posts = db.posts
+    const posts = db.posts
 
     let post = posts.find(post=>post.id === postId)
     

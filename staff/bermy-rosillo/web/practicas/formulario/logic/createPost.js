@@ -5,13 +5,12 @@ function createPost(userId,image,text){
     if(text.length === 0)
         return false
 
-    //const posts = db.posts
-    
+    const posts = db.posts
     
     const post = new Post(userId,image,text)
     posts.push(post)
    
-    //db.posts = posts
+    db.posts = posts
    
     return true
 }

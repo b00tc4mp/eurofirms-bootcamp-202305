@@ -1,6 +1,7 @@
 function registerUser(name,email,password){
     let user
-    //const users = db.users
+
+    const users = db.users //get
 
     for(let i = 0 ; i < users.length ; i++){
         const _user = users[i]
@@ -20,7 +21,7 @@ function registerUser(name,email,password){
         
         users.push(user)
         
-        //db.users = users
+        db.users = users //set
        
         return true
     }
