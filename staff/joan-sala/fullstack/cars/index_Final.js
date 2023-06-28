@@ -12,14 +12,14 @@ function randomStep() {
     return Math.floor(Math.random() * 10)
 }
 
-const carThief = new Car('🚘', 0)
-const carTaxi = new Car('🚖', 0)
-const carPolice = new Car('🚔', 0)
+const carThief = new Car('Caco', 0)
+const carTaxi = new Car('Taxi', 0)
+const carPolice = new Car('Poli', 0)
 
 const interval = setInterval(() => {
     console.clear()
 
-    console.log(' '.repeat(100) + '🏁')
+    console.log(' '.repeat(100) + 'META')
     carThief.render()
     carPolice.render()
     carTaxi.render()
