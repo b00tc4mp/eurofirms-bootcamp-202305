@@ -65,9 +65,8 @@ function Home(props) {
             <button className="home-create-post-button" onClick={handleCreatePostClick}>+</button>
         </footer>
 
-        {modal === 'create-post' && <CreatePostModal onPostCreated={handlePostCreated} onCreatePostCancelled={handleCreatePostCancelled} />}
-        {modal === 'edit-post' && <EditPostModal postId={postId} onPostEdited={handlePostEdited} onEditPostCancelled={handleEditPostCancelled} />}
-        {modal === 'delete-post' && <DeletePostModal postId={postId} onPostDeleted={handlePostDeleted} onDeletePostCancelled={handleDeletePostCancelled} />}
+
+
 
     </div>
 }
