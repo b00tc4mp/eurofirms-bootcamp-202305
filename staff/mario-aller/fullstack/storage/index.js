@@ -73,10 +73,6 @@ class Storage {
     }
 }
 
-// main
-
-const sto = new Storage('store')
-
 function errorArg(num, msg) {
     if (process.argv.length !== num) {
         console.error(msg)
@@ -84,6 +80,10 @@ function errorArg(num, msg) {
     }
     return false
 }
+
+// main
+
+const sto = new Storage('store')
 
 const operation = process.argv[2].toLowerCase()
 switch (operation) {
