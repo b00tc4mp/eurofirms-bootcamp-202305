@@ -93,30 +93,6 @@ else {
             })
         })
     } else if (operation === 'remove') {
-        fs.readFile('./storage.json', 'utf8', (error, json) => {
-            if (error) {
-                console.error(error.message)
-
-                return
-            }
-
-            const items = JSON.parse(json)
-
-            const index = process.argv[3]
-
-            items.splice(index, 1)
-
-            const json2 = JSON.stringify(items)
-
-            fs.writeFile('./storage.json', json2, error => {
-                if (error) {
-                    console.error(error.message)
-
-                    return
-                }
-
-                console.table(items)
-            })
-        })
+        // HINT use arrays .splice
     }
 }
