@@ -54,7 +54,7 @@ class Storage {
 
             fs.writeFile('./' + this.name + '.json', JSON.stringify(this.items, null, " "), error => {
                 if (error) console.error('No se puede escribir en HD')
-                this.draw('Item input')
+                this.draw('Item update')
             })
         })
     }
@@ -67,7 +67,7 @@ class Storage {
 
             fs.writeFile('./' + this.name + '.json', JSON.stringify(this.items, null, " "), error => {
                 if (error) console.error('No se puede escribir en HD')
-                this.draw('Item input')
+                this.draw('Item delete')
             })
         })
     }
@@ -90,11 +90,11 @@ switch (operation) {
     case 'add':
         if (!errorArg(5, 'add: error arg')) sto.itemPut(process.argv[3], process.argv[4])
         break
-    case 'udt':
-        if (!errorArg(6, 'update: error arg')) sto.itemPut(process.argv[3], process.argv[4], process.argv[5])
+    case 'upt':
+        if (!errorArg(6, 'update: error arg')) sto.itemUpdate(process.argv[3], process.argv[4], process.argv[5])
         break
     case 'del':
-        if (!errorArg(4, 'delete: error arg')) sto.itemPut(process.argv[3])
+        if (!errorArg(4, 'delete: error arg')) sto.itemDelete(process.argv[3])
         break
     default: console.error('Operación incorrecta')
 }
