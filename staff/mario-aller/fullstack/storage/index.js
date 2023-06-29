@@ -78,7 +78,7 @@ class Storage {
 const sto = new Storage('store')
 
 function errorArg(num, msg) {
-    if (process.argv.length < num) {
+    if (process.argv.length !== num) {
         console.error(msg)
         return true
     }
