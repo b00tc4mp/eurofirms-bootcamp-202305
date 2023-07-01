@@ -16,11 +16,11 @@
 // @example READ STORAGEcd 
 const fs = require('fs')
 
-const operation = process.argv[2]
+const operation = process.argv[2] //tercer elemento
 
 const file = './storage.json'
 
-if (!operation) {            //callback
+if (!operation) {            //callback que le pasamos para que lo compruebe
   fs.readFile(file, 'utf8', (error, json) => {
     if (error) {
       console.error(error.message)
@@ -28,8 +28,8 @@ if (!operation) {            //callback
       return
     }
     
-    //siempre convertir
-    const data = JSON.parse(json)
+    //siempre convertir a array de objetos
+    const data = JSON.parse(json)//lo que devuelve el fichero
 
     console.table(data) //mostrar
   })
