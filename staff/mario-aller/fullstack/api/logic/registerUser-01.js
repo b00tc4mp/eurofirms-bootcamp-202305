@@ -1,5 +1,11 @@
 const context = require('./context')
-const valid = require('./valid')
+
+function valid(data) {
+    if (typeof data !== 'string') return false
+    if (data === '') return false
+    return true
+}
+
 
 function registerUser(userN, mail, pwd) {
     try {
@@ -12,6 +18,7 @@ function registerUser(userN, mail, pwd) {
                 if (result !== null) throw Error('El usuario ya existe')
                 return context.users.insertOne({ "name": userN, "email": mail, "password": pwd })
                     .catch(err => console.error(err))
+
             })
             .catch(err => console.error(err))
     } catch (err) {
