@@ -7,10 +7,10 @@
  * $ node .
  * 
  * @example add item to storage
- * $ node . add "Eggs" "Home"
+ * $ node . add "" ""
  * 
  * @example update item in storage
- * $ node . update 1 "Ecologic Eggs" "Home"
+ * $ node . update 1 "" ""
  * 
  * @example remove item from storage
  * $ node . remove 1
