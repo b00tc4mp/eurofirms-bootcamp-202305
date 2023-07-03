@@ -1,21 +1,15 @@
 const context = require('./context')
-const valid = require('./valid')
+const stringValidator = require('./stringValidator')
 
-function registerUser(userN, mail, pwd) {
-    try {
-        if (!valid(userN) ||
-            !valid(mail) ||
-            !valid(pwd)) throw new Error('Datos inválidos')
+function registerUser(userName, mail, pwd) {
+    stringValidator(userName, 'name')
+    stringValidator(mail, 'email')
+    stringValidator(pwd, 'password')
 
-        return context.users.findOne({ "email": mail })
-            .then((result) => {
-                if (result !== null) throw Error('El usuario ya existe')
-                return context.users.insertOne({ "name": userN, "email": mail, "password": pwd })
-                    .catch(err => console.error(err))
-            })
-            .catch(err => console.error(err))
-    } catch (err) {
-        console.error(err)
-    }
+    return context.users.findOne({ "email": mail })
+        .then((result) => {
+            if (result) throw new Error('El usuario ya existe')
+            return context.users.insertOne({ "name": userName, "email": mail, "password": pwd })
+        })
 }
 module.exports = registerUser

@@ -1,20 +1,15 @@
 const context = require('./context')
-const valid = require('./valid')
+const stringValidator = require('./stringValidator')
 
 function authenticateUser(mail, pwd) {
-    try {
-        if (!valid(mail) ||
-            !valid(pwd)) throw new Error('Datos inválidos')
+    stringValidator(mail, 'email')
+    stringValidator(pwd, 'password')
 
-        return context.users.findOne({ "email": mail })
-            .then((user) => {
-                if (user === null) throw Error('El usuario no existe')
-                if (user.password === pwd) return user._id.toString()
-                else throw new Error('Clave incorrecta')
-            })
-            .catch(err => console.error(err))
-    } catch (err) {
-        console.error(err)
-    }
+    return context.users.findOne({ "email": mail })
+        .then((user) => {
+            if (user === null) throw new Error('El usuario no existe')
+            if (user.password !== pwd) throw new Error('Clave incorrecta')
+            return user._id.toString()
+        })
 }
 module.exports = authenticateUser

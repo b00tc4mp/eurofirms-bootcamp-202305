@@ -8,7 +8,13 @@ const client = new MongoClient('mongodb://127.0.0.1:27017')
 client.connect()
     .then(conex => {
         context.users = conex.db('data').collection('users')
-        return registerUser('McCartney', 'beatles2@yah.com', '123')
+        try {
+            return registerUser('McCartney', 'beatles8@yah.com', '123')
+            .then(()=>console.log('User Registered!'))
+                .catch(err => console.error(err))
+        } catch (error) {
+            console.error(error)
+        }
     })
     .catch(err => console.error(err))
     .finally(() => client.close())
