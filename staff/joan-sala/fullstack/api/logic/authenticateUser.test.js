@@ -3,7 +3,7 @@ const mongodb =  require('mongodb')//dependencias
 const authenticateUser = require('./authenticateUser')
 
 const {MongoClient} = mongodb
-const client = new MongoClient('mongodb://127.0.0.1:27017')
+const client = new MongoClient('mongodb://127.0.0.1:27017') 
 
 client.connect()
 .then(connection => {
