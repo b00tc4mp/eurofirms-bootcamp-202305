@@ -15,11 +15,12 @@ client.connect()
         context.users = users
 
         try {
-            return retrieveUser('649eb0ced136e07c51670ddc')
+            return retrieveUser('649eb0ced136e07c51670ddd')
                 .then(user => console.log('user retrieved', user))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
         }
     })
+    .catch(error => console.error(error))
     .finally(() => client.close())
