@@ -6,9 +6,10 @@ const { MongoClient } = mongodb
 const client = new MongoClient('mongodb://127.0.0.1:27017')
 
 client.connect()
-    .then(con => {
-        context.users = con.db('data').collection('users')
-        try {
+    .then(connection => {
+        context.users = connection.db('data').collection('users')
+
+         try {
             return authenticateUser('beatles2@yah.com', '123')
                 .then((value) => console.log(value))
                 .catch(err => console.error(err))
@@ -17,7 +18,6 @@ client.connect()
         }
     })
     .catch(err => console.error(err))
-    .finally(() => {
-        context.users = null
-        client.close()
-    })
+    .finally(() => client.close())
+
+
