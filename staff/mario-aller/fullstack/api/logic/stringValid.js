@@ -8,6 +8,7 @@ function stringValid(data, option = 0) {
         case 0: // Validación standard de string
             if (typeof data !== 'string') throw new Error('No es una cadena')
             if (data === '') throw new Error('La cadena está vacía')
+            break
 
         default: throw new Error('Opción no definida')
     }
