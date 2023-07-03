@@ -6,8 +6,8 @@ const { MongoClient } = mongodb
 const client = new MongoClient('mongodb://127.0.0.1:27017')
 
 client.connect()
-    .then(con => {
-        context.users = con.db('data').collection('users')
+    .then(connection => {
+        context.users = connection.db('data').collection('users')
         try {
             return registerUser('McCartney', 'beatles2@yah.com', '123')
         } catch (err) {
@@ -19,4 +19,3 @@ client.connect()
         context.users = null
         client.close()
     })
-
