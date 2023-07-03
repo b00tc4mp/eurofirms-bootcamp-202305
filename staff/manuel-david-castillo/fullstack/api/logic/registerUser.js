@@ -16,4 +16,4 @@ function registerUser(name, email, password) {
     })
 }
 
-module.exports = registerUser()
+module.exports = registerUser

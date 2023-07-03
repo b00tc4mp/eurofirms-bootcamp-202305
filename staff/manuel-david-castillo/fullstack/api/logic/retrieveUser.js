@@ -16,4 +16,4 @@ function retrieveUser(userId) {
         })
 }
 
-module.exports = retrieveUser()
+module.exports = retrieveUser
