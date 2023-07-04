@@ -1,5 +1,5 @@
-const ctx = require('./ctx')
-const { stringValid } = require('./helpers/validators')
+const context = require('./context')
+const stringValid = require('./stringValid')
 
 /**
  * La función `authenticateUser` toma el correo electrónico y la contraseña de un usuario, verifica si el correo electrónico y la contraseña son cadenas válidas y luego busca un usuario con el correo electrónico dado en una base de datos. Si se encuentra un usuario, comprueba si la contraseña coincide y devuelve el ID del usuario como una cadena.
@@ -8,10 +8,9 @@ const { stringValid } = require('./helpers/validators')
  * @returns el ID del usuario como una cadena si la autenticación es exitosa.
  */
 function authenticateUser(mail, pwd) {
-    stringValid(mail,ctx.STR_EMAIL)
-    stringValid(pwd,ctx.STR_PASSWORD)
-
-    return ctx.users.findOne({ email: mail })
+    stringValid(mail)
+    stringValid(pwd)
+    return context.users.findOne({ email: mail })
         .then((user) => {
             if (!user) throw new Error('El usuario no existe')
             if (user.password !== pwd) throw new Error('Clave incorrecta')

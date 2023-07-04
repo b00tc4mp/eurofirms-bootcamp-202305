@@ -1,5 +1,5 @@
-const ctx = require('./ctx')
 const mongodb = require('mongodb')
+const context = require('./context')
 const retrieveUser = require('./retrieveUser')
 
 const { MongoClient } = mongodb
@@ -7,7 +7,7 @@ const client = new MongoClient('mongodb://127.0.0.1:27017')
 
 client.connect()
     .then(connection => {
-        ctx.users = connection.db('data').collection('users')
+        context.users = connection.db('data').collection('users')
         try {
             return retrieveUser('64a02f4a1d585f721cd61f85')
                 .then((user) => console.log(user.name))
@@ -16,6 +16,6 @@ client.connect()
     })
     .catch(err => console.error(err))
     .finally(() => {
-        ctx.users = null
+        context.users = null
         client.close()
     })

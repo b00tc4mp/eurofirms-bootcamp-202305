@@ -1,23 +1,24 @@
-const context = require('./context')
-const stringValid = require('./stringValid')
+const ctx = require('./ctx')
+const { stringValid } = require('./helpers/validators')
 
 /**
- * La función `registerUser` comprueba si ya existe un usuario con el correo electrónico dado y, si no, inserta un nuevo usuario con el nombre, el correo electrónico y la contraseña proporcionados en la base de datos.
+ * La función `registerUser` comprueba si ya existe un usuario con el correo electrónico proporcionado y, si no, inserta un nuevo usuario con el nombre, el correo electrónico y la contraseña proporcionados en la base de datos.
  * @param userName - El parámetro `userName` es el nombre del usuario que se está registrando.
- * @param mail - El parámetro `mail` representa la dirección de correo electrónico del usuario que se está registrando.
- * @param pwd - El parámetro "pwd" significa contraseña. Se utiliza para pasar la contraseña del usuario al registrar un nuevo usuario.
- * @returns una promesa.
+ * @param mail - El parámetro `mail` es la dirección de correo electrónico del usuario que se está registrando.
+ * @param pwd - El parámetro "pwd" representa la contraseña del usuario.
+ * @returns nada.
  */
 function registerUser(userName, mail, pwd) {
-    stringValid(userName)
-    stringValid(mail)
-    stringValid(pwd)
+    stringValid(userName, STR_NAME)
+    stringValid(mail, STR_EMAIL)
+    stringValid(pwd, STR_PASSWORD)
 
-    return context.users.findOne({ email: mail })
+    return ctx.users.findOne({ email: mail })
         .then((user) => {
             if (user) throw new Error('El usuario ya existe')
 
-            return context.users.insertOne({ name: userName, email: mail, password: pwd })
+            return ctx.users.insertOne({ name: userName, email: mail, password: pwd })
         })
+        .then(() => { })
 }
 module.exports = registerUser
