@@ -23,4 +23,5 @@ client.connect()
             console.log(error)
         }
     })
+    .catch(error => console.error(error))
     .finally(()=> client.close())
