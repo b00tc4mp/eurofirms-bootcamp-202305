@@ -10,16 +10,17 @@ client.connect()
     const db = connection.db('data')
     const users = db.collection('users')
 
-    context.users =  users //guardado
+    context.users =  users //guardado de el manejador para alojar herramientas que todo el usuario utiliza
 
-    try{
+    try{ //captura/detecta cualquier tipo de error
         return authenticateUser('peter@pan.com', '123123123')
-        .then(id => console.log('user authenticated', id))
+        .then(id => console.log('User authenticated', id))
         .catch(error => console.error(error))
     } catch(error){
         console.error(error)
     }
 })
+.catch(error => console.error(error))
 .finally(()=>{
     client.close()
 })

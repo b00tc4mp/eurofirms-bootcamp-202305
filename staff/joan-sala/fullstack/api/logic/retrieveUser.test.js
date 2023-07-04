@@ -14,7 +14,7 @@ client.connect()
         const users = db.collection('users')
 
         context.users = users
-
+        //asincrono
         try{
             return retrieveUser('64a07bf8fd76be0f9306ec87')
                 .then(user => {
@@ -27,6 +27,7 @@ client.connect()
             console.error(error)
         }
     })
+    .catch(error => console.error(error))
     .finally(()=> {
         client.close()
     })

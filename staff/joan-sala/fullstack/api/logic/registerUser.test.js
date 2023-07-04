@@ -1,6 +1,6 @@
-const registerUser = require('./registerUser')
 const mongodb = require('mongodb')
 const context = require('./context')
+const registerUser = require('./registerUser')
 
 const{ MongoClient } = mongodb
 
@@ -27,6 +27,7 @@ client.connect()
             console.error(erro)
         }
     })
+    .catch(error => console.error(error))
     .finally(() => {
         client.close()
     })
