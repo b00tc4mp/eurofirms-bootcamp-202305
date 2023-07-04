@@ -1,4 +1,4 @@
-const createPost = require('./createPost')
+const retrievePosts = require('./retrievePosts')
 const mongodb = require('mongodb')
 const context = require('./context')
 
@@ -17,8 +17,8 @@ client.connect()
     context.users = users
 
     try {
-        return createPost('649da1a35792d969ba2738cb', 'https://cl.buscafs.com/www.levelup.com/public/uploads/images/498938_1140x516.jpg', 'Rick Sanchez')
-        .then(()=> console.log('create post'))
+        return retrievePosts('649da1a35792d969ba2738cb')
+        .then((posts)=> console.log(posts))
         .catch(error => console.error(error)) 
     } catch (error) {
         console.error(error)
