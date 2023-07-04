@@ -33,7 +33,7 @@ function stringValid(data, option = 0) {
     const charsValid1 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     const charsValid2 = ',;:._-$'
     const charsValid3 = '._-$'
-    const charsValid4 = 'ñÑáéíóúäëïöüÁÉÍÓÚÄËÏÖÜ'
+    const charsValid4 = 'áéíóúäëïöüÁÉÍÓÚÄËÏÖÜ'
 
     switch (option) {
         case ctx.STR_REGULAR:
@@ -60,7 +60,7 @@ function stringValid(data, option = 0) {
 
             break
         case ctx.STR_PASSWORD:
-            dictio(charsValid1 + charsValid2 + charsValid4 + '@', data)
+            dictio(charsValid1 + charsValid2 + '@', data)
             if (data.length < 8) throw new Error('La clave debe tener 8 o más caracteres')
 
             break
