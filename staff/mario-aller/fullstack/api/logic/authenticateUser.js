@@ -8,8 +8,8 @@ const { stringValid } = require('./helpers/validators')
  * @returns el ID del usuario como una cadena si la autenticación es exitosa.
  */
 function authenticateUser(mail, pwd) {
-    stringValid(mail,ctx.STR_EMAIL)
-    stringValid(pwd,ctx.STR_PASSWORD)
+    stringValid(mail, ctx.STR_EMAIL)
+    stringValid(pwd, ctx.STR_PASSWORD)
 
     return ctx.users.findOne({ email: mail })
         .then((user) => {

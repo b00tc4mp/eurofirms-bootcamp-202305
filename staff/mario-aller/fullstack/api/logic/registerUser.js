@@ -9,9 +9,9 @@ const { stringValid } = require('./helpers/validators')
  * @returns nada.
  */
 function registerUser(userName, mail, pwd) {
-    stringValid(userName, STR_NAME)
-    stringValid(mail, STR_EMAIL)
-    stringValid(pwd, STR_PASSWORD)
+    stringValid(userName, ctx.STR_NAME)
+    stringValid(mail, ctx.STR_EMAIL)
+    stringValid(pwd, ctx.STR_PASSWORD)
 
     return ctx.users.findOne({ email: mail })
         .then((user) => {

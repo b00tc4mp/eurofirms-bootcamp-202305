@@ -34,6 +34,7 @@ function stringValid(data, option = 0) {
     const charsValid2 = ',;:._-$'
     const charsValid3 = '._-$'
     const charsValid4 = 'ñÑáéíóúäëïöüÁÉÍÓÚÄËÏÖÜ'
+    const charsValid5 = '@/=?()%'
 
     switch (option) {
         case ctx.STR_REGULAR:
@@ -65,7 +66,7 @@ function stringValid(data, option = 0) {
 
             break
         case ctx.STR_URL:
-            dictio(charsValid1 + charsValid2 + '@', data)
+            dictio(charsValid1 + charsValid2 + charsValid5, data)
             if (data.substring(0, 4).toLowerCase() !== 'http')
                 throw new Error('La dirección no empieza por http')
 
