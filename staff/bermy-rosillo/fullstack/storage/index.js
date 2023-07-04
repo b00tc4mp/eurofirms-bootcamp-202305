@@ -86,6 +86,8 @@ if (operation === 'update') {
             if(error){
                 console.error(error.message)
 
+                return
+
             }
             console.table(items)
             console.log(json2)
