@@ -1,5 +1,4 @@
 const context = require('./context')
-const { validateEmail, validatePassword, validateName } = require('./helpers/validators')
 
 /**
  * Registers a user
@@ -15,9 +14,12 @@ const { validateEmail, validatePassword, validateName } = require('./helpers/val
  * @throws {Error} In case user already exists (asynchronous)
  */
 function registerUser(name, email, password) {
-    validateName(name)
-    validateEmail(email)
-    validatePassword(password)
+    if (typeof name !== 'string') throw new Error('name is not a string')
+    if (name === '') throw new Error('name is empty')
+    if (typeof email !== 'string') throw new Error('email is not a string')
+    if (email === '') throw new Error('email is empty')
+    if (typeof password !== 'string') throw new Error('password is not a string')
+    if (password === '') throw new Error('password is empty')
 
     return context.users.findOne({ email })
         .then(user => {
@@ -25,7 +27,6 @@ function registerUser(name, email, password) {
 
             return context.users.insertOne({ name, email, password })
         })
-        .then(() => { })
 }
 
 module.exports = registerUser

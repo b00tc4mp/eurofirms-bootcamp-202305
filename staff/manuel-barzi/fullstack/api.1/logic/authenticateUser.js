@@ -1,11 +1,10 @@
 const context = require('./context')
-// const validators = require('./helpers/validators')
-// const { validateEmail, validatePassword } = validators
-const { validateEmail, validatePassword } = require('./helpers/validators')
 
 function authenticateUser(email, password) {
-    validateEmail(email)
-    validatePassword(password)
+    if (typeof email !== 'string') throw new Error('email is not a string')
+    if (email === '') throw new Error('email is empty')
+    if (typeof password !== 'string') throw new Error('password is not a string')
+    if (password === '') throw new Error('password is empty')
 
     return context.users.findOne({ email })
         .then(user => {

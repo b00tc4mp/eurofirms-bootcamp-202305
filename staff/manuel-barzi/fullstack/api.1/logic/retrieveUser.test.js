@@ -1,4 +1,4 @@
-const registerUser = require('./registerUser')
+const retrieveUser = require('./retrieveUser')
 const mongodb = require('mongodb')
 const context = require('./context')
 
@@ -11,14 +11,12 @@ client.connect()
         const db = connection.db('data')
 
         const users = db.collection('users')
-        const posts = db.collection('posts')
 
         context.users = users
-        context.posts = posts
 
         try {
-            return registerUser('James Hook', 'james@hook.com', '123123123')
-                .then(() => console.log('user created'))
+            return retrieveUser('649eb0ced136e07c51670ddd')
+                .then(user => console.log('user retrieved', user))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

@@ -11,18 +11,14 @@ client.connect()
         const db = connection.db('data')
 
         const users = db.collection('users')
-        const posts = db.collection('posts')
 
         context.users = users
-        context.posts = posts
 
         try {
-            return registerUser('James Hook', 'james@hook.com', '123123123')
+            return registerUser('Wendy Darling', 'wendy@darling.com', '123123123')
                 .then(() => console.log('user created'))
-                .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
         }
     })
-    .catch(error => console.error(error))
     .finally(() => client.close())

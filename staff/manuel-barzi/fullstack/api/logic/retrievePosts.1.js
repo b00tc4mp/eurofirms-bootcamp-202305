@@ -11,19 +11,14 @@ function retrievePosts(userId) {
         .then(user => {
             if (!user) throw new Error('user not found')
 
-            return Promise.all([context.posts.find().toArray(), context.users.find().toArray()])
+            return context.posts.find().toArray()
         })
-        .then(([posts, users]) => {
+        .then(posts => {
             posts.forEach(post => {
                 post.id = post._id.toString()
                 delete post._id
 
-                const user = users.find(user => user._id.toString() === post.author.toString())
-
-                post.author = {
-                    id: user._id.toString(),
-                    name: user.name
-                }
+                post.author = post.author.toString()
             })
 
             return posts
