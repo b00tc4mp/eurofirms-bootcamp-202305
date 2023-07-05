@@ -1,3 +1,3 @@
-const c = require('./logic/context')
+const context = require('./logic/context')
 
-console.log(c)
+console.log(context)

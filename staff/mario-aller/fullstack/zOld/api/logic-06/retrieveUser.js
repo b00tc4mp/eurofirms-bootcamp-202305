@@ -1,6 +1,6 @@
 const context = require('./context')
 const { ObjectId } = require('mongodb')
-const { validateString } = require('./helpers/validators')
+const { validateStr } = require('./helpers/validators')
 
 /**
  * La función recupera un usuario de una base de datos por su ID, elimina la información confidencial y devuelve el objeto de usuario.
@@ -8,7 +8,7 @@ const { validateString } = require('./helpers/validators')
  * @returns La función `retrieveUser` devuelve una promesa que se resuelve en el objeto de usuario con el `id` especificado. El objeto de usuario se modifica para incluir una propiedad `id`, y las propiedades `contraseña` e `_id` se eliminan antes de devolver el objeto de usuario.
  */
 function retrieveUser(id) {
-    validateString(id)
+    validateStr(id)
 
     return context.users.findOne({ "_id": new ObjectId(id) })
         .then((user) => {

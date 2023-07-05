@@ -1,6 +1,6 @@
 const context = require('./context')
 const { ObjectId } = require('mongodb')
-const { validateString } = require('./helpers/validators')
+const { validateStr } = require('./helpers/validators')
 
 /**
  * La función recupera publicaciones de una base de datos, modifica los datos y devuelve las publicaciones con información adicional sobre el autor.
@@ -8,7 +8,7 @@ const { validateString } = require('./helpers/validators')
  * @returns La función `retrievePosts` devuelve una promesa que se resuelve en una serie de publicaciones.
  */
 function retrievePosts(userId) {
-    validateString(userId)
+    validateStr(userId)
 
     return context.users.findOne({ _id: new ObjectId(userId) })
         .then((user) => {

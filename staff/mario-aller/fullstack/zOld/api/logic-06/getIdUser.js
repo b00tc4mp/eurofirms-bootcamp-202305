@@ -1,5 +1,5 @@
 const context = require('./context')
-const { validateString } = require('./helpers/validators')
+const { validateStr } = require('./helpers/validators')
 
 /**
  * La función `getIdUser` toma un correo electrónico como entrada, lo valida y devuelve la identificación del usuario con ese correo electrónico.
@@ -7,7 +7,7 @@ const { validateString } = require('./helpers/validators')
  * @returns La función `getIdUser` devuelve la ID del usuario como una cadena.
  */
 function getIdUser(email) {
-    validateString(email, validateString.EMAIL)
+    validateStr(email, validateStr.EMAIL)
 
     return context.users.findOne({ email })
         .then((user) => {

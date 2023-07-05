@@ -1,5 +1,5 @@
 const context = require('./context')
-const { validateString } = require('./helpers/validators')
+const { validateStr } = require('./helpers/validators')
 
 /**
  * La función `authenticateUser` toma un correo electrónico y una contraseña como parámetros, los valida y luego verifica si el usuario existe y si la contraseña es correcta antes de devolver la identificación del usuario.
@@ -8,8 +8,8 @@ const { validateString } = require('./helpers/validators')
  * @returns La función `authenticateUser` devuelve la propiedad `_id` del objeto de usuario como una cadena.
  */
 function authenticateUser(email, password) {
-    validateString(email, validateString.EMAIL)
-    validateString(password, validateString.PASSWORD)
+    validateStr(email, validateStr.EMAIL)
+    validateStr(password, validateStr.PASSWORD)
 
     return context.users.findOne({ email })
         .then((user) => {

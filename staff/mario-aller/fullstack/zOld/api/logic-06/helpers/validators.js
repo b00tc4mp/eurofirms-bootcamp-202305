@@ -15,7 +15,7 @@ function checkDictio(dictionary, str) {
 }
 
 /**
- * La función `validateString` es una función de JavaScript que valida diferentes tipos de cadenas en función de la opción especificada.
+ * La función `validateStr` es una función de JavaScript que valida diferentes tipos de cadenas en función de la opción especificada.
  * @param data - El parámetro `data` es la cadena que necesita ser validada. Puede ser cualquier valor de cadena.
  * @param [option=0] - El parámetro `opción` se utiliza para especificar el tipo de validación que se realizará en la cadena de `datos`. Puede tomar uno de los siguientes valores:
  *   REGULAR : 0,
@@ -24,7 +24,7 @@ function checkDictio(dictionary, str) {
  *   URL: 3,
  *   NAME : 4
  */
-function validateString(data, option = 0) {
+function validateStr(data, option = 0) {
     if (typeof data !== 'string') throw new Error('El parámetro no es una cadena')
     if (data === '') throw new Error('La cadena está vacía')
 
@@ -35,11 +35,11 @@ function validateString(data, option = 0) {
     const charsValid5 = '@/=?()%'
 
     switch (option) {
-        case validateString.REGULAR:
+        case validateStr.REGULAR:
             checkDictio(charsValid1 + charsValid2, data)
 
             break
-        case validateString.EMAIL:
+        case validateStr.EMAIL:
             checkDictio(charsValid1 + charsValid3 + '@', data)
 
             const atPos = data.indexOf('@')
@@ -58,18 +58,18 @@ function validateString(data, option = 0) {
             checkDictio(charsValid1 + charsValid3, strAux2)
 
             break
-        case validateString.PASSWORD:
+        case validateStr.PASSWORD:
             checkDictio(charsValid1 + charsValid2 + charsValid4 + '@', data)
             if (data.length < 8) throw new Error('La clave debe tener 8 o más caracteres')
 
             break
-        case validateString.URL:
+        case validateStr.URL:
             checkDictio(charsValid1 + charsValid2 + charsValid5, data)
             if (data.substring(0, 4).toLowerCase() !== 'http')
                 throw new Error('La dirección no empieza por http')
 
             break
-        case validateString.NAME:
+        case validateStr.NAME:
             checkDictio(charsValid1 + charsValid2 + charsValid4, data)
 
             break
@@ -77,10 +77,10 @@ function validateString(data, option = 0) {
     }
 }
 
-validateString.REGULAR = 0
-validateString.EMAIL = 1
-validateString.PASSWORD = 2
-validateString.URL = 3
-validateString.NAME = 4
+validateStr.REGULAR = 0
+validateStr.EMAIL = 1
+validateStr.PASSWORD = 2
+validateStr.URL = 3
+validateStr.NAME = 4
 
-module.exports = { validateString }
+module.exports = { validateStr }
