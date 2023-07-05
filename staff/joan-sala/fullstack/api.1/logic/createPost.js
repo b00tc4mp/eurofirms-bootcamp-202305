@@ -9,14 +9,12 @@ function createPost(userId, image, text) {
     validateUrl(image)
     validateText(text)
 
-    const userObjectId = new ObjectId(userId)
-    
     return context.users.findOne({_id: new ObjectId(userId)})
         .then(user => {
             if (!user) throw new Error('User not found')
 
             return context.posts.insertOne({ author: userId, image, text })
         })
-        .then(() => {}) //No devuelve nada
+        .then(() => {}) //No devuelve nada/
 }
 module.exports = createPost

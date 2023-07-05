@@ -11,10 +11,8 @@ client.connect()
         const db = connection.db('data')
 
         const users = db.collection('users')
-        const posts = db.collection('posts')
 
         context.users = users
-        context.post = post
 
         try{
             return registerUser('Benjamin Price', 'benjamin@price.com', '123')
