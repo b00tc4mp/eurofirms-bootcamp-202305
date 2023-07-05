@@ -17,7 +17,7 @@ client.connect()
         context.users = users
 
         try {
-            return deletePost('649da1a35792d969ba2738cb', '64a3d907b2558b790cc101a8')
+            return deletePost('649da1a35792d969ba2738cb', '64a41d7d2eea54655b4106a5')
             .then(()=> console.log('delete post'))
             .catch(error => console.error(error))
         } catch (error) {
