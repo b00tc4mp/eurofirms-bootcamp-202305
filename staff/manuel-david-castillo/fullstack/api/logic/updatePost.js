@@ -27,7 +27,7 @@ function updatePost(userId, postId, image, text){
         const mongoPostId = post._id
         const date = new Date()
 
-        return context.posts.updateOne({ _id: mongoPostId }, { $set: { author: user._id, image, text, date }});
+        return context.posts.updateOne({ _id: mongoPostId }, { $set: { image, text, date }});
     })
     .then(()=>{
         return context.posts.findOne({_id: new ObjectId(postId)})
