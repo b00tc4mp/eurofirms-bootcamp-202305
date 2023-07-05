@@ -1,9 +1,9 @@
 const context = require ('./context')
 const { ObjectId } = require('mongodb')
+const { validateId } = require('./helpers/validators')
 
 function retrieveUser(userId) {
-    if (typeof userId !== 'string') throw new Error('userId is not a string')
-    if (userId === '') throw new Error ('userId is empty')
+   validateId(userId)
 
     return context.users.findOne({ _id: new ObjectId(userId)})
     .then(user => {

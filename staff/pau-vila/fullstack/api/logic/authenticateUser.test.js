@@ -1,4 +1,4 @@
-const registerUser = require('./registerUser')
+const authenticateUser = require('./authenticateUser')
 const mongodb = require('mongodb')
 const context = require('./context')
 
@@ -11,14 +11,18 @@ client.connect()
         const db = connection.db('data')
 
         const users = db.collection('users')
-
+        const posts = db.collection('posts')
+       
         context.users = users
+        context.posts = posts 
+
         try {
-            return registerUser(users, 'Viuda Negra', 'viuda@negra.com', '1234')
-                .then(() => console.log('user created'))
+            return authenticateUser('black@panter.com', '1234')
+                .then(userId => console.log('user authenticated', userId))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
         }
     })
+    .catch(error => console.error(error))
     .finally(() => client.close())

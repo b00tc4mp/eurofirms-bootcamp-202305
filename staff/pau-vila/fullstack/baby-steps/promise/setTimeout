@@ -1,0 +1,17 @@
+function block (millis) {
+    var before = Date.now()
+
+    for (; Date.now() - before < millis;) {
+
+    }
+}
+
+function setTimeoutSync(callback, millis) {
+    block(millis)
+
+    callback()
+}
+
+console.log(1, 'start', new Date)
+setTimeoutSync(() => console.log('hola mon'), 2000)
+console.log(1, 'end', new Date)
