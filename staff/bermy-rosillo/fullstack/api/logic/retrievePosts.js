@@ -22,7 +22,7 @@ function retrievePosts(userId) {
                 //verify if a post belongs to an author
                 const user = users.find(user => user._id.toString() === posts.author.toString())
 
-                //create  a new post object
+                //add to post author property an extra info
                 post.author = {
                     id: user._id.toString(),
                     name: user.name

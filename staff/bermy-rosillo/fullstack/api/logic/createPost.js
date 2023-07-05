@@ -11,11 +11,13 @@ function createPost(userId,image,text){
     if(text === '') throw new Error('Text is empty')
    
     //find a user
+    const userObjectId = new ObjectId(userId)
+
     return context.users.findOne({_id: new ObjectId(userId)})
     .then(user=>{
         if(!user) throw new Error('User not Found')
         //if users exists, create post
-        return context.posts.insertOne({author:new ObjectId(userId,image,text,new Date )})
+        return context.posts.insertOne({author:userObjectId,image,text, date: new Date()})
     })
     .then(()=>{})
 }
