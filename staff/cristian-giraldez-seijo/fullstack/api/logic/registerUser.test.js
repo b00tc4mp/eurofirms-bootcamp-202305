@@ -1,3 +1,5 @@
+/* The code you provided is connecting to a MongoDB database and registering a user. Here's a breakdown
+of what each part of the code is doing: */
 const mongodb = require('mongodb')
 const context = require('./context')
 const registerUser = require('./registerUser')

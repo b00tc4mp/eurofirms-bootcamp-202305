@@ -1,3 +1,6 @@
+/* The code you provided is establishing a connection to a MongoDB database and then attempting to
+authenticate a user using the `authenticateUser` function. Here is a breakdown of what each part of
+the code is doing: */
 const mongodb = require('mongodb')
 const context = require('./context')
 const authenticateUser = require('./authenticateUser')
