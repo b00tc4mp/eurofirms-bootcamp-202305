@@ -2,7 +2,7 @@ const context = require('./context')
 const { ObjectId } = require('mongodb')
 const { validateId } = require('./helpers/validators')
 
-function deletePost(userId, postId) {
+function retrievePost(userId, postId) {
     validateId(userId)
     validateId(postId)
 
@@ -10,7 +10,7 @@ function deletePost(userId, postId) {
     // - find user by id and validate it exists
     // - find post by id and validate it exists
     // - validate user is author of post
-    // - delete post by id
+    // - sanitize and return post
 
     const userObjectId = new ObjectId(userId)
     const postObjectId = new ObjectId(postId)
@@ -22,9 +22,12 @@ function deletePost(userId, postId) {
 
             if (post.author.toString() !== userId) throw new Error('post does not belong to user')
 
-            return context.posts.deleteOne({ _id: postObjectId })
+            delete post._id
+            delete post.author
+            delete post.date
+
+            return post
         })
-        .then(() => { })
 }
 
-module.exports = deletePost
+module.exports = retrievePost
