@@ -1,13 +1,13 @@
-const registerUser = require('./registerUser')
+const retrievePosts = require('.retrievePosts')
 const mongodb = require('mongodb')
 const context = require('./context')
 
-const { MongoClient} = mongodb
+const { MongoClient } = mongodb
 
 const client = new MongoClient('mongodb://127.0.0.1:27017')
 
 client.connect()
-    .then(connection => {
+    .then(connection =>{
         const db = connection.db('data')
 
         const users = db.collection('users')
@@ -17,10 +17,11 @@ client.connect()
         context.posts = posts
 
         try {
-            return registerUser('Ada Love', 'ada@lovecraft.com', 'augustaAdaByron')
-                .then(() => console.log('user created'))
+            return retrievePosts
+            ('64a1c83fc1092772a1c71c2e')
+                .then(posts => console.log('posts retrieved', posts))
                 .catch(error => console.error(error))
-        } catch (error) {
+        } catch (error){
             console.error(error)
         }
     })

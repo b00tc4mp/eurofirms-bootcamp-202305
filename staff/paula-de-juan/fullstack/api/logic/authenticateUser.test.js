@@ -1,8 +1,8 @@
-const registerUser = require('./registerUser')
+const authenticateUser = require('./authenticateUser')
 const mongodb = require('mongodb')
 const context = require('./context')
 
-const { MongoClient} = mongodb
+const { MongoClient } = mongodb
 
 const client = new MongoClient('mongodb://127.0.0.1:27017')
 
@@ -17,12 +17,13 @@ client.connect()
         context.posts = posts
 
         try {
-            return registerUser('Ada Love', 'ada@lovecraft.com', 'augustaAdaByron')
-                .then(() => console.log('user created'))
+            return authenticateUser('ada@love.com', '456')
+                .then(userId => console.log('user authenticated', userId))
                 .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
+            } catch (error) {
+                console.error(error)
+            }
     })
     .catch(error => console.error(error))
     .finally(() => client.close())
+    

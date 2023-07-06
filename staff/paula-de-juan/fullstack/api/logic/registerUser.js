@@ -1,13 +1,12 @@
 const context = require('./context')
+const { validateEmail, validatePassword, validateName }
+= require('./helpers/validators')
 
 function registerUser(name, email, password){
 
-    if(typeof name !== 'string') throw new Error('Name is not a string')
-    if(name === '') throw new Error('Name is empty')
-    if(typeof email !== 'string') throw new Error('Emails is not a string')
-    if(email === '') throw new Error('Email is empty')
-    if(typeof password !== 'string') throw new Error('Password is not a string')
-    if(password === '') throw new Error('Password is empty')
+    validateName(name)
+    validateEmail(email)
+    validatePassword(password)
 
     return context.users.findOne({email})
         .then(user => {
