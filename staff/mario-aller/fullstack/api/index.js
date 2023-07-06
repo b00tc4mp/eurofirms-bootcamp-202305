@@ -22,9 +22,12 @@ client.connect()
 
         api.get('/posts', jsonBodyParser, (req, res) => {
             const { email } = req.body
-            return getIdUser(email)
-                .then(userId => retrievePosts(userId))
-                .then((posts) => res.status(200).json(posts))
+            try {
+                return getIdUser(email)
+                    .then(userId => retrievePosts(userId))
+                    .then((posts) => res.status(200).json(posts))
+                    .catch((err) => res.status(400).json({ error: err.message }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
         api.listen(9000, () => console.log('API funcionando...'))
