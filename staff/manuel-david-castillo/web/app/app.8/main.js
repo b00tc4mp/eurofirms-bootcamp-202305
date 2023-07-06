@@ -1,0 +1,3 @@
+/* GLOBALS */
+
+let userId = null;

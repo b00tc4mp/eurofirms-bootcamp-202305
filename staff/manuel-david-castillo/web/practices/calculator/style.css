@@ -1,0 +1,37 @@
+.calculator {
+  background-color: chartreuse;
+  height: auto;
+  width: 100%;
+  max-width: 400px;
+  min-width: 180px;
+  border: solid 3px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding-top: 10px;
+  border-radius: 20px;
+  padding-bottom: 15px;
+}
+
+input {
+  border-radius: 5px;
+  margin: 5px;
+  height: 20px;
+}
+
+button {
+  border-radius: 5px;
+  height: 30px;
+  width: 30px;
+}
+
+h2 {
+  margin: 5px;
+}
+
+p {
+  margin: 0px;
+  font-size: 20px;
+}

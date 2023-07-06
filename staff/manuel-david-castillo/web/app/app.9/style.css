@@ -1,0 +1,262 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  background-color: sienna;
+  width: 100%;
+  height: 45px;
+  border-bottom: solid black 2px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: sienna;
+  border-top: solid black 2px;
+  z-index: 1;
+}
+
+main {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.login-form,
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-direction: center;
+  gap: 10px;
+  background-color: tan;
+  margin: 10px;
+  width: 300px;
+  height: auto;
+  border-radius: 20px;
+  border: solid 2px black;
+  box-shadow: 4px 4px 4px saddlebrown;
+  padding-bottom: 5px;
+}
+
+h2 {
+  margin: 5px;
+}
+
+input {
+  border-radius: 5px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-view {
+  width: 100%;
+}
+
+.home {
+  padding: 0;
+  margin: 0;
+  height: 90vh;
+  width: 100%;
+}
+
+.all-posts {
+  padding-bottom: 60px;
+}
+
+.post {
+  background-color: tan;
+  width: 300px;
+  border: solid black 2px;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 4px 4px 4px sienna;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 5px;
+}
+
+.name {
+  margin-left: 5px;
+}
+
+.message {
+  margin-left: 5px;
+}
+
+.h3-new-post {
+  margin: 5px;
+}
+
+.container-new-post,
+.container-edit-post {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgb(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-new-post,
+.form-edit-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  background-color: tan;
+  border: solid 3px;
+  border-radius: 10px;
+  width: 250px;
+}
+
+.buttons-create-cancel {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.nameDiv {
+  width: 92%;
+  padding-left: 10px;
+  border: inset 3px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: bisque;
+}
+
+.name-post {
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.img-post {
+  width: 100px;
+  height: 100px;
+  border: solid;
+  border-radius: 10px;
+}
+
+.editButton {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* CSS */
+button {
+  background-color: saddlebrown;
+  border: 0 solid #e5e7eb;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.75rem;
+  padding: 3px 10px;
+  position: relative;
+  text-align: center;
+  text-decoration: none #000000 solid;
+  text-decoration-thickness: auto;
+  max-width: 100px;
+  max-height: 60px;
+  position: relative;
+  cursor: pointer;
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button:after {
+  content: "";
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+  border-radius: 10px;
+}
+
+button:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+@media (min-width: 768px) {
+  button {
+    padding: 0.45rem 2rem;
+    font-size: 1.25rem;
+  }
+}
+
+.button-logout,
+.button-new-post {
+  padding: 2px 10px;
+  background-color: tan;
+  max-width: 120px;
+}
+
+textarea {
+  resize: none;
+}
+
+.p-form {
+  margin: 3px;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+.off {
+  display: none;
+}
