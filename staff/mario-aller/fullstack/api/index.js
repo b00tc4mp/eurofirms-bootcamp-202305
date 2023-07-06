@@ -9,7 +9,7 @@ const getIdUser = require('./logic/getIdUser')
 const { MongoClient } = mongodb
 const client = new MongoClient('mongodb://127.0.0.1:27017')
 const api = express()
-const jsonBodyParser = bodyParser.json
+const jsonBodyParser = bodyParser.json()
 
 client.connect()
     .then(connection => {
@@ -20,8 +20,9 @@ client.connect()
             response.send('Ping: hi, everyone!')
         })
 
-        api.get('/posts', (req, res) => {
-            return getIdUser('bilbo@bolson-cerrado.com')
+        api.get('/posts', jsonBodyParser, (req, res) => {
+            const { email } = req.body
+            return getIdUser(email)
                 .then(userId => retrievePosts(userId))
                 .then((posts) => res.status(200).json(posts))
         })
