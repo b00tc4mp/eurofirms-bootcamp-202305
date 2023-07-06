@@ -25,9 +25,8 @@ function updatePost(userId, postId, image, text){
         if(author !== userId) throw new Error('userId and author of post is different')
 
         const mongoPostId = post._id
-        const date = new Date()
-
-        return context.posts.updateOne({ _id: mongoPostId }, { $set: { image, text, date }});
+        
+        return context.posts.updateOne({ _id: mongoPostId }, { $set: { image, text }});
     })
     .then(()=>{
         return context.posts.findOne({_id: new ObjectId(postId)})
