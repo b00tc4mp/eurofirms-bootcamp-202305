@@ -15,7 +15,7 @@ function createPost(userId, image, text) {
         .then(user => {
             if (!user) throw new Error('User not found')
 
-            return context.posts.insertOne({ author: userId, image, text })
+            return context.posts.insertOne({ author: userObjectId, image, text, date: new Date() })
         })
         .then(() => {}) //No devuelve nada
 }

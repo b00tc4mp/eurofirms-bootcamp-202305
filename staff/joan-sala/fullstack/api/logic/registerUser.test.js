@@ -14,17 +14,16 @@ client.connect()
         const posts = db.collection('posts')
 
         context.users = users
-        context.post = post
+        context.posts = posts
 
         try{
-            return registerUser('Benjamin Price', 'benjamin@price.com', '123')
+            return registerUser('Benjamin Price', 'benjamin@price.com', '123123123')
             .then(()=>{
                 console.log('User create')
             })
             .catch(error => {
                 console.error(error)
             })
-
         }catch(error){
             console.error(erro)
         }

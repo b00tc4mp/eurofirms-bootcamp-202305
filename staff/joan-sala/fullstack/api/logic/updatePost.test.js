@@ -1,4 +1,4 @@
-const retrievePosts = require('./retrievePosts')
+const retrievePost = require('./updatePost')
 const mongodb = require('mongodb')
 const context = require('./context')
 
@@ -17,9 +17,9 @@ client.connect()
         context.posts =  posts
 
         try{
-            return retrievePosts('64a537b58b862f64c2596ed2')
-                .then(posts =>{
-                    console.log('Post retrieve', posts)
+            return updatPost('64a52e863532b3946bf9fa6f', '64a537b58b862f64c2596ed2')
+                .then(() =>{
+                    console.log('Post updatd')
                 })
                 .catch(error => console.error(error)) 
         }catch(error){
