@@ -15,7 +15,7 @@ function validateEmail(email) {
     /* La línea `const indexOfDot = email.lastIndexOf('.', indexOfAt)` encuentra la última aparición
     del carácter '.' en la cadena de correo electrónico, comenzando la búsqueda desde la posición
     del índice especificada por `indexOfAt`. */
-    const indexOfDot = email.lastIndexOf('.', indexOfAt)
+    const indexOfDot = email.indexOf('.', indexOfAt)
 
     if (indexOfDot < 0) throw new Error('email does not have .')
     if (indexOfDot === 0) throw new Error('email starts with .')
@@ -61,6 +61,9 @@ function validateName(name) {
     if (name === '') throw new Error('name is empty')
 }
 
+/* La `función validarId(id)` es una función que valida si el parámetro `id` proporcionado es una
+cadena no vacía. Si el `id` no es una cadena o es una cadena vacía, arroja un error con el mensaje
+correspondiente. */
 function validateId(id) {
     if (typeof id !== 'string') throw new Error('id is not a string')
     if (id === '') throw new Error('id is empty')
