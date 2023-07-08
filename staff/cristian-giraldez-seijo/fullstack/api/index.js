@@ -45,9 +45,9 @@ client.connect()
                 const { email, password } = req.body
 
                 authenticateUser(email, password)
-                .then(userId => res.json(userId))
+                    .then(userId => res.json(userId))
                     .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {res.status(400).json({ error: error.message })}
+            } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
         api.get('/users/:userId', (req, res) => {
@@ -58,14 +58,25 @@ client.connect()
                     .catch(error => res.status(400).json({ error: error.message, type: 'asynch' }))
             } catch (error) { res.status(400).json({ error: error.message, type: 'synch' }) }
         })
+
         api.post('/posts', jsonBodyParser, (req, res) => {
             try {
                 const userId = req.headers.authorization.slice(7)
-                const { text, image } = req.body
-                createPost(userId, text, image)
+                const { image, text } = req.body
+                createPost(userId, image, text)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message, type: 'asynch' }))
             } catch (error) { res.status(400).json({ error: error.message, type: 'synch' }) }
         })
 
+        api.get('/posts', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+
+                retrievePosts(userId)
+                    .then(posts => res.json(posts))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
     })
