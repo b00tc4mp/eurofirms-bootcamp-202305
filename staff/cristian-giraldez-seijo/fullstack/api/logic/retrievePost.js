@@ -1,18 +1,16 @@
 const context = require('./context')
 const { ObjectId } = require('mongodb')
-const { validateId, validateUrl, validateText } = require('./helpers/validators')
+const { validateId } = require('./helpers/validators')
 
-function updatePost(userId, postId, image, text) {
+function retrievePost(userId, postId) {
     validateId(userId)
     validateId(postId)
-    validateUrl(image)
-    validateText(text)
 
     // steps
     // - find user by id and validate it exists
     // - find post by id and validate it exists
     // - validate user is author of post
-    // - update post with new image and text
+    // - sanitize and return post
 
     const userObjectId = new ObjectId(userId)
     const postObjectId = new ObjectId(postId)
@@ -24,9 +22,12 @@ function updatePost(userId, postId, image, text) {
 
             if (post.author.toString() !== userId) throw new Error('post does not belong to user')
 
-            return context.posts.updateOne({ _id: postObjectId }, { $set: { image, text } })
+            delete post._id
+            delete post.author
+            delete post.date
+
+            return post
         })
-        .then(() => { })
 }
 
-module.exports = updatePost
+module.exports = retrievePost
