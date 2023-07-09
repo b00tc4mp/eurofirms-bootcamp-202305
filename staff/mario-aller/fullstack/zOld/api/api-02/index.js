@@ -41,10 +41,10 @@ client.connect()
         // retrieveUser
         api.get('/users/:userId', (req, res) => {
             try {
-                const { userId } = req.params
+                const {userId} = req.params
 
                 retrieveUser(userId)
-                    .then(user => res.json(user))
+                    .then(user => res.status(200).json(user))
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
@@ -69,7 +69,7 @@ client.connect()
                 const { text, image } = req.body
 
                 updatePost(userId, postId, text, image)
-                    .then(() => res.status(206).send())
+                    .then(() => res.status(200).send())
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
@@ -82,7 +82,7 @@ client.connect()
                 const { postId } = req.params
 
                 retrievePost(userId, postId)
-                    .then(post => res.json(post))
+                    .then(post => res.status(200).json(post))
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
@@ -93,7 +93,7 @@ client.connect()
                 const userId = req.headers.authorization.slice(7)
 
                 retrievePosts(userId)
-                    .then(posts => res.json(posts))
+                    .then(posts => res.status(200).json(posts))
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
