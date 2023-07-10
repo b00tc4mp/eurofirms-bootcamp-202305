@@ -8,6 +8,7 @@ const retrieveUser = require('./logic/retrieveUser')
 const createPost = require('./logic/createPost')
 const retrievePosts = require('./logic/retrievePosts')
 const updatePost = require('./logic/updatePost')
+const cors = require('cors')
 
 const { MongoClient } = mongodb
 
@@ -26,6 +27,8 @@ client.connect()
         const api = express()
 
         const jsonBodyParser = bodyParser.json()
+
+        api.use(cors())
 
         api.get('/', (req, res) => {
             res.send('hola mundo :)')
