@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongodb = require('mongodb')
 const context = require('./logic/context')
+
 const registerUser = require('./logic/registerUser')
 const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
@@ -79,4 +80,5 @@ client.connect()
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
+        api.listen(9000, () => console.log('API runing in port 9000'))
     })
