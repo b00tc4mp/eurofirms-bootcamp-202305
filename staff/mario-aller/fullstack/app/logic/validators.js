@@ -32,7 +32,7 @@ function validateString(data, option = 0) {
     const charsValid2 = ',;:._-$'
     const charsValid3 = '._-$'
     const charsValid4 = 'ñÑáéíóúäëïöüÁÉÍÓÚÄËÏÖÜ'
-    const charsValid5 = '@/=?()%'
+    const charsValid5 = '@/=?()%&'
 
     switch (option) {
         case validateString.REGULAR:
@@ -52,25 +52,25 @@ function validateString(data, option = 0) {
             if (dotPos === data.length - 1) throw new Error('Correo con . al final')
             if (dotPos - atPos < 2) throw new Error('@ y . mal colocados')
 
-            const strAux1 = data.substring(0, atPos)
-            const strAux2 = data.substring(atPos + 1)
+            const strAux1 = data.slice(0, atPos)
+            const strAux2 = data.slice(atPos + 1)
             checkDictio(charsValid1 + charsValid3, strAux1)
             checkDictio(charsValid1 + charsValid3, strAux2)
 
             break
         case validateString.PASSWORD:
             checkDictio(charsValid1 + charsValid2 + charsValid4 + '@', data)
-            if (data.length < 8) throw new Error('La clave debe tener 8 o más caracteres')
+            if (data.length < 3) throw new Error('La clave debe tener 3 o más caracteres')
 
             break
         case validateString.URL:
             checkDictio(charsValid1 + charsValid2 + charsValid5, data)
-            if (data.substring(0, 4).toLowerCase() !== 'http')
+            if (data.slice(0, 4).toLowerCase() !== 'http')
                 throw new Error('La dirección no empieza por http')
 
             break
         case validateString.NAME:
-            checkDictio(charsValid1 + charsValid2 + charsValid4, data)
+            checkDictio(charsValid1 + charsValid2 + charsValid4 + ' ', data)
 
             break
         default: throw new Error('Opción no definida')
@@ -82,5 +82,3 @@ validateString.EMAIL = 1
 validateString.PASSWORD = 2
 validateString.URL = 3
 validateString.NAME = 4
-
-module.exports = { validateString }

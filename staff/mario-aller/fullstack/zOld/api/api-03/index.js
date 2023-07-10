@@ -1,12 +1,10 @@
 const mongodb = require('mongodb')
 const express = require('express')
 const bodyParser = require('body-parser')
-const cors = require('cors')
-
 const context = require('./logic/context')
 
+
 const registerUser = require('./logic/registerUser')
-const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
 const createPost = require('./logic/createPost')
 const updatePost = require('./logic/updatePost')
@@ -24,9 +22,6 @@ client.connect()
         context.users = connection.db('data').collection('users')
         context.posts = connection.db('data').collection('posts')
 
-        // TBD later stage
-        api.use(cors())
-
         // Conexion con el servidor
         api.get('/', (request, response) => {
             response.send('Ping: hi, everyone!')
@@ -43,24 +38,13 @@ client.connect()
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
 
-        // authenticateUser
-        api.post('/users/auth', jsonBodyParser, (req, res) => {
-            try {
-                const { email, password } = req.body
-
-                return authenticateUser(email, password)
-                    .then((userId) => res.status(201).json({ id: userId}))
-                    .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
-            } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
-        })
-
         // retrieveUser
-        api.get('/users', (req, res) => {
+        api.get('/users/:userId', (req, res) => {
             try {
-                const userId = req.headers.authorization.slice(7)
-                
+                const {userId} = req.params
+
                 retrieveUser(userId)
-                    .then(user => res.json(user))
+                    .then(user => res.status(200).json(user))
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
@@ -85,7 +69,7 @@ client.connect()
                 const { text, image } = req.body
 
                 updatePost(userId, postId, text, image)
-                    .then(() => res.status(206).send())
+                    .then(() => res.status(200).send())
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
@@ -98,7 +82,7 @@ client.connect()
                 const { postId } = req.params
 
                 retrievePost(userId, postId)
-                    .then(post => res.json(post))
+                    .then(post => res.status(200).json(post))
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
@@ -109,7 +93,7 @@ client.connect()
                 const userId = req.headers.authorization.slice(7)
 
                 retrievePosts(userId)
-                    .then(posts => res.json(posts))
+                    .then(posts => res.status(200).json(posts))
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
@@ -126,5 +110,5 @@ client.connect()
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
         })
 
-        api.listen(9000, () => console.log('API funcionando en 9000...'))
+        api.listen(9000, () => console.log('API funcionando...'))
     })

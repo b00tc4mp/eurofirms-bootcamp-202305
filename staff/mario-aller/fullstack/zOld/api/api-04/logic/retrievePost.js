@@ -3,15 +3,18 @@ const { ObjectId } = require('mongodb')
 const { validateString } = require('./helpers/validators')
 
 /**
- * La función recupera una publicación y su autor de una base de datos basada en el postId proporcionado.
+ * La función recupera una publicación por su ID y valida la ID del usuario, asegurándose de que el usuario existe y la publicación existe.
+ * @param userId - El parámetro `userId` es la identificación del usuario que está recuperando la publicación.
  * @param postId - El parámetro `postId` es el identificador único de la publicación que desea recuperar.
- * @returns La función `retrievePosts` devuelve una Promesa que se resuelve en un objeto de publicación.
+ * @returns una promesa que se resuelve en el objeto de publicación recuperado.
  */
-function retrievePost(postId) {
+function retrievePost(userId, postId) {
+    validateString(userId)
     validateString(postId)
 
-    return Promise.All([context.posts.findOne({ _id: new ObjectId(postId) }), context.users.find().toArray()])
+    return Promise.all([context.posts.findOne({ _id: new ObjectId(postId) }), context.users.find().toArray()])
         .then(([post, users]) => {
+            if (!users.some(user => user._id.toString() === userId)) throw new Error('Usuario no existe')
             if (!post) throw new Error('El post no existe')
 
             post.id = post._id.toString()

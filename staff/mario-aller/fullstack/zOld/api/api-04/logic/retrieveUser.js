@@ -14,7 +14,6 @@ function retrieveUser(id) {
         .then((user) => {
             if (!user) throw new Error('El usuario no existe')
 
-            user.id = id
             delete user.password
             delete user._id
             return user
