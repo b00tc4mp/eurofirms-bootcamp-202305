@@ -12,7 +12,6 @@ function registerUser(name, email, password) {
 
         return context.users.insertOne({name, email, password})
     })
-    .then(()=>{ })
 }
 
 module.exports = registerUser

@@ -1,6 +1,5 @@
 const express = require('express') 
 const mongodb = require('mongodb')
-const cors = require('cors')
 const context =  require('./logic/context')
 const bodyParser = require('body-parser')
 
@@ -17,8 +16,6 @@ const {MongoClient} = mongodb
 
 const client = new MongoClient("mongodb://127.0.0.1:27017")
 
-
-
 client.connect()
     .then((connection)=>{
         context.users = connection.db('data').collection('users')
@@ -28,9 +25,7 @@ client.connect()
 
         const jsonBodyParser = bodyParser.json()
 
-        api.use(cors())
-
-        api.get('/', (req, res) => {
+        api.get('/',(req, res) => {
             res.send('hola mundo')
         })
 
@@ -39,33 +34,8 @@ client.connect()
                 const {email, password} = req.body 
 
                 authenticateUser(email, password)
-                .then((id) => res.status(200).json(id))
+                .then((id) => res.status(201).json(id))
                 .catch(error => res.status(400).json({error: error.message}))
-            } catch (error) {
-                res.status(400).json({error: error.message})
-            }
-        })
-
-        api.post('/users', jsonBodyParser, (req, res)=>{
-            try{
-                const {name, email, password} = req.body
-
-                registerUser(name, email, password)
-                .then(()=> {res.status(201).send()})
-                .catch((error) => res.status(400).json({error: error.message}))
-            } catch (error) {
-                res.status(400).json({error: error.message})
-            }
-        })
-
-        api.get('/users', (req, res) => {
-            try {
-                const {authorization} = req.headers
-                const userId = authorization.slice(7)
-
-                retrieveUser(userId)
-                .then((user)=> res.json(user))
-                .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})
             }
@@ -101,6 +71,17 @@ client.connect()
             }
         })
 
+        api.post('/users', jsonBodyParser, (req, res)=>{
+            try{
+                const {name, email, password} = req.body
+
+                registerUser(name, email, password)
+                .then(()=> {res.status(201).send()})
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
 
         api.get('/posts/:postId', (req, res) => {
             try {
@@ -130,7 +111,18 @@ client.connect()
             }
         })
 
-        
+        api.get('/users', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const userId = authorization.slice(7)
+
+                retrieveUser(userId)
+                .then((user)=> res.json(user))
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
 
         api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             const {authorization} = req.headers
