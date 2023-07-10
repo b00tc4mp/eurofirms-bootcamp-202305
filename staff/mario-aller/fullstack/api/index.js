@@ -3,7 +3,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const context = require('./logic/context')
 
-
 const registerUser = require('./logic/registerUser')
 const retrieveUser = require('./logic/retrieveUser')
 const createPost = require('./logic/createPost')
