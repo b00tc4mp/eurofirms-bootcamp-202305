@@ -7,6 +7,9 @@ const registerUser = require('./logic/registerUser')
 const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
 const createPost = require('./logic/createPost')
+const updatePost = require('./logic/updatePost')
+const deletePost = require('./logic/deletePost')
+const retrievePost = require('./login/retrievePost')
 
 const { MongoClient } = mongodb
 
@@ -33,7 +36,7 @@ client.connect()
             res.send(`You requested me to search: ${q}`)
         })
 
-        //end point 02
+        //end point 02 REGISTER USER
         api.post('/users', jsonBodyParser, (req, res) => { //req:request=petición | res:respuesta si va bien o no
             //debugger 
             const { name, email, password } = req.body
@@ -48,7 +51,7 @@ client.connect()
             }
         })
 
-        //end point 03   aclarar que es author
+        //end point 03 AUTHENTICATE USER  aclarar que es author
         api.post('/users/auth', (req, res) => {
             const { email, password } = req.body //petición por medio de insomnia
 
@@ -61,6 +64,8 @@ client.connect()
                 res.status(400).json({ error: error.message }) // para mostrar sólo el 'message' del error
             }
         })
+        
+        //end point 04 RETRIEVE USER
         api.get('/users', (req, res) => {
             try {
                 const { authorization } = req.headers
@@ -73,6 +78,8 @@ client.connect()
                 res.status(400).json({ error: error.message })
             }
         })
+        
+        //end point 05 CREATE POST POST
         api.post('/posts', jsonBodyParser, (req, res) => {
 
             try {
@@ -86,6 +93,64 @@ client.connect()
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
+            }
+        })
+        
+        //end point 06 UPDATE POST
+        api.patch('/posts/:postId',jsonBodyParser, (resp, res)=>{
+            try{
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+
+                const { postId } = req.params
+                const { image, text } = req.boby
+
+                updatePost(userId, postId, image, text)
+                .then(()=> res.status(204).send())
+                .catch(error=> res.status(400).json({error:error.message}))
+            }catch(error){
+                res.status(400).json({error: error.message})
+            }
+        })
+        
+        //end point 07 DELETE POST
+        api.deletePost('/posts/:postId', (resp, res)=>{
+            try{
+                const { postId } = req.params
+                const userId = req.headers.authorization.slice(7)
+
+                deletePost(userId, postId)
+                .then(()=> res.send())
+                .catch(error=> res.status(400).json({error:error.message}))
+            }catch(error){
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        //end point 08 RETRIEVE POST
+        api.get('/posts', (req, res) =>{
+            try{
+                const userId = req.headers.authorization.slice(7)
+                const { postId} = req.params
+
+                retrievePost(userId, postId)
+                .then(()=> res.send())
+                .catch(error=> res.status(400).json({error:error.message}))
+            }catch(error){
+                res.status(400).json({error: error.message})
+            }
+        })
+
+         //end point 09 RETRIEVE POSTS
+         api.get('/posts', (req, res) =>{
+            try{
+                const userId = req.headers.authorization.slice(7)
+                
+                retrievePosts(userId)
+                .then(()=> res.send())
+                .catch(error=> res.status(400).json({error:error.message}))
+            }catch(error){
+                res.status(400).json({error: error.message})
             }
         })
 
