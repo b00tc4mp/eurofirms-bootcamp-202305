@@ -2,7 +2,7 @@
 
 const context = {
     set userId(userId) {
-        if(userId) {
+        if (userId) {
             sessionStorage.userId = userId
 
             return
@@ -12,8 +12,8 @@ const context = {
     },
 
     get userId() {
-        if(sessionStorage.userId) {
-            return parseInt(sessionStorage.userId)
+        if (sessionStorage.userId) {
+            return sessionStorage.userId
         }
 
         return null
@@ -23,4 +23,4 @@ const context = {
 /* react initialitation */
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<App/>)
+root.render(<App />)

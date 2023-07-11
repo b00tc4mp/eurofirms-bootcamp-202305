@@ -3,9 +3,10 @@ function Home(props) {
 
   const [postId, setPostId] = React.useState("")
 
-  const [user, setUser] = React.useState("")
+  const [user, setUser] = React.useState(null)
 
-  /* const user = retrieveUser(context.userId) */
+  const [posts, setPosts] = React.useState([])
+
 
   React.useEffect(() => {
     try {
@@ -15,9 +16,16 @@ function Home(props) {
     } catch (error) {
       alert(error.message)
     }
+
+    try {
+      retrievePosts(context.userId)
+        .then(posts => setPosts(posts))
+        .catch(error => error.message(error))
+    } catch (error) {
+      alert(error.message)
+    }
   }, [])
 
-  const posts = retrievePosts()
 
   const handleLogout = () => {
     context.userId = null
@@ -44,7 +52,7 @@ function Home(props) {
 
   return <div className="home-view">
     <header>
-      <h2 className="h2-home">Hello {user.name}</h2>
+      <h2 className="h2-home">Hello {user ? user.name : ' world'}</h2>
       <nav>
         <button onClick={handleLogout} className="button-logout">Logout</button>
       </nav>
@@ -52,11 +60,11 @@ function Home(props) {
 
     <main className="home">
       <section className="all-posts">
-        {posts.map(post => <article className="post">
+        {posts.map(post => <article key={post.id} className="post">
           <div className="nameDiv">
             <p className="name-post">{post.author.name}</p>
           </div>
-          <img className="img-post" src={post.img} alt={post.text} />
+          <img className="img-post" src={post.image} alt={post.text} />
           <p className="text-post">{post.text}</p>
           {context.userId === post.author.id &&
             <div className="div-button-edit-delete">
