@@ -9,9 +9,8 @@ const retrieveUser = require('./logic/retrieveUser')
 const createPost = require('./logic/createPost')
 const updatePost = require('./logic/updatePost')
 const deletePost = require('./logic/deletePost')
-const retrievePost = require('./logic/retrievePost')
-const retrievePosts = require('./logic/retrievePosts')
-const cors = require('cors')
+const retrievePost = require('./login/retrievePost')
+const retrievePosts = require('./login/retrievePost')
 
 const { MongoClient } = mongodb
 
@@ -25,8 +24,6 @@ client.connect()
         const api = express()
 
         const jsonBodyParser = bodyParser.json() //devuelve en formato jsonpara recoger cualquier cosa
-
-        api.use(cors()) //cargar función cors , añadir cabecera 
 
         //end point 01, proceso en la ruta raiz, controlador    
         api.get('/', (req, res) => { //htp://localhost:9000/
@@ -56,7 +53,7 @@ client.connect()
         })
 
         //end point 03 AUTHENTICATE USER  aclarar que es author
-        api.post('/users/auth', jsonBodyParser, (req, res) => {
+        api.post('/users/auth', (req, res) => {
             const { email, password } = req.body //petición por medio de insomnia
 
             try {
@@ -118,7 +115,7 @@ client.connect()
         })
         
         //end point 07 DELETE POST
-        api.delete('/posts/:postId', (req, res)=>{
+        api.deletePost('/posts/:postId', (resp, res)=>{
             try{
                 const { postId } = req.params
                 const userId = req.headers.authorization.slice(7)
