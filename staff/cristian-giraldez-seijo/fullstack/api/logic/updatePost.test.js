@@ -1,3 +1,4 @@
+/* The code is connecting to a MongoDB database and updating a post using the `updatePost` function. */
 const updatePost = require('./updatePost')
 const mongodb = require('mongodb')
 const context = require('./context')

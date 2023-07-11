@@ -1,3 +1,9 @@
+/**
+ * The function retrieves posts from a MongoDB database and transforms the data to include the author's
+ * name.
+ * @param userId - The `userId` parameter is the ID of the user for whom we want to retrieve posts.
+ * @returns The function `retrievePosts` is returning a promise that resolves to an array of posts.
+ */
 const context = require('./context')
 const { ObjectId } = require('mongodb')
 const { validateId } = require('./helpers/validators')

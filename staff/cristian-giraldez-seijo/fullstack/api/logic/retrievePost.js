@@ -1,3 +1,12 @@
+/**
+ * The `retrievePost` function retrieves a post by its ID and validates that it belongs to a specific
+ * user.
+ * @param userId - The `userId` parameter is the ID of the user who owns the post.
+ * @param postId - The `postId` parameter is the unique identifier of the post that you want to
+ * retrieve.
+ * @returns The function `retrievePost` is returning a Promise that resolves to the sanitized post
+ * object.
+ */
 const context = require('./context')
 const { ObjectId } = require('mongodb')
 const { validateId } = require('./helpers/validators')

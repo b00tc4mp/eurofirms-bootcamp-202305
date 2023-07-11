@@ -1,3 +1,5 @@
+/* The code you provided is connecting to a MongoDB database and retrieving posts using the
+`retrievePosts` function. Here is a breakdown of what the code is doing: */
 const retrievePosts = require('./retrievePosts')
 const mongodb = require('mongodb')
 const context = require('./context')

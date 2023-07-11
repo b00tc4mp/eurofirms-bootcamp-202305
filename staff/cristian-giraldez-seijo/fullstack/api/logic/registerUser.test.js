@@ -11,7 +11,7 @@ client.connect()
     .then(conex => {
         context.users = conex.db('data').collection('users')
         try {
-            return registerUser('McCartney', 'beatles8@yah.com', '123')
+            return registerUser('McCartney', 'beatles8@yah.com', '123123123')
             .then(()=>console.log('User Registered!'))
                 .catch(err => console.error(err))
         } catch (error) {

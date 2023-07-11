@@ -1,3 +1,7 @@
+/**
+ * The code provides functions to validate email, password, name, ID, URL, and text inputs.
+ * @param email - A string representing an email address.
+ */
 function validateEmail(email) {
     if (typeof email !== 'string') throw new Error('email is not a string')
     if (email === '') throw new Error('email is empty')

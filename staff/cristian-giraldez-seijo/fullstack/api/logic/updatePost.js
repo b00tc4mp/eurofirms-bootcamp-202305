@@ -1,3 +1,13 @@
+/**
+ * The `updatePost` function updates a post with a new image and text, after validating the user and
+ * post.
+ * @param userId - The `userId` parameter is the ID of the user who is updating the post.
+ * @param postId - The `postId` parameter is the unique identifier of the post that needs to be
+ * updated.
+ * @param image - The image parameter is the URL of the new image that you want to update for the post.
+ * @param text - The `text` parameter is the new text content that you want to update for the post.
+ * @returns The `updatePost` function is returning a Promise.
+ */
 const context = require('./context')
 const { ObjectId } = require('mongodb')
 const { validateId, validateUrl, validateText } = require('./helpers/validators')
