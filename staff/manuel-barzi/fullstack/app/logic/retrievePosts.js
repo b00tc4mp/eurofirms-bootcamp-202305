@@ -1,22 +1,20 @@
-function retrievePosts() {
-    const posts = db.posts
-    const users = db.users
+function retrievePosts(userId) {
+    if (typeof userId !== 'string') throw new Error('userId is not string')
 
-    const posts2 = posts.map(post => {
-        const post2 = {}
-
-        post2.id = post.id
-        post2.image = post.image
-        post2.text = post.text
-        post2.author = {}
-
-        const user = users.find(user => user.id === post.author)
-
-        post2.author.id = user.id
-        post2.author.name = user.name
-
-        return post2
+    return fetch('http://localhost:9000/posts', {
+        headers: {
+            Authorization: `Bearer ${userId}`
+        }
     })
+        .then(res => {
+            if (res.status === 200)
+                return res.json()
+            else if (res.status === 400)
+                return res.json()
+                    .then(body => {
+                        const message = body.error
 
-    return posts2
+                        throw new Error(message)
+                    })
+        })
 }

@@ -13,6 +13,10 @@ function Home(props) {
     const user = userState[0]
     const setUser = userState[1]
 
+    const postsState = React.useState(null)
+    const posts = postsState[0]
+    const setPosts = postsState[1]
+
     React.useEffect(() => {
         try {
             retrieveUser(context.userId)
@@ -21,9 +25,15 @@ function Home(props) {
         } catch (error) {
             alert(error.message)
         }
-    }, [])
 
-    // const posts = retrievePosts()
+        try {
+            retrievePosts(context.userId)
+                .then(posts => setPosts(posts))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
 
     const handleLogoutClick = () => {
         context.userId = null
@@ -63,8 +73,8 @@ function Home(props) {
         </header>
 
         <main className="home-main">
-            {/* <section className="home-posts">
-                {posts.map(post => <article>
+            <section className="home-posts">
+                {posts && posts.map(post => <article>
                     <h2>{post.author.name}</h2>
 
                     <img className="home-post-image"
@@ -78,7 +88,7 @@ function Home(props) {
                         <button onClick={() => handleDeletePostClick(post.id)}>Delete</button>
                     </>}
                 </article>)}
-            </section> */}
+            </section>
         </main>
 
         <footer className="home-footer">

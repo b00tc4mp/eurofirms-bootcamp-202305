@@ -8,6 +8,8 @@ const retrieveUser = require('./logic/retrieveUser')
 const createPost = require('./logic/createPost')
 const retrievePosts = require('./logic/retrievePosts')
 const updatePost = require('./logic/updatePost')
+const deletePost = require('./logic/deletePost')
+const retrievePost = require('./logic/retrievePost')
 const cors = require('cors')
 
 const { MongoClient } = mongodb
@@ -133,8 +135,39 @@ client.connect()
             }
         })
 
-        // TODO deletePost (DELETE /posts/:postId)
-        // TODO retrievePost (GET /posts/:postId)
+        // DONE deletePost (DELETE /posts/:postId)
+
+        api.delete('/posts/:postId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+
+                const { postId } = req.params
+
+                deletePost(userId, postId)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        // DONE retrievePost (GET /posts/:postId)
+
+        api.get('/posts/:postId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+
+                const { postId } = req.params
+
+                retrievePost(userId, postId)
+                    .then(post => res.json(post))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
 
         api.listen(9000, () => console.log('API running in port 9000'))
     })
