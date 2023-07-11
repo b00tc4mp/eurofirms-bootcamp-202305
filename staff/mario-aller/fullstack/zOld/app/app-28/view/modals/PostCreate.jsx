@@ -6,7 +6,7 @@ function PostCreate(props) {
 
         const img = event.target.img.value
         const msg = event.target.msg.value
-        if (!createPost(context.userLoggedId, msg, img)) alert('Error: No se ha podido crear Post')
+        if (!postToList(context.userLoggedId, msg, img)) alert('Error: No se ha podido crear Post')
         props.onExitModal()
     }
 

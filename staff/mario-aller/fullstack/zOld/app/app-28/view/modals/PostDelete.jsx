@@ -2,7 +2,7 @@ function PostDelete(props) {
 
     const handleOnExitModal = () => props.onExitModal()
     const handleDeletePost = () => {
-        if (!deletePost(context.userLoggedId, props.idPost)) alert ('Error: No se pudo borrar Post')
+        if (!postDelete(props.idPost)) alert ('Error: No se pudo borrar Post')
         props.onExitModal()
     }
 

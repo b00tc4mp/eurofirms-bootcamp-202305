@@ -7,7 +7,7 @@ function PostEdit(props) {
         event.preventDefault()
         const img = event.target.img.value
         const msg = event.target.msg.value
-        if (!updatePost(context.userLoggedIn, post.id, msg, img)) alert ('Error: No se pudo actualizar Post')
+        if (!postUpdateContent(post.id, msg, img)) alert ('Error: No se pudo actualizar Post')
         props.onExitModal()
     }
 

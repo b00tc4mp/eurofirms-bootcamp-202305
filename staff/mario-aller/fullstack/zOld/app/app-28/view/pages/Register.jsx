@@ -9,7 +9,7 @@ function Register(props) {
         const email = event.target.email.value
         const password = event.target.password.value
 
-        if (!registerUser(name, email, password)) alert('No es posible crear usuario')
+        if (!userToList(name, email, password)) alert('No es posible crear usuario')
         props.onUserRegistered()
     }
 

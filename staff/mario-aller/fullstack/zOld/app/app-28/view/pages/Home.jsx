@@ -2,8 +2,8 @@ function Home(props) {
 
     const [modalSt, setModalSt] = React.useState(null)
     const [idPostSt, setIdPostSt] = React.useState(null)
-    const [userSt, setUserSt] = React.useState(null)
-    const [postsSt, setPostsSt] = React.useState([])
+    const [user, setUser] = React.useState(null)
+    const [posts, setPosts] = React.useState([])
 
     const handleCreateModal = () => setModalSt('create-modal')
     const handleEditModal = (idPost) => {
@@ -28,15 +28,23 @@ function Home(props) {
 
     React.useEffect(() => {
         try {
-            return Promise.all([retrieveUser(context.userLoggedId), retrievePosts(context.userLoggedId)])
-                .then(([user, posts]) => {
-                    setUserSt(user)
+            userRetrieve(context.userLoggedId)
+                .then(user => setUser(user))
+                .catch(err => alert('Error Asynch: ' + err.message))
+        } catch (err) {
+            alert('Error Synch: ' + err.message)
+        }
+
+        try {
+            postsRetrieve(context.userLoggedId)
+                .then(posts => {
                     posts.reverse()
-                    setPostsSt(posts)
+                    setPosts(posts)
                 })
                 .catch(err => alert('Error Asynch: ' + err.message))
-
-        } catch (err) { alert('Error Synch: ' + err.message) }
+        } catch (err) {
+            alert('Error Synch: ' + err.message)
+        }
     }, [])
 
 
@@ -44,13 +52,13 @@ function Home(props) {
         <div className="home">
             <header className="home-header flex-hor">
                 <div className="basic-head">
-                    <h3 className="greetings">Hola, {userSt ? userSt.name : 'mundo'}</h3>
+                    <h3 className="greetings">Hola, {user ? user.name : 'mundo'}</h3>
                 </div>
             </header>
 
             <main className="home-view">
                 <section className="posts-list basic-container">
-                    {postsSt && postsSt.map(post => <article className="post-item" key={post.id}>
+                    {posts.map(post => <article className="post-item" key={post.id}>
                         <img className="post-item-img" src={post.image} alt="Foto de Post" />
                         <p className="post-item-msg">{post.text}</p>
                         <p className="post-item-user">{post.author.name}</p>

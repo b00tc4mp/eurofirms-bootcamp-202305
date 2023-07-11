@@ -8,7 +8,7 @@ function Login(props) {
         const email = event.target.email.value
         const password = event.target.password.value
         try {
-            authenticateUser(email, password)
+            userPasswordOK(email, password)
                 .then(userId => {
                     context.userLoggedId = userId
                     props.onLogged()
