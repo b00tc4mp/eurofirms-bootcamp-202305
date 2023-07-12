@@ -1,6 +1,11 @@
+/**
+ * The Register component is a form for user registration with input fields for name, email, and
+ * password, and a button to submit the registration.
+ * @returns The Register component is returning JSX elements that make up the registration form.
+ */
 function Register(props) {
     console.log('Register->render')
-    
+
     const handleLoginClick = event => {
         event.preventDefault()
         props.onLoginClick()
@@ -10,11 +15,12 @@ function Register(props) {
         const name = event.target.name.value
         const email = event.target.email.value
         const password = event.target.password.value
-        const result = registerUser(name, email, password)
-        if (!result) {
-            alert('User Already Exists!')
-        } else {
-            props.onRegistered()
+        try {
+            registerUser(name, email, password)
+                .then(() => props.onRegistered())
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
         }
     }
     return <main className="register-view">
