@@ -73,6 +73,21 @@ function Home(props) {
 
   const handleCancelEditPostModal = () => setModal(null)
 
+  const handleUpdatePost = () => {
+    try {
+      retrievePosts(context.userId)
+        .then(posts => {
+          setPosts(posts)
+          setModal(null)
+        })
+        .catch(error => {
+          alert(error.message)
+        })
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   return <div className="home-view">
     <header>
       <h2 className="h2-home">Hello {user ? user.name : ' world'}</h2>
@@ -105,7 +120,7 @@ function Home(props) {
 
     {modal === "create-post-modal" && <CreatePostModal onCreatePost={handleCreatePost} onHideCreatePost={handleCancelCreatePostModal} />}
     {modal === "delete-post-modal" && <DeletePostModal postId={postId} onDeletePost={handleDeletePost} onHideDeletePost={handleCancelDeletePostModal} />}
-    {modal === "edit-post-modal" && <EditPostModal postId={postId} onHideEditPost={handleCancelEditPostModal} />}
+    {modal === "edit-post-modal" && <EditPostModal postId={postId} onUpdatePost={handleUpdatePost} onHideEditPost={handleCancelEditPostModal} />}
 
   </div>
 }

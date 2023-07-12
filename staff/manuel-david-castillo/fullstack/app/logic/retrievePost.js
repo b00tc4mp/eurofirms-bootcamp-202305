@@ -1,9 +1,20 @@
-function retrievePost(postId) {
-  const postsWorked = local.posts;
+function retrievePost(userId, postId) {
+  validateId(userId)
+  validateId(postId)
 
-  const result = postsWorked.find((element) => element.id === postId);
-
-  if (!result) return false;
-
-  return result;
+  return fetch(`http://localhost:9000/posts/${postId}`,{
+  headers: {
+    Authorization: `Bearer ${userId}`
+  }
+})
+  .then((res)=> {
+    if(res.status === 200) {
+      return res.json()
+    } else if (res.status === 400) {
+      return res.json()
+        .then((body) => {
+          throw new Error(body.error)
+        })
+    }
+  })
 }
