@@ -132,7 +132,7 @@ client.connect()
         })
 
         //end point 08 RETRIEVE POST
-        api.get('/posts', (req, res) => {
+        api.get('/post', (req, res) => {
             try {
                 const userId = req.headers.authorization.slice(7)
                 const { postId } = req.params
@@ -152,7 +152,7 @@ client.connect()
                 const userId = authorization.slice(7)
                 
                 retrievePosts(userId)
-                .then(()=> res.send())
+                .then(posts=> res.json(posts))
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){
                 res.status(400).json({error: error.message})

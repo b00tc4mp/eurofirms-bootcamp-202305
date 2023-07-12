@@ -1,14 +1,8 @@
 function createPost(userId, image, text) {
-    if (image.length === 0) return false
-    if (text.length === 0) return false
-
-    const posts = db.posts
-
-    const post = new Post(++db.postIdCount, userId, image, text)
-
-    posts.push(post)
+    if(typeof userId !== 'string') throw new Error('userId is not a string')
+    if(typeof image !== 'string') throw new Error('Image is not a string')
+    if(typeof text !== 'string') throw new Error('Text is not a string')
     
-    db.posts = posts
-
-    return true
+    return fetch('http://localhost:9000/post')
+    
 }
