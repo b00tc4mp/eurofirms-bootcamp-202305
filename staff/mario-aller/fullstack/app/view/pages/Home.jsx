@@ -18,8 +18,16 @@ function Home(props) {
         setIdPostSt(null)
         setModalSt(null)
     }
-
-
+    const handleOnPostCreated = () => {
+        try {
+            retrievePosts(context.userLoggedId)
+                .then(posts => {
+                    setPostsSt(posts)
+                    setModalSt(null)
+                })
+                .catch(error => alert('Error: ' + error.message))
+        } catch (error) { alert('Error: ' + error.message) }
+    }
 
     const handleLogout = function () {
         context.userLoggedId = null
@@ -28,10 +36,9 @@ function Home(props) {
 
     React.useEffect(() => {
         try {
-            return Promise.all([retrieveUser(context.userLoggedId), retrievePosts(context.userLoggedId)])
+            Promise.all([retrieveUser(context.userLoggedId), retrievePosts(context.userLoggedId)])
                 .then(([user, posts]) => {
                     setUserSt(user)
-                    posts.reverse()
                     setPostsSt(posts)
                 })
                 .catch(err => alert('Error Asynch: ' + err.message))
@@ -70,7 +77,7 @@ function Home(props) {
                 </div>
             </footer>
 
-            {modalSt === 'create-modal' && <PostCreate onExitModal={handleExitModal} />}
+            {modalSt === 'create-modal' && <PostCreate onPostCreated={handleOnPostCreated} onExitModal={handleExitModal} />}
             {modalSt === 'edit-modal' && <PostEdit onExitModal={handleExitModal} idPost={idPostSt} />}
             {modalSt === 'delete-modal' && <PostDelete onExitModal={handleExitModal} idPost={idPostSt} />}
         </div>

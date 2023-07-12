@@ -6,8 +6,12 @@ function PostCreate(props) {
 
         const img = event.target.img.value
         const msg = event.target.msg.value
-        if (!createPost(context.userLoggedId, msg, img)) alert('Error: No se ha podido crear Post')
-        props.onExitModal()
+
+        try {
+            createPost(context.userLoggedId, msg, img)
+                .then(() => props.onPostCreated())
+                .catch(err => { alert('Error: ' + err.error) })
+        } catch (err) { alert('Error: ' + err.message) }
     }
 
     return <div className="home-modal-newpost basic-modal">

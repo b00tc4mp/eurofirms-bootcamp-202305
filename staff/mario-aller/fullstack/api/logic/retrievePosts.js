@@ -14,7 +14,7 @@ function retrievePosts(userId) {
         .then((user) => {
             if (!user) throw new Error('El usuario no válido')
 
-            return Promise.all([context.users.find().toArray(), context.posts.find().toArray()])
+            return Promise.all([context.users.find().toArray(), context.posts.find().sort({ date: -1 }).toArray()])
         })
         .then(([users, posts]) => {
             posts.forEach(post => {
