@@ -4,7 +4,7 @@ function registerUser(name, email, password) { //validaciones sincronas
     if(typeof password !== 'string') throw new Error('Password is not a string')
 
     //Llamada al servidor
-    return fetch('http:/locaalhost:9000/users', {
+    return fetch('http://localhost:9000/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

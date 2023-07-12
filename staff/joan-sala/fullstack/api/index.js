@@ -148,7 +148,8 @@ client.connect()
          //end point 09 RETRIEVE POSTS
          api.get('/posts', (req, res) =>{
             try{
-                const userId = req.headers.authorization.slice(7)
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
                 
                 retrievePosts(userId)
                 .then(()=> res.send())

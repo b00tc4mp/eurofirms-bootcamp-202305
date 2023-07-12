@@ -13,17 +13,28 @@ function Home(props) {
     const postId = postIdState[0]
     const setPostId = postIdState[1]
 
+    const postsState = React.useState(null)
+    const posts = postsState[0]
+    const setPosts = postsState[1]
+
     React.useEffect(() => { //Para efectos secundarios como consecuéncia de llama a una api
         try {
             retrieveUser(context.userId)
                 .then(user => setUser(user))
-                .catch(error => { })
+                .catch(error => alert(error.message))
         } catch (error) {
+            alert(error.message)
+        }
 
+        try {
+            retrievePosts(context.userId)
+                .then(posts => setPosts(posts))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
         }
     }, []) //Para pasar el array vacío si o si, sólo una vez
-    const posts = retrievePosts()
-
+   
     const handleLogoutClick = () => {
         context.userId = null 
 
@@ -64,7 +75,7 @@ function Home(props) {
 
             <main className="home-main">
                 <section className="home-posts">
-                    {posts.map(post => <article>
+                    {posts && posts.map(post => <article>
                         <h2>{post.author.name}</h2>
                         <img className="home-post-image"
                             src={post.image}

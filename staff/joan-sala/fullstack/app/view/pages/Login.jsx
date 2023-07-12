@@ -12,14 +12,24 @@ function Login(props){
         const email = event.target.email.value
         const password = event.target.password.value
 
-        const result = authenticateUser(email, password)
-
-        if (result === false)
-            alert('Wrong credentials')
-        else{
-            context.userId = result
-            props.onLoggedIn()
+        try{
+            authenticateUser(email, password)
+            .then(userId =>{
+                 context.userId = userId
+                 props.onLoggedIn()
+             })
+            .catch(error => alert(error.message))
+        }catch(error){
+            alert(error.message)
         }
+        // const result = authenticateUser(email, password)
+
+        // if (result === false)
+        //     alert('Wrong credentials')
+        // else{
+        //     context.userId = result
+        //     props.onLoggedIn()
+        // }
     }
 
     return (

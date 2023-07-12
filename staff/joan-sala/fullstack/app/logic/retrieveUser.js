@@ -2,9 +2,9 @@ function retrieveUser(userId) {
     if (typeof userId !== 'string') throw new Error('UserId is not a string')
 
     return fetch('http://localhost:9000/users/', {
-        method: 'POST',
+        method: 'GET',
         headers: {
-            Authorization: `Bearer ${userId}`
+              Authorization: `Bearer ${userId}`
         }
     })
         .then(res => {
@@ -21,19 +21,4 @@ function retrieveUser(userId) {
                         throw new Error(message)
                     })
         })
-
-
-
-    // const users = db.users
-
-    // let user = users.find(user => user.id === userId)
-
-    // if(user === undefined)
-    //     return null
-
-    // user = {
-    //     name: user.name,
-    //     email: user.email
-    // }
-    // return user
 }
