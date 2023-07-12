@@ -7,7 +7,7 @@ function registerUser(name, email, password) {
     //request to API - check path 
     return fetch('http://localhost:9000/users', {
         method: 'POST',
-        headers: { 'Content-type': 'application/ json' },
+        headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({ name, email, password })
     })
         //response from server
