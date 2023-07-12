@@ -12,14 +12,6 @@ function Register(props) {
     const email = event.target.email.value
     const password = event.target.password.value
 
-    /* const result = registerUser(name, email, password)
-
-    if(result === false) {
-      alert('user already exits')
-    } else {
-      props.onRegister()
-    } */
-
     try {
       registerUser(name, email, password)
         .then(() => {

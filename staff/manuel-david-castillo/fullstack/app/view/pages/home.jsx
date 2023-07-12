@@ -10,22 +10,16 @@ function Home(props) {
 
   React.useEffect(() => {
     try {
-      retrieveUser(context.userId)
-        .then(user => setUser(user))
-        .catch(error => error.message(error))
-    } catch (error) {
-      alert(error.message)
-    }
-
-    try {
-      retrievePosts(context.userId)
-        .then(posts => setPosts(posts))
-        .catch(error => error.message(error))
+      Promise.all([retrieveUser(context.userId), retrievePosts(context.userId)])
+        .then(([user, posts]) => {
+          setUser(user)
+          setPosts(posts)
+        })
+        .catch(error => alert(error.message))
     } catch (error) {
       alert(error.message)
     }
   }, [])
-
 
   const handleLogout = () => {
     context.userId = null
@@ -35,6 +29,20 @@ function Home(props) {
 
   const handleCreatePostModal = () => setModal("create-post-modal")
   const handleCancelCreatePostModal = () => setModal("")
+  const handleCreatePost = () => {
+    try {
+      retrievePosts(context.userId)
+        .then((posts) => {
+          setModal(null)
+          setPosts(posts)
+        })
+        .catch(() => {
+          alert(error.message)
+        })
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
   const handleDeletePostModal = postId => {
     setPostId(postId)
@@ -80,7 +88,7 @@ function Home(props) {
       <button onClick={handleCreatePostModal} className="button-new-post">New Post</button>
     </footer>
 
-    {modal === "create-post-modal" && <CreatePostModal onHideCreatePost={handleCancelCreatePostModal} />}
+    {modal === "create-post-modal" && <CreatePostModal onCreatePost={handleCreatePost} onHideCreatePost={handleCancelCreatePostModal} />}
     {modal === "delete-post-modal" && <DeletePostModal postId={postId} onHideDeletePost={handleCancelDeletePostModal} />}
     {modal === "edit-post-modal" && <EditPostModal postId={postId} onHideEditPost={handleCancelEditPostModal} />}
 

@@ -11,16 +11,6 @@ function Login(props) {
     const email = event.target.email.value
     const password = event.target.password.value
 
-    /* const result = authenticateUser(email, password)
-
-    if(result === false) {
-      alert('wrong credentials')
-    } else {
-      context.userId = result
-
-      props.onLogin()
-    } */
-
     try {
       authenticateUser(email, password)
         .then((result) => {

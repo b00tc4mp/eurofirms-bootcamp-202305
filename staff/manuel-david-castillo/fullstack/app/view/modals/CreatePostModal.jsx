@@ -1,24 +1,26 @@
 function CreatePostModal(props) {
-    const handleSubmitPost = (event) => {
-        event.preventDefault()
+  const handleSubmitPost = (event) => {
+    event.preventDefault()
 
-        const image = event.target.image.value
-        const text = event.target.text.value
+    const image = event.target.image.value
+    const text = event.target.text.value
 
-        const result = createNewPost(context.userId, image, text)
-
-        if(!result) {
-            alert('could not create post')
-
-            return
-        }
-
-        props.onHideCreatePost()
+    try {
+      createNewPost(context.userId, image, text)
+        .then(() => {
+          props.onCreatePost()
+        })
+        .catch(error => {
+          alert(error.message)
+        })
+    } catch (error) {
+      alert(error.message)
     }
+  }
 
-    const handleCancelCreatePost = () => props.onHideCreatePost()
+  const handleCancelCreatePost = () => props.onHideCreatePost()
 
-    return <div className="container-new-post">
+  return <div className="container-new-post">
     <form onSubmit={handleSubmitPost} className="form-new-post" action="">
       <h3 className="h3-new-post">New post</h3>
       <p className="p-form">Image</p>
