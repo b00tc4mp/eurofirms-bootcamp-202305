@@ -15,6 +15,8 @@ function Login(props) {
                 })
                 .catch(err => alert('Error Asynch:' + err.message))
         } catch (err) { alert('Error Synch: ' + err.message) }
+
+
     }
 
     return (

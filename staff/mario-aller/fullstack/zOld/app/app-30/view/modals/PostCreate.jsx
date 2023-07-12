@@ -1,6 +1,6 @@
-function PostCreate({ onCreatedPost, onExitModal }) {
+function PostCreate(props) {
 
-    const handleOnExit = () => onExitModal()
+    const handleOnExit = () => props.onExitModal()
     const handleOnSubmitPost = function (event) {
         event.preventDefault()
 
@@ -9,9 +9,9 @@ function PostCreate({ onCreatedPost, onExitModal }) {
 
         try {
             createPost(context.userLoggedId, image, text)
-                .then(() => onCreatedPost())
-                .catch(error => { alert('Error Asynch: ' + error.message) })
-        } catch (error) { alert('Error Synch: ' + error.message) }
+                .then(() => props.onCreatedPost())
+                .catch(err => { alert('Error: ' + err.error) })
+        } catch (err) { alert('Error: ' + err.message) }
     }
 
     return <div className="home-modal-newpost basic-modal">

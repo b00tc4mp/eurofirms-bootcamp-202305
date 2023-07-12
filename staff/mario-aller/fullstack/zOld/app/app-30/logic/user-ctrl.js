@@ -18,7 +18,7 @@ const registerUser = function (name, email, password) {
     })
         .then(res => {
             if (res.status = 201) return
-            else return res.json().then(body => { throw new Error(body.error) })
+            else return res.json().then(err => { throw new Error(err.error) })
         })
 }
 
@@ -41,7 +41,10 @@ const authenticateUser = function (email, password) {
         .then(res => {
             if (res.status === 201) return res.json()
                 .then(user => user.id)
-            else return res.json().then(body => { throw new Error(body.error) })
+            else return res.json()
+                .then(err => {
+                    throw new Error(err.error)
+                })
         })
 }
 
@@ -57,6 +60,6 @@ const retrieveUser = function (id) {
     return fetch('http://localhost:9000/users', { headers: { Authorization: `Bearer ${id}` } })
         .then(res => {
             if (res.status === 200) return res.json().then(user => user)
-            else return res.json().then(body => { throw new Error(body.error) })
+            else return res.json().then(err => { throw new Error(err.error) })
         })
 }

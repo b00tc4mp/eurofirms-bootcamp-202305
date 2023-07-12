@@ -19,27 +19,13 @@ function Home(props) {
     }
 
     const handleOnUpdatedPost = () => {
-        try {
-            retrievePosts(context.userLoggedId)
-                .then(posts => {
-                    setPostsRe(posts)
-                    setModal(null)
-                })
-                .catch(error => alert('Error: ' + error.message))
-        } catch (error) { alert('Error: ' + error.message) }      
+        
     }
 
     const handleOnDeletedPost = () => {
-        try {
-            retrievePosts(context.userLoggedId)
-                .then(posts => {
-                    setPostsRe(posts)
-                    setModal(null)
-                })
-                .catch(error => alert('Error: ' + error.message))
-        } catch (error) { alert('Error: ' + error.message) }
+
     }
-    
+
     const handleEditModal = (idPost) => {
         setIdPost(idPost)
         setModal('edit-modal')
@@ -81,7 +67,7 @@ function Home(props) {
             <main className="home-view">
                 <section className="posts-list basic-container">
                     {postsRe && postsRe.map(post => <article className="post-item" key={post.id}>
-                        <img className="post-item-image" src={post.image} alt="Foto de Post" />
+                        <image className="post-item-image" src={post.image} alt="Foto de Post" />
                         <p className="post-item-text">{post.text}</p>
                         <p className="post-item-user">{post.author.name}</p>
 

@@ -1,13 +1,16 @@
-function PostDelete({ onDeletedPost, onExitModal, idPost }) {
+function PostDelete(props) {
 
-    const handleOnExitModal = () => onExitModal()
+    const handleOnExitModal = () => props.onExitModal()
     const handleDeletePost = () => {
 
         try {
-            deletePost(context.userLoggedId, idPost)
-                .then(() => onDeletedPost())
-                .catch(error => { alert('Error Asynch: ' + error.message) })
-        } catch (error) { alert('Error Synch: ' + error.message) }
+            deletePost(context.userLoggedId, props.idPost)
+                .then(() => props.onExitModal())
+                .catch(err => { alert('Error: ' + err.error) })
+        } catch (err) { alert('Error: ' + err.message) }
+
+        // if (!deletePost(context.userLoggedId, props.idPost)) alert ('Error: No se pudo borrar Post')
+        // props.onExitModal()
     }
 
     return <div className="home-modal-deletepost basic-modal">

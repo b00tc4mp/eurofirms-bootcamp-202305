@@ -1,26 +1,33 @@
-function PostEdit(props) {
-
-    const post = postRetrieve(props.idPost)
-
-    const handleOnExitModal = () => props.onExitModal()
+function PostEdit({ onUpdatedPost, onExitModal, idPost }) {
+    const handleOnExitModal = () => onExitModal()
     const handleUpdatePost = (event) => {
         event.preventDefault()
         const image = event.target.image.value
         const text = event.target.text.value
-        
-        if (!updatePost(context.userLoggedIn, post.id, image, text)) alert ('Error: No se pudo actualizar Post')
-        props.onExitModal()
+
+        try {
+            updatePost(context.userLoggedId, idPost, image, text)
+                .then(() => onUpdatedPost())
+                .catch(error => { alert('Error Asynch: ' + error.message) })
+        } catch (error) { alert('Error Synch: ' + error.message) }
     }
+
+    const [post, setPost] = React.useState(null)
+    try {
+        retrievePost(context.userLoggedId, idPost)
+            .then(postRet => { setPost(postRet) })
+            .catch(error => { alert('Error Asynch: ' + error.message) })
+    } catch (error) { alert('Error Synch: ' + error.message) }
 
     return <div className="home-modal-editpost basic-modal">
         <form className="home-modal-editpost-form basic-form" action="submit" onSubmit={handleUpdatePost}>
             <h4>Editar Post</h4>
 
             <label className="basic-label" htmlFor="image">Imagen url</label>
-            <input type="url" id="image" defaultValue={post.image}></input>
+            <input type="url" id="image" defaultValue={post ? post.image : ''}></input>
 
             <label className="basic-label" htmlFor="text">Mensaje</label>
-            <input type="text" id="text" defaultValue={post.text}></input>
+            <input type="text" id="text" defaultValue={post ? post.text : ''}></input>
 
             <div className="flex-hor">
                 <button type="submit" className="editpost-button basic-button">Guardar</button>
