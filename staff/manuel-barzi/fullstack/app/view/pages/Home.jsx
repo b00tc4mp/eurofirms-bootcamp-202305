@@ -43,7 +43,18 @@ function Home(props) {
 
     const handleCreatePostClick = () => setModal('create-post')
 
-    const handlePostCreated = () => setModal(null)
+    const handlePostCreated = () => {
+        try {
+            retrievePosts(context.userId)
+                .then(posts => {
+                    setModal(null)
+                    setPosts(posts)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     const handleEditPostClick = postId => {
         setPostId(postId)
