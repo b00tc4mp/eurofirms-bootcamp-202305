@@ -4,12 +4,7 @@ const context =  require('./logic/context')
 const bodyParser = require('body-parser')
 const registerUser = require('./logic/registerUser')
 const authenticateUser = require('./logic/authenticateUser')
-const retrieveUser = require('./logic/retrieveUser')
-const createPost = require('./logic/createPost')
 const updatePost = require('./logic/updatePost')
-const retrievePosts = require('./logic/retrievePosts')
-const cors = require('cors')
-
 
 const {MongoClient} = mongodb
 
@@ -23,8 +18,6 @@ client.connect()
         const api = express()
 
         const jsonBodyParser = bodyParser.json()
-
-        api.use(cors())
 
         //manejador de respuestas
         api.get('/',(req, res) => {
@@ -43,14 +36,14 @@ client.connect()
                 res.status(400).json({error: error.message})
             }
         })
-        //--------------------
+
         api.post('/users/auth',jsonBodyParser,(req,res)=>{
             const{email,password} = req.body //peticion por medio de insomia
 
             try{
                 authenticateUser(email,password)
                 .then(userId=>{
-                    res.json(userId)
+                    res.status(202).json(userId)
                 })
                 .catch(error=>{
                     res.status(400).json({error: error.message})
@@ -59,70 +52,16 @@ client.connect()
                 res.status(400).json({error:error.message})
             }
         })
-        //----------------
-        api.get('/users',(req,res)=>{
-            try{
-                //retrieveUser
-                const authorization = req.headers.authorization
-                const userId = authorization.slice(7)
 
-                retrieveUser(userId)
-                .then(user=>{
-                    res.json({user})
-                })
-                .catch(error=>res.status(400).json({error: error.message}))
-
-            }catch(error){
-                res.status(400).json({error:error.message})
-
-            }
-        })
-        //createPost
-        api.post('/posts',jsonBodyParser,(req,res)=>{
-            try{
-                const {authorization} = req.headers
-                const userId = authorization.slice(7)
-                
-                const image = req.body.image
-                const text = req.body.text
-                
-                createPost(userId,image,text)
-                .then(()=>{
-                    res.status(201).send()
-                })
-                .catch(error=>res.status(400).json({error:error.message}) )
-            }catch(error){
-                res.status(400).json({error:error.message})
-
-            }
-        })
-
-        //retrievePosts
-        api.get('/posts',(req,res)=>{
-            const {authorization} = req.headers
-            const userId = authorization.slice(7)
-            try{
-                retrievePosts(userId)
-                .then(posts=> res.json(posts))
-                .catch(error=>{
-                    res.status(400).json({error:error.message})
-                })
-                
-                }catch(error){
-                res.status(400).json({error:error.message})
-
-            }
-        })
-
-        //--------
+        //update post
         api.patch('/posts/:postId',jsonBodyParser,(req,res)=>{
             
             try{
                 const {authorization} = req.headers
                 const userId = authorization.slice(7)
+
                 const {postId} = req.params
                 const {image,text} = req.body
-                
                 updatePost(userId,postId,image,text)
                 .then(()=>res.status(204).send())
                 .catch(error=>res.status(400).json({error:error.message}))

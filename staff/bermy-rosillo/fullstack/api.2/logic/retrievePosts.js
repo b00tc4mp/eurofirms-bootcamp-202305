@@ -12,7 +12,7 @@ function retrievePosts(userId) {
         .then(user => {
             if (!user) throw new Error('User is not registered')
 
-            return Promise.all([context.posts.find().toArray(), context.users.find().toArray()])
+            return Promsise.all([context.posts.find().toArray(), context.users.find().toArray()])
         })
         .then(([posts, users]) => {
             posts.forEach(post => {
@@ -20,7 +20,7 @@ function retrievePosts(userId) {
 
                 delete post._id
                 //verify if a post belongs to an author
-                const user = users.find(user => user._id.toString() === post.author.toString())
+                const user = users.find(user => user._id.toString() === posts.author.toString())
 
                 //add to post author property an extra info
                 post.author = {
