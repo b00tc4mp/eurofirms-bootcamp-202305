@@ -1,7 +1,7 @@
 function Home(props) {
-  const [modal, setModal] = React.useState("")
+  const [modal, setModal] = React.useState(null)
 
-  const [postId, setPostId] = React.useState("")
+  const [postId, setPostId] = React.useState(null)
 
   const [user, setUser] = React.useState(null)
 
@@ -49,14 +49,29 @@ function Home(props) {
     setModal("delete-post-modal")
   }
 
-  const handleCancelDeletePostModal = () => setModal("")
+  const handleCancelDeletePostModal = () => setModal(null)
+
+  const handleDeletePost = () => {
+    try {
+      retrievePosts(context.userId)
+        .then(posts => {
+          setPosts(posts)
+          setModal(null)
+        })
+        .catch(error => {
+          alert(error.message)
+        })
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
   const handleEditPostModal = postId => {
     setPostId(postId)
     setModal("edit-post-modal")
   }
 
-  const handleCancelEditPostModal = () => setModal("")
+  const handleCancelEditPostModal = () => setModal(null)
 
   return <div className="home-view">
     <header>
@@ -89,7 +104,7 @@ function Home(props) {
     </footer>
 
     {modal === "create-post-modal" && <CreatePostModal onCreatePost={handleCreatePost} onHideCreatePost={handleCancelCreatePostModal} />}
-    {modal === "delete-post-modal" && <DeletePostModal postId={postId} onHideDeletePost={handleCancelDeletePostModal} />}
+    {modal === "delete-post-modal" && <DeletePostModal postId={postId} onDeletePost={handleDeletePost} onHideDeletePost={handleCancelDeletePostModal} />}
     {modal === "edit-post-modal" && <EditPostModal postId={postId} onHideEditPost={handleCancelEditPostModal} />}
 
   </div>

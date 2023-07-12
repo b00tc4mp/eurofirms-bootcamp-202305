@@ -1,23 +1,20 @@
-function deletePost(postId) {
-  const postsWorked = local.posts;
+function deletePost(userId, postId) {
+  validateId(userId)
+  validateId(postId)
 
-  let _post;
-  for (let i = 0; i < postsWorked.length; i++) {
-    if (postId === postsWorked[i].id) {
-      _post = postsWorked[i];
-
-      break;
+  return fetch(`http://localhost:9000/posts/${postId}`,{
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${userId}`},
+  })
+  .then((res)=>{
+    if(res.status === 200) {
+      return
+    } else if (res.status === 400) {
+      res.json()
+        .then(body => {
+          throw new Error(body.error)
+        })
     }
-  }
-
-  if (_post === undefined) {
-    return false;
-  }
-
-  const index = postsWorked.findIndex((post) => postId === post.id);
-
-  postsWorked.splice(index, 1);
-
-  local.posts = postsWorked;
-  return true;
+  })
 }
