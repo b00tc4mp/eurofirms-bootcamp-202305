@@ -1,32 +1,35 @@
-function Login(props){
-    const handleRegisterClick = event => {
-        event.preventDefault()
+function Login(props) {
+  const handleRegisterClick = event => {
+    event.preventDefault()
 
-        props.onRegisterClick()
+    props.onRegisterClick()
+  }
+
+  const handleLoginSubmit = event => {
+    event.preventDefault()
+
+    const email = event.target['login-email'].value
+    const password = event.target['login-password'].value
+
+    try {
+      authenticateUser(email, password)
+        .then(userId => {
+
+          context.userId = userId
+
+          props.onLoggedIn()
+        })
+        .catch(error => alert(error.message))
+    } catch (error) {
+      alert(error.message)
     }
+  }
 
-    const handleLoginSubmit = event => {
-      event.preventDefault()
-
-      const email = event.target['login-email'].value
-      const password = event.target['login-password'].value
-
-      const result = authenticateUser(email, password)
-
-      if (result === false){
-            alert('Wrong credentials')
-      } else {
-            context.userId = result
-            props.onLoggedIn()
-      }
-    }
-
-
-    return  <main className="login-view">
+  return <main className="login-view">
     <h1>Login</h1>
     <form action="submit" className="login-form" onSubmit={handleLoginSubmit} >
       <label htmlFor="login-email" type="text">Email</label>
-      <input type="text" name="email" id="login-email" placeholder="e-mail"/>
+      <input type="text" name="email" id="login-email" placeholder="e-mail" />
 
       <label htmlFor="login-password" type="password">Password</label>
       <input

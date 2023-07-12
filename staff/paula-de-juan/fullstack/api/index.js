@@ -57,7 +57,7 @@ client.connect()
 
                 authenticateUser(email, password)
                 .then((userId) => {
-                    res.status(202).json(userId)})
+                    res.json(userId)})
                 .catch((error) => res.status(400).json({error: error.message}) )
             } catch (error) {
                 res.status(400).json({error: error.message}) 
@@ -133,7 +133,7 @@ client.connect()
             const { postId } = req.params
 
             deletePost(userId, postId)
-                .then(() => res.status(204).send())
+                .then(() => res.send())
                 .catch(error => res.status(400).json({ error: error.message }))
         } catch (error) {
             res.status(400).json({ error: error.message })

@@ -74,7 +74,7 @@ function Home(props) {
         <main className="home-main">
             <section className="home-posts">
                 {posts && posts.map(post =>
-                 <article className="posts-container">
+                 <article key={post.id} className="posts-container">
                     <h2>{post.author.name}</h2>
                     <img className="post-image" src={post.image} alt={post.text}></img>
                     <p>{post.text}</p>
