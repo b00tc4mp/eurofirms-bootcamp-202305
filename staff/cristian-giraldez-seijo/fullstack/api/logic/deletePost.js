@@ -11,7 +11,7 @@ const { validateEmail, validatePassword, validateId, validateUrl, validateText }
 const mongodb = require('mongodb')
 const { ObjectId } = mongodb
 
-function deletePost(postId, userId) {
+function deletePost(userId, postId) {
     validateId(userId)
     validateId(postId)
 

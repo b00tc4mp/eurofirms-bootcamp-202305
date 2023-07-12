@@ -61,7 +61,7 @@ client.connect()
             try {
                 const { userId } = req.params
                 retrieveUser(userId)
-                    .then(user => req.status(200).json(user))
+                    .then(user => res.status(200).json(user))
                     .catch(error => res.status(400).json({ error: error.message, type: 'asynch' }))
             } catch (error) { res.status(400).json({ error: error.message, type: 'synch' }) }
         })
