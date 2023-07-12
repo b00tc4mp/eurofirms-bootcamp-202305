@@ -5,6 +5,13 @@ const context = require('./logic/context')
 const registerUser = require('./logic/registerUser')
 const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
+const createPost = require('./logic/createPost')
+const updatePost = require('./logic/updatePost')
+const deletePost = require('./logic/deletePost')
+const retrievePost = require('./logic/retrievePost')
+const retrievePosts = require('./logic/retrievePosts')
+const cors = require ('cors')
+
 
 const { MongoClient } = mongodb
 const client = new MongoClient('mongodb://127.0.0.1:27017')
@@ -26,6 +33,8 @@ client.connect()
         entrantes con cargas JSON. Permite que la API acceda a los datos JSON enviados en el cuerpo de la
         solicitud y que estén disponibles en el objeto `req.body`. */
         const jsonBodyParser = bodyParser.json()
+
+        api.use(cors())
         /* `api.get('/', (req, res)` está definiendo un controlador de ruta para la solicitud GET a la URL raíz
         ("/") de la API. Cuando se realiza una solicitud GET a la URL raíz, la devolución de llamada Se
         ejecutará la función `(req, res)` En este caso, la función de devolución de llamada simplemente
@@ -77,7 +86,80 @@ client.connect()
             }
         })
 
+        api.post('/posts', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
 
+                const { image, text } = req.body
+                createPost(userId, image, text)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+
+                const { postId } = req.params
+
+                const { image, text } = req.body
+
+                updatePost(userId, postId, image, text)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.delete('/posts/:postId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+
+                const { postId } = req.params
+
+                deletePost(userId, postId)
+                    .then(() => res.send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.get('/posts/:postId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+                
+                const { postId } = req.params
+
+                retrievePost(userId, postId)
+                    .then(post => res.json(post))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.get('/posts', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+
+                retrievePosts(userId)
+                    .then(posts => res.json(posts))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
 
         api.listen(9000, () => console.log('API running in port 9000'))
 

@@ -11,7 +11,7 @@ function retrievePosts(userId) {
     .then(user => {
         if (!user) throw new Error('user not found')
 
-        return Promise.all([context.posts.find().toArray(), context.users.find().toArray()])
+        return Promise.all([context.posts.find().sort({ date: -1 }) .toArray(), context.users.find().toArray()])
     })
     .then(([posts, users]) => {
         posts.forEach(post => {

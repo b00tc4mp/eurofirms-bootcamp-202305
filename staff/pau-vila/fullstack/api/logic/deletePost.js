@@ -16,7 +16,12 @@ function deletePost(userId, postId) {
             if (!post) throw new Error('post not found')
             if(userId !== post.author.toString()) throw new Error('')
 
-            return context.post.deleteOne({_id:postObjectId})
+            /* La línea `return context.posts.deleteOne({_id:postObjectId})` está eliminando una
+            publicación de la base de datos. Utiliza el método `deleteOne` proporcionado por el
+            objeto `context.posts` para eliminar la publicación con el `_id` especificado
+            (postObjectId). El método devuelve una promesa que se resuelve cuando la eliminación se
+            realiza correctamente. */
+            return context.posts.deleteOne({_id:postObjectId})
 
         })
         .then(() => { })
