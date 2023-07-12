@@ -9,9 +9,32 @@ function Home(props) {
     const postId = postIdState[0]
     const setPostId = postIdState[1]
 
-    const user = retrieveUser(context.userId)
-    const posts = retrievePosts()
+    const userState = React.useState(null)
+    const user = userState[0]
+    const setUser = userState[1]
 
+    const postsState = React.useState(null)
+    const posts = postsState[0]
+    const setPosts = postsState[1]
+
+    React.useEffect(() => {
+        try {
+            retrieveUser(context.userId)
+                .then(user => setUser(user))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+
+        try {
+            retrievePosts(context.userId)
+                .then(posts => setPosts(posts))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
+    
     const handleLoggedOut = () => {
         context.userId = null
         props.onLoggedOut()
@@ -44,13 +67,13 @@ function Home(props) {
 
     return <div className="home-view">
         <header>
-            <h1 className="home-title">Hello, {user.name}!</h1>
+            <h1 className="home-title">Hello, { user ? user.name : 'World'}!</h1>
             <button className="home-logout-button" onClick={handleLoggedOut}>Logout</button>
         </header>
 
         <main className="home-main">
             <section className="home-posts">
-                {posts.map(post =>
+                {posts && posts.map(post =>
                  <article className="posts-container">
                     <h2>{post.author.name}</h2>
                     <img className="post-image" src={post.image} alt={post.text}></img>

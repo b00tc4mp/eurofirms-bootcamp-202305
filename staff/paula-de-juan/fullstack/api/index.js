@@ -38,9 +38,11 @@ client.connect()
         })
 
         api.post('/users', jsonBodyParser, (req, res) =>{
+            try {
+            
             const { name, email, password } = req.body
 
-            try {
+            
                 registerUser(name, email, password)
                 .then(() => {res.status(201).send()})
                 .catch((error) => res.status(400).json({error: error.message}) )
@@ -50,9 +52,9 @@ client.connect()
         })
 
         api.post('/users/auth', jsonBodyParser, (req, res) =>{
+            try {
             const { email, password } = req.body
 
-            try {
                 authenticateUser(email, password)
                 .then((userId) => {
                     res.status(202).json(userId)})
