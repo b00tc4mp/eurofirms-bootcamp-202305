@@ -41,8 +41,8 @@ client.connect()
         })
         api.post('/users', jsonBodyParser, (req, res) => {
             try {
-                const { name, mail, password } = req.body
-                registerUser(name, mail, password)
+                const { name, email, password } = req.body
+                registerUser(name, email, password)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message, type: 'asynch' }))
             } catch (error) { res.status(400).json({ error: error.message, type: 'synch' }) }
