@@ -6,7 +6,7 @@
  * @param image - El parámetro `imagen` es una cadena que representa la URL de una imagen.
  * @returns La función `createPost` devuelve una promesa.
  */
-const createPost = function (authorId, text, image) {
+const createPost = function (authorId, image, text) {
     validateString(authorId, validateString.REGULAR)
     validateString(text, validateString.NAME)
     validateString(image, validateString.URL)
@@ -14,7 +14,7 @@ const createPost = function (authorId, text, image) {
     return fetch('http://localhost:9000/posts', {
         method: 'POST',
         headers: { Authorization: `Bearer ${authorId}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, image })
+        body: JSON.stringify({ image, text })
     })
         .then(res => {
             if (res.status === 201) return
@@ -69,7 +69,7 @@ const deletePost = function (userId, postId) {
  * @param image - El parámetro `imagen` es una cadena que representa la URL de una imagen.
  * @returns una promesa.
  */
-const updatePost = function (userId, postId, text, image) {
+const updatePost = function (userId, postId, image, text) {
     validateString(userId, validateString.REGULAR)
     validateString(postId, validateString.REGULAR)
     validateString(text, validateString.NAME)
@@ -78,7 +78,7 @@ const updatePost = function (userId, postId, text, image) {
     return fetch('http://localhost:9000/posts/' + postId, {
         method: 'PATCH',
         headers: { Authorization: `Bearer ${userId}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, image })
+        body: JSON.stringify({ image, text })
     })
         .then(res => {
             if (res.status === 204) return

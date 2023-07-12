@@ -9,7 +9,7 @@ const { validateString } = require('./helpers/validators')
  * @param image - El parámetro "imagen" es una cadena que representa la URL de una imagen.
  * @returns una promesa.
  */
-function createPost(authorId, text, image) {
+function createPost(authorId, image, text) {
     validateString(authorId)
     validateString(text, validateString.NAME)
     validateString(image, validateString.URL)
@@ -18,7 +18,7 @@ function createPost(authorId, text, image) {
         .then((user) => {
             if (!user) throw new Error('El usuario no existe')
 
-            return context.posts.insertOne({ author: user._id, text, image, date: new Date() })
+            return context.posts.insertOne({ author: user._id, image, text, date: new Date() })
         })
         .then(() => { })
 }

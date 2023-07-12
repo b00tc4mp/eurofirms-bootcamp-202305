@@ -223,13 +223,13 @@ width: 100%;
     background-color: antiquewhite;
 }
 
-.post-item-img {
+.post-item-image {
     width: 20%;
     padding: 0.5rem;
     border-radius: 1rem;
 }
 
-.post-item-msg {
+.post-item-text {
     width: 60%;
     padding: 0.5rem;
 }

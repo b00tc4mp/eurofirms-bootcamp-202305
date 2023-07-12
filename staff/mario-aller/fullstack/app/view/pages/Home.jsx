@@ -1,34 +1,43 @@
 function Home(props) {
 
-    const [modalSt, setModalSt] = React.useState(null)
-    const [idPostSt, setIdPostSt] = React.useState(null)
-    const [userSt, setUserSt] = React.useState(null)
-    const [postsSt, setPostsSt] = React.useState([])
+    const [modal, setModal] = React.useState(null)
+    const [idPost, setIdPost] = React.useState(null)
+    const [userLogged, setUserLogged] = React.useState(null)
+    const [postsRe, setPostsRe] = React.useState([])
 
-    const handleCreateModal = () => setModalSt('create-modal')
-    const handleEditModal = (idPost) => {
-        setIdPostSt(idPost)
-        setModalSt('edit-modal')
-    }
-    const handleDeleteModal = (idPost) => {
-        setIdPostSt(idPost)
-        setModalSt('delete-modal')
-    }
-    const handleExitModal = () => {
-        setIdPostSt(null)
-        setModalSt(null)
-    }
-    const handleOnPostCreated = () => {
+    const handleCreateModal = () => setModal('create-modal')
+    
+    const handleOnCreatedPost = () => {
         try {
             retrievePosts(context.userLoggedId)
                 .then(posts => {
-                    setPostsSt(posts)
-                    setModalSt(null)
+                    setPostsRe(posts)
+                    setModal(null)
                 })
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
     }
 
+    const handleOnUpdatedPost = () => {
+        
+    }
+
+    const handleOnDeletedPost = () => {
+
+    }
+
+    const handleEditModal = (idPost) => {
+        setIdPost(idPost)
+        setModal('edit-modal')
+    }
+    const handleDeleteModal = (idPost) => {
+        setIdPost(idPost)
+        setModal('delete-modal')
+    }
+    const handleExitModal = () => {
+        setIdPost(null)
+        setModal(null)
+    }
     const handleLogout = function () {
         context.userLoggedId = null
         props.onLogout()
@@ -38,8 +47,8 @@ function Home(props) {
         try {
             Promise.all([retrieveUser(context.userLoggedId), retrievePosts(context.userLoggedId)])
                 .then(([user, posts]) => {
-                    setUserSt(user)
-                    setPostsSt(posts)
+                    setUserLogged(user)
+                    setPostsRe(posts)
                 })
                 .catch(err => alert('Error Asynch: ' + err.message))
 
@@ -51,15 +60,15 @@ function Home(props) {
         <div className="home">
             <header className="home-header flex-hor">
                 <div className="basic-head">
-                    <h3 className="greetings">Hola, {userSt ? userSt.name : 'mundo'}</h3>
+                    <h3 className="greetings">Hola, {userLogged ? userLogged.name : 'mundo'}</h3>
                 </div>
             </header>
 
             <main className="home-view">
                 <section className="posts-list basic-container">
-                    {postsSt && postsSt.map(post => <article className="post-item" key={post.id}>
-                        <img className="post-item-img" src={post.image} alt="Foto de Post" />
-                        <p className="post-item-msg">{post.text}</p>
+                    {postsRe && postsRe.map(post => <article className="post-item" key={post.id}>
+                        <image className="post-item-image" src={post.image} alt="Foto de Post" />
+                        <p className="post-item-text">{post.text}</p>
                         <p className="post-item-user">{post.author.name}</p>
 
                         {post.author.id === context.userLoggedId && <>
@@ -77,9 +86,9 @@ function Home(props) {
                 </div>
             </footer>
 
-            {modalSt === 'create-modal' && <PostCreate onPostCreated={handleOnPostCreated} onExitModal={handleExitModal} />}
-            {modalSt === 'edit-modal' && <PostEdit onExitModal={handleExitModal} idPost={idPostSt} />}
-            {modalSt === 'delete-modal' && <PostDelete onExitModal={handleExitModal} idPost={idPostSt} />}
+            {modal === 'create-modal' && <PostCreate onCreatedPost={handleOnCreatedPost} onExitModal={handleExitModal} />}
+            {modal === 'edit-modal' && <PostEdit onUpdatedPost={handleOnUpdatedPost} onExitModal={handleExitModal} idPost={idPost} />}
+            {modal === 'delete-modal' && <PostDelete onDeletedPost = {handleOnDeletedPost} onExitModal={handleExitModal} idPost={idPost} />}
         </div>
     )
 }

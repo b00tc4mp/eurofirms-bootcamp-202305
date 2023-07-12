@@ -11,7 +11,7 @@ const { validateString } = require('./helpers/validators')
  * @param image - El parámetro `imagen` es la URL de la imagen que desea actualizar para la publicación.
  * @returns La función `updatePost` está devolviendo una Promesa.
  */
-function updatePost(userId, postId, text, image) {
+function updatePost(userId, postId, image, text) {
     validateString(userId)
     validateString(postId)
     validateString(text, validateString.NAME)
@@ -26,7 +26,7 @@ function updatePost(userId, postId, text, image) {
             if (post.author.toString() !== userId) throw new Error('¡Sólo puede modificar sus posts!')
 
             const date = new Date()
-            return context.posts.updateOne({ _id: _postId }, { $set: { text, image, date } })
+            return context.posts.updateOne({ _id: _postId }, { $set: { image, text, date } })
         })
         .then(() => { })
 }

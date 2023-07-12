@@ -5,10 +5,10 @@ function PostEdit(props) {
     const handleOnExitModal = () => props.onExitModal()
     const handleUpdatePost = (event) => {
         event.preventDefault()
-        const img = event.target.img.value
-        const msg = event.target.msg.value
+        const image = event.target.image.value
+        const text = event.target.text.value
         
-        if (!updatePost(context.userLoggedIn, post.id, msg, img)) alert ('Error: No se pudo actualizar Post')
+        if (!updatePost(context.userLoggedIn, post.id, image, text)) alert ('Error: No se pudo actualizar Post')
         props.onExitModal()
     }
 
@@ -16,11 +16,11 @@ function PostEdit(props) {
         <form className="home-modal-editpost-form basic-form" action="submit" onSubmit={handleUpdatePost}>
             <h4>Editar Post</h4>
 
-            <label className="basic-label" htmlFor="img">Imagen url</label>
-            <input type="url" id="img" defaultValue={post.image}></input>
+            <label className="basic-label" htmlFor="image">Imagen url</label>
+            <input type="url" id="image" defaultValue={post.image}></input>
 
-            <label className="basic-label" htmlFor="msg">Mensaje</label>
-            <input type="text" id="msg" defaultValue={post.text}></input>
+            <label className="basic-label" htmlFor="text">Mensaje</label>
+            <input type="text" id="text" defaultValue={post.text}></input>
 
             <div className="flex-hor">
                 <button type="submit" className="editpost-button basic-button">Guardar</button>

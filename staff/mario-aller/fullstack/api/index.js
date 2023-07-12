@@ -69,9 +69,9 @@ client.connect()
         api.post('/posts', jsonBodyParser, (req, res) => {
             try {
                 const userId = req.headers.authorization.slice(7)
-                const { text, image } = req.body
+                const { image, text } = req.body
 
-                createPost(userId, text, image)
+                createPost(userId, image, text)
                     .then(() => res.status(201).send())
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
@@ -82,9 +82,9 @@ client.connect()
             try {
                 const userId = req.headers.authorization.slice(7)
                 const { postId } = req.params
-                const { text, image } = req.body
+                const { image, text } = req.body
 
-                updatePost(userId, postId, text, image)
+                updatePost(userId, postId, image, text)
                     .then(() => res.status(206).send())
                     .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
             } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
