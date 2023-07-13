@@ -1,7 +1,6 @@
 function EditPostModal(props) {
   const [post, setPost] = React.useState(null)
 
-  /* El código no entra en este useEffect */
   React.useEffect(() => {
     try {
       retrievePost(context.userId, props.postId)
@@ -44,18 +43,18 @@ function EditPostModal(props) {
   const handleCancelEditPost = () => props.onHideEditPost()
 
   return <div className="container-edit-post">
-    <form onSubmit={handleSubmitPost} className="form-edit-post" action="">
+    {post && <form onSubmit={handleSubmitPost} className="form-edit-post" action="">
       <input type="hidden" id="edit-post-id" />
       <h3 className="h3-edit-post">Edit post</h3>
       <p className="p-form">Image</p>
-      <input id="image" type="url" /* defaultValue={post.image ? post.image : undefined} */ />
+      <input id="image" type="url" defaultValue={post.image ? post.image : undefined} />
       <p className="p-form">Text</p>
       <textarea
         id="text"
         name=""
         cols="25"
         rows="5"
-      /* defaultValue={post.text ? post.text : undefined} */
+        defaultValue={post.text ? post.text : undefined}
       ></textarea>
       <div className="buttons-create-cancel">
         <button type="submit" className="button-create-edit-post">
@@ -65,7 +64,7 @@ function EditPostModal(props) {
           Cancel
         </button>
       </div>
-    </form>
+    </form>}
   </div>
 }
 

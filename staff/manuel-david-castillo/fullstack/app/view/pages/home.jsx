@@ -57,6 +57,7 @@ function Home(props) {
         .then(posts => {
           setPosts(posts)
           setModal(null)
+          setPostId(null)
         })
         .catch(error => {
           alert(error.message)
@@ -79,6 +80,7 @@ function Home(props) {
         .then(posts => {
           setPosts(posts)
           setModal(null)
+          setPostId(null)
         })
         .catch(error => {
           alert(error.message)
