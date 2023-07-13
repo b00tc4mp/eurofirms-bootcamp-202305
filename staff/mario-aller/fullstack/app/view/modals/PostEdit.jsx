@@ -8,16 +8,16 @@ function PostEdit({ onUpdatedPost, onExitModal, idPost }) {
         try {
             updatePost(context.userLoggedId, idPost, image, text)
                 .then(() => onUpdatedPost())
-                .catch(error => { alert('Error Asynch: ' + error.message) })
-        } catch (error) { alert('Error Synch: ' + error.message) }
+                .catch(error => { alert('Error: ' + error.message) })
+        } catch (error) { alert('Error: ' + error.message) }
     }
 
     const [post, setPost] = React.useState(null)
     try {
         retrievePost(context.userLoggedId, idPost)
             .then(postRet => { setPost(postRet) })
-            .catch(error => { alert('Error Asynch: ' + error.message) })
-    } catch (error) { alert('Error Synch: ' + error.message) }
+            .catch(error => { alert('Error: ' + error.message) })
+    } catch (error) { alert('Error: ' + error.message) }
 
     return <div className="home-modal-editpost basic-modal">
         <form className="home-modal-editpost-form basic-form" action="submit" onSubmit={handleUpdatePost}>

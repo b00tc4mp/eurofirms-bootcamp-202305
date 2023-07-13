@@ -13,8 +13,8 @@ function Login(props) {
                     context.userLoggedId = userId
                     props.onLogged()
                 })
-                .catch(err => alert('Error Asynch:' + err.message))
-        } catch (err) { alert('Error Synch: ' + err.message) }
+                .catch(err => alert('Error:' + err.message))
+        } catch (err) { alert('Error: ' + err.message) }
     }
 
     return (

@@ -39,8 +39,8 @@ client.connect()
 
                 registerUser(name, email, password)
                     .then(() => res.status(201).send())
-                    .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
-            } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
+                    .catch(err => res.status(400).json({ error: err.message }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
         // authenticateUser
@@ -49,20 +49,20 @@ client.connect()
                 const { email, password } = req.body
 
                 return authenticateUser(email, password)
-                    .then((userId) => res.status(201).json({ id: userId}))
-                    .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
-            } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
+                    .then((userId) => res.status(201).json({ id: userId }))
+                    .catch(err => res.status(400).json({ error: err.message, }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
         // retrieveUser
         api.get('/users', (req, res) => {
             try {
                 const userId = req.headers.authorization.slice(7)
-                
+
                 retrieveUser(userId)
                     .then(user => res.json(user))
-                    .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
-            } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
+                    .catch(err => res.status(400).json({ error: err.message }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
         // createPost
@@ -73,8 +73,8 @@ client.connect()
 
                 createPost(userId, image, text)
                     .then(() => res.status(201).send())
-                    .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
-            } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
+                    .catch(err => res.status(400).json({ error: err.message, }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
         // updatePost
@@ -86,8 +86,8 @@ client.connect()
 
                 updatePost(userId, postId, image, text)
                     .then(() => res.status(206).send())
-                    .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
-            } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
+                    .catch(err => res.status(400).json({ error: err.message }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
 
@@ -99,8 +99,8 @@ client.connect()
 
                 retrievePost(userId, postId)
                     .then(post => res.json(post))
-                    .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
-            } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
+                    .catch(err => res.status(400).json({ error: err.message }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
         // retrievePosts
@@ -110,8 +110,8 @@ client.connect()
 
                 retrievePosts(userId)
                     .then(posts => res.json(posts))
-                    .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
-            } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
+                    .catch(err => res.status(400).json({ error: err.message }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
         // deletePost
@@ -122,8 +122,8 @@ client.connect()
 
                 deletePost(userId, postId)
                     .then(() => res.send())
-                    .catch(err => res.status(400).json({ error: err.message, type: 'Asynch' }))
-            } catch (err) { res.status(400).json({ error: err.message, type: 'Synch' }) }
+                    .catch(err => res.status(400).json({ error: err.message }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
         api.listen(9000, () => console.log('API funcionando en 9000...'))

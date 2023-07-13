@@ -64,9 +64,9 @@ function Home(props) {
                     setUserLogged(user)
                     setPostsRe(posts)
                 })
-                .catch(err => alert('Error Asynch: ' + err.message))
+                .catch(err => alert('Error: ' + err.message))
 
-        } catch (err) { alert('Error Synch: ' + err.message) }
+        } catch (err) { alert('Error: ' + err.message) }
     }, [])
 
 

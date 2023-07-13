@@ -10,8 +10,8 @@ function PostCreate({ onCreatedPost, onExitModal }) {
         try {
             createPost(context.userLoggedId, image, text)
                 .then(() => onCreatedPost())
-                .catch(error => { alert('Error Asynch: ' + error.message) })
-        } catch (error) { alert('Error Synch: ' + error.message) }
+                .catch(error => { alert('Error: ' + error.message) })
+        } catch (error) { alert('Error: ' + error.message) }
     }
 
     return <div className="home-modal-newpost basic-modal">

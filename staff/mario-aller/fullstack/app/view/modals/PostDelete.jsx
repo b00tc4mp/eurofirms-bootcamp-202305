@@ -6,8 +6,8 @@ function PostDelete({ onDeletedPost, onExitModal, idPost }) {
         try {
             deletePost(context.userLoggedId, idPost)
                 .then(() => onDeletedPost())
-                .catch(error => { alert('Error Asynch: ' + error.message) })
-        } catch (error) { alert('Error Synch: ' + error.message) }
+                .catch(error => { alert('Error: ' + error.message) })
+        } catch (error) { alert('Error: ' + error.message) }
     }
 
     return <div className="home-modal-deletepost basic-modal">
