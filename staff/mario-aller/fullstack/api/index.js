@@ -85,7 +85,7 @@ client.connect()
                 const { image, text } = req.body
 
                 updatePost(userId, postId, image, text)
-                    .then(() => res.status(206).send())
+                    .then(() => res.status(204).send())
                     .catch(err => res.status(400).json({ error: err.message }))
             } catch (err) { res.status(400).json({ error: err.message }) }
         })

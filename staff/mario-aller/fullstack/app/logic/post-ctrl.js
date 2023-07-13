@@ -100,7 +100,7 @@ const updatePost = function (userId, postId, image, text) {
         body: JSON.stringify({ image, text })
     })
         .then(res => {
-            if (res.status === 206) return
+            if (res.status === 204) return
             else return res.json().then(err => { throw new Error(err.error) })
         })
 }

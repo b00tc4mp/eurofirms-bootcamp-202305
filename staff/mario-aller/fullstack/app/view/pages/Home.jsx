@@ -1,9 +1,20 @@
 function Home({ onLogout }) {
-
     const [modal, setModal] = React.useState(null)
     const [idPost, setIdPost] = React.useState(null)
     const [userLogged, setUserLogged] = React.useState(null)
-    const [postsRe, setPostsRe] = React.useState([])
+    const [posts, setPosts] = React.useState([])
+
+    React.useEffect(() => {
+        try {
+            Promise.all([retrieveUser(context.userLoggedId), retrievePosts(context.userLoggedId)])
+                .then(([user, posts]) => {
+                    setUserLogged(user)
+                    setPosts(posts)
+                })
+                .catch(err => alert('Error: ' + err.message))
+
+        } catch (err) { alert('Error: ' + err.message) }
+    }, [])
 
     const handleCreateModal = () => setModal('create-modal')
 
@@ -11,7 +22,7 @@ function Home({ onLogout }) {
         try {
             retrievePosts(context.userLoggedId)
                 .then(posts => {
-                    setPostsRe(posts)
+                    setPosts(posts)
                     setModal(null)
                 })
                 .catch(error => alert('Error: ' + error.message))
@@ -22,7 +33,7 @@ function Home({ onLogout }) {
         try {
             retrievePosts(context.userLoggedId)
                 .then(posts => {
-                    setPostsRe(posts)
+                    setPosts(posts)
                     setModal(null)
                     setIdPost(null)
                 })
@@ -34,7 +45,7 @@ function Home({ onLogout }) {
         try {
             retrievePosts(context.userLoggedId)
                 .then(posts => {
-                    setPostsRe(posts)
+                    setPosts(posts)
                     setModal(null)
                     setIdPost(null)
                 })
@@ -59,19 +70,6 @@ function Home({ onLogout }) {
         onLogout()
     }
 
-    React.useEffect(() => {
-        try {
-            Promise.all([retrieveUser(context.userLoggedId), retrievePosts(context.userLoggedId)])
-                .then(([user, posts]) => {
-                    setUserLogged(user)
-                    setPostsRe(posts)
-                })
-                .catch(err => alert('Error: ' + err.message))
-
-        } catch (err) { alert('Error: ' + err.message) }
-    }, [])
-
-
     return (
         <div className="home">
             <header className="home-header flex-hor">
@@ -82,7 +80,7 @@ function Home({ onLogout }) {
 
             <main className="home-view">
                 <section className="posts-list basic-container">
-                    {postsRe && postsRe.map(post => <article className="post-item" key={post.id}>
+                    {posts && posts.map(post => <article className="post-item" key={post.id}>
                         <img className="post-item-image" src={post.image} alt="Foto de Post" />
                         <p className="post-item-text">{post.text}</p>
                         <p className="post-item-user">{post.author.name}</p>
