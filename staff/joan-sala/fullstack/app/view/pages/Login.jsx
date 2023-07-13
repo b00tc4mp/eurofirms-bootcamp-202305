@@ -22,14 +22,6 @@ function Login(props){
         }catch(error){
             alert(error.message)
         }
-        // const result = authenticateUser(email, password)
-
-        // if (result === false)
-        //     alert('Wrong credentials')
-        // else{
-        //     context.userId = result
-        //     props.onLoggedIn()
-        // }
     }
 
     return (

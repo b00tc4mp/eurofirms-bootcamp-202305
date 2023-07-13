@@ -9,11 +9,12 @@ function retrievePosts(userId){
 
     const userObjectId = new ObjectId(userId)
 
-    return users.findOne({_id: userObjectId})
+    return context.users.findOne({_id: userObjectId})
     .then(user=>{
         if(!user) throw new Error('User not found')
 
-        return Promise.all([posts.find().toArray(), users.find().toArray()])
+        return Promise.all([context.posts.find().sort({date:-1}).toArray(), users.find().toArray()])
+        //el 'sort({date:-1}) es para mostrar el último post el primeroo
     })
     .then(([posts, users])=>{
         posts.forEach(post=>{
