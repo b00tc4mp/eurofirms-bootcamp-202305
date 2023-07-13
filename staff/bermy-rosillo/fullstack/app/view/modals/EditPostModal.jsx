@@ -1,5 +1,15 @@
 function EditPostModal(props){
-    const post = retrievePost(props.postId)
+    const [post, setPost] = React.useState(null)
+
+    React.useEffect(() => {
+        try {
+            retrievePost(context.userId, props.postId)
+                .then(post => setPost(post))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
 
     const handleCancelEditPostModal =()=> props.onEditPostCancelled()
 
@@ -9,17 +19,19 @@ function EditPostModal(props){
         const image = event.target.image.value
         const text = event.target.text.value
     
-        const result=updatePost(post.id,image,text)
-    
-        if(!result){
-            alert('You cannot edit a post ')
-            return
+        try {
+            updatePost(context.userId, props.postId, image, text)
+                .then(() => {
+                    props.onEditPost() //return to home
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
         }
-        props.onEditPost()
     }
 
     return <div className="home-edit-post-modal">
-    <div className="home-edit-post-container">
+    {post && <div className="home-edit-post-container">
         <h2>Edit post</h2>
 
         <form className="home-edit-post-form" onSubmit={handleEditPost}>
@@ -32,6 +44,6 @@ function EditPostModal(props){
             <button type="submit">Save</button>
             <button onClick={handleCancelEditPostModal} className="home-edit-post-cancel-button">Cancel</button>
         </form>
-    </div>
+    </div>}
 </div>
 }

@@ -1,14 +1,26 @@
-function retrieveUser(userId){
-    const users = db.users
+function retrieveUser(userId) {
 
-    let user = users.find(user=>user.id === userId)
-    
-    if(user === undefined)
-        return null
+    if (typeof userId !== 'string') throw new Error('UserId is not a string')
 
-    user = {
-        email:user.email,
-        name:user.name
-    }
-    return user
+    return fetch('http://localhost:9000/users', { //http://localhost:9000/users
+        headers: {
+            Authorization: `Bearer ${userId}`
+        }
+    })
+        .then(res => {
+            if (res.status === 400) {
+                return res.json()
+                    .then(body => {
+                        const message = body.error
+                        throw new Error(message)
+                    })
+
+            } else if (res.status === 200)
+
+                return res.json()
+                    .then(body => {
+                        const user = body
+                        return user
+                    })
+        })
 }

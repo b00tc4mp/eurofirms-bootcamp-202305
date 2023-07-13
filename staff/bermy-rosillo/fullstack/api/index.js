@@ -8,6 +8,8 @@ const retrieveUser = require('./logic/retrieveUser')
 const createPost = require('./logic/createPost')
 const updatePost = require('./logic/updatePost')
 const retrievePosts = require('./logic/retrievePosts')
+const retrievePost = require('./logic/retrievePost')
+const deletePost = require('./logic/deletePost')
 const cors = require('cors')
 
 
@@ -68,7 +70,7 @@ client.connect()
 
                 retrieveUser(userId)
                 .then(user=>{
-                    res.json({user})
+                    res.json(user)
                 })
                 .catch(error=>res.status(400).json({error: error.message}))
 
@@ -99,7 +101,7 @@ client.connect()
 
         //retrievePosts
         api.get('/posts',(req,res)=>{
-            const {authorization} = req.headers
+            const authorization = req.headers.authorization
             const userId = authorization.slice(7)
             try{
                 retrievePosts(userId)
@@ -114,7 +116,23 @@ client.connect()
             }
         })
 
-        //--------
+        //retrievePost
+        api.get('/posts/:postId',(req,res)=>{
+            try{
+                const {authorization} = req.headers
+                const userId = authorization.slice(7)
+                const postId = req.params.postId
+                
+                retrievePost(userId,postId)
+                .then(post=>res.json(post))
+                .catch(error=>res.status(400).json({error:error.message}))
+            }catch(error){
+                res.status(400).json({error: error.message})
+
+            }
+        })
+
+        //update post
         api.patch('/posts/:postId',jsonBodyParser,(req,res)=>{
             
             try{
@@ -128,6 +146,22 @@ client.connect()
                 .catch(error=>res.status(400).json({error:error.message}))
             }catch(error){
                 res.status(400).json({error:error.message})
+
+            }
+        })
+
+        //deletePost
+        api.delete('/posts/:postId',(req,res)=>{
+            try{
+                const {authorization} = req.headers
+                const userId = authorization.slice(7)
+                const postId = req.params.postId
+                
+                deletePost(userId,postId)
+                .then(()=>res.send())
+                .catch(error=>res.status(400).json({error:error.message}))
+            }catch(error){
+                res.status(400).json({error: error.message})
 
             }
         })
