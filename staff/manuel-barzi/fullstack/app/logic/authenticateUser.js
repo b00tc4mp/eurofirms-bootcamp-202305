@@ -17,13 +17,12 @@ function authenticateUser(email, password) {
 
                         return userId
                     })
-            else if (res.status === 400) {
+            else if (res.status === 400)
                 return res.json()
                     .then(body => {
                         const message = body.error
 
                         throw new Error(message)
                     })
-            }
         })
 }

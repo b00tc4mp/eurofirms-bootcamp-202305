@@ -63,18 +63,39 @@ function Home(props) {
 
     const handleCreatePostCancelled = () => setModal(null)
 
-    const handleEditPostCancelled = () => setModal(null)
+    const handleEditPostCancelled = () => {
+        setModal(null)
+        setPostId(null)
+    }
 
-    const handlePostEdited = () => setModal(null)
+    const handlePostEdited = () => {
+        try {
+            retrievePosts(context.userId)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     const handleDeletePostClick = postId => {
         setPostId(postId)
         setModal('delete-post')
     }
 
-    const handleDeletePostCancelled = () => setModal(null)
+    const handleDeletePostCancelled = () => {
+        setModal(null)
+        setPostId(null)
+    }
 
-    const handlePostDeleted = () => setModal(null)
+    const handlePostDeleted = () => {
+        setModal(null)
+        setPostId(null)
+    }
 
     return <div className="home-view">
         <header className="home-header">
