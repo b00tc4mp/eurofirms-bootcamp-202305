@@ -1,3 +1,5 @@
+const { error } = require("console")
+
 function CreatePostModal(props){
     console.log('CreatePostModal -> renderr')
 
@@ -8,15 +10,13 @@ function CreatePostModal(props){
         const image = event.target.image.value
         const text = event.target.text.value
 
-        const result = createPost(context.userId, image, text)
-
-        if (!result) {
-            alert('Could not create post')
-
-            return
+        try{           //variable global
+            createPost(context.userId, image, text)
+            .then(()=> props.onPostCreated())
+            .catch(error => alert(error.message))
+        }catch(error){
+            alert(error.message)
         }
-        // To notify Home that a post has been created
-        props.onPostCreated()
     }
     
     const handleCancelClick = () => props.onCreatePostCancelled()

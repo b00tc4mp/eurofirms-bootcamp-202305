@@ -43,7 +43,19 @@ function Home(props) {
 
     const handleCreatePostClick = () => setModal('create-post')
 
-    const handlePostCreated = () => setModal(null)
+    const handlePostCreated = () => {
+        
+        try {
+            retrievePosts(context.userId)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     const handleEditPostClick = postId => {
         setPostId(postId)
@@ -64,7 +76,8 @@ function Home(props) {
     const handleDeletePostCancelled = () => setModal(null)
 
     const handlePostDeleted = () => setModal(null)
-
+    
+    //'key={post.id}' se utiliza para asignar una clave única a cada elemento de una lista o conjunto de componentes renderizados dinámicamente. Esto ayuda a React a realizar actualizaciones eficientes en la lista al identificar los cambios en los elementos y evitar renderizaciones innecesarias
     return (
         <div className="home-view">
             <header className="home-header">
@@ -75,7 +88,8 @@ function Home(props) {
 
             <main className="home-main">
                 <section className="home-posts">
-                    {posts && posts.map(post => <article>
+                    {posts && posts.map(post => 
+                    <article key={post.id}>
                         <h2>{post.author.name}</h2>
                         <img className="home-post-image"
                             src={post.image}
