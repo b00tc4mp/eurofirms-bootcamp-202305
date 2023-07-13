@@ -92,7 +92,7 @@ client.connect()
 
 
         // retrievePost
-        api.get('/posts/id/:postId', (req, res) => {
+        api.get('/posts/:postId', (req, res) => {
             try {
                 const userId = req.headers.authorization.slice(7)
                 const { postId } = req.params

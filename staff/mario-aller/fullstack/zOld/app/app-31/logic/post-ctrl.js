@@ -50,7 +50,7 @@ const retrievePost = function (userId, postId) {
     validateString(userId, validateString.REGULAR)
     validateString(postId, validateString.REGULAR)
 
-    return fetch('http://localhost:9000/posts/' + postId, {
+    return fetch('http://localhost:9000/posts/id/' + postId, {
         headers: { Authorization: `Bearer ${userId}` }
     })
         .then(res => {
