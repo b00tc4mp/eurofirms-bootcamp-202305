@@ -1,0 +1,16 @@
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: tomato;
+    border-color: dodgerblue;
+    padding: 10px;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    background-color: gold;
+}

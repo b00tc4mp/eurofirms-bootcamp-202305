@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server-Side Rendering (SSR)</title>
+</head>
+
+<body>
+    <h1>Server-Side Rendering (SSR)</h1>
+
+    <p>
+        Server-side rendering (SSR) means that the content of your site is generated on the server, then sent to the
+        browser. This is useful for SEO purposes, because search engines can "see" the content of your site before they
+        send it to users.</p>
+
+    <h2>What Is Server-Side Rendering (SSR)?</h2>
+
+    <p>Server-side rendering is where your site’s content is rendered on the web server rather than the browser. This
+        server prepares an HTML file with user-specific data and sends it to the user’s machine.
+        <br><br>
+        The browser then interprets the content and displays the page, giving the user a fully rendered HTML page
+        without waiting for JavaScript or CSS files to load.
+        <br><br>
+        Many think this method is favorable for SEO compared to client-side rendering, but let’s first see how SSR
+        works.
+    </p>
+
+    <h2>The Server-Side Rendering Process</h2>
+
+    <p>As we’ve discussed, server-side rendering enables website content to appear quickly by eliminating the need to
+        download and run application code.
+        <br><br>
+        But how is your HTML rendered on the server in response to navigation?
+        <br><br>
+        - The user opens their browser and requests to open the webpage.<br>
+        - The server creates rendered content in a viewable HTML file and sends it to the user. The CSS is also
+        displayed<br>
+        - on the browser, but the page is not yet interactive.<br>
+        - Meanwhile, the browser downloads the JavaScript of the page, which is readily available on the server.<br>
+        - The user can now interact with the site and the different elements.<br>
+        - The browser implements the JavaScript (Document Object Model or DOM is fully rendered).<br>
+        - The page is now fully loaded and can respond to the interactions of the user journey.<br>
+        - Many popular JavaScript frameworks, including Angular and React, use server-side rendering.<br>
+        <br>
+        Social media giants such as Facebook and Twitter also use rendered content before it’s sent to the user.
+    </p>
+</body>
+
+</html>
