@@ -10,7 +10,7 @@ function App() {
         case 'login':
             return <Login onGotoReg={handleToRegView} onLogged={handleToHomeView} />
         case 'register':
-            return <Register onGotoLog={handleToLogView} onUserRegistered={handleToLogView} />
+            return <Register onGotoLog={handleToLogView} onRegisteredUser={handleToLogView} />
         case 'home':
             return <Home onLogout={handleToLogView} />
         default:

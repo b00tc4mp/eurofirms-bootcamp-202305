@@ -1,6 +1,6 @@
-function Register(props) {
+function Register({ onGotoLog, onRegisteredUser }) {
 
-    const handleOnGotoLog = () => props.onGotoLog()
+    const handleOnGotoLog = () => onGotoLog()
 
     const handleRegisterUser = function (event) {
         event.preventDefault()
@@ -10,7 +10,7 @@ function Register(props) {
         const password = event.target.password.value
 
         if (!registerUser(name, email, password)) alert('No es posible crear usuario')
-        props.onUserRegistered()
+        onRegisteredUser()
     }
 
     return (

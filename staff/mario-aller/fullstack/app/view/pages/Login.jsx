@@ -1,6 +1,6 @@
-function Login(props) {
+function Login({ onGotoReg, onLogged }) {
 
-    const handleOnGotoReg = () => props.onGotoReg()
+    const handleOnGotoReg = () => onGotoReg()
 
     const handleOnLogin = function (event) {
         event.preventDefault()
@@ -11,7 +11,7 @@ function Login(props) {
             authenticateUser(email, password)
                 .then(userId => {
                     context.userLoggedId = userId
-                    props.onLogged()
+                    onLogged()
                 })
                 .catch(err => alert('Error:' + err.message))
         } catch (err) { alert('Error: ' + err.message) }

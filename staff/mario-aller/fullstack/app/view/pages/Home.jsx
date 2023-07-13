@@ -1,4 +1,4 @@
-function Home(props) {
+function Home({ onLogout }) {
 
     const [modal, setModal] = React.useState(null)
     const [idPost, setIdPost] = React.useState(null)
@@ -6,7 +6,7 @@ function Home(props) {
     const [postsRe, setPostsRe] = React.useState([])
 
     const handleCreateModal = () => setModal('create-modal')
-    
+
     const handleOnCreatedPost = () => {
         try {
             retrievePosts(context.userLoggedId)
@@ -24,9 +24,10 @@ function Home(props) {
                 .then(posts => {
                     setPostsRe(posts)
                     setModal(null)
+                    setIdPost(null)
                 })
                 .catch(error => alert('Error: ' + error.message))
-        } catch (error) { alert('Error: ' + error.message) }      
+        } catch (error) { alert('Error: ' + error.message) }
     }
 
     const handleOnDeletedPost = () => {
@@ -35,11 +36,12 @@ function Home(props) {
                 .then(posts => {
                     setPostsRe(posts)
                     setModal(null)
+                    setIdPost(null)
                 })
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
     }
-    
+
     const handleEditModal = (idPost) => {
         setIdPost(idPost)
         setModal('edit-modal')
@@ -54,7 +56,7 @@ function Home(props) {
     }
     const handleLogout = function () {
         context.userLoggedId = null
-        props.onLogout()
+        onLogout()
     }
 
     React.useEffect(() => {
@@ -102,7 +104,7 @@ function Home(props) {
 
             {modal === 'create-modal' && <PostCreate onCreatedPost={handleOnCreatedPost} onExitModal={handleExitModal} />}
             {modal === 'edit-modal' && <PostEdit onUpdatedPost={handleOnUpdatedPost} onExitModal={handleExitModal} idPost={idPost} />}
-            {modal === 'delete-modal' && <PostDelete onDeletedPost = {handleOnDeletedPost} onExitModal={handleExitModal} idPost={idPost} />}
+            {modal === 'delete-modal' && <PostDelete onDeletedPost={handleOnDeletedPost} onExitModal={handleExitModal} idPost={idPost} />}
         </div>
     )
 }
