@@ -93,8 +93,17 @@ function Home(props) {
     }
 
     const handlePostDeleted = () => {
-        setModal(null)
-        setPostId(null)
+        try {
+            retrievePosts(context.userId)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
     }
 
     return <div className="home-view">

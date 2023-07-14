@@ -1,20 +1,18 @@
-function DeletePostModal(props) {
+function DeletePostModal({ postId, onPostDeleted, onDeletePostCancelled }) {
     console.log('DeletePostModal -> render')
 
-    const handleCancelClick = () => props.onDeletePostCancelled()
+    const handleCancelClick = () => onDeletePostCancelled()
 
     const handleSubmit = event => {
         event.preventDefault()
 
-        const result = deletePost(props.postId)
-
-        if (!result) {
-            alert('Could not delete post')
-
-            return
+        try {
+            deletePost(context.userId, postId)
+                .then(() => onPostDeleted())
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
         }
-
-        props.onPostDeleted()
     }
 
     return <div className="home-delete-post-modal">

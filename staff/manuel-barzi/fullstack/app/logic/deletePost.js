@@ -1,28 +1,22 @@
-function deletePost(postId) {
-    let post
+function deletePost(userId, postId) {
+    if (typeof userId !== 'string') throw new Error('userId is not a string')
+    if (typeof postId !== 'string') throw new Error('postId is not a string')
 
-    const posts = db.posts
-
-    for (let i = 0; i < posts.length; i++) {
-        const _post = posts[i]
-
-        if (_post.id === postId) {
-            post = _post
-
-            break
+    return fetch(`http://localhost:9000/posts/${postId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${userId}`
         }
-    }
-
-    if (post === undefined)
-        return false
-
-    const index = posts.findIndex(function (post) {
-        return post.id === postId
     })
+        .then(res => {
+            if (res.status === 204)
+                return
+            else if (res.status === 400)
+                return res.json()
+                    .then(body => {
+                        const message = body.error
 
-    posts.splice(index, 1)
-
-    db.posts = posts
-
-    return true
+                        throw new Error(message)
+                    })
+        })
 }
