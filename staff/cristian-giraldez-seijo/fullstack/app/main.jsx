@@ -10,7 +10,7 @@ const context = {
     },
     get userId() {
         if (sessionStorage.userId) {
-            return parseInt(sessionStorage.userId)
+            return sessionStorage.userId
         }
         return null
     }

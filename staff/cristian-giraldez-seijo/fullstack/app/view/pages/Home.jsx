@@ -9,7 +9,18 @@ function Home(props) {
     const postId = postIdState[0]
     const setPostId = postIdState[1]
 
-    const user = retrieveUser(context.userId)
+    const userState = React.useState(null)
+    const user = userState[0]
+    const setUser = userState[1]
+
+    React.useEffect(() => {
+        try {
+            retrieveUser(context.userId)
+                .then((user) => setUser(user))
+                .catch(error => alert(error.message))
+        } catch (error) { alert(error.message) }
+    }, [])
+
 
     const posts = retrievePosts()
 
@@ -38,7 +49,7 @@ function Home(props) {
 
     return <div className="home-view">
         <header className="home-header">
-            <h1 className="home-title">Hello, {user.name}!</h1>
+            <h1 className="home-title">Hello, {user ? user.name : 'there'}!</h1>
 
             <button className="home-logout-button" onClick={handleLogoutClick}>Logout</button>
         </header>
