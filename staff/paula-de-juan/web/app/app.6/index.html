@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="header-nav home">
+        <img class="logo" src="logo-happy-days-removebg-preview.png" />
+        <div class="flex items-center gap-5 p-6">
+          <a href="login.html">Log-in</a>
+          <a href="register.html">Register</a>
+        </div>
+      </nav>
+    </header>
+    <main class="home">
+      <article class="container">
+          <section class="post question">
+              <h4>Bermy</h4>
+              <p>Hola, como estan ?</p>
+          </section>
+          <section class="post answer">
+              <h4>Paula</h4>
+              <p>Yo muy bien, que tal estas ?</p>
+          </section>
+          <section class="post answer-2">
+              <h4>Mario</h4>
+              <p>Bien y ya esta</p>
+          </section>
+          <section class="post question">
+              <h4>Bermy</h4>
+              <p>Me alegra, saludos a todos.</p>
+          </section>
+      </article>
+      <hr>
+  </main>
+    <main class="login flex justify-center">
+      <form
+        action="submit"
+        class="flex flex-column w-30 justify-center formulary"
+      >
+        <p class="paragraph">Log-in</p>
+        <label for="email" type="text">Email</label>
+        <input type="text" name="email" placeholder="email" />
+        <label for="password" type="password">Password</label>
+        <input type="password" name="password" placeholder="password" />
+        <button class="margin-button button-hover">Log-in</button>
+      </form>
+    </main>
+    <main class="register flex justify-center">
+      <form
+        action="submit"
+        class="flex flex-column w-30 justify-center formulary"
+      >
+      <p class="paragraph">Regístrate</p>
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" placeholder="name" />
+        <label for="email">E-mail</label>
+        <input id="email" type="text" email="email" placeholder="Introduce tu email" />
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="password"
+        />
+        <button class="margin-button button-hover">Register</button>
+      </form>
+    </main>
+    <footer>
+      <p>Contacto:</p>
+      <p>Telefono: 67823451</p>
+      <a href="https://www.instagram.com/florencio" target="_blank">
+        <img
+          class="instagram-logo"
+          src="https://img.freepik.com/vector-premium/icono-redes-sociales-instagram-logotipo-degradado-redes-sociales_197792-4682.jpg?w=2000"
+          alt="instagram"
+        />
+      </a>
+      <a href="https://wa.me/34610367737"
+        ><img src="logo-wasap.png" width="50" height="50"
+      /></a>
+    </footer>
+  </body>
+</html>

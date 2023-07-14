@@ -1,0 +1,139 @@
+body {
+  background-image: url("https://emprendeconhuevos.com/wp-content/uploads/2020/10/nombres-para-empresas-de-viales.jpg");
+  margin: 0px;
+  padding: 0px;
+}
+header {
+  background-color: #FFB84C;
+  width:100%;
+  height: 40%; }
+
+
+.flex {
+  display: flex;
+}
+.items-center{
+  align-items: center;
+}
+.gap-5{
+  gap:5px;
+}
+.p-6{
+  padding:6px;
+}
+.flex-column {
+  flex-direction: column;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.justify-center {
+  justify-content: center;
+} 
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerNav:hover {
+  background-color: #F266AB;
+}
+
+
+
+.fab {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fab:hover {
+  opacity: 0.7;
+}
+
+.fa-whatsapp {
+  background: #31e48e;
+  color: white;
+}
+
+.instagram-logo {
+  width: 50px;
+}
+.logo{
+  height: 100px;
+}
+
+.w-30{
+  width: 30%;
+}
+.w-full{
+  width: 100%;
+}
+.justify-center{
+  justify-content: center;
+}
+.instagram-logo{
+  width: 40px;
+}
+
+/*.home{
+  }
+*/
+
+.off {
+  display: none;
+}
+
+.margin-button {
+  margin-top: 5px;
+}
+.button-hover:hover{
+  background-color: aqua;
+}
+
+.formulary{
+  padding: 20px;
+  background-color: #FFB84C;
+  width: 50%;
+}
+
+.paragraph {
+  font-weight: bold;
+  font-size: 18px;  
+}
+
+.container{
+  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+  background-color: grey;
+}
+.post {
+  width: 200px;
+  margin: 5px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.question {
+  background-color: #31e48e;
+}
+
+.answer {
+  background-color: #F266AB;
+}
+
+.answer-2 {
+  background-color: yellow;
+}
+
