@@ -57,9 +57,9 @@ client.connect()
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        api.get('/users/:userId', (req, res) => {
+        api.get('/users', (req, res) => {
             try {
-                const { userId } = req.params
+                const userId = req.headers.authorization.slice(7)
                 retrieveUser(userId)
                     .then(user => res.status(200).json(user))
                     .catch(error => res.status(400).json({ error: error.message, type: 'asynch' }))
@@ -78,8 +78,7 @@ client.connect()
 
         api.get('/posts', (req, res) => {
             try {
-                const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const userId = req.headers.authorization.slice(7)
 
                 retrievePosts(userId)
                     .then(posts => res.json(posts))
@@ -89,8 +88,8 @@ client.connect()
 
         api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             try {
-                const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const userId = req.headers.authorization.slice(7)
+
                 const { image, text } = req.body
                 const { postId } = req.params
                 updatePost(userId, postId, image, text)
@@ -101,8 +100,8 @@ client.connect()
 
         api.delete('/posts/:postId', (req, res) => {
             try {
-                const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const userId = req.headers.authorization.slice(7)
+
                 const { postId } = req.params
                 deletePost(userId, postId)
                     .then(() => res.send())
@@ -112,8 +111,8 @@ client.connect()
 
         api.get('/posts/:postId', (req, res) => {
             try {
-                const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const userId = req.headers.authorization.slice(7)
+                
                 const { postId } = req.params
                 retrievePost(userId, postId)
                     .then((post) => res.json(post))
