@@ -17,42 +17,6 @@ function Home({ onLogout }) {
     }, [])
 
     const handleCreateModal = () => setModal('create-modal')
-
-    const handleOnCreatedPost = () => {
-        try {
-            retrievePosts(context.userLoggedId)
-                .then(posts => {
-                    setPosts(posts)
-                    setModal(null)
-                })
-                .catch(error => alert('Error: ' + error.message))
-        } catch (error) { alert('Error: ' + error.message) }
-    }
-
-    const handleOnUpdatedPost = () => {
-        try {
-            retrievePosts(context.userLoggedId)
-                .then(posts => {
-                    setPosts(posts)
-                    setModal(null)
-                    setIdPost(null)
-                })
-                .catch(error => alert('Error: ' + error.message))
-        } catch (error) { alert('Error: ' + error.message) }
-    }
-
-    const handleOnDeletedPost = () => {
-        try {
-            retrievePosts(context.userLoggedId)
-                .then(posts => {
-                    setPosts(posts)
-                    setModal(null)
-                    setIdPost(null)
-                })
-                .catch(error => alert('Error: ' + error.message))
-        } catch (error) { alert('Error: ' + error.message) }
-    }
-
     const handleEditModal = (idPost) => {
         setIdPost(idPost)
         setModal('edit-modal')
@@ -68,6 +32,17 @@ function Home({ onLogout }) {
     const handleLogout = function () {
         context.userLoggedId = null
         onLogout()
+    }
+    const handleRefreshPostsExitModal = function () {
+        try {
+            retrievePosts(context.userLoggedId)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setIdPost(null)
+                })
+                .catch(error => alert('Error: ' + error.message))
+        } catch (error) { alert('Error: ' + error.message) }
     }
 
     return (
@@ -100,9 +75,9 @@ function Home({ onLogout }) {
                 </div>
             </footer>
 
-            {modal === 'create-modal' && <PostCreate onCreatedPost={handleOnCreatedPost} onExitModal={handleExitModal} />}
-            {modal === 'edit-modal' && <PostEdit onUpdatedPost={handleOnUpdatedPost} onExitModal={handleExitModal} idPost={idPost} />}
-            {modal === 'delete-modal' && <PostDelete onDeletedPost={handleOnDeletedPost} onExitModal={handleExitModal} idPost={idPost} />}
+            {modal === 'create-modal' && <PostCreate onCreatedPost={handleRefreshPostsExitModal} onExitModal={handleExitModal} />}
+            {modal === 'edit-modal' && <PostEdit onUpdatedPost={handleRefreshPostsExitModal} onExitModal={handleExitModal} idPost={idPost} />}
+            {modal === 'delete-modal' && <PostDelete onDeletedPost={handleRefreshPostsExitModal} onExitModal={handleExitModal} idPost={idPost} />}
         </div>
     )
 }
