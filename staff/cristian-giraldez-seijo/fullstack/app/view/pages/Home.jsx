@@ -20,13 +20,13 @@ function Home(props) {
     React.useEffect(() => {
         try {
             retrieveUser(context.userId)
-                .then((user) => setUser(user))
+                .then(user => setUser(user))
                 .catch(error => alert(error.message))
         } catch (error) { alert(error.message) }
 
         try {
-            retrieveUser(context.userId)
-                .then((posts) => setPosts(posts))
+            retrievePosts(context.userId)
+                .then(posts => setPosts(posts))
                 .catch(error => alert(error.message))
         } catch (error) { alert(error.message) }
     }, [])
@@ -37,7 +37,16 @@ function Home(props) {
     }
 
     const handleCreatePostClick = () => setModal('create-post')
-    const handlePostCreated = () => setModal(null)
+    const handlePostCreated = () => {
+        try {
+            retrievePosts(context.userId)
+                .then(posts => {
+                    setModal(null)
+                    setPosts(posts)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) { alert(error.message) }
+    }
     const handleEditPostClick = postId => {
         setPostId(postId)
         setModal('edit-post')
@@ -64,7 +73,7 @@ function Home(props) {
         <main className="home-main">
             <section className="home-posts">
                 {posts && posts.map(post => {
-                    return <article>
+                    return <article key={post.id}>
                         <h2>{post.author.name}</h2>
                         <img src={
                             post.image

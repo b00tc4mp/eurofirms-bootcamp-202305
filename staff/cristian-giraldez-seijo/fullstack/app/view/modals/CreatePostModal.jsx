@@ -1,4 +1,4 @@
-function CreatePostModal(props) {
+function CreatePostModal({onCreatePostCancelled, onPostCreated}) {
     console.log('CreatePostModal -> render')
 
     const handleSubmit = event => {
@@ -7,18 +7,14 @@ function CreatePostModal(props) {
         const image = event.target.image.value
         const text = event.target.text.value
 
-        const result = createPost(context.userId, image, text)
-
-        if (!result) {
-            alert('Could not create post')
-
-            return
-        }
-
-        props.onPostCreated()
+        try {
+            createPost(context.userId, image, text)
+                .then(() => onPostCreated())
+                .catch(error => alert(error.message))
+        } catch (error) { alert(error.message) }
     }
 
-    const handleCancelClick = () => props.onCreatePostCancelled()
+    const handleCancelClick = () => onCreatePostCancelled()
 
     return <div className="home-create-post-modal">
         <div className="home-create-post-container">
