@@ -1,23 +1,22 @@
-function retrievePosts() {
-    const posts = db.posts
-    const users = db.users
+/**
+ * The function retrieves posts from a server using a user ID for authentication.
+ * @param userId - The `userId` parameter is a string that represents the user's ID. It is used to
+ * authenticate the user and retrieve their posts from the server.
+ * @returns The function `retrievePosts` returns a promise that resolves to the response body if the
+ * status code is 200, or throws an error with the error message from the response body if the status
+ * code is 400.
+ */
+function retrievePosts(userId) {
+    if (typeof userId !== 'string') throw new Error('userId is not a string!')
 
-    const posts2 = posts.map(post => {
-
-        const post2 = {}
-
-        post2.id = post.id
-        post2.image = post.image
-        post2.text = post.text
-        post2.author = {}
-
-        const user = users.find(user => user.id === post.author)
-
-        post2.author.id = user.id
-        post2.author.name = user.name
-        return post2
-
+    return fetch('http://localhost:9000/posts', {
+        headers: {
+            Authorization: `Bearer ${userId}`
+        }
     })
-
-    return posts2
+        .then(res => {
+            if (res.status === 200) return res.json()
+            else if (res.status === 400) return res.json()
+                .then(body => { throw new Error(body.error) })
+        })
 }
