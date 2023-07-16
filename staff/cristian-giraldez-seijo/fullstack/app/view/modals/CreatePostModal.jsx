@@ -1,3 +1,8 @@
+/**
+ * The CreatePostModal component is a form that allows users to create a post with an image and text,
+ * and it includes a cancel button.
+ * @returns a JSX element, which represents the modal for creating a post.
+ */
 function CreatePostModal({onCreatePostCancelled, onPostCreated}) {
     console.log('CreatePostModal -> render')
 

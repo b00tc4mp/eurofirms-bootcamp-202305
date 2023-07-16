@@ -37,6 +37,7 @@ function Home(props) {
     }
 
     const handleCreatePostClick = () => setModal('create-post')
+
     const handlePostCreated = () => {
         try {
             retrievePosts(context.userId)
@@ -53,8 +54,21 @@ function Home(props) {
     }
 
     const handleCreatePostCancelled = () => setModal(null)
-    const handleEditPostCancelled = () => setModal(null)
-    const handlePostEdited = () => setModal(null)
+    const handleEditPostCancelled = () => {
+        setModal(null)
+        setPostId(null)
+    }
+    const handlePostEdited = () => {
+        try {
+            retrievePosts(context.userId)
+            .then(posts => {
+                setPosts(posts)
+                setModal(null)
+                setPostId(null)
+            })
+            .catch(error => alert(error.message))
+        } catch(error) {alert(error.message)}
+    }
     const handleDeletePostClick = postId => {
         setPostId(postId)
         setModal('delete-post')
