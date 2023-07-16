@@ -1,44 +1,51 @@
-function EditPostModal(props){
+function EditPostModal({postId, onEditPostCancelled, onPostEdited}){
     console.log('Edit Modal -> render')
 
-    const post = retrievePost(props.postId)
+    const postState = React.useState(null)
+    const post = postState[0]
+    const setPost = postState[1]
 
-    const handleCancelClick = () => props.onEditPostCancelled()
+    React.useEffect(() => {
+        try{
+            retrievePost(context.userId, postId)
+                .then(post => setPost(post))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
+
+    const handleCancelClick = () => onEditPostCancelled()
     
     const handleSubmit = event =>{
         event.preventDefault()
 
-        const image = event.target['edit-post-url'].value
-        const text = event.target['edit-post-text'].value
+        const image = event.target.image.value
+        const text = event.target.text.value
 
-        const result = updatePost(props.postId, image, text)
-
-        if (!result){
-            alert('Can\'t edit post')
-            return
-        }
-        props.onPostEdited()
+       try {
+            updatePost(context.userId, postId, image, text)
+                .then(() => onPostEdited())
+                .catch(error => alert(error.message))
+       }catch (error) {
+        alert(error.message)
+       }
     }
-
-
-
-
-
+    
     return <div className="home-edit-post-modal">
     <div className="home-edit-post-container">
         <h2>Edit post</h2>
-        <form className="home-edit-post-form" onSubmit={handleSubmit}>
-            <input type="hidden" id="edit-post-id" />
+    {post && <form className="home-edit-post-form" onSubmit={handleSubmit}>
+           
+                <label htmlFor="image">Image</label>
+                <input id="image" type="url" defaultValue={post.image}/>
 
-                <label htmlFor="edit-post-url">Image</label>
-                <input id="edit-post-url" type="url" defaultValue={post.image}/>
-
-                <label htmlFor="edit-post-text">Text</label>
-                <textarea id="edit-post-text" defaultValue={post.text}></textarea>
+                <label htmlFor="text">Text</label>
+                <textarea id="text" defaultValue={post.text}></textarea>
 
                 <button type="submit">Save changes</button>
                 <button className="home-edit-post-cancel-button" onClick={handleCancelClick}>Cancel</button>
-        </form>
+        </form>}
     </div>
 </div>
 }

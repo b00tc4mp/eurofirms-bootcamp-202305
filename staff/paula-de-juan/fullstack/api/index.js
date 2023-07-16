@@ -108,7 +108,7 @@ client.connect()
         }
     })
 
-    api.patch('/posts/:postId', jsonBodyParser, (req, ser) => {
+    api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
         try {
             const { authorization } = req.headers
             const userId = authorization.slice(7)

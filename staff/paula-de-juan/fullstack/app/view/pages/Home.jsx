@@ -1,5 +1,3 @@
-const { array } = require("prop-types")
-
 function Home(props) {
     console.log('Home -> render')
 
@@ -37,20 +35,6 @@ function Home(props) {
         }
     }, [])
 
-    const handleRetrievePosts = () =>{
-        try {
-            retrievePosts(context.userId)
-                .then(posts => {
-                    setPosts(posts)
-                    setModal(null) 
-                    setPostId(null) 
-                })
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }   
-    }
-    
     const handleLoggedOut = () => {
         context.userId = null
         props.onLoggedOut()
@@ -58,7 +42,18 @@ function Home(props) {
 
     const handleCreatePostClick = () => setModal('create-post')
 
-    const handlePostCreated = () => handleRetrievePosts()
+    const handlePostCreated = () => {
+        try {
+            retrievePosts(context.userId)
+            .then(posts => {
+                setModal(null)
+                setPosts(posts)
+            })
+            .catch(error => alert(error.message))
+        } catch (error){
+            alert(error.message)
+        }
+    }
 
     const handleEditPostClick = postId => {
         setPostId(postId)
@@ -67,53 +62,51 @@ function Home(props) {
 
     const handleCreatePostCancelled = () => setModal(null)
 
-    const handleEditPostCancelled = () => setModal(null)
-
-    const handlePostEdited = () => setModal(null)
+    const handleEditPostCancelled = () => {
+        setModal(null)
+        setPostId(null)
+    }
+    
+    const handlePostEdited = () => {
+        try {
+            retrievePosts(context.userId)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+    
 
     const handleDeletePostClick = postId => {
         setPostId(postId)
         setModal('delete-post')
     }
 
-    const handleDeletePostCancelled = () => setModal(null)
-
-    const handlePostDeleted = () => handleRetrievePosts()
-
- /*   const handlePostDeleted = postId => {
-        setPosts(posts =>{
-            const copyOfPosts = [...posts]
-
-            const index = copyOfPosts.find(post => post.id === postId)
-
-            copyOfPosts.splice(index, 1)
-
-            return copyOfPosts
-        })
-
+    const handleDeletePostCancelled = () => {
         setModal(null)
+        setPostId(null)
     }
-*/
-// const handlePostEditedTest = postId => {
-//     setPosts(posts =>{
-//         const copyOfPosts = [...posts] // JSON.parse(JSON.stringify(posts))
 
-//         const index = copyOfPosts.find(post => post.id === postId)
+    const handlePostDeleted = () => {
+        try {
+            retrievePosts(context.userId)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
-//         const copyOfPost = {...copyOfPosts[index]}
-
-//         copyOfPost.text = 'pepito'
-
-//         copyOfPosts[index] = copyOfPost
-
-//         return copyOfPosts
-
-//     })
-
-//     setModal(null)
-// }
-
-    return <div className="home-view">
+return <div className="home-view">
         <header>
             <h1 className="home-title">Hello, { user ? user.name : 'World'}!</h1>
             <button className="home-logout-button" onClick={handleLoggedOut}>Logout</button>
