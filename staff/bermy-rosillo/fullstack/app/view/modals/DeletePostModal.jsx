@@ -3,14 +3,19 @@ function DeletePostModal(props){
 
     const handleDeletePost =event=>{
         event.preventDefault()
-    
-        const result=deletePost(props.postId)
-    
-        if(!result){
-            alert('You cannot delete a post ')
-            return
+        
+        try{
+            deletePost(context.userId,props.postId)
+            .then(()=>{
+                props.onDeletePost()
+            })
+            .catch((error)=>alert(error.message))
+
+        }catch(error){
+            alert(error.message)
         }
-        props.onDeletePost()
+    
+        
     }
 
 

@@ -9,7 +9,7 @@ function Home(props) {
     const postId = postIdState[0]
     const setPostId = postIdState[1]
 
-    const userState = React.useState()
+    const userState = React.useState() //null
     const user = userState[0]
     const setUser = userState[1]
 
@@ -84,8 +84,17 @@ function Home(props) {
     }
     const handleDeletePostCancelled = () => setModal(null)
     const handleDeletePost = () => {
-        setModal(null)
-        setPostId(null)
+        try {
+            retrievePosts(context.userId)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null) // ocultar modal
+                    setPostId(null)// reinicial postID en null
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
     }
 
 
