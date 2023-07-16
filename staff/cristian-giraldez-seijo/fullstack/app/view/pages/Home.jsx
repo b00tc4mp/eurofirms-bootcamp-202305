@@ -1,3 +1,5 @@
+/* The code defines a React functional component called `Home`. It renders a view that displays a
+user's posts and provides options to create, edit, and delete posts. */
 function Home(props) {
     console.log('home->render')
 
@@ -61,21 +63,34 @@ function Home(props) {
     const handlePostEdited = () => {
         try {
             retrievePosts(context.userId)
-            .then(posts => {
-                setPosts(posts)
-                setModal(null)
-                setPostId(null)
-            })
-            .catch(error => alert(error.message))
-        } catch(error) {alert(error.message)}
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) { alert(error.message) }
     }
     const handleDeletePostClick = postId => {
         setPostId(postId)
         setModal('delete-post')
     }
 
-    const handleDeletePostCancelled = () => setModal(null)
-    const handlePostDeleted = () => setModal(null)
+    const handleDeletePostCancelled = () => {
+        setModal(null)
+        setPostId(null)
+    }
+    const handlePostDeleted = () => {
+        try {
+            retrievePosts(context.userId)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) { alert(error.message) }
+    }
 
     return <div className="home-view">
         <header className="home-header">

@@ -1,3 +1,10 @@
+/**
+ * The App function renders different components based on the current view state.
+ * @returns different components based on the value of the `view` variable. If `view` is equal to
+ * 'login', it returns the `<Login />` component with the `onRegisterClick` and `onLoggedIn` props. If
+ * `view` is equal to 'register', it returns the `<Register />` component with the `onLoginClick` and
+ * `onRegistered` props
+ */
 function App() {
     console.log('App->render')
     

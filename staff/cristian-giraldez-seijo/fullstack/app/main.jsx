@@ -1,3 +1,6 @@
+/* The code block is defining a global variable `context` and creating a virtual root element using
+ReactDOM. */
+
 // globals
 
 const context = {
@@ -15,6 +18,8 @@ const context = {
         return null
     }
 }
+
+// react initialization
 
 const virtualRoot = ReactDOM.createRoot(document.getElementById('root'))
 virtualRoot.render(<App />)

@@ -1,20 +1,22 @@
-function DeletePostModal(props) {
+/**
+ * The DeletePostModal component is a React component that renders a modal for deleting a post, with a
+ * form that allows the user to confirm the deletion or cancel it.
+ * @returns The DeletePostModal component is returning a JSX element.
+ */
+function DeletePostModal({ postId, onPostDeleted, onDeletePostCancelled }) {
     console.log('DeletePostModal -> render')
 
-    const handleCancelClick = () => props.onDeletePostCancelled()
+    const handleCancelClick = () => onDeletePostCancelled()
 
     const handleSubmit = event => {
         event.preventDefault()
 
-        const result = deletePost(props.postId)
+        try {
 
-        if (!result) {
-            alert('Could not delete post')
-
-            return
-        }
-
-        props.onPostDeleted()
+            deletePost(context.userId, postId)
+            .then(() => onPostDeleted())
+            .catch(error => alert(error.message))
+        } catch(error) {alert(error.message)}
     }
 
     return <div className="home-delete-post-modal">
