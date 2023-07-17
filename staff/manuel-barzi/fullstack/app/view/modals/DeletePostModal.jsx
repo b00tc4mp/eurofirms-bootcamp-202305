@@ -7,7 +7,7 @@ function DeletePostModal({ postId, onPostDeleted, onDeletePostCancelled }) {
         event.preventDefault()
 
         try {
-            deletePost(context.userId, postId)
+            deletePost(context.token, postId)
                 .then(() => onPostDeleted())
                 .catch(error => alert(error.message))
         } catch (error) {

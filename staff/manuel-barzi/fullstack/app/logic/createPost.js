@@ -1,12 +1,12 @@
-function createPost(userId, image, text) {
-    if (typeof userId !== 'string') throw new Error('userId is not a string')
+function createPost(token, image, text) {
+    if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof image !== 'string') throw new Error('image is not a string')
     if (typeof text !== 'string') throw new Error('text is not a string')
 
     return fetch('http://localhost:9000/posts', {
         method: 'POST',
         headers: {
-            Authorization: `Bearer ${userId}`,
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ image, text })

@@ -11,6 +11,7 @@ const updatePost = require('./logic/updatePost')
 const deletePost = require('./logic/deletePost')
 const retrievePost = require('./logic/retrievePost')
 const cors = require('cors')
+const jwt = require('jsonwebtoken')
 
 const { MongoClient } = mongodb
 
@@ -59,7 +60,13 @@ client.connect()
                 const { email, password } = req.body
 
                 authenticateUser(email, password)
-                    .then(userId => res.json(userId))
+                    .then(userId => {
+                        const data = { sub: userId }
+
+                        const token = jwt.sign(data, 'mi perro se sube a la cama (y mi madre no me deja)')
+
+                        res.json(token)
+                    })
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
@@ -68,16 +75,13 @@ client.connect()
 
         api.get('/users', (req, res) => {
             try {
-                // inside headers:
-                // headers = {
-                //     authorization: 'Bearer 64a7e52467f817075b908a21',
-                //     'User-Agent': 'insomnia/2023.4.0'
-                //      ...
-                // }
-
-                // const authorization = req.headers.authorization
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'mi perro se sube a la cama (y mi madre no me deja)')
+
+                //const { sub: userId } = data
+                const userId = data.sub
 
                 retrieveUser(userId)
                     .then(user => res.json(user))
@@ -90,7 +94,11 @@ client.connect()
         api.post('/posts', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'mi perro se sube a la cama (y mi madre no me deja)')
+
+                const userId = data.sub
 
                 const { image, text } = req.body
 
@@ -105,7 +113,11 @@ client.connect()
         api.get('/posts', (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'mi perro se sube a la cama (y mi madre no me deja)')
+
+                const userId = data.sub
 
                 retrievePosts(userId)
                     .then(posts => res.json(posts))
@@ -115,14 +127,15 @@ client.connect()
             }
         })
 
-        // DONE updatePost (PATCH /posts/:postId)
-
         api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
 
-                //const postId = req.params.postId
+                const data = jwt.verify(token, 'mi perro se sube a la cama (y mi madre no me deja)')
+
+                const userId = data.sub
+
                 const { postId } = req.params
 
                 const { image, text } = req.body
@@ -135,12 +148,14 @@ client.connect()
             }
         })
 
-        // DONE deletePost (DELETE /posts/:postId)
-
         api.delete('/posts/:postId', (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'mi perro se sube a la cama (y mi madre no me deja)')
+
+                const userId = data.sub
 
                 const { postId } = req.params
 
@@ -152,12 +167,14 @@ client.connect()
             }
         })
 
-        // DONE retrievePost (GET /posts/:postId)
-
         api.get('/posts/:postId', (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'mi perro se sube a la cama (y mi madre no me deja)')
+
+                const userId = data.sub
 
                 const { postId } = req.params
 

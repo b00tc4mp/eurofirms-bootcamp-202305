@@ -19,7 +19,7 @@ function Home(props) {
 
     React.useEffect(() => {
         try {
-            retrieveUser(context.userId)
+            retrieveUser(context.token)
                 .then(user => setUser(user))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -27,7 +27,7 @@ function Home(props) {
         }
 
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => setPosts(posts))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -36,7 +36,7 @@ function Home(props) {
     }, [])
 
     const handleLogoutClick = () => {
-        context.userId = null
+        context.token = null
 
         props.onLoggedOut()
     }
@@ -45,7 +45,7 @@ function Home(props) {
 
     const handlePostCreated = () => {
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => {
                     setModal(null)
                     setPosts(posts)
@@ -70,7 +70,7 @@ function Home(props) {
 
     const handlePostEdited = () => {
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -94,7 +94,7 @@ function Home(props) {
 
     const handlePostDeleted = () => {
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -105,6 +105,8 @@ function Home(props) {
             alert(error.message)
         }
     }
+
+    const userId = extractUserIdFromToken(context.token)
 
     return <div className="home-view">
         <header className="home-header">
@@ -124,7 +126,7 @@ function Home(props) {
 
                     <p>{post.text}</p>
 
-                    {post.author.id === context.userId && <>
+                    {post.author.id === userId && <>
                         <button onClick={() => handleEditPostClick(post.id)}>Edit</button>
                         <button onClick={() => handleDeletePostClick(post.id)}>Delete</button>
                     </>}
