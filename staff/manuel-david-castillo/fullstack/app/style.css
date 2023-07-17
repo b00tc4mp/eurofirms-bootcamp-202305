@@ -217,7 +217,8 @@ label {
 }
 
 .editButton,
-.deleteButton {
+.deleteButton,
+.favButton {
   margin-top: 0;
   margin-bottom: 10px;
 }

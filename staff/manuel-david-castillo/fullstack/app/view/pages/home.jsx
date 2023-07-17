@@ -90,6 +90,23 @@ function Home(props) {
     }
   }
 
+  function handleAddAndQuitFav(postId) {
+    try {
+      addAndQuitFav(context.userId, postId)
+        .then(() => {
+          retrievePosts(context.userId)
+            .then((posts) => {
+              setPosts(posts)
+            })
+            .catch((error) => {
+              alert(error.message)
+            })
+        })
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   return <div className="home-view">
     <header>
       <h2 className="h2-home">Hello {user ? user.name : ' world'}</h2>
@@ -110,6 +127,7 @@ function Home(props) {
             <div className="div-button-edit-delete">
               <button onClick={() => handleEditPostModal(post.id)} className="editButton">Edit</button>
               <button onClick={() => handleDeletePostModal(post.id)} className="deleteButton">Delete</button>
+              <button onClick={() => handleAddAndQuitFav(post.id)} className="favButton">FAV</button>
             </div>
           }
         </article>)}
