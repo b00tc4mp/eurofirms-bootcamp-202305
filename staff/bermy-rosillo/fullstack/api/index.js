@@ -158,7 +158,7 @@ client.connect()
                 const postId = req.params.postId
                 
                 deletePost(userId,postId)
-                .then(()=>res.send())
+                .then(()=>res.send()) // 204 4n status
                 .catch(error=>res.status(400).json({error:error.message}))
             }catch(error){
                 res.status(400).json({error: error.message})
