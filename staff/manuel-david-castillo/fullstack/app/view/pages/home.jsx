@@ -1,5 +1,3 @@
-const context = require("../../../api/logic/context")
-
 function Home(props) {
   const [modal, setModal] = React.useState(null)
 
@@ -96,8 +94,9 @@ function Home(props) {
     try {
       addAndQuitFav(context.token, postId)
         .then(() => {
-          retrievePosts(context.token)
-            .then((posts) => {
+          Promise.all([retrieveUser(context.token), retrievePosts(context.token)])
+            .then(([user, posts]) => {
+              setUser(user)
               setPosts(posts)
             })
             .catch((error) => {
@@ -131,7 +130,7 @@ function Home(props) {
             <div className="div-button-edit-delete">
               <button onClick={() => handleEditPostModal(post.id)} className="editButton">Edit</button>
               <button onClick={() => handleDeletePostModal(post.id)} className="deleteButton">Delete</button>
-              <button onClick={() => handleAddAndQuitFav(post.id)} className="favButton">FAV</button>
+              <button onClick={() => handleAddAndQuitFav(post.id)} className="favButton">{user.favPosts.includes(post.id) ? '★' : '☆'}</button>
             </div>
           }
         </article>)}
