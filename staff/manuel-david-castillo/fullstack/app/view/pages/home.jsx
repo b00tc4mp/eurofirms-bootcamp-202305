@@ -1,3 +1,5 @@
+const context = require("../../../api/logic/context")
+
 function Home(props) {
   const [modal, setModal] = React.useState(null)
 
@@ -10,7 +12,7 @@ function Home(props) {
 
   React.useEffect(() => {
     try {
-      Promise.all([retrieveUser(context.userId), retrievePosts(context.userId)])
+      Promise.all([retrieveUser(context.token), retrievePosts(context.token)])
         .then(([user, posts]) => {
           setUser(user)
           setPosts(posts)
@@ -22,7 +24,7 @@ function Home(props) {
   }, [])
 
   const handleLogout = () => {
-    context.userId = null
+    context.token = null
 
     props.onLogout()
   }
@@ -31,7 +33,7 @@ function Home(props) {
   const handleCancelCreatePostModal = () => setModal("")
   const handleCreatePost = () => {
     try {
-      retrievePosts(context.userId)
+      retrievePosts(context.token)
         .then((posts) => {
           setModal(null)
           setPosts(posts)
@@ -53,7 +55,7 @@ function Home(props) {
 
   const handleDeletePost = () => {
     try {
-      retrievePosts(context.userId)
+      retrievePosts(context.token)
         .then(posts => {
           setPosts(posts)
           setModal(null)
@@ -76,7 +78,7 @@ function Home(props) {
 
   const handleUpdatePost = () => {
     try {
-      retrievePosts(context.userId)
+      retrievePosts(context.token)
         .then(posts => {
           setPosts(posts)
           setModal(null)
@@ -92,9 +94,9 @@ function Home(props) {
 
   function handleAddAndQuitFav(postId) {
     try {
-      addAndQuitFav(context.userId, postId)
+      addAndQuitFav(context.token, postId)
         .then(() => {
-          retrievePosts(context.userId)
+          retrievePosts(context.token)
             .then((posts) => {
               setPosts(posts)
             })
@@ -106,6 +108,8 @@ function Home(props) {
       alert(error.message)
     }
   }
+
+  const userId = extractUserIdFromToken(context.token)
 
   return <div className="home-view">
     <header>
@@ -123,7 +127,7 @@ function Home(props) {
           </div>
           <img className="img-post" src={post.image} alt={post.text} />
           <p className="text-post">{post.text}</p>
-          {context.userId === post.author.id &&
+          {userId === post.author.id &&
             <div className="div-button-edit-delete">
               <button onClick={() => handleEditPostModal(post.id)} className="editButton">Edit</button>
               <button onClick={() => handleDeletePostModal(post.id)} className="deleteButton">Delete</button>

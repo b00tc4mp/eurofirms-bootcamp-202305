@@ -1,8 +1,10 @@
 const express = require('express') 
 const mongodb = require('mongodb')
 const cors = require('cors')
-const context =  require('./logic/context')
 const bodyParser = require('body-parser')
+const jwt = require('jsonwebtoken')
+
+const context =  require('./logic/context')
 
 const addAndQuitFav = require('./logic/addAndQuitFav')
 const authenticateUser = require('./logic/authenticatedUser')
@@ -17,8 +19,6 @@ const updatePost = require('./logic/updatePost')
 const {MongoClient} = mongodb
 
 const client = new MongoClient("mongodb://127.0.0.1:27017")
-
-
 
 client.connect()
     .then((connection)=>{
@@ -38,7 +38,10 @@ client.connect()
         api.get('/users/fav-posts/:postId', (req, res) => {
             try {
                 const {authorization} = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const userId = data.sub
 
                 const {postId} = req.params
 
@@ -55,7 +58,13 @@ client.connect()
                 const {email, password} = req.body 
 
                 authenticateUser(email, password)
-                .then((id) => res.status(200).json(id))
+                .then((userId) => {
+                    const data = {sub: userId}
+
+                    const token = jwt.sign(data, 'papi ya tu sabeh')
+
+                    res.json(token)
+                })
                 .catch(error => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})
@@ -77,7 +86,10 @@ client.connect()
         api.get('/users', (req, res) => {
             try {
                 const {authorization} = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const userId = data.sub
 
                 retrieveUser(userId)
                 .then((user)=> res.json(user))
@@ -90,7 +102,10 @@ client.connect()
         api.post('/posts', jsonBodyParser, (req, res)=>{
             try{
                 const { authorization } = req.headers 
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const userId = data.sub
 
                 const {image, text} = req.body
 
@@ -104,7 +119,10 @@ client.connect()
 
         api.delete('/posts/:postId', jsonBodyParser, (req, res) => {
             const {authorization} = req.headers
-            const userId = authorization.slice(7)
+            const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const userId = data.sub
 
             const {postId} = req.params
 
@@ -121,7 +139,10 @@ client.connect()
         api.get('/posts/:postId', (req, res) => {
             try {
                 const {authorization} = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const userId = data.sub
 
                 const {postId} = req.params
 
@@ -136,7 +157,10 @@ client.connect()
         api.get('/posts', (req, res) => {
             try {
                 const {authorization} = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const userId = data.sub
 
                 retrievePosts(userId)
                 .then((posts)=> res.json(posts))
@@ -150,7 +174,10 @@ client.connect()
 
         api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             const {authorization} = req.headers
-            const userId = authorization.slice(7)
+            const token = authorization.slice(7)
+
+            const data = jwt.verify(token, 'papi ya tu sabeh')
+            const userId = data.sub
 
             const {image, text} = req.body
             const {postId} = req.params

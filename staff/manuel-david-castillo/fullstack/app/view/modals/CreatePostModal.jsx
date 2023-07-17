@@ -6,7 +6,7 @@ function CreatePostModal(props) {
     const text = event.target.text.value
 
     try {
-      createNewPost(context.userId, image, text)
+      createNewPost(context.token, image, text)
         .then(() => {
           props.onCreatePost()
         })
