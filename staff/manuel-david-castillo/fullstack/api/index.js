@@ -4,6 +4,7 @@ const cors = require('cors')
 const context =  require('./logic/context')
 const bodyParser = require('body-parser')
 
+const addAndQuitFav = require('./logic/addAndQuitFav')
 const authenticateUser = require('./logic/authenticatedUser')
 const createPost = require('./logic/createPost')
 const deletePost = require('./logic/deletePost')
@@ -32,6 +33,21 @@ client.connect()
 
         api.get('/', (req, res) => {
             res.send('hola mundo')
+        })
+
+        api.get('/users/fav-posts/:postId', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const userId = authorization.slice(7)
+
+                const {postId} = req.params
+
+                addAndQuitFav(userId, postId)
+                .then(() => res.status(200).json().send())
+                .catch(error => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
         })
 
         api.post('/users/auth', jsonBodyParser, (req, res) => {

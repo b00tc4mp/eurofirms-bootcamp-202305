@@ -10,7 +10,9 @@ function registerUser(name, email, password) {
     .then(user => {
         if (user) throw new Error('user already exists')
 
-        return context.users.insertOne({name, email, password})
+        const favPosts = []
+
+        return context.users.insertOne({name, email, password, favPosts})
     })
     .then(()=>{ })
 }
