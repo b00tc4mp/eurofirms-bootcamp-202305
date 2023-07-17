@@ -117,7 +117,7 @@ function Home(props) {
 
         <main className="home-main">
             <section className="home-posts">
-                {posts && posts.map(post => <article>
+                {posts && posts.map(post => <article className="home-post">
                     <h2>{post.author.name}</h2>
 
                     <img className="home-post-image"
