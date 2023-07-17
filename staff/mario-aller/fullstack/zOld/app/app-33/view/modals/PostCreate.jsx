@@ -8,7 +8,7 @@ function PostCreate({ onCreatedPost, onExitModal }) {
         const text = event.target.text.value
 
         try {
-            createPost(context.tokenUser, image, text)
+            createPost(context.userLoggedId, image, text)
                 .then(() => onCreatedPost())
                 .catch(error => { alert('Error: ' + error.message) })
         } catch (error) { alert('Error: ' + error.message) }

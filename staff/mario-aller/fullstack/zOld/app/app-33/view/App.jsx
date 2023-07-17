@@ -1,6 +1,6 @@
 function App() {
 
-    const [view, setView] = React.useState(context.tokenUser ? 'home' : 'login')
+    const [view, setView] = React.useState(context.userLoggedId ? 'home' : 'login')
 
     const handleToRegView = () => setView('register')
     const handleToLogView = () => setView('login')

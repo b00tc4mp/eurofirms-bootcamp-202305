@@ -2,6 +2,7 @@ const mongodb = require('mongodb')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const jwt = require('jsonwebtoken')
 
 const context = require('./logic/context')
 
@@ -49,7 +50,10 @@ client.connect()
                 const { email, password } = req.body
 
                 return authenticateUser(email, password)
-                    .then((userId) => res.status(201).json({ id: userId }))
+                    .then((userId) => {
+                        const token = jwt.sign({ sub: userId }, 'asdfg hola')
+                        res.json(token)
+                    })
                     .catch(err => res.status(400).json({ error: err.message, }))
             } catch (err) { res.status(400).json({ error: err.message }) }
         })
@@ -57,7 +61,8 @@ client.connect()
         // retrieveUser
         api.get('/users', (req, res) => {
             try {
-                const userId = req.headers.authorization.slice(7)
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, 'asdfg hola').sub
 
                 retrieveUser(userId)
                     .then(user => res.json(user))
@@ -68,7 +73,9 @@ client.connect()
         // createPost
         api.post('/posts', jsonBodyParser, (req, res) => {
             try {
-                const userId = req.headers.authorization.slice(7)
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, 'asdfg hola').sub
+
                 const { image, text } = req.body
 
                 createPost(userId, image, text)
@@ -80,7 +87,8 @@ client.connect()
         // updatePost
         api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             try {
-                const userId = req.headers.authorization.slice(7)
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, 'asdfg hola').sub
                 const { postId } = req.params
                 const { image, text } = req.body
 
@@ -94,7 +102,8 @@ client.connect()
         // retrievePost
         api.get('/posts/:postId', (req, res) => {
             try {
-                const userId = req.headers.authorization.slice(7)
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, 'asdfg hola').sub
                 const { postId } = req.params
 
                 retrievePost(userId, postId)
@@ -106,7 +115,8 @@ client.connect()
         // retrievePosts
         api.get('/posts', (req, res) => {
             try {
-                const userId = req.headers.authorization.slice(7)
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, 'asdfg hola').sub
 
                 retrievePosts(userId)
                     .then(posts => res.json(posts))
@@ -117,7 +127,8 @@ client.connect()
         // deletePost
         api.delete('/posts/:postId', (req, res) => {
             try {
-                const userId = req.headers.authorization.slice(7)
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, 'asdfg hola').sub
                 const { postId } = req.params
 
                 deletePost(userId, postId)

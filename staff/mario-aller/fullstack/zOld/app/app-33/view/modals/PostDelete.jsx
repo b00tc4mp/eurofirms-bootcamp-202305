@@ -4,7 +4,7 @@ function PostDelete({ onDeletedPost, onExitModal, idPost }) {
     const handleDeletePost = () => {
 
         try {
-            deletePost(context.tokenUser, idPost)
+            deletePost(context.userLoggedId, idPost)
                 .then(() => onDeletedPost())
                 .catch(error => { alert('Error: ' + error.message) })
         } catch (error) { alert('Error: ' + error.message) }

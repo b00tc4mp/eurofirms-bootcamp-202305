@@ -9,12 +9,12 @@ function Login({ onGotoReg, onLogged }) {
         const password = event.target.password.value
         try {
             authenticateUser(email, password)
-                .then(token => {
-                    context.tokenUser = token
+                .then(userId => {
+                    context.userLoggedId = userId
                     onLogged()
                 })
-                .catch(error => alert('Error:' + error.message))
-        } catch (error) { alert('Error: ' + error.message) }
+                .catch(err => alert('Error:' + err.message))
+        } catch (err) { alert('Error: ' + err.message) }
     }
 
     return (

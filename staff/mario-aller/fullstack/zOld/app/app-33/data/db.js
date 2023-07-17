@@ -3,12 +3,12 @@
 //----------------------
 
 const context = {
-    set tokenUser(value) {
-        if (value) sessionStorage.tokenUser = value
-        else delete sessionStorage.tokenUser
+    set userLoggedId(value) {
+        if (value) sessionStorage.userLoggedId = value
+        else delete sessionStorage.userLoggedId
     },
-    get tokenUser() {
-        if (sessionStorage.tokenUser) return sessionStorage.tokenUser
+    get userLoggedId() {
+        if (sessionStorage.userLoggedId) return sessionStorage.userLoggedId
         return null
     }
 }

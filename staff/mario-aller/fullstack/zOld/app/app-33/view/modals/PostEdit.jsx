@@ -3,7 +3,7 @@ function PostEdit({ onUpdatedPost, onExitModal, idPost }) {
     
     React.useEffect(() => {
         try {
-            retrievePost(context.tokenUser, idPost)
+            retrievePost(context.userLoggedId, idPost)
                 .then(postRet => { setPost(postRet) })
                 .catch(error => { alert('Error: ' + error.message) })
         } catch (error) { alert('Error: ' + error.message) }
@@ -16,7 +16,7 @@ function PostEdit({ onUpdatedPost, onExitModal, idPost }) {
         const text = event.target.text.value
 
         try {
-            updatePost(context.tokenUser, idPost, image, text)
+            updatePost(context.userLoggedId, idPost, image, text)
                 .then(() => onUpdatedPost())
                 .catch(error => { alert('Error: ' + error.message) })
         } catch (error) { alert('Error: ' + error.message) }

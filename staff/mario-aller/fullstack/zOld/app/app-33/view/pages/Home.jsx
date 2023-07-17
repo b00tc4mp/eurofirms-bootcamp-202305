@@ -1,5 +1,4 @@
 function Home({ onLogout }) {
-    console.log ('tamos en home')
     const [modal, setModal] = React.useState(null)
     const [idPost, setIdPost] = React.useState(null)
     const [userLogged, setUserLogged] = React.useState(null)
@@ -7,7 +6,7 @@ function Home({ onLogout }) {
 
     React.useEffect(() => {
         try {
-            Promise.all([retrieveUser(context.tokenUser), retrievePosts(context.tokenUser)])
+            Promise.all([retrieveUser(context.userLoggedId), retrievePosts(context.userLoggedId)])
                 .then(([user, posts]) => {
                     setUserLogged(user)
                     setPosts(posts)
@@ -30,13 +29,13 @@ function Home({ onLogout }) {
         setIdPost(null)
         setModal(null)
     }
-    const handleLogout = () => {
-        context.tokenUser = null
+    const handleLogout = function () {
+        context.userLoggedId = null
         onLogout()
     }
-    const handleRefreshPostsExitModal = () => {
+    const handleRefreshPostsExitModal = function () {
         try {
-            retrievePosts(context.tokenUser)
+            retrievePosts(context.userLoggedId)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -45,8 +44,6 @@ function Home({ onLogout }) {
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
     }
-
-const userId = decodeJsonWebToken(context.tokenUser)
 
     return (
         <div className="home">
@@ -63,7 +60,7 @@ const userId = decodeJsonWebToken(context.tokenUser)
                         <p className="post-item-text">{post.text}</p>
                         <p className="post-item-user">{post.author.name}</p>
 
-                        {post.author.id === userId && <>
+                        {post.author.id === context.userLoggedId && <>
                             <button className="post-item-button" type="button" onClick={() => handleEditModal(post.id)}>Editar</button>
                             <button className="post-item-button" type="button" onClick={() => handleDeleteModal(post.id)}>Borrar</button>
                         </>}

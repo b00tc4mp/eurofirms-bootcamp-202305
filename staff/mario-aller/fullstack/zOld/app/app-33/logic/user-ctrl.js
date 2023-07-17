@@ -39,7 +39,8 @@ const authenticateUser = function (email, password) {
         body: JSON.stringify({ email, password })
     })
         .then(res => {
-            if (res.status === 200) return res.json()
+            if (res.status === 201) return res.json()
+                .then(user => user.id)
             else return res.json().then(body => { throw new Error(body.error) })
         })
 }
