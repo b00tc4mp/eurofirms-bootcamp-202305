@@ -9,7 +9,6 @@ function retrieveUser(userId){
     .then(user=>{
         if(!user) throw new Error('User not founded')
 
-        user.id = user._id.toString()
         delete user._id
         delete user.password
         
