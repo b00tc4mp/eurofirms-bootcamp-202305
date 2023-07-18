@@ -90,13 +90,12 @@ function Home(props) {
     }
   }
 
-  function handleAddAndQuitFav(postId) {
+  function handletoggleFavPost(postId) {
     try {
-      addAndQuitFav(context.token, postId)
+      toggleFavPost(context.token, postId)
         .then(() => {
-          Promise.all([retrieveUser(context.token), retrievePosts(context.token)])
-            .then(([user, posts]) => {
-              setUser(user)
+          retrieveUser(context.token), retrievePosts(context.token)
+            .then((posts) => {
               setPosts(posts)
             })
             .catch((error) => {
@@ -126,13 +125,11 @@ function Home(props) {
           </div>
           <img className="img-post" src={post.image} alt={post.text} />
           <p className="text-post">{post.text}</p>
-          {userId === post.author.id &&
-            <div className="div-button-edit-delete">
-              <button onClick={() => handleEditPostModal(post.id)} className="editButton">Edit</button>
-              <button onClick={() => handleDeletePostModal(post.id)} className="deleteButton">Delete</button>
-              <button onClick={() => handleAddAndQuitFav(post.id)} className="favButton">{user.favPosts.includes(post.id) ? '★' : '☆'}</button>
-            </div>
-          }
+          <div className="div-button-edit-delete">
+            {userId === post.author.id && <button onClick={() => handleEditPostModal(post.id)} className="editButton">Edit</button>}
+            {userId === post.author.id && <button onClick={() => handleDeletePostModal(post.id)} className="deleteButton">Delete</button>}
+            <button onClick={() => handletoggleFavPost(post.id)} className="favButton">{post.fav ? '★' : '☆'}</button>
+          </div>
         </article>)}
       </section>
     </main>

@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken')
 
 const context =  require('./logic/context')
 
-const addAndQuitFav = require('./logic/addAndQuitFav')
 const authenticateUser = require('./logic/authenticatedUser')
 const createPost = require('./logic/createPost')
 const deletePost = require('./logic/deletePost')
@@ -14,6 +13,7 @@ const registerUser = require('./logic/registerUser')
 const retrievePost = require('./logic/retrievePost')
 const retrieveUser = require('./logic/retrieveUser')
 const retrievePosts = require('./logic/retrievePosts')
+const toggleFavPost = require('./logic/toggleFavPost')
 const updatePost = require('./logic/updatePost')
 
 const {MongoClient} = mongodb
@@ -45,7 +45,7 @@ client.connect()
 
                 const {postId} = req.params
 
-                addAndQuitFav(userId, postId)
+                toggleFavPost(userId, postId)
                 .then(() => res.status(200).json().send())
                 .catch(error => res.status(400).json({error: error.message}))
             } catch (error) {

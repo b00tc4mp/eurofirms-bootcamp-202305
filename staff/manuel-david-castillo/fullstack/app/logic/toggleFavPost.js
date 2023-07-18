@@ -1,4 +1,4 @@
-function addAndQuitFav(userId, postId) {
+function toggleFavPost(userId, postId) {
     validateId(userId)
     validateId(postId)
 

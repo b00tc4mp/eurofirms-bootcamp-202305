@@ -2,7 +2,7 @@ const context = require("./context")
 const {validateId} = require('./helpers/validators')
 const {ObjectId} = require('mongodb')
 
-function addAndQuitFav(userId, postId) {
+function toggleFavPost(userId, postId) {
     validateId(userId)
     validateId(postId)
 
@@ -18,14 +18,12 @@ function addAndQuitFav(userId, postId) {
 
             if(index === -1) {
                 favPosts.push(postId)
-
-                return context.users.updateOne({_id: mongoUserId}, {$set: {favPosts}})
             } else  {
                favPosts.splice(index, 1)
-
-               return context.users.updateOne({_id: mongoUserId}, {$set: {favPosts}})
             }
+
+            return context.users.updateOne({_id: mongoUserId}, {$set: {favPosts}})
         })
 }
 
-module.exports = addAndQuitFav
+module.exports = toggleFavPost

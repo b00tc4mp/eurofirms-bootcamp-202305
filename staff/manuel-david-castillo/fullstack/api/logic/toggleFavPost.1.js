@@ -2,7 +2,7 @@ const context = require("./context")
 const {validateId} = require('./helpers/validators')
 const {ObjectId} = require('mongodb')
 
-function addAndQuitFav(userId, postId, fav) {
+function toggleFavPost(userId, postId, fav) {
     validateId(userId)
     validateId(postId)
 
@@ -37,4 +37,4 @@ function addAndQuitFav(userId, postId, fav) {
         })
 }
 
-module.exports = addAndQuitFav
+module.exports = toggleFavPost
