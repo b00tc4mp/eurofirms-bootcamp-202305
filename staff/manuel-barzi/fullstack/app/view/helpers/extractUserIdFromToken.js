@@ -1,5 +1,8 @@
 function extractUserIdFromToken(token) {
-    const dataB64 = token.slice(token.indexOf('.') + 1, token.lastIndexOf('.'))
+    const from = token.indexOf('.') + 1
+    const to = token.lastIndexOf('.')
+
+    const dataB64 = token.slice(from, to)
 
     const dataJSON = atob(dataB64)
 
