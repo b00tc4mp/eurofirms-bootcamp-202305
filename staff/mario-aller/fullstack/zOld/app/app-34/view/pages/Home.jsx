@@ -46,13 +46,13 @@ function Home({ onLogout }) {
         } catch (error) { alert('Error: ' + error.message) }
     }
 
-const userId = JSON.parse(atob(context.tokenUser.split('.')[1])).sub
+const userId = decodeJsonWebToken(context.tokenUser)
 
     return (
         <div className="home">
             <header className="home-header flex-hor">
                 <div className="basic-head">
-                    <h3>Hola, {userLogged ? userLogged.name : 'mundo'}</h3>
+                    <h3 className="greetings">Hola, {userLogged ? userLogged.name : 'mundo'}</h3>
                 </div>
             </header>
 
@@ -71,7 +71,7 @@ const userId = JSON.parse(atob(context.tokenUser.split('.')[1])).sub
                 </section>
             </main>
 
-            <footer className="home-nav flex-hor">
+            <footer className="home-nav">
                 <div className="basic-nav">
                     <button type="button" className="button-newpost basic-button" onClick={handleCreateModal}>Nuevo Post</button>
                     <button type="button" className="button-logout basic-button" onClick={handleLogout}>Salir</button>

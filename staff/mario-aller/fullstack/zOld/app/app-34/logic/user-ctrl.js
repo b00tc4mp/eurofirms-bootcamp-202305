@@ -44,16 +44,16 @@ const authenticateUser = function (email, password) {
         })
 }
 
-// Devuelve usuario público (ret objeto de la lista del usuario con token)
+// Devuelve usuario público (ret objeto de la lista del usuario con id)
 /**
  * La función `retrieveUser` realiza una solicitud para recuperar datos de usuario de un servidor utilizando un token de autorización.
- * @param token - El parámetro `token` es el token de autenticación o el token de acceso del usuario. Se utiliza para autorizar la solicitud para recuperar información del usuario del servidor.
+ * @param id - El parámetro `id` es el token de autenticación o el token de acceso del usuario. Se utiliza para autorizar la solicitud para recuperar información del usuario del servidor.
  * @returns La función `retrieveUser` devuelve una promesa que se resuelve en el objeto del usuario si la solicitud de recuperación es exitosa (código de estado 200). Si la solicitud de recuperación no tiene éxito, arroja un error con el mensaje de error recibido del servidor.
  */
-const retrieveUser = function (token) {
-    validateString(token, validateString.REGULAR)
+const retrieveUser = function (id) {
+    validateString(id, validateString.REGULAR)
 
-    return fetch('http://localhost:9000/users', { headers: { Authorization: `Bearer ${token}` } })
+    return fetch('http://localhost:9000/users', { headers: { Authorization: `Bearer ${id}` } })
         .then(res => {
             if (res.status === 200) return res.json().then(user => user)
             else return res.json().then(body => { throw new Error(body.error) })

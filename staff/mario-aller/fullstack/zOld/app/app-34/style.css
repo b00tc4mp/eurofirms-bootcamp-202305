@@ -98,7 +98,6 @@ width: 100%;
     background-color: lightgray;
     border-radius: 2rem;
     position: fixed;
-    bottom: 0.5rem;
     box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
 }
 
@@ -165,11 +164,11 @@ width: 100%;
 /* Cuerpo principal */
 
 .home {
-    width: 100vm;
-    height: 100vm;
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
     justify-content: center;
     align-content: center;
 
@@ -192,10 +191,10 @@ width: 100%;
 .home-nav {
     grid-column: 1/2;
     grid-row: 3/4;
-    /* display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
 }
 
 .home-postpanel {
