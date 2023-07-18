@@ -12,7 +12,6 @@ const deletePost = require('./logic/deletePost')
 const retrievePost = require('./logic/retrievePost')
 const retrievePosts = require('./logic/retrievePosts')
 const cors = require('cors')
-const jwt = require('jsonwebtoken')
 
 const { MongoClient } = mongodb
 
@@ -62,12 +61,7 @@ client.connect()
 
             try {
                 authenticateUser(email, password)
-                    .then(userId => {//sub: . el token tiene 3 partes, es una propiedad del peyload
-                        const data = { sub: userId }
-                        const token = jwt.sign(data, 'hola a todos y todas')
-
-                        res.json(token)
-                    })
+                    .then(userId => { res.json(userId) })
                     .catch((error) => res.status(400).json({ error: error.message }))
 
             } catch (error) {
@@ -78,12 +72,8 @@ client.connect()
         //end point 04 RETRIEVE USER
         api.get('/users', (req, res) => {
             try {
-                //const { authorization } = req.headers
-                //const userId = authorization.slice(7)
-                const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, 'hola a todos y todas')
-
-                const userId = data.sub
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
 
                 retrieveUser(userId)
                     .then(user => res.json(user))
@@ -98,12 +88,9 @@ client.connect()
 
             try {
                 const { image, text } = req.body
-                //const { authorization } = req.headers
+                const { authorization } = req.headers
 
-                //const userId = authorization.slice(7)
-                const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, 'hola a todos y todas')
-                const userId = data.sub
+                const userId = authorization.slice(7)
 
                 createPost(userId, image, text)
                     .then(() => res.status(201).send())
@@ -116,11 +103,8 @@ client.connect()
         //end point 06 UPDATE POST
         api.patch('/posts/:postId',jsonBodyParser, (req, res)=>{
             try{
-                //const { authorization } = req.headers
-                //const userId = authorization.slice(7)
-                const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, 'hola a todos y todas')
-                const userId = data.sub
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
 
                 const { postId } = req.params
                 const { image, text } = req.body
@@ -137,10 +121,8 @@ client.connect()
         api.delete('/posts/:postId', (req, res)=>{
             try{
                 const { postId } = req.params
-                const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, 'hola a todos y todas')
-                const userId = data.sub
-                
+                const userId = req.headers.authorization.slice(7)
+
                 deletePost(userId, postId)
                 .then(()=> res.send())
                 .catch(error=> res.status(400).json({error:error.message}))
@@ -152,11 +134,8 @@ client.connect()
         //end point 08 RETRIEVE POST siempre en plural
         api.get('/posts/:postId', (req, res) => {
             try {
+                const userId = req.headers.authorization.slice(7)
                 const { postId } = req.params
-
-                const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, 'hola a todos y todas')
-                const userId = data.sub
 
                 retrievePost(userId, postId)
                     .then(post => res.json(post)) //singular
@@ -169,10 +148,9 @@ client.connect()
          //end point 09 RETRIEVE POSTS
          api.get('/posts', (req, res) =>{
             try{
-                const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, 'hola a todos y todas')
-                const userId = data.sub
-
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+                
                 retrievePosts(userId)
                 .then(posts=> res.json(posts))
                 .catch(error=> res.status(400).json({error:error.message}))
