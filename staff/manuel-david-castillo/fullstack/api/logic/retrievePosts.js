@@ -9,21 +9,23 @@ function retrievePosts(userId) {
              context.users.find().toArray(), 
              context.users.findOne({_id: new ObjectId(userId)})])
     .then(([posts, users, user])=>{
+        if(!user) throw new Error('user not found')
         posts.forEach(post => {
             post.id = post._id.toString()
             delete post._id
             
            const userFound = users.find((user) => user._id.toString() === post.author.toString())
-           if(!userFound) throw new Error('userFound not found')
+           if(!userFound) {
+            post.author = {name: 'not found', id: null}
+           } else {
+            post.author = {name: userFound.name, id: userFound._id.toString()}
+            }
 
-           if(!user) throw new Error('user not found')
-           if(!user.favPosts || !user.favPosts.includes(post.id)) {
+           if(!user.favPosts?.includes(post.id)) {
             post.fav = false
            } else if (user.favPosts.includes(post.id)) {
             post.fav = true
            }
-
-           post.author = {name: userFound.name, id: userFound._id.toString()}
 
         });
         return posts

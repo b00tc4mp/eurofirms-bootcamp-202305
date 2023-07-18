@@ -94,7 +94,27 @@ function Home(props) {
     try {
       toggleFavPost(context.token, postId)
         .then(() => {
-          retrieveUser(context.token), retrievePosts(context.token)
+          setPosts(posts => {
+            const copyOfPosts = JSON.parse(JSON.stringify(posts))
+
+            const post = copyOfPosts.find(post => post.id === postId)
+
+            post.fav = !post.fav
+
+            return copyOfPosts
+          })
+        })
+        .catch((error) => {
+          alert(error.message)
+        })
+    } catch (error) {
+      alert(error.message)
+    }
+
+    /* try {
+      toggleFavPost(context.token, postId)
+        .then(() => {
+          retrievePosts(context.token)
             .then((posts) => {
               setPosts(posts)
             })
@@ -104,7 +124,7 @@ function Home(props) {
         })
     } catch (error) {
       alert(error.message)
-    }
+    } */
   }
 
   const userId = extractUserIdFromToken(context.token)

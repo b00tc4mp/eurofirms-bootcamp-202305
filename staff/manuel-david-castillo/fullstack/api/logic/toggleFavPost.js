@@ -14,7 +14,7 @@ function toggleFavPost(userId, postId) {
 
             const favPosts = user.favPosts ? user.favPosts : []
 
-            const index = favPosts.findIndex((id) => {return postId === id})
+            const index = favPosts.findIndex((id) => postId === id)
 
             if(index === -1) {
                 favPosts.push(postId)
