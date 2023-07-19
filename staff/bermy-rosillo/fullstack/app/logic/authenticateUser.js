@@ -11,7 +11,7 @@ function authenticateUser(email, password) {
 
             if (res.status === 200)
                 return res.json()
-                    .then(userId => userId)
+                    .then(token => token)
 
             else if (res.status === 400) {
                 return res.json()

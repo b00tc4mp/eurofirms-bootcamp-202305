@@ -1,10 +1,9 @@
-function retrieveUser(userId) {
-
-    if (typeof userId !== 'string') throw new Error('UserId is not a string')
+function retrieveUser(token) {
+    if (typeof token !== 'string') throw new Error('token is not a string')
 
     return fetch('http://localhost:9000/users', { //http://localhost:9000/users
         headers: {
-            Authorization: `Bearer ${userId}`
+            Authorization: `Bearer ${token}`
         }
     })
         .then(res => {

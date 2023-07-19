@@ -3,7 +3,7 @@ function EditPostModal(props){
 
     React.useEffect(() => {
         try {
-            retrievePost(context.userId, props.postId)
+            retrievePost(context.token, props.postId)
                 .then(post => setPost(post))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -20,7 +20,7 @@ function EditPostModal(props){
         const text = event.target.text.value
     
         try {
-            updatePost(context.userId, props.postId, image, text)
+            updatePost(context.token, props.postId, image, text)
                 .then(() => {
                     props.onEditPost() //return to home
                 })

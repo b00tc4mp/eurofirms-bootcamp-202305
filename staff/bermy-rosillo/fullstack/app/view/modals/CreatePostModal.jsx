@@ -7,7 +7,7 @@ function CreatePostModal(props) {
         const image = event.target.image.value
         const text = event.target.text.value
         try {
-            createPost(context.userId, image, text)
+            createPost(context.token, image, text)
                 .then(() => {
                     props.onCreatePost() //return to home
                 })

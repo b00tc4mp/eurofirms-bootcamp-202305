@@ -54,7 +54,9 @@ client.connect()
             try {
                 authenticateUser(email, password)
                     .then(userId => {
+                        //se crea un obj y se guarda el id
                         const data = { sub: userId }
+                        //creo el token y convierto el obj a json con sign
                         const token = jwt.sign(data,'pau la lia')
                         
                         res.json(token)

@@ -5,7 +5,7 @@ function DeletePostModal(props){
         event.preventDefault()
         
         try{
-            deletePost(context.userId,props.postId)
+            deletePost(context.token,props.postId)
             .then(()=>{
                 props.onDeletePost()
             })

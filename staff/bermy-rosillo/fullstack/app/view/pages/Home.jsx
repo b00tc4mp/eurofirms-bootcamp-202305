@@ -19,7 +19,7 @@ function Home(props) {
 
     React.useEffect(() => {
         try {
-            retrieveUser(context.userId)
+            retrieveUser(context.token)
                 .then(user => setUser(user))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -27,7 +27,7 @@ function Home(props) {
         }
         //-------
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => setPosts(posts))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -36,7 +36,7 @@ function Home(props) {
     }, [])
 
     const handleLoggedOut = () => {
-        context.userId = null
+        context.token = null
 
         props.logoutClick()
     }
@@ -45,7 +45,7 @@ function Home(props) {
     const handleCreatePostCancelled = () => setModal(null)
     const handleCreatedPost = () => {
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -65,7 +65,7 @@ function Home(props) {
     const handleEditPostCancelled = () => setModal(null)
     const handleEditPost = () => {
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -85,7 +85,7 @@ function Home(props) {
     const handleDeletePostCancelled = () => setModal(null)
     const handleDeletePost = () => {
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null) // ocultar modal
@@ -99,6 +99,7 @@ function Home(props) {
 
 
     //--------------------------------------------
+    const userId = extractUserIdFromToken(context.token)
 
     return <div className="home-view ">
         <header className="home-header">
@@ -113,7 +114,7 @@ function Home(props) {
                         <h2>{post.author.name}</h2>
                         <img className='home-post-image' src={post.image} alt={post.text}></img>
                         <p>{post.text}</p>
-                        {post.author.id === context.userId &&
+                        {post.author.id === userId &&
                             <>
                                 <button onClick={() => handleEditPostModal(post.id)}>Edit</button>
                                 <button onClick={() => handleDeletePostModal(post.id)}>Delete</button>
