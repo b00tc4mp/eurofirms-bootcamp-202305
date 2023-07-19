@@ -1,6 +1,6 @@
 const context = require('./context')
 const mongodb = require('mongodb')
-const getIdUser = require('./getIdUser')
+const authenticateUser = require('./authenticateUser')
 const retrievePosts = require('./retrievePosts')
 
 const { MongoClient } = mongodb
@@ -11,8 +11,7 @@ client.connect()
         context.users = connection.db('data').collection('users')
         context.posts = connection.db('data').collection('posts')
         try {
-            console.log('hola')
-            return getIdUser('bilbo@bolson-cerrado.com')
+            return authenticateUser('frodo@bolson-cerrado.com','mitril')
                 .then((userId) => {
                     return retrievePosts(userId)
                 })  
