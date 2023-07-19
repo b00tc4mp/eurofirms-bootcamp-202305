@@ -9,10 +9,13 @@ const { validateString } = require('./helpers/validators')
  */
 function retrievePosts(userId) {
     validateString(userId)
+    let favs
 
     return context.users.findOne({ _id: new ObjectId(userId) })
         .then((user) => {
             if (!user) throw new Error('El usuario no válido')
+            if (!user.favs) favs = []
+            else favs = user.favs.map(_id => _id.toString())
 
             return Promise.all([context.users.find().toArray(), context.posts.find().sort({ date: -1 }).toArray()])
         })
@@ -20,9 +23,13 @@ function retrievePosts(userId) {
             posts.forEach(post => {
                 post.id = post._id.toString()
                 delete post._id
+
                 const authorId = post.author.toString()
                 const authorObj = users.find(user => user._id.toString() === authorId)
                 post.author = { id: authorId, name: authorObj.name }
+
+                if (favs.some(id => id === post.id)) post.fav = true
+                else post.fav = false
             });
             return posts
         })

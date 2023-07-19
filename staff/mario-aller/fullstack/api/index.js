@@ -14,6 +14,7 @@ const updatePost = require('./logic/updatePost')
 const retrievePost = require('./logic/retrievePost')
 const retrievePosts = require('./logic/retrievePosts')
 const deletePost = require('./logic/deletePost')
+const toggleFavPost = require('./logic/toggleFavPost')
 
 const { MongoClient } = mongodb
 const client = new MongoClient('mongodb://127.0.0.1:27017')
@@ -132,6 +133,19 @@ client.connect()
                 const { postId } = req.params
 
                 deletePost(userId, postId)
+                    .then(() => res.send())
+                    .catch(err => res.status(400).json({ error: err.message }))
+            } catch (err) { res.status(400).json({ error: err.message }) }
+        })
+
+        // toggle Fav Post
+        api.put('/posts/:postId/fav', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, 'asdfg hola').sub
+                const { postId } = req.params
+
+                toggleFavPost(userId, postId)
                     .then(() => res.send())
                     .catch(err => res.status(400).json({ error: err.message }))
             } catch (err) { res.status(400).json({ error: err.message }) }
