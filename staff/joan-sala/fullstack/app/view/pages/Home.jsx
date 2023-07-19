@@ -20,7 +20,7 @@ function Home(props) {
     //Sólo se ejecuta una vez se pinta el Home
     React.useEffect(() => { //Para efectos secundarios como consecuéncia de llama a una api.
         try {
-            retrieveUser(context.userId)
+            retrieveUser(context.token)
                 .then(user => setUser(user))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -28,7 +28,7 @@ function Home(props) {
         }
 
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => setPosts(posts))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -37,7 +37,7 @@ function Home(props) {
     }, []) //Para pasar el array vacío si o si, sólo una vez
    
     const handleLogoutClick = () => {
-        context.userId = null 
+        context.token = null 
 
         props.onLoggedOutClick()
     }
@@ -47,7 +47,7 @@ function Home(props) {
     const handlePostCreated = () => {
         
         try {
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -70,7 +70,7 @@ function Home(props) {
     //const handlePostEdited = () => setModal(null), refresar pantaalla
     const handlePostEdited = () => {
         try{
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
             .then(posts => {
                 setPosts(posts)
                 setModal(null)
@@ -90,7 +90,7 @@ function Home(props) {
 
     const handlePostDeleted = () => {
         try{
-            retrievePosts(context.userId)
+            retrievePosts(context.token)
             .then(posts => {
                 setPosts(posts)
                 setModal(null)
@@ -101,7 +101,8 @@ function Home(props) {
             alert(error.message)
         }
     }
-    
+    const userId = extractUserIdFromToken(context.token) //importante el context
+
     //'key={post.id}' se utiliza para asignar una clave única a cada elemento de una lista o conjunto de componentes renderizados dinámicamente. Esto ayuda a React a realizar actualizaciones eficientes en la lista al identificar los cambios en los elementos y evitar renderizaciones innecesarias
     return (
         <div className="home-view">
@@ -121,7 +122,7 @@ function Home(props) {
                             alt={post.text} />
                         <p>{post.text}</p>
 
-                        {post.author.id === context.userId && <>
+                        {post.author.id === userId && <>
                             <button onClick={() => handleEditPostClick(post.id)}>Edit</button>
                             <button onClick={() => handleDeletePostClick(post.id)}>Delete</button>
                         </>

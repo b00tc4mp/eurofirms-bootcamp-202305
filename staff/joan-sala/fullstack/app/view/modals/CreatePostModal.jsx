@@ -9,7 +9,7 @@ function CreatePostModal(props){
         const text = event.target.text.value
 
         try{           //variable global
-            createPost(context.userId, image, text)
+            createPost(context.token, image, text)
             .then(()=> props.onPostCreated())
             .catch(error => alert(error.message))
         }catch(error){

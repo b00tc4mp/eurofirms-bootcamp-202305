@@ -1,5 +1,5 @@
-function updatePost(userId, postId, image, text) { // lo primero que hay que hacer siempre es validarr
-    if(typeof userId !== 'string') throw new Error('UserId is not a string')
+function updatePost(token, postId, image, text) { // lo primero que hay que hacer siempre es validarr
+    if(typeof token !== 'string') throw new Error('token is not a string')
     if(typeof postId !== 'string') throw new Error('Image is not a string')
     if(typeof image !== 'string') throw new Error('Image is not a string')
     if(typeof text !== 'string') throw new Error('Text is not a string')
@@ -8,7 +8,7 @@ function updatePost(userId, postId, image, text) { // lo primero que hay que hac
     return fetch(`http://localhost:9000/posts/${postId}`, {
         method: 'PATCH',
         headers:{
-            Authorization: `Bearer ${userId}`,
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({image, text})

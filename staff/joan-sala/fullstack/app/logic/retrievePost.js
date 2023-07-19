@@ -1,11 +1,11 @@
-function retrievePost(userId, postId) {
-    if (typeof userId !== 'string') throw new Error('userId is not a string')
+function retrievePost(token, postId) {
+    if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof postId !== 'string') throw new Error('postId is not a string')
 
 
     return fetch(`http://localhost:9000/posts/${postId}`, {
         headers: {
-            Authorization: `Bearer ${userId}`
+            Authorization: `Bearer ${token}`
         }
     })
         .then(res => {

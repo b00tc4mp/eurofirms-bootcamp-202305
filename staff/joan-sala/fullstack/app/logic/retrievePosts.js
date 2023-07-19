@@ -1,9 +1,9 @@
-function retrievePosts(userId) {
-    if (typeof userId !== 'string') throw new Error('userId is not a string')
+function retrievePosts(token) {
+    if (typeof token !== 'string') throw new Error('token is not a string')
 
         return fetch('http://localhost:9000/posts', {
             headers: {
-                Authorization: `Bearer ${userId}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then(res => {

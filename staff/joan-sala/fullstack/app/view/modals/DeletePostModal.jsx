@@ -7,7 +7,7 @@ function DeletePostModal(props) {
         event.preventDefault()
 
        try{
-            deletePost(context.userId, props.postId)
+            deletePost(context.token, props.postId)
             .then(()=> props.onPostDeleted())
             .catch(error=> alert(error.message))
        }catch(error){

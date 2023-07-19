@@ -14,8 +14,8 @@ function authenticateUser(email, password) {
         if(res.status === 200)
             return res.json()
                 .then(body => {
-                    const  userId = body
-                    return userId
+                    const  token = body
+                    return token
                 })
         else if(res.status === 400){
             return res.json()

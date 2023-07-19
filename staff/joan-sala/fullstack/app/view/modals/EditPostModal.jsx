@@ -8,7 +8,7 @@ function EditPostModal({postId, onEditPostCancelled, onPostEdited}) { //Sacado d
     //al crear el componente llama a esta función 
     React.useEffect(() =>{
         try{
-            retrievePost(context.userId, postId)
+            retrievePost(context.token, postId)
             .then(post => setPost(post))
             .catch(error => alert(error.message))        
         }catch(error){
@@ -25,7 +25,7 @@ function EditPostModal({postId, onEditPostCancelled, onPostEdited}) { //Sacado d
         const text = event.target.text.value
         
         try{
-            updatePost(context.userId, postId, image, text)
+            updatePost(context.token, postId, image, text)
             .then(() =>  onPostEdited())
             .catch(error=> error.message)
         }catch(error){
