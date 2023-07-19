@@ -186,9 +186,5 @@ client.connect()
             }
         })
 
-        api.put('/posts/:postId/favs', (req, res) => {
-            // TODO implement me
-        })
-
         api.listen(9000, () => console.log('API running in port 9000'))
     })

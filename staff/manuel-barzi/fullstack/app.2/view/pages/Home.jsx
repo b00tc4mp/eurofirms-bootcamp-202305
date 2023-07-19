@@ -95,10 +95,6 @@ function Home({ onLoggedOut }) {
         }
     }
 
-    const handleTogglePostClick = postId => {
-        // TODO implement me
-    }
-
     const userId = extractUserIdFromToken(context.token)
 
     return <div className="home-view">
@@ -123,8 +119,6 @@ function Home({ onLoggedOut }) {
                         <button onClick={() => handleEditPostClick(post.id)}>Edit</button>
                         <button onClick={() => handleDeletePostClick(post.id)}>Delete</button>
                     </>}
-
-                    <button onClick={() => handleTogglePostClick(post.id)}>Save</button>
                 </article>)}
             </section>
         </main>
