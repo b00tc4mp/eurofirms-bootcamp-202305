@@ -41,7 +41,7 @@ function Login(props) {
       </section>
 <div className="clearfix">
   <aside id="lateral">
-      <h3>Registrate</h3>
+      <h3>Login and Be Legendary</h3>
       <div id="login" className="aside-box">
           <form action="submit" className="login-form" onSubmit={handleLoginSubmit}>
               <label htmlFor="login-email" type="email">Email</label>
