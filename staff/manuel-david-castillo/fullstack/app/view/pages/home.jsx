@@ -95,6 +95,7 @@ function Home(props) {
       toggleFavPost(context.token, postId)
         .then(() => {
           setPosts(posts => {
+            /*
             const copyOfPosts = JSON.parse(JSON.stringify(posts))
 
             const post = copyOfPosts.find(post => post.id === postId)
@@ -102,6 +103,39 @@ function Home(props) {
             post.fav = !post.fav
 
             return copyOfPosts
+            */
+
+            /*
+            const posts2 = []
+
+            for (const key in posts)
+              posts2[key] = posts[key]
+            */
+
+            //const posts2 = Array.from(posts)
+
+            const posts2 = [...posts]
+
+            //const post = posts2.find(post => post.id === postId)
+
+            const index = posts2.findIndex(post => post.id === postId)
+            const post = posts2[index]
+
+            /*
+            const post2 = {}
+
+            for (const key in post)
+              post2[key] = post[key]
+            */
+
+            const post2 = { ...post }
+
+            post2.fav = !post2.fav
+
+            //posts2.splice(index, 1, posts2)
+            posts2[index] = post2
+
+            return posts2
           })
         })
         .catch((error) => {

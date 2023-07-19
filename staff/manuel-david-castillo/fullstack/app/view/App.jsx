@@ -1,5 +1,5 @@
 function App() {
-    const viewState = React.useState(sessionStorage.userId ? 'home' : 'login')
+    const viewState = React.useState(sessionStorage.token ? 'home' : 'login')
     const view = viewState[0]
     const setView = viewState[1]
 
@@ -7,11 +7,11 @@ function App() {
     const handleNavigateToLogin = () => setView('login')
     const handleNavigateHome = () => setView('home')
 
-    if(view === 'login') {
-        return <Login onRegisterClick = {handleNavigateRegister} onLogin = {handleNavigateHome}/>
+    if (view === 'login') {
+        return <Login onRegisterClick={handleNavigateRegister} onLogin={handleNavigateHome} />
     } else if (view === 'register') {
-        return <Register onLoginClick = {handleNavigateToLogin} onRegister = {handleNavigateToLogin}/>
+        return <Register onLoginClick={handleNavigateToLogin} onRegister={handleNavigateToLogin} />
     } else if (view === 'home') {
-        return <Home onLogout = {handleNavigateToLogin}/>
+        return <Home onLogout={handleNavigateToLogin} />
     }
- }
+}
