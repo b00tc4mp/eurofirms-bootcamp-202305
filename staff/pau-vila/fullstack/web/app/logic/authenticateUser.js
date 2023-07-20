@@ -7,7 +7,7 @@ function authenticateUser(email, password) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body:JSON.stringify({ email, password}) 
+        body:JSON.stringify({ email, password }) 
     })
     .then(res => {
         if (res.status === 200)

@@ -1,18 +1,18 @@
 // globals
 
 const context = {
-    set userId(value) {
-        if (value) {
-            sessionStorage.userId = value
+    set token(token) {
+        if (token) {
+            sessionStorage.token = token
 
             return 
         }
-        delete sessionStorage.userId
+        delete sessionStorage.token
     },
 
-    get userId() {
-        if (sessionStorage.userId)
-            return sessionStorage.userId
+    get token() {
+        if (sessionStorage.token)
+            return sessionStorage.token
 
         return null
     }

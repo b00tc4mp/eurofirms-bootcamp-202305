@@ -1,4 +1,4 @@
-const retrieveUser = require('./retrieveUser')
+const toggleFavPost = require('./toggleFavPost')
 const mongodb = require('mongodb')
 const context = require('./context')
 
@@ -14,12 +14,14 @@ client.connect()
         const db = connection.db('data')
 
         const users = db.collection('users')
+        const posts = db.collection('posts')
        
         context.users = users
+        context.posts = posts 
         
         try {
-            return retrieveUser('649da6717f2ec958222f113c')
-                .then(user => console.log('user retrieved', user))
+            return toggleFavPost('64afc619221829d9220d9ab6', '64b7af695922b855d8f344c3')
+                .then(() => console.log('toggle fav posts updated'))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

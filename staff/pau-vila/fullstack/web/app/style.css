@@ -156,6 +156,9 @@ body {
     gap: 2rem;
 }
 
+.home-post {
+    width: 65%;
+}
 .home-post-image {
     width: 100%;
 }

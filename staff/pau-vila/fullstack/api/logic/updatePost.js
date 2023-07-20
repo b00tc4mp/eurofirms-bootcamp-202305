@@ -3,15 +3,7 @@ const { ObjectId } = require('mongodb')
 const { validateId, validateUrl, validateText } = require('./helpers/validators')
 
 function updatePost(userId, postId, image, text) {
-    //if (typeof userId !== 'string') throw new Error('userId is not a string')
-    //if (userId === '') throw new Error('userId could not be empty')
-    // if (typeof postId !== 'string') throw new Error('postId is not a string')
-    // if (postId === '') throw new Error('postId is empty')
-    // if (typeof image !== 'string') throw new Error('image is not a string')
-    // if (image === 'string') throw new Error('image could not be empty')
-    // if (typeof text !== 'string') throw new Error('text is not a string')
-    //if (text === '') throw new Error('text is empty')
-
+   
    /* El código `validateId(userId) validarId(postId) validarUrl(imagen) validarText(texto)` está
    llamando a cuatro funciones de validación diferentes para comprobar si los valores proporcionados
    para `userId`, `postId`, `imagen` y `texto` son válido. */

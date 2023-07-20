@@ -10,7 +10,9 @@ const updatePost = require('./logic/updatePost')
 const deletePost = require('./logic/deletePost')
 const retrievePost = require('./logic/retrievePost')
 const retrievePosts = require('./logic/retrievePosts')
-const cors = require ('cors')
+const cors = require('cors')
+const jwt = require('jsonwebtoken')
+const toggleFavPost = require('./logic/toggleFavPost')
 
 
 const { MongoClient } = mongodb
@@ -66,7 +68,13 @@ client.connect()
 
             try {
                 authenticateUser(email, password)
-                    .then(userId => res.json(userId))
+                    .then(userId => {
+                        const data = { sub: userId }
+
+                        const token = jwt.sign(data, 'idem love')
+
+                        res.json(token)
+                    })
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
@@ -76,7 +84,11 @@ client.connect()
         api.get('/users', (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'idem love')
+
+                const userId = data.sub
 
                 retrieveUser(userId)
                     .then(user => res.json(user))
@@ -89,9 +101,22 @@ client.connect()
         api.post('/posts', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                /* La línea `const data = jwt.verify(token, 'idem love')` está verificando la
+                autenticidad e integridad de un JSON Web Token (JWT). */
+                const data = jwt.verify(token, 'idem love')
+
+                /* `const userId = data.sub` extrae el valor de la propiedad `sub` del objeto `data` y
+                lo asigna a la variable `userId`. La propiedad `sub` normalmente representa el
+                asunto del JWT (JSON Web Token), que en este caso es el ID de usuario. Este ID de
+                usuario se utiliza para identificar al usuario que realiza la solicitud y realizar
+                operaciones específicas para ese usuario, como crear, actualizar o eliminar
+                publicaciones. */
+                const userId = data.sub
 
                 const { image, text } = req.body
+
                 createPost(userId, image, text)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
@@ -103,7 +128,11 @@ client.connect()
         api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'idem love')
+
+                const userId = data.sub
 
                 const { postId } = req.params
 
@@ -120,12 +149,16 @@ client.connect()
         api.delete('/posts/:postId', (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'idem love')
+
+                const userId = data.sub
 
                 const { postId } = req.params
 
                 deletePost(userId, postId)
-                    .then(() => res.send())
+                    .then(() => res.status(204).send())
                     .catch(error => res.status(400).json({ error: error.message }))
 
             } catch (error) {
@@ -136,8 +169,12 @@ client.connect()
         api.get('/posts/:postId', (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
-                
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'idem love')
+
+                const userId = data.sub
+
                 const { postId } = req.params
 
                 retrievePost(userId, postId)
@@ -148,10 +185,30 @@ client.connect()
             }
         })
 
+        api.put('/posts/:postId/favs', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'idem love')
+
+                const userId = data.sub
+                const postId = req.params.postId
+
+                toggleFavPost(userId, postId)
+                    .then(() => res.send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
         api.get('/posts', (req, res) => {
             try {
                 const { authorization } = req.headers
-                const userId = authorization.slice(7)
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'idem love')
+
+                const userId = data.sub
 
                 retrievePosts(userId)
                     .then(posts => res.json(posts))

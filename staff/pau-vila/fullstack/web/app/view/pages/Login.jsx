@@ -15,8 +15,8 @@ function Login(props) {
 
         try {
             authenticateUser(email, password)
-            .then(userId => {
-                context.userId = userId
+            .then(token => {
+                context.token = token
 
                 props.onLoggedIn()
 

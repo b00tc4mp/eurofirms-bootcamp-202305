@@ -8,20 +8,12 @@ function CreatePostModal(props) {
         const text = event.target.text.value
 
         try { 
-            createPost(context.userId, image, text)
-                .then(() => onPostCreated())
+            createPost(context.token, image, text)
+                .then(() => props.onPostCreated())
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
-        if (!result) {
-            alert('Could not create post')
-
-            return
-        }
-
-        props.onPostCreated()
-
     }
 
     const handleCancelClick = () => props.onCreatePostCancelled()

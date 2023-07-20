@@ -14,13 +14,11 @@ client.connect()
         const db = connection.db('data')
 
         const users = db.collection('users')
-        const posts = db.collection('posts')
 
         /* El código `context.users = users` y `context.posts = posts` está asignando la colección
         `users` y `posts` de la base de datos MongoDB a las propiedades `users` y `posts` del objeto
         `context`. */
         context.users = users
-        context.posts = posts
 
         try {
             return registerUser(users, 'Viuda Negra', 'viuda@negra.com', '1234')

@@ -14,7 +14,7 @@ function deletePost(userId, postId) {
         .then(([user, post]) => {
             if (!user) throw new Error('user not found')
             if (!post) throw new Error('post not found')
-            if(userId !== post.author.toString()) throw new Error('')
+            if(userId !== post.author.toString()) throw new Error('post does not belong to user')
 
             /* La línea `return context.posts.deleteOne({_id:postObjectId})` está eliminando una
             publicación de la base de datos. Utiliza el método `deleteOne` proporcionado por el
