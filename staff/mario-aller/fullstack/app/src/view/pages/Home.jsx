@@ -1,5 +1,5 @@
 import { retrieveUser } from '../../logic/user-ctrl'
-import { retrievePosts } from '../../logic/post-ctrl'
+import { retrievePosts, toggleFavPost } from '../../logic/post-ctrl'
 import context from '../../context'
 import { useState, useEffect } from 'react'
 import { PostCreate } from '../modals/PostCreate'
@@ -7,7 +7,6 @@ import { PostDelete } from '../modals/PostDelete'
 import { PostEdit } from '../modals/PostEdit'
 
 function Home({ onLogout }) {
-    console.log('tamos en home')
     const [modal, setModal] = useState(null)
     const [idPost, setIdPost] = useState(null)
     const [userLogged, setUserLogged] = useState(null)
@@ -54,11 +53,13 @@ function Home({ onLogout }) {
         } catch (error) { alert('Error: ' + error.message) }
     }
     const handleToggleFavPost = (idPost) => {
-
-
+        try {
+            toggleFavPost(context.tokenUser,idPost)
+                .then(() => handleRefreshPostsExitModal())
+                .catch(error => alert('Error: ' + error.message))
+        } catch (error) { alert('Error: ' + error.message) }
     }
-
-
+    
     const userId = JSON.parse(atob(context.tokenUser.split('.')[1])).sub
 
     return (
