@@ -186,6 +186,23 @@ client.connect()
 
             }
         })
+        //toggleFavPost
+        api.put('/posts/:postId',(req,res)=>{
+            try{
+                const{authorization} = req.headers
+                const token = authorization.slice(7)
+                const data = jwt.verify(token,'pau la lia')
+                const userId = data.sub
+
+                const postId = req.params.postId
+
+                toggleFavPost(userId,postId)
+                .then(()=>res.send())
+                .catch(error=>res.status(400).json({error:error.message}))
+            }catch(error){
+                res.status(400).json({error:error.message})
+            }   
+        })
 
         api.listen(9000, () => console.log('API running '))
     })
