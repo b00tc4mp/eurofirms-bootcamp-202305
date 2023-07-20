@@ -246,6 +246,12 @@ width: 100%;
     margin-right: 0.3rem;
 }
 
+.post-item-fav {
+    font-size: 0.5rem;
+    border:none;
+    margin-left: 0.3rem;
+}
+
 /* Capas y comandos */
 
 .flex-hor {

@@ -2,6 +2,12 @@ const context = require('./context')
 const { ObjectId } = require('mongodb')
 const { validateString } = require('./helpers/validators')
 
+/**
+ * La función `toggleFavPost` cambia el estado favorito de una publicación para un usuario determinado.
+ * @param userId - El parámetro `userId` es el identificador único del usuario que desea alternar el estado favorito de una publicación.
+ * @param postId - El parámetro `postId` es el identificador único de la publicación que el usuario desea alternar como favorita.
+ * @returns una promesa.
+ */
 function toggleFavPost(userId, postId) {
     validateString(userId)
     validateString(postId)

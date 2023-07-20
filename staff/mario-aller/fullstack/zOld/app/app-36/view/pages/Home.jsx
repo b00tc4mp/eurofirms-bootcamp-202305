@@ -1,5 +1,5 @@
 function Home({ onLogout }) {
-    console.log ('tamos en home')
+    console.log('tamos en home')
     const [modal, setModal] = React.useState(null)
     const [idPost, setIdPost] = React.useState(null)
     const [userLogged, setUserLogged] = React.useState(null)
@@ -45,8 +45,13 @@ function Home({ onLogout }) {
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
     }
+    const handleToggleFavPost = (idPost) => {
 
-const userId = JSON.parse(atob(context.tokenUser.split('.')[1])).sub
+
+    }
+
+
+    const userId = JSON.parse(atob(context.tokenUser.split('.')[1])).sub
 
     return (
         <div className="home">
@@ -59,6 +64,7 @@ const userId = JSON.parse(atob(context.tokenUser.split('.')[1])).sub
             <main className="home-view">
                 <section className="posts-list basic-container">
                     {posts && posts.map(post => <article className="post-item" key={post.id}>
+                        <button className="post-item-fav" type="button" onClick={() => handleToggleFavPost(post.id)}>{post.fav ? '💖' : '🧡'}</button>
                         <img className="post-item-image" src={post.image} alt="Foto de Post" />
                         <p className="post-item-text">{post.text}</p>
                         <p className="post-item-user">{post.author.name}</p>
