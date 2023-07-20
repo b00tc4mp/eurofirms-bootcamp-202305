@@ -21,12 +21,18 @@ function retrievePosts(userId) {
             post.author = {name: userFound.name, id: userFound._id.toString()}
             }
 
-           if(!user.favPosts?.includes(post.id)) {
+            if (!user.favPosts) user.favPosts = []
+
+            const favPosts = user.favPosts.map((post) => {
+                return post.toString()
+            })
+
+           if(!favPosts.includes(post.id)) {
             post.fav = false
-           } else if (user.favPosts.includes(post.id)) {
+           } else if (favPosts.includes(post.id)) {
             post.fav = true
            }
-
+           
         });
         return posts
     })}

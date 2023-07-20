@@ -2,7 +2,8 @@ function toggleFavPost(userId, postId) {
     validateId(userId)
     validateId(postId)
 
-    return fetch(`http://localhost:9000/users/fav-posts/${postId}`, {
+    return fetch(`http://localhost:9000/posts/fav-posts/${postId}`, {
+        method: 'PUT',
         headers: {
             Authorization: `Bearer ${userId}`
         }

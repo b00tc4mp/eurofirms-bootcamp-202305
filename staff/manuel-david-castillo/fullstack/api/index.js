@@ -35,24 +35,6 @@ client.connect()
             res.send('hola mundo')
         })
 
-        api.get('/users/fav-posts/:postId', (req, res) => {
-            try {
-                const {authorization} = req.headers
-                const token = authorization.slice(7)
-
-                const data = jwt.verify(token, 'papi ya tu sabeh')
-                const userId = data.sub
-
-                const {postId} = req.params
-
-                toggleFavPost(userId, postId)
-                .then(() => res.status(200).json().send())
-                .catch(error => res.status(400).json({error: error.message}))
-            } catch (error) {
-                res.status(400).json({error: error.message})
-            }
-        })
-
         api.post('/users/auth', jsonBodyParser, (req, res) => {
             try {
                 const {email, password} = req.body 
@@ -170,7 +152,23 @@ client.connect()
             }
         })
 
-        
+        api.put('/posts/fav-posts/:postId', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const userId = data.sub
+
+                const {postId} = req.params
+
+                toggleFavPost(userId, postId)
+                .then(() => res.status(200).json().send())
+                .catch(error => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
 
         api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             const {authorization} = req.headers
