@@ -1,9 +1,7 @@
 function App() {
     console.log('App -> render')
 
-    const viewState = React.useState(context.token ? 'home' : 'login')
-    const view = viewState[0]
-    const setView = viewState[1]
+    const [view, setView] = React.useState(context.token ? 'home' : 'login')
 
     const handleRegisterClick = () => setView('register')
 

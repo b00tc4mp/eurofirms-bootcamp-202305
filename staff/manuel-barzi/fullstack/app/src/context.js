@@ -1,5 +1,3 @@
-// globals
-
 const context = {
     set token(token) {
         if (token) {
@@ -19,7 +17,4 @@ const context = {
     }
 }
 
-// react initialization
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<App />)
+export default context
