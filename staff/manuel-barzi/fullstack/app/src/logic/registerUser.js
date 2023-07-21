@@ -3,7 +3,7 @@ function registerUser(name, email, password) {
     if (typeof email !== 'string') throw new Error('email is not a string')
     if (typeof password !== 'string') throw new Error('password is not string')
 
-    return fetch('http://localhost:9000/users', {
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

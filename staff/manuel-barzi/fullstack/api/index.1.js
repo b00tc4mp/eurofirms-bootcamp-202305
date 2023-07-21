@@ -17,9 +17,7 @@ const jwt = require('jsonwebtoken')
 
 const { MongoClient } = mongodb
 
-const { PORT, MONGODB_URL, JWT_SECRET } = process.env
-
-const client = new MongoClient(MONGODB_URL)
+const client = new MongoClient(process.env.MONGODB_URL)
 
 client.connect()
     .then(connection => {
@@ -67,7 +65,7 @@ client.connect()
                     .then(userId => {
                         const data = { sub: userId }
 
-                        const token = jwt.sign(data, JWT_SECRET)
+                        const token = jwt.sign(data, process.env.JWT_SECRET)
 
                         res.json(token)
                     })
@@ -82,7 +80,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, JWT_SECRET)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
 
                 //const { sub: userId } = data
                 const userId = data.sub
@@ -100,7 +98,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, JWT_SECRET)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
 
                 const userId = data.sub
 
@@ -119,7 +117,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, JWT_SECRET)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
 
                 const userId = data.sub
 
@@ -136,7 +134,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, JWT_SECRET)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
 
                 const userId = data.sub
 
@@ -157,7 +155,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, JWT_SECRET)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
 
                 const userId = data.sub
 
@@ -176,7 +174,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, JWT_SECRET)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
 
                 const userId = data.sub
 
@@ -194,5 +192,5 @@ client.connect()
             // TODO implement me
         })
 
-        api.listen(PORT, () => console.log(`API running in port ${PORT}`))
+        api.listen(process.env.PORT, () => console.log(`API running in port ${process.env.PORT}`))
     })

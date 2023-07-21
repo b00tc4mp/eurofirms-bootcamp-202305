@@ -2,7 +2,7 @@ function deletePost(token, postId) {
     if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof postId !== 'string') throw new Error('postId is not a string')
 
-    return fetch(`http://localhost:9000/posts/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`
