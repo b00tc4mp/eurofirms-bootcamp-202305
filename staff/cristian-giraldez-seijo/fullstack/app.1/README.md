@@ -48,15 +48,15 @@ TODO list tech details
 
 ##### Tasks
 
-- DONE add edit button on all the posts that belong the user that is connected (in the session)
+- DONE add edit button in all the posts that belong to the user that is connected (in the session)
 - DONE implement retrievePost logic to get the information of a post
-- DONE implement modal window for editing a post (inputs: image, text) showing the current information of the post when opened
+- DONE implement the modal window for editing a post (inputs: image, text) showing the current information of the post when opened
 - DONE implement updatePost logic to save the information of a post in db and mechanise in the edit post form submit
 - DONE add a call to refresh the posts list after saving the changes in the edited post
 
 #### Delete a post and refresh list
 
-- Me as user, I want to have the delete option (as a button) in any post that I created, open a Delete dialog with it, and proceed to delete the post if accepted (or cancel it otherwise)
+- Me as user, I want to have the delete option (as a button) in any post tha I created, open a Delete dialog with it, and proceed to delete the post if accepted (or cancel it otherwise)
 - Me as user, I want to see the list of posts updated with the changes applied in any of my posts
 
 ##### Tasks
@@ -65,3 +65,7 @@ TODO list tech details
 - DONE implement deletePost logic to remove a post from database
 - DONE implement the modal window for asking the user if she/he really wants to delete the post (two buttons: delete, cancel)
 - DONE add a call to refresh the posts list after deleting the post
+
+#### Migrate presentation layer to React
+
+- DONE migrate all pages and components to React
