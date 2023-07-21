@@ -1,3 +1,6 @@
+require('dotenv').config()
+const {MONGODB_URL, PORT, JWT_SECRET} = process.env 
+
 const express = require('express') 
 const mongodb = require('mongodb')
 const cors = require('cors')
@@ -18,7 +21,7 @@ const updatePost = require('./logic/updatePost')
 
 const {MongoClient} = mongodb
 
-const client = new MongoClient("mongodb://127.0.0.1:27017")
+const client = new MongoClient(MONGODB_URL)
 
 client.connect()
     .then((connection)=>{
@@ -43,7 +46,7 @@ client.connect()
                 .then((userId) => {
                     const data = {sub: userId}
 
-                    const token = jwt.sign(data, 'papi ya tu sabeh')
+                    const token = jwt.sign(data, JWT_SECRET)
 
                     res.json(token)
                 })
@@ -70,7 +73,7 @@ client.connect()
                 const {authorization} = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
                 retrieveUser(userId)
@@ -86,7 +89,7 @@ client.connect()
                 const { authorization } = req.headers 
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
                 const {image, text} = req.body
@@ -103,7 +106,7 @@ client.connect()
             const {authorization} = req.headers
             const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
             const {postId} = req.params
@@ -123,7 +126,7 @@ client.connect()
                 const {authorization} = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
                 const {postId} = req.params
@@ -141,7 +144,7 @@ client.connect()
                 const {authorization} = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
                 retrievePosts(userId)
@@ -157,7 +160,7 @@ client.connect()
                 const {authorization} = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'papi ya tu sabeh')
+                const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
                 const {postId} = req.params
@@ -174,7 +177,7 @@ client.connect()
             const {authorization} = req.headers
             const token = authorization.slice(7)
 
-            const data = jwt.verify(token, 'papi ya tu sabeh')
+            const data = jwt.verify(token, JWT_SECRET)
             const userId = data.sub
 
             const {image, text} = req.body
@@ -189,5 +192,5 @@ client.connect()
             }
         })
 
-        api.listen(9000, ()=> console.log('Servidor lanzado en localhost 9000'))
+        api.listen(PORT, ()=> console.log('Servidor lanzado en localhost 9000'))
     })

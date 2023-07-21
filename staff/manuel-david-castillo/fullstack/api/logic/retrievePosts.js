@@ -27,12 +27,7 @@ function retrievePosts(userId) {
                 return post.toString()
             })
 
-           if(!favPosts.includes(post.id)) {
-            post.fav = false
-           } else if (favPosts.includes(post.id)) {
-            post.fav = true
-           }
-           
+           post.fav = favPosts.includes(post.id)
         });
         return posts
     })}
