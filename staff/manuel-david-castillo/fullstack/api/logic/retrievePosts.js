@@ -1,13 +1,12 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
+const {User, Post} = require('../data/models')
 const {validateId} = require('./helpers/validators')
 
 function retrievePosts(userId) {
     validateId(userId)
 
     return Promise.all([context.posts.find().sort({date: -1}).toArray(),
-             context.users.find().toArray(), 
-             context.users.findOne({_id: new ObjectId(userId)})])
+             User.find().toArray(), 
+             User.findById(userId)])
     .then(([posts, users, user])=>{
         if(!user) throw new Error('user not found')
         posts.forEach(post => {

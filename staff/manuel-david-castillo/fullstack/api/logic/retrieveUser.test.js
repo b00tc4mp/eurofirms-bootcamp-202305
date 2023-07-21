@@ -1,26 +1,10 @@
+require('dotenv').config()
 const retrieveUser = require('./retrieveUser')
-const mongodb = require('mongodb')
-const context = require('./context')
+const mongoose = require('mongoose')
+const {MONGODB_URL} = process.env
 
-const { MongoClient } = mongodb
-
-const client = new MongoClient("mongodb://127.0.0.1:27017")
-
-client.connect()
-    .then(connection => {
-        const db = connection.db('data')
-
-        const users = db.collection('users')
-
-        context.users = users
-
-        try {
-            return retrieveUser('649da1a35792d969ba2738cb')
-            .then(user => console.log('user retrieve', user))
-            .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-    })
+mongoose.connect(`${MONGODB_URL}/test`)
+    .then(() => retrieveUser('649da15f5792d969ba2738ca'))
+    .then((user) => console.log(user))
     .catch(error => console.error(error))
-    .finally(() => client.close())
+    .finally(() => mongoose.disconnect())

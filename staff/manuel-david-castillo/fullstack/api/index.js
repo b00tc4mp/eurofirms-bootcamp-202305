@@ -1,13 +1,10 @@
 require('dotenv').config()
-const {MONGODB_URL, PORT, JWT_SECRET} = process.env 
 
 const express = require('express') 
-const mongodb = require('mongodb')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
-
-const context =  require('./logic/context')
+const mongoose = require('mongoose')
 
 const authenticateUser = require('./logic/authenticatedUser')
 const createPost = require('./logic/createPost')
@@ -19,24 +16,15 @@ const retrievePosts = require('./logic/retrievePosts')
 const toggleFavPost = require('./logic/toggleFavPost')
 const updatePost = require('./logic/updatePost')
 
-const {MongoClient} = mongodb
+const {MONGODB_URL, PORT, JWT_SECRET} = process.env 
 
-const client = new MongoClient(MONGODB_URL)
-
-client.connect()
-    .then((connection)=>{
-        context.users = connection.db('data').collection('users')
-        context.posts = connection.db('data').collection('posts')
-
+mongoose.connect(`${MONGODB_URL}/data`)
+    .then(()=>{
         const api = express()
 
         const jsonBodyParser = bodyParser.json()
 
         api.use(cors())
-
-        api.get('/', (req, res) => {
-            res.send('hola mundo')
-        })
 
         api.post('/users/auth', jsonBodyParser, (req, res) => {
             try {
