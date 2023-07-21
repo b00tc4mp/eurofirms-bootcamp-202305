@@ -4,6 +4,8 @@
 
 TODO explain your project in a paragraph or two
 
+![](https://i.giphy.com/media/ZciYhNqc9iFtC0yUTS/giphy.webp)
+
 ## Functional Description
 
 ### Use Cases
