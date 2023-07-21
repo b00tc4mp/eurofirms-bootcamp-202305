@@ -1,19 +1,16 @@
-function retrieveUser(token) {
+function toggleFavPost(token, postId) {
     if (typeof token !== 'string') throw new Error('token is not a string')
+    if (typeof postId !== 'string') throw new Error('postId is not a string')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/favs`, {
+        method: 'PUT',
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
         .then(res => {
-            if (res.status === 200)
-                return res.json()
-                    .then(body => {
-                        const user = body
-
-                        return user
-                    })
+            if (res.status === 204)
+                return
             else if (res.status === 400)
                 return res.json()
                     .then(body => {
@@ -26,4 +23,4 @@ function retrieveUser(token) {
         })
 }
 
-export default retrieveUser
+export default toggleFavPost

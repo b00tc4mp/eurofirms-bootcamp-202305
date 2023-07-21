@@ -1,21 +1,11 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
 const { validateId } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
 function retrievePost(userId, postId) {
     validateId(userId)
     validateId(postId)
 
-    // steps
-    // - find user by id and validate it exists
-    // - find post by id and validate it exists
-    // - validate user is author of post
-    // - sanitize and return post
-
-    const userObjectId = new ObjectId(userId)
-    const postObjectId = new ObjectId(postId)
-
-    return Promise.all([context.users.findOne({ _id: userObjectId }), context.posts.findOne({ _id: postObjectId })])
+    return Promise.all([User.findById(userId).lean(), Post.findById(postId, '-date -__v').lean()])
         .then(([user, post]) => {
             if (!user) throw new Error('user not found')
             if (!post) throw new Error('post not found')
@@ -24,7 +14,6 @@ function retrievePost(userId, postId) {
 
             delete post._id
             delete post.author
-            delete post.date
 
             return post
         })

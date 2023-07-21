@@ -20,5 +20,9 @@ function registerUser(name, email, password) {
 
                         throw new Error(message)
                     })
+            else
+                throw new Error('server error')
         })
 }
+
+export default registerUser

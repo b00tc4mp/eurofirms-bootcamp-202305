@@ -16,6 +16,8 @@ function retrievePosts(token) {
 
                         throw new Error(message)
                     })
+            else
+                throw new Error('server error')
         })
 }
 

@@ -1,3 +1,5 @@
+import registerUser from '../../logic/registerUser'
+
 function Register(props) {
     console.log('Register -> render')
 

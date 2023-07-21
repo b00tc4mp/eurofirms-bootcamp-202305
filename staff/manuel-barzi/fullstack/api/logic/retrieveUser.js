@@ -1,18 +1,14 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
 const { validateId } = require('./helpers/validators')
+const { User } = require('../data')
 
 function retrieveUser(userId) {
     validateId(userId)
 
-    return context.users.findOne({ _id: new ObjectId(userId) })
+    return User.findById(userId, '-password -__v  -favs').lean()
         .then(user => {
             if (!user) throw new Error('user not found')
 
-            // sanitize
-
             delete user._id
-            delete user.password
 
             return user
         })

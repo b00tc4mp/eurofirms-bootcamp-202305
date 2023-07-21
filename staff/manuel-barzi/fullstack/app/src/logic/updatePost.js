@@ -22,6 +22,8 @@ function updatePost(token, postId, image, text) {
 
                         throw new Error(message)
                     })
+            else
+                throw new Error('server error')
         })
 }
 

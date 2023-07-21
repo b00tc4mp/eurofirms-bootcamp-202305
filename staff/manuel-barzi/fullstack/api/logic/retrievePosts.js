@@ -1,32 +1,33 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
 const { validateId } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
 function retrievePosts(userId) {
     validateId(userId)
 
-    const userObjectId = new ObjectId(userId)
-
-    return context.users.findOne({ _id: userObjectId })
+    return User.findById(userId)
         .then(user => {
             if (!user) throw new Error('user not found')
 
-            return Promise.all([context.posts.find().sort({ date: -1 }).toArray(), context.users.find().toArray()])
-        })
-        .then(([posts, users]) => {
-            posts.forEach(post => {
-                post.id = post._id.toString()
-                delete post._id
+            //return Post.find({}, '-__v').populate('author', '-email -password -favs -__v').lean()
+            return Post.find({}, '-__v').populate('author', 'name').lean()
+                .then(posts => {
+                    // sanitize
+                    posts.forEach(post => {
+                        post.id = post._id.toString()
+                        delete post._id
 
-                const user = users.find(user => user._id.toString() === post.author.toString())
+                        const { author } = post
 
-                post.author = {
-                    id: user._id.toString(),
-                    name: user.name
-                }
-            })
+                        if (author._id) {
+                            author.id = author._id.toString()
+                            delete author._id
+                        }
 
-            return posts
+                        post.fav = user.favs.some(fav => fav.toString() === post.id)
+                    })
+
+                    return posts
+                })
         })
 }
 

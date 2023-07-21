@@ -18,6 +18,8 @@ function deletePost(token, postId) {
 
                         throw new Error(message)
                     })
+            else
+                throw new Error('server error')
         })
 }
 

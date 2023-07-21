@@ -6,6 +6,7 @@ import retrievePosts from '../../logic/retrievePosts'
 import CreatePostModal from '../modals/CreatePostModal'
 import EditPostModal from '../modals/EditPostModal'
 import DeletePostModal from '../modals/DeletePostModal'
+import toggleFavPost from '../../logic/toggleFavPost'
 
 function Home({ onLoggedOut }) {
     console.log('Home -> render')
@@ -105,7 +106,14 @@ function Home({ onLoggedOut }) {
     }
 
     const handleTogglePostClick = postId => {
-        // TODO implement me
+        try {
+            toggleFavPost(context.token, postId)
+                .then(() => retrievePosts(context.token))
+                .then(posts => setPosts(posts))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
     }
 
     const userId = extractUserIdFromToken(context.token)
@@ -133,7 +141,7 @@ function Home({ onLoggedOut }) {
                         <button onClick={() => handleDeletePostClick(post.id)}>Delete</button>
                     </>}
 
-                    <button onClick={() => handleTogglePostClick(post.id)}>Save</button>
+                    <button onClick={() => handleTogglePostClick(post.id)}>{post.fav ? 'Unsave' : 'Save'}</button>
                 </article>)}
             </section>
         </main>
