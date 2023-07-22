@@ -1,16 +1,14 @@
 /**
- * The `updatePost` function updates a post with a new image and text, after validating the user and
- * post.
- * @param userId - The `userId` parameter is the ID of the user who is updating the post.
- * @param postId - The `postId` parameter is the unique identifier of the post that needs to be
- * updated.
- * @param image - The image parameter is the URL of the new image that you want to update for the post.
- * @param text - The `text` parameter is the new text content that you want to update for the post.
- * @returns The `updatePost` function is returning a Promise.
+ * The `updatePost` function updates the image and text of a post, given the user ID, post ID, image
+ * URL, and text.
+ * @param userId - The ID of the user who is updating the post.
+ * @param postId - The postId parameter is the unique identifier of the post that needs to be updated.
+ * @param image - The `image` parameter is the URL of the image that will be updated for the post.
+ * @param text - The `text` parameter is a string that represents the updated text content of the post.
+ * @returns The function `updatePost` is returning a Promise.
  */
-const context = require('./context')
-const { ObjectId } = require('mongodb')
 const { validateId, validateUrl, validateText } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
 function updatePost(userId, postId, image, text) {
     validateId(userId)
@@ -18,23 +16,17 @@ function updatePost(userId, postId, image, text) {
     validateUrl(image)
     validateText(text)
 
-    // steps
-    // - find user by id and validate it exists
-    // - find post by id and validate it exists
-    // - validate user is author of post
-    // - update post with new image and text
-
-    const userObjectId = new ObjectId(userId)
-    const postObjectId = new ObjectId(postId)
-
-    return Promise.all([context.users.findOne({ _id: userObjectId }), context.posts.findOne({ _id: postObjectId })])
+    return Promise.all([User.findById(userId).lean(), Post.findById(postId)])
         .then(([user, post]) => {
-            if (!user) throw new Error('user not found')
-            if (!post) throw new Error('post not found')
+            if (!user) throw new Error('user not found!')
+            if (!post) throw new Error('post not found!')
 
-            if (post.author.toString() !== userId) throw new Error('post does not belong to user')
+            if (post.author.toString() !== userId) throw new Error('post does not belong to user!')
 
-            return context.posts.updateOne({ _id: postObjectId }, { $set: { image, text } })
+            post.image = image
+            post.text = text
+
+            return post.save()
         })
         .then(() => { })
 }
