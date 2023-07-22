@@ -178,11 +178,13 @@ width: 100%;
 .home-header {
   grid-column: 1/2;
   grid-row: 1/2;
+  margin-top: 1rem;
 }
 
 .home-view {
   grid-column: 1/2;
   grid-row: 2/3;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

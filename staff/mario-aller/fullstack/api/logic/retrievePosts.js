@@ -24,6 +24,8 @@ function retrievePosts(userId) {
             const post2 = {}
             post2.id = post._id.toString()
             post2.author = { id: post.author._id.toString(), name: post.author.name }
+            post2.image = post.image
+            post2.text = post.text
 
             if (favs.some(id => id === post2.id))
                 post2.fav = true
