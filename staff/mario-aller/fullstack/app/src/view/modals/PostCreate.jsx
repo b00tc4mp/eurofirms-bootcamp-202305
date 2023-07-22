@@ -1,4 +1,4 @@
-import { createPost} from '../../logic/post-ctrl'
+import { createPost } from '../../logic/post-ctrl'
 import context from '../../context'
 
 export function PostCreate({ onCreatedPost, onExitModal }) {

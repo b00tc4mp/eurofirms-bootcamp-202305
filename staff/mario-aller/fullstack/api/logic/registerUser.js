@@ -1,5 +1,5 @@
-const context = require('./context')
-const { validateString } = require('./helpers/validators')
+const { User }= require('../data')
+const { validateString } = require('./helpers')
 
 /**
  * La función `registerUser` toma un nombre, correo electrónico y contraseña, los valida, verifica si el usuario ya existe e inserta el usuario en una base de datos si no existe.
@@ -13,11 +13,11 @@ function registerUser(name, email, password) {
     validateString(email, validateString.EMAIL)
     validateString(password, validateString.PASSWORD)
 
-    return context.users.findOne({ email })
+    return User.findOne({ email },'_id').lean()
         .then((user) => {
             if (user) throw new Error('El usuario ya existe')
 
-            return context.users.insertOne({ name, email, password })
+            return User.create({ name, email, password })
         })
         .then(() => { })
 }

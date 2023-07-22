@@ -1,32 +1,30 @@
-const mongodb = require('mongodb')
+require('dotenv').config()
+
+const mongoose = require('mongoose')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
+const {
+    authenticateUser,
+    createPost,
+    deletePost,
+    registerUser,
+    retrievePost,
+    retrievePosts,
+    retrieveUser,
+    toggleFavPost,
+    updatePost
+} = require('./logic')
 
-const context = require('./logic/context')
-
-const registerUser = require('./logic/registerUser')
-const authenticateUser = require('./logic/authenticateUser')
-const retrieveUser = require('./logic/retrieveUser')
-const createPost = require('./logic/createPost')
-const updatePost = require('./logic/updatePost')
-const retrievePost = require('./logic/retrievePost')
-const retrievePosts = require('./logic/retrievePosts')
-const deletePost = require('./logic/deletePost')
-const toggleFavPost = require('./logic/toggleFavPost')
-
-const { MongoClient } = mongodb
-const client = new MongoClient('mongodb://127.0.0.1:27017')
 const api = express()
 const jsonBodyParser = bodyParser.json()
+const { PORT, JWT_SECRET, MONGOOSE_URL } = process.env
 
-client.connect()
-    .then(connection => {
-        context.users = connection.db('data').collection('users')
-        context.posts = connection.db('data').collection('posts')
+mongoose.connect(MONGOOSE_URL)
+    .then(() => {
 
-        // TBD later stage
+        // TBD at later stage
         api.use(cors())
 
         // Conexion con el servidor
@@ -52,7 +50,7 @@ client.connect()
 
                 return authenticateUser(email, password)
                     .then((userId) => {
-                        const token = jwt.sign({ sub: userId }, 'asdfg hola')
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET)
                         res.json(token)
                     })
                     .catch(err => res.status(400).json({ error: err.message, }))
@@ -63,7 +61,7 @@ client.connect()
         api.get('/users', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'asdfg hola').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
 
                 retrieveUser(userId)
                     .then(user => res.json(user))
@@ -75,7 +73,7 @@ client.connect()
         api.post('/posts', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'asdfg hola').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
 
                 const { image, text } = req.body
 
@@ -89,7 +87,7 @@ client.connect()
         api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'asdfg hola').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
                 const { postId } = req.params
                 const { image, text } = req.body
 
@@ -104,7 +102,7 @@ client.connect()
         api.get('/posts/:postId', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'asdfg hola').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
                 const { postId } = req.params
 
                 retrievePost(userId, postId)
@@ -117,7 +115,7 @@ client.connect()
         api.get('/posts', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'asdfg hola').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
 
                 retrievePosts(userId)
                     .then(posts => res.json(posts))
@@ -129,7 +127,7 @@ client.connect()
         api.delete('/posts/:postId', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'asdfg hola').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
                 const { postId } = req.params
 
                 deletePost(userId, postId)
@@ -142,14 +140,14 @@ client.connect()
         api.put('/posts/:postId/fav', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'asdfg hola').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
                 const { postId } = req.params
 
                 toggleFavPost(userId, postId)
-                    .then(() => res.send())
+                    .then(() => res.status(204).send())
                     .catch(err => res.status(400).json({ error: err.message }))
             } catch (err) { res.status(400).json({ error: err.message }) }
         })
 
-        api.listen(9000, () => console.log('API funcionando en 9000...'))
+        api.listen(PORT, () => console.log('API funcionando en 9000...'))
     })

@@ -1,5 +1,5 @@
-const context = require('./context')
-const { validateString } = require('./helpers/validators')
+const { User } = require('../data')
+const { validateString } = require('./helpers')
 
 /**
  * La función `authenticateUser` toma un correo electrónico y una contraseña como parámetros, los valida y luego verifica si el usuario existe y si la contraseña es correcta antes de devolver la identificación del usuario.
@@ -11,7 +11,7 @@ function authenticateUser(email, password) {
     validateString(email, validateString.EMAIL)
     validateString(password, validateString.PASSWORD)
 
-    return context.users.findOne({ email })
+    return User.findOne({ email }, 'password').lean()
         .then((user) => {
             if (!user) throw new Error('El usuario no existe')
             if (user.password !== password) throw new Error('Clave incorrecta')

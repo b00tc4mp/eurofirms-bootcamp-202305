@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { retrievePost, updatePost} from '../../logic/post-ctrl'
+import { retrievePost, updatePost } from '../../logic/post-ctrl'
 import context from '../../context'
 
 export function PostEdit({ onUpdatedPost, onExitModal, idPost }) {

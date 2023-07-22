@@ -123,7 +123,7 @@ export const toggleFavPost = function (token, postId) {
         headers: { Authorization: `Bearer ${token}` }
     })
         .then(res => {
-            if (res.status === 200) return
+            if (res.status === 204) return
             else return res.json().then(body => { throw new Error(body.error) })
         })
 }

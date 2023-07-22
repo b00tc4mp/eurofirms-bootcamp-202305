@@ -1,6 +1,5 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
-const { validateString } = require('./helpers/validators')
+const { User } = require('../data')
+const { validateString } = require('./helpers')
 
 /**
  * La función recupera un usuario de una base de datos por su ID, elimina la información confidencial y devuelve el objeto de usuario.
@@ -10,12 +9,10 @@ const { validateString } = require('./helpers/validators')
 function retrieveUser(id) {
     validateString(id)
 
-    return context.users.findOne({ "_id": new ObjectId(id) })
+    return User.findById(id,'name -_id').lean()
         .then((user) => {
             if (!user) throw new Error('El usuario no existe')
 
-            delete user.password
-            delete user._id
             return user
         })
 }

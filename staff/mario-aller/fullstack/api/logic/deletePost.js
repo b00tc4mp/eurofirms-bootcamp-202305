@@ -1,6 +1,6 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
-const { validateString } = require('./helpers/validators')
+const { User, Post } = require('../data')
+const { validateString } = require('./helpers')
+
 
 /**
  * La función `deletePost` elimina una publicación de la base de datos si el usuario es el autor de la publicación.
@@ -12,16 +12,13 @@ function deletePost(userId, postId) {
     validateString(userId)
     validateString(postId)
 
-
-    const _userId = new ObjectId(userId)
-    const _postId = new ObjectId(postId)
-    return Promise.all([context.users.findOne({ _id: _userId }), context.posts.findOne({ _id: _postId })])
+    return Promise.all([User.findById(userId,'_id').lean(), Post.findById(postId,'author').lean()])
         .then(([user, post]) => {
             if (!user) throw new Error('Usuario no válido')
             if (!post) throw new Error('Post no válido')
             if (post.author.toString() !== userId) throw new Error('¡Sólo puede borrar sus posts!')
 
-            return context.posts.deleteOne({ _id: _postId })
+            return Post.deleteOne({ _id: post._id })
         })
         .then(() => { })
 }

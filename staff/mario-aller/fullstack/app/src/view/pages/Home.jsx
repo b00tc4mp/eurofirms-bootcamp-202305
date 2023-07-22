@@ -54,12 +54,12 @@ function Home({ onLogout }) {
     }
     const handleToggleFavPost = (idPost) => {
         try {
-            toggleFavPost(context.tokenUser,idPost)
+            toggleFavPost(context.tokenUser, idPost)
                 .then(() => handleRefreshPostsExitModal())
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
     }
-    
+
     const userId = JSON.parse(atob(context.tokenUser.split('.')[1])).sub
 
     return (
@@ -73,7 +73,7 @@ function Home({ onLogout }) {
             <main className="home-view">
                 <section className="posts-list basic-container">
                     {posts && posts.map(post => <article className="post-item" key={post.id}>
-                        <button className="post-item-fav" type="button" onClick={() => handleToggleFavPost(post.id)}>{post.fav ? '💖' : '🧡'}</button>
+                        <button className="post-item-fav" type="button" onClick={() => handleToggleFavPost(post.id)}>{post.fav ? '💖' : '📦'}</button>
                         <img className="post-item-image" src={post.image} alt="Foto de Post" />
                         <p className="post-item-text">{post.text}</p>
                         <p className="post-item-user">{post.author.name}</p>

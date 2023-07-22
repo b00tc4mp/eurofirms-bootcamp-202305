@@ -1,7 +1,5 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
-const { validateString } = require('./helpers/validators')
-
+const { User, Post } = require('../data')
+const { validateString } = require('./helpers')
 
 /**
  * La función `updatePost` actualiza una publicación con el `postId` dado al validar el usuario y la publicación, y luego actualiza los campos `texto`, `imagen` y `fecha` de la publicación.
@@ -17,16 +15,17 @@ function updatePost(userId, postId, image, text) {
     validateString(text, validateString.NAME)
     validateString(image, validateString.URL)
 
-    const _userId = new ObjectId(userId)
-    const _postId = new ObjectId(postId)
-    return Promise.all([context.users.findOne({ _id: _userId }), context.posts.findOne({ _id: _postId })])
+    return Promise.all([User.findById(userId, '_id').lean(), Post.findById(postId)])
         .then(([user, post]) => {
             if (!user) throw new Error('Usuario no válido')
             if (!post) throw new Error('Post no válido')
             if (post.author.toString() !== userId) throw new Error('¡Sólo puede modificar sus posts!')
 
             const date = new Date()
-            return context.posts.updateOne({ _id: _postId }, { $set: { image, text, date } })
+            post.image = image
+            post.text = text
+            post.date = date
+            return post.save()
         })
         .then(() => { })
 }

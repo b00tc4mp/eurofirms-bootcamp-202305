@@ -18,18 +18,22 @@ function retrievePosts(userId) {
             else
                 favs = user.favs.map(_id => _id.toString())
 
-            return Post.find({}, '-__v').populate('author', 'name').sort('-date').lean()
+            return Post.find().populate('author', '_id name').sort('-date').lean()
         })
         .then(posts => posts.map(post => {
-            const post2 = {}
-            post2.id = post._id.toString()
-            post2.author = { id: post.author._id.toString(), name: post.author.name }
+            console.log(post)
+            post.id = post._id.toString()
+            delete post._id
 
-            if (favs.some(id => id === post2.id))
-                post2.fav = true
+            post.author.id = post.author._id.toString()
+
+            // delete post.author._id
+
+            if (favs.some(id => id === post.id))
+                post.fav = true
             else
-                post2.fav = false
-            return post2
+                post.fav = false
+            return post
         }))
 }
 module.exports = retrievePosts

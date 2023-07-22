@@ -1,6 +1,5 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
-const { validateString } = require('./helpers/validators')
+const { User, Post } = require('../data')
+const { validateString } = require('./helpers')
 
 /**
  * La función crea una nueva publicación validando los parámetros de entrada e insertando la publicación en la base de datos.
@@ -11,14 +10,14 @@ const { validateString } = require('./helpers/validators')
  */
 function createPost(authorId, image, text) {
     validateString(authorId)
-    validateString(text, validateString.NAME)
     validateString(image, validateString.URL)
-
-    return context.users.findOne({ _id: new ObjectId(authorId) })
+    validateString(text, validateString.NAME)
+    
+    return User.findById(authorId,'_id').lean()
         .then((user) => {
             if (!user) throw new Error('El usuario no existe')
 
-            return context.posts.insertOne({ author: user._id, image, text, date: new Date() })
+            return Post.create({ author: user._id, image, text })
         })
         .then(() => { })
 }

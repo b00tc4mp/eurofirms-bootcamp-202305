@@ -1,20 +1,9 @@
-const context = require('./context')
-const mongodb = require('mongodb')
+require('dotenv').config()
+const mongoose = require('mongoose')
 const authenticateUser = require('./authenticateUser')
 
-const { MongoClient } = mongodb
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-    .then(connection => {
-        context.users = connection.db('data').collection('users')
-        try {
-            return authenticateUser('beatles2@yah.com', '123')
-                .then((userId) => console.log(userId))
-        } catch (err) { console.error(err) }
-    })
-    .catch(err => console.error(err))
-    .finally(() => {
-        context.users = null
-        client.close()
-    })
+mongoose.connect(process.env.MONGOOSE_URL_TEST)
+    .then(() => authenticateUser('gollum@eriador.com', 'tesoro'))
+    .then((userId) => console.log(userId))
+    .catch(error => console.error(error))
+    .finally(() => mongoose.disconnect())
