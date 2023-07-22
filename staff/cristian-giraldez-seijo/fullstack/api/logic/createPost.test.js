@@ -1,26 +1,10 @@
-/* The code is establishing a connection to a MongoDB database and creating a new post using the
-`createPost` function. */
-const context = require('./context')
-const mongodb = require('mongodb')
+require('dotenv').config()
+
 const createPost = require('./createPost')
-const { MongoClient } = mongodb
-const client = new MongoClient('mongodb://127.0.0.1:27017')
+const mongoose = require('mongoose')
 
-client.connect()
-    .then(connection => {
-        const db = connection.db('data')
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-        context.users = users
-        context.posts = posts
-
-        try {
-            return createPost('649da70890d9f163cdc8b060', 'https://img2.rtve.es/i/?w=1600&i=1565264925747.jpg', 'Abbey Road')
-                .then(() => console.log('New Post Created!'))
-                .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-    })
-    .catch(error=>console.error(error))
-    .finally(()=>client.close())
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
+    .then(() => createPost('64baaad8863d87a1a2c2747b', 'http://image.com/123', 'hola mundo'))
+    .then(() => console.log('Post Created!'))
+    .catch(error => console.error(error))
+    .finally(() => mongoose.disconnect())

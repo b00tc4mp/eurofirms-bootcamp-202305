@@ -1,26 +1,28 @@
 /**
- * The function `createPost` takes in a user ID, an image URL, and text as parameters, validates the
- * input, and creates a new post in the database with the provided information.
- * @param userId - The userId parameter is the unique identifier of the user who is creating the post.
- * @param image - The `image` parameter is a string that represents the URL of an image.
- * @param text - The `text` parameter is a string that represents the content of the post.
+ * The `createPost` function creates a new post by validating the user ID, image URL, and text, and
+ * then creating a new post with the provided information.
+ * @param userId - The userId parameter is the ID of the user who is creating the post.
+ * @param image - The `image` parameter is the URL of the image that will be associated with the post.
+ * @param text - The `text` parameter is a string that represents the text content of the post.
  * @returns The function `createPost` is returning a promise.
  */
-const context = require('./context')
-const { validateEmail, validatePassword, validateId, validateUrl, validateText } = require('./helpers/validators')
-const mongodb = require('mongodb')
-const { ObjectId } = mongodb
+const { validateId, validateUrl, validateText } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
 function createPost(userId, image, text) {
 
     validateId(userId)
+
     validateUrl(image)
+
     validateText(text)
-    return context.users.findOne({ _id: new ObjectId(userId) })
+
+    return User.findById(userId)
         .then(user => {
             if (!user) throw new Error('User not found!')
-            return context.posts.insertOne({ author: user._id, image, text, date: new Date() })
+            return Post.create({ author: user.id, image, text })
         })
         .then(() => { })
 }
+
 module.exports = createPost
