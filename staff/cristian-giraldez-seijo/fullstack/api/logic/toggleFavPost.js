@@ -1,16 +1,19 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
+/**
+ * The `toggleFavPost` function toggles the favorite status of a post for a given user.
+ * @param userId - The `userId` parameter is the ID of the user for whom we want to toggle the favorite
+ * status of a post.
+ * @param postId - The postId parameter is the unique identifier of a post. It is used to find the post
+ * in the database and toggle its favorite status for a specific user.
+ * @returns The function `toggleFavPost` is returning a Promise.
+ */
 const { validateId } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
 function toggleFavPost(userId, postId) {
     validateId(userId)
     validateId(postId)
 
-
-    const userObjectId = new ObjectId(userId)
-    const postObjectId = new ObjectId(postId)
-
-    return Promise.all([context.users.findOne({ _id: userObjectId }), context.posts.findOne({ _id: postObjectId })])
+    return Promise.all([User.findById(userId), Post.findById(postId).lean()])
         .then(([user, post]) => {
             if (!user) throw new Error('user not found')
             if (!post) throw new Error('post not found')
@@ -19,14 +22,14 @@ function toggleFavPost(userId, postId) {
                 user.favs = []
             }
 
-            const index = user.favs.findIndex(mongoPostId => mongoPostId.toString() === postId)
-console.log(index)
-            if (index === -1) user.favs.push(postObjectId)
-            else user.favs.splice(index, 1)
+            const index = user.favs.findIndex(fav => fav.toString() === postId)
+            if (index < 0)
+                user.favs.push(postId)
+            else
+                user.favs.splice(index, 1)
 
-            return context.users.updateOne({ _id: new ObjectId(userId) }, { $set: { favs: user.favs } })
+            return user.save()
         })
-        .then(() => { })
 }
 
 module.exports = toggleFavPost
