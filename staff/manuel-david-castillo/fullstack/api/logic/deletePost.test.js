@@ -1,28 +1,11 @@
+require('dotenv').config()
 const deletePost = require('./deletePost')
-const mongodb = require('mongodb')
-const context = require('./context')
+const mongoose = require('mongoose')
 
-const {MongoClient} = mongodb
+const {MONGODB_URL} = process.env
 
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-    .then(connection => {
-        const db = connection.db('data')
-
-        const posts = db.collection('posts')
-        const users = db.collection('users')
-
-        context.posts = posts
-        context.users = users
-
-        try {
-            return deletePost('649da1a35792d969ba2738cb', '64a41d7d2eea54655b4106a5')
-            .then(()=> console.log('delete post'))
-            .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-    })
+mongoose.connect(`${MONGODB_URL}/test`)
+    .then(() => deletePost('64ba8ba842cda8317c8989d8', '64baa31a5cc41ed40a81ff3a'))
+    .then(() => console.log('post deleted'))
     .catch(error => console.error(error))
-    .finally(()=> client.close())
+    .finally(()=> mongoose.disconnect())

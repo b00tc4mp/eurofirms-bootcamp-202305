@@ -1,5 +1,4 @@
-const context = require('./context')
-const {ObjectId} = require('mongodb')
+const {User, Post} = require('../data/models')
 const {validateId, validateUrl, validateText} = require('./helpers/validators')
 
 function updatePost(userId, postId, image, text){
@@ -8,29 +7,19 @@ function updatePost(userId, postId, image, text){
     validateUrl(image)
     validateText(text)
 
-    return context.users.findOne({_id: new ObjectId(userId)})
-    .then((user)=>{
-        if(!user) throw new Error('user not found')
-
-        return Promise.all([ context.posts.findOne({_id: new ObjectId(postId)}), 
-            context.users.findOne({_id: new ObjectId(userId)})])
-    })
-    .then(([post, user])=>{
+    return Promise.all([User.findById(userId).lean(), Post.findById(postId)])
+    .then(([user, post])=>{
         if(!post) throw new Error ('post not found')
         if(!user) throw new Error ('user not found')
 
-        const author = post.author.toString()
-        const userId = user._id.toString()
+        if(post.author.toString() !== userId) throw new Error('userId and author of post is different')
 
-        if(author !== userId) throw new Error('userId and author of post is different')
-
-        const mongoPostId = post._id
+        post.image = image
+        post.text = text
         
-        return context.posts.updateOne({ _id: mongoPostId }, { $set: { image, text }});
+        return post.save() 
     })
-    .then(()=>{
-        return context.posts.findOne({_id: new ObjectId(postId)})
-    })
+    .then(()=>{ })
 }
 
 module.exports = updatePost

@@ -1,24 +1,14 @@
+require('dotenv').config()
+
 const updatePost = require('./updatePost')
-const mongodb = require('mongodb')
-const context = require('./context')
+const mongoose = require('mongoose')
 
-const {MongoClient} = mongodb
+const {MONGODB_URL} = process.env 
 
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-.then(connection => {
-        context.users = connection.db('data').collection('users')
-        context.posts = connection.db('data').collection('posts')
-
-        try {
-            return updatePost('649da1a35792d969ba2738cb', '649dab7319739c7723631958',
-                'https://cl.buscafs.com/www.levelup.com/public/uploads/images/498938_1140x516.jpg', 'Ricknillo' )
-                .then(post => console.log(post))
-                .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-    })
+mongoose.connect(`${MONGODB_URL}/test`)
+.then(() => updatePost('64ba8ba842cda8317c8989d8', '64baa7c465624485ca989a65', 
+    'https://hips.hearstapps.com/hmg-prod/images/rick-and-morty-image-1662104014.jpg?crop=0.316xw:0.562xh;0.352xw,0.168xh&resize=980:*',
+    'el nuevo rick'))    
+.then(()=> console.log('post updated'))
 .catch(error => console.error(error))
-.finally(()=> client.close())
+.finally(()=> mongoose.disconnect())
