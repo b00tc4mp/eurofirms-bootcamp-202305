@@ -1,27 +1,29 @@
 /**
- * The `deletePost` function deletes a post from the database if the post exists and belongs to the
- * specified user.
- * @param postId - The postId parameter is the unique identifier of the post that needs to be deleted.
+ * The `deletePost` function deletes a post by its ID, after validating the user and post IDs and
+ * checking if the post belongs to the user.
  * @param userId - The `userId` parameter is the unique identifier of the user who wants to delete the
  * post.
- * @returns The function `deletePost` is returning a Promise.
+ * @param postId - The `postId` parameter is the unique identifier of the post that needs to be
+ * deleted.
+ * @returns The `deletePost` function is returning a Promise.
  */
-const context = require('./context')
-const { validateEmail, validatePassword, validateId, validateUrl, validateText } = require('./helpers/validators')
-const mongodb = require('mongodb')
-const { ObjectId } = mongodb
+const { validateId } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
 function deletePost(userId, postId) {
     validateId(userId)
     validateId(postId)
 
-    return Promise.all([context.users.findOne({ _id: new ObjectId(userId) }), context.posts.findOne({ _id: new ObjectId(postId) })])
+    return Promise.all([User.findById(userId).lean(), Post.findById(postId).lean()])
         .then(([user, post]) => {
-            if (!user) throw new Error('User not found!')
-            if (!post) throw new Error('Post not found!')
-            if (post.author.toString() !== userId) throw new Error('Post does not belong to user!')
-            return context.posts.deleteOne({ _id: new ObjectId(postId) })
+            if (!user) throw new Error('user not found')
+            if (!post) throw new Error('post not found')
+
+            if (post.author.toString() !== userId) throw new Error('post does not belong to user')
+
+            return Post.deleteOne({ _id: post._id })
         })
         .then(() => { })
 }
+
 module.exports = deletePost

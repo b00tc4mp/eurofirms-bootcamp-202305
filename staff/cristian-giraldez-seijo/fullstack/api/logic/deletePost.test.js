@@ -1,25 +1,10 @@
-/* The code is setting up a connection to a MongoDB database and configuring the context object.*/
-const context = require('./context')
-const mongodb = require('mongodb')
+require('dotenv').config()
+
 const deletePost = require('./deletePost')
-const { MongoClient } = mongodb
-const client = new MongoClient('mongodb://127.0.0.1:27017')
+const mongoose = require('mongoose')
 
-client.connect()
-    .then(connection => {
-        const db = connection.db('data')
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-        context.users = users
-        context.posts = posts
-
-        try {
-            return deletePost('64a56cdcf8239e0dc5621277', '649da70890d9f163cdc8b060')
-                .then(() => console.log('Post deleted!'))
-                .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-    })
-    .catch(error => console.error(error))
-    .finally(() => client.close())
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
+.then(() => deletePost('64baaad8863d87a1a2c2747b', '64bc07725c067a513ca3e41d'))
+.then(() => console.log('post deleted'))
+.catch(error => console.error(error))
+.finally(() => mongoose.disconnect())
