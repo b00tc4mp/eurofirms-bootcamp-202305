@@ -1,24 +1,22 @@
-function Home(props) {
+import { useState, useEffect } from 'react'
+import context from '../../context'
+import retrieveUser from "../../logic/retrieveUser"
+import retrievePosts from "../../logic/retrievePosts"
+import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
+import CreatePostModal from '../modals/CreatePostModal'
+import EditPostModal from '../modals/EditPostModal'
+import DeletePostModal from '../modals/DeletePostModal'
+
+function Home({onLoggedOut}) {
     console.log('Home ->render')
 
-    const modalState = React.useState(null) // Create empty modal to click
-    const modal = modalState[0]
-    const setModal = modalState[1] // For change moodal  
-
-    const userState = React.useState()
-    const user = userState[0]
-    const setUser = userState[1]
-
-    const postIdState = React.useState(null)
-    const postId = postIdState[0]
-    const setPostId = postIdState[1]
-
-    const postsState = React.useState(null)
-    const posts = postsState[0]
-    const setPosts = postsState[1]
+    const [modal, setModal] = useState(null)
+    const [postId, setPostId] = useState(null)
+    const [user, setUser] = useState(null)
+    const [posts, setPosts] = useState(null)
 
     //Sólo se ejecuta una vez se pinta el Home
-    React.useEffect(() => { //Para efectos secundarios como consecuéncia de llama a una api.
+    useEffect(() => { //Para efectos secundarios como consecuéncia de llama a una api.
         try {
             retrieveUser(context.token)
                 .then(user => setUser(user))
@@ -93,7 +91,7 @@ function Home(props) {
             retrievePosts(context.token)
             .then(posts => {
                 setPosts(posts)
-                setModal(null)
+                setModal(null) //PARA QUE VAYA BIEN EL BORRADO
                 setPostId(null)
             })
             .catch(error => alert(error.message))
@@ -127,6 +125,7 @@ function Home(props) {
                             <button onClick={() => handleDeletePostClick(post.id)}>Delete</button>
                         </>
                         }
+                        <button onClick={() => handleTogglePostClick(post.id)}>{post.fav ?  '♡' : '♥'}</button>
                     </article>)}
                 </section>
             </main>
@@ -143,3 +142,4 @@ function Home(props) {
         </div>
     )
 }
+export default Home

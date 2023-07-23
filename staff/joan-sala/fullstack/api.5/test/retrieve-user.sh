@@ -1,0 +1,1 @@
+curl -v -X GET -H 'Authorization: Bearer 64a5ba503b44fda9c1cd4967' http://localhost:9000/users

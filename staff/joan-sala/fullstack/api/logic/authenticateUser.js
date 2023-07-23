@@ -1,5 +1,5 @@
-const context = require('./context')
 const { validateEmail, validatePassword, validateId }  = require('./helpers/validators')
+const { User } = require('../data')
 
 function authenticateUser(email, password){
     //parte sincrona
@@ -7,13 +7,13 @@ function authenticateUser(email, password){
     validatePassword(password)
 
     //parte asincrona    
-    return context.users.findOne({email})
+    return User.findOne({email})
     .then(user =>{
         if(!user) throw new Error('User not found')
 
         if (user.password !== password) throw new Error('Wrong credentials')
 
-        return user._id.toString()
+        return user.id
     })
 }
 

@@ -1,37 +1,35 @@
-const { ObjectId } = require('mongodb')
-const context = require('./context')
 const { validateId } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
-function retrievePosts(userId){
+function retrievePosts(userId) {
     validateId(userId)
 
-    const {users, posts} = context
+    return User.findById(userId)
+        .then(user => {
+            if (!user) throw new Error('user not found')
 
-    const userObjectId = new ObjectId(userId)
+            //te trae el objeto completo   del usuario relacionado con el post   
+            //return Post.find({}, '-__v').populate('author', '-email -password -favs -__v').lean()
+            return Post.find({}, '-__v').populate('author', 'name').lean()  
+                       
+            .then(posts => {
+            posts.forEach(post => {
+                post.id = post._id.toString()
+                delete post._id
+   
+                const { author } = post
 
-    return context.users.findOne({_id: userObjectId})
-    .then(user=>{
-        if(!user) throw new Error('User not found')
+                if (author._id) {
+                    author.id = author._id.toString()
+                    delete author._id
+                }
 
-        return Promise.all([context.posts.find().sort({date:-1}).toArray(), users.find().toArray()])
-        //el 'sort({date:-1}) es para mostrar el último post el primeroo
-    })
-    .then(([posts, users])=>{
-        posts.forEach(post=>{
-            post.id = post._id.toString()
-            delete post._id
+                post.fav = user.favs.some(fav => fav.toString() === post.id)
+            })
 
-            const userFounded = users.find(user=> user._id.toString() === post.author.toString())
-
-            if(userFounded){
-            post.author = {
-                id: userFounded._id.toString(),
-                name: userFounded.name
-            }
-        }
+            return posts
         })
-
-        return posts
-    })
+})
 }
+
 module.exports = retrievePosts

@@ -1,5 +1,3 @@
-/* Globals */
-
 const context = {
     set token(token) {
         if (token) {
@@ -12,11 +10,8 @@ const context = {
     get token() {
         if (sessionStorage.token)
             return sessionStorage.token
-            //return parseInt(sessionStorage.token)
+            
         return null
     }
 }
-// react initialization
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<App />)
+export default context

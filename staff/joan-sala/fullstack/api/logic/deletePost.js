@@ -1,6 +1,5 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
 const { validateId } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
 function deletePost(userId, postId) {
     validateId(userId)
@@ -9,13 +8,13 @@ function deletePost(userId, postId) {
     const userObjectId = new ObjectId(userId)
     const postObjectId = new ObjectId(postId)
     
-    return Promise.all([context.users.findOne({ _id: userObjectId }), context.posts.findOne({ _id: postObjectId })])
+    return Promise.all([User.findById(userId).lean(), Post.findById(postId).lean()])
         .then(([user, post]) => {
             if (!user) throw new Error('User not found')
             if(!post) throw new Error('Post not found')
 
             if(post.author.toString() !== userId) throw Error('Post does not belong to use')
-            return context.posts.deleteOne({ _id: postObjectId })
+            return Posts.deleteOne({ _id: post._id })
         })
         .then(() => {}) //No devuelve nada
 }

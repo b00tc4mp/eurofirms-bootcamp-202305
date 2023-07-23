@@ -1,31 +1,15 @@
-const mongodb = require('mongodb')
-const context = require('./context')
+require('dotenv').config()
+
 const createPost = require('./createPost')
+const mongoose = require('mongoose')
 
-const { MongoClient } = mongodb
-
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-    .then(connection => {
-        const db = connection.db('data')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        context.users = users
-        context.posts = posts
-
-        try {
-            return createPost('64a537b58b862f64c2596ed2', 'https://images.freeimages.com/images/previews/155/red-starfish-1162380.jpg', 'estrella')
-                .then(() => console.log('Post created'))
-                .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-    })
+mongoose. connect(`${process.env.MONGODB_URL}/test`)
+    .then(() =>  createPost('64b7be7db3a200d40c97c6f6', 'https://images.unsplash.com/photo-1682685797527-63b4e495938f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80', 'watching the sunset'))
+    .then(() => console.log('Post created'))
     .catch(error => console.error(error))
-    .finally(()=>{
-        client.close()
-    })
-    
+    .finally(() => mongoose.disconnect())
+
+
+
+   
+                

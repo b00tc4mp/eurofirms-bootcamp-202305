@@ -1,19 +1,12 @@
-const { ObjectId } = require('mongodb')
-const context = require('./context')
 const { validateId } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
 function retrievePost(userId, postId) {
     validateId(userId)
     validateId(postId)
 
-    const { users, posts } = context
-
-    const userObjectId = new ObjectId(userId)
-    const postObjectId = new ObjectId(postId)
-
     //Búsqueda completa, devuelve una cadena de promesas. DOCUMENTO
-    return Promise.all([users.findOne({ _id: userObjectId }),
-    posts.findOne({ _id: postObjectId })])
+    return Promise.all([User.findById(userId).lean(), Post.findById(postId, '-date -__v').lean()])
         .then(([user, post]) => { //DESTRUCTURAR    
             if (!user) throw new Error('User not found')
             if (!post) throw new Error('Post not found')
@@ -23,8 +16,7 @@ function retrievePost(userId, postId) {
 
             delete post._id
             delete post.author
-            delete post.date
-
+            
             return post
         })
 }
