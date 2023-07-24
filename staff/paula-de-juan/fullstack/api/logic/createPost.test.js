@@ -1,25 +1,20 @@
+require('dotenv').config()
 const createPost = require('./createPost')
-const mongodb = require('mongodb')
-const context = require('./context')
+const mongoose = require('mongoose')
 
-const { MongoClient } = mongodb
+mongoose.connect(`${process.env.MONGODB_URL}/data`)
+    .then(() => {
 
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-    .then(connection => {
+        /* Logica antigua de MONGODB
         const db = connection.db('data')
-
         const users = db.collection('users')
-
         context.users = users
-
         const posts = db.collection('posts')
-
         context.posts = posts
+        */
 
         try {
-            return createPost ('64a53972a7376ccc8e8f1f59', 'https://img2.rtve.es/i/?w=1600&i=1565264925747.jpg', 'Beatles in the street')
+            return createPost ('64bdd85198a00a43b46d04ee', 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Juan_de_Miranda_Carreno_002.jpg', 'Carlos II el Hechizado de los Austrias')
                 .then(() => console.log('post created'))
                 .catch(error => console.error(error))
         } catch (error) {
@@ -27,4 +22,4 @@ client.connect()
         }
     })
     .catch(error => console.error(error))
-    .finally(() => client.close())
+    .finally(() => mongoose.disconnect())
