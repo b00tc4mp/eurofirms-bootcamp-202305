@@ -1,24 +1,22 @@
+require('dotenv').config()
 const retrieveUser = require('./retrieveUser')
-const mongodb = require('mongodb')
-const context = require('./context')
+const mongoose = require('mongoose')
 
-const { MongoClient } = mongodb
-
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-    .then(connection => {
+mongoose.connect(`${process.env.MONGODB_URL}/data`)
+    .then(() => {
+        
+        /* Esto es de mongo de la version antigua ya nada de nada se borra
         const db = connection.db('data')
 
         const users = db.collection('users')
         const posts = db.collection('posts')
 
         context.users = users
-        context.posts = posts
+        context.posts = posts*/
 
-        try{
+        try{ 
             return retrieveUser
-            ('64a1c83fc1092772a1c71c2e')
+            ('64a5b5ad9d5b33a3ba4a28fd')
                 .then(user => console.log('user retrieved', user))
                 .catch(error => console.error(error))
             } catch (error) {
@@ -26,4 +24,4 @@ client.connect()
             }
     })
     .catch(error => console.error(error))
-    .finally(() => client.close())
+    .finally(() => mongoose.disconnect())
