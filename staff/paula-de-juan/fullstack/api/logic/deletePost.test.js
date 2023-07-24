@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const deletePost = require('./deletePost')
 
 
-mongoose.connect(`${process.env.MONGODB_URL}/data`)
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
     .then(() => {
-        try { return deletePost('64a53972a7376ccc8e8f1f59', '64a55846e3767fed249efc23')
+        try { return deletePost('64be36824f741266e8b21174', '64be38b915926f4d4fccec8b')
             .then(() => console.log('post deleted'))
             .catch(error => console.error(error))
         } catch (error){

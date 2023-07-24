@@ -1,5 +1,4 @@
 const { User } = require('../data/models')
-const { ObjectId } = require('mongoose')
 const { validateId } = require('./helpers/validators')
 
 function retrieveUser(userId) {
@@ -7,7 +6,7 @@ function retrieveUser(userId) {
 // Aqui modificamos y buscamos en lugar de con findOne
 // findOne ({ _id: new ObjectId(userId) })
 
-    return User.findById (userId, '-password').lean()
+    return User.findById (userId, '-password -__v').lean()
         .then(user => {
             if (!user) throw new Error('user not found')
 

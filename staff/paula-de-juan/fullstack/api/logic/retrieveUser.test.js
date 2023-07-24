@@ -2,7 +2,7 @@ require('dotenv').config()
 const retrieveUser = require('./retrieveUser')
 const mongoose = require('mongoose')
 
-mongoose.connect(`${process.env.MONGODB_URL}/data`)
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
     .then(() => {
         
         /* Esto es de mongo de la version antigua ya nada de nada se borra
@@ -16,7 +16,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/data`)
 
         try{ 
             return retrieveUser
-            ('64a5b5ad9d5b33a3ba4a28fd')
+            ('64be36824f741266e8b21174')
                 .then(user => console.log('user retrieved', user))
                 .catch(error => console.error(error))
             } catch (error) {

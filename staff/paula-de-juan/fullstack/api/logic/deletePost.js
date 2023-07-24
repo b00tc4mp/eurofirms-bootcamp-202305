@@ -6,9 +6,6 @@ function deletePost(userId, postId){
     validateId(userId)
     validateId(postId)
 
-    //const userObjectId = new ObjectId(userId)
-    //const postObjectId = new ObjectId(postId)
-
     return Promise.all([User.findById(userId).lean(), Post.findById(postId).lean()])
         .then( ([ user, post ]) => {
             if(!user) throw new Error('user not found')
