@@ -11,11 +11,13 @@ export function Register(props) {
         event.preventDefault()
 
         const name = event.target.name.value
+        const image = event.target.image.value
+        const description = event.target.description.value
         const email = event.target.email.value
         const password = event.target.password.value
 
         try {
-            registerUser(name, email, password)
+            registerUser(name, image, description, email, password)
                 .then(() => {
                     props.onRegister()
                 })
@@ -33,6 +35,14 @@ export function Register(props) {
             <div>
                 <label htmlFor="name">Name:</label>
                 <input id="name" className="input" placeholder="name" type="text" />
+            </div>
+            <div>
+                <label htmlFor="image">Image:</label>
+                <input type="text" id="image" className="input" placeholder="image" />
+            </div>
+            <div>
+                <label htmlFor="description">Description:</label>
+                <input type="text" id="description" className="input" placeholder="description" />
             </div>
             <div>
                 <label htmlFor="email">Email:</label>

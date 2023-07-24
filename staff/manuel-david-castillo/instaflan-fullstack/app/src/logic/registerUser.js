@@ -1,14 +1,16 @@
-import {validateName, validateEmail, validatePassword} from './helpers/validators'
+import {validateName, validateEmail, validatePassword, validateUrl, validateText} from './helpers/validators'
 
-export const registerUser = function (name, email, password) {
+export const registerUser = function (name, image, description, email, password) {
   validateName(name)
+  validateUrl(image)
+  validateText(description)
   validateEmail(email)
   validatePassword(password)
 
   return fetch('http://localhost:8000/users', {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({name , email, password}),
+    body: JSON.stringify({name, image, description, email, password}),
   })
   .then((res) => {
     if(res.status === 201) {
