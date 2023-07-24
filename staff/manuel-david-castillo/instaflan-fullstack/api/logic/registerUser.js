@@ -1,18 +1,20 @@
-const context = require('./helpers/context')
-const {validateName, validateEmail, validatePassword} = require('./helpers/validators')
+const {User} = require('../data/models')
+const {validateName, validateEmail, validatePassword, validateUrl, validateText} = require('./helpers/validators')
 
-function registerUser(name, email, password) {
+function registerUser(name, image, description, email, password) {
     validateName(name)
+    validateUrl(image)
+    validateText(description) 
     validateEmail(email)
     validatePassword(password)
 
-    return context.users.findOne({email})
+    return User.findOne({email})
     .then(user => {
         if (user) throw new Error('user already exists')
 
         const favPosts = []
 
-        return context.users.insertOne({name, email, password, favPosts})
+        return User.create({name, image, description, email, password, favPosts})
     })
     .then(()=>{ })
 }

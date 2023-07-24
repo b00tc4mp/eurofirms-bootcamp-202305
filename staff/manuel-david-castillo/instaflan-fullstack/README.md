@@ -27,7 +27,7 @@ Instaflan is a project created with the aim of copying the functionalities of th
 
 ### UI Design
 
-https://www.figma.com/file/cKuNiquDcIFG0LMrnLExJs/Untitled?type=design&node-id=1-8&mode=design&t=GrcaVAMisTuAwv59-0
+link to [Figma](https://www.figma.com/file/cKuNiquDcIFG0LMrnLExJs/Untitled?type=design&node-id=1-8&mode=design&t=GrcaVAMisTuAwv59-0)
 
 ## Technical Description
 
@@ -66,4 +66,4 @@ Chat
 
 ## Planning
 
-https://trello.com/invite/b/ib6A8LV1/ATTI13b23ff609078db4e730d667498a206d090546C4/instaflan
+link to [Trello](https://trello.com/invite/b/ib6A8LV1/ATTI13b23ff609078db4e730d667498a206d090546C4/instaflan)

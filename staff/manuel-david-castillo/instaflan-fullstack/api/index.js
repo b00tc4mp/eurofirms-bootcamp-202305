@@ -1,22 +1,17 @@
+require('dotenv').config()
+
 const express = require('express')
-const mongodb = require('mongodb')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
 
-const context = require('./logic/helpers/context')
+const {authenticateUser, registerUser} = require('./logic/index')
 
-const authenticateUser = require('./logic/authenticateUser')
-const registerUser = require('./logic/registerUser')
+const {MONGODB_URL, PORT, JWT_SECRET} = process.env
 
-const {MongoClient} = mongodb
-
-const client = new MongoClient("mongodb://127.0.0.1:27017")
-
-client.connect()
-    .then((connection) => {
-        context.users = connection.db('instaflan-data').collection('users')
-        context.posts = connection.db('instaflan-data').collection('posts')
+mongoose.connect(`${MONGODB_URL}/instaflan-data`)
+    .then(() => {
 
         const api = express()
 
@@ -32,7 +27,7 @@ client.connect()
                 .then((userId) => {
                     const data = {sub: userId}
 
-                    const token = jwt.sign(data, 'papi ya tu sabeh')
+                    const token = jwt.sign(data, JWT_SECRET)
 
                     res.json(token)
                 })
@@ -55,5 +50,5 @@ client.connect()
             }
         })
 
-        api.listen(8000, () => console.log('Servidor lanzado en puerto 8000'))
+        api.listen(PORT, () => console.log('Servidor lanzado en puerto 8000'))
     })

@@ -1,17 +1,17 @@
-const context = require('./helpers/context')
+const {User} = require('../data/models')
 const {validateEmail, validatePassword} = require('./helpers/validators')
 
 function authenticateUser(email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    return context.users.findOne({email})
+    return User.findOne({email})
         .then(user => {
             if(!user) throw new Error('user not found')
 
             if(user.password !== password) throw new Error('wrong credentials')
 
-            return user._id.toString()
+            return user.id
         })
 }
 
