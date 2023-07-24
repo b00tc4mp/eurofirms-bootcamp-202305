@@ -13,7 +13,7 @@ export const createPost = function (token, image, text) {
     validateString(text, validateString.NAME)
     validateString(image, validateString.URL)
 
-    return fetch(import.meta.env.VITE_API_URL + '/posts', {
+    return fetch('http://localhost:9000/posts', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ image, text })
@@ -33,7 +33,7 @@ export const createPost = function (token, image, text) {
 export const retrievePosts = function (token) {
     validateString(token, validateString.REGULAR)
 
-    return fetch(import.meta.env.VITE_API_URL + '/posts', {
+    return fetch('http://localhost:9000/posts', {
         headers: { Authorization: `Bearer ${token}` }
     })
         .then(res => {
@@ -53,7 +53,7 @@ export const retrievePost = function (token, postId) {
     validateString(token, validateString.REGULAR)
     validateString(postId, validateString.REGULAR)
 
-    return fetch(import.meta.env.VITE_API_URL + '/posts/' + postId, {
+    return fetch('http://localhost:9000/posts/' + postId, {
         headers: { Authorization: `Bearer ${token}` }
     })
         .then(res => {
@@ -72,7 +72,7 @@ export const retrievePost = function (token, postId) {
 export const deletePost = function (token, postId) {
     validateString(token, validateString.REGULAR)
 
-    return fetch(import.meta.env.VITE_API_URL + '/posts/' + postId, {
+    return fetch('http://localhost:9000/posts/' + postId, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
     })
@@ -97,7 +97,7 @@ export const updatePost = function (token, postId, image, text) {
     validateString(text, validateString.NAME)
     validateString(image, validateString.URL)
 
-    return fetch(import.meta.env.VITE_API_URL + '/posts/' + postId, {
+    return fetch('http://localhost:9000/posts/' + postId, {
         method: 'PATCH',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ image, text })
@@ -118,7 +118,7 @@ export const updatePost = function (token, postId, image, text) {
 export const toggleFavPost = function (token, postId) {
     validateString(token, validateString.REGULAR)
 
-    return fetch(import.meta.env.VITE_API_URL + '/posts/' + postId + '/fav', {
+    return fetch('http://localhost:9000/posts/' + postId + '/fav', {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` }
     })

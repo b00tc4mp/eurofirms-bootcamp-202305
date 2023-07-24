@@ -13,7 +13,7 @@ export const registerUser = function (name, email, password) {
     validateString(email, validateString.EMAIL)
     validateString(password, validateString.PASSWORD)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    return fetch('http://localhost:9000/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
@@ -35,7 +35,7 @@ export const authenticateUser = function (email, password) {
     validateString(email, validateString.EMAIL)
     validateString(password, validateString.PASSWORD)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+    return fetch('http://localhost:9000/users/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -55,7 +55,7 @@ export const authenticateUser = function (email, password) {
 export const retrieveUser = function (token) {
     validateString(token, validateString.REGULAR)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, { headers: { Authorization: `Bearer ${token}` } })
+    return fetch('http://localhost:9000/users', { headers: { Authorization: `Bearer ${token}` } })
         .then(res => {
             if (res.status === 200) return res.json().then(user => user)
             else return res.json().then(body => { throw new Error(body.error) })
