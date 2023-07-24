@@ -10,9 +10,7 @@ Instaflan is a project created with the aim of copying the functionalities of th
 
 ### Use Cases
 
-- Create user
-- Login with user
-- Logout 
+ 
 - List posts
 - Create, edit and delete post 
 - Toggle fav post 
@@ -41,8 +39,8 @@ User
 - description (string)
 - email(string, required, unique)
 - password(string, required, min-length 8)
-- favsPost(array of post id, required)
-- followed(array of user id, required)
+- favorite posts(array of post id, required)
+- following users(array of user id, required)
 
 Post 
 
@@ -52,17 +50,26 @@ Post
 - text (string, required)
 - date (date, required, auto)
 - likes (number, required)
-- coments (array of string, required)
+- comments (array of comment)
+
+Comment
+
+- author (object id, ref user, required)
+- date (date, auto, required)
+- text (string, required)
 
 Chat 
 
 - id(object id, required, unique)
-- user1 (user id)
-- user2 (user id)
-- messages (array of message{
-    name: user1 name or user2 name,
-    string, date})
+- users (array of object id, ref user)
+- messages (array of message)
 - date (date, required, auto)
+
+Message
+
+- author (object id, ref user, required)
+- date (date, auto, required)
+- text (string, required)
 
 ## Planning
 
