@@ -1,5 +1,4 @@
-const { User, Post } = require('../data/models')
-const mongoose = require('mongoose')
+const { User, Post } = require('../data')
 const { validateId, validateUrl, validateText } = require('./helpers/validators')
 
 function updatePost(userId, postId, image, text){
@@ -7,9 +6,6 @@ function updatePost(userId, postId, image, text){
     validateId(postId)
     validateUrl(image)
     validateText(text)
-
-    //const userObjectId = new ObjectId(userId)
-    //const postObjectId = new ObjectId(postId)
 
     return Promise.all([User.findById(userId).lean(), Post.findById(postId)])
         .then(([user, post]) => {
