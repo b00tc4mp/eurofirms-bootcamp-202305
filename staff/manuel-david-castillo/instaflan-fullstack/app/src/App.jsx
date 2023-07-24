@@ -4,7 +4,7 @@ import { Home } from "./view/pages/Home";
 import { useState } from "react";
 
 export function App() {
-  const [view, setView] = useState(sessionStorage.token ? 'home' : 'login')
+  const [view, setView] = useState(/* sessionStorage.token ? 'home' : */ 'login')
 
   const handleNavigateRegister = () => setView('register')
   const handleNavigateToLogin = () => setView('login')

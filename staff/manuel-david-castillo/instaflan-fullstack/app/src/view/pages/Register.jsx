@@ -38,7 +38,7 @@ export function Register(props) {
             </div>
             <div>
                 <label htmlFor="image">Image:</label>
-                <input type="text" id="image" className="input" placeholder="image" />
+                <input type="text" id="image" className="input" placeholder="image url" />
             </div>
             <div>
                 <label htmlFor="description">Description:</label>
