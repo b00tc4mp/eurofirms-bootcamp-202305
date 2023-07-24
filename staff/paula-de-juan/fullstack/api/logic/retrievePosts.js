@@ -14,7 +14,9 @@ function retrievePosts(userId) {
             if (!user) throw new Error('user not found')
 
             //Codigo nuevo de Mongoose
-            return Post.find().populate('author').lean()       
+            return Post.find().populate('author').lean()   
+            
+            
         
         /*
         Con unicamenter MongoDb usabamos una promesa
