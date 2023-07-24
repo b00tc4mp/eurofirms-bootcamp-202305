@@ -9,3 +9,8 @@ Currently, two official plugins are available:
 
 
 # app
+
+## To execute the app
+Run
+- place in app root directory ~/quad/app
+- npm run dev (and 'o' option)
