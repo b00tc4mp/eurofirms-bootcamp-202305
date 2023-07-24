@@ -6,15 +6,15 @@ const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
-const authenticateUser = require('./logic/authenticatedUser')
-const createPost = require('./logic/createPost')
-const deletePost = require('./logic/deletePost')
-const registerUser = require('./logic/registerUser')
-const retrievePost = require('./logic/retrievePost')
-const retrieveUser = require('./logic/retrieveUser')
-const retrievePosts = require('./logic/retrievePosts')
-const toggleFavPost = require('./logic/toggleFavPost')
-const updatePost = require('./logic/updatePost')
+const { authenticateUser, 
+    createPost, 
+    deletePost, 
+    registerUser, 
+    retrievePost, 
+    retrieveUser,
+    retrievePosts, 
+    toggleFavPost, 
+    updatePost } = require('./logic/index')
 
 const {MONGODB_URL, PORT, JWT_SECRET} = process.env 
 
