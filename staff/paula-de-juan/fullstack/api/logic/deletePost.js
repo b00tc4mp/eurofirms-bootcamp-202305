@@ -1,6 +1,5 @@
-const { ObjectId } = require('mongoose')
 const { validateId } = require('./helpers/validators')
-const { User , Post} = require('../data/models')
+const { User , Post} = require('../data/')
 
 function deletePost(userId, postId){
     validateId(userId)
