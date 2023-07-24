@@ -6,9 +6,7 @@ import updatePost from "../../logic/updatePost"
 function EditPostModal({ postId, onEditPostCancelled, onPostEdited }) {
     console.log('EditPostModal -> render')
 
-   const postState = useState(null)
-   const post = postState[0]
-   const setPost = postState[1]
+   const [post, setPost] = useState(null)
 
    useEffect(() => {
     try {

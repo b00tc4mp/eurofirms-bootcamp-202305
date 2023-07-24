@@ -1,28 +1,9 @@
-const retrievePost = require('./retrievePost')
-const mongodb = require('mongodb')
-const context = require('./context')
+const retrievePost = require ('./retrievePost')
+const mongoose = require('mongoose')
+require('dotenv').config()
 
-const { MongoClient } = mongodb
-
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-    .then(connection => {
-        const db = connection.db('data')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        context.users = users
-        context.posts = posts
-
-        try {
-            return retrievePost('64a330587f2ec958222f113e', '64a5e2d81174136f26d69313')
-                .then(post => console.log('post retrieved', post))
-                .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-    })
-    .catch(error => console.error(error))
-    .finally(() => client.close())
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
+.then(() => retrievePost('64be2ff2ab1c7f4a76ddc509', '64be3085b60593f43853ba69'))
+.then(post => console.log('post retrieved', post))
+.catch(error => console.error(error))    
+.finally(() => mongoose.disconnect()) 

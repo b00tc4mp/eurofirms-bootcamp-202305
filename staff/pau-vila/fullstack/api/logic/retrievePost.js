@@ -1,26 +1,22 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
+const { User, Post } = require('../data')
 const { validateId } = require('./helpers/validators')
 
 function retrievePost(userId, postId) {
     validateId(userId)
     validateId(postId)
 
-    const userObjectId = new ObjectId(userId)
-    const postObjectId = new ObjectId(postId)
+    return Promise.all([User.findById(userId).lean(), Post.findById(postId, '-date -__v').lean()])
+    .then(([user, post]) => {
+        if (!user) throw new Error('user not found')
+        if (!post) throw new Error('post not found')
 
-    return Promise.all([context.users.findOne({ _id: userObjectId }), context.posts.findOne({ _id: postObjectId })])
-        .then(([user, post]) => {
-            if (!user) throw new Error('user not found')
-            if (!post) throw new Error('post not found')
+        if (post.author.toString() !== userId) throw new Error('post does not belong to user')
 
-            if (post.author.toString() !== userId) throw new Error('post does not belong to user')
+        delete post._id
+        delete post.author
 
-            delete post._id
-            delete post.author
-            delete post.date
+        return post
+    })
 
-            return post
-        })
 }
 module.exports = retrievePost

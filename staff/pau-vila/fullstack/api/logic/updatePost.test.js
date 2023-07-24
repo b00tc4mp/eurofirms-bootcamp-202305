@@ -1,32 +1,13 @@
-const context = require('./context')
-const mongodb = require('mongodb')
+require('dotenv').config()
+const mongoose = require('mongoose')
 const updatePost = require('./updatePost')
 
-const { MongoClient } = mongodb
 
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-client.connect()
-    .then(connection => {
-        const db = connection.db('data')
-        
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        context.users = users
-        context.posts = posts
-
-        try {
-            return updatePost('64a330587f2ec958222f113e', '64a4328d98619a2a3c7ab346', 'http://image.com/holamundo', 'hola mundo')
-                .then(() => console.log('posts updated'))
-                .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-        /* El `})` está cerrando la llamada al método `then` en la promesa `client.connect()`. Se utiliza para
-        encadenar varios métodos `then` o `catch` juntos. */
-    })
-    .catch(error => console.error(error))
-    .finally(() => client.close())
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
+    .then(() => updatePost('64be2d6dfdec86be08b213be', '64be2db3d3230d43650a4584', 'https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/A58F095…', 'te adoro'))
+    .then(() => console.log('posts updated'))
+    .catch(error => console.error(error))   
+    .finally(() => mongoose.disconnect())
 
 
 

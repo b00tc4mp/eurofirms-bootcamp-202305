@@ -6,8 +6,9 @@ import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
 import CreatePostModal from "../modals/CreatePostModal"
 import DeletePostModal from "../modals/DeletePostModal"
 import EditPostModal from "../modals/EditPostModal"
+import toggleFavPost from '../../logic/toggleFavPost'
 
-function Home(props) {
+function Home(onLoggedOut) {
     console.log('Home -> render')
 
     const [modal, setModal] = useState(null)
@@ -32,11 +33,10 @@ function Home(props) {
         }
     }, [])
 
-
     const handleLogoutClick = () => {
         context.token = null
 
-        props.onLoggedOut()
+        onLoggedOut()
     }
 
     const handleCreatePostClick = () => setModal('create-post')
@@ -108,7 +108,7 @@ function Home(props) {
 
     //const handleTogglePostClick = postId => {
         //try {
-           // ToggleFavPost(context.token)
+           // ToggleFavPost(context.token, postId)
            // .then(users, posts => {
            //     setUsers(users)
            //     setPosts(posts)

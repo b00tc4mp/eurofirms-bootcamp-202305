@@ -7,9 +7,7 @@ import context from "../context"
 function App() {
   console.log('App -> render')
 
-  const viewState = useState(context.token ? 'home' : 'login')
-  const view = viewState[0]
-  const setView = viewState[1]
+  const [view, setView] = useState(context.token ? 'home' : 'login')
 
   const handleRegisterClick = () => setView('register')
 

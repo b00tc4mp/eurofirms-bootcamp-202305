@@ -1,22 +1,24 @@
-const context = require ('./context')
-const { ObjectId } = require('mongodb')
+/**
+ * La función recupera un usuario por su ID, excluyendo su contraseña, versión y favoritos, y devuelve
+ * el objeto de usuario.
+ * @param userId - El parámetro `userId` es el identificador único del usuario que queremos recuperar
+ * de la base de datos.
+ * @returns La función `retrieveUser` devuelve una promesa que se resuelve en el objeto de usuario con
+ * las propiedades contraseña, __v y favs eliminadas.
+ */
+const { User } = require('../data')
 const { validateId } = require('./helpers/validators')
 
 function retrieveUser(userId) {
    validateId(userId)
 
-    return context.users.findOne({ _id: new ObjectId(userId)})
+    return User.findById(userId, '-password -__v -favs').lean()
     .then(user => {
         if (!user) throw new Error('user not found')
 
-        // sanitize: se refiere al proceso de limpiar, validar o desinfectar datos de entrada para asegurar que cumplan con ciertas normas.
-
         delete user._id
-        delete user.password
 
         return user
     })
 }
-
 module.exports = retrieveUser
-//objectId: para representar identificadores únicos de documentos.

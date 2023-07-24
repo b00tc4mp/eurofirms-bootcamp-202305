@@ -1,22 +1,27 @@
-const context = require ('./context')
+/**
+ * La función `authenticateUser` toma un correo electrónico y una contraseña como parámetros, los
+ * valida y luego verifica si existe un usuario con ese correo electrónico en la base de datos y si la
+ * contraseña coincide.
+ * @param email - El parámetro de correo electrónico es la dirección de correo electrónico del usuario
+ * que intenta autenticarse.
+ * @param password - El parámetro `contraseña` es la contraseña ingresada por el usuario para la
+ * autenticación.
+ * @returns La función `authenticateUser` devuelve el `id` del usuario si la autenticación es exitosa.
+ */
 const { validateEmail, validatePassword } = require('./helpers/validators')
+const { User } = require ('../data')
 
 function authenticateUser(email, password) {
     validateEmail(email)
     validatePassword(password)
     
-    return context.users.findOne({ email })
+    return User.findOne({ email })
     .then(user => {
         if (!user) throw new Error('user not found')
 
         if (user.password !== password) throw new Error('wrong credentials')
 
-        /* `return user._id.toString()` is converting the `_id` property of the `user` object to a
-        string. The `_id` property is typically a unique identifier for the user in a database, and
-        it is often represented as an ObjectId. By calling the `toString()` method on the `_id`, it
-        converts the ObjectId to a string representation, which can be useful for further processing
-        or displaying the user's ID in a certain format. */
-        return user._id.toString()
+        return user.id
     })
 }
 module.exports = authenticateUser

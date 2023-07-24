@@ -1,46 +1,33 @@
+require('dotenv').config()
+
 const express = require('express')
 const bodyParser = require('body-parser')
-const mongodb = require('mongodb')
-const context = require('./logic/context')
-const registerUser = require('./logic/registerUser')
-const authenticateUser = require('./logic/authenticateUser')
-const retrieveUser = require('./logic/retrieveUser')
-const createPost = require('./logic/createPost')
-const updatePost = require('./logic/updatePost')
-const deletePost = require('./logic/deletePost')
-const retrievePost = require('./logic/retrievePost')
-const retrievePosts = require('./logic/retrievePosts')
+const mongoose = require('mongoose')
+const {
+registerUser, 
+authenticateUser, 
+retrieveUser, 
+createPost, 
+updatePost, 
+deletePost, 
+retrievePost, 
+retrievePosts, 
+toggleFavPost 
+} = require('./logic')
+
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
-const toggleFavPost = require('./logic/toggleFavPost')
 
+const { PORT, MONGODB_URL, JWT_SECRET } = process.env
 
-const { MongoClient } = mongodb
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-    .then(connection => {
-        const db = connection.db('data')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        context.users = users
-        context.posts = posts
-
+mongoose.connect(`${MONGODB_URL}/data`)
+    .then(() => {
         const api = express()
 
-        /* `const jsonBodyParser` está creando una instancia del middleware `body-parser` con el método
-        `json()`. Este middleware se usa para analizar el cuerpo de la solicitud de las solicitudes
-        entrantes con cargas JSON. Permite que la API acceda a los datos JSON enviados en el cuerpo de la
-        solicitud y que estén disponibles en el objeto `req.body`. */
         const jsonBodyParser = bodyParser.json()
 
         api.use(cors())
-        /* `api.get('/', (req, res)` está definiendo un controlador de ruta para la solicitud GET a la URL raíz
-        ("/") de la API. Cuando se realiza una solicitud GET a la URL raíz, la devolución de llamada Se
-        ejecutará la función `(req, res)` En este caso, la función de devolución de llamada simplemente
-        envía la respuesta "hola mundo ;)" de vuelta al cliente. */
+       
         api.get('/', (req, res) => {
             res.send('hola mundo ;)')
         })
@@ -71,7 +58,7 @@ client.connect()
                     .then(userId => {
                         const data = { sub: userId }
 
-                        const token = jwt.sign(data, 'idem love')
+                        const token = jwt.sign(data, JWT_SECRET)
 
                         res.json(token)
                     })
@@ -86,7 +73,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'idem love')
+                const data = jwt.verify(token, JWT_SECRET)
 
                 const userId = data.sub
 
@@ -103,16 +90,8 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                /* La línea `const data = jwt.verify(token, 'idem love')` está verificando la
-                autenticidad e integridad de un JSON Web Token (JWT). */
-                const data = jwt.verify(token, 'idem love')
+                const data = jwt.verify(token, JWT_SECRET)
 
-                /* `const userId = data.sub` extrae el valor de la propiedad `sub` del objeto `data` y
-                lo asigna a la variable `userId`. La propiedad `sub` normalmente representa el
-                asunto del JWT (JSON Web Token), que en este caso es el ID de usuario. Este ID de
-                usuario se utiliza para identificar al usuario que realiza la solicitud y realizar
-                operaciones específicas para ese usuario, como crear, actualizar o eliminar
-                publicaciones. */
                 const userId = data.sub
 
                 const { image, text } = req.body
@@ -130,7 +109,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'idem love')
+                const data = jwt.verify(token, JWT_SECRET)
 
                 const userId = data.sub
 
@@ -151,7 +130,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'idem love')
+                const data = jwt.verify(token, JWT_SECRET)
 
                 const userId = data.sub
 
@@ -171,7 +150,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'idem love')
+                const data = jwt.verify(token, JWT_SECRET)
 
                 const userId = data.sub
 
@@ -190,7 +169,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'idem love')
+                const data = jwt.verify(token, JWT_SECRET)
 
                 const userId = data.sub
                 const postId = req.params.postId
@@ -206,7 +185,7 @@ client.connect()
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, 'idem love')
+                const data = jwt.verify(token, JWT_SECRET)
 
                 const userId = data.sub
 
@@ -218,6 +197,6 @@ client.connect()
             }
         })
 
-        api.listen(9000, () => console.log('API running in port 9000'))
+        api.listen(PORT, () => console.log(`API running in port ${PORT}`))
 
     })

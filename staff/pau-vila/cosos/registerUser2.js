@@ -1,4 +1,4 @@
-const context = require('./context')
+const context = require('../fullstack/api/logic/context')
 
 function registerUser(name, email, password) {
     if (typeof name !== 'string') throw new Error('name is not a string')

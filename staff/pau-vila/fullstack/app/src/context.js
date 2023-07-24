@@ -18,3 +18,5 @@ const context = {
     }
 }
 export default context
+
+//forma de guardar y recuperar un token en el almacenamiento del navegador utilizando sessionStorage.
