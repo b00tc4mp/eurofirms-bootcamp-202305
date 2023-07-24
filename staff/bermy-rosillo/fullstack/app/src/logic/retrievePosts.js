@@ -2,7 +2,7 @@ function retrievePosts(token) {
 
     if (typeof token !== 'string') throw new Error('token is not a string')
 
-    return fetch('http://localhost:9000/posts', { //http://localhost:9000/posts
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, { //http://localhost:9000/posts
         headers: {
             Authorization: `Bearer ${token}` //comillas invertidas
         }

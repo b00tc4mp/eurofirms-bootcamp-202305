@@ -5,7 +5,7 @@ function registerUser(name, email, password) {
     if (typeof password !== 'string') throw new Error('Password is not a String')
 
     //request to API - check path 
-    return fetch('http://localhost:9000/users', {
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({ name, email, password })

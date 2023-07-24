@@ -2,7 +2,7 @@ function retrievePost(token,postId){
     if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof postId !== 'string') throw new Error('PostId is not a string')
 
-    return fetch(`http://localhost:9000/posts/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         headers: {
             Authorization: `Bearer ${token}` //comillas invertidas
         }

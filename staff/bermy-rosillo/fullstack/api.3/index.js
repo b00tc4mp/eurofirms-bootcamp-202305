@@ -1,6 +1,3 @@
-require('dotenv').config()//carga fichero .env en memoria y
-// añade las variables de entorno a procces.env
-
 const express = require('express')
 const mongodb = require('mongodb')
 const context = require('./logic/context')
@@ -16,11 +13,11 @@ const deletePost = require('./logic/deletePost')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 
-//const {PORT, MONGODB_URL, JWT_SECRET} = process.env
+
 
 const { MongoClient } = mongodb
 
-const client = new MongoClient(process.env.MONGODB_URL)
+const client = new MongoClient("mongodb://127.0.0.1:27017")
 
 client.connect()
     .then((connection) => {
@@ -60,7 +57,7 @@ client.connect()
                         //se crea un obj y se guarda el id
                         const data = { sub: userId }
                         //creo el token y convierto el obj a json con sign
-                        const token = jwt.sign(data,process.env.JWT_SECRET)
+                        const token = jwt.sign(data,'pau la lia')
                         
                         res.json(token)
                     })
@@ -78,7 +75,7 @@ client.connect()
                 const authorization = req.headers.authorization
 
                 const token = authorization.slice(7)
-                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const data = jwt.verify(token,'pau la lia')
                 const userId = data.sub
 
                 retrieveUser(userId)
@@ -98,7 +95,7 @@ client.connect()
                 const { authorization } = req.headers
 
                 const token = authorization.slice(7)
-                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const data = jwt.verify(token,'pau la lia')
                 const userId = data.sub
 
                 const image = req.body.image
@@ -119,7 +116,7 @@ client.connect()
         api.get('/posts', (req, res) => {
             const authorization = req.headers.authorization
             const token = authorization.slice(7)
-                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const data = jwt.verify(token,'pau la lia')
                 const userId = data.sub
             try {
                 retrievePosts(userId)
@@ -139,7 +136,7 @@ client.connect()
             try {
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
-                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const data = jwt.verify(token,'pau la lia')
                 const userId = data.sub
                 const postId = req.params.postId
 
@@ -158,7 +155,7 @@ client.connect()
             try {
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
-                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const data = jwt.verify(token,'pau la lia')
                 const userId = data.sub
                 const { postId } = req.params
                 const { image, text } = req.body
@@ -177,7 +174,7 @@ client.connect()
             try {
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
-                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const data = jwt.verify(token,'pau la lia')
                 const userId = data.sub
                 const postId = req.params.postId
 
@@ -194,7 +191,7 @@ client.connect()
             try{
                 const{authorization} = req.headers
                 const token = authorization.slice(7)
-                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const data = jwt.verify(token,'pau la lia')
                 const userId = data.sub
 
                 const postId = req.params.postId
@@ -207,5 +204,5 @@ client.connect()
             }   
         })
 
-        api.listen(process.env.PORT , () => console.log(`API running in PORT ${process.env.PORT}`))
+        api.listen(9000, () => console.log('API running '))
     })
