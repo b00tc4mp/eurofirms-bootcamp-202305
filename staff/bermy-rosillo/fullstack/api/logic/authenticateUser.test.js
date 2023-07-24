@@ -1,26 +1,11 @@
-//importing packcages
-const mongodb = require('mongodb')
-const context = require('./context')
+const mongoose = require('mongoose')
+//const context = require('./context')
 const authenticateUser = require('./authenticateUser')
-//destructuring
-const { MongoClient } = mongodb 
+require('dotenv').config()
 
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-client.connect()
-    .then(conenction => {
-        //conectar a bd 
-        const db = conenction.db('data')
-        //guardar coleccion
-        const users = db.collection('users')
-        //guardar en context.users los usuarios
-        context.users = users
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
+    .then(() => authenticateUser('pin@ocho.com', '123123123')
+        .then(userId => console.log('user authenticaed:', userId)))
+    .catch(error => console.error(error))
 
-        try {
-            return authenticateUser('pin@ocho.co','123123123')
-                .then(userId => console.log('user authenticaed:', userId))
-                .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-    })
-    .finally(() => client.close())
+    .finally(() => mongoose.disconnect())

@@ -1,29 +1,9 @@
-/*
-Importing packages
-*/
-const context = require('./context')
-const mongodb = require('mongodb')
+require('dotenv').config()
+const mongoose = require('mongoose')
 const createPost = require('./createPost')
 
-const {MongoClient} = mongodb
-
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-.then(connection=>{
-    const db = connection.db('data')
-
-    context.users = db.collection('users')
-    context.posts = db.collection('posts')
-
-    try{
-        return createPost('idPost','url-img','text')
-        .then(()=>console.log('Post created'))
-        .catch(error=>console.error(error))
-
-    }catch(error){
-        console.error(error)
-    }
-})
-.catch(error=>console.error(error)) //db error connection
-.finally(()=>client.close())
+mongoose.connect(`${process.env.MONGODB_URL}`)
+    .then(() => createPost('64be84c6120a11c82a588f7d', 'https://www.microsol.es/wp-content/uploads/2022/01/9788418039225.jpg', 'pinocho dance'))
+    .then(() => console.log('Post created'))
+    .catch(error => console.error(error))
+    .finally(() => mongoose.disconnect())

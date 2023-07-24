@@ -1,34 +1,32 @@
-const context = require('./context')
-const { ObjectId } = require('mongodb')
+const { User, Post } = require('../data')
+const { validateId } = require('./helpers/validators')
 
 function retrievePosts(userId) {
-    //validations
-    if (typeof userId != 'string') throw new Error('User id is not a string')
-    if (userId === '') throw new Error('User id empty')
+    validateId(userId)
 
-    const userObjectId = new ObjectId(userId)
-    //look for a valid user
-    return context.users.findOne({ _id: userObjectId })
+    return User.findById(userId)
         .then(user => {
-            if (!user) throw new Error('User is not registered')
+            if (!user) throw new Error('User not found')
 
-            return Promise.all([context.posts.find().toArray(), context.users.find().toArray()])
+            return Post.find({}, '-__v').populate('author', 'name').lean()
+                .then(posts => {
+                    posts.forEach(post => {
+                        post.id = post._id.toString()
+                        delete post._id
+
+                        const { author } = post
+
+                        if (author.id) {
+                            author.id = author._id.toString()
+                            delete author._id
+                        }
+
+                        post.fav = user.favs.some(fav => fav.toString() === post.id)
+
+                    })
+                    return posts
+                })
         })
-        .then(([posts, users]) => {
-            posts.forEach(post => {
-                post.id = post._id.toString()
 
-                delete post._id
-                //verify if a post belongs to an author
-                const user = users.find(user => user._id.toString() === post.author.toString())
-
-                //add to post author property an extra info
-                post.author = {
-                    id: user._id.toString(),
-                    name: user.name
-                }
-            })
-            return posts
-        })
 }
 module.exports = retrievePosts

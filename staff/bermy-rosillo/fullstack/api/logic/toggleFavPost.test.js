@@ -1,26 +1,9 @@
-const context = require('./context')
-const mongodb = require('mongodb')
+require('dotenv').config()
+const mongoose = require('mongoose')
 const toggleFavPost = require('./toggleFavPost')
 
-const {MongoClient} = mongodb
-
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
-.then(connection=>{
-    const db = connection.db('data')
-
-    context.users = db.collection('users')
-    context.posts = db.collection('posts')
-
-    try{
-        return toggleFavPost('649da817ca082f91d970772e','64aff80d6ef2450f1e351018')
-        .then(()=>console.log('Favorite Post success '))
-        .catch(error=>console.error(error))
-
-    }catch(error){
-        console.error(error)
-    }
-})
-.catch(error=>console.error(error))
-.finally(()=>client.close())
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
+    .then(() => toggleFavPost('64be84c6120a11c82a588f7d', '64bee5b0b7d379e47af488f3'))
+    .then(() => console.log('Fav post toggle '))
+    .catch(error => console.error(error))
+    .finally(() => mongoose.disconnect())
