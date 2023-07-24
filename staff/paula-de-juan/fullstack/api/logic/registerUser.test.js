@@ -1,23 +1,16 @@
+require('dotenv').config()
 const registerUser = require('./registerUser')
-const mongodb = require('mongodb')
-const context = require('./context')
+const mongoose = require('mongoose')
 
-const { MongoClient} = mongodb
-
-const client = new MongoClient('mongodb://127.0.0.1:27017')
-
-client.connect()
+mongoose.connect(`${process.env.MONGODB_URL}/data`)
+    // Pregunta ¿No se quitaba connection por una funcion anonima () ???
     .then(connection => {
-        const db = connection.db('data')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        context.users = users
-        context.posts = posts
+        // Y no se quitaba el context???
+        //context.users = users
+        //context.posts = posts
 
         try {
-            return registerUser('Ada Love', 'ada@lovecraft.com', 'augustaAdaByron')
+            return registerUser('Franz Ferdinand', 'franz@ferdinand.com', 'franciscoFernando')
                 .then(() => console.log('user created'))
                 .catch(error => console.error(error))
         } catch (error) {
@@ -25,4 +18,4 @@ client.connect()
         }
     })
     .catch(error => console.error(error))
-    .finally(() => client.close())
+    .finally(() => mongoose.disconnect())

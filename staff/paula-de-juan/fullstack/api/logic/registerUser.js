@@ -1,4 +1,4 @@
-const context = require('./context')
+const { User } = require('../data/models') 
 const { validateEmail, validatePassword, validateName }
 = require('./helpers/validators')
 
@@ -8,11 +8,12 @@ function registerUser(name, email, password){
     validateEmail(email)
     validatePassword(password)
 
-    return context.users.findOne({email})
+    return User.findOne({email})
         .then(user => {
             if (user) throw new Error('User already exists')
             
-        return context.users.insertOne({name, email, password})
+        return User.create({name, email, password})
         })
+        .then(() => { })
 }
 module.exports = registerUser
