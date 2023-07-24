@@ -1,3 +1,4 @@
+//schema for type user  and posts
 const { Schema, ObjectId, model } = require('mongoose')
 
 const user = new Schema({
@@ -42,7 +43,7 @@ const post = new Schema({
         default: Date.now
     }
 })
-//Permite saber que usuario es
+//Constructor que permite saber que usuario es
 const User = model('User', user)
 const Post = model('Post', post)
 

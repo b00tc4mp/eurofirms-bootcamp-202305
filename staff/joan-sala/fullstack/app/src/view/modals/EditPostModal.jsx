@@ -6,9 +6,10 @@ import updatePost from '../../logic/updatePost'
 function EditPostModal({postId, onEditPostCancelled, onPostEdited}) { //Sacado del Home - linia 111  
     console.log('EditPostModal -> render')
 
-    const postState = useState(null) //inicialmente el post es nuulo
-    const post = postState[0] //posición actual   
-    const setPost = postState[1] //seter del estado
+    //const postState = useState(null) //inicialmente el post es nuulo
+    //const post = postState[0] //posición actual   
+    //const setPost = postState[1] //seter del estado
+    const [post, setPost] = useState(null)
     
     //al crear el componente llama a esta función 
     useEffect(() =>{

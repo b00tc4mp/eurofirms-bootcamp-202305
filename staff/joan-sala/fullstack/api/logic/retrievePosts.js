@@ -15,6 +15,8 @@ function retrievePosts(userId) {
             .then(posts => {
             posts.forEach(post => {
                 post.id = post._id.toString()
+                
+                //sanitaize
                 delete post._id
    
                 const { author } = post
@@ -23,10 +25,8 @@ function retrievePosts(userId) {
                     author.id = author._id.toString()
                     delete author._id
                 }
-
                 post.fav = user.favs.some(fav => fav.toString() === post.id)
             })
-
             return posts
         })
 })

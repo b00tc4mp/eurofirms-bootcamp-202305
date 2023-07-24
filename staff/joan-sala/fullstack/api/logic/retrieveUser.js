@@ -9,6 +9,7 @@ function retrieveUser(userId) {
         .then(user => {
             if (!user) throw new Error('User not found')
 
+            //sanitize
             delete user._id
 
             return user

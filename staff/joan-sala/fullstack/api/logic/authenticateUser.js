@@ -1,4 +1,4 @@
-const { validateEmail, validatePassword, validateId }  = require('./helpers/validators')
+const { validateEmail, validatePassword }  = require('./helpers/validators')
 const { User } = require('../data')
 
 function authenticateUser(email, password){

@@ -1,29 +1,21 @@
-const { ObjectId } = require('mongodb')
-const context = require('./context')
 const { validateId, validateText, validateUrl } = require('./helpers/validators')
+const { User, Post } = require('../data')
 
-function updatePost(userId, postId, text, image) {
+function updatePost(userId, postId, image, text) {
     validateId(userId)
     validateId(postId)
-    validateText(text)
     validateUrl(image)
+    validateText(text)
 
-    const { users, posts } = context
-
-    //pasar ls variables a formato MongoDB para poderr tratar
-    const userObjectId = new ObjectId(userId)
-    const postObjectId = new ObjectId(postId)
-
-    return Promise.all([users.findOne({ _id: userObjectId }),
-    posts.findOne({ _id: postObjectId })])
+    return Promise.all([User.findById(userId).lean(), Post.findById(postId)])
         .then(([user, post]) => {
-            if (!user) throw new Error('user not found')
-            if (!post) throw new Error('post not found')
+            if (!user) throw new Error('User not found')
+            if (!post) throw new Error('Post not found')
 
-            if (post.author.toString() !== userId) throw new Error('post does not belong to user')
+            if (post.author.toString() !== userId) throw new Error('Post does not belong to user')
 
-            return posts.updateOne({_id: postObjectId}, {$set: {text, image, date: new Date()}})
-            .then(()=> { })
+            return posts.save()
         })
+        .then(()=> {})
 }
 module.exports = updatePost
