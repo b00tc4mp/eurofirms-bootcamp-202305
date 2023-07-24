@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 
 const {authenticateUser, registerUser} = require('./logic/index')
 
-const {MONGODB_URL, PORT, JWT_SECRET} = process.env
+const {MONGODB_URL, PORT, JWR_SECRET} = process.env
 
 mongoose.connect(`${MONGODB_URL}/instaflan-data`)
     .then(() => {
@@ -27,7 +27,7 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 .then((userId) => {
                     const data = {sub: userId}
 
-                    const token = jwt.sign(data, JWT_SECRET)
+                    const token = jwt.sign(data, JWR_SECRET)
 
                     res.json(token)
                 })
@@ -39,9 +39,9 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
 
         api.post('/users', jsonBodyParser, (req, res) => {
             try {
-                const {name, email, password} = req.body
+                const {name, image, description, email, password} = req.body
 
-                registerUser(name, email, password)
+                registerUser(name, image, description, email, password)
                 .then(()=> {res.status(201).send()})
                 .catch((error) => res.status(400).json({error: error.message}))
             }
