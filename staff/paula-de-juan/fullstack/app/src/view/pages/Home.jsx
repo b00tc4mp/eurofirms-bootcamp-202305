@@ -2,6 +2,9 @@ import { useState, useEffect } from "react"
 import context from '../../context'
 import retrieveUser from '../../logic/retrieveUser'
 import retrievePosts from '../../logic/retrievePosts'
+import CreatePostModal from '../modals/CreatePostModal'
+import DeletePostModal from '../modals/DeletePostModal'
+import EditPostModal from '../modals/EditPostModal'
 // import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
 
 

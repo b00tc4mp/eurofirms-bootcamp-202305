@@ -3,7 +3,7 @@ function createPost(userId, image, text) {
     if (typeof image !== 'string') throw new Error('image is not a string')
     if (typeof text !== 'string') throw new Error('text is not a string')
     
-    return fetch('http://localhost:9000/posts', {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${userId}`,

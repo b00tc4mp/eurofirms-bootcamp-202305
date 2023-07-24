@@ -1,7 +1,7 @@
 function retrievePosts(userId) {
     if (typeof userId !== 'string') throw new Error('userId is not a string')
     
-    return fetch('http://localhost:9000/posts', {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         headers: {
             Authorization: `Bearer ${userId}`
         }
