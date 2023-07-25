@@ -179,6 +179,15 @@ body {
     height: 30px;
     border-radius: 0 20px 20px 0;
   }
+
+  .button-logout {
+    margin-right: 30px;
+    padding: 6px 14px;
+  }
+
+  .main-home {
+    padding-top: 70px;
+  }
   
   .footer {
     width: 100%;
@@ -193,7 +202,7 @@ body {
   }
   
   .footer-emogis {
-color: #fff;
+    color: #fff;
     font-size: 24px;
     margin: 0 10px;
     text-decoration: none;
@@ -262,4 +271,5 @@ color: #fff;
 
 .button-modal {
   font-size: 16px;
+  padding: 6px 14px;
 }
