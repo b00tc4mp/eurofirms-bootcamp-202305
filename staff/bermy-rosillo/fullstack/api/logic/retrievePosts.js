@@ -16,7 +16,7 @@ function retrievePosts(userId) {
 
                         const { author } = post
 
-                        if (author.id) {
+                        if (author._id) {
                             author.id = author._id.toString()
                             delete author._id
                         }

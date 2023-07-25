@@ -28,7 +28,7 @@ const user = new Schema({
 const post = new Schema({
     author:{
         type:ObjectId,
-        ref: 'User',
+        ref: 'User', //relaciona a la coleccion de usuarios con el ObjectId
         required: true
     },
     image:{
