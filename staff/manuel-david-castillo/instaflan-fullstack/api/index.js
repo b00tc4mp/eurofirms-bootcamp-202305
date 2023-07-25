@@ -6,7 +6,11 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
-const {authenticateUser, createPost, registerUser} = require('./logic/index')
+const {authenticateUser, 
+    createPost, 
+    registerUser, 
+    retrievePosts
+    } = require('./logic/index')
 
 const {MONGODB_URL, PORT, JWT_SECRET} = process.env
 
@@ -67,6 +71,23 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 res.status(400).json({error: error.message})
             }
         })
+
+        api.get('/posts', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                retrievePosts(userId)
+                .then((posts)=> res.json(posts))
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
 
         api.listen(PORT, () => console.log('Servidor lanzado en puerto 8000'))
     })
