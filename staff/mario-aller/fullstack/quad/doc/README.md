@@ -16,13 +16,11 @@ Later, the final distribution solution is given to the user.
 
 ### Use cases
 
-- create different set of blocks
-- create different panel
-- calculate the optimal distribution of the blocks set inside a panel.
+- See Scrum / User Stories section in [OneNote](https://1drv.ms/u/s!AlgJZG7mpTRguHg5XiRVQF2W2wKO)
 
 ### UI design
 
-[Figma](https://www.figma.com/file/uRBDBpz1SmGy3cIrzWglPr/Quad?type=design&mode=design&t=SaMVgz6FNUW6tqIP-1)
+- See [Figma](https://www.figma.com/file/uRBDBpz1SmGy3cIrzWglPr/Quad?type=design&mode=design&t=SaMVgz6FNUW6tqIP-1)
 
 ## Technical Specs.
 
@@ -30,5 +28,4 @@ Later, the final distribution solution is given to the user.
 
 ## Planning
 
-[Trello](https://trello.com/invite/b/ruTvty8k/ATTI081ec1df49eceefc8fe3960bdae405620D2B4801/gtd)
-
+- See GTD & Scrum sections groups in [OneNote](https://1drv.ms/u/s!AlgJZG7mpTRguHg5XiRVQF2W2wKO)

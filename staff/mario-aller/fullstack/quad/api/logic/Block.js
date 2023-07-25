@@ -1,32 +1,23 @@
+const { Dim, Dim2 } = require('./Dim')
+
 // -------------------
 // Bloques
 // -------------------
 
-function Block(width, height) {
-    const w = new Dim(width)
-    const h = new Dim(height)
-    if (!w.isValid2() || !h.isValid2()) return null
+function Block(width, height, rotated, pos) {
+    if (!(pos instanceof Dim2)) throw new Error('pos !Dim 2 in block')
+    if (!width.isValid2() || !height.isValid2()) throw new Error('block size wrong')
 
-    this.id = ++Block.idCounter
+    Block.idCounter++
+    this.id = Block.idCounter.toString()
     this.size = new Dim2(width, height)
+    this.rotated = rotated ? true : false
+    this.pos = pos ? new Dim2(pos.x.val, pos.y.val) : new Dim2(-1, -1)
 }
 
 Block.idCounter = 0n
 
-// -------------------
-// Bloque colocado
-// -------------------
+Block.REGULAR_POSITION = 0
+Block.ROTATED_POSITION = 1
 
-// 'pos' esquina inferior izquierda
-function BlockPlaced(block, pos, rotated = 0) {
-    if (!(pos instanceof Dim2)) errorShow('pos !Dim2 en BlockPlaced')
-    if (!(block instanceof Block)) errorShow('block !Block en BlockPlaced')
-    this.block = block
-    this.rotated = rotated
-    this.pos = pos
-}
-
-BlockPlaced.REGULAR_POSITION = 0
-BlockPlaced.ROTATED_POSITION = 1
-
-module.exports = { Block, BlockPlaced }
+module.exports = Block
