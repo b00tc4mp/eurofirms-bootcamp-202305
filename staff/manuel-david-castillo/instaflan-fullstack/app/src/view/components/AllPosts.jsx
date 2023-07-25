@@ -3,7 +3,7 @@ import { context } from "../../logic/helpers/context"
 import { retrievePosts } from "../../logic/retrievePosts"
 import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken"
 
-export function AllPosts() {
+export function AllPosts(props) {
     const userId = extractUserIdFromToken(context.token)
 
     const [posts, setPosts] = useState([])
@@ -19,7 +19,7 @@ export function AllPosts() {
         } catch (error) {
             alert(error.message)
         }
-    }, [])
+    }, [props.posts])
 
     return <section className="all-posts">
         {posts.map(post => <article key={post.id} className="post">
@@ -35,7 +35,6 @@ export function AllPosts() {
             <div className="div-button-edit-delete">
                 {userId === post.author.id && <button onClick={() => handleEditPostModal(post.id)} className="button button-modal">Edit</button>}
                 {userId === post.author.id && <button onClick={() => handleDeletePostModal(post.id)} className="button button-modal">Delete</button>}
-
             </div>
         </article>)}
     </section>

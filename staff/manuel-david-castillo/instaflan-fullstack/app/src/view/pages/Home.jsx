@@ -9,10 +9,12 @@ import { Messages } from "../components/Messages"
 import { Profile } from "../components/Profile"
 
 import { CreatePostModal } from "../modals/CreatePostModal"
+import { retrievePosts } from "../../logic/retrievePosts"
 
 export function Home(props) {
     const [page, setPage] = useState('Instaflan')
     const [modal, setModal] = useState(null)
+    const [posts, setPosts] = useState(null)
 
     const handleAllPostPage = () => setPage('Instaflan')
     const handleExplorerPage = () => setPage('Explorer')
@@ -29,18 +31,18 @@ export function Home(props) {
     const handleCreatePostModal = () => setModal("create-post-modal")
     const handleCancelCreatePostModal = () => setModal("")
     const handleCreatePost = () => {
-        setModal(null)
-        /* try {
+        try {
             retrievePosts(context.token)
                 .then((posts) => {
                     setModal(null)
+                    setPosts(posts)
                 })
                 .catch(() => {
                     alert(error.message)
                 })
         } catch (error) {
             alert(error.message)
-        } */
+        }
     }
 
     return <div className="home">
@@ -61,7 +63,7 @@ export function Home(props) {
             }
         </header>
         <main className="main-home">
-            {page === 'Instaflan' && <AllPosts />}
+            {page === 'Instaflan' && <AllPosts posts={posts} />}
             {page === 'Explorer' && <Explorer />}
             {page === 'Messages' && <Messages />}
             {page === 'Notifications' && <Notifications />}
