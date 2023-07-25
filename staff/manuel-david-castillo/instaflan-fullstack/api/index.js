@@ -6,9 +6,9 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
-const {authenticateUser, registerUser} = require('./logic/index')
+const {authenticateUser, createPost, registerUser} = require('./logic/index')
 
-const {MONGODB_URL, PORT, JWR_SECRET} = process.env
+const {MONGODB_URL, PORT, JWT_SECRET} = process.env
 
 mongoose.connect(`${MONGODB_URL}/instaflan-data`)
     .then(() => {
@@ -27,7 +27,7 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 .then((userId) => {
                     const data = {sub: userId}
 
-                    const token = jwt.sign(data, JWR_SECRET)
+                    const token = jwt.sign(data, JWT_SECRET)
 
                     res.json(token)
                 })
@@ -46,6 +46,24 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 .catch((error) => res.status(400).json({error: error.message}))
             }
             catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.post('/posts', jsonBodyParser, (req, res)=>{
+            try{
+                const { authorization } = req.headers 
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {image, text} = req.body
+
+                createPost(userId, image, text)
+                .then(()=> {res.status(201).send()})
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
                 res.status(400).json({error: error.message})
             }
         })
