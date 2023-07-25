@@ -273,3 +273,71 @@ body {
   font-size: 16px;
   padding: 6px 14px;
 }
+
+.all-posts {
+  margin-top: 10px;
+  padding-bottom: 65px;
+}
+
+.post {
+  background-color:#f9e79f;
+  margin-bottom: 15px;
+}
+
+.header-post {
+  display: flex;
+  background-color: #f9e79f;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nameImageDiv {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #f9e79f;
+}
+
+.profile-image-post {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.name-post{
+  font-weight: bold;
+  color:#d35400;
+  font-size: 20px;
+  margin: 0;
+}
+
+.favButton {
+  padding: 5px 5px;
+  width: 45px;
+  margin-right: 10px;
+  font-size: 25px;
+}
+
+.img-post {
+  width: 100%;
+}
+
+.text-post {
+  margin: 5px;
+  margin-left: 10px;
+  color: #d35400;
+  font-weight: bold;
+}
+
+.div-button-edit-delete {
+  display: flex;
+  justify-content: end;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  gap: 15px
+}
