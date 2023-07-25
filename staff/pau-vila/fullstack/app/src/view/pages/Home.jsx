@@ -15,7 +15,7 @@ function Home(onLoggedOut) {
     const [postId, setPostId] = useState(null)
     const [user, setUser] = useState(null)
     const [posts, setPosts] = useState(null)
-    
+
     useEffect(() => {
         try {
             retrieveUser(context.token)
@@ -95,30 +95,31 @@ function Home(onLoggedOut) {
     const handlePostDeleted = () => {
         try {
             retrievePosts(context.token)
-            .then(posts => {
-                setPosts(posts)
-                setModal(null)
-                setPostId(null)
-            })
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
     }
 
-    //const handleTogglePostClick = postId => {
-        //try {
-           // ToggleFavPost(context.token, postId)
-           // .then(users, posts => {
-           //     setUsers(users)
-           //     setPosts(posts)
-           // })
-           //     .catch(error => alert(error.message))
-     //   } catch (error) {
-      //      alert(error.message)
-     //  }
-  //  } 
-    
+    /**
+     * La función `handleTogglePostClick` cambia el estado de favorito de una publicación y recupera la
+     * lista actualizada de publicaciones.
+     */
+    const handleTogglePostClick = postId => {
+        try {
+            toggleFavPost(context.token, postId)
+                .then(() => retrievePosts(context.token))
+                .then(posts => setPosts(posts))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     const userId = extractUserIdFromToken(context.token)
 

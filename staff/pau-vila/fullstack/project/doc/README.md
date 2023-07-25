@@ -24,6 +24,7 @@ This purpose will be achieved using posts from different users, showed in a list
 ### UI Design
 
 link to [Figma](https://www.figma.com/file/TdA6yV7wdohCTHKGBbQcDx/Untitled?type=design&node-id=0%3A1&mode=design&t=b37PdMVwXjFVEXcN-1)
+link to [Trello](https://trello.com/b/ATRVpvIO/tornorecicla)
 
 ## Technical Description:
 
