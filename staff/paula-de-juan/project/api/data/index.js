@@ -15,12 +15,14 @@ const user = new Schema({
         required: true,
         minLength: 8
     },
+    /*
     favs: [
         {
             type: ObjectId,
             ref: 'Post'
         }
     ]
+    */
 })
 
 const post = new Schema ({

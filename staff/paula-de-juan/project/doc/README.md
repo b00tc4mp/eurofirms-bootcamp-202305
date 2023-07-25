@@ -21,3 +21,18 @@ Kurt Cobain dancing
 ![The Beatles](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnJqOGFtcWdvM2UwaWRkcmgyNG1nbHF1bm1jMm1wMmh2dDhwNmNrbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6ZtkdXLKecBYpuhi/giphy.gif)
 
 The Beatles
+
+## Functional Description
+
+### Use cases
+
+### UI Design
+
+
+## Technical Description
+
+### Data model
+
+User
+
+- name

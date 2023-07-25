@@ -1,0 +1,1 @@
+curl -v -H 'Authorization: Bearer 6rellenarConUnObjectId72171d0' http://localhost:9000/users

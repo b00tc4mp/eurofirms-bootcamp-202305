@@ -2,11 +2,11 @@ import context from '../../context'
 import authenticateUser from '../../logic/authenticateUser'
 
 
-function Login({onRegisterClick, onLoggedIn}) {
+function Login(props) {
   const handleRegisterClick = event => {
     event.preventDefault()
 
-    onRegisterClick()
+    props.onRegisterClick()
   }
 
   const handleLoginSubmit = event => {
@@ -21,7 +21,7 @@ function Login({onRegisterClick, onLoggedIn}) {
 
           context.userId = userId
 
-          onLoggedIn()
+          props.onLoggedIn()
         })
         .catch(error => alert(error.message))
     } catch (error) {
