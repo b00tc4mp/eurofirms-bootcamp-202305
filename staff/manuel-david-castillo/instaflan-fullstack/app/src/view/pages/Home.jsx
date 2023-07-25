@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import { context } from "../../logic/helpers/context"
+
 import { AllPosts } from '../components/AllPosts'
 import { Explorer } from "../components/Explorer"
 import { Notifications } from "../components/Notifications"
@@ -8,7 +10,7 @@ import { Profile } from "../components/Profile"
 
 import { CreatePostModal } from "../modals/CreatePostModal"
 
-export function Home() {
+export function Home(props) {
     const [page, setPage] = useState('Instaflan')
     const [modal, setModal] = useState(null)
 
@@ -17,6 +19,12 @@ export function Home() {
     const handleMessagesPage = () => setPage('Messages')
     const handleNotificationsPage = () => setPage('Notifications')
     const handleProfilePage = () => setPage('Profile')
+
+    const handleLogout = () => {
+        context.token = null
+
+        props.onLogout()
+    }
 
     const handleCreatePostModal = () => setModal("create-post-modal")
     const handleCancelCreatePostModal = () => setModal("")
@@ -43,7 +51,7 @@ export function Home() {
             </div>
             {page === 'Profile' ?
                 <nav>
-                    <button /* onClick={handleLogout} */ className="button button-logout">Logout</button>
+                    <button onClick={handleLogout} className="button button-logout">Logout</button>
                 </nav>
                 :
                 <div className="div-search">
