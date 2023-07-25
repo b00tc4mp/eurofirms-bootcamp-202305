@@ -1,4 +1,27 @@
+import { useState } from "react"
+
+import { CreatePostModal } from "../modal/CreatePostModal"
+
 export function Home() {
+    const [modal, setModal] = useState(null)
+
+    const handleCreatePostModal = () => setModal("create-post-modal")
+    const handleCancelCreatePostModal = () => setModal("")
+    const handleCreatePost = () => {
+        setModal(null)
+        /* try {
+            retrievePosts(context.token)
+                .then((posts) => {
+                    setModal(null)
+                })
+                .catch(() => {
+                    alert(error.message)
+                })
+        } catch (error) {
+            alert(error.message)
+        } */
+    }
+
     return <div className="home">
         <header className="header">
             <div>
@@ -14,10 +37,12 @@ export function Home() {
         <footer className="footer">
             <a className="footer-emogis" href="#">🏠</a>
             <a className="footer-emogis" href="#">🌍</a>
-            <a className="footer-emogis" href="#">➕</a>
+            <a onClick={handleCreatePostModal} className="footer-emogis" href="#">➕</a>
             <a className="footer-emogis" href="#">✉️</a>
             <a className="footer-emogis" href="#">❤️</a>
             <a className="footer-emogis" href="#">🧒</a>
         </footer>
+
+        {modal === "create-post-modal" && <CreatePostModal onCreatePost={handleCreatePost} onHideCreatePost={handleCancelCreatePostModal} />}
     </div>
 }

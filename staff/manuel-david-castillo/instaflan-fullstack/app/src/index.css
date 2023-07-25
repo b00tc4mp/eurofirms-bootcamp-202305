@@ -55,7 +55,7 @@ body {
     max-width: 350px ;
   }
   
-  .login-form button {
+  .button {
     background-color: #fdcb6e; /* Color flan */
     color: #fff;
     border: none;
@@ -66,7 +66,7 @@ body {
     transition: background-color 0.3s ease;
   }
   
-  .login-form button:hover {
+  .button:hover {
     background-color: #f39c12; /* Color flan oscuro */
   }
   
@@ -122,21 +122,6 @@ body {
     max-width: 350px ;
   }
   
-  .register-form button {
-    background-color: #fdcb6e; /* Color flan */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 12px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .register-form button:hover {
-    background-color: #f39c12; /* Color flan oscuro */
-  }
-  
   .link-login {
     color: #d35400; /* Color caramelo oscuro */
     font-size: 20px;
@@ -162,7 +147,7 @@ body {
   .header {
     width: 100%;
     height: 70px;
-    background-color: #fdcb6e;
+    background-color: #f9e79f;
     position: fixed;
     top: 0;
     left: 0;
@@ -170,6 +155,10 @@ body {
     justify-content: space-between;
     align-items: center;
     padding-left: 20px;
+  }
+
+  .h2-header {
+    color: #d35400;
   }
 
   .div-search{
@@ -194,7 +183,7 @@ body {
   .footer {
     width: 100%;
     height: 70px;
-    background-color: #fdcb6e;
+    background-color: #f9e79f;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -215,3 +204,62 @@ color: #fff;
   .footer-emogis:hover {
     transform: scale(1.2); /* Hace que el enlace se agrande al pasar el ratón */
   }
+
+.modal-new-post,
+.modal-edit-post,
+.modal-delete-post {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgb(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-new-post,
+.form-edit-post,
+.form-delete-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: #f9e79f;
+  border: solid 3px;
+  border-radius: 10px;
+  width: 250px;
+}
+
+.h3-new-post {
+  font: bold;
+  font-size:x-large;
+  margin: 0;
+  color: #d35400;
+  margin-bottom: 10px;
+}
+
+.p-form{
+  margin: 5px;
+  color: #d35400;
+  font-weight: bold
+}
+
+.buttons-create-cancel {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  width: 100%;;
+}
+
+.button-modal {
+  font-size: 16px;
+}
