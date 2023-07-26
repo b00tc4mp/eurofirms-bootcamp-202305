@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { retrievePost } from './../../logic/retrievePost'
-/* import { updatePost } from './../../logic/updatePost' */
+import { editPost } from './../../logic/editPost'
 import { context } from '../../logic/helpers/context'
 
 export function EditPostModal(props) {
@@ -16,16 +16,16 @@ export function EditPostModal(props) {
         }
     }, [])
 
-    /* const handleSubmitPost = (event) => {
+    const handleSubmitPost = (event) => {
         event.preventDefault()
 
         const image = event.target.image.value
         const text = event.target.text.value
 
         try {
-            updatePost(context.token, props.postId, image, text)
+            editPost(context.token, props.postId, image, text)
                 .then(() => {
-                    props.onUpdatePost()
+                    props.onEditPost()
                 })
                 .catch(error => {
                     alert(error.message)
@@ -33,12 +33,12 @@ export function EditPostModal(props) {
         } catch (error) {
             alert(error.message)
         }
-    } */
+    }
 
     const handleCancelEditPost = () => props.onHideEditPost()
 
     return <div className="modal-edit-post">
-        {post && <form /* onSubmit={handleSubmitPost} */ className="form-edit-post" action="">
+        {post && <form onSubmit={handleSubmitPost} className="form-edit-post" action="">
             <input type="hidden" id="edit-post-id" />
             <h3 className="h3-edit-post">Edit post</h3>
             <p className="p-form">Image</p>
