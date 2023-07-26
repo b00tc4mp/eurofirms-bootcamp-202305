@@ -22,7 +22,7 @@ const user = new Schema({
     }
 })
 
-const tasteInMusic = new Schema ({
+const musicTaste = new Schema ({
     styles: [
         {
             type: String
@@ -33,7 +33,7 @@ const tasteInMusic = new Schema ({
             type: String
         }
     ],
-    disks: [
+    albums: [
         {
             type: String
         }
@@ -48,6 +48,10 @@ const tasteInMusic = new Schema ({
             type: String
         }
     ],
+    description: {
+            type: String
+        }
+    ,
     user: {
         type: ObjectId,
         required: true
@@ -56,9 +60,9 @@ const tasteInMusic = new Schema ({
 
 const User = model('User', user)
 
-const Post = model('Post', post)
+const MusicTaste = model('MusicTaste', musicTaste)
 
 module.exports = {
     User,
-    Post
+    MusicTaste
 }
