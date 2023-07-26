@@ -4,6 +4,7 @@ import { retrievePosts } from "../../logic/retrievePosts"
 import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken"
 
 import { DeletePostModal } from "../modals/DeletePostModal"
+import { EditPostModal } from "../modals/EditPostModal"
 
 export function AllPosts(props) {
     const userId = extractUserIdFromToken(context.token)
@@ -13,6 +14,29 @@ export function AllPosts(props) {
     const [posts, setPosts] = useState([])
 
     const [postId, setPostId] = useState([])
+
+    const handleEditPostModal = postId => {
+        setPostId(postId)
+        setModal("edit-post-modal")
+    }
+
+    const handleCancelEditPostModal = () => setModal(null)
+
+    const handleEditPost = () => {
+        try {
+            retrievePosts(context.token)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
+                .catch(error => {
+                    alert(error.message)
+                })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     const handleDeletePostModal = postId => {
         setPostId(postId)
@@ -68,5 +92,6 @@ export function AllPosts(props) {
         </article>)}
 
         {modal === "delete-post-modal" && <DeletePostModal postId={postId} onDeletePost={handleDeletePost} onHideDeletePost={handleCancelDeletePostModal} />}
+        {modal === "edit-post-modal" && <EditPostModal postId={postId} onEditPost={handleEditPost} onHideEditPost={handleCancelEditPostModal} />}
     </section>
 }

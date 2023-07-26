@@ -47,9 +47,9 @@ export function Home(props) {
 
     return <div className="home">
         <header className="header">
-            <div>
+            <div className="div-h2-img">
                 <h2 className="h2-header">{page}</h2>
-                {/* <img src="../images/flan.png" alt="Icon flan" /> */}
+                <img className="icon-flan" src="./public/images/flan.png" alt="Icon flan" />
             </div>
             {page === 'Profile' ?
                 <nav>

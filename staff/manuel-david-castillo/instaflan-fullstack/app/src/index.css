@@ -161,6 +161,16 @@ body {
     color: #d35400;
   }
 
+  .div-h2-img {
+    display: flex;
+
+  }
+
+  .icon-flan {
+    width: 60px;
+    height: auto;
+  }
+
   .div-search{
     display: flex;
     justify-content: center;
@@ -249,7 +259,8 @@ body {
 }
 
 .h3-new-post,
-.h3-delete-post {
+.h3-delete-post,
+.h3-edit-post {
   font: bold;
   font-size:x-large;
   margin: 0;
