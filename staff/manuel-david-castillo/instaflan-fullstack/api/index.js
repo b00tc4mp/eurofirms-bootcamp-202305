@@ -10,6 +10,7 @@ const {authenticateUser,
     createPost, 
     deletePost,
     registerUser, 
+    retrievePost,
     retrievePosts
     } = require('./logic/index')
 
@@ -86,6 +87,24 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 deletePost(userId, postId)
                 .then(()=> res.status(200).send())
                 .catch(error => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.get('/posts/:postId', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {postId} = req.params
+
+                retrievePost(userId, postId)
+                .then((post)=> res.json(post))
+                .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})
             }
