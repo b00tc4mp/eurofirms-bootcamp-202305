@@ -13,8 +13,10 @@ function updatePost(userId, postId, image, text) {
             if (!post) throw new Error('Post not found')
 
             if (post.author.toString() !== userId) throw new Error('Post does not belong to user')
-
-            return posts.save()
+            post.image = image
+            post.text = text
+            
+            return post.save()
         })
         .then(()=> {})
 }

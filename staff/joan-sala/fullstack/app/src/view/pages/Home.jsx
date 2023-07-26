@@ -142,8 +142,7 @@ function Home({onLoggedOut}) {
                                 <button onClick={() => handleDeletePostClick(post.id)}>Delete</button>
                             </>
                             }
-                            <button onClick={() => handleTogglePostClick(post.id)}>{post.fav ? '♡' : '♥'}</button>
-
+                            <button onClick={() => handleTogglePostClick(post.id)}>{post.fav ? '♥' : '♡'}</button>
                         </article>)}
                 </section>
             </main>

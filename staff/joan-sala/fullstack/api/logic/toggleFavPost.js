@@ -2,7 +2,7 @@ const { validateId } = require('./helpers/validators')
 const { User, Post } = require('../data')
 
 function toggleFavPost(userId, postId) {
-    validateId(userId),
+    validateId(userId)  
     validateId(postId)
 
     return Promise.all([User.findById(userId), Post.findById(postId).lean()])

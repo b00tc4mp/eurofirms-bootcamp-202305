@@ -1,6 +1,6 @@
 function toggleFavPost(token, postId) { //validaciones sincronas
-    if(typeof token  !== 'string') throw new Error('userId is not a string')
-    if(typeof postId !== 'string') throw new Error('postIdd is not a string')
+    if(typeof token  !== 'string') throw new Error('token is not a string')
+    if(typeof postId !== 'string') throw new Error('postId is not a string')
     
     //Llamada al servidor
     return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/favs`, {
@@ -10,7 +10,7 @@ function toggleFavPost(token, postId) { //validaciones sincronas
         }
     })
     .then(res => {
-        if(res.status === 201)
+        if(res.status === 204)
             return
         else if(res.status === 400){
             return res.json()
@@ -19,6 +19,7 @@ function toggleFavPost(token, postId) { //validaciones sincronas
                     throw new Error(message)
                 })
         }
+        else throw new Error('Server error')
     })
 }
 export default toggleFavPost
