@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import { context } from "../../logic/helpers/context"
+import { retrievePosts } from "../../logic/retrievePosts"
 
 import { AllPosts } from '../components/AllPosts'
 import { Explorer } from "../components/Explorer"
@@ -9,7 +10,6 @@ import { Messages } from "../components/Messages"
 import { Profile } from "../components/Profile"
 
 import { CreatePostModal } from "../modals/CreatePostModal"
-import { retrievePosts } from "../../logic/retrievePosts"
 
 export function Home(props) {
     const [page, setPage] = useState('Instaflan')

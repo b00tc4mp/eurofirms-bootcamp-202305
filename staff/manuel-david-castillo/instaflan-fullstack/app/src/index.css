@@ -248,7 +248,8 @@ body {
   width: 250px;
 }
 
-.h3-new-post {
+.h3-new-post,
+.h3-delete-post {
   font: bold;
   font-size:x-large;
   margin: 0;
