@@ -1,41 +1,31 @@
-/* This code is setting up an API using Express.js. It includes routes for user registration, user
-authentication, retrieving user information, creating posts, updating posts, retrieving posts, and
-deleting posts. It also uses MongoDB as the database and JWT for user authentication. The API
-listens on port 9000. */
+require('dotenv').config()
+
 const express = require('express')
 const bodyParser = require('body-parser')
-const mongodb = require('mongodb')
-const context = require('./logic/context')
+const mongoose = require('mongoose')
+const {
+    registerUser,
+    authenticateUser,
+    retrieveUser,
+    createPost,
+    retrievePosts,
+    updatePost,
+    deletePost,
+    retrievePost,
+    toggleFavPost
+} = require('./logic')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 
-const registerUser = require('./logic/registerUser')
-const authenticateUser = require('./logic/authenticateUser')
-const retrieveUser = require('./logic/retrieveUser')
-const createPost = require('./logic/createPost')
-const updatePost = require('./logic/updatePost')
-const retrievePost = require('./logic/retrievePost')
-const retrievePosts = require('./logic/retrievePosts')
-const deletePost = require('./logic/deletePost')
+const { PORT, MONGODB_URL, JWT_SECRET } = process.env
 
-const { MongoClient } = mongodb
+mongoose.connect(`${MONGODB_URL}/data`)
+.then(() => {
+    const api = express()
 
-const client = new MongoClient('mongodb://127.0.0.1:27017')
+    const jsonBodyParser = bodyParser.json()
 
-client.connect()
-    .then(connection => {
-        const db = connection.db('data')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        context.users = users
-        context.posts = posts
-
-        const api = express()
-
-        const jsonBodyParser = bodyParser.json()
-        api.use(cors())
+    api.use(cors())
 
         api.get('/', (req, res) => {
             res.send('hola mundo :)')
@@ -57,7 +47,7 @@ client.connect()
                 authenticateUser(email, password)
                     .then(userId => {
                         const data = { sub: userId }
-                        const token = jwt.sign(data, 'pau13 no seas grosera')
+                        const token = jwt.sign(data, JWT_SECRET)
                         res.json(token)
                     })
                     .catch(error => res.status(400).json({ error: error.message }))
@@ -67,7 +57,7 @@ client.connect()
         api.get('/users', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'pau13 no seas grosera').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
                 retrieveUser(userId)
                     .then(user => res.status(200).json(user))
                     .catch(error => res.status(400).json({ error: error.message }))
@@ -77,7 +67,7 @@ client.connect()
         api.post('/posts', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'pau13 no seas grosera').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
                 const { image, text } = req.body
                 createPost(userId, image, text)
                     .then(() => res.status(201).send())
@@ -88,7 +78,7 @@ client.connect()
         api.get('/posts', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'pau13 no seas grosera').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
 
                 retrievePosts(userId)
                     .then(posts => res.json(posts))
@@ -99,7 +89,7 @@ client.connect()
         api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'pau13 no seas grosera').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
 
                 const { image, text } = req.body
                 const { postId } = req.params
@@ -112,7 +102,7 @@ client.connect()
         api.delete('/posts/:postId', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'pau13 no seas grosera').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
 
                 const { postId } = req.params
                 deletePost(userId, postId)
@@ -124,7 +114,7 @@ client.connect()
         api.get('/posts/:postId', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, 'pau13 no seas grosera').sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
 
                 const { postId } = req.params
                 retrievePost(userId, postId)
@@ -132,5 +122,5 @@ client.connect()
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
-        api.listen(9000, () => console.log('API runing in port 9000'))
+        api.listen(PORT, () => console.log(`API running in port ${PORT}`))
     })
