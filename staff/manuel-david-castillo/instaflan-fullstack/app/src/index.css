@@ -62,6 +62,7 @@ body {
     border-radius: 5px;
     padding: 12px 20px;
     font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
@@ -361,4 +362,37 @@ body {
   padding-right: 10px;
   padding-bottom: 10px;
   gap: 15px
+}
+
+.profile-image-name-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.profile-image-name {
+  display: flex;
+  align-items: center;
+}
+
+.edit-profile-button {
+  width: 120px;
+  height: 33px;
+}
+
+.description-profile {
+  color:#d35400;
+  font-weight: bold;
+  border-bottom: solid black 2px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.two-buttons-profile {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  border-bottom: solid 2px;
 }

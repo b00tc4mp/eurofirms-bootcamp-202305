@@ -81,7 +81,7 @@ export function Home(props) {
             {page === 'Explorer' && <Explorer />}
             {page === 'Messages' && <Messages />}
             {page === 'Notifications' && <Notifications />}
-            {page === 'Profile' && <Profile />}
+            {page === 'Profile' && <Profile user={user} />}
         </main>
         <footer className="footer">
             <a onClick={handleAllPostPage} className="footer-emogis" href="#">🏠</a>
