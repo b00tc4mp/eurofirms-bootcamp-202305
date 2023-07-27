@@ -5,6 +5,10 @@ const user = new Schema({
         type: String,
         required: true
     },
+    nickname: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -19,6 +23,18 @@ const user = new Schema({
         type: String,
         required: true,
         minLength: 8
+    },
+    image: {
+        type: String,
+        required: true,
+    },
+    bio: {
+        type: String,
+        required: true,
+    },
+    createdDate: {
+        type: Date,
+        default: Date.now
     }
 })
 

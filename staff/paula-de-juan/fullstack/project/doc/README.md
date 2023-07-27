@@ -54,7 +54,16 @@ The Beatles
 
 ### Data model
 
-
 User
 
+- _id
 - name
+- nickname
+- email
+- phone
+- password
+- image
+- bio
+- createdDate
+
+![user](https://trello.com/1/cards/64c200417f5f269817f4a6fd/attachments/64c202a0d66d1c20242fbf1d/download/image.png)
