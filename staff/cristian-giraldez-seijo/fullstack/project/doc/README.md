@@ -47,7 +47,7 @@ Comment
 ## Planning
 - DONE Implement data models
 - DONE implement api register user logic
-- TODO implement api route for register user
+- DONE implement api route for register user
 - TODO implement app register user logic
 - TODO implement app register component
 - DONE implement api authenticate user logic
