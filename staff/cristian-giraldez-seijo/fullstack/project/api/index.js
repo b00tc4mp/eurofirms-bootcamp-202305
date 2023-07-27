@@ -32,5 +32,23 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
 
+        api.post('/users/auth', jsonBodyParser, (req, res) => {
+            try {
+                const { email, password } = req.body
+
+                authenticateUser(email, password)
+                    .then(userId => {
+                        const data = { sub: userId }
+
+                        const token = jwt.sign(data, JWT_SECRET)
+
+                        res.json(token)
+                    })
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
         api.listen(PORT, () => console.log(`API running in port ${PORT}`))
     })
