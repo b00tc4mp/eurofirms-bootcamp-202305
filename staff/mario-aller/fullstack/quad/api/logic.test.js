@@ -15,7 +15,8 @@ const jwt = require('jsonwebtoken')
 
 // User-defined modules
 const {
-    Dimension, Dimension2D,
+    Dimension,
+    Dimension2D,
     Block,
     Panel,
     sleep, display
@@ -35,8 +36,8 @@ sleep(200)
 const pos = new Dimension2D(4, 5)
 const width = new Dimension(20)
 const height = new Dimension(20)
-const block_a = new Block(width.value(), height.value(), Block.REGULAR_POSITION)
-const block_b = new Block(width.value(), height.value(), Block.ROTATED_POSITION, pos)
+const block_a = new Block(width.value(), height.value(), Block.REGULAR)
+const block_b = new Block(width.value(), height.value(), Block.ROTATED90, pos)
 console.log(block_a)
 console.log(block_b)
 
@@ -53,16 +54,17 @@ display('-------------------')
 display('Prueba de vertices')
 const pan = new Panel(500, 200)
 const pos1 = new Dimension2D()
-const block1 = new Block(30, 40, Block.REGULAR_POSITION, pos1)
+const block1 = new Block(30, 40, Block.REGULAR, pos1)
 const pos2 = new Dimension2D(50, 60)
-const block2 = new Block(10, 20, Block.REGULAR_POSITION, pos2)
+const block2 = new Block(10, 20, Block.REGULAR, pos2)
 console.log(block1, block2)
 
-pan.list.push(block1)
-pan.list.push(block2)
+pan.blocks.push(block1)
+pan.blocks.push(block2)
 
 console.log(pan)
 
 const p = new Dimension2D(10, 10)
 console.log('Free point:', pan.posFree(p))
 display('-------------------')
+
