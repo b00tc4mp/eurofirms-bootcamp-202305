@@ -6,6 +6,17 @@ function Login({ onGotoReg, onLogged }) {
 
     const handleOnLogin = function (event) {
         event.preventDefault()
+
+        // const email = event.target.email.value
+        // const password = event.target.password.value
+        // try {
+        //     authenticateUser(email, password)
+        //         .then(token => {
+        //             context.tokenUser = token
+        //             onLogged()
+        //         })
+        //         .catch(error => alert('Error:' + error.message))
+        // } catch (error) { alert('Error: ' + error.message) }
     }
     return (
         <div className="login">

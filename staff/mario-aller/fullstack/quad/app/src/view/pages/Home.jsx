@@ -1,12 +1,13 @@
-import { retrieveUser } from '../../logic/user-ctrl'
+import { retrieveUserName } from '../../logic/user-ctrl'
 import context from '../../context'
 import { useState, useEffect } from 'react'
+// import { getIdFromToken } from '../../logic/helpers/convert'
 // import { PostCreate } from '../modals/PostCreate'
 // import { PostDelete } from '../modals/PostDelete'
 // import { PostEdit } from '../modals/PostEdit'
 
 function Home({ onLogout }) {
-        const [userLogged, setUserLogged] = useState(null)
+    const [userLogged, setUserLogged] = useState(null)
 
     // const [modal, setModal] = useState(null)
     // const [idPost, setIdPost] = useState(null)
@@ -14,7 +15,7 @@ function Home({ onLogout }) {
 
     useEffect(() => {
         try {
-            Promise.all([retrieveUser(context.tokenUser), () => { }])
+            Promise.all([retrieveUserName(context.tokenUser), () => { }])
                 .then(([user, dataPanel]) => {
                     setUserLogged(user)
                     dataPanel = null
@@ -54,12 +55,14 @@ function Home({ onLogout }) {
     //     } catch (error) { alert('Error: ' + error.message) }
     // }
     // const userId = JSON.parse(atob(context.tokenUser.split('.')[1])).sub
+    
+    // const userId = getIdFromToken(context.tokenUser)
 
     return (
         <div className="home">
             <header className="home-header">
                 <div className="basic-head">
-                    <h3>Hola, {userLogged ? userLogged.name : 'mundo'}</h3>
+                    <h3>Hello, {userLogged ? userLogged.name : 'world'}</h3>
                 </div>
             </header>
 

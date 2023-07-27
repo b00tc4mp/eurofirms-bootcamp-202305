@@ -18,33 +18,40 @@ function Register({ onGotoLog, onRegisteredUser }) {
 
     return (
         <div className="register">
+            <header className="reg-header">
+                <div className="basic-head">
+                    <img className="logo" src="../../../public/logo-block.gif" alt="logo" />
+                    <h2>User register - Quad</h2>
+                </div>
+            </header>
+
             <main className="reg-view">
                 <form className="reg-form" action="submit" onSubmit={handleRegisterUser}>
                     <div className="basic-form">
-                        <label className="basic-label" htmlFor="name">Nombre</label>
+                        <label className="basic-label" htmlFor="name">Name</label>
                         <input type="text" id="name" autoComplete="off"></input>
 
-                        <label className="basic-label" htmlFor="suname">Nombre</label>
+                        <label className="basic-label" htmlFor="suname">Surname</label>
                         <input type="text" id="suname" autoComplete="off"></input>
 
-                        <label className="basic-label" htmlFor="zip">Nombre</label>
+                        <label className="basic-label" htmlFor="zip">ZIP code</label>
                         <input type="text" id="zip" autoComplete="off"></input>
 
-                        <label className="basic-label" htmlFor="email">Correo</label>
+                        <label className="basic-label" htmlFor="email">email</label>
                         <input type="email" id="email" autoComplete="off"></input>
 
-                        <label className="basic-label" htmlFor="password">Clave</label>
+                        <label className="basic-label" htmlFor="password">password</label>
                         <input type="password" id="password" autoComplete="off"></input>
 
-                        <button className="basic-button">Registrarse</button>
+                        <button className="basic-button">Register</button>
                     </div>
                 </form>
             </main>
 
             <footer className="reg-nav">
                 <div className="basic-nav">
-                    <button type="submit" className="button-tolog basic-button" onClick={handleOnGotoLog}>Acceso</button>
-                    <button type="button" className="basic-button">Otra acción</button>
+                    <button type="submit" className="button-tolog basic-button" onClick={handleOnGotoLog}>Login</button>
+                    <button type="button" className="basic-button">Preferences</button>
                 </div>
             </footer>
 

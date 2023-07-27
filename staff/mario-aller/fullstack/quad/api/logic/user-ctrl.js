@@ -41,7 +41,24 @@ function registerUser(name, email, password) {
         })
         .then(() => { })
 }
+/**
+ * The function retrieves the name of a user based on their ID.
+ * @param id - The `id` parameter is the unique identifier of the user whose name we want to retrieve.
+ * @returns a promise that resolves to the user object with only the "name" field and without the "_id"
+ * field.
+ */
+function retrieveUserName(id) {
+    validateString(id)
+
+    return User.findById(id,'name -_id').lean()
+        .then((user) => {
+            if (!user) throw new Error('El usuario no existe')
+
+            return user
+        })
+}
 module.exports = {
     authenticateUser,
-    registerUser
+    registerUser,
+    retrieveUserName
 }

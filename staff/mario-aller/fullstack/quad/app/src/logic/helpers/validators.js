@@ -31,7 +31,7 @@ export function validateString(data, option = 0) {
     if (data === '') throw new Error('La cadena está vacía')
 
     const charsValid1 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-    const charsValid2 = ',;:._-$'
+    const charsValid2 = '+/,;:._-$'
     const charsValid3 = '._-$'
     const charsValid4 = 'ñÑáéíóúäëïöüÁÉÍÓÚÄËÏÖÜ'
     const charsValid5 = '@/=?()%&'

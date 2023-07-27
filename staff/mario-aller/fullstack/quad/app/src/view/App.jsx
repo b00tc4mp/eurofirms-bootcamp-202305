@@ -21,6 +21,5 @@ function App() {
             console.log('Error: Estado view de App no definido')
             return null
     }
-
 }
 export default App
