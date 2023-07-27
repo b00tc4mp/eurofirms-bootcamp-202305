@@ -1,4 +1,5 @@
 # Legendary social network
+![logo](http://legendarymusic.es/img/legendary-logo.jpg)
 ## This social network is going to be...
 ![This social network is going to be Legendary](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG5zYnhsZzY5Mm83bDJrYWZheno1NnB2Z3cya2hvYWJ1YmdncWFyNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1vh1PXneQqN1e/giphy.gif)
 
