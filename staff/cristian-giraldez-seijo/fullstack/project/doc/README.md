@@ -1,0 +1,52 @@
+# Talking characters
+
+## Intro
+TODO Explain project
+
+## Functional description
+
+### Use cases
+
+Anonymous
+- View all stories
+
+User
+- View all stories
+- Publish story
+- Edit story
+- Delete story
+- Toggle fav story
+- Add comment to story
+- Delete comment from story
+- Edit comment in story
+TODO Value AI interactions posibility
+
+## Technical description
+
+### Data model
+
+User
+- nickname(string, required, unique)
+- password(string, required)
+- email(string, required, unique)
+- favs(array of object ids)
+
+Story
+- author(object id, required, unique)
+- sumary(string)
+- text(string, required)
+- date(date, required)
+- children(array of object ids)
+- comments(array of comments)
+
+Comment
+- author(object id, required)
+- text(string, required)
+- date(date, required)
+
+## Planning
+- TODO Implement data models
+- TODO implement api register user logic
+- TODO implement api route for register user
+- TODO implement app register user logic
+- TODO implement app register component
