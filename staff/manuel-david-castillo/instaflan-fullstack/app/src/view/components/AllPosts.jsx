@@ -66,7 +66,6 @@ export function AllPosts(props) {
             retrievePosts(context.token)
                 .then((posts) => {
                     setPosts(posts)
-                    console.log(posts)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {

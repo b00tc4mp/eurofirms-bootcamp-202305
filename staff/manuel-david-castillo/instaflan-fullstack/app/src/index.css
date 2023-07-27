@@ -224,6 +224,15 @@ body {
     transform: scale(1.2); /* Hace que el enlace se agrande al pasar el ratón */
   }
 
+  .footer-profile-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    margin-right: 10px;
+    object-fit: cover;
+    margin-bottom: -5px;
+  }
+
 .modal-new-post,
 .modal-edit-post,
 .modal-delete-post {

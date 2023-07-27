@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { context } from "../../logic/helpers/context"
 import { retrievePosts } from "../../logic/retrievePosts"
+import { retrieveUser } from "../../logic/retrieveUser"
 
 import { AllPosts } from '../components/AllPosts'
 import { Explorer } from "../components/Explorer"
@@ -15,12 +16,25 @@ export function Home(props) {
     const [page, setPage] = useState('Instaflan')
     const [modal, setModal] = useState(null)
     const [posts, setPosts] = useState(null)
+    const [user, setUser] = useState(null)
 
     const handleAllPostPage = () => setPage('Instaflan')
     const handleExplorerPage = () => setPage('Explorer')
     const handleMessagesPage = () => setPage('Messages')
     const handleNotificationsPage = () => setPage('Notifications')
     const handleProfilePage = () => setPage('Profile')
+
+    useEffect(() => {
+        try {
+            retrieveUser(context.token)
+                .then((user) => {
+                    setUser(user)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
 
     const handleLogout = () => {
         context.token = null
@@ -75,7 +89,12 @@ export function Home(props) {
             <a onClick={handleCreatePostModal} className="footer-emogis" href="#">➕</a>
             <a onClick={handleMessagesPage} className="footer-emogis" href="#">✉️</a>
             <a onClick={handleNotificationsPage} className="footer-emogis" href="#">❤️</a>
-            <a onClick={handleProfilePage} className="footer-emogis" href="#">🧒</a>
+            <a onClick={handleProfilePage} className="footer-emogis" href="#">
+                {user && <img
+                    className="footer-profile-image"
+                    src={user.image}
+                    alt={user.name} />}
+            </a>
         </footer>
 
         {modal === "create-post-modal" && <CreatePostModal onCreatePost={handleCreatePost} onHideCreatePost={handleCancelCreatePostModal} />}
