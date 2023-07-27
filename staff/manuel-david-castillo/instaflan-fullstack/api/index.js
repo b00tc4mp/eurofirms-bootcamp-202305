@@ -10,6 +10,7 @@ const {authenticateUser,
     createPost, 
     deletePost,
     editPost,
+    editUser,
     registerUser, 
     retrievePost,
     retrievePosts,
@@ -39,6 +40,24 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
 
                     res.json(token)
                 })
+                .catch(error => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.patch('/users/', jsonBodyParser, (req, res) => {
+            const {authorization} = req.headers
+            const token = authorization.slice(7)
+
+            const data = jwt.verify(token, JWT_SECRET)
+            const userId = data.sub
+
+            const {name, image, description} = req.body
+
+            try{
+                editUser(userId, name, image, description)
+                .then(()=> res.status(200).send())
                 .catch(error => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})

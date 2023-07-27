@@ -4,6 +4,7 @@ const user = new Schema({
     name: {
         type: String,
         required: true,
+        unique: true
     },
     image: {
         type: String

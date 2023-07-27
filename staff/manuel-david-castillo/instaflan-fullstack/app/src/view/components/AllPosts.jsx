@@ -71,7 +71,7 @@ export function AllPosts(props) {
         } catch (error) {
             alert(error.message)
         }
-    }, [props.posts])
+    }, [])
 
     return <section className="all-posts">
         {posts.map(post => <article key={post.id} className="post">

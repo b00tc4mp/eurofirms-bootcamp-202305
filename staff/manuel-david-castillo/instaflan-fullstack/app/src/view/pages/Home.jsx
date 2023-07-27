@@ -17,12 +17,7 @@ export function Home(props) {
     const [modal, setModal] = useState(null)
     const [posts, setPosts] = useState(null)
     const [user, setUser] = useState(null)
-
-    const handleAllPostPage = () => setPage('Instaflan')
-    const handleExplorerPage = () => setPage('Explorer')
-    const handleMessagesPage = () => setPage('Messages')
-    const handleNotificationsPage = () => setPage('Notifications')
-    const handleProfilePage = () => setPage('Profile')
+    const [userProfile, setUserProfile] = useState(null)
 
     useEffect(() => {
         try {
@@ -35,6 +30,15 @@ export function Home(props) {
             alert(error.message)
         }
     }, [])
+
+    const handleAllPostPage = () => setPage('Instaflan')
+    const handleExplorerPage = () => setPage('Explorer')
+    const handleMessagesPage = () => setPage('Messages')
+    const handleNotificationsPage = () => setPage('Notifications')
+    const handleProfilePage = () => {
+        setPage('Profile')
+        setUserProfile(user)
+    }
 
     const handleLogout = () => {
         context.token = null
@@ -63,7 +67,7 @@ export function Home(props) {
         <header className="header">
             <div className="div-h2-img">
                 <h2 className="h2-header">{page}</h2>
-                <img className="icon-flan" src="./public/images/flan.png" alt="Icon flan" />
+                {page === 'Instaflan' && <img className="icon-flan" src="./public/images/flan.png" alt="Icon flan" />}
             </div>
             {page === 'Profile' ?
                 <nav>
@@ -81,7 +85,7 @@ export function Home(props) {
             {page === 'Explorer' && <Explorer />}
             {page === 'Messages' && <Messages />}
             {page === 'Notifications' && <Notifications />}
-            {page === 'Profile' && <Profile user={user} />}
+            {page === 'Profile' && <Profile userProfile={userProfile} />}
         </main>
         <footer className="footer">
             <a onClick={handleAllPostPage} className="footer-emogis" href="#">🏠</a>

@@ -236,6 +236,7 @@ body {
 
 .modal-new-post,
 .modal-edit-post,
+.modal-edit-user,
 .modal-delete-post {
   position: fixed;
   top: 0;
@@ -256,6 +257,7 @@ body {
 
 .form-new-post,
 .form-edit-post,
+.form-edit-user,
 .form-delete-post {
   display: flex;
   flex-direction: column;
