@@ -5,5 +5,6 @@ module.exports = {
     editPost: require('./editPost'),
     registerUser: require('./registerUser'),
     retrievePost: require('./retrievePost'),
-    retrievePosts: require('./retrievePosts')
+    retrievePosts: require('./retrievePosts'),
+    retrieveUser: require('./retrieveUser')
 }
