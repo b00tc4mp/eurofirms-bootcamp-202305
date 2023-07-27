@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 
 import { context } from "../../logic/helpers/context"
+import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken"
 import { retrievePosts } from "../../logic/retrievePosts"
 import { retrieveUser } from "../../logic/retrieveUser"
 
@@ -17,7 +18,8 @@ export function Home(props) {
     const [modal, setModal] = useState(null)
     const [posts, setPosts] = useState(null)
     const [user, setUser] = useState(null)
-    const [userProfile, setUserProfile] = useState(null)
+    const [userIdProfile, setUserIdProfile] = useState(null)
+    const userId = extractUserIdFromToken(context.token)
 
     useEffect(() => {
         try {
@@ -36,8 +38,13 @@ export function Home(props) {
     const handleMessagesPage = () => setPage('Messages')
     const handleNotificationsPage = () => setPage('Notifications')
     const handleProfilePage = () => {
+        setUserIdProfile(userId)
         setPage('Profile')
-        setUserProfile(user)
+    }
+
+    const handleProfile = (userIdProfile) => {
+        setUserIdProfile(userIdProfile)
+        setPage('Profile')
     }
 
     const handleLogout = () => {
@@ -81,11 +88,11 @@ export function Home(props) {
             }
         </header>
         <main className="main-home">
-            {page === 'Instaflan' && <AllPosts posts={posts} />}
+            {page === 'Instaflan' && <AllPosts posts={posts} onHandleProfile={handleProfile} />}
             {page === 'Explorer' && <Explorer />}
             {page === 'Messages' && <Messages />}
             {page === 'Notifications' && <Notifications />}
-            {page === 'Profile' && <Profile userProfile={userProfile} />}
+            {page === 'Profile' && <Profile userIdProfile={userIdProfile} />}
         </main>
         <footer className="footer">
             <a onClick={handleAllPostPage} className="footer-emogis" href="#">🏠</a>

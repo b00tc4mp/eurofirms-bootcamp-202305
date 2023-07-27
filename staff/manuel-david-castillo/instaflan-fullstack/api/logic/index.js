@@ -7,5 +7,6 @@ module.exports = {
     registerUser: require('./registerUser'),
     retrievePost: require('./retrievePost'),
     retrievePosts: require('./retrievePosts'),
-    retrieveUser: require('./retrieveUser')
+    retrieveUser: require('./retrieveUser'),
+    retrieveUserById: require('./retrieveUserById')
 }

@@ -15,6 +15,18 @@ export function AllPosts(props) {
 
     const [postId, setPostId] = useState([])
 
+    useEffect(() => {
+        try {
+            retrievePosts(context.token)
+                .then((posts) => {
+                    setPosts(posts)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
+
     const handleEditPostModal = postId => {
         setPostId(postId)
         setModal("edit-post-modal")
@@ -61,24 +73,16 @@ export function AllPosts(props) {
         }
     }
 
-    useEffect(() => {
-        try {
-            retrievePosts(context.token)
-                .then((posts) => {
-                    setPosts(posts)
-                })
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }, [])
+    const handleProfile = (userIdProfile) => {
+        props.onHandleProfile(userIdProfile)
+    }
 
     return <section className="all-posts">
         {posts.map(post => <article key={post.id} className="post">
             <div className="header-post">
                 <div className="nameImageDiv">
                     <img className="profile-image-post" src={post.author.image} alt={post.author.name} />
-                    <p className="name-post">{post.author.name}</p>
+                    <a onClick={() => handleProfile(post.author.id)} href="#" className="name-post">{post.author.name}</a>
                 </div>
                 <button onClick={() => handletoggleFavPost(post.id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
             </div>
