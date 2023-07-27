@@ -1,5 +1,5 @@
-const {User, Post} = require('../data/models')
-const {validateId} = require('../logic/helpers/validators')
+const {User, Post} = require('../../data/models')
+const {validateId} = require('../helpers/validators')
 
 function retrievePosts(userId) {
     validateId(userId)

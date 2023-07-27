@@ -1,5 +1,5 @@
-const {User} = require('../data/models')
-const {validateName, validateEmail, validatePassword, validateUrl, validateText} = require('./helpers/validators')
+const {User} = require('../../data/models')
+const {validateName, validateEmail, validatePassword, validateUrl, validateText} = require('../helpers/validators')
 
 function registerUser(name, image, description, email, password) {
     validateName(name)

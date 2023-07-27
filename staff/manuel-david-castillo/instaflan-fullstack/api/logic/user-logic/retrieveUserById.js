@@ -1,5 +1,5 @@
-const {validateId} = require('./helpers/validators')
-const {User} = require('../data/models')
+const {validateId} = require('../helpers/validators')
+const {User} = require('../../data/models')
 
 function retrieveUser(userId, userIdProfile) {
     validateId(userId)

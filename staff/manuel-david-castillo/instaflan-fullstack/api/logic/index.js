@@ -1,12 +1,12 @@
 module.exports = {
-    authenticateUser: require('./authenticateUser'),
-    createPost: require('./createPost'),
-    deletePost: require('./deletePost'),
-    editPost: require('./editPost'),
-    editUser: require('./editUser'),
-    registerUser: require('./registerUser'),
-    retrievePost: require('./retrievePost'),
-    retrievePosts: require('./retrievePosts'),
-    retrieveUser: require('./retrieveUser'),
-    retrieveUserById: require('./retrieveUserById')
+    authenticateUser: require('./user-logic/authenticateUser'),
+    createPost: require('./post-logic/createPost'),
+    deletePost: require('./post-logic/deletePost'),
+    editPost: require('./post-logic/editPost'),
+    editUser: require('./user-logic/editUser'),
+    registerUser: require('./user-logic/registerUser'),
+    retrievePost: require('./post-logic/retrievePost'),
+    retrievePosts: require('./post-logic/retrievePosts'),
+    retrieveUser: require('./user-logic/retrieveUser'),
+    retrieveUserById: require('./user-logic/retrieveUserById')
 }

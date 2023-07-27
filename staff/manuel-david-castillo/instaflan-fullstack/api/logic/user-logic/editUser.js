@@ -1,5 +1,5 @@
-const {User} = require('../data/models')
-const { validateId, validateName, validateUrl, validateText } = require('./helpers/validators')
+const {User} = require('../../data/models')
+const { validateId, validateName, validateUrl, validateText } = require('../helpers/validators')
 
 function editUser(userId, name, image, description) {
     validateId(userId)
