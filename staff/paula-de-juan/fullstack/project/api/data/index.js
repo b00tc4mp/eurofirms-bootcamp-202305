@@ -7,7 +7,8 @@ const user = new Schema({
     },
     nickname: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     email: {
         type: String,
@@ -35,10 +36,7 @@ const user = new Schema({
     createdDate: {
         type: Date,
         default: Date.now
-    }
-})
-
-const musicTaste = new Schema ({
+    },
     styles: [
         {
             type: String
@@ -63,22 +61,11 @@ const musicTaste = new Schema ({
         {
             type: String
         }
-    ],
-    description: {
-            type: String
-        }
-    ,
-    user: {
-        type: ObjectId,
-        required: true
-    }
+    ]
 })
 
 const User = model('User', user)
 
-const MusicTaste = model('MusicTaste', musicTaste)
-
 module.exports = {
-    User,
-    MusicTaste
+    User
 }

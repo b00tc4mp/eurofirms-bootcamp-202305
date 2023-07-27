@@ -58,11 +58,23 @@ function validateText(text){
     if(text === '') throw new Error('text is empty')
 }
 
+function validatePhone(phone){
+    const phoneToNumber = parseInt(phone)
+    if(typeof phoneToNumber !== number) throw new Error('phone is not a number')
+    if(phone === '') throw new Error('phone is empty')
+}
+
+function validateNickname(nickname){
+    if(typeof nickname !== string) throw new Error ('nickname is not a string')
+    if(nickname === '') throw new Error('nickname is empty')
+}
 module.exports = {
     validateEmail,
     validatePassword,
     validateName,
+    validatePhone,
+    validateNickname, 
     validateId,
     validateUrl,
-    validateText
+    validateText,
 }

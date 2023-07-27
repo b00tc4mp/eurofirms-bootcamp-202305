@@ -22,9 +22,14 @@ Kurt Cobain dancing
 
 ### Use cases
 
-##### Register: I want to be able to insert my name, my email, my phone number and my password.
+User
+- Search users
+- View user profile
+- Edit profile
 
-##### Login: I want to be able to do the login in the application with my email and password.
+
+
+### User stories
 
 #### Choose your taste in music: Select the styles or kinds of music that you like, and choose between a list of bands and favourite albums and your favourite musicians (singers, guitar-players, bass-players, drummers, etc.)
 
@@ -41,10 +46,9 @@ The Beatles
 
 
 
-[Trello](https://trello.com/invite/b/z1nB3yCo/ATTI308d32931fc28e375468f7ba94aa03391AE4398B/legendary)
 
 
-### UI Design
+## UI Design
 
 [Figma](https://www.figma.com/file/qurUWZbOAOIN2xJ4Yk3rMg/Legendary?type=design&node-id=0%3A1&mode=design&t=p9bkXpJI5f9CywQs-1)
 
@@ -57,16 +61,26 @@ The Beatles
 
 User
 
-- _id
-- name
-- nickname
-- email
-- phone
-- password
-- image
-- bio
-- createdDate
+- _id (ObjectId, auto)
+- name (String, required)
+- nickname (String, required)
+- email (String, required)
+- phone (String, required)
+- password (String, required)
+- image (String, required)
+- bio (String, required)
+- createdDate (String, required)
+- styles (String, required)
+- bands (String, required)
+- albums (String, required)
+- songs (String, required)
+- musicians (String, required)
 
 <br>
 
 ![user](http://legendarymusic.es/img/user_in_data_model.jpg)
+
+
+## Planning
+
+[Trello](https://trello.com/invite/b/z1nB3yCo/ATTI308d32931fc28e375468f7ba94aa03391AE4398B/legendary)
