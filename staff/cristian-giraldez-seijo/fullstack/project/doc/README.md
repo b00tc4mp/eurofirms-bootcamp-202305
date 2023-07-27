@@ -50,3 +50,7 @@ Comment
 - TODO implement api route for register user
 - TODO implement app register user logic
 - TODO implement app register component
+- DONE implement api authenticate user logic
+- TODO implement api route for authenticate user
+- TODO implement app authenticate user logic
+- TODO implement app login component
