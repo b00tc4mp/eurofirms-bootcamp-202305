@@ -14,7 +14,7 @@ function toggleFavPost(token, postId) {
             else if (res.status === 400)
                 return res.json()
                 .then(body => {
-                    const message = body.Error
+                    const message = body.error
 
                     throw new Error(message)
                 })

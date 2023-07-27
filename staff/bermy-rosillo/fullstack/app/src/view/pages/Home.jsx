@@ -6,6 +6,7 @@ import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
 import CreatePostModal from '../modals/CreatePostModal'
 import EditPostModal from '../modals/EditPostModal'
 import DeletePostModal from '../modals/DeletePostModal'
+import toggleFavPost from "../../logic/toggleFavPost"
 
 function Home(props) {
     console.log('Home->render')
@@ -105,7 +106,21 @@ function Home(props) {
             alert(error.message)
         }
     }
-
+    //--
+    const handleToggleFavPostClick = (postId) => {
+        try {
+            toggleFavPost(context.token,postId)
+                .then(() => {
+                    retrievePosts(context.token)
+                    .then((posts)=>{
+                        setPosts(posts)
+                    })
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     //--------------------------------------------
     const userId = extractUserIdFromToken(context.token)
@@ -128,7 +143,9 @@ function Home(props) {
                                 <button onClick={() => handleEditPostModal(post.id)}>Edit</button>
                                 <button onClick={() => handleDeletePostModal(post.id)}>Delete</button>
                             </>
+                            
                         }
+                        <button onClick={() => handleToggleFavPostClick(post.id)}>{post.fav ? 'Remove favorite': 'Add favorite'}</button>
                     </article>
                 })}
             </section>
@@ -146,6 +163,5 @@ function Home(props) {
 
 
     </div>
-
 }
 export default Home

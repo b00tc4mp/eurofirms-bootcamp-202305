@@ -20,7 +20,8 @@ The main objective of this application will be to provide an easy to use tool wh
 
 
 ### UI design
-Link to [figma]...
+Link to [figma] (https://www.figma.com/file/GInAoUk9eW9vEcsBqC9Cp8/ABC-test?type=design&node-id=0-1&mode=design&t=u4JgqzBknTPlzzXi-0)
+
 
 ## Technical description
 

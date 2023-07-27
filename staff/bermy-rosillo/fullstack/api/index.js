@@ -2,8 +2,7 @@ require('dotenv').config()//carga fichero .env en memoria y
 // añade las variables de entorno a procces.env
 
 const express = require('express')
-const mongodb = require('mongodb')
-const context = require('./logic/context')
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const registerUser = require('./logic/registerUser')
 const authenticateUser = require('./logic/authenticateUser')
@@ -13,20 +12,15 @@ const updatePost = require('./logic/updatePost')
 const retrievePosts = require('./logic/retrievePosts')
 const retrievePost = require('./logic/retrievePost')
 const deletePost = require('./logic/deletePost')
+const toggleFavPost = require('./logic/toggleFavPost')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
-const { MongoClient } = mongodb
-
-const client = new MongoClient(process.env.MONGODB_URL)
-
-client.connect()
-    .then((connection) => {
-        context.users = connection.db('data').collection('users')
-        context.posts = connection.db('data').collection('posts')
-
+mongoose.connect(`${process.env.MONGODB_URL}/data`)
+    .then(() => {
+        
         const api = express()
 
         const jsonBodyParser = bodyParser.json()
@@ -190,7 +184,7 @@ client.connect()
             }
         })
         //toggleFavPost
-        api.put('/posts/:postId',(req,res)=>{
+        api.put('/posts/:postId/favs',(req,res)=>{
             try{
                 const{authorization} = req.headers
                 const token = authorization.slice(7)
