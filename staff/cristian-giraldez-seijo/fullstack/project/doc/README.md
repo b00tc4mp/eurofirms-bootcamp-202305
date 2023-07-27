@@ -45,8 +45,8 @@ Comment
 - date(date, required)
 
 ## Planning
-- TODO Implement data models
-- TODO implement api register user logic
+- DONE Implement data models
+- DONE implement api register user logic
 - TODO implement api route for register user
 - TODO implement app register user logic
 - TODO implement app register component
