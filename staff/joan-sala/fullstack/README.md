@@ -39,6 +39,7 @@ User
 - name (String, required)
 - email (String, required, unique)
 - password (String, required, minLength: 8)
+- image (photo file, optional)
 
 Meetup
 - title (String, required)

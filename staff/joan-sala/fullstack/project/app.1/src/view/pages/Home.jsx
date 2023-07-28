@@ -131,7 +131,7 @@ function Home({onLoggedOut}) {
             <main className="home-main">
                 <section className="home-posts">
                     {posts && posts.map(post => <article key={post.id} className="home-post">
-                            <h2>{post.author?.name}</h2>
+                            <h2>{post.author.name}</h2>
                             <img className="home-post-image"
                                 src={post.image}
                                 alt={post.text} />

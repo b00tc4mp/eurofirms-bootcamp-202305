@@ -123,7 +123,7 @@ function Home({onLoggedOut}) {
     return (
         <div className="home-view">
             <header className="home-header">
-                <h1 className="home-title">Hello, {user ? user.name : 'World'}!</h1>
+                <h1 className="home-title">{user ? user.name : 'World'}!</h1>
 
                 <button className="home-logout-button" onClick={handleLogoutClick}>Logout</button>
             </header>
