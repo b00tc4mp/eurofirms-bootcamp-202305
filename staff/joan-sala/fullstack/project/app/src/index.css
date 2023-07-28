@@ -119,3 +119,15 @@ body {
 .off {
     display: none;
 }
+.initial-page-footer{
+    background-color: #D9D9D9;
+    src: local('../../../images/logo03.png');
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    text-align: center;
+}

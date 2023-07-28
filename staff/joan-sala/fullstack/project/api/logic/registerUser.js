@@ -1,31 +1,18 @@
-const { validateName, validateEmail, validatePassword } = require('./helpers/validators')
+const { validateName, validateEmail, validatePassword, validateUrl } = require('./helpers/validators')
 const { User } =  require('../data')
 
-/**
- * Registers a user
- * 
- * @param {string} name The user name
- * @param {string} email The user email
- * @param {string} password The user password
- * 
- * @throws {Error} In case name, email or password do not match the expected value types and formats (synchronous)
- * 
- * @returns {Promise}
- * 
- * @throws {Error} In case user already exists (asynchronous)
- */
 
-function registerUser(name, email, password){
+function registerUser(name, email, password, image){
     validateName(name)
     validateEmail(email)
     validatePassword(password)
-    //validateUrl(image)
+    validateUrl(image)
 
     return User.findOne({ email })
         .then(user => {
             if(user) throw new Error('User already exist')
 
-            return User.create ({name, email, password})
+            return User.create ({name, email, password, image})
         })
         .then(() => {})
 }

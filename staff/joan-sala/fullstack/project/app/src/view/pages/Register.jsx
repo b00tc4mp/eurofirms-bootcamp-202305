@@ -1,14 +1,14 @@
 import context from '../../context'
 import registerUser from '../../logic/registerUser'
 
-function Register (props){
+function Register(props) {
     console.log('Register -> render')
-    
-    const handleLoginClick = event =>{
+
+    const handleLoginClick = event => {
         event.preventDefault()
 
         props.onLoginClick()
-    } 
+    }
     const handleRegisterSubmit = event => {
         event.preventDefault()
 
@@ -27,23 +27,27 @@ function Register (props){
 
     return (
         <main className="register-view">
-        <h1>Register</h1>
+            <h1>Register</h1>
 
-        <form className="register-form" onSubmit={handleRegisterSubmit}>
-            <label htmlFor="name">Name</label>
-            <input id="name" type="text"></input>
+            <form className="register-form" onSubmit={handleRegisterSubmit}>
+                <label htmlFor="name">Name</label>
+                <input id="name" type="text"></input>
 
-            <label htmlFor="email">E-mail</label>
-            <input id="email" type="email"></input>
+                <label htmlFor="email">E-mail</label>
+                <input id="email" type="email"></input>
 
-            <label htmlFor="password">Password</label>
-            <input id="password" type="password"></input>
+                <label htmlFor="password">Password</label>
+                <input id="password" type="password"></input>
 
-            <button type="submit">Register</button>
-        </form>
+                <button type="submit">Register</button>
+            </form>
 
-        <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
-    </main>
+            <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
+            <footer className="initial-page-footer" >
+                <p><img src="public/logo03.png" alt="MeetupBikers" width="60%" /></p>
+
+            </footer>
+        </main>
     )
 }
 export default Register
