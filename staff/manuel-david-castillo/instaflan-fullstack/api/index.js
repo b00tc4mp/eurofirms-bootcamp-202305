@@ -170,7 +170,7 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
             }
         })
 
-        api.get('/users/fav-Posts', (req, res) => {
+        api.get('/users/:userIdProfile/fav-posts', (req, res) => {
             try {
                 const {authorization} = req.headers
                 const token = authorization.slice(7)
@@ -178,9 +178,9 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
-                const {postId} = req.params
+                const {userIdProfile} = req.params
 
-                retrieveFavPosts(userId, postId)
+                retrieveFavPosts(userId, userIdProfile)
                 .then((post)=> res.json(post))
                 .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
