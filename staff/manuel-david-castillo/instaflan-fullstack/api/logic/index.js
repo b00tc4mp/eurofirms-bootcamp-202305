@@ -9,5 +9,6 @@ module.exports = {
     retrievePosts: require('./post-logic/retrievePosts'),
     retrievePostsOfUser: require('./post-logic/retrievePostsOfUser'),
     retrieveUser: require('./user-logic/retrieveUser'),
-    retrieveUserById: require('./user-logic/retrieveUserById')
+    retrieveUserById: require('./user-logic/retrieveUserById'),
+    toggleFavPost: require('./post-logic/toggleFavPost')
 }

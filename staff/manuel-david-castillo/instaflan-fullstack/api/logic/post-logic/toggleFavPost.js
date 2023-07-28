@@ -1,5 +1,5 @@
-const {User, Post} = require('../data/models')
-const {validateId} = require('./helpers/validators')
+const {User, Post} = require('../../data/models')
+const {validateId} = require('../helpers/validators')
 
 function toggleFavPost(userId, postId) {
     validateId(userId)

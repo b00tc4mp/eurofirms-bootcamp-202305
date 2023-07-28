@@ -16,7 +16,8 @@ const {authenticateUser,
     retrievePosts,
     retrievePostsOfUser,
     retrieveUser,
-    retrieveUserById
+    retrieveUserById,
+    toggleFavPost
     } = require('./logic/index')
 
 const {MONGODB_URL, PORT, JWT_SECRET} = process.env
@@ -215,6 +216,24 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 retrievePostsOfUser(userId,userIdProfile)
                 .then((posts)=> res.json(posts))
                 .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.put('/posts/:postId', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {postId} = req.params
+
+                toggleFavPost(userId, postId)
+                .then(() => res.status(200).json().send())
+                .catch(error => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})
             }
