@@ -9,7 +9,7 @@
 function retrieveUser(token) {
     if (typeof token !== 'string') throw new Error('token is not a string!')
 
-    return fetch('http://localhost:9000/users', {
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

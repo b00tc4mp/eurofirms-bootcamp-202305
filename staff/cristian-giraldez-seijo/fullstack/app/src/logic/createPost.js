@@ -15,7 +15,7 @@ function createPost(token, image, text) {
     if (typeof image !== 'string') throw new Error('image field is not a string!')
     if (typeof text !== 'string') throw new Error('the text is not a string!')
 
-return fetch('http://localhost:9000/posts', {
+return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
     method: 'POST',
     headers: {
         Authorization: `Bearer ${token}`,

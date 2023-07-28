@@ -12,7 +12,7 @@ function authenticateUser(email, password) {
     if (typeof email !== 'string') throw new Error('email is not a string!')
     if (typeof password !== 'string') throw new Error('password is not a string!')
 
-    return fetch('http://localhost:9000/users/auth', {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
