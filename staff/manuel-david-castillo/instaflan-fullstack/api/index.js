@@ -14,6 +14,7 @@ const {authenticateUser,
     registerUser, 
     retrievePost,
     retrievePosts,
+    retrievePostsOfUser,
     retrieveUser,
     retrieveUserById
     } = require('./logic/index')
@@ -201,6 +202,23 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
             }
         })
 
+        api.get('/users/:userIdProfile/posts', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {userIdProfile} = req.params
+
+                retrievePostsOfUser(userId,userIdProfile)
+                .then((posts)=> res.json(posts))
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
 
         api.listen(PORT, () => console.log('Servidor lanzado en puerto 8000'))
     })

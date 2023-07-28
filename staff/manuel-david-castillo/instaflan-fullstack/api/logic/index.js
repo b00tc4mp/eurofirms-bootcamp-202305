@@ -7,6 +7,7 @@ module.exports = {
     registerUser: require('./user-logic/registerUser'),
     retrievePost: require('./post-logic/retrievePost'),
     retrievePosts: require('./post-logic/retrievePosts'),
+    retrievePostsOfUser: require('./post-logic/retrievePostsOfUser'),
     retrieveUser: require('./user-logic/retrieveUser'),
     retrieveUserById: require('./user-logic/retrieveUserById')
 }
