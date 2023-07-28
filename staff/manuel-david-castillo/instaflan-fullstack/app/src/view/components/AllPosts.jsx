@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
+
 import { context } from "../../logic/helpers/context"
-import { retrievePosts } from "../../logic/retrievePosts"
 import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken"
+
+import { retrievePosts } from "../../logic/retrievePosts"
+import { toggleFavPost } from "../../logic/toggleFavPost"
+
 
 import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"
@@ -73,6 +77,34 @@ export function AllPosts(props) {
         }
     }
 
+    function handletoggleFavPost(postId) {
+        try {
+            toggleFavPost(context.token, postId)
+                .then(() => {
+                    setPosts(posts => {
+
+                        const posts2 = [...posts]
+
+                        const index = posts2.findIndex(post => post.id === postId)
+                        const post = posts2[index]
+
+                        const post2 = { ...post }
+
+                        post2.fav = !post2.fav
+
+                        posts2[index] = post2
+
+                        return posts2
+                    })
+                })
+                .catch((error) => {
+                    alert(error.message)
+                })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     const handleProfile = (userIdProfile) => {
         props.onHandleProfile(userIdProfile)
     }
@@ -87,6 +119,7 @@ export function AllPosts(props) {
                 <button onClick={() => handletoggleFavPost(post.id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
             </div>
             <img className="img-post" src={post.image} alt={post.text} />
+            <p className="text-post">🤍{post.likes}</p>
             <p className="text-post">{post.text}</p>
             <div className="div-button-edit-delete">
                 {userId === post.author.id && <button onClick={() => handleEditPostModal(post.id)} className="button button-modal">Edit</button>}

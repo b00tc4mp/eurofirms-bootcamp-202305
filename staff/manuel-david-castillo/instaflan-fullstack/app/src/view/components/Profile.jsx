@@ -4,11 +4,12 @@ import { EditUserModal } from "../modals/EditUserModal";
 import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"
 
+import { context } from "../../logic/helpers/context";
 import { retrieveUser } from "../../logic/retrieveUser";
 import { retrieveUserById } from "../../logic/retrieveUserById";
-import { context } from "../../logic/helpers/context";
 import { retrievePostsOfUser } from "../../logic/retrievePostsOfUser";
 import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken";
+import { toggleFavPost } from "../../logic/toggleFavPost";
 
 export function Profile(props) {
     const userId = extractUserIdFromToken(context.token)
@@ -94,6 +95,34 @@ export function Profile(props) {
                     setPostId(null)
                 })
                 .catch(error => {
+                    alert(error.message)
+                })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    function handletoggleFavPost(postId) {
+        try {
+            toggleFavPost(context.token, postId)
+                .then(() => {
+                    setPosts(posts => {
+
+                        const posts2 = [...posts]
+
+                        const index = posts2.findIndex(post => post.id === postId)
+                        const post = posts2[index]
+
+                        const post2 = { ...post }
+
+                        post2.fav = !post2.fav
+
+                        posts2[index] = post2
+
+                        return posts2
+                    })
+                })
+                .catch((error) => {
                     alert(error.message)
                 })
         } catch (error) {
