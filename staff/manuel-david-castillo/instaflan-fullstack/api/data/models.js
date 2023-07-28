@@ -25,7 +25,7 @@ const user = new Schema({
     favPosts: [
         {
             type: ObjectId, 
-            reference: 'Post'
+            ref: 'Post'
         }
     ]
 })
@@ -49,7 +49,7 @@ const post = new Schema({
     },
     author: {
         type: ObjectId,
-        reference: 'User',
+        ref: 'User',
         required: true
     }
 })

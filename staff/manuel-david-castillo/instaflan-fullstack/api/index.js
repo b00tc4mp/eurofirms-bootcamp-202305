@@ -12,6 +12,7 @@ const {authenticateUser,
     editPost,
     editUser,
     registerUser, 
+    retrieveFavPosts,
     retrievePost,
     retrievePosts,
     retrievePostsOfUser,
@@ -164,6 +165,24 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 editPost(userId, postId, image, text)
                 .then(()=> res.status(200).send())
                 .catch(error => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.get('/users/fav-Posts', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {postId} = req.params
+
+                retrieveFavPosts(userId, postId)
+                .then((post)=> res.json(post))
+                .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})
             }

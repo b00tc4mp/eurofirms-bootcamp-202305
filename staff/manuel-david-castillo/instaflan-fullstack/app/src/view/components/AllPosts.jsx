@@ -111,7 +111,8 @@ export function AllPosts(props) {
         }
     }
 
-    const handleProfile = (userIdProfile) => {
+    const handleProfile = (event, userIdProfile) => {
+        event.preventDefault()
         props.onHandleProfile(userIdProfile)
     }
 
@@ -120,7 +121,7 @@ export function AllPosts(props) {
             <div className="header-post">
                 <div className="nameImageDiv">
                     <img className="profile-image-post" src={post.author.image} alt={post.author.name} />
-                    <a onClick={() => handleProfile(post.author.id)} href="#" className="name-post">{post.author.name}</a>
+                    <a onClick={(event) => handleProfile(event, post.author.id)} className="name-post">{post.author.name}</a>
                 </div>
                 <button onClick={() => handletoggleFavPost(post.id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
             </div>
