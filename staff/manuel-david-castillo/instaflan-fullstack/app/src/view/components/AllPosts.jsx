@@ -90,6 +90,12 @@ export function AllPosts(props) {
 
                         const post2 = { ...post }
 
+                        if (post2.fav) {
+                            post2.likes--
+                        } else {
+                            post2.likes++
+                        }
+
                         post2.fav = !post2.fav
 
                         posts2[index] = post2
