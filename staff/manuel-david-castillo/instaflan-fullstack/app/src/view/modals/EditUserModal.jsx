@@ -50,8 +50,8 @@ export function EditUserModal(props) {
             <textarea
                 id="description"
                 name=""
-                cols="19"
-                rows="3"
+                cols="25"
+                rows="5"
                 defaultValue={user.description ? user.description : undefined}
             ></textarea>
             <div className="buttons-create-cancel">

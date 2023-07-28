@@ -30,8 +30,8 @@ export function CreatePostModal(props) {
             <textarea
                 id="text"
                 name=""
-                cols="19"
-                rows="3"
+                cols="25"
+                rows="5"
             ></textarea>
             <p className="p-form">Image</p>
             <input id="image" type="url" />
