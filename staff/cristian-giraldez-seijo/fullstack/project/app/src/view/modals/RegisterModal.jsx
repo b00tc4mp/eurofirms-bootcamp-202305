@@ -1,4 +1,4 @@
-function RegisterModal({onNavigateToLogin}) {
+const RegisterModal = ({onNavigateToLogin}) => {
 
     const handleNavigateToLogin = event => {
         event.preventDefault()

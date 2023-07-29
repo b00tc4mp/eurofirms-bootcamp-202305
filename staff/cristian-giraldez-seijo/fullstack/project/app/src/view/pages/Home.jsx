@@ -1,29 +1,52 @@
-import { useState } from 'react'
-import RegisterModal from '../modals/RegisterModal'
+import React, { useState } from 'react'
 import LoginModal from '../modals/LoginModal'
+import RegisterModal from '../modals/RegisterModal'
 
 function Home() {
-
         const [modal, setModal] = useState(null)
+        const [showSignInButton, setShowSignInButton] = useState(true)
+        const [showCloseButton, setShowCloseButton] = useState(false)
 
-        const [login, setLogin] = useState(null)
+        const handleNavigateToRegister = () => {
+                event.preventDefault
+                setModal('register')
+                setShowSignInButton(false)
+                setShowCloseButton(true)
+        }
 
-        const handleNavigateToRegister = (() => setModal('register'))
+        const handleNavigateToLogin = () => {
+                event.preventDefault
+                setModal('login')
+                setShowSignInButton(false)
+                setShowCloseButton(true)
+        }
+const handleClose = () => {
+        event.preventDefault
+setModal(null)
+setShowSignInButton(true)
+setShowCloseButton(false)
+}
 
-        const handleNavigateToLogin = (() => setModal('login'))
-
-        return (<div className="home">
-                <header className="home-header">
-                        <button type="button" onClick={handleNavigateToLogin}>Login</button>
-                </header>
-                <main>
-                        <h1>Home!</h1>
-
-                        {(modal === 'login') && <LoginModal onNavigateToRegister={handleNavigateToRegister}/>}
-                        {(modal === 'register') && <RegisterModal onNavigateToLogin={handleNavigateToLogin}/>}
-                </main>
-                <footer></footer>
-        </div>
+        return (
+                <div className="home">
+                        <header className="home-header">
+                                <p>Read, write, and talking!</p>
+                                {showSignInButton && (
+                                        <button type="button" onClick={handleNavigateToLogin} id="login">
+                                                Sign in
+                                        </button>
+                                )}
+{showCloseButton && (
+        <button type="button" onClick={handleClose}>Close</button>
+)}
+                                {modal === 'login' && <LoginModal onNavigateToRegister={handleNavigateToRegister} />}
+                                {modal === 'register' && <RegisterModal onNavigateToLogin={handleNavigateToLogin} />}
+                        </header>
+                        <main>
+                                <h1>Hello!</h1>
+                        </main>
+                        <footer></footer>
+                </div>
         )
 }
 

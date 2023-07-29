@@ -1,5 +1,6 @@
-function LoginModal({ onNavigateToRegister }) {
-const handleNavigateToRegister = event => {
+const LoginModal = ({ onNavigateToRegister }) => {
+
+    const handleNavigateToRegister = event => {
     event.preventDefault()
     onNavigateToRegister()
 }
