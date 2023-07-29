@@ -1,36 +1,29 @@
 import { useEffect, useState } from "react";
 
 import { EditUserModal } from "../modals/EditUserModal";
-import { DeletePostModal } from "../modals/DeletePostModal"
-import { EditPostModal } from "../modals/EditPostModal"
+import { ProfilePosts } from "./ProfilePosts";
+import { ProfileFavPosts } from "./ProfileFavPosts";
 
 import { context } from "../../logic/helpers/context";
 import { retrieveUser } from "../../logic/retrieveUser";
 import { retrieveUserById } from "../../logic/retrieveUserById";
-import { retrievePostsOfUser } from "../../logic/retrievePostsOfUser";
-import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken";
-import { toggleFavPost } from "../../logic/toggleFavPost";
 
 export function Profile(props) {
-    const userId = extractUserIdFromToken(context.token)
+    const userIdProfile = props.userIdProfile
 
     const [modal, setModal] = useState(null)
+    const [toggleMyPostsOrMyFavPosts, setToggleMyPostsOrMyFavPosts] = useState('profile-posts')
 
     const [user, setUser] = useState(null)
     const [userProfile, setUserProfile] = useState(null)
 
-    const [posts, setPosts] = useState(null)
-    const [postId, setPostId] = useState(null)
-
     useEffect(() => {
         try {
             Promise.all([retrieveUser(context.token),
-            retrieveUserById(context.token, props.userIdProfile),
-            retrievePostsOfUser(context.token, props.userIdProfile)])
-                .then(([user, userProfile, posts]) => {
+            retrieveUserById(context.token, props.userIdProfile)])
+                .then(([user, userProfile]) => {
                     setUser(user)
                     setUserProfile(userProfile)
-                    setPosts(posts)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -56,78 +49,12 @@ export function Profile(props) {
         setModal(null)
     }
 
-    const handleEditPostModal = postId => {
-        setPostId(postId)
-        setModal("edit-post-modal")
+    function handleProfilePosts() {
+        setToggleMyPostsOrMyFavPosts('profile-posts')
     }
 
-    const handleCancelEditPostModal = () => setModal(null)
-
-    const handleEditPost = () => {
-        try {
-            retrievePosts(context.token)
-                .then(posts => {
-                    setPosts(posts)
-                    setModal(null)
-                    setPostId(null)
-                })
-                .catch(error => {
-                    alert(error.message)
-                })
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-
-    const handleDeletePostModal = postId => {
-        setPostId(postId)
-        setModal("delete-post-modal")
-    }
-
-    const handleCancelDeletePostModal = () => setModal(null)
-
-    const handleDeletePost = () => {
-        try {
-            retrievePosts(context.token)
-                .then(posts => {
-                    setPosts(posts)
-                    setModal(null)
-                    setPostId(null)
-                })
-                .catch(error => {
-                    alert(error.message)
-                })
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-
-    function handletoggleFavPost(postId) {
-        try {
-            toggleFavPost(context.token, postId)
-                .then(() => {
-                    setPosts(posts => {
-
-                        const posts2 = [...posts]
-
-                        const index = posts2.findIndex(post => post.id === postId)
-                        const post = posts2[index]
-
-                        const post2 = { ...post }
-
-                        post2.fav = !post2.fav
-
-                        posts2[index] = post2
-
-                        return posts2
-                    })
-                })
-                .catch((error) => {
-                    alert(error.message)
-                })
-        } catch (error) {
-            alert(error.message)
-        }
+    function handleProfileFavPosts() {
+        setToggleMyPostsOrMyFavPosts('profile-fav-posts')
     }
 
     return <section className="profile">
@@ -139,30 +66,14 @@ export function Profile(props) {
             {user?.name === userProfile?.name && <button onClick={handleEditUserModal} className="button button-modal edit-profile-button">Edit profile</button>}
         </div>
         <p className="description-profile">{userProfile?.description}</p>
-        {user?.name === userProfile?.name && <div className="two-buttons-profile">
-            <button className="button button-modal">My posts</button>
-            <button className="button button-modal">My favorite posts</button>
-        </div>}
-        <section className="all-posts">
-            {posts?.map(post => <article key={post.id} className="post">
-                <div className="header-post">
-                    <div className="nameImageDiv">
-                        <img className="profile-image-post" src={post.author.image} alt={post.author.name} />
-                        <a onClick={() => handleProfile(post.author.id)} href="#" className="name-post">{post.author.name}</a>
-                    </div>
-                    <button onClick={() => handletoggleFavPost(post.id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
-                </div>
-                <img className="img-post" src={post.image} alt={post.text} />
-                <p className="text-post">{post.text}</p>
-                <div className="div-button-edit-delete">
-                    {userId === post.author.id && <button onClick={() => handleEditPostModal(post.id)} className="button button-modal">Edit</button>}
-                    {userId === post.author.id && <button onClick={() => handleDeletePostModal(post.id)} className="button button-modal">Delete</button>}
-                </div>
-            </article>)}
-        </section>
+        <div className="two-buttons-profile">
+            <button onClick={() => handleProfilePosts()} className="button button-modal">{user?.name === userProfile?.name ? 'My posts' : 'Profile posts'}</button>
+            <button onClick={() => handleProfileFavPosts()} className="button button-modal">{user?.name === userProfile?.name ? 'My favorite posts' : 'Favorite profile posts'}</button>
+        </div>
 
-        {modal === "delete-post-modal" && <DeletePostModal postId={postId} onDeletePost={handleDeletePost} onHideDeletePost={handleCancelDeletePostModal} />}
-        {modal === "edit-post-modal" && <EditPostModal postId={postId} onEditPost={handleEditPost} onHideEditPost={handleCancelEditPostModal} />}
+        {toggleMyPostsOrMyFavPosts === "profile-posts" && <ProfilePosts userIdProfile={userIdProfile} />}
+        {toggleMyPostsOrMyFavPosts === "profile-fav-posts" && <ProfileFavPosts userIdProfile={userIdProfile} />}
+
         {modal === "edit-user-modal" && <EditUserModal onEditUser={handleEditUser} onHideEditUser={handleCancelEditUserModal} />}
-    </section>
+    </section >
 }

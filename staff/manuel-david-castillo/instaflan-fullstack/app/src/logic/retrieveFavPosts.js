@@ -1,11 +1,12 @@
 import {validateId} from './helpers/validators'
 
-export const retrievePosts = function (userId, userIdProfile) {
+export const retrieveFavPosts = function (userId, userIdProfile) {
   validateId(userId)
   validateId(userIdProfile)
 
-  return fetch(`http://localhost:8000/users${userIdProfile}/fav-posts`,{
+  return fetch(`http://localhost:8000/users/${userIdProfile}/fav-posts`,{
     headers: {Authorization: `Bearer ${userId}`}
+
   })
   .then(res => {
     if(res.status === 200) return res.json()
