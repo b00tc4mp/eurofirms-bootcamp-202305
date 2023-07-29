@@ -7,11 +7,6 @@ const user = new Schema({
         required: true
     },
     
-    lastName: {
-        type: String,
-        required: true
-    },
-
     password: {
         type: String,
         required: true
@@ -44,6 +39,11 @@ const test = new Schema({
     description: {
         type: String,
         required: true
+    },
+
+    attemps:{
+        type:Number,
+        required:true
     },
 
     teacher: {

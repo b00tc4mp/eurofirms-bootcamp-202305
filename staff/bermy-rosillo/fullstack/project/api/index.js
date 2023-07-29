@@ -1,14 +1,14 @@
 require('dotenv').config()//carga fichero .env en memoria y
 // añade las variables de entorno a procces.env
 
-const express = require('express')
 const mongoose = require('mongoose')
+const express = require('express')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bodyParser = require('body-parser')
 const registerUser = require('./logic/registerUser')
-//const authenticateUser = require('./logic/authenticateUser')
-//const retrieveUser = require('./logic/retrieveUser')
+const authenticateUser = require('./logic/authenticateUser')
+const retrieveUser = require('./logic/retrieveUser')
 
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
@@ -23,10 +23,10 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
         //manejador de respuestas
         api.post('/users', jsonBodyParser, (req, res) => {
-            const { name, lastName, password,email,role } = req.body
+            const { name, password,email,role } = req.body
 
             try {
-                registerUser(name, lastName,password,email,role)
+                registerUser(name,password,email,role)
                     .then(() => { res.status(201).send() })
                     .catch((error) => res.status(400).json({ error: error.message }))
 

@@ -31,7 +31,6 @@ The main components of the application will include the following schemas
 
 User
 - name (String, required)
-- last name {String required}
 - password {String required of 8 characters}
 - email (String, required, unique)
 - role (String, enum [student, teacher])
@@ -41,6 +40,7 @@ Test
 - title (String, required)
 - description (String,required)
 - teacher  (ObjectId, required)
+- attemps (Number)
 - date  (Date, required)
 
 Answer
@@ -51,6 +51,18 @@ Answer
 - score (Number)
 - assessment (String)
 - assessment date (Date)
+
+## project planning
+## tasks
+### TODO
+- interfaces in app (register user, login , home)
+
+### DONE
+- data model
+- figma
+- register user test / api
+- authenticate user test / api
+- retrieve user test / api
 
  
 

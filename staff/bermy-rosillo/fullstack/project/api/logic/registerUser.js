@@ -1,9 +1,8 @@
 const{User}= require('../data/index')
 const {validateName, validatePassword, validateEmail} = require('./helpers/validators')
 
-function registerUser(name,lastName,password,email,role){
+function registerUser(name,password,email,role){
     validateName(name)
-    validateName(lastName)
     validatePassword(password)
     validateEmail(email)
 
@@ -11,7 +10,7 @@ function registerUser(name,lastName,password,email,role){
     .then(user=>{
         if (user) throw new Error('User already exist ')
 
-        return User.create({name, lastName,password,email,role})
+        return User.create({name, password, email, role})
     })
     .then(()=>{})
 
