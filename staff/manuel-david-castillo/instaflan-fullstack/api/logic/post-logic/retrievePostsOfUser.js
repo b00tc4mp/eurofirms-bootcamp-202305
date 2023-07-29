@@ -5,7 +5,7 @@ function retrievePostsOfUser(userId, userIdProfile) {
     validateId(userId)
 
     return Promise.all([User.findById(userId).lean(), 
-        Post.find({author: userIdProfile}, '-__v').populate('author', 'name image').lean()])
+        Post.find({author: userIdProfile}, '-__v').populate('author', 'name image').sort({ date: -1 }).lean()])
     .then(([user, posts])=>{
         if(!user) throw new Error('user not found')
 

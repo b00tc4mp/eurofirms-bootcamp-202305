@@ -13,7 +13,7 @@ function retrieveFavPosts(userId, userIdProfile) {
 
         const favPosts = userProfile.favPosts
 
-        return  Post.find({_id: favPosts}, '-__v').populate('author', 'name image').lean()
+        return  Post.find({_id: favPosts}, '-__v').populate('author', 'name image').sort({ date: -1 }).lean()
     })
     .then((posts)=>{
         posts.forEach(post => {
