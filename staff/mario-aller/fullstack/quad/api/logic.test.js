@@ -15,11 +15,10 @@ const jwt = require('jsonwebtoken')
 
 // User-defined modules
 const {
-    Dimension,
-    Dimension2D,
-    Block,
-    Panel,
-    sleep, display
+    Dimension, Dimension2D, Block, Panel,
+    sleep, display,
+    validateString,
+    registerUserDB, authenticaUserDB, retrieveUserDB
 } = require('./logic')
 
 // ------------------
@@ -54,7 +53,7 @@ display('-------------------')
 display('Prueba de vertices')
 const pan = new Panel(500, 200)
 const pos1 = new Dimension2D()
-const block1 = new Block(30, 40, Block.REGULAR, pos1)
+const block1 = new Block(30, 40, BlocK.REGULAR, pos1)
 const pos2 = new Dimension2D(50, 60)
 const block2 = new Block(10, 20, Block.REGULAR, pos2)
 console.log(block1, block2)

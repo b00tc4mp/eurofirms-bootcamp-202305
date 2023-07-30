@@ -15,6 +15,8 @@ import { validateString } from './helpers/validators'
  */
 export const registerUser = function (name, surname, zip, email, password) {
     validateString(name, validateString.NAME)
+    validateString(surname, validateString.NAME)
+    validateString(zip)
     validateString(email, validateString.EMAIL)
     validateString(password, validateString.PASSWORD)
 
@@ -24,8 +26,14 @@ export const registerUser = function (name, surname, zip, email, password) {
         body: JSON.stringify({ name, surname, zip, email, password })
     })
         .then(res => {
-            if (res.status === 201) return
-            else return res.json().then(body => { throw new Error(body.error) })
+            switch (res.status) {
+                case 201:
+                    return
+                case 400:
+                    return res.json().then(body => { throw new Error(body.error) })
+                default:
+                    throw new Error('server error')
+            }
         })
 }
 /**
@@ -46,24 +54,39 @@ export const authenticateUser = function (email, password) {
         body: JSON.stringify({ email, password })
     })
         .then(res => {
-            if (res.status === 200) return res.json()
-            else return res.json().then(body => { throw new Error(body.error) })
+            switch (res.status) {
+                case 200:
+                    return res.json()
+                case 400:
+                    return res.json().then(body => { throw new Error(body.error) })
+                default:
+                    throw new Error('server error')
+            }
         })
 }
 /**
- * The function `retrieveUserName` retrieves the name of a user using a token for authentication.
+ * The function `retrieveUser` retrieves the name of a user using a token for authentication.
  * @param token - The `token` parameter is a string that represents the authentication token for the
  * user. It is used to authorize the request to retrieve the user's name from the API.
- * @returns The function `retrieveUserName` returns a promise that resolves to the user object if the
+ * @returns The function `retrieveUser` returns a promise that resolves to the user object if the
  * fetch request is successful (status code 200). If the fetch request is not successful, it throws an
  * error with the error message from the response body.
  */
-export const retrieveUserName = function (token) {
+export const retrieveUser = function (token) {
     validateString(token, validateString.REGULAR)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/name`, { headers: { Authorization: `Bearer ${token}` } })
-        .then(res => {
-            if (res.status === 200) return res.json().then(user => user)
-            else return res.json().then(body => { throw new Error(body.error) })
-        })
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` } 
+    })
+    .then(res => {
+        switch (res.status) {
+            case 200:
+                return res.json()
+            case 400:
+                return res.json().then(body => { throw new Error(body.error) })
+            default:
+                throw new Error('server error')
+        }
+    })
 }

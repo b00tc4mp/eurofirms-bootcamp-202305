@@ -16,7 +16,7 @@ class Panel {
         this.owner = null
         this.size = new Dimension2D(width, height)
         this.blocks = []
-        this.optimize = Panel.NOT_OPTIMIZED
+        this.status = Panel.NOT_OPTIMIZED
     }
     // Check if 'pos' is free in the panel
     posFree(pos) {
@@ -42,19 +42,19 @@ class Panel {
 
         const vert = new Dimension2D(pos.x.val, pos.y.val)
         switch (quad) {
-            case 1:
+            case Panel.QUADRANT_I:
                 vert.x.val++
                 vert.y.val++
                 break
-            case 2:
+            case Panel.QUADRANT_II:
                 vert.x.val--
                 vert.y.val++
                 break
-            case 3:
+            case Panel.QUADRANT_III:
                 vert.x.val--
                 vert.y.val--
                 break
-            case 4:
+            case Panel.QUADRANT_IV:
                 vert.x.val++
                 vert.y.val--
                 break
@@ -71,6 +71,8 @@ Panel.QUADRANT_III = 3
 Panel.QUADRANT_IV = 4
 
 Panel.NOT_OPTIMIZED = 0
-Panel.FINISHED = 1
+Panel.ON_PROGRESS = 1
+Panel.FINISHED = 2
+
 
 module.exports = Panel

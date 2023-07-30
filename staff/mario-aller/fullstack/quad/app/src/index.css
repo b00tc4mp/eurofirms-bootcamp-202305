@@ -171,8 +171,8 @@ body {
 /* Home */
 
 .home {
-  width: 100vm;
-  height: 100vm;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 10fr 1fr;
@@ -184,7 +184,9 @@ body {
 .home-header {
   grid-column: 1/2;
   grid-row: 1/2;
-  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .home-view {
@@ -200,8 +202,19 @@ body {
 .home-nav {
   grid-column: 1/2;
   grid-row: 3/4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; */
+}
+
+/* Capas y comandos */
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

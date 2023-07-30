@@ -31,8 +31,8 @@ function Register({ onGotoLog, onRegisteredUser }) {
                         <label className="basic-label" htmlFor="name">Name</label>
                         <input type="text" id="name" autoComplete="off"></input>
 
-                        <label className="basic-label" htmlFor="suname">Surname</label>
-                        <input type="text" id="suname" autoComplete="off"></input>
+                        <label className="basic-label" htmlFor="surname">Surname</label>
+                        <input type="text" id="surname" autoComplete="off"></input>
 
                         <label className="basic-label" htmlFor="zip">ZIP code</label>
                         <input type="text" id="zip" autoComplete="off"></input>
@@ -51,7 +51,7 @@ function Register({ onGotoLog, onRegisteredUser }) {
             <footer className="reg-nav">
                 <div className="basic-nav">
                     <button type="submit" className="button-tolog basic-button" onClick={handleOnGotoLog}>Login</button>
-                    <button type="button" className="basic-button">Preferences</button>
+                    <button type="button" className="basic-button">Settings</button>
                 </div>
             </footer>
 

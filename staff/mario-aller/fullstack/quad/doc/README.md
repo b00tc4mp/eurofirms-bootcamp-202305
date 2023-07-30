@@ -17,8 +17,12 @@ Later, the final distribution solution is given to the user.
 ### Use cases
 
 #### User
-- Define a panel with a set of blocks to place them inside that panel
-- Calculate the optimal blocks set distribution inside a panel
+- Create panel
+- List panels
+- Edit panel
+- Delete panel
+- Calculate blocks
+- View optimized panel
 
 
 ### User stories
@@ -38,6 +42,8 @@ Later, the final distribution solution is given to the user.
 ### Data model
 
 #### Block
+- panel: ObjectId (required)
+    - panel id of block
 - x: Number (required, default -1)
     - 'x' block position
 - y: Number (required, default -1)
@@ -58,8 +64,6 @@ Later, the final distribution solution is given to the user.
     - panel width
 - height: Number (required)
     - panel height
-- blocks: Block array (defatul [ ])
-    - blocks to be placed in the panel
 - status: Integer (required, enum [NOT_OPTIMIZED, FINISHED], default NOT_OPTIMIZED)
 
 #### User
@@ -116,7 +120,7 @@ Area where items are placed
     - owner: ObjectID (required, default null) - user that created the panel
     - size: Dimension2D (required) - panel width and height
     - blocks: Block array (defatul [ ]) - blocks to be placed in the panel
-    - status: Integer (required, enum [NOT_OPTIMIZE, FINISHED], default NOT_OPTIMIZE)
+    - status: Integer (required, enum [NOT_OPTIMIZE, ON_PROGRESS, FINISHED], default NOT_OPTIMIZE)
 - Methods
     - posFree(pos): Check if 'pos' is free in the panel
     - quadFree(pos, quad): Check if quadrant 'quad' is free in 'pos'
@@ -126,7 +130,9 @@ Area where items are placed
     - QUADRANT_III = 3
     - QUADRANT_IV = 4
     - NOT_OPTIMIZE = 0
-    - FINISHED =1
+    - ON_PROGRESS = 1
+    - FINISHED = 2
+
 
 
 ## Planning

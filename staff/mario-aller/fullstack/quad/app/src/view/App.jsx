@@ -2,6 +2,7 @@ import { useState } from 'react'
 import context from '../context'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Home from './pages/Home'
 
 function App() {
     const [view, setView] = useState(context.tokenUser ? 'home' : 'login')

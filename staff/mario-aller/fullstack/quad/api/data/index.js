@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, ObjectId, model } = require('mongoose')
 
 const userSch = new Schema({
     name: {
@@ -25,25 +25,26 @@ const userSch = new Schema({
         required: true,
         minLength: 3
     },
-
-    // poner la referencia al reves
-    panels: [
-        {
-            type: ObjectID,
-            ref: 'Panel'
-        }
-    ]
+    date: {
+        type: Date,
+        default: Date.now
+    }
 })
 const blockSch = new Schema({
+    panel: {
+        type: ObjectId,
+        required: true,
+        ref: 'Panel'
+    },
     x: {
         type: Number,
         required: true,
-        default: -1
+        default: -1n
     },
     y: {
         type: Number,
         required: true,
-        default: -1
+        default: -1n
     },
     width: {
         type: Number,
@@ -59,8 +60,13 @@ const blockSch = new Schema({
         required: true,
         enum: [0, 1],
         default: 0
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 })
+
 const panelSch = new Schema({
     reference: {
         type: String,
@@ -68,7 +74,7 @@ const panelSch = new Schema({
         default: null
     },
     owner: {
-        type: ObjectID,
+        type: ObjectId,
         required: true,
         ref: 'User'
     },
@@ -80,17 +86,15 @@ const panelSch = new Schema({
         type: Number,
         required: true
     },
-    blocks: [
-        {
-            type: ObjectID,
-            ref: 'Block'
-        }
-    ],
     status: {
         type: Number,
         required: true,
         enum: [0, 1],
         default: 0
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 })
 

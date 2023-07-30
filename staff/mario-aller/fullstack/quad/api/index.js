@@ -14,13 +14,10 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 
 // User-defined modules
-const {
-    Dimension,
-    Dimension2D,
-    Block,
-    Panel,
-    sleep, display
-} = require('./logic')
+// const { Dimension, Dimension2D, Block, Panel } = require('./logic/classes')
+// const { sleep, display, validateString } = require('./logic/helpers')
+const { registerUserDB, authenticateUserDB, retrieveUserDB } = require('./logic/user-db')
+const { createPanelDB, retrievePanelsDB, createBlockDB } = require('./logic/panel-db')
 
 const api = express()
 const jsonBodyParser = bodyParser.json()
@@ -29,20 +26,83 @@ mongoose.connect(MONGOOSE_URL)
     .then(() => {
         api.use(cors())
 
-        // updatePost
-        api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
+        // registerUserDB
+        api.post('/users', jsonBodyParser, (req, res) => {
             try {
-                const token = req.headers.authorization.slice(7)
-                const userId = jwt.verify(token, JWT_SECRET).sub
-                const { postId } = req.params
-                const { image, text } = req.body
+                const { name, surname, zip, email, password } = req.body
 
-                updatePost(userId, postId, image, text)
-                    .then(() => res.status(204).send())
+                registerUserDB(name, surname, zip, email, password)
+                    .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        api.listen(API_PORT, () => console.log('API funcionando en 9000...'))
+        // authenticateUserDB
+        api.post('/users/auth', jsonBodyParser, (req, res) => {
+            try {
+                const { email, password } = req.body
+
+                authenticateUserDB(email, password)
+                    .then((userId) => {
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET)
+                        res.json(token)
+                    })
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        // retrieveUserDB
+        api.get('/users', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+                retrieveUserDB(userId)
+                    .then(user => res.json(user))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        // createPanel
+        api.post('/panels', jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+
+                const { reference, width, height } = req.body
+
+                createPanelDB(userId, reference, width, height)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        // retrievePanelsDB
+        api.get('/panels', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+                retrievePanelsDB(userId)
+                    .then(panels => {
+                        res.json(panels)
+                    })
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        // createBlock
+        api.post('/blocks', jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+
+                const { panelId, width, height } = req.body
+
+                createBlockDB(userId, panelId, width, height)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        api.listen(API_PORT, () => console.log(`API funcionando en ${API_PORT}...`))
     })
 

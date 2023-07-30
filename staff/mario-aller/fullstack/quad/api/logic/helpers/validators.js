@@ -26,7 +26,7 @@ function checkDictio(dictionary, str) {
  * @param [option=0] - The `option` parameter is an optional parameter that determines the type of
  * validation to be performed on the `data` string. It has the following possible values:
  */
-export function validateString(data, option = 0) {
+function validateString(data, option = 0) {
     if (typeof data !== 'string') throw new Error('El parámetro no es una cadena')
     if (data === '') throw new Error('La cadena está vacía')
 
@@ -91,3 +91,5 @@ validateString.PASSWORD = 2
 validateString.URL = 3
 validateString.NAME = 4
 validateString.INTEGER = 5
+
+module.exports = { validateString }
