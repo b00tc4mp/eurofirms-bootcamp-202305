@@ -1,11 +1,8 @@
 import { registerUser } from "../../logic/registerUser"
+import { Link, useNavigate } from "react-router-dom"
 
-export function Register(props) {
-    const handleLoginClick = event => {
-        event.preventDefault()
-
-        props.onLoginClick()
-    }
+export function Register() {
+    const navigate = useNavigate()
 
     const handleRegister = event => {
         event.preventDefault()
@@ -19,7 +16,7 @@ export function Register(props) {
         try {
             registerUser(name, image, description, email, password)
                 .then(() => {
-                    props.onRegister()
+                    navigate('/register')
                 })
                 .catch((error) => {
                     alert(error.message)
@@ -64,6 +61,6 @@ export function Register(props) {
             </div>
             <button className="button">Register</button>
         </form>
-        <a className="link-login" href="#" onClick={handleLoginClick}>Go to Login</a>
+        <Link className="link-login" to='/login' >Go to Login</Link>
     </main>
 }

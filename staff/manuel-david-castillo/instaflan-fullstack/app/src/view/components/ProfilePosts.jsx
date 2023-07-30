@@ -109,12 +109,18 @@ export function ProfilePosts(props) {
         }
     }
 
+    const handleProfile = (event, userIdProfile) => {
+        event.preventDefault()
+        props.userIdProfile(userIdProfile)
+        navigate('/profile/posts')
+    }
+
     return <section className="all-posts">
         {posts?.map(post => <article key={post.id} className="post">
             <div className="header-post">
                 <div className="nameImageDiv">
                     <img className="profile-image-post" src={post.author.image} alt={post.author.name} />
-                    <a onClick={() => handleProfile(post.author.id)} href="#" className="name-post">{post.author.name}</a>
+                    <a onClick={() => handleProfile(post.author.id)} className="name-post">{post.author.name}</a>
                 </div>
                 <button onClick={() => handletoggleFavPost(post.id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
             </div>

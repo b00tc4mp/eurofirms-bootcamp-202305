@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { context } from "../../logic/helpers/context"
 import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken"
@@ -6,12 +7,12 @@ import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromTok
 import { retrievePosts } from "../../logic/retrievePosts"
 import { toggleFavPost } from "../../logic/toggleFavPost"
 
-
 import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"
 
 export function AllPosts(props) {
     const userId = extractUserIdFromToken(context.token)
+    const navigate = useNavigate()
 
     const [modal, setModal] = useState(null)
 
@@ -114,6 +115,7 @@ export function AllPosts(props) {
     const handleProfile = (event, userIdProfile) => {
         event.preventDefault()
         props.onHandleProfile(userIdProfile)
+        navigate('/profile/posts')
     }
 
     return <section className="all-posts">

@@ -1,12 +1,9 @@
 import { authenticateUser } from "../../logic/authenticateUser"
 import { context } from "../../logic/helpers/context"
+import { Link, useNavigate } from "react-router-dom"
 
-export function Login(props) {
-    const handleRegisterClick = event => {
-        event.preventDefault()
-
-        props.onRegisterClick()
-    }
+export function Login() {
+    const navigate = useNavigate()
 
     const handleLoginSubmit = event => {
         event.preventDefault()
@@ -19,11 +16,12 @@ export function Login(props) {
                 .then((result) => {
                     context.token = result
 
-                    props.onLogin()
+                    navigate('/home')
                 })
                 .catch((error) => {
                     alert(error.message)
                 })
+
         } catch (error) {
             alert(error.message)
         }
@@ -52,6 +50,7 @@ export function Login(props) {
             </div>
             <button className="button">Enter</button>
         </form>
-        <a className="link-register" href="#" onClick={handleRegisterClick}>Go to register</a>
+
+        <Link className="link-register" to='/register' >Go to register</Link>
     </main>
 }

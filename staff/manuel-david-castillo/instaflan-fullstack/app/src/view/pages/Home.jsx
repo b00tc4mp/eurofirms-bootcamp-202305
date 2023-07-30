@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Routes, Route, useNavigate, Link } from "react-router-dom"
 
 import { context } from "../../logic/helpers/context"
 import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken"
@@ -14,12 +15,15 @@ import { Profile } from "../components/Profile"
 import { CreatePostModal } from "../modals/CreatePostModal"
 
 export function Home(props) {
+    const userId = extractUserIdFromToken(context.token)
+    const navigate = useNavigate()
+
     const [page, setPage] = useState('Instaflan')
     const [modal, setModal] = useState(null)
     const [posts, setPosts] = useState(null)
     const [user, setUser] = useState(null)
     const [userIdProfile, setUserIdProfile] = useState(null)
-    const userId = extractUserIdFromToken(context.token)
+
 
     useEffect(() => {
         try {
@@ -50,7 +54,7 @@ export function Home(props) {
     const handleLogout = () => {
         context.token = null
 
-        props.onLogout()
+        navigate('/login')
     }
 
     const handleCreatePostModal = () => setModal("create-post-modal")
@@ -88,24 +92,32 @@ export function Home(props) {
             }
         </header>
         <main className="main-home">
-            {page === 'Instaflan' && <AllPosts posts={posts} onHandleProfile={handleProfile} />}
+            {/* {page === 'Instaflan' && <AllPosts posts={posts} onHandleProfile={handleProfile} />}
             {page === 'Explorer' && <Explorer />}
             {page === 'Messages' && <Messages />}
             {page === 'Notifications' && <Notifications />}
-            {page === 'Profile' && <Profile userIdProfile={userIdProfile} />}
+            {page === 'Profile' && <Profile userIdProfile={userIdProfile} />} */}
+
+            <Routes>
+                <Route path='/home' element={<AllPosts posts={posts} onHandleProfile={handleProfile} />} />
+                <Route path='/explorer' element={<Explorer />} />
+                <Route path='/messages' element={<Messages />} />
+                <Route path='/notifications' element={<Notifications />} />
+                <Route path='/profile/*' element={<Profile userIdProfile={userIdProfile} />} />
+            </Routes>
+
         </main>
         <footer className="footer">
-            <a onClick={handleAllPostPage} className="footer-emogis" href="#">🏠</a>
-            <a onClick={handleExplorerPage} className="footer-emogis" href="#">🌍</a>
+            <Link onClick={handleAllPostPage} className="footer-emogis" to='/home'>🏠</Link>
+            <Link onClick={handleExplorerPage} className="footer-emogis" to='/explorer'>🌍</Link>
             <a onClick={handleCreatePostModal} className="footer-emogis" href="#">➕</a>
-            <a onClick={handleMessagesPage} className="footer-emogis" href="#">✉️</a>
-            <a onClick={handleNotificationsPage} className="footer-emogis" href="#">❤️</a>
-            <a onClick={handleProfilePage} className="footer-emogis" href="#">
+            <Link onClick={handleMessagesPage} className="footer-emogis" to='/messages'>✉️</Link>
+            <Link onClick={handleNotificationsPage} className="footer-emogis" to='/notifications'>❤️</Link>
+            <Link onClick={handleProfilePage} className="footer-emogis" to='/profile/posts'>
                 {user && <img
                     className="footer-profile-image"
                     src={user.image}
-                    alt={user.name} />}
-            </a>
+                    alt={user.name} />} </Link>
         </footer>
 
         {modal === "create-post-modal" && <CreatePostModal onCreatePost={handleCreatePost} onHideCreatePost={handleCancelCreatePostModal} />}

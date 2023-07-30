@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { EditUserModal } from "../modals/EditUserModal";
 import { ProfilePosts } from "./ProfilePosts";
@@ -10,9 +11,9 @@ import { retrieveUserById } from "../../logic/retrieveUserById";
 
 export function Profile(props) {
     const userIdProfile = props.userIdProfile
+    const navigate = useNavigate()
 
     const [modal, setModal] = useState(null)
-    const [toggleMyPostsOrMyFavPosts, setToggleMyPostsOrMyFavPosts] = useState('profile-posts')
 
     const [user, setUser] = useState(null)
     const [userProfile, setUserProfile] = useState(null)
@@ -50,11 +51,11 @@ export function Profile(props) {
     }
 
     function handleProfilePosts() {
-        setToggleMyPostsOrMyFavPosts('profile-posts')
+        navigate('/profile/posts')
     }
 
     function handleProfileFavPosts() {
-        setToggleMyPostsOrMyFavPosts('profile-fav-posts')
+        navigate('/profile/fav-posts')
     }
 
     return <section className="profile">
@@ -71,8 +72,10 @@ export function Profile(props) {
             <button onClick={() => handleProfileFavPosts()} className="button button-modal">{user?.name === userProfile?.name ? 'My favorite posts' : 'Favorite profile posts'}</button>
         </div>
 
-        {toggleMyPostsOrMyFavPosts === "profile-posts" && <ProfilePosts userIdProfile={userIdProfile} />}
-        {toggleMyPostsOrMyFavPosts === "profile-fav-posts" && <ProfileFavPosts userIdProfile={userIdProfile} />}
+        <Routes>
+            <Route path='/posts' element={<ProfilePosts userIdProfile={userIdProfile} />} />
+            <Route path='/fav-posts' element={<ProfileFavPosts userIdProfile={userIdProfile} />} />
+        </Routes>
 
         {modal === "edit-user-modal" && <EditUserModal onEditUser={handleEditUser} onHideEditUser={handleCancelEditUserModal} />}
     </section >
