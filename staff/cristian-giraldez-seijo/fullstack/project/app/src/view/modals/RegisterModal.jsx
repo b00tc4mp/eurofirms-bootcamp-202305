@@ -18,7 +18,7 @@ const RegisterModal = ({ onNavigateToLogin, onRegisterSuccess }) => {
 
         try {
             registerUser(nickname, email, password)
-                            .then(() => {
+                .then(() => {
                     return authenticateUser(email, password)
                 })
                 .then((token) => {

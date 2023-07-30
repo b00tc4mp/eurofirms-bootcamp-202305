@@ -53,4 +53,4 @@ Comment
 - DONE implement api authenticate user logic
 - DONE implement api route for authenticate user
 - DONE implement app authenticate user logic
-- TODO implement app login component
+- DONE implement app login component

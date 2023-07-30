@@ -14,21 +14,23 @@ const Home = () => {
                 // Retrieve the token from sessionStorage on component mount
                 const storedToken = context.token;
                 setToken(storedToken);
-        }, []); // Empty dependency array ensures it runs only once on mount
+        })
 
-        const handleNavigateToRegister = () => {
+        const handleNavigateToRegister = event => {
+                event.preventDefault()
                 setModal('register')
                 setShowSignInButton(false)
                 setShowCloseButton(true)
         }
 
-        const handleNavigateToLogin = () => {
+        const handleNavigateToLogin = event => {
+                event.preventDefault()
                 setModal('login')
                 setShowSignInButton(false)
                 setShowCloseButton(true)
         }
-        
-        const handleClose = (event) => {
+
+        const handleClose = event => {
                 event.preventDefault()
                 setModal(null)
                 setShowSignInButton(true)
@@ -36,17 +38,19 @@ const Home = () => {
         }
 
         const handleRegisterSuccess = () => {
-setModal(null)
-setShowLogoutButton(true)
-setShowCloseButton(false)
-}
+                setModal(null)
+                setShowLogoutButton(true)
+                setShowCloseButton(false)
+        }
 
-const handleLogout = (event) => {
-        event.preventDefault()
-        context.token = null
-        setShowLogoutButton(false)
-        setShowSignInButton(true)
-}
+        const handleLogout = event => {
+                event.preventDefault()
+                                context.token = null
+                setShowLogoutButton(false)
+                setModal('login')
+                setShowSignInButton(false)
+                setShowCloseButton(true)
+        }
 
         return (
                 <div className="home">
@@ -60,7 +64,8 @@ const handleLogout = (event) => {
                                 {showCloseButton && (
                                         <button type="button" onClick={handleClose}>Close</button>
                                 )}
-                                {showLogoutButton && (<button type="button" onClick={handleLogout}>Logout</button>)}
+                                {showLogoutButton && (
+                                <button type="button" onClick={handleLogout}>Logout</button>)}
                                 {modal === 'login' && <LoginModal onRegisterSuccess={handleRegisterSuccess} onNavigateToRegister={handleNavigateToRegister} />}
                                 {modal === 'register' && <RegisterModal onRegisterSuccess={handleRegisterSuccess} onNavigateToLogin={handleNavigateToLogin} />}
                         </header>
