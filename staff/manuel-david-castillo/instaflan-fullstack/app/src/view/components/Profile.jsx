@@ -10,6 +10,7 @@ import { ProfileFavPosts } from "./ProfileFavPosts";
 import { context } from "../../logic/helpers/context";
 import { retrieveUser } from "../../logic/retrieveUser";
 import { retrieveUserById } from "../../logic/retrieveUserById";
+import { toggleFollowUser } from "../../logic/toggleFollowUser";
 
 export function Profile() {
     const navigate = useNavigate()
@@ -50,7 +51,6 @@ export function Profile() {
         } catch (error) {
             alert(error.message)
         }
-        setModal(null)
     }
 
     function handleProfilePosts() {
@@ -61,13 +61,26 @@ export function Profile() {
         navigate('/profile/fav-posts')
     }
 
+    function handleFollowUser() {
+        try {
+            toggleFollowUser(context.token, userIdProfile)
+                .then(() => console.log('user followed'))
+        } catch (error) {
+            alert(error.message)
+        }
+
+    }
+
     return <section className="profile">
         <div className="profile-image-name-button">
             <div className="profile-image-name">
                 <img className="profile-image-post" src={userProfile?.image} alt={userProfile?.name} />
                 <h3 className="name-post">{userProfile?.name}</h3>
             </div>
-            {user?.name === userProfile?.name && <button onClick={handleEditUserModal} className="button button-modal edit-profile-button">Edit profile</button>}
+            {user?.name === userProfile?.name ?
+                <button onClick={handleEditUserModal} className="button button-modal edit-profile-button">Edit profile</button>
+                :
+                <button onClick={handleFollowUser} className="button button-modal edit-profile-button">{user.followed ? 'Follow' : 'Unfollow'}</button>}
         </div>
         <p className="description-profile">{userProfile?.description}</p>
         <div className="two-buttons-profile">

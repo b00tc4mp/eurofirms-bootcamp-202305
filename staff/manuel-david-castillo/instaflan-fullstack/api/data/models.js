@@ -27,6 +27,12 @@ const user = new Schema({
             type: ObjectId, 
             ref: 'Post'
         }
+    ],
+    following: [
+        {
+            type: ObjectId,
+            ref: 'User'
+        }
     ]
 })
 
