@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+
+import { AppContext } from "../../AppContext";
 
 import { EditUserModal } from "../modals/EditUserModal";
 import { ProfilePosts } from "./ProfilePosts";
@@ -9,9 +11,10 @@ import { context } from "../../logic/helpers/context";
 import { retrieveUser } from "../../logic/retrieveUser";
 import { retrieveUserById } from "../../logic/retrieveUserById";
 
-export function Profile(props) {
-    const userIdProfile = props.userIdProfile
+export function Profile() {
     const navigate = useNavigate()
+
+    const { userIdProfile, setUserIdProfile } = useContext(AppContext)
 
     const [modal, setModal] = useState(null)
 
@@ -21,7 +24,7 @@ export function Profile(props) {
     useEffect(() => {
         try {
             Promise.all([retrieveUser(context.token),
-            retrieveUserById(context.token, props.userIdProfile)])
+            retrieveUserById(context.token, userIdProfile)])
                 .then(([user, userProfile]) => {
                     setUser(user)
                     setUserProfile(userProfile)
@@ -36,7 +39,7 @@ export function Profile(props) {
     const handleCancelEditUserModal = () => setModal(null)
     const handleEditUser = () => {
         try {
-            retrieveUserById(context.token, props.userIdProfile)
+            retrieveUserById(context.token, userIdProfile)
                 .then(user => {
                     setModal(null)
                     setUserProfile(user)
@@ -73,8 +76,8 @@ export function Profile(props) {
         </div>
 
         <Routes>
-            <Route path='/posts' element={<ProfilePosts userIdProfile={userIdProfile} />} />
-            <Route path='/fav-posts' element={<ProfileFavPosts userIdProfile={userIdProfile} />} />
+            <Route path='/posts' element={<ProfilePosts />} />
+            <Route path='/fav-posts' element={<ProfileFavPosts />} />
         </Routes>
 
         {modal === "edit-user-modal" && <EditUserModal onEditUser={handleEditUser} onHideEditUser={handleCancelEditUserModal} />}

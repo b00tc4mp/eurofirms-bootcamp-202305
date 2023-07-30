@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AppContext } from "../../AppContext";
 
 import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"
@@ -10,6 +11,7 @@ import { toggleFavPost } from "../../logic/toggleFavPost";
 
 export function ProfilePosts(props) {
     const userId = extractUserIdFromToken(context.token)
+    const { userIdProfile, setUserIdProfile } = useContext(AppContext)
 
     const [modal, setModal] = useState(null)
 
@@ -19,7 +21,7 @@ export function ProfilePosts(props) {
 
     useEffect(() => {
         try {
-            retrievePostsOfUser(context.token, props.userIdProfile)
+            retrievePostsOfUser(context.token, userIdProfile)
                 .then(posts => {
                     setPosts(posts)
                 })
@@ -38,7 +40,7 @@ export function ProfilePosts(props) {
 
     const handleEditPost = () => {
         try {
-            retrievePostsOfUser(context.token, props.userIdProfile)
+            retrievePostsOfUser(context.token, userIdProfile)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -61,7 +63,7 @@ export function ProfilePosts(props) {
 
     const handleDeletePost = () => {
         try {
-            retrievePostsOfUser(context.token, props.userIdProfile)
+            retrievePostsOfUser(context.token, userIdProfile)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -109,18 +111,12 @@ export function ProfilePosts(props) {
         }
     }
 
-    const handleProfile = (event, userIdProfile) => {
-        event.preventDefault()
-        props.userIdProfile(userIdProfile)
-        navigate('/profile/posts')
-    }
-
     return <section className="all-posts">
         {posts?.map(post => <article key={post.id} className="post">
             <div className="header-post">
                 <div className="nameImageDiv">
                     <img className="profile-image-post" src={post.author.image} alt={post.author.name} />
-                    <a onClick={() => handleProfile(post.author.id)} className="name-post">{post.author.name}</a>
+                    <a className="name-post">{post.author.name}</a>
                 </div>
                 <button onClick={() => handletoggleFavPost(post.id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
             </div>

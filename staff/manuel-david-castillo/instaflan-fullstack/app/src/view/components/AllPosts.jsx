@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { context } from "../../logic/helpers/context"
 import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken"
+import { AppContext } from "../../AppContext"
 
 import { retrievePosts } from "../../logic/retrievePosts"
 import { toggleFavPost } from "../../logic/toggleFavPost"
@@ -15,6 +16,9 @@ export function AllPosts(props) {
     const navigate = useNavigate()
 
     const [modal, setModal] = useState(null)
+
+    const { userIdProfile, setUserIdProfile } = useContext(AppContext)
+    const { page, setPage } = useContext(AppContext)
 
     const [posts, setPosts] = useState([])
 
@@ -30,7 +34,7 @@ export function AllPosts(props) {
         } catch (error) {
             alert(error.message)
         }
-    }, [])
+    }, [props.posts])
 
     const handleEditPostModal = postId => {
         setPostId(postId)
@@ -114,7 +118,8 @@ export function AllPosts(props) {
 
     const handleProfile = (event, userIdProfile) => {
         event.preventDefault()
-        props.onHandleProfile(userIdProfile)
+        setUserIdProfile(userIdProfile)
+        setPage('Profile')
         navigate('/profile/posts')
     }
 

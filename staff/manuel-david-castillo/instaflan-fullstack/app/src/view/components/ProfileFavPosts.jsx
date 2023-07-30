@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { AppContext } from "../../AppContext";
 
 import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"
@@ -9,9 +11,11 @@ import { retrieveFavPosts } from "../../logic/retrieveFavPosts";
 import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken";
 import { toggleFavPost } from "../../logic/toggleFavPost";
 
-export function ProfileFavPosts(props) {
+export function ProfileFavPosts() {
     const userId = extractUserIdFromToken(context.token)
     const navigate = useNavigate()
+
+    const { userIdProfile, setUserIdProfile } = useContext(AppContext)
 
     const [modal, setModal] = useState(null)
 
@@ -21,7 +25,7 @@ export function ProfileFavPosts(props) {
 
     useEffect(() => {
         try {
-            retrieveFavPosts(context.token, props.userIdProfile)
+            retrieveFavPosts(context.token, userIdProfile)
                 .then(posts => {
                     setPosts(posts)
                 })
@@ -40,7 +44,7 @@ export function ProfileFavPosts(props) {
 
     const handleEditPost = () => {
         try {
-            retrieveFavPosts(context.token, props.userIdProfile)
+            retrieveFavPosts(context.token, userIdProfile)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -63,7 +67,7 @@ export function ProfileFavPosts(props) {
 
     const handleDeletePost = () => {
         try {
-            retrieveFavPosts(context.token, props.userIdProfile)
+            retrieveFavPosts(context.token, userIdProfile)
                 .then(posts => {
                     setPosts(posts)
                     setModal(null)
@@ -113,7 +117,7 @@ export function ProfileFavPosts(props) {
 
     const handleProfile = (event, userIdProfile) => {
         event.preventDefault()
-        props.userIdProfile(userIdProfile)
+        setUserIdProfile(userIdProfile)
         navigate('/profile/posts')
     }
 

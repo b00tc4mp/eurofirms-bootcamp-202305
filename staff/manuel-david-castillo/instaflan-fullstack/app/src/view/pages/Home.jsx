@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Routes, Route, useNavigate, Link } from "react-router-dom"
+
+import { AppContext } from "../../AppContext"
 
 import { context } from "../../logic/helpers/context"
 import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken"
@@ -14,16 +16,15 @@ import { Profile } from "../components/Profile"
 
 import { CreatePostModal } from "../modals/CreatePostModal"
 
-export function Home(props) {
+export function Home() {
     const userId = extractUserIdFromToken(context.token)
     const navigate = useNavigate()
 
-    const [page, setPage] = useState('Instaflan')
     const [modal, setModal] = useState(null)
     const [posts, setPosts] = useState(null)
     const [user, setUser] = useState(null)
-    const [userIdProfile, setUserIdProfile] = useState(null)
-
+    const { userIdProfile, setUserIdProfile } = useContext(AppContext)
+    const { page, setPage } = useContext(AppContext)
 
     useEffect(() => {
         try {
@@ -46,11 +47,6 @@ export function Home(props) {
         setPage('Profile')
     }
 
-    const handleProfile = (userIdProfile) => {
-        setUserIdProfile(userIdProfile)
-        setPage('Profile')
-    }
-
     const handleLogout = () => {
         context.token = null
 
@@ -58,7 +54,7 @@ export function Home(props) {
     }
 
     const handleCreatePostModal = () => setModal("create-post-modal")
-    const handleCancelCreatePostModal = () => setModal("")
+    const handleCancelCreatePostModal = () => setModal(null)
     const handleCreatePost = () => {
         try {
             retrievePosts(context.token)
@@ -92,14 +88,9 @@ export function Home(props) {
             }
         </header>
         <main className="main-home">
-            {/* {page === 'Instaflan' && <AllPosts posts={posts} onHandleProfile={handleProfile} />}
-            {page === 'Explorer' && <Explorer />}
-            {page === 'Messages' && <Messages />}
-            {page === 'Notifications' && <Notifications />}
-            {page === 'Profile' && <Profile userIdProfile={userIdProfile} />} */}
 
             <Routes>
-                <Route path='/home' element={<AllPosts posts={posts} onHandleProfile={handleProfile} />} />
+                <Route path='/home' element={<AllPosts posts={posts} />} />
                 <Route path='/explorer' element={<Explorer />} />
                 <Route path='/messages' element={<Messages />} />
                 <Route path='/notifications' element={<Notifications />} />
