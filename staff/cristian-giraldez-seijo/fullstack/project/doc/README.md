@@ -48,9 +48,9 @@ Comment
 - DONE Implement data models
 - DONE implement api register user logic
 - DONE implement api route for register user
-- TODO implement app register user logic
-- TODO implement app register component
+- DONE implement app register user logic
+- DONE implement app register component
 - DONE implement api authenticate user logic
 - DONE implement api route for authenticate user
-- TODO implement app authenticate user logic
+- DONE implement app authenticate user logic
 - TODO implement app login component
