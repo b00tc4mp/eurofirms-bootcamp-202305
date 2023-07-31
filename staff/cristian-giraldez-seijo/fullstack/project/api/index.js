@@ -5,7 +5,8 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const {
     registerUser,
-    authenticateUser
+    authenticateUser,
+    retrieveUser
 } = require('./logic')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
@@ -45,6 +46,23 @@ mongoose.connect(`${MONGODB_URL}/data`)
                         res.json(token)
                     })
                     .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.get('/users', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                retrieveUser(userId)
+                .then(user => res.json(user))
+                .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
             }

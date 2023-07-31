@@ -49,8 +49,14 @@ function validateNickname(nickname) {
     if (nickname === '') throw new Error('nickname is empty')
 }
 
+function validateId(id) {
+    if (typeof id !== 'string') throw new Error('id is not a string')
+    if (id === '') throw new Error('id is empty')
+}
+
 module.exports = {
     validateEmail,
     validatePassword,
-    validateNickname
+    validateNickname,
+    validateId
 }

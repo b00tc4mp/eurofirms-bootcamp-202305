@@ -1,0 +1,10 @@
+require('dotenv').config()
+
+const retrieveUser = require('./retrieveUser')
+const mongoose = require('mongoose')
+
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
+.then(() => retrieveUser('64c7746cbc155714c1fecf58'))
+.then(user => console.log('user retrieved', user))
+.catch(error => console.error(error))
+.finally(() => mongoose.disconnect())
