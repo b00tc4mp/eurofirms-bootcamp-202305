@@ -246,22 +246,32 @@ body {
 
 .panel-text {
   padding: 0.5rem;
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .panel-button {
-  font-size: 0.9rem;
+  font-size: 2.5rem;
   margin-right: 0.3rem;
   border:none;
+  justify-content: center;
+  align-items: center;
   background-color: antiquewhite;
+  margin: 1rem;
 }
 .panel-block-button {
-  font-size: 0.7rem;
+  font-size: 1.7rem;
   margin-left: 1rem;
+  justify-content: center;
+  align-items: center;
   border:none;
   background-color: antiquewhite;
 }
 .panel-block {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Capas y comandos */

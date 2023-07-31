@@ -102,11 +102,11 @@ export const createBlock = function (token, panelId, width, height) {
             else return res.json().then(body => { throw new Error(body.error) })
         })
 }
-export const deleteBlock = function (token, blockId) {
+export const deleteBlock = function (token, panelId, blockId) {
     validateString(token)
     validateString(blockId)
 
-    return fetch(import.meta.env.VITE_API_URL + '/blocks/' + blockId, {
+    return fetch(import.meta.env.VITE_API_URL + '/blocks/' + panelId + '/' + blockId, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`

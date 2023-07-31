@@ -1,13 +1,13 @@
 import { deleteBlock } from '../../logic/panel-ctrl'
 import context from '../../context'
 
-export function BlockDelete({ onDeletedBlock, onExitModal, blockId }) {
+export function BlockDelete({ onDeletedBlock, onExitModal, panelId, blockId }) {
     const handleOnExitModal = () => onExitModal()
     const handleUpdatePost = (event) => {
         event.preventDefault()
 
         try {
-            deleteBlock(context.tokenUser, blockId)
+            deleteBlock(context.tokenUser, panelId, blockId)
                 .then(() => onDeletedBlock())
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }

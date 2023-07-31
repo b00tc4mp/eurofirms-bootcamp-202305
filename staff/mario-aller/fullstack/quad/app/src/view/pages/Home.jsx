@@ -40,7 +40,7 @@ function Home({ onLogout }) {
     }
     const handleDeleteModal = (panelId) => {
         setPanelId(panelId)
-        setModal('delete-modal')
+        setModal('delete-panel')
     }
     const handleExitModal = () => {
         setPanelId(null)
@@ -51,7 +51,8 @@ function Home({ onLogout }) {
         setPanelId(panelId)
         setModal('create-block')
     }
-    const handleDeleteBlock = (blockId) => {
+    const handleDeleteBlock = (panelId, blockId) => {
+        setPanelId(panelId)
         setBlockId(blockId)
         setModal('delete-block')
     }
@@ -95,15 +96,15 @@ function Home({ onLogout }) {
                         <header>
                             <p className="panel-text">{`${panel.reference}: (${panel.width} x ${panel.height})`}</p>
                         </header>
-                        {panel.blocks.map((block) => <p className="panel-block" key={block.id}>
+                        {panel.blocks.map((block) => <p className="panel-block flex-center" key={block.id}>
                             {`(${block.width}x${block.height})`}
-                            <button className="panel-block-button" type="button" onClick={() => handleDeleteBlock(block.id)}>↩️</button>
+                            <button className="panel-block-button" type="button" onClick={() => handleDeleteBlock(panel.id,block.id)}>🗑️</button>
                         </p>
                         )}
                         <footer>
                             <button className="panel-button" type="button" onClick={() => handleCreateBlock(panel.id)}>📦</button>
                             <button className="panel-button" type="button" onClick={() => handleEditModal(panel.id)}>📝</button>
-                            <button className="panel-button" type="button" onClick={() => handleDeleteModal(panel.id)}>🗑️</button>
+                            <button className="panel-button" type="button" onClick={() => handleDeleteModal(panel.id)}>❌</button>
                         </footer>
                     </article>)}
                 </section>
@@ -121,7 +122,7 @@ function Home({ onLogout }) {
             {modal === 'edit-panel' && <PanelEdit onUpdatedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
             {modal === 'delete-panel' && <PanelDelete onDeletedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
             {modal === 'create-block' && <BlockCreate onCreatedBlock={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
-            {modal === 'delete-block' && <BlockDelete onDeletedBlock={handleRefreshPanelsExitModal} onExitModal={handleExitModal} blockId={blockId} />}
+            {modal === 'delete-block' && <BlockDelete onDeletedBlock={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} blockId={blockId} />}
             {modal === 'edit-user' && <UserEdit onUpdatedUser={handleEditedUser} onExitModal={handleExitModal} />}
         </div>
     )

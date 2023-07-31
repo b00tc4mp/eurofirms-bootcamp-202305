@@ -75,6 +75,10 @@ function retrievePanelOneDB(userId, panelId) {
                 .then(panel => {
                     panel.id = panel._id.toString()
                     delete panel._id
+                    panel.blocks.forEach(block => {
+                        block.id = block._id.toString()
+                        delete block._id
+                    })
                     return panel
                 })
         })
