@@ -1,4 +1,5 @@
-const { User, Post  } = require('../data')
+const { toggleFavPost } = require('../../project/api/logic')
+const { User, Post } = require('../data')
 const { validateId } = require("./helpers/validators")
 
 function toggleFavPost(userId, postId) {

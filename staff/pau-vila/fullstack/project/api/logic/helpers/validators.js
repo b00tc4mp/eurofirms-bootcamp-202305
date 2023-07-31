@@ -2,19 +2,12 @@ function validateEmail(email) {
     if (typeof email !== 'string') throw new Error('email is not a string')
     if (email === '') throw new Error('email is empty')
 
-    /* La línea `const indexOfAt = email.indexOf('@')` busca la posición de índice del símbolo '@' en
-    la cadena de correo electrónico. Está utilizando el método `indexOf()` de la cadena para buscar
-    la primera aparición del símbolo '@'. La posición del índice luego se almacena en la variable
-    `indexOfAt` para su uso posterior en el proceso de validación. */
     const indexOfAt = email.indexOf('@')
 
     if (indexOfAt < 0) throw new Error('email does not have @')
     if (indexOfAt === 0) throw new Error('email starts with @')
     if (indexOfAt === email.length - 1) throw new Error('email ends with @')
 
-    /* La línea `const indexOfDot = email.lastIndexOf('.', indexOfAt)` encuentra la última aparición
-    del carácter '.' en la cadena de correo electrónico, comenzando la búsqueda desde la posición
-    del índice especificada por `indexOfAt`. */
     const indexOfDot = email.indexOf('.', indexOfAt)
 
     if (indexOfDot < 0) throw new Error('email does not have .')
@@ -24,11 +17,6 @@ function validateEmail(email) {
     if (indexOfAt > indexOfDot) throw new Error('@ is after .')
     if (indexOfDot - indexOfAt === 1) throw new Error('. is next to @')
 
-    /* El `const dictionary` es una cadena que contiene todos los caracteres válidos que se pueden usar
-    en una dirección de correo electrónico. Incluye letras minúsculas de la 'a' a la 'z', números
-    del '0' al '9' y caracteres especiales como '_', '-', '.' y '$'. Esta cadena se utiliza para
-    comprobar si cada carácter de la dirección de correo electrónico es válido según las reglas
-    especificadas. */
     const dictionary = 'abcdefghijklmnopqrstuvwxyz0123456789_-.$'
     const domainDictionary = 'abcdefghijklmnopqrstuvwxyz'
 
@@ -61,9 +49,6 @@ function validateName(name) {
     if (name === '') throw new Error('name is empty')
 }
 
-/* La `función validarId(id)` es una función que valida si el parámetro `id` proporcionado es una
-cadena no vacía. Si el `id` no es una cadena o es una cadena vacía, arroja un error con el mensaje
-correspondiente. */
 function validateId(id) {
     if (typeof id !== 'string') throw new Error('id is not a string')
     if (id === '') throw new Error('id is empty')
@@ -80,10 +65,27 @@ function validateText(text) {
     if (text === '') throw new Error('text is empty')
 }
 
-/* `module.exports` es un objeto especial en Node.js que se usa para definir la interfaz pública de un
-módulo. En este caso se trata de exportar varias funciones (`validateEmail`, `validateId`,
-`validateName`, `validatePassword`, `validateText`, `validateUrl`) para que puedan ser utilizadas
-por otros módulos o scripts que requieran este módulo. */
+function validateDate(date) {
+    if(typeof date !== 'string') throw new Error('date is not a string')
+    if (date === '') throw new Error('date is empty')
+}
+
+function validateZip(zip) {
+    const zipNumber = parseInt(zip)
+    if(typeof zipNumber !== 'number') throw new Error('zip is not a number')
+    if (zip === '') throw new Error('zip is empty')
+}
+
+function validatePhone(phone) {
+    const phoneNumber = parseInt(phone)
+    if(typeof phoneNumber !== 'number') throw new Error('phone is not a number')
+    if (phone === '') throw new Error('phone is empty')
+}
+
+function validateAttendantsLimit() {
+    if(typeof attendantsLimit !== 'number') throw new Error('attendantsLimit is not a number')
+    if (attendantsLimit === '') throw new Error('attendantsLimit is empty')
+}
 module.exports = {
     validateEmail,
     validateId,
@@ -91,6 +93,9 @@ module.exports = {
     validatePassword,
     validateText,
     validateUrl,
-    
+    validateDate,
+    validatePhone,
+    validateZip,
+    validateAttendantsLimit
 }
 

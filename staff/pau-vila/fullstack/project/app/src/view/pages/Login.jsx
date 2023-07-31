@@ -19,10 +19,6 @@ function Login(props) {
         try {
             authenticateUser(email, password)
             .then(token => {
-                /* `context.token = token` establece el valor de la propiedad `token` en el objeto
-                `context` al valor `token` recibido de la función `authenticateUser`. Esto permite
-                que otros componentes de la aplicación accedan al valor del token a través del
-                objeto `contexto`. */
                 context.token = token
 
                 props.onLoggedIn()
@@ -33,9 +29,7 @@ function Login(props) {
             alert(error.message)
         }
     }
-    //target: hace referencia al objeto del elemento DOM
-    //onLoggedIn: redirecciona
-    //onLoggedIn: se refiere a la función q se desencadena despúes de haberse iniciado sesión
+   
     return <main className="login-view">
         <h1>Login</h1>
 

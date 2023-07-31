@@ -48,8 +48,7 @@ Artwork
 - description  (String, required)
 - type  (String, required)
 - materials  ([String], required),
-- creationDate  (Date, required)
-- modificationDate  (Date, optional)
+- Date  (Date, required)
 
 Workshop 
 - attendants (Array of User id, required)
@@ -60,6 +59,7 @@ Workshop
 - image (photo file, optional)
 - video (String: youtube URL or similar, optional)
 - description  (String, required)
+- attendants limit (number, required)
 
 
 

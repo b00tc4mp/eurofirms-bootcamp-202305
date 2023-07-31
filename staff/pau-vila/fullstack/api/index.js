@@ -175,7 +175,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 const postId = req.params.postId
 
                 toggleFavPost(userId, postId)
-                    .then(() => res.send())
+                    .then(() => res.status(204).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
