@@ -30,43 +30,6 @@ const userSch = new Schema({
         default: Date.now
     }
 })
-const blockSch = new Schema({
-    panel: {
-        type: ObjectId,
-        required: true,
-        ref: 'Panel'
-    },
-    x: {
-        type: Number,
-        required: true,
-        default: -1n
-    },
-    y: {
-        type: Number,
-        required: true,
-        default: -1n
-    },
-    width: {
-        type: Number,
-        required: true
-    },
-    height: {
-        type: Number,
-        required: true,
-
-    },
-    orientation: {
-        type: Number,
-        required: true,
-        enum: [0, 1],
-        default: 0
-    },
-    date: {
-        type: Date,
-        default: Date.now
-    }
-})
-
 const panelSch = new Schema({
     reference: {
         type: String,
@@ -95,11 +58,41 @@ const panelSch = new Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    blocks: [{
+        x: {
+            type: Number,
+            required: true,
+            default: -1
+        },
+        y: {
+            type: Number,
+            required: true,
+            default: -1
+        },
+        width: {
+            type: Number,
+            required: true
+        },
+        height: {
+            type: Number,
+            required: true,
+
+        },
+        orientation: {
+            type: Number,
+            required: true,
+            enum: [0, 1],
+            default: 0
+        },
+        date: {
+            type: Date,
+            default: Date.now
+        }
+    }]
 })
 
 const User = model('User', userSch)
-const Block = model('Block', blockSch)
 const Panel = model('Panel', panelSch)
 
-module.exports = { User, Block, Panel }
+module.exports = { User, Panel }

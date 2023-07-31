@@ -1,4 +1,4 @@
-const { User, Block, Panel } = require('../data')
+const { User, Panel } = require('../data')
 const { validateString } = require('./helpers')
 /**
  * The function creates a panel with the specified user ID, reference, width, and height, after
@@ -19,7 +19,7 @@ function createPanelDB(userId, reference, width, height) {
 
     return User.findById(userId, '_id').lean()
         .then((user) => {
-            if (!user) throw new Error('User do not exists')
+            if (!user) throw new Error('User does not exist')
             const blocks = []
             const status = 0
 
@@ -27,66 +27,54 @@ function createPanelDB(userId, reference, width, height) {
         })
         .then(() => { })
 }
+
 /**
- * The function retrieves panels from a database for a given user, including their associated blocks.
+ * The function retrieves panels from a database based on a user's ID.
  * @param userId - The `userId` parameter is the unique identifier of the user whose panels need to be
  * retrieved from the database.
- * @returns The function `retrievePanelsDB` returns a promise that resolves to an array of panels.
+ * @returns a promise that resolves to an array of panels owned by the user with the specified userId.
  */
 function retrievePanelsDB(userId) {
     validateString(userId)
 
     return User.findById(userId).lean()
-        .then((user) => {
-            if (!user) throw new Error('User do not exists')
+        .then(user => {
+            if (!user) throw new Error('User does not exist')
 
-            return Promise.all([Panel.find({ owner: user._id }, '-__v').sort('-date').lean(), Block.find({}, '-__v').sort('-date').lean()])
-                .then(([panels, allBlocks]) => {
-                    panels.forEach(panel => {
+            return Panel.find({ owner: user._id }, '-__v').sort('-date').lean()
+                .then(panels => {
+                    panels.forEach((panel => {
                         panel.id = panel._id.toString()
                         delete panel._id
-                        panel.blocks = []
-                        allBlocks.forEach(block => {
-                            if (block.panel.toString() === panel.id) {
-                                const block2 = { id: block._id.toString(), x: block.x, y: block.y, width: block.width, height: block.height, orientation: block.orientation }
-                                panel.blocks.push(block2)
-                            }
+                        panel.blocks.forEach(block => {
+                            block.id = block._id.toString()
+                            delete block._id
                         })
-                    })
+                    }))
                     return panels
                 })
         })
-
 }
+
 /**
- * The function retrieves a panel and its associated blocks from a database for a given user.
+ * The function retrieves a specific panel from the database for a given user.
  * @param userId - The `userId` parameter is the unique identifier of the user whose panel is being
  * retrieved from the database.
- * @param panelId - The `panelId` parameter is the unique identifier of the panel you want to retrieve
- * from the database.
- * @returns The function `retrievePanelOneDB` returns a promise that resolves to the panel object with
- * the specified `panelId`. The panel object includes an `id` property which is a string representation
- * of the panel's `_id` field, and an array of `blocks` that belong to the panel. Each block in the
- * array is an object with properties `id`, `x`, `y`, `
+ * @param panelId - The `panelId` parameter is the unique identifier of the panel that you want to
+ * retrieve from the database.
+ * @returns a promise that resolves to the panel object retrieved from the database.
  */
 function retrievePanelOneDB(userId, panelId) {
     validateString(userId)
 
     return User.findById(userId).lean()
-        .then((user) => {
-            if (!user) throw new Error('User do not exists')
+        .then(user => {
+            if (!user) throw new Error('User does not exist')
 
-            return Promise.all([Panel.findById(panelId, '-__v').sort('-date').lean(), Block.find({}, '-__v').sort('-date').lean()])
-                .then(([panel, allBlocks]) => {
+            return Panel.findById(panelId, '-__v').sort('-date').lean()
+                .then(panel => {
                     panel.id = panel._id.toString()
                     delete panel._id
-                    panel.blocks = []
-                    allBlocks.forEach(block => {
-                        if (block.panel.toString() === panel.id) {
-                            const block2 = { id: block._id.toString(), x: block.x, y: block.y, width: block.width, height: block.height, orientation: block.orientation }
-                            panel.blocks.push(block2)
-                        }
-                    })
                     return panel
                 })
         })
@@ -115,8 +103,8 @@ function updatePanelDB(userId, panelId, reference, width, height) {
 
     return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
         .then(([user, panel]) => {
-            if (!user) throw new Error('User do not exists')
-            if (!panel) throw new Error('Panel do not exists')
+            if (!user) throw new Error('User does not exist')
+            if (!panel) throw new Error('Panel does not exist  ')
             if (panel.owner.toString() !== userId) throw new Error('You can only modify your panels!')
 
             panel.reference = reference
@@ -132,23 +120,21 @@ function updatePanelDB(userId, panelId, reference, width, height) {
  * panel.
  * @param userId - The userId parameter is the unique identifier of the user whose panel needs to be
  * deleted.
- * @param panelId - The `panelId` parameter is the unique identifier of the panel that needs to be
- * deleted from the database.
- * @returns a Promise.
+ * @param panelId - The panelId parameter is the unique identifier of the panel that you want to delete
+ * from the database.
+ * @returns a Promise that resolves to the result of deleting the panel from the database.
  */
 function deletePanelDB(userId, panelId) {
     validateString(userId)
     validateString(panelId)
 
-
     return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId).lean()])
         .then(([user, panel]) => {
-            if (!user) throw new Error('User do not exists')
-            if (!panel) throw new Error('Panel do not exists')
+            if (!user) throw new Error('User does not exist')
+            if (!panel) throw new Error('Panel does not exist  ')
             if (panel.owner.toString() !== userId) throw new Error('You can only modify your panels!')
 
-            return Block.deleteMany({ panel: panel._id })
-                .then(() => Panel.deleteOne({ _id: panel._id }))
+            return Panel.deleteOne({ _id: panel._id })
         })
 }
 /**
@@ -164,31 +150,35 @@ function deletePanelDB(userId, panelId) {
  * @returns a Promise.
  */
 function createBlockDB(userId, panelId, width, height) {
-    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId, '_id').lean()])
+    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
         .then(([user, panel]) => {
-            if (!user) throw new Error('User do not exists')
-            if (!panel) throw new Error('Panel do not exists')
+            if (!user) throw new Error('User does not exist')
+            if (!panel) throw new Error('Panel does not exist  ')
 
             const x = -1
             const y = -1
             const orientation = 0
-
-            return Block.create({ panel: panel._id, x, y, width, height, orientation })
+            const block = { x, y, width: Number(width), height: Number(height), orientation }
+            panel.blocks.push(block)
+            return panel.save()
         })
         .then(() => { })
 
 }
-function deleteBlockDB(userId, blockId) {
+function deleteBlockDB(userId, panelId, blockId) {
     validateString(userId)
+    validateString(panelId)
     validateString(blockId)
 
-
-    return Promise.all([User.findById(userId, '_id').lean(), Block.findById(blockId).lean()])
-        .then(([user, block]) => {
-            if (!user) throw new Error('User do not exists')
-            if (!block) throw new Error('Block do not exists')
-
-            return Block.deleteOne({ _id: block._id })
+    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
+        .then(([user, panel]) => {
+            if (!user) throw new Error('User does not exist')
+            if (!panel) throw new Error('Panel does not exist  ')
+            console.log('blockId ', blockId)
+            const index = panel.blocks.findIndex(block => (block._id.toString() === blockId))
+            if (index === - 1) throw new Error('Block does not exist')
+            panel.blocks.splice(index, 1)
+            return panel.save()
         })
         .then(() => { })
 }

@@ -77,7 +77,7 @@ mongoose.connect(MONGOOSE_URL)
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        // updateUser
+        // updateUserDB
         api.patch('/users', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
@@ -91,7 +91,7 @@ mongoose.connect(MONGOOSE_URL)
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        // createPanel
+        // createPanelDB
         api.post('/panels', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
@@ -172,13 +172,13 @@ mongoose.connect(MONGOOSE_URL)
         })
 
         // deleteBlock
-        api.delete('/blocks/:blockId', jsonBodyParser, (req, res) => {
+        api.delete('/blocks/:panelId/:blockId', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
                 const userId = jwt.verify(token, JWT_SECRET).sub
-                const { blockId } = req.params
+                const { panelId, blockId } = req.params
 
-                deleteBlockDB(userId, blockId)
+                deleteBlockDB(userId, panelId, blockId)
                     .then(() => res.send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
