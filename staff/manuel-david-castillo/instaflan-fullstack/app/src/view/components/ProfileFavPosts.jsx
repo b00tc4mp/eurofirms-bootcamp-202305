@@ -1,7 +1,5 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
-import { AppContext } from "../../AppContext";
 
 import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"

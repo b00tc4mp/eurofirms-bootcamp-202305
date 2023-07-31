@@ -1,7 +1,5 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
 import { Routes, Route, useNavigate, Link } from "react-router-dom"
-
-import { AppContext } from "../../AppContext"
 
 import context from "../../context"
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
@@ -19,33 +17,49 @@ import { CreatePostModal } from "../modals/CreatePostModal"
 export default function Home() {
     const userId = extractUserIdFromToken(context.token)
     const navigate = useNavigate()
+    const firstRouteElement = window.location.pathname.split('/')[1];
 
     const [userIdProfile, setUserIdProfile] = useState(userId)
 
     const [modal, setModal] = useState(null)
     const [posts, setPosts] = useState(null)
     const [user, setUser] = useState(null)
-    const { page, setPage } = useContext(AppContext)
+    const [page, setPage] = useState('Instaflan')
 
     useEffect(() => {
         try {
             retrieveUser(context.token)
                 .then((user) => {
                     setUser(user)
+
+                    let header = null
+                    switch (firstRouteElement) {
+                        case 'home':
+                            header = 'Instaflan'
+                            break
+                        case 'explorer':
+                            header = 'Explorer'
+                            break
+                        case 'messages':
+                            header = 'Messages'
+                            break
+                        case 'notifications':
+                            header = 'Notifications'
+                            break
+                        case 'profile':
+                            header = 'Profile'
+                            break
+                    }
+                    setPage(header)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
-    }, [])
+    }, [firstRouteElement])
 
-    const handleAllPostPage = () => setPage('Instaflan')
-    const handleExplorerPage = () => setPage('Explorer')
-    const handleMessagesPage = () => setPage('Messages')
-    const handleNotificationsPage = () => setPage('Notifications')
     const handleProfilePage = () => {
         setUserIdProfile(userId)
-        setPage('Profile')
     }
 
     const handleLogout = () => {
@@ -100,11 +114,11 @@ export default function Home() {
 
         </main>
         <footer className="footer">
-            <Link onClick={handleAllPostPage} className="footer-emogis" to='/home'>🏠</Link>
-            <Link onClick={handleExplorerPage} className="footer-emogis" to='/explorer'>🌍</Link>
+            <Link className="footer-emogis" to='/home'>🏠</Link>
+            <Link className="footer-emogis" to='/explorer'>🌍</Link>
             <a onClick={handleCreatePostModal} className="footer-emogis" href="#">➕</a>
-            <Link onClick={handleMessagesPage} className="footer-emogis" to='/messages'>✉️</Link>
-            <Link onClick={handleNotificationsPage} className="footer-emogis" to='/notifications'>❤️</Link>
+            <Link className="footer-emogis" to='/messages'>✉️</Link>
+            <Link className="footer-emogis" to='/notifications'>❤️</Link>
             <Link onClick={handleProfilePage} className="footer-emogis" to={`/profile/${userIdProfile}/posts`}>
                 {user && (
                     <img

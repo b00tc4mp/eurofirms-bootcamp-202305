@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 
 import context from "../../context"
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
-import { AppContext } from "../../AppContext"
 
 import { retrievePosts } from "../../logic/retrievePosts"
 import { toggleFavPost } from "../../logic/toggleFavPost"
@@ -16,8 +15,6 @@ export function AllPosts(props) {
     const navigate = useNavigate()
 
     const [modal, setModal] = useState(null)
-
-    const { page, setPage } = useContext(AppContext)
 
     const [posts, setPosts] = useState([])
 
