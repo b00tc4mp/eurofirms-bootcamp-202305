@@ -1,5 +1,6 @@
-function createPost(token, image, text) {
+function createPost(token, author, image, text) {
     if(typeof token !== 'string') throw new Error('token is not a string')
+    if(typeof author !== 'string') throw new Error('Name is not a string')
     if(typeof image !== 'string') throw new Error('Image is not a string')
     if(typeof text !== 'string') throw new Error('Text is not a string')
 
@@ -9,7 +10,7 @@ function createPost(token, image, text) {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({image, text})
+        body: JSON.stringify({author, image, text})
     })
     .then(res=>{
         if(res.status ===201)

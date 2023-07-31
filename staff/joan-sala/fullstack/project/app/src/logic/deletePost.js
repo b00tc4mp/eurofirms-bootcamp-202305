@@ -4,9 +4,7 @@ function deletePost(token, postId) {
     
     return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`,{
         method: 'DELETE',
-        headers:{
-            Authorization:`Bearer ${token}`
-        }
+        headers:{Authorization:`Bearer ${token}`        }
     })
     .then(res =>{
         if(res.status ===200)

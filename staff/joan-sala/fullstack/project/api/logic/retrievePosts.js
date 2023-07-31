@@ -8,12 +8,14 @@ function retrievePosts(userId) {
         .then(user => {
             if (!user) throw new Error('user not found')
 
-            //te trae el objeto completo   del usuario relacionado con el post   
-            //return Post.find({}, '-__v').populate('author', '-email -password -favs -__v').lean()
+            //te trae el objeto completo del usuario relacionado con el post   
+            //return Post.find({}, '-__v').populate('name', '-email -password -favs -__v').lean()
             return Post.find({}, '-__v').populate('author', 'name').lean()  
                        
             .then(posts => {
-            posts.forEach(post => {
+                console.log(posts)
+                posts.forEach(post => {
+            
                 post.id = post._id.toString()
                 
                 //sanitaize

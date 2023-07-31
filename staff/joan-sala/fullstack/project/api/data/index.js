@@ -16,10 +16,11 @@ const user = new Schema({
         required: true,
         minLength: 8
     },
-    // image: {
-    //     type: String,
-    //     required: optional
-    // },
+    
+    image: {
+        type: String
+        //required: optional
+    },
     favs: [
         {
             type: ObjectId,
@@ -29,7 +30,7 @@ const user = new Schema({
 })
 
 const post = new Schema({
-    name: {
+    author: {
         type: ObjectId,
         ref: 'User',
         required: true
@@ -38,28 +39,27 @@ const post = new Schema({
         type: String,
         required: true
     },
-    // video: {
-    //     type: String,
+    video: {
+        type: String,
     //     required: optional
-    // },
-    // description: {
-    //     type: String,
-    //     required: true
-    // },
-    // type: {
-    //     type: String,
-    //     require: true
-    // },
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        require: true
+    },
     date: {
         type: Date,
         default: Date.now
     },
-    // adress:{
-    //     type: ObjectId,
-    //     ref: 'name'
-    // }
+    adress:{
+        type: ObjectId,
+        ref: 'name'
+    }
 })
-//Constructor que permite saber que usuario es
 const User = model('User', user)
 const Post = model('Post', post)
 

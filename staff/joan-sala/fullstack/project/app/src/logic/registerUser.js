@@ -6,9 +6,7 @@ function registerUser(name, email, password) { //validaciones sincronas
     //Llamada al servidor
     return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({name, email, password})
     })
     .then(res => {

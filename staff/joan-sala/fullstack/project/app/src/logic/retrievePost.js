@@ -4,9 +4,7 @@ function retrievePost(token, postId) {
 
 
     return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
+        headers: {Authorization: `Bearer ${token}`}
     })
         .then(res => {
             if (res.status === 200)

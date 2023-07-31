@@ -3,9 +3,7 @@ function retrieveUser(token) {
 
     return fetch(`${import.meta.env.VITE_API_URL}/users/`, {
         method: 'GET',
-        headers: {
-              Authorization: `Bearer ${token}`
-        }
+        headers: {Authorization: `Bearer ${token}`}
     })
         .then(res => {
             if (res.status === 200)

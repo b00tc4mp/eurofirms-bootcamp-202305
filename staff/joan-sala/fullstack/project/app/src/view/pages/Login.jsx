@@ -33,10 +33,10 @@ function Login(props) {
 
             <form className="login-form" onSubmit={handleLoginSubmit}>
                 <label htmlFor="email">E-mail</label>
-                <input id="email" type="email"></input>
+                <input id="email" type="email" alt="email"></input>
 
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password"></input>
+                <input id="password" type="password" alt ="password"></input>
 
                 <button type="submit">Login</button>
             </form>

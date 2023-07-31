@@ -3,7 +3,7 @@
 /* resets */
 
 * {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto','Courier New', Courier, monospace;
 }
 
 html, body {
@@ -87,6 +87,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+}
+
+.home-create-post-button {
+    border-top: 20%;
 }
 
 .home-create-post-container, .home-edit-post-container, .home-delete-post-container {

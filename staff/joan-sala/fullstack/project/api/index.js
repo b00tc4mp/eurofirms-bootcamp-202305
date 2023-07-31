@@ -43,10 +43,10 @@ mongoose.connect(`${MONGODB_URL}/data`)
         //end point 02 REGISTER USER
         api.post('/users', jsonBodyParser, (req, res) => { //req:request=petición | res:respuesta si va bien o no
             //debugger 
-            const { name, email, password } = req.body
+            const { name, email, password, image } = req.body
 
             try {  //intenta hacer ésto
-                registerUser(name, email, password)
+                registerUser(name, email, password,image)
                     .then(() => { res.status(201).send() }) //devuelve únicamente una infirmacióon 
                     .catch((error) => res.status(400).json({ error: error.message }))
 

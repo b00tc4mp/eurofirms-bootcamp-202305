@@ -12,7 +12,7 @@ function updatePost(userId, postId, image, text) {
             if (!user) throw new Error('User not found')
             if (!post) throw new Error('Post not found')
 
-            if (post.author.toString() !== userId) throw new Error('Post does not belong to user')
+            if (post.name.toString() !== userId) throw new Error('Post does not belong to user')
             post.image = image
             post.text = text
             

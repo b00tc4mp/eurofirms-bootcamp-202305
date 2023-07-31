@@ -5,9 +5,7 @@ function authenticateUser(email, password) {
     //Llamada al servidor
     return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email, password})
     })
     .then(res => {
