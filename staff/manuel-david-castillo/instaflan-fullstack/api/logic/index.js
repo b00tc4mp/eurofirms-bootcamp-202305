@@ -11,6 +11,7 @@ module.exports = {
     retrievePostsOfUser: require('./post-logic/retrievePostsOfUser'),
     retrieveUser: require('./user-logic/retrieveUser'),
     retrieveUserById: require('./user-logic/retrieveUserById'),
+    retrieveUsersNotFollowed: require('./user-logic/retrieveUsersNotFollowed'),
     toggleFavPost: require('./post-logic/toggleFavPost'),
     toggleFollowUser: require('./user-logic/toggleFollowUser')
 }
