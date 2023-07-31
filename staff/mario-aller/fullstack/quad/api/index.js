@@ -184,6 +184,6 @@ mongoose.connect(MONGOOSE_URL)
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        api.listen(API_PORT, () => console.log(`API funcionando en ${API_PORT}...`))
+        api.listen(API_PORT, () => console.log(`API working in port ${API_PORT} ...`))
     })
     

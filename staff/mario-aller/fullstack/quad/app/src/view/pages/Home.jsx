@@ -64,6 +64,8 @@ function Home({ onLogout }) {
             retrievePanels(context.tokenUser)
                 .then(panels => {
                     setPanels(panels)
+                    setPanelId(null)
+                    setBlockId(null)
                     setModal(null)
                 })
                 .catch(error => alert('Error: ' + error.message))
@@ -86,7 +88,7 @@ function Home({ onLogout }) {
             <header className="home-header">
                 <div className="basic-head">
                     <img className="logo" src="../../../public/logo-block.gif" alt="logo" />
-                    <h3>Hello, {userLogged ? userLogged.name : 'world'}</h3>
+                    <h2>Hello, {userLogged ? userLogged.name : 'world'}</h2>
                 </div>
             </header>
 
