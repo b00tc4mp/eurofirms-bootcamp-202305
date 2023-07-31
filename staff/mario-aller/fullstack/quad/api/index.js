@@ -27,7 +27,9 @@ const {
     retrievePanelsDB,
     retrievePanelOneDB,
     updatePanelDB,
-    createBlockDB
+    deletePanelDB,
+    createBlockDB,
+    deleteBlockDB
 } = require('./logic/panel-db')
 
 const api = express()
@@ -126,6 +128,19 @@ mongoose.connect(MONGOOSE_URL)
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
+        // deletePanel
+        api.delete('/panels/:panelId', jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+                const { panelId } = req.params
+
+                deletePanelDB(userId, panelId)
+                    .then(() => res.send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+        
         // createBlock
         api.post('/blocks', jsonBodyParser, (req, res) => {
             try {
@@ -140,6 +155,19 @@ mongoose.connect(MONGOOSE_URL)
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
+        // deleteBlock
+        api.delete('/blocks/:blockId', jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+                const { blockId } = req.params
+
+                deleteBlockDB(userId, blockId)
+                    .then(() => res.send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+        
         api.listen(API_PORT, () => console.log(`API funcionando en ${API_PORT}...`))
     })
 

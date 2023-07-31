@@ -68,6 +68,21 @@ export const updatePanel = function (token, panelId, reference, width, height) {
             else return res.json().then(body => { throw new Error(body.error) })
         })
 }
+export const deletePanel = function (token, panelId) {
+    validateString(token)
+    validateString(panelId)
+
+    return fetch(import.meta.env.VITE_API_URL + '/panels/' + panelId, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    })
+        .then(res => {
+            if (res.status === 200) return
+            else return res.json().then(body => { throw new Error(body.error) })
+        })
+}
 export const createBlock = function (token, panelId, width, height) {
     validateString(token)
     validateString(panelId)
@@ -84,6 +99,21 @@ export const createBlock = function (token, panelId, width, height) {
     })
         .then(res => {
             if (res.status === 201) return
+            else return res.json().then(body => { throw new Error(body.error) })
+        })
+}
+export const deleteBlock = function (token, blockId) {
+    validateString(token)
+    validateString(blockId)
+
+    return fetch(import.meta.env.VITE_API_URL + '/blocks/' + blockId, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    })
+        .then(res => {
+            if (res.status === 200) return
             else return res.json().then(body => { throw new Error(body.error) })
         })
 }

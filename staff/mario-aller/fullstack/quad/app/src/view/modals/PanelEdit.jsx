@@ -30,7 +30,7 @@ export function PanelEdit({ onUpdatedPanel, onExitModal, panelId }) {
     return <>
         {panel && <div className="home-modal-editpost basic-modal">
             <form className="home-modal-editpost-form basic-form" action="submit" onSubmit={handleUpdatePost}>
-                <h4>Editar Post</h4>
+                <h4>Edit panel</h4>
 
                 <label className="basic-label" htmlFor="reference">Reference</label>
                 <input type="text" id="reference" defaultValue={panel.reference}></input>

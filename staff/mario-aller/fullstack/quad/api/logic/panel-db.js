@@ -92,7 +92,20 @@ function retrievePanelOneDB(userId, panelId) {
         })
 
 }
-
+/**
+ * The function `updatePanelDB` updates the reference, width, and height of a panel in a database,
+ * after validating the input parameters and checking if the user has permission to modify the panel.
+ * @param userId - The `userId` parameter is the unique identifier of the user who owns the panel. It
+ * is used to find the user in the database and validate their ownership of the panel before making any
+ * modifications.
+ * @param panelId - The panelId parameter is the unique identifier of the panel that needs to be
+ * updated in the database.
+ * @param reference - The reference parameter is a string that represents the reference of the panel.
+ * It could be a name, code, or any other identifier that helps identify the panel.
+ * @param width - The "width" parameter represents the width of the panel in pixels.
+ * @param height - The `height` parameter represents the height of the panel.
+ * @returns a Promise.
+ */
 function updatePanelDB(userId, panelId, reference, width, height) {
     validateString(userId)
     validateString(panelId)
@@ -111,6 +124,30 @@ function updatePanelDB(userId, panelId, reference, width, height) {
             panel.height = height
             panel.date = new Date()
             return panel.save()
+        })
+        .then(() => { })
+}
+/**
+ * The function `deletePanelDB` deletes a panel from the database if the user is the owner of the
+ * panel.
+ * @param userId - The userId parameter is the unique identifier of the user whose panel needs to be
+ * deleted.
+ * @param panelId - The `panelId` parameter is the unique identifier of the panel that needs to be
+ * deleted from the database.
+ * @returns a Promise.
+ */
+function deletePanelDB(userId, panelId) {
+    validateString(userId)
+    validateString(panelId)
+
+
+    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId).lean()])
+        .then(([user, panel]) => {
+            if (!user) throw new Error('User do not exists')
+            if (!panel) throw new Error('Panel do not exists')
+            if (panel.owner.toString() !== userId) throw new Error('You can only modify your panels!')
+
+            return Panel.deleteOne({ _id: panel._id })
         })
         .then(() => { })
 }
@@ -141,11 +178,26 @@ function createBlockDB(userId, panelId, width, height) {
         .then(() => { })
 
 }
+function deleteBlockDB(userId, blockId) {
+    validateString(userId)
+    validateString(blockId)
 
+
+    return Promise.all([User.findById(userId, '_id').lean(), Block.findById(blockId).lean()])
+        .then(([user, block]) => {
+            if (!user) throw new Error('User do not exists')
+            if (!block) throw new Error('Block do not exists')
+
+            return Block.deleteOne({ _id: block._id })
+        })
+        .then(() => { })
+}
 module.exports = {
     createPanelDB,
     retrievePanelsDB,
     retrievePanelOneDB,
     updatePanelDB,
-    createBlockDB
+    deletePanelDB,
+    createBlockDB,
+    deleteBlockDB
 }
