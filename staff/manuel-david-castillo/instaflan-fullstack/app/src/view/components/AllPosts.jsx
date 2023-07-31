@@ -114,7 +114,6 @@ export function AllPosts(props) {
 
     const handleProfile = (event, userIdProfile) => {
         event.preventDefault()
-        setPage('Profile')
         navigate(`/profile/${userIdProfile}/posts`)
     }
 

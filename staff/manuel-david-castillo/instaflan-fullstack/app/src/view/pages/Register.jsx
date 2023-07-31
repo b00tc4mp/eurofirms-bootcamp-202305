@@ -17,7 +17,7 @@ export default function Register() {
         try {
             registerUser(name, image, description, email, password)
                 .then(() => {
-                    navigate('/register')
+                    navigate('/login')
                 })
                 .catch((error) => {
                     alert(error.message)
