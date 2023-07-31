@@ -45,7 +45,7 @@ export function Profile() {
                     setModal(null)
                     setUserProfile(user)
                 })
-                .catch(() => {
+                .catch((error) => {
                     alert(error.message)
                 })
         } catch (error) {
@@ -63,12 +63,13 @@ export function Profile() {
 
     function handleFollowUser() {
         try {
-            toggleFollowUser(context.token, userIdProfile)
-                .then(() => console.log('user followed'))
+            Promise.all([retrieveUserById(context.token, userIdProfile),
+            toggleFollowUser(context.token, userIdProfile)])
+                .then(([userProfile]) => setUserProfile(userProfile))
+                .catch((error) => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
-
     }
 
     return <section className="profile">
@@ -80,7 +81,7 @@ export function Profile() {
             {user?.name === userProfile?.name ?
                 <button onClick={handleEditUserModal} className="button button-modal edit-profile-button">Edit profile</button>
                 :
-                <button onClick={handleFollowUser} className="button button-modal edit-profile-button">{user.followed ? 'Follow' : 'Unfollow'}</button>}
+                <button onClick={handleFollowUser} className="button button-modal edit-profile-button">{userProfile.followed ? 'Unfollow' : 'Follow'}</button>}
         </div>
         <p className="description-profile">{userProfile?.description}</p>
         <div className="two-buttons-profile">

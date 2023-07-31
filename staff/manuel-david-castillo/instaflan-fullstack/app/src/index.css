@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-body {
+html, body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   height: 100vh;
@@ -23,33 +23,33 @@ a {
   cursor: pointer
 }
 
-  .login {
-    background-color: #f9e79f; /* Color amarillo claro */
+.login {
+    background-color: #f9e79f; 
     display: flex;
     flex-direction: column;
     justify-content: start;
     padding: 20px;
-    height: 100vh;
+    height: 100%;
   }
   
-  .login h2 {
+.login h2 {
     font-size: 28px;
     margin-bottom: 20px;
     color: #e67e22; /* Color caramelo */
   }
   
-  .login-form div {
+.login-form div {
     margin-bottom: 15px;
   }
   
-  .login-form label {
+.login-form label {
     display: block;
     font-size: 18px;
     font-weight: bold;
     color: #d35400; /* Color caramelo oscuro */
   }
   
-  .login-form .input {
+.login-form .input {
     width: 80%;
     padding: 10px;
     border: 2px solid #e67e22; /* Color caramelo */
@@ -58,7 +58,7 @@ a {
     max-width: 350px ;
   }
   
-  .button {
+.button {
     background-color: #fdcb6e; /* Color flan */
     color: #fff;
     border: none;
@@ -70,11 +70,11 @@ a {
     transition: background-color 0.3s ease;
   }
   
-  .button:hover {
+.button:hover {
     background-color: #f39c12; /* Color flan oscuro */
   }
   
-  .link-register {
+.link-register {
     color: #d35400; /* Color caramelo oscuro */
     font-size: 20px;
     text-decoration: none;
@@ -87,11 +87,11 @@ a {
   
   
   
-  .link-register:hover {
+.link-register:hover {
     text-decoration: underline;
   }
 
-  .register {
+.register {
     background-color: #f9e79f; /* Color amarillo claro */
     display: flex;
     flex-direction: column;
@@ -100,24 +100,24 @@ a {
     height: 100vh;
   }
   
-  .register h2 {
+.register h2 {
     font-size: 28px;
     margin-bottom: 20px;
     color: #e67e22; /* Color caramelo */
   }
   
-  .register-form div {
+.register-form div {
     margin-bottom: 15px;
   }
   
-  .register-form label {
+.register-form label {
     display: block;
     font-size: 18px;
     font-weight: bold;
     color: #d35400; /* Color caramelo oscuro */
   }
   
-  .register-form .input {
+.register-form .input {
     width: 80%;
     padding: 10px;
     border: 2px solid #e67e22; /* Color caramelo */
@@ -126,7 +126,7 @@ a {
     max-width: 350px ;
   }
   
-  .link-login {
+.link-login {
     color: #d35400; /* Color caramelo oscuro */
     font-size: 20px;
     text-decoration: none;
@@ -137,18 +137,17 @@ a {
     text-align: center;
   }
   
-  
-  
-  .link-register:hover {
+
+.link-register:hover {
     text-decoration: underline;
   }
   
-  .home {
+.home {
     width: 100%;
     height: 100%;
   }
 
-  .header {
+.header {
     width: 100%;
     height: 70px;
     background-color: #f9e79f;
@@ -161,49 +160,49 @@ a {
     padding-left: 20px;
   }
 
-  .h2-header {
+.h2-header {
     color: #d35400;
   }
 
-  .div-h2-img {
+.div-h2-img {
     display: flex;
 
   }
 
-  .icon-flan {
+.icon-flan {
     width: 60px;
     height: auto;
   }
 
-  .div-search{
+.div-search{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 40px;
   }
 
-  .search-input {
+.search-input {
     height: 25px;
     border-radius: 20px 0 0 20px;
     padding-left: 10px;
     max-width: 130px;
   }
 
-  .search-button {
+.search-button {
     height: 30px;
     border-radius: 0 20px 20px 0;
   }
 
-  .button-logout {
+.button-logout {
     margin-right: 30px;
     padding: 6px 14px;
   }
 
-  .main-home {
+.main-home {
     padding-top: 70px;
   }
   
-  .footer {
+.footer {
     width: 100%;
     height: 70px;
     background-color: #f9e79f;
@@ -215,7 +214,7 @@ a {
     align-items: center;
   }
   
-  .footer-emogis {
+.footer-emogis {
     color: #fff;
     font-size: 24px;
     margin: 0 10px;
@@ -224,11 +223,11 @@ a {
     transition: transform 0.2s; /* Transición para el efecto de escala al pasar el ratón */
   }
   
-  .footer-emogis:hover {
+.footer-emogis:hover {
     transform: scale(1.2); /* Hace que el enlace se agrande al pasar el ratón */
   }
 
-  .footer-profile-image {
+.footer-profile-image {
     width: 45px;
     height: 45px;
     border-radius: 100%;

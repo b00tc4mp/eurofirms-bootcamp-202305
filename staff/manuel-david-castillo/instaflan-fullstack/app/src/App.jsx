@@ -10,6 +10,6 @@ export function App() {
       <Route key={'login'} path="/login" element={/* sessionStorage.token ? <Navigate to='/' /> : */ <Login />} />
       <Route key={'register'} path="/register" element={<Register />} />
       <Route key={'home'} path="/*" element={<Home />
-        /* sessionStorage.token ? <Home /> : <Navigate to='login' /> */} />
+        /* sessionStorage.token ? <Home /> : <Navigate to='/login' /> */} />
     </Routes>)
 }
