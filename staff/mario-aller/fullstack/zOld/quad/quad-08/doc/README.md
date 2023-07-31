@@ -42,8 +42,6 @@ Later, the final distribution solution is given to the user.
 ### Data model
 
 #### Block
-- panel: ObjectId (required)
-    - panel id of block
 - x: Number (required, default -1)
     - 'x' block position
 - y: Number (required, default -1)
@@ -64,7 +62,10 @@ Later, the final distribution solution is given to the user.
     - panel width
 - height: Number (required)
     - panel height
+- blocks: array of Block (required, default [ ])
+    - set of blocks for each panel
 - status: Integer (required, enum [NOT_OPTIMIZED, FINISHED], default NOT_OPTIMIZED)
+    - status of panel (it it's optimized)
 
 #### User
 - id: ObjectID (unique)
