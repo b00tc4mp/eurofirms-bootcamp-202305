@@ -56,7 +56,7 @@ export const updatePanel = function (token, panelId, reference, width, height) {
     validateString(height, validateString.INTEGER)
 
     return fetch(import.meta.env.VITE_API_URL + '/panels/' + panelId, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'

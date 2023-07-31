@@ -147,9 +147,9 @@ function deletePanelDB(userId, panelId) {
             if (!panel) throw new Error('Panel do not exists')
             if (panel.owner.toString() !== userId) throw new Error('You can only modify your panels!')
 
-            return Panel.deleteOne({ _id: panel._id })
+            return Block.deleteMany({ panel: panel._id })
+                .then(() => Panel.deleteOne({ _id: panel._id }))
         })
-        .then(() => { })
 }
 /**
  * The function `createBlockDB` creates a new block in a panel for a specific user, with the specified

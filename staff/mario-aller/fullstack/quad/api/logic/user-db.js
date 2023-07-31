@@ -60,12 +60,32 @@ function retrieveUserDB(id) {
 
             user.id = user._id.toString()
             delete user._id
-     
+
             return user
         })
 }
+function updateUserDB(userId, name, surname, zip) {
+    validateString(userId)
+    validateString(name, validateString.NAME)
+    validateString(surname, validateString.NAME)
+    validateString(zip, validateString.INTEGER)
+
+    return User.findById(userId, '_id')
+        .then( user => {
+            if (!user) throw new Error('User do not exists')
+
+            user.name = name
+            user.surname = surname
+            user.zip = zip
+            user.date = new Date()
+            return user.save()
+        })
+        .then(() => { })
+}
+
 module.exports = {
     registerUserDB,
     authenticateUserDB,
-    retrieveUserDB
+    retrieveUserDB,
+    updateUserDB
 }

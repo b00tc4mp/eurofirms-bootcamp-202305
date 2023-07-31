@@ -7,6 +7,7 @@ import { PanelEdit } from '../modals/PanelEdit'
 import { PanelDelete } from '../modals/PanelDelete'
 import { BlockCreate } from '../modals/BlockCreate'
 import { BlockDelete } from '../modals/BlockDelete'
+import { UserEdit } from '../modals/UserEdit'
 
 function Home({ onLogout }) {
     const [userLogged, setUserLogged] = useState(null)
@@ -31,12 +32,11 @@ function Home({ onLogout }) {
         onLogout()
     }
     const handleCreateModal = () => {
-        setModal('create-modal')
+        setModal('create-panel')
     }
-
     const handleEditModal = (panelId) => {
         setPanelId(panelId)
-        setModal('edit-modal')
+        setModal('edit-panel')
     }
     const handleDeleteModal = (panelId) => {
         setPanelId(panelId)
@@ -44,16 +44,19 @@ function Home({ onLogout }) {
     }
     const handleExitModal = () => {
         setPanelId(null)
-        //setBlockId(null)
+        setBlockId(null)
         setModal(null)
     }
     const handleCreateBlock = (panelId) => {
         setPanelId(panelId)
-        setModal('block-create-modal')
+        setModal('create-block')
     }
     const handleDeleteBlock = (blockId) => {
         setBlockId(blockId)
-        setModal('block-delete-modal')
+        setModal('delete-block')
+    }
+    const handleEditUser = (userId) => {
+        setModal('edit-user')
     }
     const handleRefreshPanelsExitModal = () => {
         try {
@@ -61,10 +64,20 @@ function Home({ onLogout }) {
                 .then(panels => {
                     setPanels(panels)
                     setModal(null)
-                    // setIdPost(null)
                 })
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
+    }
+    const handleEditedUser = () => {
+        try {
+            retrieveUser(context.tokenUser)
+                .then(user => {
+                    setUserLogged(user)
+                    setModal(null)
+                })
+                .catch(error => alert('Error: ' + error.message))
+        } catch (error) { alert('Error: ' + error.message) }
+
     }
 
     return (
@@ -99,15 +112,17 @@ function Home({ onLogout }) {
             <footer className="home-nav">
                 <div className="basic-nav">
                     <button type="button" className="basic-button" onClick={handleCreateModal}>New Panel</button>
+                    <button type="button" className="basic-button" onClick={handleEditUser}>Edit Profile</button>
                     <button type="button" className="basic-button" onClick={handleLogout}>Salir</button>
                 </div>
             </footer>
 
-            {modal === 'create-modal' && <PanelCreate onCreatedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} />}
-            {modal === 'edit-modal' && <PanelEdit onUpdatedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
-            {modal === 'delete-modal' && <PanelDelete onDeletedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
-            {modal === 'block-create-modal' && <BlockCreate onCreatedBlock={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
-            {modal === 'block-delete-modal' && <BlockDelete onDeletedBlock={handleRefreshPanelsExitModal} onExitModal={handleExitModal} blockId={blockId} />}
+            {modal === 'create-panel' && <PanelCreate onCreatedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} />}
+            {modal === 'edit-panel' && <PanelEdit onUpdatedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
+            {modal === 'delete-panel' && <PanelDelete onDeletedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
+            {modal === 'create-block' && <BlockCreate onCreatedBlock={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
+            {modal === 'delete-block' && <BlockDelete onDeletedBlock={handleRefreshPanelsExitModal} onExitModal={handleExitModal} blockId={blockId} />}
+            {modal === 'edit-user' && <UserEdit onUpdatedUser={handleEditedUser} onExitModal={handleExitModal} />}
         </div>
     )
 }

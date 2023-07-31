@@ -20,8 +20,10 @@ const jwt = require('jsonwebtoken')
 const {
     registerUserDB,
     authenticateUserDB,
-    retrieveUserDB
+    retrieveUserDB,
+    updateUserDB
 } = require('./logic/user-db')
+
 const {
     createPanelDB,
     retrievePanelsDB,
@@ -75,6 +77,20 @@ mongoose.connect(MONGOOSE_URL)
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
+        // updateUser
+        api.patch('/users', jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+
+                const { name, surname, zip } = req.body
+
+                updateUserDB(userId, name, surname, zip)
+                    .then(() => res.send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
         // createPanel
         api.post('/panels', jsonBodyParser, (req, res) => {
             try {
@@ -114,7 +130,7 @@ mongoose.connect(MONGOOSE_URL)
         })
 
         // updatePanel
-        api.post('/panels/:panelId', jsonBodyParser, (req, res) => {
+        api.patch('/panels/:panelId', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
                 const userId = jwt.verify(token, JWT_SECRET).sub
@@ -140,7 +156,7 @@ mongoose.connect(MONGOOSE_URL)
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
-        
+
         // createBlock
         api.post('/blocks', jsonBodyParser, (req, res) => {
             try {
@@ -167,7 +183,7 @@ mongoose.connect(MONGOOSE_URL)
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
-        
+
         api.listen(API_PORT, () => console.log(`API funcionando en ${API_PORT}...`))
     })
-
+    

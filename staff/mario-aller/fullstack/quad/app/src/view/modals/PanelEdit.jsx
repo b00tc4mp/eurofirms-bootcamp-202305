@@ -14,7 +14,7 @@ export function PanelEdit({ onUpdatedPanel, onExitModal, panelId }) {
     }, [])
 
     const handleOnExitModal = () => onExitModal()
-    const handleUpdatePost = (event) => {
+    const handleUpdatePanel = (event) => {
         event.preventDefault()
         const reference = event.target.reference.value
         const width = event.target.width.value
@@ -29,17 +29,17 @@ export function PanelEdit({ onUpdatedPanel, onExitModal, panelId }) {
 
     return <>
         {panel && <div className="home-modal-editpost basic-modal">
-            <form className="home-modal-editpost-form basic-form" action="submit" onSubmit={handleUpdatePost}>
+            <form className="home-modal-editpost-form basic-form" action="submit" onSubmit={handleUpdatePanel}>
                 <h4>Edit panel</h4>
 
                 <label className="basic-label" htmlFor="reference">Reference</label>
-                <input type="text" id="reference" defaultValue={panel.reference}></input>
+                <input type="text" id="reference" defaultValue={panel ? panel.reference : ''}></input>
 
                 <label className="basic-label" htmlFor="width">Width</label>
-                <input type="text" id="width" defaultValue={panel.width}></input>
+                <input type="text" id="width" defaultValue={panel ? panel.width : ''}></input>
 
                 <label className="basic-label" htmlFor="height">Height</label>
-                <input type="text" id="height" defaultValue={panel.height}></input>
+                <input type="text" id="height" defaultValue={panel ? panel.height : ''}></input>
 
                 <div className="flex-hor">
                     <button type="submit" className="basic-button">Save</button>

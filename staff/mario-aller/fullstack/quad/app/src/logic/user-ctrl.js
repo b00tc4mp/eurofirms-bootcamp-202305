@@ -90,3 +90,32 @@ export const retrieveUser = function (token) {
         }
     })
 }
+/**
+ * The `updateUser` function sends a PATCH request to update a user's name, surname, and zip code,
+ * using the provided token for authorization.
+ * @param token - The `token` parameter is a string that represents the authentication token of the
+ * user. It is used to authorize the user's request to update their information.
+ * @param name - The `name` parameter is the new name of the user that you want to update.
+ * @param surname - The `surname` parameter is a string that represents the user's last name.
+ * @param zip - The `zip` parameter is a string representing the user's zip code.
+ * @returns a Promise.
+ */
+export const updateUser = function (token, name, surname, zip) {
+    validateString(token)
+    validateString(name, validateString.NAME)
+    validateString(surname, validateString.NAME)
+    validateString(zip, validateString.INTEGER)
+
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, surname, zip })
+    })
+        .then(res => {
+            if (res.status === 200) return
+            else return res.json().then(body => { throw new Error(body.error) })
+        })
+}
