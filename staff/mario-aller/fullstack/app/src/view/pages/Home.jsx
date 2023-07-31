@@ -20,7 +20,6 @@ function Home({ onLogout }) {
                     setPosts(posts)
                 })
                 .catch(err => alert('Error: ' + err.message))
-
         } catch (err) { alert('Error: ' + err.message) }
     }, [])
 

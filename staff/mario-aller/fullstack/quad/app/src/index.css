@@ -39,6 +39,19 @@ body {
   padding: 1rem;
 }
 
+.basic-container {
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  background-color: rgb(161, 195, 161);
+  border-radius: 2rem;
+  box-shadow: 0.5rem 0.5rem 0.5rem rgb(66, 98, 86);
+  padding: 1rem;
+}
+
 .basic-button {
   margin: 1rem;
   padding: 0.1rem 0.8rem;
@@ -209,6 +222,46 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center; */
+}
+
+/* Panels */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  width: 70%;
+  border-radius: 1rem;
+  background-color: antiquewhite;
+}
+
+.panel-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel-text {
+  padding: 0.5rem;
+}
+
+.panel-button {
+  font-size: 0.9rem;
+  margin-right: 0.3rem;
+  border:none;
+  background-color: antiquewhite;
+}
+.panel-block-button {
+  font-size: 0.7rem;
+  margin-left: 1rem;
+  border:none;
+  background-color: antiquewhite;
+}
+.panel-block {
+  font-size: 0.9rem;
 }
 
 /* Capas y comandos */

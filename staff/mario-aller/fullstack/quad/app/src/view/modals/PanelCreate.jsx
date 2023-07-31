@@ -19,7 +19,7 @@ export function PanelCreate({ onCreatedPanel, onExitModal }) {
 
     return <div className="basic-modal">
         <form className="basic-form" action="submit" onSubmit={handleOnSubmitPanel}>
-            <h4>Nuevo Post</h4>
+            <h4>Nuevo Panel</h4>
 
             <label className="basic-label" htmlFor="reference">Reference</label>
             <input type="text" id="reference"></input>
@@ -31,8 +31,8 @@ export function PanelCreate({ onCreatedPanel, onExitModal }) {
             <input type="text" id="height"></input>
 
             <div className="flex-center">
-                <button type="submit" className="newpost-button basic-button">New</button>
-                <button type="button" className="newpost-button-cancel basic-button" onClick={handleOnExit}>Cancel</button>
+                <button type="submit" className="basic-button">New</button>
+                <button type="button" className="basic-button" onClick={handleOnExit}>Cancel</button>
             </div>
         </form>
     </div>

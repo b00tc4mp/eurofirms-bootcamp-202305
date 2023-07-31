@@ -1,22 +1,28 @@
 import { retrieveUser } from '../../logic/user-ctrl'
+import { retrievePanels } from '../../logic/panel-ctrl'
 import context from '../../context'
 import { useState, useEffect } from 'react'
-// import { getIdFromToken } from '../../logic/helpers/convert'
 import { PanelCreate } from '../modals/PanelCreate'
+import { PanelEdit } from '../modals/PanelEdit'
+import { BlockCreate } from '../modals/BlockCreate'
+
 // import { PostDelete } from '../modals/PostDelete'
 // import { PostEdit } from '../modals/PostEdit'
 
 function Home({ onLogout }) {
     const [userLogged, setUserLogged] = useState(null)
-
     const [modal, setModal] = useState(null)
-    // const [idPanel, setIdPanel] = useState(null)
-    // const [posts, setPosts] = useState([])
+    const [panels, setPanels] = useState([])
+    const [panelId, setPanelId] = useState(null)
+    // const [blockId, setBlockId] = useState(null)
 
     useEffect(() => {
         try {
-            retrieveUser(context.tokenUser)
-                .then(user => setUserLogged(user))
+            Promise.all([retrieveUser(context.tokenUser), retrievePanels(context.tokenUser)])
+                .then(([user, panels]) => {
+                    setUserLogged(user)
+                    setPanels(panels)
+                })
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
     }, [])
@@ -25,35 +31,40 @@ function Home({ onLogout }) {
         context.tokenUser = null
         onLogout()
     }
+    const handleCreateModal = () => {
+        setModal('create-modal')
+    }
+    const handleCreateBlock = (panelId) => {
+        setPanelId(panelId)
+        setModal('block-modal')
+    }
+    const handleEditModal = (panelId) => {
+        setPanelId(panelId)
+        setModal('edit-modal')
+    }
+    const handleExitModal = () => {
+        setPanelId(null)
+        //setBlockId(null)
+        setModal(null)
+    }
 
-    const handleCreateModal = () => setModal('create-modal')
-   
-    // const handleEditModal = (idPost) => {
-    //     setIdPanel(idPanel)
-    //     setModal('edit-modal')
-    // }
     // const handleDeleteModal = (idPost) => {
     //     setIdPanel(idPanel)
     //     setModal('delete-modal')
     // }
-    const handleExitModal = () => {
-        // setIdPanel(null)
-        setModal(null)
-    }
-    const handleRefreshPanelsExitModal = () => {
-        setModal(null)
-        // try {
-        //     retrievePosts(context.tokenUser)
-        //         .then(posts => {
-        //             // setPosts(posts)
-        //             // setModal(null)
-        //             // setIdPost(null)
-        //         })
-        //         .catch(error => alert('Error: ' + error.message))
-        // } catch (error) { alert('Error: ' + error.message) }
-    }
 
-    // const userId = getIdFromToken(context.tokenUser)
+
+    const handleRefreshPanelsExitModal = () => {
+        try {
+            retrievePanels(context.tokenUser)
+                .then(panels => {
+                    setPanels(panels)
+                    setModal(null)
+                    // setIdPost(null)
+                })
+                .catch(error => alert('Error: ' + error.message))
+        } catch (error) { alert('Error: ' + error.message) }
+    }
 
     return (
         <div className="home">
@@ -65,21 +76,22 @@ function Home({ onLogout }) {
             </header>
 
             <main className="home-view">
-                <section className="posts-list basic-container">
-
-
-                     {/* {posts && posts.map(post => <article className="post-item" key={post.id}>
-                        <button className="post-item-fav" type="button" onClick={() => handleToggleFavPost(post.id)}>{post.fav ? '💖' : '📦'}</button>
-                        <img className="post-item-image" src={post.image} alt="Foto de Post" />
-                        <p className="post-item-text">{post.text}</p>
-                        <p className="post-item-user">{post.author.name}</p>
-
-                        {post.author.id === userId && <>
-                            <button className="post-item-button" type="button" onClick={() => handleEditModal(post.id)}>Editar</button>
-                            <button className="post-item-button" type="button" onClick={() => handleDeleteModal(post.id)}>Borrar</button>
-                        </>}
-                    </article>)}  */}
- 
+                <section className="panel-list basic-container">
+                    {panels && panels.map(panel => <article className="panel" key={panel.id}>
+                        <header>
+                            <p className="panel-text">{`${panel.reference}: (${panel.width} x ${panel.height})`}</p>
+                        </header>
+                        {panel.blocks.map((block) => <p className="panel-block" key={block.id}>
+                            {`(${block.width}x${block.height})`}
+                            <button className="panel-block-button" type="button" onClick={() => { }}>↩️</button>
+                        </p>
+                        )}
+                        <footer>
+                            <button className="panel-button" type="button" onClick={() => handleCreateBlock(panel.id)}>📦</button>
+                            <button className="panel-button" type="button" onClick={() => handleEditModal(panel.id)}>📝</button>
+                            <button className="panel-button" type="button" onClick={() => { }}>🗑️</button>
+                        </footer>
+                    </article>)}
                 </section>
             </main>
 
@@ -91,8 +103,9 @@ function Home({ onLogout }) {
             </footer>
 
             {modal === 'create-modal' && <PanelCreate onCreatedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} />}
-            {/* {modal === 'edit-modal' && <PanelEdit onUpdatedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} idPanel={idPanel} />}
-            {modal === 'delete-modal' && <PanelDelete onDeletedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} idPanel={idPanel} />} */}
+            {modal === 'block-modal' && <BlockCreate onCreatedBlock={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
+            {modal === 'edit-modal' && <PanelEdit onUpdatedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} panelId={panelId} />}
+            {/* {modal === 'delete-modal' && <PanelDelete onDeletedPanel={handleRefreshPanelsExitModal} onExitModal={handleExitModal} idPanel={idPanel} />} */}
         </div>
     )
 }

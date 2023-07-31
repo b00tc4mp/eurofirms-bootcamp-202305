@@ -16,8 +16,19 @@ const jwt = require('jsonwebtoken')
 // User-defined modules
 // const { Dimension, Dimension2D, Block, Panel } = require('./logic/classes')
 // const { sleep, display, validateString } = require('./logic/helpers')
-const { registerUserDB, authenticateUserDB, retrieveUserDB } = require('./logic/user-db')
-const { createPanelDB, retrievePanelsDB, createBlockDB } = require('./logic/panel-db')
+
+const {
+    registerUserDB,
+    authenticateUserDB,
+    retrieveUserDB
+} = require('./logic/user-db')
+const {
+    createPanelDB,
+    retrievePanelsDB,
+    retrievePanelOneDB,
+    updatePanelDB,
+    createBlockDB
+} = require('./logic/panel-db')
 
 const api = express()
 const jsonBodyParser = bodyParser.json()
@@ -82,9 +93,35 @@ mongoose.connect(MONGOOSE_URL)
                 const token = req.headers.authorization.slice(7)
                 const userId = jwt.verify(token, JWT_SECRET).sub
                 retrievePanelsDB(userId)
-                    .then(panels => {
-                        res.json(panels)
-                    })
+                    .then(panels => res.json(panels))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        // retrievePanelOneDB
+        api.get('/panels/:panelId', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+                const { panelId } = req.params
+
+                retrievePanelOneDB(userId, panelId)
+                    .then(panel => res.json(panel))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        // updatePanel
+        api.post('/panels/:panelId', jsonBodyParser, (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+                const { panelId } = req.params
+
+                const { reference, width, height } = req.body
+
+                updatePanelDB(userId, panelId, reference, width, height)
+                    .then(() => res.send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
