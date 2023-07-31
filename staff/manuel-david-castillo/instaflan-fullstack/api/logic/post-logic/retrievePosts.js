@@ -4,8 +4,16 @@ const {validateId} = require('../helpers/validators')
 function retrievePosts(userId) {
     validateId(userId)
 
-    return Promise.all([User.findById(userId).lean(), 
-        Post.find({}, '-__v').populate('author', 'name image').sort({ date: -1 }).lean()])
+    return User.findById(userId).lean()
+    .then(user => {
+        if(!user) throw new Error('user not found')
+
+        const followingUsers = user.following
+        followingUsers.push(user._id)
+
+        return Promise.all([User.findById(userId).lean(), 
+        Post.find({author: followingUsers}, '-__v').populate('author', 'name image').sort({ date: -1 }).lean()])
+    })
     .then(([user, posts])=>{
         if(!user) throw new Error('user not found')
 
@@ -14,7 +22,7 @@ function retrievePosts(userId) {
             delete post._id
 
             if(post.author._id) {
-                post.author.id = post.author._id
+                post.author.id = post.author._id.toString()
                 delete post.author._id
             }
             
