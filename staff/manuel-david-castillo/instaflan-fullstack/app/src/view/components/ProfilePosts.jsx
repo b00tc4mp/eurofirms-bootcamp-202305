@@ -1,17 +1,20 @@
 import { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../AppContext";
+import { useParams } from "react-router-dom";
 
 import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"
 
-import { context } from "../../logic/helpers/context";
+import context from "../../context";
 import { retrievePostsOfUser } from "../../logic/retrievePostsOfUser";
-import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken";
+import extractUserIdFromToken from "../helpers/extractUserIdFromToken";
 import { toggleFavPost } from "../../logic/toggleFavPost";
 
-export function ProfilePosts(props) {
+export function ProfilePosts() {
     const userId = extractUserIdFromToken(context.token)
-    const { userIdProfile, setUserIdProfile } = useContext(AppContext)
+    const params = useParams()
+
+    const userIdProfile = params.userIdProfile
 
     const [modal, setModal] = useState(null)
 

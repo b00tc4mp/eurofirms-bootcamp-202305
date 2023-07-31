@@ -1,4 +1,4 @@
-export const context = {
+const context = {
     set token(userId) {
         if (userId) {
             sessionStorage.token = userId
@@ -17,3 +17,5 @@ export const context = {
         return null
     }
 }
+
+export default context

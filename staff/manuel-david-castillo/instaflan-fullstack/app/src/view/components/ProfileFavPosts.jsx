@@ -1,21 +1,22 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { AppContext } from "../../AppContext";
 
 import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"
 
-import { context } from "../../logic/helpers/context";
+import context from "../../context";
 import { retrieveFavPosts } from "../../logic/retrieveFavPosts";
-import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken";
+import extractUserIdFromToken from "../helpers/extractUserIdFromToken";
 import { toggleFavPost } from "../../logic/toggleFavPost";
 
 export function ProfileFavPosts() {
     const userId = extractUserIdFromToken(context.token)
     const navigate = useNavigate()
 
-    const { userIdProfile, setUserIdProfile } = useContext(AppContext)
+    const params = useParams()
+    const userIdProfile = params.userIdProfile
 
     const [modal, setModal] = useState(null)
 
@@ -117,8 +118,7 @@ export function ProfileFavPosts() {
 
     const handleProfile = (event, userIdProfile) => {
         event.preventDefault()
-        setUserIdProfile(userIdProfile)
-        navigate('/profile/posts')
+        navigate(`/profile/${userIdProfile}/posts`)
     }
 
     return <section className="all-posts">

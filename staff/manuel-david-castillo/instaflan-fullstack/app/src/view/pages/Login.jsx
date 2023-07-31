@@ -1,9 +1,9 @@
 import { authenticateUser } from "../../logic/authenticateUser"
-import { context } from "../../logic/helpers/context"
-import { Link, useNavigate } from "react-router-dom"
+import context from "../../context"
+import { Link } from "react-router-dom"
 
-export function Login() {
-    const navigate = useNavigate()
+export default function Login() {
+    console.log('hola login')
 
     const handleLoginSubmit = event => {
         event.preventDefault()
@@ -16,7 +16,7 @@ export function Login() {
                 .then((result) => {
                     context.token = result
 
-                    navigate('/home')
+                    context.navigate('/home')
                 })
                 .catch((error) => {
                     alert(error.message)

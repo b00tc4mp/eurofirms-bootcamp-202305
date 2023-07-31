@@ -1,5 +1,5 @@
 import { deletePost } from './../../logic/deletePost'
-import { context } from '../../logic/helpers/context'
+import context from '../../context'
 
 export function DeletePostModal(props) {
     const handleSubmitPost = (event) => {

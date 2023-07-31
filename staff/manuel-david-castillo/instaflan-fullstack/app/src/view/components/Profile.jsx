@@ -1,21 +1,20 @@
-import { useEffect, useState, useContext } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
-
-import { AppContext } from "../../AppContext";
+import { useEffect, useState } from "react";
+import { Routes, Route, useParams } from "react-router-dom";
 
 import { EditUserModal } from "../modals/EditUserModal";
 import { ProfilePosts } from "./ProfilePosts";
 import { ProfileFavPosts } from "./ProfileFavPosts";
 
-import { context } from "../../logic/helpers/context";
+import context from "../../context";
 import { retrieveUser } from "../../logic/retrieveUser";
 import { retrieveUserById } from "../../logic/retrieveUserById";
 import { toggleFollowUser } from "../../logic/toggleFollowUser";
 
 export function Profile() {
-    const navigate = useNavigate()
+    const navigate = context.navigate
 
-    const { userIdProfile, setUserIdProfile } = useContext(AppContext)
+    const params = useParams()
+    const userIdProfile = params.userIdProfile
 
     const [modal, setModal] = useState(null)
 
@@ -34,7 +33,7 @@ export function Profile() {
         } catch (error) {
             alert(error.message)
         }
-    }, [userProfile])
+    }, [userIdProfile])
 
     const handleEditUserModal = () => setModal('edit-user-modal')
     const handleCancelEditUserModal = () => setModal(null)
@@ -54,11 +53,11 @@ export function Profile() {
     }
 
     function handleProfilePosts() {
-        navigate('/profile/posts')
+        navigate(`/profile/${userIdProfile}/posts`)
     }
 
     function handleProfileFavPosts() {
-        navigate('/profile/fav-posts')
+        navigate(`/profile/${userIdProfile}/fav-posts`)
     }
 
     function handleFollowUser() {

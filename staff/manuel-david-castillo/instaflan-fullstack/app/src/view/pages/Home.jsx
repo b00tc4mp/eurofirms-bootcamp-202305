@@ -3,8 +3,8 @@ import { Routes, Route, useNavigate, Link } from "react-router-dom"
 
 import { AppContext } from "../../AppContext"
 
-import { context } from "../../logic/helpers/context"
-import { extractUserIdFromToken } from "../../logic/helpers/extractUserIdFromToken"
+import context from "../../context"
+import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
 import { retrievePosts } from "../../logic/retrievePosts"
 import { retrieveUser } from "../../logic/retrieveUser"
 
@@ -16,14 +16,15 @@ import { Profile } from "../components/Profile"
 
 import { CreatePostModal } from "../modals/CreatePostModal"
 
-export function Home() {
+export default function Home() {
     const userId = extractUserIdFromToken(context.token)
     const navigate = useNavigate()
+
+    const [userIdProfile, setUserIdProfile] = useState(userId)
 
     const [modal, setModal] = useState(null)
     const [posts, setPosts] = useState(null)
     const [user, setUser] = useState(null)
-    const { userIdProfile, setUserIdProfile } = useContext(AppContext)
     const { page, setPage } = useContext(AppContext)
 
     useEffect(() => {
@@ -94,7 +95,7 @@ export function Home() {
                 <Route path='/explorer' element={<Explorer />} />
                 <Route path='/messages' element={<Messages />} />
                 <Route path='/notifications' element={<Notifications />} />
-                <Route path='/profile/*' element={<Profile userIdProfile={userIdProfile} />} />
+                <Route path='/profile/:userIdProfile/*' element={<Profile />} />
             </Routes>
 
         </main>
@@ -104,11 +105,15 @@ export function Home() {
             <a onClick={handleCreatePostModal} className="footer-emogis" href="#">➕</a>
             <Link onClick={handleMessagesPage} className="footer-emogis" to='/messages'>✉️</Link>
             <Link onClick={handleNotificationsPage} className="footer-emogis" to='/notifications'>❤️</Link>
-            <Link onClick={handleProfilePage} className="footer-emogis" to='/profile/posts'>
-                {user && <img
-                    className="footer-profile-image"
-                    src={user.image}
-                    alt={user.name} />} </Link>
+            <Link onClick={handleProfilePage} className="footer-emogis" to={`/profile/${userIdProfile}/posts`}>
+                {user && (
+                    <img
+                        className="footer-profile-image"
+                        src={user.image}
+                        alt={user.name}
+                    />
+                )}
+            </Link>
         </footer>
 
         {modal === "create-post-modal" && <CreatePostModal onCreatePost={handleCreatePost} onHideCreatePost={handleCancelCreatePostModal} />}

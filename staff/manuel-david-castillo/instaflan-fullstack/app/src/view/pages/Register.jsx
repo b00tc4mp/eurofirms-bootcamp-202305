@@ -1,7 +1,8 @@
 import { registerUser } from "../../logic/registerUser"
 import { Link, useNavigate } from "react-router-dom"
 
-export function Register() {
+export default function Register() {
+    console.log('hola register')
     const navigate = useNavigate()
 
     const handleRegister = event => {

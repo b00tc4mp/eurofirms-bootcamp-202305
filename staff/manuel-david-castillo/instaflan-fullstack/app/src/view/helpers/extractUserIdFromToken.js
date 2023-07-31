@@ -1,4 +1,4 @@
-export function extractUserIdFromToken(token) {
+export default function extractUserIdFromToken(token) {
     if(!token) throw new Error ('token not found')
     const dataB64 = token.slice(token.indexOf('.') + 1, token.lastIndexOf('.'))
 
