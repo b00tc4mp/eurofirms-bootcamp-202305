@@ -29,6 +29,7 @@ const {
     retrievePanelsDB,
     retrievePanelOneDB,
     updatePanelDB,
+    updatePanelStatusDB,
     deletePanelDB,
     createBlockDB,
     deleteBlockDB
@@ -139,6 +140,19 @@ mongoose.connect(MONGOOSE_URL)
                 const { reference, width, height } = req.body
 
                 updatePanelDB(userId, panelId, reference, width, height)
+                    .then(() => res.send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        // updatePanelStatus
+        api.patch('/panels/status/:panelId', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+                const { panelId } = req.params
+
+                updatePanelStatusDB(userId, panelId)
                     .then(() => res.send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }

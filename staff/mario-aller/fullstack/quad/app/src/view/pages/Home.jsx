@@ -1,5 +1,5 @@
 import { retrieveUser } from '../../logic/user-ctrl'
-import { retrievePanels } from '../../logic/panel-ctrl'
+import { retrievePanels, updatePanelStatus } from '../../logic/panel-ctrl'
 import context from '../../context'
 import { useState, useEffect } from 'react'
 import { PanelCreate } from '../modals/PanelCreate'
@@ -9,12 +9,14 @@ import { BlockCreate } from '../modals/BlockCreate'
 import { BlockDelete } from '../modals/BlockDelete'
 import { UserEdit } from '../modals/UserEdit'
 
+
 function Home({ onLogout }) {
     const [userLogged, setUserLogged] = useState(null)
     const [modal, setModal] = useState(null)
     const [panels, setPanels] = useState([])
     const [panelId, setPanelId] = useState(null)
     const [blockId, setBlockId] = useState(null)
+    // const [panelStatus, setPanelStatus] = useState(null)
 
     useEffect(() => {
         try {
@@ -26,26 +28,38 @@ function Home({ onLogout }) {
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
     }, [])
-
+    // const getPanelStatus = (panelId) => panels.find(panel => panel.id === panelId).status
     const handleLogout = () => {
         context.tokenUser = null
         onLogout()
-    }
-    const handleCreateModal = () => {
-        setModal('create-panel')
-    }
-    const handleEditModal = (panelId) => {
-        setPanelId(panelId)
-        setModal('edit-panel')
-    }
-    const handleDeleteModal = (panelId) => {
-        setPanelId(panelId)
-        setModal('delete-panel')
     }
     const handleExitModal = () => {
         setPanelId(null)
         setBlockId(null)
         setModal(null)
+    }
+    const handleCreatePanel = () => {
+        setModal('create-panel')
+    }
+    const handleEditPanel = (panelId) => {
+        setPanelId(panelId)
+        setModal('edit-panel')
+    }
+    const handleOptimizePanel = (panelId) => {
+        const status = panels.find(panel => panel.id === panelId).status
+        if (status === 0) {
+            updatePanelStatus(context.tokenUser, panelId)
+                .then(handleRefreshPanelsExitModal())
+                .catch(error => alert('Error: ' + error.message))
+        }
+        if (status === 2) {
+            setPanelId(panelId)
+            setModal('optimaze-panel')
+        }
+    }
+    const handleDeletePanel = (panelId) => {
+        setPanelId(panelId)
+        setModal('delete-panel')
     }
     const handleCreateBlock = (panelId) => {
         setPanelId(panelId)
@@ -100,13 +114,16 @@ function Home({ onLogout }) {
                         </header>
                         {panel.blocks.map((block) => <p className="panel-block flex-center" key={block.id}>
                             {`(${block.width}x${block.height})`}
-                            <button className="panel-block-button" type="button" onClick={() => handleDeleteBlock(panel.id,block.id)}>🗑️</button>
+                            <button className="panel-block-button" type="button" onClick={() => handleDeleteBlock(panel.id, block.id)}>🗑️</button>
                         </p>
                         )}
                         <footer>
                             <button className="panel-button" type="button" onClick={() => handleCreateBlock(panel.id)}>📦</button>
-                            <button className="panel-button" type="button" onClick={() => handleEditModal(panel.id)}>📝</button>
-                            <button className="panel-button" type="button" onClick={() => handleDeleteModal(panel.id)}>❌</button>
+                            <button className="panel-button" type="button" onClick={() => handleEditPanel(panel.id)}>📝</button>
+                            <button className="panel-button" type="button" onClick={() => handleOptimizePanel(panel.id)}>
+                                {(panel.status === 0) ? '📭' : (panel.status === 1) ? '📬' : '📫'}
+                            </button>
+                            <button className="panel-button" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
                         </footer>
                     </article>)}
                 </section>
@@ -114,7 +131,7 @@ function Home({ onLogout }) {
 
             <footer className="home-nav">
                 <div className="basic-nav">
-                    <button type="button" className="basic-button" onClick={handleCreateModal}>New Panel</button>
+                    <button type="button" className="basic-button" onClick={handleCreatePanel}>New Panel</button>
                     <button type="button" className="basic-button" onClick={handleEditUser}>Edit Profile</button>
                     <button type="button" className="basic-button" onClick={handleLogout}>Salir</button>
                 </div>

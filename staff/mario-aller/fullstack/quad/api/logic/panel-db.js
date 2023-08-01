@@ -114,6 +114,32 @@ function updatePanelDB(userId, panelId, reference, width, height) {
             panel.reference = reference
             panel.width = width
             panel.height = height
+            panel.status = 0
+            panel.date = new Date()
+            return panel.save()
+        })
+        .then(() => { })
+}
+/**
+ * The function updates the status and date of a panel in the database, but only if the user is the
+ * owner of the panel.
+ * @param userId - The `userId` parameter is the unique identifier of the user in the database. It is
+ * used to find the user in the `User` collection.
+ * @param panelId - The panelId parameter is the unique identifier of the panel that you want to update
+ * the status for.
+ * @returns a Promise.
+ */
+function updatePanelStatusDB(userId, panelId) {
+    validateString(userId)
+    validateString(panelId)
+
+    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
+        .then(([user, panel]) => {
+            if (!user) throw new Error('User does not exist')
+            if (!panel) throw new Error('Panel does not exist  ')
+            if (panel.owner.toString() !== userId) throw new Error('You can only modify your panels!')
+
+            panel.status = 1
             panel.date = new Date()
             return panel.save()
         })
@@ -164,6 +190,7 @@ function createBlockDB(userId, panelId, width, height) {
             const orientation = 0
             const block = { x, y, width: Number(width), height: Number(height), orientation }
             panel.blocks.push(block)
+            panel.status = 0
             return panel.save()
         })
         .then(() => { })
@@ -182,6 +209,7 @@ function deleteBlockDB(userId, panelId, blockId) {
             const index = panel.blocks.findIndex(block => (block._id.toString() === blockId))
             if (index === - 1) throw new Error('Block does not exist')
             panel.blocks.splice(index, 1)
+            panel.status = 0
             return panel.save()
         })
         .then(() => { })
@@ -191,6 +219,7 @@ module.exports = {
     retrievePanelsDB,
     retrievePanelOneDB,
     updatePanelDB,
+    updatePanelStatusDB,
     deletePanelDB,
     createBlockDB,
     deleteBlockDB

@@ -138,4 +138,4 @@ Area where items are placed
 
 ## Planning
 
-- See GTD & Scrum sections groups in [OneNote](https://1drv.ms/u/s!AlgJZG7mpTRguHg5XiRVQF2W2wKO)
+- See [Trello](https://trello.com/b/ogoAH6mE/quad-scrum)

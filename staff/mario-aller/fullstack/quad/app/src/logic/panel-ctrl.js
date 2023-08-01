@@ -68,6 +68,22 @@ export const updatePanel = function (token, panelId, reference, width, height) {
             else return res.json().then(body => { throw new Error(body.error) })
         })
 }
+export const updatePanelStatus = function (token, panelId) {
+    validateString(token)
+    validateString(panelId)
+
+    return fetch(import.meta.env.VITE_API_URL + '/panels/status/' + panelId, {
+        method: 'PATCH',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(res => {
+            if (res.status === 200) return
+            else return res.json().then(body => { throw new Error(body.error) })
+        })
+}
 export const deletePanel = function (token, panelId) {
     validateString(token)
     validateString(panelId)
