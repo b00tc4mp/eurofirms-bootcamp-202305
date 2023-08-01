@@ -1,18 +1,25 @@
 import { useEffect, useState } from "react"
+
+import { retrievePostsNotFollowed } from "../../logic/retrievePostsNotFollowed"
 import { retrieveUsersNotFollowed } from "../../logic/retrieveUsersNotFollowed"
+import { toggleFavPost } from "../../logic/toggleFavPost"
 import { toggleFollowUser } from "../../logic/toggleFollowUser"
+
 import context from "../../context"
 
 export function Explorer() {
     const [users, setUsers] = useState()
+    const [posts, setPosts] = useState()
 
     const navigate = context.navigate
 
     useEffect(() => {
         try {
-            retrieveUsersNotFollowed(context.token)
-                .then(users => {
+            Promise.all([retrieveUsersNotFollowed(context.token),
+            retrievePostsNotFollowed(context.token)])
+                .then(([users, posts]) => {
                     setUsers(users)
+                    setPosts(posts)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -45,13 +52,59 @@ export function Explorer() {
         }
     }
 
-    function handleUpdate() {
+    function handleUpdateUsers() {
         try {
             retrieveUsersNotFollowed(context.token)
                 .then(users => {
                     setUsers(users)
                 })
                 .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    function handleUpdatePosts() {
+        try {
+            retrievePostsNotFollowed(context.token)
+                .then(posts => {
+                    setPosts(posts)
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    function handletoggleFavPost(postId) {
+        try {
+            toggleFavPost(context.token, postId)
+                .then(() => {
+                    setPosts(posts => {
+
+                        const posts2 = [...posts]
+
+                        const index = posts2.findIndex(post => post.id === postId)
+                        const post = posts2[index]
+
+                        const post2 = { ...post }
+
+                        if (post2.fav) {
+                            post2.likes--
+                        } else {
+                            post2.likes++
+                        }
+
+                        post2.fav = !post2.fav
+
+                        posts2[index] = post2
+
+                        return posts2
+                    })
+                })
+                .catch((error) => {
+                    alert(error.message)
+                })
         } catch (error) {
             alert(error.message)
         }
@@ -67,8 +120,23 @@ export function Explorer() {
                 </div>
                 <button onClick={() => handleFollowUser(user._id)} className="button button-modal edit-profile-button">Follow</button>
             </article>)}
-            <button onClick={handleUpdate} className="button">Update</button>
+            <button onClick={handleUpdateUsers} className="button update-button">Update users</button>
         </div>
-        <div key={"posts-users-not-followed"} className="posts-users-not-followed"></div>
+        <div key={"posts-users-not-followed"} className="posts-users-not-followed">
+            <h2 className="h2-explorer">You might be interested</h2>
+            {posts?.map(post => <article key={post._id} className="post">
+                <div className="header-post">
+                    <div className="nameImageDiv">
+                        <img className="profile-image-post" src={post.author.image} alt={post.author.name} />
+                        <a onClick={(event) => handleProfile(event, post.author._id)} className="name-post">{post.author.name}</a>
+                    </div>
+                    <button onClick={() => handletoggleFavPost(post._id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
+                </div>
+                <img className="img-post" src={post.image} alt={post.text} />
+                <p className="text-post">🤍{post.likes}</p>
+                <p className="text-post">{post.text}</p>
+            </article>)}
+            <button onClick={handleUpdatePosts} className="button update-button">Update posts</button>
+        </div>
     </section>
 }

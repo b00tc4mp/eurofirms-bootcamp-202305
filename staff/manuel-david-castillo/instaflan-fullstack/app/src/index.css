@@ -405,24 +405,33 @@ a {
 .explorer {
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
   align-items: center;
 }
 
-.users-not-followed {
+.users-not-followed, 
+.posts-users-not-followed {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.users-not-followed {
+  margin-bottom: 10px;
+}
+
+.posts-users-not-followed {
+  padding-bottom: 85px;
+}
+
 .h2-explorer {
   color: #d35400;
+  margin-bottom: 10px;
 }
 
 .user {
   display: flex;
-  margin: 5px;
+  margin-bottom: 10px;
   width: 80%;
   background-color: #f9e79f;
   border-radius: 30px ;
