@@ -33,13 +33,13 @@ function retrievePostsNotFollowed(userId) {
             },
             {
                 $project: { 
-                    _id: { $toString: "$_id" },
+                    id: { $toString: "$_id" },
                     text: 1,
                     image: 1,
                     likes: 1,
                     "author.name" : 1,
                     "author.image": 1,
-                    "author._id": {$toString: "$author._id"}
+                    "author.id": {$toString: "$author._id"}
                 }
             },
         ]),
@@ -50,13 +50,7 @@ function retrievePostsNotFollowed(userId) {
         if(!user) throw new Error('user not found')
 
         posts.forEach(post => {
-            post.id = post._id.toString()
             delete post._id
-
-            if(post.author._id) {
-                post.author.id = post.author._id.toString()
-                delete post.author._id
-            }
 
             if (!user.favPosts) user.favPosts = []
 
