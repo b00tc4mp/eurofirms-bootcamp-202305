@@ -11,7 +11,7 @@ function retrievePostsNotFollowed(userId) {
         const usersFollowed = user.following
         usersFollowed.push(user._id)
 
-        return Post.aggregate([
+        return Promise.all([Post.aggregate([
             {
                 $match: {
                     author: { $nin: usersFollowed }
@@ -42,12 +42,32 @@ function retrievePostsNotFollowed(userId) {
                     "author._id": {$toString: "$author._id"}
                 }
             },
-        ])
+        ]),
+        User.findById(userId).lean()]) 
     })
-    .then(users => {
-        if(!users) throw new Error('users not found')
+    .then(([posts, user]) => {
+        if(!posts) throw new Error('posts not found')
+        if(!user) throw new Error('user not found')
 
-        return users 
+        posts.forEach(post => {
+            post.id = post._id.toString()
+            delete post._id
+
+            if(post.author._id) {
+                post.author.id = post.author._id.toString()
+                delete post.author._id
+            }
+
+            if (!user.favPosts) user.favPosts = []
+
+            const favPosts = user.favPosts.map((post) => {
+                return post.toString()
+            })
+
+           post.fav = favPosts.includes(post.id)
+        })
+
+        return posts 
     })
 }
 

@@ -124,13 +124,13 @@ export function Explorer() {
         </div>
         <div key={"posts-users-not-followed"} className="posts-users-not-followed">
             <h2 className="h2-explorer">You might be interested</h2>
-            {posts?.map(post => <article key={post._id} className="post">
+            {posts?.map(post => <article key={post.id} className="post">
                 <div className="header-post">
                     <div className="nameImageDiv">
                         <img className="profile-image-post" src={post.author.image} alt={post.author.name} />
-                        <a onClick={(event) => handleProfile(event, post.author._id)} className="name-post">{post.author.name}</a>
+                        <a onClick={(event) => handleProfile(event, post.author.id)} className="name-post">{post.author.name}</a>
                     </div>
-                    <button onClick={() => handletoggleFavPost(post._id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
+                    <button onClick={() => handletoggleFavPost(post.id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
                 </div>
                 <img className="img-post" src={post.image} alt={post.text} />
                 <p className="text-post">🤍{post.likes}</p>
