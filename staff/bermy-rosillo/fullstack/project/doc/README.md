@@ -55,7 +55,7 @@ Answer
 ## project planning
 ## tasks
 ### TODO
-- interfaces in app (register user, login , home)
+- logics (register user, login , home) in app
 
 ### DONE
 - data model
@@ -63,6 +63,7 @@ Answer
 - register user test / api
 - authenticate user test / api
 - retrieve user test / api
+- interfaces in app (register user, login , home)
 
  
 

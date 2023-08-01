@@ -12,11 +12,14 @@ const handleLoginClick =()=> setView('login')
 const handleRegisterClick = ()=> setView('register')
 const handleLoggedOutClick = ()=> setView('login')
 
+const handleRegistered = ()=>setView('login')
+const handleLoggedIn = ()=>setView('home') 
+
 return <>
-{view ==='login' && <Login onRegisterClick={handleRegisterClick}/>}
-{view === 'register' && < Register onLoginClick={handleLoginClick}/>}
+{view ==='login' && <Login onRegisterClick={handleRegisterClick} onLoggedIn={handleLoggedIn}/>}
+{view === 'register' && < Register onLoginClick={handleLoginClick} onRegistered={handleRegistered}/>}
 {view === 'home' && < Home onLoggedOutClick={handleLoggedOutClick}/>}
-</>
+</> 
 
 }
 export default App
