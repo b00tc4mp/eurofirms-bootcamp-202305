@@ -24,7 +24,7 @@ function retrieveUsersNotFollowed(userId) {
            /*  Proyección para mostrar solo el nombre y la imagen de los usuarios */
             {
               $project: {
-                _id: 0,
+                _id: { $toString: "$_id" },
                 name: 1,
                 image: 1
               }

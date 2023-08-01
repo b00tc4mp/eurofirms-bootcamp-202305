@@ -16,6 +16,7 @@ const {authenticateUser,
     retrievePost,
     retrievePosts,
     retrievePostsOfUser,
+    retrievePostsNotFollowed,
     retrieveUser,
     retrieveUserById,
     retrieveUsersNotFollowed,
@@ -269,6 +270,22 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 const {userIdProfile} = req.params
 
                 retrievePostsOfUser(userId,userIdProfile)
+                .then((posts)=> res.json(posts))
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.get('/explorer/posts', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                retrievePostsNotFollowed(userId)
                 .then((posts)=> res.json(posts))
                 .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
