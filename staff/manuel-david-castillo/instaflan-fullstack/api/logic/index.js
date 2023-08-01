@@ -13,6 +13,7 @@ module.exports = {
     retrieveUser: require('./user-logic/retrieveUser'),
     retrieveUserById: require('./user-logic/retrieveUserById'),
     retrieveUsersNotFollowed: require('./user-logic/retrieveUsersNotFollowed'),
+    searchUser: require('./user-logic/searchUser'),
     toggleFavPost: require('./post-logic/toggleFavPost'),
     toggleFollowUser: require('./user-logic/toggleFollowUser')
 }
