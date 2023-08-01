@@ -118,19 +118,19 @@ function Home({ onLoggedOut }) {
 
     const userId = extractUserIdFromToken(context.token)
 
-    return <div>
-        <header className="fixed top-0 h-[3rem] flex items-center justify-between bg-[tomato] w-full py-0 px-[1rem] box-border">
-            <h1 className="text-[1.5rem]">Hello, {user ? user.name : 'World'}!</h1>
+    return <div className="home-view">
+        <header className="home-header">
+            <h1 className="home-title">Hello, {user ? user.name : 'World'}!</h1>
 
             <button className="home-logout-button" onClick={handleLogoutClick}>Logout</button>
         </header>
 
-        <main className="py-[3rem]">
-            <section className="flex flex-col items-center gap-10">
-                {posts && posts.map(post => <article key={post.id} className="w-[65%] bg-[#eeeeee] rounded-xl p-10">
+        <main className="home-main">
+            <section className="home-posts">
+                {posts && posts.map(post => <article key={post.id} className="home-post">
                     <h2>{post.author.name}</h2>
 
-                    <img className="w-full"
+                    <img className="home-post-image"
                         src={post.image}
                         alt={post.text}></img>
 
@@ -146,7 +146,7 @@ function Home({ onLoggedOut }) {
             </section>
         </main>
 
-        <footer className="bg-[dodgerblue] fixed bottom-0 w-full h-[3rem] flex justify-center align-center">
+        <footer className="home-footer">
             <button className="home-create-post-button" onClick={handleCreatePostClick}>+</button>
         </footer>
 

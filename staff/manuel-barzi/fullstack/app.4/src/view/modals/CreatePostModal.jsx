@@ -21,22 +21,22 @@ function CreatePostModal({ onCreatePostCancelled, onPostCreated }) {
 
     const handleCancelClick = () => onCreatePostCancelled()
 
-    return <div className="bg-[blue]/50 fixed w-full h-full top-0 flex items-center justify-center">
-        <div className="bg-white p-[1rem] border border-black rounded-xl">
+    return <div className="home-create-post-modal">
+        <div className="home-create-post-container">
             <h2>Create post</h2>
 
-            <form className="flex flex-col items-center justify-center gap-[1rem]" onSubmit={handleSubmit}>
+            <form className="home-create-post-form" onSubmit={handleSubmit}>
                 <label htmlFor="image">Image</label>
-                <input className="border rounded-md bg-[#eeeeee]" id="image" type="url"></input>
+                <input id="image" type="url"></input>
 
                 <label htmlFor="text">Text</label>
-                <textarea className="border rounded-md bg-[#eeeeee]" id="text"></textarea>
+                <textarea id="text"></textarea>
 
-                <button className="p-2 rounded-md border border-black" type="submit">Create</button>
-                <button type="button" className="p-2 rounded-md border border-black" onClick={handleCancelClick}>Cancel</button>
+                <button type="submit">Create</button>
+                <button type="button" className="home-create-post-cancel-button" onClick={handleCancelClick}>Cancel</button>
             </form>
-        </div >
-    </div >
+        </div>
+    </div>
 }
 
 export default CreatePostModal

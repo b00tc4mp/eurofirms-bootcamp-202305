@@ -25,10 +25,10 @@ function Register(props) {
         }
     }
 
-    return <main className="flex flex-col items-center">
+    return <main className="register-view">
         <h1>Register</h1>
 
-        <form className="flex flex-col" onSubmit={handleRegisterSubmit}>
+        <form className="register-form" onSubmit={handleRegisterSubmit}>
             <label htmlFor="name">Name</label>
             <input id="name" type="text"></input>
 

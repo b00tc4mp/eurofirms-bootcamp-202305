@@ -29,10 +29,10 @@ function Login({ onRegisterClick, onLoggedIn }) {
         }
     }
 
-    return <main className="flex flex-col items-center">
+    return <main className="login-view">
         <h1>Login</h1>
 
-        <form className="flex flex-col" onSubmit={handleLoginSubmit}>
+        <form className="login-form" onSubmit={handleLoginSubmit}>
             <label htmlFor="email">E-mail</label>
             <input id="email" type="email" />
 
@@ -42,7 +42,7 @@ function Login({ onRegisterClick, onLoggedIn }) {
             <button type="submit">Login</button>
         </form>
 
-        <p>Go to <a href="" onClick={handleRegisterClick}>Register</a></p>
+        <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
     </main>
 }
 
