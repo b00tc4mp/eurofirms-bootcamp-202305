@@ -124,6 +124,7 @@ Area where items are placed
     - status: Integer (required, enum [NOT_OPTIMIZE, ON_PROGRESS, FINISHED], default NOT_OPTIMIZE)
 - Methods
     - posFree(pos): Check if 'pos' is free in the panel
+    - blocskPlacedAll(): Check if all blocks are placed
     - quadFree(pos, quad): Check if quadrant 'quad' is free in 'pos'
 - Const
     - QUADRANT_I = 1

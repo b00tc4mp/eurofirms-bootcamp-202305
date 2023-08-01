@@ -35,6 +35,10 @@ class Panel {
         })
         return !intoItem
     }
+    // Check if all blocks are placed
+    blocskPlacedAll() {
+        return !this.blocks.some(block => block.x === -1)
+    }
     // Check if quadrant 'quad' is free in 'pos'
     quadFree(pos, quad) {
         if (!(pos instanceof Dimension2D)) throw new Error('pos !Dimension2D in quadFree')
