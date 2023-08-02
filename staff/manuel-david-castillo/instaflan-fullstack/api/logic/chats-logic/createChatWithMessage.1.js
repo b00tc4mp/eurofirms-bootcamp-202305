@@ -10,20 +10,14 @@ function createChatWithMessage(userId, othersUsers, text) {
             validateId(user)
         })
 
-    const users = [new ObjectId(userId)]
-    othersUsers.forEach(userId => users.push(new ObjectId(userId)))
-
     return User.findById(userId).lean()
     .then((user) => {
         if (!user) throw new Error('user not found')
 
-        /* const author = user._id
-        const date = new Date() */
+        const author = user._id
+        const date = new Date()
 
-        return Chat.findOne({users: users}, '-__v')
-    .then(chat => chat)
-        
-        /* Message.create({author, text, date}) 
+        return Message.create({author, text, date}) 
         })
         .then(message => {
             if (!message) throw new Error('message not found')
@@ -35,10 +29,9 @@ function createChatWithMessage(userId, othersUsers, text) {
 
             const date = new Date()
 
-            return Chat.create({users, messages, date}) */
-            /* .then(() => { }) */
+            return Chat.create({users, messages, date})
         })
-        
+        .then(() => { })
     };
 
 module.exports = createChatWithMessage
