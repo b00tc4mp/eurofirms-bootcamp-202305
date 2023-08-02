@@ -10,6 +10,8 @@ const context = {
     get tokenUser() {
         if (sessionStorage.tokenUser) return sessionStorage.tokenUser
         return null
-    }
+    },
+    panelPictureWidth: '500rem',
+    panelPictureHeight: '300rem'
 }
 export default context

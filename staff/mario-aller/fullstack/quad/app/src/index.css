@@ -102,6 +102,7 @@ body {
   background-color: lightgray;
   border-radius: 2rem;
   position: fixed;
+  top: 1rem;
   box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
   padding: 1rem;
   width: 70%;
@@ -115,6 +116,7 @@ body {
   background-color: lightgray;
   border-radius: 2rem;
   position: fixed;
+  bottom: 1rem;
   box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
 }
 
@@ -258,7 +260,7 @@ body {
 
 .panel-text {
   padding: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   justify-content: center;
   align-items: center;
 }
@@ -270,7 +272,15 @@ body {
   justify-content: center;
   align-items: center;
   background-color: antiquewhite;
-  margin: 1rem;
+  margin: 0.2rem;
+}
+.panel-button-cancel {
+  font-size: 1.1rem;
+  margin-left: 1rem;
+  justify-content: center;
+  align-items: center;
+  border:none;
+  background-color: antiquewhite;
 }
 .panel-block-button {
   font-size: 1.7rem;
@@ -281,7 +291,7 @@ body {
   background-color: antiquewhite;
 }
 .panel-block {
-  font-size: 1rem;
+  font-size: 0.9rem;
   justify-content: center;
   align-items: center;
 }

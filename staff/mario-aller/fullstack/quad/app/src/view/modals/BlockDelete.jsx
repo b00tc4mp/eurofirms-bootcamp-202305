@@ -14,8 +14,8 @@ export function BlockDelete({ onDeletedBlock, onExitModal, panelId, blockId }) {
     }
 
     return <>
-        {<div className="home-modal-editpost basic-modal">
-            <form className="home-modal-editpost-form basic-form" action="submit" onSubmit={handleUpdatePost}>
+        {<div className="basic-modal">
+            <form className="basic-form" action="submit" onSubmit={handleUpdatePost}>
                 <h4>Delete block</h4>
 
                 <div className="flex-hor">
@@ -24,5 +24,5 @@ export function BlockDelete({ onDeletedBlock, onExitModal, panelId, blockId }) {
                 </div>
             </form>
         </div>}
-    </>
+ </>
 }

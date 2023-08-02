@@ -52,7 +52,7 @@ const panelSch = new Schema({
     status: {
         type: Number,
         required: true,
-        enum: [0, 1],
+        enum: [0, 1, 2],
         default: 0
     },
     date: {

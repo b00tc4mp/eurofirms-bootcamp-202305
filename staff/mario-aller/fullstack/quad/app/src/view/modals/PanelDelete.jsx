@@ -14,8 +14,8 @@ export function PanelDelete({ onDeletedPanel, onExitModal, panelId }) {
     }
 
     return <>
-        {<div className="home-modal-editpost basic-modal">
-            <form className="home-modal-editpost-form basic-form" action="submit" onSubmit={handleUpdatePost}>
+        {<div className="basic-modal">
+            <form className="basic-form" action="submit" onSubmit={handleUpdatePost}>
                 <h4>Delete panel</h4>
 
                 <div className="flex-hor">

@@ -183,7 +183,7 @@ function createBlockDB(userId, panelId, width, height) {
     return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
         .then(([user, panel]) => {
             if (!user) throw new Error('User does not exist')
-            if (!panel) throw new Error('Panel does not exist  ')
+            if (!panel) throw new Error('Panel does not exist')
 
             const x = -1
             const y = -1
@@ -204,8 +204,7 @@ function deleteBlockDB(userId, panelId, blockId) {
     return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
         .then(([user, panel]) => {
             if (!user) throw new Error('User does not exist')
-            if (!panel) throw new Error('Panel does not exist  ')
-            console.log('blockId ', blockId)
+            if (!panel) throw new Error('Panel does not exist')
             const index = panel.blocks.findIndex(block => (block._id.toString() === blockId))
             if (index === - 1) throw new Error('Block does not exist')
             panel.blocks.splice(index, 1)

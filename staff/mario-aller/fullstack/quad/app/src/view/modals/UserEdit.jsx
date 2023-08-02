@@ -30,8 +30,8 @@ export function UserEdit({ onUpdatedUser, onExitModal }) {
     }
 
     return <>
-        {<div className="home-modal-editpost basic-modal">
-            <form className="home-modal-editpost-form basic-form" action="submit" onSubmit={handleEditUser}>
+        {<div className="basic-modal">
+            <form className="basic-form" action="submit" onSubmit={handleEditUser}>
                 <h4>Edit profile</h4>
 
                 <label className="basic-label" htmlFor="name">Name</label>
