@@ -35,7 +35,7 @@ const user = new Schema({
     }
 })
 
-const artworks = new Schema({
+const artwork = new Schema({
     author: {
         type: ObjectId,
         ref: 'User',
@@ -43,7 +43,7 @@ const artworks = new Schema({
     },
     image: {
         type: String,
-        optional: true
+        required: true
     },
     video: {
         type: String,
@@ -55,20 +55,22 @@ const artworks = new Schema({
     },
      date: {
         type: String,
-        required: true
+        required: true,
+        default: Date.now()
+
     },
     
-    typeArtwork:  {
+    material:  {
         type: String, 
         required: true
     },
-    typeMaterial: {
+    ornaments: {
         type: [String],
         required: true
     }
 })
 
-const workshops = new Schema({
+const workshop = new Schema({
     planner: {
         type: ObjectId,
         required: true,
@@ -114,11 +116,11 @@ const workshops = new Schema({
 })
 
 const User = model('User', user)
-const Artworks = model('Artworks', artworks)
-const Workshops = model('Workshops', workshops)
+const Artwork = model('Artwork', artwork)
+const Workshop = model('Workshop', workshop)
 
 module.exports = {
     User,
-    Artworks,
-    Workshops  
+    Artwork,
+    Workshop  
 }

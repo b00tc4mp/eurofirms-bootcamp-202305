@@ -4,20 +4,19 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const {
-registerUser, 
-authenticateUser, 
-retrieveUser, 
-createArtwork, 
-createWorkshop,
-updateArtwork, 
-updateWorkshop, 
-deleteArtwork, 
-deleteWorkshop,
-retrieveArtwork,
-retrieveWorkshop, 
-retrieveArtworks,
-retrieveWorkshops, 
-toggleFavWork 
+    registerUser,
+    authenticateUser,
+    retrieveUser,
+    createArtwork,
+    retrieveArtwork,
+    updateArtwork,
+    deleteArtwork,
+    retrieveArtworks,
+    createWorkshop,
+    updateWorkshop,
+    deleteWorkshop,
+    retrieveWorkshop,
+    retrieveWorkshops
 } = require('./logic')
 
 const cors = require('cors')
@@ -25,14 +24,14 @@ const jwt = require('jsonwebtoken')
 
 const { PORT, MONGODB_URL, JWT_SECRET } = process.env
 
-mongoose.connect(`${MONGODB_URL}/data`)
+mongoose.connect(`${MONGODB_URL}/testornorecicla`)
     .then(() => {
         const api = express()
 
         const jsonBodyParser = bodyParser.json()
 
         api.use(cors())
-       
+
         api.get('/', (req, res) => {
             res.send('hola mundo ;)')
         })
@@ -47,7 +46,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
             const { name, email, password, date, zip, phone } = req.body
 
             try {
-                registerUser(name, email, password, date, zip, phone)
+                registerUser(name, email, password, zip, phone)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -78,9 +77,9 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, JWT_SECRET)
+                //const data = jwt.verify(token, JWT_SECRET)
 
-                const userId = data.sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
 
                 retrieveUser(userId)
                     .then(user => res.json(user))
@@ -89,6 +88,44 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 res.status(400).json({ error: error.message })
             }
         })
+
+        api.post('/artwork', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                const { image, description, typeWork, typeMaterial } = req.body
+
+                createArtwork(userId, image, description, typeWork, typeMaterial)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.get('/artworks/:artworkId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+                const { artworkId } = req.params
+
+                retrieveArtwork(userId, artworkId)
+                    .then((artwork) => res.json(artwork))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
 
 
         api.listen(PORT, () => console.log(`API running in port ${PORT}`))

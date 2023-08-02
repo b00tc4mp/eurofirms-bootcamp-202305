@@ -60,31 +60,42 @@ function validateUrl(url) {
     if (!url.startsWith('http')) throw new Error('url is not valid')
 }
 
-function validateText(text) {
-    if (typeof text !== 'string') throw new Error('text is not a string')
-    if (text === '') throw new Error('text is empty')
+function validateText(description) {
+    if (typeof description !== 'string') throw new Error('description is not a string')
+    if (description === '') throw new Error('description is empty')
 }
 
 function validateDate(date) {
-    if(typeof date !== 'string') throw new Error('date is not a string')
+    if (typeof date !== 'string') throw new Error('date is not a string')
     if (date === '') throw new Error('date is empty')
 }
 
 function validateZip(zip) {
-    const zipNumber = parseInt(zip)
-    if(typeof zipNumber !== 'number') throw new Error('zip is not a number')
+    if (typeof zip !== 'string') throw new Error('zip is not a string')
     if (zip === '') throw new Error('zip is empty')
 }
 
 function validatePhone(phone) {
-    const phoneNumber = parseInt(phone)
-    if(typeof phoneNumber !== 'number') throw new Error('phone is not a number')
+    if (typeof phone !== 'string') throw new Error('phone is not a string')
     if (phone === '') throw new Error('phone is empty')
 }
 
-function validateAttendantsLimit() {
-    if(typeof attendantsLimit !== 'number') throw new Error('attendantsLimit is not a number')
+function validateAttendantsLimit(attendantsLimit) {
+    if (typeof attendantsLimit !== 'number') throw new Error('attendantsLimit is not a number')
     if (attendantsLimit === '') throw new Error('attendantsLimit is empty')
+}
+
+function validateOrnaments(ornaments) {
+    if (!(ornaments instanceof Array)) throw new Error('type material is not an array')
+
+    for (let i = 0; i < ornaments.length; i++) {
+        if(typeof ornaments[i] !== 'string') throw new error(`${ornaments[i]} is not a string`)
+        if(ornaments[i] === '') throw new error(`${ornaments[i]} is empty`)
+    }
+}
+function validateMaterial(material) {
+    if (typeof material !== 'string') throw new Error ('material is not a string')
+    if (typeof material === '') throw new Error ('material is empty')
 }
 module.exports = {
     validateEmail,
@@ -96,6 +107,8 @@ module.exports = {
     validateDate,
     validatePhone,
     validateZip,
-    validateAttendantsLimit
+    validateAttendantsLimit,
+    validateMaterial,
+    validateOrnaments
 }
 

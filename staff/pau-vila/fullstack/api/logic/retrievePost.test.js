@@ -1,3 +1,4 @@
+/* El código está realizando las siguientes acciones: */
 const retrievePost = require ('./retrievePost')
 const mongoose = require('mongoose')
 require('dotenv').config()

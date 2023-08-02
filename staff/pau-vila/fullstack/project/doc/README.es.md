@@ -36,13 +36,12 @@ Usuario
 
 Obra de arte 
 - author (ObjectId, ref 'Usuario', obligatorio)
-- image (archivo de foto, opcional)
+- image (archivo de foto, obligatoria)
 - vídeo (cadena: URL de youtube o similar, opcional)
 - descripción (cadena, obligatoria)
 - tipo (String, obligatorio)
 - materiales ([String], obligatorio)
 - creationDate (Fecha, obligatorio)
-- modificationDate (Fecha, opcional)
 
 Taller 
 - attendants (Array of User id, obligatorio)

@@ -2,8 +2,8 @@ function registerUser(name, email, password, zip, phone) {
     if (typeof name !== 'string') throw new Error('name is not a string')
     if (typeof email !== 'string') throw new Error('email is not string')
     if (typeof password !== 'string') throw new Error('password is not string')
-    if(typeof zipNumber !== 'number') throw new Error('zip is not a number')
-    if(typeof phoneNumber !== 'number') throw new Error('phone is not a number')
+    if(typeof zip !== 'string') throw new Error('zip is not a string')
+    if(typeof phone !== 'string') throw new Error('phone is not a string')
 
     return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',

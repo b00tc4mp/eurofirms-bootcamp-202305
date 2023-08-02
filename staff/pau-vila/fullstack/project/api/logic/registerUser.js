@@ -1,5 +1,5 @@
 const { User } = require('../data')
-const { validateName, validateEmail, validatePassword, validateDate, validatePhone, validateZip } = require('./helpers/validators')
+const { validateName, validateEmail, validatePassword, validateZip, validatePhone } = require('./helpers/validators')
 
 function registerUser(name, email, password, zip, phone) {
     validateName(name)

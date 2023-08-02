@@ -14,9 +14,11 @@ function Register(props) {
         const name = event.target.name.value
         const email = event.target.email.value
         const password = event.target.password.value
+        const zip = event.target.zip.value 
+        const phone = event.target.phone.value 
 
         try {
-            registerUser(name, email, password)
+            registerUser(name, email, password, zip, phone)
                 .then(() => props.onRegistered())
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -35,6 +37,13 @@ function Register(props) {
 
             <label htmlFor="password">Password</label>
             <input id="password" type="password"></input>
+
+            <label htmlFor="zip">Zip</label>
+            <input id="zip" type="text"></input>
+
+            <label htmlFor="phone">Phone</label>
+            <input id="phone" type="text"></input>
+
 
             <button type="submit">Register</button>
         </form>

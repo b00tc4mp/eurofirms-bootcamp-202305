@@ -44,7 +44,6 @@ User
 Artwork 
 - author (ObjectId, ref 'User', required)
 - image (photo file, optional)
-- video (String: youtube URL or similar, optional)
 - description  (String, required)
 - type  (String, required)
 - materials  ([String], required),
