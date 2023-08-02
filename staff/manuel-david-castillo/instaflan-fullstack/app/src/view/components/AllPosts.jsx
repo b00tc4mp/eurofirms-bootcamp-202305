@@ -7,10 +7,10 @@ import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
 import retrievePosts from "../../logic/retrievePosts"
 import toggleFavPost from "../../logic/toggleFavPost"
 
-import { DeletePostModal } from "../modals/DeletePostModal"
-import { EditPostModal } from "../modals/EditPostModal"
+import DeletePostModal from "../modals/DeletePostModal"
+import EditPostModal from "../modals/EditPostModal"
 
-export function AllPosts(props) {
+export default function AllPosts(props) {
     const userId = extractUserIdFromToken(context.token)
     const navigate = useNavigate()
 

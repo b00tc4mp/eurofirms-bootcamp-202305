@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 
-import { EditUserModal } from "../modals/EditUserModal";
-import { ProfilePosts } from "./ProfilePosts";
-import { ProfileFavPosts } from "./ProfileFavPosts";
+import EditUserModal from "../modals/EditUserModal";
+import ProfilePosts from "./ProfilePosts";
+import ProfileFavPosts from "./ProfileFavPosts";
 
 import context from "../../context";
 import retrieveUser from "../../logic/retrieveUser";
 import retrieveUserById from "../../logic/retrieveUserById";
 import toggleFollowUser from "../../logic/toggleFollowUser";
 
-export function Profile() {
+export default function Profile() {
     const navigate = context.navigate
 
     const params = useParams()

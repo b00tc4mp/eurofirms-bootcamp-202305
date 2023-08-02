@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { DeletePostModal } from "../modals/DeletePostModal"
-import { EditPostModal } from "../modals/EditPostModal"
+import DeletePostModal from "../modals/DeletePostModal"
+import EditPostModal from "../modals/EditPostModal"
 
 import context from "../../context";
 import retrievePostsOfUser from "../../logic/retrievePostsOfUser";
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken";
 import toggleFavPost from "../../logic/toggleFavPost";
 
-export function ProfilePosts() {
+export default function ProfilePosts() {
     const userId = extractUserIdFromToken(context.token)
     const params = useParams()
 

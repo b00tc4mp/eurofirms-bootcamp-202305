@@ -1,7 +1,7 @@
 import createNewPost from "../../logic/createNewPost";
 import context from "../../context"
 
-export function CreatePostModal(props) {
+export default function CreatePostModal(props) {
     const handleSubmitPost = (event) => {
         event.preventDefault()
 

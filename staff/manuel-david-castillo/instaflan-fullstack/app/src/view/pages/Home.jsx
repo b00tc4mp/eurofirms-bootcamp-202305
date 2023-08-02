@@ -7,14 +7,14 @@ import retrievePosts from "../../logic/retrievePosts"
 import retrieveUser from "../../logic/retrieveUser"
 import searchUser from "../../logic/searchUser"
 
-import { AllPosts } from '../components/AllPosts'
-import { Explorer } from "../components/Explorer"
-import { Notifications } from "../components/Notifications"
-import { Messages } from "../components/Messages"
-import { Profile } from "../components/Profile"
+import AllPosts from '../components/AllPosts'
+import Explorer from "../components/Explorer"
+import Notifications from "../components/Notifications"
+import Messages from "../components/Messages"
+import Profile from "../components/Profile"
 
-import { CreatePostModal } from "../modals/CreatePostModal"
-import { UsersSearchModal } from "../modals/UsersSearchModal"
+import CreatePostModal from "../modals/CreatePostModal"
+import UsersSearchModal from "../modals/UsersSearchModal"
 
 export default function Home() {
     const userId = extractUserIdFromToken(context.token)

@@ -3,7 +3,7 @@ import retrievePost from './../../logic/retrievePost'
 import editPost from './../../logic/editPost'
 import context from '../../context'
 
-export function EditPostModal(props) {
+export default function EditPostModal(props) {
     const [post, setPost] = useState(null)
 
     useEffect(() => {

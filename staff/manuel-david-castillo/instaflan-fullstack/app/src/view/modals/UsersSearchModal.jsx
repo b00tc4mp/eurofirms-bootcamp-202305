@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import context from "../../context"
 
-export function UsersSearchModal(props) {
+export default function UsersSearchModal(props) {
     const [users, setUsers] = useState(null)
     const navigate = context.navigate
 

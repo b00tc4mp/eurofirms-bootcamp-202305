@@ -7,7 +7,7 @@ import toggleFollowUser from "../../logic/toggleFollowUser"
 
 import context from "../../context"
 
-export function Explorer() {
+export default function Explorer() {
     const [users, setUsers] = useState()
     const [posts, setPosts] = useState()
 
