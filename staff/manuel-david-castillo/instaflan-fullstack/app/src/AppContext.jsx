@@ -1,16 +1,15 @@
-/* AHORA MIMSO NO NECESITO USAR ESTO, PERO LO DEJO COMO EJEMPLO */
-/* import { createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
-    const [page, setPage] = useState('Instaflan')
+    const [user, setUser] = useState(null)
 
     return (
-        <AppContext.Provider value={{ page, setPage }}>
+        <AppContext.Provider value={{ user, setUser }}>
             {children}
         </AppContext.Provider>
     )
-} */
+}
 
-/* export { AppContext, AppProvider } */
+export { AppContext, AppProvider }

@@ -1,7 +1,9 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useContext } from "react"
 import { Routes, Route, useNavigate, Link, useLocation } from "react-router-dom"
 
 import context from "../../context"
+import { AppContext } from "../../AppContext"
+
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
 import retrievePosts from "../../logic/retrievePosts"
 import retrieveUser from "../../logic/retrieveUser"
@@ -28,10 +30,11 @@ export default function Home() {
 
     const [userIdProfile, setUserIdProfile] = useState(userId)
 
+    const [searchModal, setSearchModal] = useState(null)
     const [modal, setModal] = useState(null)
     const [page, setPage] = useState('Instaflan')
 
-    const [user, setUser] = useState(null)
+    const { user, setUser } = useContext(AppContext)
     const [users, setUsers] = useState(null)
     const [posts, setPosts] = useState(null)
 
@@ -76,7 +79,7 @@ export default function Home() {
     }, [firstRouteElement])
 
     useEffect(() => {
-        setModal(null)
+        setSearchModal(null)
         if (inputRef.current) inputRef.current.value = ''
         setUsers(null)
     }, [pathname])
@@ -133,7 +136,7 @@ export default function Home() {
 
     const handleClickOutside = (event) => {
         if (!modalRef.current?.contains(event.target) && !inputRef.current?.contains(event.target)) {
-            setModal(null);
+            setSearchModal(null);
         }
     }
 
@@ -149,7 +152,7 @@ export default function Home() {
                 </nav>
                 :
                 <div className="div-search">
-                    <input ref={inputRef} onChange={handleSearchUsers} /* onBlur={() => setModal(null)} */ onFocus={() => setModal('search-modal')} className="search-input" type="text" placeholder="search..." />
+                    <input ref={inputRef} onChange={handleSearchUsers} onFocus={() => setSearchModal('search-modal')} className="search-input" type="text" placeholder="search..." />
                 </div>
             }
         </header>
@@ -182,6 +185,6 @@ export default function Home() {
         </footer>
 
         {modal === "create-post-modal" && <CreatePostModal onCreatePost={handleCreatePost} onHideCreatePost={handleCancelCreatePostModal} />}
-        {modal === "search-modal" && <UsersSearchModal users={users} modalRef={modalRef} />}
+        {searchModal === "search-modal" && <UsersSearchModal users={users} modalRef={modalRef} />}
     </div>
 }

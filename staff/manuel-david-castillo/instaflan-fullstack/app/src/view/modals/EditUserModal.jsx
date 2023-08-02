@@ -1,20 +1,10 @@
-import { useState, useEffect } from 'react'
-import retrieveUser from '../../logic/retrieveUser'
+import { useContext } from 'react'
 import editUser from '../../logic/editUser'
 import context from '../../context'
+import { AppContext } from '../../AppContext'
 
 export default function EditUserModal(props) {
-    const [user, setUser] = useState(null)
-
-    useEffect(() => {
-        try {
-            retrieveUser(context.token)
-                .then((user) => setUser(user))
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }, [])
+    const { user, setUser } = useContext(AppContext)
 
     const handleSubmitUser = (event) => {
         event.preventDefault()

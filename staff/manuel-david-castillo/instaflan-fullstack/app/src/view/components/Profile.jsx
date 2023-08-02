@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 
 import EditUserModal from "../modals/EditUserModal";
@@ -6,9 +6,9 @@ import ProfilePosts from "./ProfilePosts";
 import ProfileFavPosts from "./ProfileFavPosts";
 
 import context from "../../context";
-import retrieveUser from "../../logic/retrieveUser";
 import retrieveUserById from "../../logic/retrieveUserById";
 import toggleFollowUser from "../../logic/toggleFollowUser";
+import { AppContext } from "../../AppContext";
 
 export default function Profile() {
     const navigate = context.navigate
@@ -18,14 +18,13 @@ export default function Profile() {
 
     const [modal, setModal] = useState(null)
 
-    const [user, setUser] = useState(null)
+    const { user, setUser } = useContext(AppContext)
     const [userProfile, setUserProfile] = useState(null)
 
     useEffect(() => {
         try {
-            Promise.all([retrieveUser(context.token),
-            retrieveUserById(context.token, userIdProfile)])
-                .then(([user, userProfile]) => {
+            retrieveUserById(context.token, userIdProfile)
+                .then(userProfile => {
                     setUser(user)
                     setUserProfile(userProfile)
                 })
@@ -42,6 +41,7 @@ export default function Profile() {
             retrieveUserById(context.token, userIdProfile)
                 .then(user => {
                     setModal(null)
+                    setUser(user)
                     setUserProfile(user)
                 })
                 .catch((error) => {
@@ -62,9 +62,11 @@ export default function Profile() {
 
     function handleFollowUser() {
         try {
-            Promise.all([retrieveUserById(context.token, userIdProfile),
-            toggleFollowUser(context.token, userIdProfile)])
-                .then(([userProfile]) => setUserProfile(userProfile))
+            toggleFollowUser(context.token, userIdProfile)
+                .then(() => {
+                    return retrieveUserById(context.token, userIdProfile)
+                })
+                .then(userProfile => setUserProfile(userProfile))
                 .catch((error) => alert(error.message))
         } catch (error) {
             alert(error.message)
@@ -80,7 +82,7 @@ export default function Profile() {
             {user?.name === userProfile?.name ?
                 <button onClick={handleEditUserModal} className="button button-modal edit-profile-button">Edit profile</button>
                 :
-                <button onClick={handleFollowUser} className="button button-modal edit-profile-button">{userProfile.followed ? 'Unfollow' : 'Follow'}</button>}
+                <button onClick={handleFollowUser} className="button button-modal edit-profile-button">{userProfile?.followed ? 'Unfollow' : 'Follow'}</button>}
         </div>
         <p className="description-profile">{userProfile?.description}</p>
         <div className="two-buttons-profile">
