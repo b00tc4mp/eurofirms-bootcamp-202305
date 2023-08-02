@@ -38,7 +38,7 @@ return <main className="register-view">
     <label htmlFor="email">E-mail</label>
     <input id="email" type="email"/>
 
-    <label htmlFor="role">E-mail</label>
+    <label htmlFor="role">Role</label>
     <input id="role" type="text"/>
 
     <button type="submit">Register</button>
