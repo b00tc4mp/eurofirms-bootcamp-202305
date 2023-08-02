@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom"
 import context from "../../context"
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
 
-import { retrievePosts } from "../../logic/retrievePosts"
-import { toggleFavPost } from "../../logic/toggleFavPost"
+import retrievePosts from "../../logic/retrievePosts"
+import toggleFavPost from "../../logic/toggleFavPost"
 
 import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"

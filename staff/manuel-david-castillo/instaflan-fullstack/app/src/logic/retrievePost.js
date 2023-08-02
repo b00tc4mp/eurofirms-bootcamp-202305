@@ -1,6 +1,6 @@
 import {validateId} from './helpers/validators'
 
-export function retrievePost(userId, postId) {
+export default function retrievePost(userId, postId) {
   validateId(userId)
   validateId(postId)
 

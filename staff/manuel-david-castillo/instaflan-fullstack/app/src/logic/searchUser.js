@@ -1,6 +1,6 @@
 import {validateId} from './helpers/validators'
 
-export function searchUser(userId, text) {
+export default function searchUser(userId, text) {
   validateId(userId)
 
   return fetch(`http://localhost:8000/search/${text}`, {

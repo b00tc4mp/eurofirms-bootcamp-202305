@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 
-import { retrievePostsNotFollowed } from "../../logic/retrievePostsNotFollowed"
-import { retrieveUsersNotFollowed } from "../../logic/retrieveUsersNotFollowed"
-import { toggleFavPost } from "../../logic/toggleFavPost"
-import { toggleFollowUser } from "../../logic/toggleFollowUser"
+import retrievePostsNotFollowed from "../../logic/retrievePostsNotFollowed"
+import retrieveUsersNotFollowed from "../../logic/retrieveUsersNotFollowed"
+import toggleFavPost from "../../logic/toggleFavPost"
+import toggleFollowUser from "../../logic/toggleFollowUser"
 
 import context from "../../context"
 

@@ -1,6 +1,6 @@
 import {validateEmail, validatePassword} from './helpers/validators'
 
-export const authenticateUser = function (email, password) {
+export default function authenticateUser(email, password) {
   validateEmail(email)
   validatePassword(password)
 

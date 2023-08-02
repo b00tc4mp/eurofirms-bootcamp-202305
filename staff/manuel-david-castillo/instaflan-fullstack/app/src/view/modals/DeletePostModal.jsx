@@ -1,4 +1,4 @@
-import { deletePost } from './../../logic/deletePost'
+import deletePost from './../../logic/deletePost'
 import context from '../../context'
 
 export function DeletePostModal(props) {

@@ -1,6 +1,6 @@
 import {validateId} from './helpers/validators'
 
-export function retrievePostsNotFollowed(userId) {
+export default function retrievePostsNotFollowed(userId) {
   validateId(userId)
 
   return fetch('http://localhost:8000/explorer/posts', {

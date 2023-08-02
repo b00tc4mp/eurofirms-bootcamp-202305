@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { retrievePost } from './../../logic/retrievePost'
-import { editPost } from './../../logic/editPost'
+import retrievePost from './../../logic/retrievePost'
+import editPost from './../../logic/editPost'
 import context from '../../context'
 
 export function EditPostModal(props) {

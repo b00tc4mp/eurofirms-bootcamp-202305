@@ -1,6 +1,6 @@
 import {validateId} from './helpers/validators'
 
-export const retrieveFavPosts = function (userId, userIdProfile) {
+export default function retrieveFavPosts(userId, userIdProfile) {
   validateId(userId)
   validateId(userIdProfile)
 

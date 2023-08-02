@@ -1,4 +1,4 @@
-import { authenticateUser } from "../../logic/authenticateUser"
+import authenticateUser from "../../logic/authenticateUser"
 import context from "../../context"
 import { Link } from "react-router-dom"
 

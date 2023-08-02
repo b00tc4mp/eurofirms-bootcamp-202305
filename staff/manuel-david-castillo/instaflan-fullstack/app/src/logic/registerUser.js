@@ -1,6 +1,6 @@
 import {validateName, validateEmail, validatePassword, validateUrl, validateText} from './helpers/validators'
 
-export const registerUser = function (name, image, description, email, password) {
+export default function registerUser(name, image, description, email, password) {
   validateName(name)
   validateUrl(image)
   validateText(description)

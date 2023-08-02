@@ -1,6 +1,6 @@
 import {validateId, validateUrl, validateText, validateName} from './helpers/validators'
 
-export function editUser(userId, name, image, description) {
+export default function editUser(userId, name, image, description) {
   validateId(userId)
   validateName(name)
   validateUrl(image)

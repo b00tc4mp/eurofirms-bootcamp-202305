@@ -1,6 +1,6 @@
 import { validateId, validateUrl, validateText } from "./helpers/validators";
 
-export const createNewPost = function (author, image, text) {
+export default function createNewPost(author, image, text) {
   validateId(author)
   validateUrl(image)
   validateText(text)

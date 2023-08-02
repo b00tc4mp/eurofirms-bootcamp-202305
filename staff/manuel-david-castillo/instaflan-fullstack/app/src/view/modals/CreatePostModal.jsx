@@ -1,4 +1,4 @@
-import { createNewPost } from "../../logic/createNewPost";
+import createNewPost from "../../logic/createNewPost";
 import context from "../../context"
 
 export function CreatePostModal(props) {

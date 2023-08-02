@@ -1,6 +1,6 @@
 import {validateId} from './helpers/validators'
 
-export function deletePost(userId, postId) {
+export default function deletePost(userId, postId) {
   validateId(userId)
   validateId(postId)
 

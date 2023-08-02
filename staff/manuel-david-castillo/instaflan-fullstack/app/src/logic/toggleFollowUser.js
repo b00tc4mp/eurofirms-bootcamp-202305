@@ -1,6 +1,6 @@
 import {validateId} from './helpers/validators'
 
-export function toggleFollowUser(userId, userIdProfile) {
+export default function toggleFollowUser(userId, userIdProfile) {
     validateId(userId)
     validateId(userIdProfile)
 

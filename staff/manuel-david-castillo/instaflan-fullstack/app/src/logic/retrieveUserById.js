@@ -1,6 +1,6 @@
 import {validateId} from './helpers/validators'
 
-export function retrieveUserById(userId, userIdProfile) {
+export default function retrieveUserById(userId, userIdProfile) {
   validateId(userId)
 
   return fetch(`http://localhost:8000/users/${userIdProfile}`, {

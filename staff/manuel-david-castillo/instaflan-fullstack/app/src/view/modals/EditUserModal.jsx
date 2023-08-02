@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { retrieveUser } from '../../logic/retrieveUser'
-import { editUser } from '../../logic/editUser'
+import retrieveUser from '../../logic/retrieveUser'
+import editUser from '../../logic/editUser'
 import context from '../../context'
 
 export function EditUserModal(props) {

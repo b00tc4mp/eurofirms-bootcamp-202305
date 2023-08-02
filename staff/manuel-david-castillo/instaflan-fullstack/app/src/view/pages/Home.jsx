@@ -3,9 +3,9 @@ import { Routes, Route, useNavigate, Link } from "react-router-dom"
 
 import context from "../../context"
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
-import { retrievePosts } from "../../logic/retrievePosts"
-import { retrieveUser } from "../../logic/retrieveUser"
-import { searchUser } from "../../logic/searchUser"
+import retrievePosts from "../../logic/retrievePosts"
+import retrieveUser from "../../logic/retrieveUser"
+import searchUser from "../../logic/searchUser"
 
 import { AllPosts } from '../components/AllPosts'
 import { Explorer } from "../components/Explorer"

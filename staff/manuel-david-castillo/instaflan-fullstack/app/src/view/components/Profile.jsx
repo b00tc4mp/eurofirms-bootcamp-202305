@@ -6,9 +6,9 @@ import { ProfilePosts } from "./ProfilePosts";
 import { ProfileFavPosts } from "./ProfileFavPosts";
 
 import context from "../../context";
-import { retrieveUser } from "../../logic/retrieveUser";
-import { retrieveUserById } from "../../logic/retrieveUserById";
-import { toggleFollowUser } from "../../logic/toggleFollowUser";
+import retrieveUser from "../../logic/retrieveUser";
+import retrieveUserById from "../../logic/retrieveUserById";
+import toggleFollowUser from "../../logic/toggleFollowUser";
 
 export function Profile() {
     const navigate = context.navigate

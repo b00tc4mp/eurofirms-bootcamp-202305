@@ -5,9 +5,9 @@ import { DeletePostModal } from "../modals/DeletePostModal"
 import { EditPostModal } from "../modals/EditPostModal"
 
 import context from "../../context";
-import { retrieveFavPosts } from "../../logic/retrieveFavPosts";
+import retrieveFavPosts from "../../logic/retrieveFavPosts";
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken";
-import { toggleFavPost } from "../../logic/toggleFavPost";
+import toggleFavPost from "../../logic/toggleFavPost";
 
 export function ProfileFavPosts() {
     const userId = extractUserIdFromToken(context.token)
