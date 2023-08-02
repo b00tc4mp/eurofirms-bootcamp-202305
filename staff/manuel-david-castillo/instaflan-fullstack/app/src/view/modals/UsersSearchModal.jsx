@@ -16,8 +16,6 @@ export function UsersSearchModal(props) {
         setUsers(null)
     }
 
-    console.log(users)
-
     return <div ref={props.modalRef} className="search-modal">
         <div className="modal-peak"></div>
         {users?.length > 0 ?

@@ -39,7 +39,7 @@ export function Explorer() {
                     setUsers(users => {
                         const users2 = [...users]
 
-                        const index = users2.findIndex(user => user._id === userIdProfile)
+                        const index = users2.findIndex(user => user.id === userIdProfile)
 
                         users2.splice(index, 1)
 
@@ -113,12 +113,12 @@ export function Explorer() {
     return <section className="explorer">
         <article className="users-not-followed">
             <h2 className="h2-explorer">Maybe you know</h2>
-            {users?.map(user => <article key={user._id} className="user">
+            {users?.map(user => <article key={user.id} className="user">
                 <div className="user-img-a">
                     <img className="profile-image-post" src={user.image} alt={user.name} />
-                    <a onClick={() => handleProfile(event, user._id)} className="name-post">{user.name}</a>
+                    <a onClick={() => handleProfile(event, user.id)} className="name-post">{user.name}</a>
                 </div>
-                <button onClick={() => handleFollowUser(user._id)} className="button button-modal edit-profile-button">Follow</button>
+                <button onClick={() => handleFollowUser(user.id)} className="button button-modal edit-profile-button">Follow</button>
             </article>)}
             <button onClick={handleUpdateUsers} className="button update-button">Update users</button>
         </article>
