@@ -31,7 +31,7 @@ export default function ProfilePosts() {
         } catch (error) {
             alert(error.message)
         }
-    }, [postId])
+    }, [userIdProfile])
 
     const handleEditPostModal = postId => {
         setPostId(postId)

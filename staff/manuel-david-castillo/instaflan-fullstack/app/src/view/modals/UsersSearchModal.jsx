@@ -12,8 +12,7 @@ export default function UsersSearchModal(props) {
     const handleProfile = (event, userIdProfile) => {
         event.preventDefault()
         navigate(`/profile/${userIdProfile}/posts`)
-        props.onHideSearchModel
-        setUsers(null)
+        // props.onHideSearchModal()
     }
 
     return <div ref={props.modalRef} className="search-modal">

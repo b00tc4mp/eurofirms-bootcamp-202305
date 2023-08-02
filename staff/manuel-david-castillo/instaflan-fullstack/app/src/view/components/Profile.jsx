@@ -33,7 +33,7 @@ export default function Profile() {
         } catch (error) {
             alert(error.message)
         }
-    }, [userProfile])
+    }, [userIdProfile])
 
     const handleEditUserModal = () => setModal('edit-user-modal')
     const handleCancelEditUserModal = () => setModal(null)

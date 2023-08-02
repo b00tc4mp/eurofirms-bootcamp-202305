@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react"
-import { Routes, Route, useNavigate, Link } from "react-router-dom"
+import { Routes, Route, useNavigate, Link, useLocation } from "react-router-dom"
 
 import context from "../../context"
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
@@ -23,6 +23,8 @@ export default function Home() {
 
     const inputRef = useRef(null)
     const modalRef = useRef(null)
+
+    const { pathname } = useLocation()
 
     const [userIdProfile, setUserIdProfile] = useState(userId)
 
@@ -73,6 +75,12 @@ export default function Home() {
         }
     }, [firstRouteElement])
 
+    useEffect(() => {
+        setModal(null)
+        if (inputRef.current) inputRef.current.value = ''
+        setUsers(null)
+    }, [pathname])
+
     const handleProfilePage = () => {
         setUserIdProfile(userId)
     }
@@ -100,28 +108,33 @@ export default function Home() {
         }
     }
 
-    const handleSearchUsers = (event) => {
-        const text = event.target.value
+    let searchUserTimeOutId
 
-        try {
-            searchUser(context.token, text)
-                .then(users => setUsers(users))
-                .catch(() => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
+    const handleSearchUsers = (event) => {
+        if (searchUserTimeOutId) clearTimeout(searchUserTimeOutId)
+
+        searchUserTimeOutId = setTimeout(() => {
+
+            const text = event.target.value
+            if (!text) {
+                setUsers(null)
+                return
+            }
+
+            try {
+                searchUser(context.token, text)
+                    .then(users => setUsers(users))
+                    .catch(() => alert(error.message))
+            } catch (error) {
+                alert(error.message)
+            }
+        }, 500);
     }
 
     const handleClickOutside = (event) => {
-        if (!modalRef.current.contains(event.target) && !inputRef.current.contains(event.target)) {
-            setModal(false);
+        if (!modalRef.current?.contains(event.target) && !inputRef.current?.contains(event.target)) {
+            setModal(null);
         }
-    }
-
-    const handleHideSearchModal = () => {
-        setModal(null)
-        inputRef.current.value = ''
-        setUsers(null)
     }
 
     return <div className="home">
@@ -169,6 +182,6 @@ export default function Home() {
         </footer>
 
         {modal === "create-post-modal" && <CreatePostModal onCreatePost={handleCreatePost} onHideCreatePost={handleCancelCreatePostModal} />}
-        {modal === "search-modal" && <UsersSearchModal users={users} modalRef={modalRef} onHideSearchModal={handleHideSearchModal} />}
+        {modal === "search-modal" && <UsersSearchModal users={users} modalRef={modalRef} />}
     </div>
 }

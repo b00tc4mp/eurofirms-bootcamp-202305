@@ -60,7 +60,44 @@ const post = new Schema({
     }
 })
 
+const chat = new Schema({
+    users: [
+        {
+            type: ObjectId,
+            ref: 'User'
+        }
+    ],
+    messages: [
+        {
+            type: ObjectId,
+            ref: 'Messages'
+        }
+    ],
+    date: {
+        type: Date, 
+        default: Date.now
+    } 
+})
+
+const message = new Schema({
+    author: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
+    text: {
+        type: String,
+        require: true
+    },
+    date: {
+        type: Date, 
+        default: Date.now
+    }
+})
+
 const User = model('User', user)
 const Post = model('Post', post)
+const Chat = model('Chat', chat)
+const Message = model('Message', message)
 
-module.exports = {User, Post}
+module.exports = {User, Post, Chat, Message}
