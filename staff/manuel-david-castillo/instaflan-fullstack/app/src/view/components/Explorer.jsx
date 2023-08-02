@@ -111,9 +111,9 @@ export function Explorer() {
     }
 
     return <section className="explorer">
-        <div key={"users-not-followed"} className="users-not-followed">
+        <article className="users-not-followed">
             <h2 className="h2-explorer">Maybe you know</h2>
-            {users?.map(user => <article key={user.id} className="user">
+            {users?.map(user => <article key={user._id} className="user">
                 <div className="user-img-a">
                     <img className="profile-image-post" src={user.image} alt={user.name} />
                     <a onClick={() => handleProfile(event, user._id)} className="name-post">{user.name}</a>
@@ -121,8 +121,8 @@ export function Explorer() {
                 <button onClick={() => handleFollowUser(user._id)} className="button button-modal edit-profile-button">Follow</button>
             </article>)}
             <button onClick={handleUpdateUsers} className="button update-button">Update users</button>
-        </div>
-        <div key={"posts-users-not-followed"} className="posts-users-not-followed">
+        </article>
+        <article className="posts-users-not-followed">
             <h2 className="h2-explorer">You might be interested</h2>
             {posts?.map(post => <article key={post.id} className="post">
                 <div className="header-post">
@@ -137,6 +137,6 @@ export function Explorer() {
                 <p className="text-post">{post.text}</p>
             </article>)}
             <button onClick={handleUpdatePosts} className="button update-button">Update posts</button>
-        </div>
+        </article>
     </section>
 }

@@ -14,7 +14,7 @@ export function Profile() {
     const navigate = context.navigate
 
     const params = useParams()
-    const userIdProfile = params.userIdProfile
+    const { userIdProfile } = params
 
     const [modal, setModal] = useState(null)
 
