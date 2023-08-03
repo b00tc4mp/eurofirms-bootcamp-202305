@@ -39,7 +39,7 @@ function Register(props) {
                 <label htmlFor="password">Password</label>
                 <input id="password" type="password" alt="password"></input>
 
-                <label htmlFor="image">Image or avatar</label>
+                <label htmlFor="image">Image</label>
                 <input id="image" type="image" alt="image"></input>
 
                 <button type="submit">Register</button>

@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
+
+/* resets */
+
+* {
+    font-family: 'Roboto','Courier New', Courier, monospace;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.357);
+}
+
+/* styles (BEM) */
+
+/* register */
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* login */
+
+.login-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* home */
+
+.home-header {
+    position: fixed;
+    top: 0;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(217,217,217);
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.home-title {
+    font-size: 1.5rem;
+}
+
+.home-main {
+    padding: 3rem 0;
+}
+
+.home-footer {
+    background-color: #D9D9D9;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+}
+
+.home-create-post-modal, .home-edit-post-modal, .home-delete-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.home-create-post-button {
+    border-top: 20%;
+}
+
+.home-create-post-container, .home-edit-post-container, .home-delete-post-container {
+    background-color: white;
+    padding: 1rem;
+}
+
+.home-create-post-form, .home-edit-post-form, .home-delete-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.home-post-image {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* utils */
+
+.off {
+    display: none;
+}
+.initial-page-footer{
+    background-color: #D9D9D9;
+    src: local('../../../images/logo03.png');
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    text-align: center;
+}

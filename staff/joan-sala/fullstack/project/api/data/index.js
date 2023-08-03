@@ -18,18 +18,19 @@ const user = new Schema({
     },
     
     image: {
-        type: String
+        type: String,
+        require: false
         //required: optional
     },
     favs: [
         {
             type: ObjectId,
-            ref: 'Post'
+            ref: 'Meetup'
         }
     ]
 })
 
-const post = new Schema({
+const meetup = new Schema({
     author: {
         type: ObjectId,
         ref: 'User',
@@ -43,7 +44,8 @@ const post = new Schema({
         type: String,
     //     required: optional
     },
-    description: {
+    //description
+    text: {
         type: String,
         required: true
     },
@@ -53,6 +55,7 @@ const post = new Schema({
     },
     date: {
         type: Date,
+        require: true,
         default: Date.now
     },
     adress:{
@@ -61,9 +64,9 @@ const post = new Schema({
     }
 })
 const User = model('User', user)
-const Post = model('Post', post)
+const Meetup = model('Meetup', meetup)
 
 module.exports = {
     User,
-    Post
+    Meetup
 }

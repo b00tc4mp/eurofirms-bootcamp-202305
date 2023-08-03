@@ -43,7 +43,20 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+.home-logout-button, .button{
+    color:#fff;
+    padding:5px 5px;
+    border:1px solid #000;
+    border-radius: 30px;
+    display:block;
+    width:100px;
+    text-align:center;
+    margin:20px;
+    background-color:#2C2A2A;
+}
+.home-logout-button:hover{
+    background-color:#707070;
+}
 /* home */
 
 .home-header {

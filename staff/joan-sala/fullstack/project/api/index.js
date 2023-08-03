@@ -8,12 +8,12 @@ const {
     registerUser,
     authenticateUser,
     retrieveUser,
-    createPost,
-    updatePost,
-    deletePost,
-    retrievePost,
-    retrievePosts, 
-    toggleFavPost
+    createMeetup,
+    updateMeetup,
+    deleteMeetup,
+    retrieveMeetup,
+    retrieveMeetups, 
+    toggleFavMeetup
 } = require('./logic')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
@@ -26,7 +26,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
 
         const jsonBodyParser = bodyParser.json() //devuelve en formato jsonpara recoger cualquier cosa
 
-        api.use(cors()) //cargar función cors , añadir cabecera 
+        api.use(cors()) //añadir cabecera 
 
         //end point 01, proceso en la ruta raiz, controlador    
         api.get('/', (req, res) => { //htp://localhost:9000/
@@ -45,8 +45,8 @@ mongoose.connect(`${MONGODB_URL}/data`)
             //debugger 
             const { name, email, password, image } = req.body
 
-            try {  //intenta hacer ésto
-                registerUser(name, email, password,image)
+            try {  
+                registerUser(name, email, password, image)
                     .then(() => { res.status(201).send() }) //devuelve únicamente una infirmacióon 
                     .catch((error) => res.status(400).json({ error: error.message }))
 
@@ -57,12 +57,12 @@ mongoose.connect(`${MONGODB_URL}/data`)
 
         //end point 03 AUTHENTICATE USER  aclarar que es author
         api.post('/users/auth', jsonBodyParser, (req, res) => {
-            const { email, password } = req.body //petición por medio de insomnia
+            const { email, password } = req.body 
 
             try {
                 authenticateUser(email, password)
                     .then(userId => {//sub: . el token tiene 3 partes, es una propiedad del peyload
-                        const data = { sub: userId }
+                        const dataMeetupBikers = { sub: userId }
                         const token = jwt.sign(data, JWT_SECRET)
 
                         res.json(token)
@@ -78,7 +78,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
         api.get('/users', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, JWT_SECRET)
+                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
 
                 const userId = data.sub
 
@@ -97,10 +97,10 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 const { image, text } = req.body
             
                 const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, JWT_SECRET)
-                const userId = data.sub
+                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
+                const userId = dataMeetupBikers.sub
 
-                createPost(userId, image, text)
+                createMeetup(userId, image, text)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -109,16 +109,16 @@ mongoose.connect(`${MONGODB_URL}/data`)
         })
         
         //end point 06 UPDATE POST
-        api.patch('/posts/:postId',jsonBodyParser, (req, res)=>{
+        api.patch('/meetups/:postId',jsonBodyParser, (req, res)=>{
             try{
                 const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, JWT_SECRET)
-                const userId = data.sub
+                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
+                const userId = dataMeetupBikers.sub
 
                 const { postId } = req.params
                 const { image, text } = req.body
 
-                updatePost(userId, postId, image, text )
+                updateMeetup(userId, postId, image, text )
                 .then(()=> res.status(204).send())
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){
@@ -127,14 +127,14 @@ mongoose.connect(`${MONGODB_URL}/data`)
         })
         
         //end point 07 DELETE POST
-        api.delete('/posts/:postId', (req, res)=>{
+        api.delete('/meetups/:postId', (req, res)=>{
             try{
                 const { postId } = req.params
                 const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, JWT_SECRET)
-                const userId = data.sub
+                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
+                const userId = dataMeetupBikers.sub
                 
-                deletePost(userId, postId)
+                deleteMeetup(userId, postId)
                 .then(()=> res.send())
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){
@@ -143,15 +143,15 @@ mongoose.connect(`${MONGODB_URL}/data`)
         })
 
         //end point 08 RETRIEVE POST siempre en plural
-        api.get('/posts/:postId', (req, res) => {
+        api.get('/meetups/:postId', (req, res) => {
             try {
                 const { postId } = req.params
 
                 const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, JWT_SECRET)
-                const userId = data.sub
+                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
+                const userId = dataMeetupBikers.sub
 
-                retrievePost(userId, postId)
+                retrieveMeetup(userId, postId)
                     .then(post => res.json(post)) //singular
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -160,13 +160,13 @@ mongoose.connect(`${MONGODB_URL}/data`)
         })
 
          //end point 09 RETRIEVE POSTS
-         api.get('/posts', (req, res) =>{
+         api.get('/meetups', (req, res) =>{
             try{
                 const token = req.headers.authorization.slice(7)
-                const data = jwt.verify(token, JWT_SECRET)
-                const userId = data.sub
+                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
+                const userId = dataMeetupBikers.sub
 
-                retrievePosts(userId)
+                retrieveMeetups(userId)
                 .then(posts=> res.json(posts))
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){
@@ -175,16 +175,16 @@ mongoose.connect(`${MONGODB_URL}/data`)
         })
 
         //estrella
-        api.put('/posts/:postId/favs', (req, res) =>{
+        api.put('/meetups/:postId/favs', (req, res) =>{
             try{
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
-                const data = jwt.verify(token, JWT_SECRET)
+                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
                 
-                const userId = data.sub
+                const userId = dataMeetupBikers.sub
                 const postId = req.params.postId
 
-                toggleFavPost(userId, postId)
+                toggleFavMeetup(userId, postId)
                 .then(()=> res.status(204).send())
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){

@@ -2,19 +2,19 @@ import { useState, useEffect } from 'react'
 import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
 import context from '../../context'
 import retrieveUser from "../../logic/retrieveUser"
-import retrievePosts from "../../logic/retrievePosts"
-import CreatePostModal from '../modals/CreatePostModal'
-import EditPostModal from '../modals/EditPostModal'
-import DeletePostModal from '../modals/DeletePostModal'
-import toggleFavPost from '../../logic/toggleFavPost'
+import retrieveMeetups from "../../logic/retrieveMeetups"
+import CreateMeetupModal from '../modals/CreateMeetupModal'
+import EditMeetupModal from '../modals/EditMeetupModal'
+import DeleteMeetupModal from '../modals/DeleteMeetupModal'
+import toggleFavMeetup from '../../logic/toggleFavMeetup'
 
 function Home({onLoggedOut}) {
     console.log('Home ->render')
 
     const [modal, setModal] = useState(null)
-    const [postId, setPostId] = useState(null)
+    const [meetupId, setMeetupId] = useState(null)
     const [user, setUser] = useState(null)
-    const [posts, setPosts] = useState(null)
+    const [meetups, setMeetups] = useState(null)
 
     //Sólo se ejecuta una vez se pinta el Home
     useEffect(() => { //Para efectos secundarios como consecuéncia de llama a una api.
@@ -27,8 +27,8 @@ function Home({onLoggedOut}) {
         }
 
         try {
-            retrievePosts(context.token)
-                .then(posts => setPosts(posts))
+            retrieveMeetup(context.token)
+                .then(meetups => setMeetups(meetups))
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
@@ -41,14 +41,14 @@ function Home({onLoggedOut}) {
         onLoggedOut()
     }
 
-    const handleCreatePostClick = () => setModal('create-post')
+    const handleCreateMeetupClick = () => setModal('create-meetup')
 
-    const handlePostCreated = () => {
+    const handleMeetupCreated = () => {
         try {
-            retrievePosts(context.token)
-                .then(posts => {
+            retrieveMeetups(context.token)
+                .then(meetups => {
                     setModal(null)
-                    setPosts(posts)
+                    setPosts(meetups)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -56,49 +56,48 @@ function Home({onLoggedOut}) {
         }
     }
 
-    const handleEditPostClick = postId => {
-        setPostId(postId)
-        setModal('edit-post')
+    const handleEditMeetupClick = meetupId => {
+        setMeetupId(meetupId)
+        setModal('edit-meetup')
     }
 
-    const handleCreatePostCancelled = () => setModal(null)
+    const handleCreateMeetupCancelled = () => setModal(null)
 
-    const handleEditPostCancelled = () => {
-        setModal(null)
-        setPostId(null)
+    const handleEditMeetupCancelled = () => {
+        setModal(null) //reefrescar pantalla
+        setMeetupId(null)
     }
 
-    //const handlePostEdited = () => setModal(null), refresar pantaalla
-    const handlePostEdited = () => {
+    const handleMeetupEdited = () => {
         try {
-            retrievePosts(context.token)
-                .then(posts => {
-                    setPosts(posts)
+            retrieveMeetups(context.token)
+                .then(meetups => {
+                    setMeetups(meetups)
                     setModal(null)
-                    setPostId(null)
+                    setMeetupId(null)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
     }
-    const handleDeletePostClick = postId => {
-        setPostId(postId)
-        setModal('delete-post')
+    const handleDeleteMeetupClick = meetupId => {
+        setMeetupId(meetupId)
+        setModal('delete-meetup')
     }
 
-    const handleDeletePostCancelled = () => {
+    const handleDeleteMeetupCancelled = () => {
         setModal(null)
-        setPostId(null)
+        setMeetupId(null)
     }
 
-    const handlePostDeleted = () => {
+    const handleMeetupDeleted = () => {
         try {
-            retrievePosts(context.token)
-                .then(posts => {
-                    setPosts(posts)
-                    setModal(null) //PARA QUE VAYA BIEN EL BORRADO
-                    setPostId(null)
+            retrieveMeetups(context.token)
+                .then(meetups => {
+                    setMeetups(meetups)
+                    setModal(null)
+                    setMeetupId(null)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -106,11 +105,11 @@ function Home({onLoggedOut}) {
         }
     }
 
-    const handleTogglePostClick = postId => { //parámetro pasado
+    const handleToggleMeetupClick = meetupId => { 
         try {
-            toggleFavPost(context.token, postId)
-                .then(() => retrievePosts(context.token))
-                .then(posts => setPosts(posts))
+            toggleFavMeetup(context.token, meetupId)
+                .then(() => retrieveMeetups(context.token))
+                .then(meetups => setMeetups(meetups))
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
@@ -127,35 +126,35 @@ function Home({onLoggedOut}) {
 
                 <button className="home-logout-button" onClick={handleLogoutClick}>Logout</button>
             </header>
-
+        
             <main className="home-main">
-                <section className="home-posts">
-                    {posts && posts.map(post => <article key={post.id} className="home-post">
-                            <h2>{post.author?.name}</h2>
-                            <img className="home-post-image"
-                                src={post.image}
-                                alt={post.text} />
-                            <p>{post.text}</p>
+                <section className="home-meetups">
+                    {meetups && meetups.map(meetup => <article key={meetup.id} className="home-meetup">
+                            <h2>{meetup.author?.name}</h2>
+                            <img className="home-meetup-image"
+                                src={meetup.image}
+                                alt={meetup.text} />
+                            <p>{meetup.text}</p>
 
-                            {post.author.id === userId && <>
-                                <button onClick={() => handleEditPostClick(post.id)}>Edit</button>
-                                <button onClick={() => handleDeletePostClick(post.id)}>Delete</button>
+                            {meetup.author.id === userId && <>
+                                <button className="button" onClick={() => handleEditMeetupClick(meeetup.id)}>Edit</button>
+                                <button className="button" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
                             </>
                             }
-                            <button onClick={() => handleTogglePostClick(post.id)}>{post.fav ? '♥' : '♡'}</button>
+                            <button className="button" onClick={() => handleToggleMeetupClick(meetup.id)}>{meetup.fav ? '♥' : '♡'}</button>
                         </article>)}
                 </section>
             </main>
 
             <footer className="home-footer">
-                <button className="home-create-post-button" onClick={handleCreatePostClick}>+</button>
+                <button className="home-create-meetup-button" onClick={handleCreateMeetupClick}>+</button>
             </footer>
 
-            {modal === 'create-post' && <CreatePostModal onPostCreated={handlePostCreated} onCreatePostCancelled={handleCreatePostCancelled} />}
+            {modal === 'create-meetup' && <CreateMeetupModal onMeetupCreated={handleMeetupCreated} onCreateMeetupCancelled={handleCreateMeetupCancelled} />}
 
-            {modal === 'edit-post' && <EditPostModal postId={postId} onPostEdited={handlePostEdited} onEditPostCancelled={handleEditPostCancelled} />}
+            {modal === 'edit-meetup' && <EditMeetupModal meetupId={meetupId} onMeetupEdited={handleMeetupEdited} onEditMeetupCancelled={handleEditMeetupCancelled} />}
 
-            {modal === 'delete-post' && <DeletePostModal postId={postId} onPostDeleted={handlePostDeleted} onDeletePostCancelled={handleDeletePostCancelled} />}
+            {modal === 'delete-meetup' && <DeleteMeetupModal meetupId={meetupId} onMeetupDeleted={handleMeetupDeleted} onDeleteMeetupCancelled={handleDeleteMeetupCancelled} />}
         </div>
     )
 }

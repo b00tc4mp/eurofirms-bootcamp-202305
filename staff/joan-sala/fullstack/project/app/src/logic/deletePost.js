@@ -1,4 +1,4 @@
-function deletePost(token, postId) {
+function deleteMeetup(token, postId) {
     if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof postId !== 'string') throw new Error('postId is not a string')
     
@@ -17,4 +17,4 @@ function deletePost(token, postId) {
             })
     })
 }
-export default deletePost
+export default deleteMeetup
