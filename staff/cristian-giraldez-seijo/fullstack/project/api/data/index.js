@@ -47,24 +47,52 @@ const story = new Schema({
         ref: 'User',
         required: true
     },
+    title: {
+        type: String,
+        required: true
+    },
     sumary: {
         type: String
     },
     text: {
+        type: String
+    },
+    origin: {
+type: ObjectId,
+ref: Story
+    },
+    question: {
         type: String,
+        default: 'What\'s next?',
         required: true
     },
-    date: {
+    options: [
+        {
+            type: ObjectId,
+            ref: 'Story'
+        }],
+    links: [{
+        type: ObjectId,
+        ref: Story
+    }],
+    islink: {
+        type: Boolean,
+        default: false
+    },
+    linkstory: {
+        type: ObjectId,
+        ref: Story
+    },
+    datecreated: {
         type: Date,
         default: Date.now,
         required: true
     },
-    children: [
-        {
-            type: ObjectId,
-            ref: 'Story'
-        }
-    ],
+    dateupdated: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
     comments: [comment]
 })
 
