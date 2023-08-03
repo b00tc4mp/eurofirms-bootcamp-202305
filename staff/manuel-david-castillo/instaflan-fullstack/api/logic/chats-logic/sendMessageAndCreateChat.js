@@ -6,12 +6,14 @@ function sendMessageAndCreateChat(userId, othersUsers, text) {
     validateId(userId)
     validateText(text)
 
-    othersUsers.forEach(user => {
+    const arrayUsers = othersUsers.match(/[^\[\]"]+/g)
+
+    arrayUsers.forEach(user => {
             validateId(user)
         })
 
     const users = [new ObjectId(userId)]
-    othersUsers.forEach(userId => users.push(new ObjectId(userId)))
+    arrayUsers.forEach(userId => users.push(new ObjectId(userId)))
 
     return User.findById(userId).lean()
     .then((user) => {
@@ -30,9 +32,6 @@ function sendMessageAndCreateChat(userId, othersUsers, text) {
 
                 return chat.save()
             } else {
-                const users = [new ObjectId(userId)]
-                othersUsers.forEach(userId => users.push(new ObjectId(userId)))
-
                 const messages = [message._id]
 
                 const date = new Date()
@@ -40,21 +39,7 @@ function sendMessageAndCreateChat(userId, othersUsers, text) {
             return Chat.create({users, messages, date})
             }
         })
-        
-        /* Message.create({author, text, date}) 
-        })
-        .then(message => {
-            if (!message) throw new Error('message not found')
-
-            const users = [new ObjectId(userId)]
-            othersUsers.forEach(userId => users.push(new ObjectId(userId)))
-
-            const messages = [message._id]
-
-            const date = new Date()
-
-            return Chat.create({users, messages, date}) */
-            .then(() => { })
+        .then(() => { })
         })
         
     };
