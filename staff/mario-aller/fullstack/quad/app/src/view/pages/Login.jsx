@@ -1,4 +1,4 @@
-import { authenticateUser } from '../../logic/user-ctrl'
+import { authenticateUser } from '../../logic/users'
 import context from '../../context'
 
 function Login({ onGotoReg, onLogged }) {

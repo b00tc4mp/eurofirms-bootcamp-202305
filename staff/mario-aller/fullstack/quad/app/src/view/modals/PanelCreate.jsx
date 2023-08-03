@@ -1,4 +1,4 @@
-import { createPanel } from '../../logic/panel-ctrl'
+import { createPanel } from '../../logic/panels'
 import context from '../../context'
 
 export function PanelCreate({ onCreatedPanel, onExitModal }) {

@@ -7,9 +7,9 @@ const Canvas = props => {
   const canvasRef = useRef(null)
 
   const drawPanel = ctx => {
-    const esc1 = ctx.canvas.width / Number(panel.width)
-    const esc2 = ctx.canvas.height / Number(panel.height)
-    const escala = (esc1 < esc2) ? esc1 : esc2
+    const escala1 = ctx.canvas.width / Number(panel.width)
+    const escala2 = ctx.canvas.height / Number(panel.height)
+    const escala = (escala1 < escala2) ? escala1 : escala2
     const maxY = ctx.canvas.height
 
     ctx.fillStyle = '#00ffff'
@@ -19,23 +19,23 @@ const Canvas = props => {
     ctx.fillRect(0, 0, Number(panel.width) * escala, Number(panel.height) * escala)
     
     panel.blocks.forEach(block => {
-      const orgX = Number(block.x) * escala
-      const orgY = Number(block.y) * escala
-      if (orgX !== -1) {
+      const orginX = Number(block.x) * escala
+      const originY = Number(block.y) * escala
+      if (orginX !== -1) {
         let finX, finY
         if (block.orientation === 0) {
-          finX = orgX + Number(block.width) * escala
-          finY = orgY + Number(block.height) * escala
+          finX = orginX + Number(block.width) * escala
+          finY = originY + Number(block.height) * escala
         } else {
-          finX = orgX + Number(block.height) * escala
-          finY = orgY + Number(block.width) * escala
+          finX = orginX + Number(block.height) * escala
+          finY = originY + Number(block.width) * escala
         }
         ctx.beginPath()
-        ctx.moveTo(orgX, maxY - orgY)
-        ctx.lineTo(finX, maxY - orgY)
+        ctx.moveTo(orginX, maxY - originY)
+        ctx.lineTo(finX, maxY - originY)
         ctx.lineTo(finX, maxY - finY)
-        ctx.lineTo(orgX, maxY - finY)
-        ctx.lineTo(orgX, maxY - orgY)
+        ctx.lineTo(orginX, maxY - finY)
+        ctx.lineTo(orginX, maxY - originY)
         ctx.closePath()
         ctx.stroke()
       }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { retrievePanelOne, updatePanel } from '../../logic/panel-ctrl'
+import { retrievePanelOne, updatePanel } from '../../logic/panels'
 import context from '../../context'
 
 export function PanelEdit({ onUpdatedPanel, onExitModal, panelId }) {

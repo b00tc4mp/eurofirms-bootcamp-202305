@@ -4,8 +4,8 @@ const { optimizePanel } = require('./optimizePanel')
 
 try {
     loadPanel(process.argv[2])
-        .then(originPanel => {
-            context.mainPanel = originPanel
+        .then(panel => {
+            context.mainPanel = panel
 
             optimizePanel()
         })

@@ -1,4 +1,4 @@
-import { createBlock } from '../../logic/panel-ctrl'
+import { createBlock } from '../../logic/panels'
 import context from '../../context'
 
 export function BlockCreate({ onCreatedBlock, onExitModal, panelId}) {

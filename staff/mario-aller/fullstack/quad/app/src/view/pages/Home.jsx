@@ -1,5 +1,5 @@
-import { retrieveUser } from '../../logic/user-ctrl'
-import { retrievePanels } from '../../logic/panel-ctrl'
+import { retrieveUser } from '../../logic/users'
+import { retrievePanels } from '../../logic/panels'
 import context from '../../context'
 import { useState, useEffect } from 'react'
 import { PanelCreate } from '../modals/PanelCreate'

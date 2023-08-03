@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { retrieveUser, updateUser } from '../../logic/user-ctrl'
+import { retrieveUser, updateUser } from '../../logic/users'
 import context from '../../context'
 
 export function UserEdit({ onUpdatedUser, onExitModal }) {

@@ -1,4 +1,4 @@
-import { registerUser } from '../../logic/user-ctrl'
+import { registerUser } from '../../logic/users'
 
 function Register({ onGotoLog, onRegisteredUser }) {
     const handleOnGotoLog = () => onGotoLog()

@@ -1,4 +1,4 @@
-import { updatePanelStatus } from '../../logic/panel-ctrl'
+import { updatePanelStatus } from '../../logic/panels'
 import context from '../../context'
 
 export function PanelToOptimize({ onToOptimizePanel, onExitModal, panelId }) {

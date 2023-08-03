@@ -1,4 +1,4 @@
-import { deleteBlock } from '../../logic/panel-ctrl'
+import { deleteBlock } from '../../logic/panels'
 import context from '../../context'
 
 export function BlockDelete({ onDeletedBlock, onExitModal, panelId, blockId }) {

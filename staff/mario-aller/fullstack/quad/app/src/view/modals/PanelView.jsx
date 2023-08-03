@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { retrievePanelOne } from '../../logic/panel-ctrl'
+import { retrievePanelOne } from '../../logic/panels'
 import context from '../../context'
 import Canvas from '../graphics/Canvas'
 
