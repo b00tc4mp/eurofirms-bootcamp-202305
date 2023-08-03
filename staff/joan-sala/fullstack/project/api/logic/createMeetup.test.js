@@ -5,8 +5,9 @@ const mongoose = require('mongoose')
 
 mongoose. connect(`${process.env.MONGODB_URL}/testMeetupBikers`)
     .then(() =>  createMeetup('64c8d11adc2e885906eaba367', 
-        'https://cdn.pixabay.com/photo/2023/07/04/19/13/stuart-bailey-8106891_6…', 
-        'other'))
+        'https://img.freepik.com/free-photo/man-riding-mountain-bike-low-angle_23-2148777253.jpg?size=626&ext=jpg&ga=GA1.2.988299159.1596702882&semt=sph', 
+        'https://v4.cdnpk.net/videvo_files/video/free/video0454/large_watermarked/_import_60657a020fbb52.19886494_FPpreview.mp4',
+        'traveling with my bike'))
     .then(() => console.log('Post created'))
     .catch(error => console.error(error))
     .finally(() => mongoose.disconnect())

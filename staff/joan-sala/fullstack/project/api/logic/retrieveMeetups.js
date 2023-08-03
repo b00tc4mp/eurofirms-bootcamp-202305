@@ -13,7 +13,6 @@ function retrieveMeetups(userId) {
             return Meetup.find({}, '-__v').populate('author', 'name').lean()  
                        
             .then(meetups => {
-                console.log(posts)
                 meetups.forEach(meetup => {
             
                 meetup.id = meetup._id.toString()
@@ -32,5 +31,4 @@ function retrieveMeetups(userId) {
             return meetups        })
 })
 }
-
 module.exports = retrieveMeetups
