@@ -1,4 +1,4 @@
-const {User ,Chat, Message} = require('../../data/models')
+const {User ,Chat} = require('../../data/models')
 const { validateId, validateText } = require('../helpers/validators')
 const { ObjectId } = require('mongodb')
 
@@ -13,33 +13,30 @@ function sendMessageAndCreateChat(userId, othersUsers, text) {
     const users = [new ObjectId(userId)]
     othersUsers.forEach(userId => users.push(new ObjectId(userId)))
 
-    return User.findById(userId).lean()
-    .then((user) => {
-        if (!user) throw new Error('user not found')
+    return Promise.all([Chat.findOne({users: users}, '-__v'),
+    User.findById(userId, '-__v').lean()])
+        .then(([chat, user]) => {
+            if (!user) throw new Error ('user not found')
 
-        const author = user._id
-        const date = new Date()
-
-        return Promise.all([Chat.findOne({users: users}, '-__v'), 
-        Message.create({author, text, date})])
-        .then(([chat, message]) => {
-            if(!message) throw new Error('message not created')
+            const message = {
+                author: user._id,
+                text: text,
+                date: new Date()
+            }
 
             if(chat) {
-                chat.messages.push(message._id)
+                chat.messages.push(message)
 
                 return chat.save()
             } else {
-                const messages = [message._id]
-
                 const date = new Date()
+
+                const messages = [message]
 
             return Chat.create({users, messages, date})
             }
         })
         .then(() => { })
-        })
-        
-    };
+        };
 
 module.exports = sendMessageAndCreateChat
