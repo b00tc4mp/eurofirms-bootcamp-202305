@@ -1,7 +1,7 @@
 const { validateId } = require('./helpers/validators')
 const { User, Meetup } = require('../data')
 
-function toggleFavMeetup(userId, postId) {
+function toggleFavMeetup(userId, meetupId) {
     validateId(userId)  
     validateId(meetupId)
 

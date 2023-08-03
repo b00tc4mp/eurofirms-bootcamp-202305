@@ -1,11 +1,11 @@
-function updateMeetup(token, postId, image, text) { // lo primero que hay que hacer siempre es validarr
+function updateMeetup(token, meetupId, image, text) { // lo primero que hay que hacer siempre es validarr
     if(typeof token !== 'string') throw new Error('token is not a string')
-    if(typeof postId !== 'string') throw new Error('Image is not a string')
+    if(typeof meetupId !== 'string') throw new Error('Image is not a string')
     if(typeof image !== 'string') throw new Error('Image is not a string')
     if(typeof text !== 'string') throw new Error('Text is not a string')
 
                                             //interpolar
-    return fetch(`${import.meta.env.VITE_API_URL}/meeetups/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/meeetups/${meetupId}`, {
         method: 'PATCH',
         headers:{
             Authorization: `Bearer ${token}`,

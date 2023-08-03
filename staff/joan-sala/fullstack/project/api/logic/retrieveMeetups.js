@@ -1,5 +1,5 @@
 const { validateId } = require('./helpers/validators')
-const { User, Post } = require('../data')
+const { User, Meetup } = require('../data')
 
 function retrieveMeetups(userId) {
     validateId(userId)
@@ -10,7 +10,7 @@ function retrieveMeetups(userId) {
 
             //te trae el objeto completo del usuario relacionado con el post   
             //return Post.find({}, '-__v').populate('name', '-email -password -favs -__v').lean()
-            return Post.find({}, '-__v').populate('author', 'name').lean()  
+            return Meetup.find({}, '-__v').populate('author', 'name').lean()  
                        
             .then(meetups => {
                 console.log(posts)
@@ -27,10 +27,9 @@ function retrieveMeetups(userId) {
                     author.id = author._id.toString()
                     delete author._id
                 }
-                post.fav = user.favs.some(fav => fav.toString() === meetup.id)
+                meetup.fav = user.favs.some(fav => fav.toString() === meetup.id)
             })
-            return posts
-        })
+            return meetups        })
 })
 }
 

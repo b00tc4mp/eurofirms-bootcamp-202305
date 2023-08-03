@@ -1,9 +1,9 @@
-function toggleFavMeetup(token, postId) { //validaciones sincronas
+function toggleFavMeetup(token, meetupId) { //validaciones sincronas
     if(typeof token  !== 'string') throw new Error('token is not a string')
-    if(typeof postId !== 'string') throw new Error('postId is not a string')
+    if(typeof meetupId !== 'string') throw new Error('meetupId is not a string')
     
     //Llamada al servidor
-    return fetch(`${import.meta.env.VITE_API_URL}/meetups/${postId}/favs`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/meetups/${meetupId}/favs`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}`}
     })

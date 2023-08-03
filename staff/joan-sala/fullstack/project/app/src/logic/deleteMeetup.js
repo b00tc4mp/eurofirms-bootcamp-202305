@@ -1,8 +1,8 @@
-function deleteMeetup(token, postId) {
+function deleteMeetup(token, meetupId) {
     if (typeof token !== 'string') throw new Error('token is not a string')
-    if (typeof postId !== 'string') throw new Error('postId is not a string')
+    if (typeof meetupId !== 'string') throw new Error('meetupId is not a string')
     
-    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`,{
+    return fetch(`${import.meta.env.VITE_API_URL}/meetups/${meetupId}`,{
         method: 'DELETE',
         headers:{Authorization:`Bearer ${token}`        }
     })

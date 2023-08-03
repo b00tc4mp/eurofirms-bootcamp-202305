@@ -62,7 +62,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
             try {
                 authenticateUser(email, password)
                     .then(userId => {//sub: . el token tiene 3 partes, es una propiedad del peyload
-                        const dataMeetupBikers = { sub: userId }
+                        const data = { sub: userId }
                         const token = jwt.sign(data, JWT_SECRET)
 
                         res.json(token)
@@ -78,7 +78,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
         api.get('/users', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
-                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
+                const data = jwt.verify(token, JWT_SECRET)
 
                 const userId = data.sub
 
@@ -90,15 +90,15 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
         
-        //end point 05 CREATE POST POST
-        api.post('/posts', jsonBodyParser, (req, res) => {
+        //end point 05 CREATE MEETUPS
+        api.post('/meetups', jsonBodyParser, (req, res) => {
 
             try {
                 const { image, text } = req.body
             
                 const token = req.headers.authorization.slice(7)
-                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
-                const userId = dataMeetupBikers.sub
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
 
                 createMeetup(userId, image, text)
                     .then(() => res.status(201).send())
@@ -108,17 +108,17 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
         
-        //end point 06 UPDATE POST
-        api.patch('/meetups/:postId',jsonBodyParser, (req, res)=>{
+        //end point 06 UPDATE MEETUP
+        api.patch('/meetups/:meetupId',jsonBodyParser, (req, res)=>{
             try{
                 const token = req.headers.authorization.slice(7)
-                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
-                const userId = dataMeetupBikers.sub
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
 
-                const { postId } = req.params
+                const { meetupId } = req.params
                 const { image, text } = req.body
 
-                updateMeetup(userId, postId, image, text )
+                updateMeetup(userId, meetupId, image, text )
                 .then(()=> res.status(204).send())
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){
@@ -126,15 +126,15 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
         
-        //end point 07 DELETE POST
-        api.delete('/meetups/:postId', (req, res)=>{
+        //end point 07 DELETE MEETUP
+        api.delete('/meetups/:meetupId', (req, res)=>{
             try{
-                const { postId } = req.params
+                const { meetupId } = req.params
                 const token = req.headers.authorization.slice(7)
-                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
-                const userId = dataMeetupBikers.sub
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
                 
-                deleteMeetup(userId, postId)
+                deleteMeetup(userId, meetupId)
                 .then(()=> res.send())
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){
@@ -142,17 +142,17 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
 
-        //end point 08 RETRIEVE POST siempre en plural
-        api.get('/meetups/:postId', (req, res) => {
+        //end point 08 RETRIEVE MEETUP siempre en plural
+        api.get('/meetups/:meetupId', (req, res) => {
             try {
-                const { postId } = req.params
+                const { meetupId } = req.params
 
                 const token = req.headers.authorization.slice(7)
-                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
-                const userId = dataMeetupBikers.sub
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
 
-                retrieveMeetup(userId, postId)
-                    .then(post => res.json(post)) //singular
+                retrieveMeetup(userId, meetupId)
+                    .then(meetup => res.json(meetup)) //singular
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
@@ -163,11 +163,11 @@ mongoose.connect(`${MONGODB_URL}/data`)
          api.get('/meetups', (req, res) =>{
             try{
                 const token = req.headers.authorization.slice(7)
-                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
-                const userId = dataMeetupBikers.sub
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
 
                 retrieveMeetups(userId)
-                .then(posts=> res.json(posts))
+                .then(meetups=> res.json(meetups))
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){
                 res.status(400).json({error: error.message})
@@ -175,16 +175,16 @@ mongoose.connect(`${MONGODB_URL}/data`)
         })
 
         //estrella
-        api.put('/meetups/:postId/favs', (req, res) =>{
+        api.put('/meetups/:meetupId/favs', (req, res) =>{
             try{
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
-                const dataMeetupBikers = jwt.verify(token, JWT_SECRET)
+                const data = jwt.verify(token, JWT_SECRET)
                 
-                const userId = dataMeetupBikers.sub
-                const postId = req.params.postId
+                const userId = data.sub
+                const meetupId = req.params.meetupId
 
-                toggleFavMeetup(userId, postId)
+                toggleFavMeetup(userId, meetupId)
                 .then(()=> res.status(204).send())
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){

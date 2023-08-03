@@ -5,7 +5,8 @@ function deleteMeetup(userId, meetupId) {
     validateId(userId)
     validateId(meetupId)
     
-    return Promise.all([User.findById(userId).lean(), Meetup.findById(postId).lean()])
+    return Promise.all([User.findById(userId).lean(), 
+        Meetup.findById(meetupId).lean()])
         .then(([user, meetup]) => {
             if (!user) throw new Error('User not found')
             if(!meetup) throw new Error('Meetup not found')

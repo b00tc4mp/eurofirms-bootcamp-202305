@@ -2,7 +2,7 @@ import context from '../../context'
 import createMeetup from '../../logic/createMeetup'
 
 function CreateMeetupModal(props){
-    console.log('CreateMeetupModal -> renderr')
+    console.log('CreateMeetupModal -> render')
 
     const handleSubmit = event => {
         event.preventDefault()

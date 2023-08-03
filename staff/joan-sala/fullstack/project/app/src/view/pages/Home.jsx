@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
 import context from '../../context'
-import retrieveUser from "../../logic/retrieveUser"
-import retrieveMeetups from "../../logic/retrieveMeetups"
+import retrieveUser from '../../logic/retrieveUser'
+import retrieveMeetups from '../../logic/retrieveMeetups'
 import CreateMeetupModal from '../modals/CreateMeetupModal'
 import EditMeetupModal from '../modals/EditMeetupModal'
 import DeleteMeetupModal from '../modals/DeleteMeetupModal'
@@ -27,7 +27,7 @@ function Home({onLoggedOut}) {
         }
 
         try {
-            retrieveMeetup(context.token)
+            retrieveMeetups(context.token)
                 .then(meetups => setMeetups(meetups))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -48,7 +48,7 @@ function Home({onLoggedOut}) {
             retrieveMeetups(context.token)
                 .then(meetups => {
                     setModal(null)
-                    setPosts(meetups)
+                    setMeetups(meetups)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -64,7 +64,7 @@ function Home({onLoggedOut}) {
     const handleCreateMeetupCancelled = () => setModal(null)
 
     const handleEditMeetupCancelled = () => {
-        setModal(null) //reefrescar pantalla
+        setModal(null) //refrescar pantalla
         setMeetupId(null)
     }
 
