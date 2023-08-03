@@ -1,6 +1,6 @@
 const { Schema, ObjectId, model } = require('mongoose')
 
-const userSchema = new Schema({
+const userSch = new Schema({
     name: {
         type: String,
         required: true,
@@ -30,7 +30,7 @@ const userSchema = new Schema({
         default: Date.now
     }
 })
-const panelSchema = new Schema({
+const panelSch = new Schema({
     reference: {
         type: String,
         required: true,
@@ -92,7 +92,7 @@ const panelSchema = new Schema({
     }]
 })
 
-const UserModel = model('User', userSchema)
-const PanelModel = model('Panel', panelSchema)
+const UserDB = model('User', userSch)
+const PanelDB = model('Panel', panelSch)
 
-module.exports = { UserModel, PanelModel }
+module.exports = { UserDB, PanelDB }

@@ -18,7 +18,7 @@ const {
     Dimension, Dimension2D, Block, Panel,
     sleep, display,
     validateString,
-    registerUserDB, authenticaUserDB, retrieveUserDB
+    registerUserModel, authenticaUserModel, retrieveUser
 } = require('./logic')
 
 // ------------------

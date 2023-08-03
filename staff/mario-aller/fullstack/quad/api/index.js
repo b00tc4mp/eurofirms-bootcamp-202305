@@ -18,22 +18,22 @@ const jwt = require('jsonwebtoken')
 // const { sleep, display, validateString } = require('./logic/helpers')
 
 const {
-    registerUserDB,
-    authenticateUserDB,
-    retrieveUserDB,
-    updateUserDB
-} = require('./logic/user-db')
+    registerUser,
+    authenticateUser,
+    retrieveUser,
+    updateUser
+} = require('./logic/users')
 
 const {
-    createPanelDB,
-    retrievePanelsDB,
-    retrievePanelOneDB,
-    updatePanelDB,
-    updatePanelStatusDB,
-    deletePanelDB,
-    createBlockDB,
-    deleteBlockDB
-} = require('./logic/panel-db')
+    createPanel,
+    retrievePanels,
+    retrievePanelOne,
+    updatePanel,
+    updatePanelStatus,
+    deletePanel,
+    createBlock,
+    deleteBlock
+} = require('./logic/panels')
 
 const api = express()
 const jsonBodyParser = bodyParser.json()
@@ -42,23 +42,23 @@ mongoose.connect(MONGOOSE_URL)
     .then(() => {
         api.use(cors())
 
-        // registerUserDB
+        // registerUser
         api.post('/users', jsonBodyParser, (req, res) => {
             try {
                 const { name, surname, zip, email, password } = req.body
 
-                registerUserDB(name, surname, zip, email, password)
+                registerUser(name, surname, zip, email, password)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        // authenticateUserDB
+        // authenticateUser
         api.post('/users/auth', jsonBodyParser, (req, res) => {
             try {
                 const { email, password } = req.body
 
-                authenticateUserDB(email, password)
+                authenticateUser(email, password)
                     .then((userId) => {
                         const token = jwt.sign({ sub: userId }, JWT_SECRET)
                         res.json(token)
@@ -67,18 +67,18 @@ mongoose.connect(MONGOOSE_URL)
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        // retrieveUserDB
+        // retrieveUser
         api.get('/users', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
                 const userId = jwt.verify(token, JWT_SECRET).sub
-                retrieveUserDB(userId)
+                retrieveUser(userId)
                     .then(user => res.json(user))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        // updateUserDB
+        // updateUser
         api.patch('/users', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
@@ -86,13 +86,13 @@ mongoose.connect(MONGOOSE_URL)
 
                 const { name, surname, zip } = req.body
 
-                updateUserDB(userId, name, surname, zip)
+                updateUser(userId, name, surname, zip)
                     .then(() => res.send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        // createPanelDB
+        // createPanel
         api.post('/panels', jsonBodyParser, (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
@@ -100,31 +100,31 @@ mongoose.connect(MONGOOSE_URL)
 
                 const { reference, width, height } = req.body
 
-                createPanelDB(userId, reference, width, height)
+                createPanel(userId, reference, width, height)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        // retrievePanelsDB
+        // retrievePanels
         api.get('/panels', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
                 const userId = jwt.verify(token, JWT_SECRET).sub
-                retrievePanelsDB(userId)
+                retrievePanels(userId)
                     .then(panels => res.json(panels))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        // retrievePanelOneDB
+        // retrievePanelOne
         api.get('/panels/:panelId', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
                 const userId = jwt.verify(token, JWT_SECRET).sub
                 const { panelId } = req.params
 
-                retrievePanelOneDB(userId, panelId)
+                retrievePanelOne(userId, panelId)
                     .then(panel => res.json(panel))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
@@ -139,7 +139,7 @@ mongoose.connect(MONGOOSE_URL)
 
                 const { reference, width, height } = req.body
 
-                updatePanelDB(userId, panelId, reference, width, height)
+                updatePanel(userId, panelId, reference, width, height)
                     .then(() => res.send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
@@ -152,7 +152,7 @@ mongoose.connect(MONGOOSE_URL)
                 const userId = jwt.verify(token, JWT_SECRET).sub
                 const { panelId } = req.params
 
-                updatePanelStatusDB(userId, panelId)
+                updatePanelStatus(userId, panelId)
                     .then(() => res.send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
@@ -165,7 +165,7 @@ mongoose.connect(MONGOOSE_URL)
                 const userId = jwt.verify(token, JWT_SECRET).sub
                 const { panelId } = req.params
 
-                deletePanelDB(userId, panelId)
+                deletePanel(userId, panelId)
                     .then(() => res.send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
@@ -179,7 +179,7 @@ mongoose.connect(MONGOOSE_URL)
 
                 const { panelId, width, height } = req.body
 
-                createBlockDB(userId, panelId, width, height)
+                createBlock(userId, panelId, width, height)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
@@ -192,7 +192,7 @@ mongoose.connect(MONGOOSE_URL)
                 const userId = jwt.verify(token, JWT_SECRET).sub
                 const { panelId, blockId } = req.params
 
-                deleteBlockDB(userId, panelId, blockId)
+                deleteBlock(userId, panelId, blockId)
                     .then(() => res.send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }

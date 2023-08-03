@@ -1,4 +1,4 @@
-const { User, Panel } = require('../data')
+const { UserModel, PanelModel } = require('../data')
 const { validateString } = require('./helpers')
 /**
  * The function creates a panel with the specified user ID, reference, width, and height, after
@@ -11,19 +11,19 @@ const { validateString } = require('./helpers')
  * @param height - The `height` parameter is the desired height of the panel in pixels.
  * @returns a promise.
  */
-function createPanelDB(userId, reference, width, height) {
+function createPanel(userId, reference, width, height) {
     validateString(userId)
     validateString(reference, validateString.NAME)
     validateString(width, validateString.INTEGER)
     validateString(height, validateString.INTEGER)
 
-    return User.findById(userId, '_id').lean()
+    return UserModel.findById(userId, '_id').lean()
         .then((user) => {
             if (!user) throw new Error('User does not exist')
             const blocks = []
             const status = 0
 
-            return Panel.create({ reference, owner: user._id, width, height, blocks, status })
+            return PanelModel.create({ reference, owner: user._id, width, height, blocks, status })
         })
         .then(() => { })
 }
@@ -34,14 +34,14 @@ function createPanelDB(userId, reference, width, height) {
  * retrieved from the database.
  * @returns a promise that resolves to an array of panels owned by the user with the specified userId.
  */
-function retrievePanelsDB(userId) {
+function retrievePanels(userId) {
     validateString(userId)
 
-    return User.findById(userId).lean()
+    return UserModel.findById(userId).lean()
         .then(user => {
             if (!user) throw new Error('User does not exist')
 
-            return Panel.find({ owner: user._id }, '-__v').sort('-date').lean()
+            return PanelModel.find({ owner: user._id }, '-__v').sort('-date').lean()
                 .then(panels => {
                     panels.forEach((panel => {
                         panel.id = panel._id.toString()
@@ -64,14 +64,14 @@ function retrievePanelsDB(userId) {
  * retrieve from the database.
  * @returns a promise that resolves to the panel object retrieved from the database.
  */
-function retrievePanelOneDB(userId, panelId) {
+function retrievePanelOne(userId, panelId) {
     validateString(userId)
 
-    return User.findById(userId).lean()
+    return UserModel.findById(userId).lean()
         .then(user => {
             if (!user) throw new Error('User does not exist')
 
-            return Panel.findById(panelId, '-__v').sort('-date').lean()
+            return PanelModel.findById(panelId, '-__v').sort('-date').lean()
                 .then(panel => {
                     panel.id = panel._id.toString()
                     delete panel._id
@@ -85,7 +85,7 @@ function retrievePanelOneDB(userId, panelId) {
 
 }
 /**
- * The function `updatePanelDB` updates the reference, width, and height of a panel in a database,
+ * The function `updatePanel` updates the reference, width, and height of a panel in a database,
  * after validating the input parameters and checking if the user has permission to modify the panel.
  * @param userId - The `userId` parameter is the unique identifier of the user who owns the panel. It
  * is used to find the user in the database and validate their ownership of the panel before making any
@@ -98,14 +98,14 @@ function retrievePanelOneDB(userId, panelId) {
  * @param height - The `height` parameter represents the height of the panel.
  * @returns a Promise.
  */
-function updatePanelDB(userId, panelId, reference, width, height) {
+function updatePanel(userId, panelId, reference, width, height) {
     validateString(userId)
     validateString(panelId)
     validateString(reference, validateString.NAME)
     validateString(width, validateString.INTEGER)
     validateString(height, validateString.INTEGER)
 
-    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
+    return Promise.all([UserModel.findById(userId, '_id').lean(), PanelModel.findById(panelId)])
         .then(([user, panel]) => {
             if (!user) throw new Error('User does not exist')
             if (!panel) throw new Error('Panel does not exist  ')
@@ -129,11 +129,11 @@ function updatePanelDB(userId, panelId, reference, width, height) {
  * the status for.
  * @returns a Promise.
  */
-function updatePanelStatusDB(userId, panelId) {
+function updatePanelStatus(userId, panelId) {
     validateString(userId)
     validateString(panelId)
 
-    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
+    return Promise.all([UserModel.findById(userId, '_id').lean(), PanelModel.findById(panelId)])
         .then(([user, panel]) => {
             if (!user) throw new Error('User does not exist')
             if (!panel) throw new Error('Panel does not exist  ')
@@ -146,7 +146,7 @@ function updatePanelStatusDB(userId, panelId) {
         .then(() => { })
 }
 /**
- * The function `deletePanelDB` deletes a panel from the database if the user is the owner of the
+ * The function `deletePanel` deletes a panel from the database if the user is the owner of the
  * panel.
  * @param userId - The userId parameter is the unique identifier of the user whose panel needs to be
  * deleted.
@@ -154,21 +154,21 @@ function updatePanelStatusDB(userId, panelId) {
  * from the database.
  * @returns a Promise that resolves to the result of deleting the panel from the database.
  */
-function deletePanelDB(userId, panelId) {
+function deletePanel(userId, panelId) {
     validateString(userId)
     validateString(panelId)
 
-    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId).lean()])
+    return Promise.all([UserModel.findById(userId, '_id').lean(), PanelModel.findById(panelId).lean()])
         .then(([user, panel]) => {
             if (!user) throw new Error('User does not exist')
             if (!panel) throw new Error('Panel does not exist  ')
             if (panel.owner.toString() !== userId) throw new Error('You can only modify your panels!')
 
-            return Panel.deleteOne({ _id: panel._id })
+            return PanelModel.deleteOne({ _id: panel._id })
         })
 }
 /**
- * The function `createBlockDB` creates a new block in a panel for a specific user, with the specified
+ * The function `createBlock` creates a new block in a panel for a specific user, with the specified
  * width and height.
  * @param userId - The `userId` parameter is the ID of the user for whom the block is being created.
  * @param panelId - The `panelId` parameter is the unique identifier of the panel in which the block
@@ -179,8 +179,8 @@ function deletePanelDB(userId, panelId) {
  * database.
  * @returns a Promise.
  */
-function createBlockDB(userId, panelId, width, height) {
-    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
+function createBlock(userId, panelId, width, height) {
+    return Promise.all([UserModel.findById(userId, '_id').lean(), PanelModel.findById(panelId)])
         .then(([user, panel]) => {
             if (!user) throw new Error('User does not exist')
             if (!panel) throw new Error('Panel does not exist')
@@ -196,12 +196,12 @@ function createBlockDB(userId, panelId, width, height) {
         .then(() => { })
 
 }
-function deleteBlockDB(userId, panelId, blockId) {
+function deleteBlock(userId, panelId, blockId) {
     validateString(userId)
     validateString(panelId)
     validateString(blockId)
 
-    return Promise.all([User.findById(userId, '_id').lean(), Panel.findById(panelId)])
+    return Promise.all([UserModel.findById(userId, '_id').lean(), PanelModel.findById(panelId)])
         .then(([user, panel]) => {
             if (!user) throw new Error('User does not exist')
             if (!panel) throw new Error('Panel does not exist')
@@ -214,12 +214,12 @@ function deleteBlockDB(userId, panelId, blockId) {
         .then(() => { })
 }
 module.exports = {
-    createPanelDB,
-    retrievePanelsDB,
-    retrievePanelOneDB,
-    updatePanelDB,
-    updatePanelStatusDB,
-    deletePanelDB,
-    createBlockDB,
-    deleteBlockDB
+    createPanel,
+    retrievePanels,
+    retrievePanelOne,
+    updatePanel,
+    updatePanelStatus,
+    deletePanel,
+    createBlock,
+    deleteBlock
 }
