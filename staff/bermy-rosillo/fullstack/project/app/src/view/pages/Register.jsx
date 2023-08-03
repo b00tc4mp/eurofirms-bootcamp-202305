@@ -24,7 +24,7 @@ const handleSubmitRegisterForm = event=>{
 }
 
 return <main className="register-view">
-    <h1>Register page</h1>
+    <h1>Register</h1>
 
 <form className="register-form" onSubmit={handleSubmitRegisterForm}>
     <p>Personal information</p>
@@ -39,7 +39,13 @@ return <main className="register-view">
     <input id="email" type="email"/>
 
     <label htmlFor="role">Role</label>
-    <input id="role" type="text"/>
+    <input id="role" type="text"/> 
+    
+    {/* <label htmlFor="role">Role</label>
+    <select id="role">
+        <option value="teacher">Teacher</option>
+        <option value="student">Student</option>
+    </select> */}
 
     <button type="submit">Register</button>
 </form>

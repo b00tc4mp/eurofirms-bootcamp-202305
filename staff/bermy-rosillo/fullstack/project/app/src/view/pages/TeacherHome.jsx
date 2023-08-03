@@ -1,15 +1,14 @@
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import context from '../../context'
 import retrieveUser from '../../logic/retrieveUser'
 import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
-import Test from "../components/teacher/Test"
+import CreateTest from "../components/teacher/CreateTest"
 
 function TeacherHome(props) {
     console.log('TeacherHome->render')
 
-    const viewModal = useState()
-    const modal = viewModal[0]
-    const setModal = viewModal[1]
+    const [homeView,setHomeView] = useState()
+
 
     const userState = useState() //null
     const user = userState[0]
@@ -31,6 +30,19 @@ function TeacherHome(props) {
 
         props.onLoggedOutClick()
     }
+    //--------------
+    const handleTestsList = () => {
+       /*  try {
+                retrieveTestsList(context.token)
+                .then(testsList => setTest(testsList))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        } */
+    }
+    const handleCreateTest = () => {
+        setHomeView('create-test')
+    }
     //--------------------------------------------
     const userId = extractUserIdFromToken(context.token)
 
@@ -38,13 +50,25 @@ function TeacherHome(props) {
         <header className="home-header">
             <h1 className="home-title">Welcome, {user ? user.name : 'User'} </h1>
             <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
-        </header>
 
-        <Test></Test>
+            <button className="home-create-test-button" onClick={handleCreateTest}>New test</button>
+            <button className="home-list-tests-button" onClick={handleTestsList} >List tests</button> 
+            
+        </header>
+        
+
+
+         {homeView === 'create-test' && <CreateTest />} 
+        
+
+
+    
+
+       
 
 
         <footer className="home-footer">
-            <button className="home-create-post-button" /* onClick={handleCreatePostModal} */>New test</button>
+            
         </footer>
     </div>
 }

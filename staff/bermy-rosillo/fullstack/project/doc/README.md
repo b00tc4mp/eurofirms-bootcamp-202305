@@ -55,8 +55,11 @@ Answer
 ## project planning
 ## tasks
 ### TODO
-- logics (register user, login , home) in app
+- student home interface
 
+### IN PROGRESS
+- teacher home
+- create test interface
 ### DONE
 - data model
 - figma
@@ -64,6 +67,9 @@ Answer
 - authenticate user test / api
 - retrieve user test / api
 - interfaces in app (register user, login , home)
+- logic register user, login , home in app
+- logic retrieve user in app
+- logic extractRoleFromToken
 
  
 
