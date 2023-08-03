@@ -397,7 +397,7 @@ a {
 .description-profile {
   color:#d35400;
   font-weight: bold;
-  border-bottom: solid black 2px;
+  border-bottom: solid grey 2px;
   padding-bottom: 10px;
   padding-left: 10px;
   margin: 0;
@@ -407,7 +407,7 @@ a {
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
-  border-bottom: solid 2px;
+  border-bottom: solid grey 2px;
 }
 
 .explorer {
@@ -498,7 +498,7 @@ a {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-bottom: solid 1px gainsboro;
+  border-bottom: solid 2px grey;
   margin: 5px;
 }
 

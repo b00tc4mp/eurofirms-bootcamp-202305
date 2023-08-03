@@ -23,12 +23,17 @@ export default function Messages() {
         navigate(`/profile/${userIdProfile}/posts`)
     }
 
+    const handleNavigateChat = (event, chatId) => {
+        event.preventDefault()
+        navigate(`/messages/${chatId}`)
+    }
+
     return <section className="all-chats">
-        {chats?.map(chat => <article key={chat.id} className="chat">
+        {chats?.map(chat => <article onClick={(event) => handleNavigateChat(event, chat.id)} key={chat.id} className="chat">
             <div className="users-chat">
                 {chat.users.map(user => <article key={user.id} className="user-image-name">
                     <img className="profile-image-post" src={user.image} alt="user profile image" />
-                    <a onClick={(event) => handleProfile(event, user.id)} className="text-post" href="#">{user.name}</a>
+                    <a onClick={(event) => handleProfile(event, user.id)} className="text-post" href="">{user.name}</a>
                 </article>)}
             </div>
             <p className="text-chat">{chat.messages[chat.messages.length - 1]?.text}</p>

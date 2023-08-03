@@ -3,6 +3,7 @@ const { validateId } = require("../helpers/validators");
 
 function retrieveChat(userId, chatId) {
     validateId(userId)
+    validateId(chatId)
 
     return Chat.findById(chatId, '-__v')
     .populate('users', 'name image').sort({date: -1}).lean()
