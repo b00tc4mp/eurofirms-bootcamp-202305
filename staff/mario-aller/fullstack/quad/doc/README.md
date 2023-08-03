@@ -140,3 +140,10 @@ Area where items are placed
 ## Planning
 
 - See [Trello](https://trello.com/b/ogoAH6mE/quad-scrum)
+
+
+## Others README
+
+- [App](../app/README.md)
+- [Api](../api/README.md)
+- [Opt](../opt/README.md)
