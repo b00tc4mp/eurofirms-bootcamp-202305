@@ -2,7 +2,7 @@ const {User ,Chat, Message} = require('../../data/models')
 const { validateId, validateText } = require('../helpers/validators')
 const { ObjectId } = require('mongodb')
 
-function createChatWithMessage(userId, othersUsers, text) {
+function sendMessageAndCreateChat(userId, othersUsers, text) {
     validateId(userId)
     validateText(text)
 
@@ -34,4 +34,4 @@ function createChatWithMessage(userId, othersUsers, text) {
         .then(() => { })
     };
 
-module.exports = createChatWithMessage
+module.exports = sendMessageAndCreateChat
