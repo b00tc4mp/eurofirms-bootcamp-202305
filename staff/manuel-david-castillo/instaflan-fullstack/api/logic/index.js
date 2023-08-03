@@ -4,6 +4,7 @@ module.exports = {
     deletePost: require('./post-logic/deletePost'),
     editPost: require('./post-logic/editPost'),
     editUser: require('./user-logic/editUser'),
+    retrieveChat: require('./chats-logic/retrieveChat'),
     retrieveChats: require('./chats-logic/retrieveChats'),
     registerUser: require('./user-logic/registerUser'),
     retrieveFavPosts: require('./post-logic/retrieveFavPosts'),

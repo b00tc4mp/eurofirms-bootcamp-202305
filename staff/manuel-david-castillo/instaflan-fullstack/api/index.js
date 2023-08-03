@@ -12,6 +12,7 @@ const {authenticateUser,
     editPost,
     editUser,
     registerUser, 
+    retrieveChat,
     retrieveChats,
     retrieveFavPosts,
     retrievePost,
@@ -327,6 +328,24 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 toggleFavPost(userId, postId)
                 .then(() => res.status(200).json().send())
                 .catch(error => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.get('/chats/:chatId', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {chatId} = req.params
+
+                retrieveChat(userId, chatId)
+                .then((chats)=> res.json(chats))
+                .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})
             }
