@@ -137,7 +137,7 @@ function Home({onLoggedOut}) {
                             <p>{meetup.text}</p>
 
                             {meetup.author.id === userId && <>
-                                <button className="button" onClick={() => handleEditMeetupClick(meeetup.id)}>Edit</button>
+                                <button className="button" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
                                 <button className="button" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
                             </>
                             }
