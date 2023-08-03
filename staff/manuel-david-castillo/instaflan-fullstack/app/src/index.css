@@ -485,3 +485,37 @@ a {
 .user-search {
   padding: 5px 10px;
 }
+
+.all-chats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 85px;
+  width: 100%;
+}
+
+.chat {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid 1px gainsboro;
+  margin: 5px;
+}
+
+.users-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user-image-name {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.text-chat {
+  margin: 5px;
+  margin-left: 10px;
+}

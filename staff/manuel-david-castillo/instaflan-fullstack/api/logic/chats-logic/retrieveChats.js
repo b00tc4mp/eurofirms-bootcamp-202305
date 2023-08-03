@@ -13,6 +13,9 @@ function retrieveChats(userId) {
             chat.id = chat._id
             delete chat._id
 
+            const index = chat.users.findIndex(user => user._id.toString() === userId)
+            chat.users.splice(index, 1)
+
             chat.users.forEach(user =>{
                 if(user._id) {
                     user.id = user._id
