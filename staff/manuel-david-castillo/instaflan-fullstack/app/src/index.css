@@ -379,10 +379,18 @@ a {
 .profile-image-name {
   display: flex;
   align-items: center;
+  
+}
+
+.user-buttons-profile {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px
 }
 
 .edit-profile-button {
-  width: 120px;
+  width: 90px;
   height: 33px;
 }
 

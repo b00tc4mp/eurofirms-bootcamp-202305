@@ -6,14 +6,12 @@ function sendMessageAndCreateChat(userId, othersUsers, text) {
     validateId(userId)
     validateText(text)
 
-    const arrayUsers = othersUsers.match(/[^\[\]"]+/g)
-
-    arrayUsers.forEach(user => {
+    othersUsers.forEach(user => {
             validateId(user)
         })
 
     const users = [new ObjectId(userId)]
-    arrayUsers.forEach(userId => users.push(new ObjectId(userId)))
+    othersUsers.forEach(userId => users.push(new ObjectId(userId)))
 
     return User.findById(userId).lean()
     .then((user) => {

@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 
 import EditUserModal from "../modals/EditUserModal";
+import SendMessageModal from "../modals/SendMessageModal";
 import ProfilePosts from "./ProfilePosts";
 import ProfileFavPosts from "./ProfileFavPosts";
 
@@ -35,7 +36,7 @@ export default function Profile() {
     }, [userIdProfile])
 
     const handleEditUserModal = () => setModal('edit-user-modal')
-    const handleCancelEditUserModal = () => setModal(null)
+    const handleCancelModal = () => setModal(null)
     const handleEditUser = () => {
         try {
             retrieveUserById(context.token, userIdProfile)
@@ -73,6 +74,8 @@ export default function Profile() {
         }
     }
 
+    const handleSendMessageModal = () => setModal('send-message-modal')
+
     return <section className="profile">
         <div className="profile-image-name-button">
             <div className="profile-image-name">
@@ -80,9 +83,13 @@ export default function Profile() {
                 <h3 className="name-post">{userProfile?.name}</h3>
             </div>
             {user?.name === userProfile?.name ?
-                <button onClick={handleEditUserModal} className="button button-modal edit-profile-button">Edit profile</button>
+                <button onClick={handleEditUserModal} className="button button-modal">Edit profile</button>
                 :
-                <button onClick={handleFollowUser} className="button button-modal edit-profile-button">{userProfile?.followed ? 'Unfollow' : 'Follow'}</button>}
+                <div className="user-buttons-profile">
+                    <button onClick={handleFollowUser} className="button button-modal edit-profile-button">{userProfile?.followed ? 'Unfollow' : 'Follow'}</button>
+                    <button onClick={handleSendMessageModal} className="button button-modal edit-profile-button">Direct</button>
+                </div>
+            }
         </div>
         <p className="description-profile">{userProfile?.description}</p>
         <div className="two-buttons-profile">
@@ -95,6 +102,7 @@ export default function Profile() {
             <Route path='/fav-posts' element={<ProfileFavPosts />} />
         </Routes>
 
-        {modal === "edit-user-modal" && <EditUserModal onEditUser={handleEditUser} onHideEditUser={handleCancelEditUserModal} />}
+        {modal === "edit-user-modal" && <EditUserModal onEditUser={handleEditUser} onHideEditUser={handleCancelModal} />}
+        {modal === "send-message-modal" && <SendMessageModal onHideSendMessage={handleCancelModal} />}
     </section >
 }
