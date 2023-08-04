@@ -8,9 +8,17 @@ function registerUser(name, nickname, email, phone, password) {
     validatePhone(phone)
     validatePassword(password)
 
-    return User.findOne({ email, phone })
+    return User.findOne({ $or: [
+        {email},
+         {phone}, 
+         {nickname}
+     ]})
         .then(user => {
-            if (user) throw new Error('User already exists')
+            if (user){
+                if(user.email === email) throw new Error('User already exists')
+                else if(user.nickname === nickname) throw new Error('Nickname already exists')
+                else if(user.phone === phone) throw new Error('Phone already exists')
+            }
 
             return User.create({ name, nickname, email, phone, password })
         })

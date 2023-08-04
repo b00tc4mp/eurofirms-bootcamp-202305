@@ -6,20 +6,14 @@ const mongoose = require('mongoose')
 const {
     registerUser,
     authenticateUser,
-    retrieveUser,
-    createPost,
-    retrievePosts,
-    updatePost,
-    deletePost,
-    retrievePost,
-    toggleFavPost
+    updateProfileBio
 } = require('./logic')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 
 const {MONGODB_URL, PORT, JWT_SECRET} = process.env
 
-mongoose.connect(`${MONGODB_URL}/data`)
+mongoose.connect(`${MONGODB_URL}/projectTest`)
     .then(()=>{
 
         const api = express()
@@ -41,10 +35,10 @@ mongoose.connect(`${MONGODB_URL}/data`)
         api.post('/users', jsonBodyParser, (req, res) =>{
             try {
             
-            const { name, email, password } = req.body
+            const { name, nickname, email, phone, password } = req.body
 
             
-                registerUser(name, email, password)
+                registerUser(name, nickname, email, phone, password)
                 .then(() => {res.status(201).send()})
                 .catch((error) => res.status(400).json({error: error.message}) )
             } catch (error) {

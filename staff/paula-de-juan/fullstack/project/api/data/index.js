@@ -27,11 +27,9 @@ const user = new Schema({
     },
     image: {
         type: String,
-        required: true,
     },
     bio: {
         type: String,
-        required: true,
     },
     createdDate: {
         type: Date,
@@ -42,7 +40,7 @@ const user = new Schema({
             type: String
         }
     ],
-    songs: [
+    bands: [
         {
             type: String
         }
@@ -52,7 +50,7 @@ const user = new Schema({
             type: String
         }
     ],
-    bands:[
+    songs:[
         {
             type: String
         }

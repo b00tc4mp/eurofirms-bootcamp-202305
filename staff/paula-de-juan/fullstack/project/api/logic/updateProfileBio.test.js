@@ -1,9 +1,10 @@
 require('dotenv').config()
-const registerUser = require('./registerUser')
+const updateProfileBio = require('./updateProfileBio')
 const mongoose = require('mongoose')
 
+
 mongoose.connect(`${process.env.MONGODB_URL}/projectTest`)
-    .then(() => registerUser('Amy', 'AmyWinehouse', 'amy@winehouse.com', '655115432', 'backtoblack'))
-                .then(() => console.log('user created'))
+    .then(() => updateProfileBio('64ccca0142bb1d2542b6d54b', 'En Monterey Pop Festival la lie parda'))
+    .then(() => console.log('bio updated'))
     .catch(error => console.error(error))
     .finally(() => mongoose.disconnect())
