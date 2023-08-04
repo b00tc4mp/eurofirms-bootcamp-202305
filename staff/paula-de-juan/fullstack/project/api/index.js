@@ -6,7 +6,10 @@ const mongoose = require('mongoose')
 const {
     registerUser,
     authenticateUser,
-    updateProfileBio
+    updateProfileBio,
+    updateProfileEmail,
+    updateProfileImage,
+    updateProfilePhone,
 } = require('./logic')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
@@ -85,7 +88,7 @@ mongoose.connect(`${MONGODB_URL}/projectTest`)
             }
        })
 
-       api.post('/posts', jsonBodyParser, (req, res) => {
+       api.post('/users/bio', jsonBodyParser, (req, res) => {
         try {
             const { authorization } = req.headers
             
@@ -95,16 +98,38 @@ mongoose.connect(`${MONGODB_URL}/projectTest`)
 
             const userId = data.sub
 
+            const { text } = req.body
 
-            const { image, text } = req.body
-
-            createPost(userId, image, text)
+            updateProfileBio(userId, text)
                 .then(() => res.status(201).send())
                 .catch(error => res.status(400).json({ error: error.message }))
         } catch (error) {
             res.status(400).json({ error: error.message })
         }
     })
+
+    api.post('/users/image', jsonBodyParser, (req, res) => {
+        try {
+            const { authorization } = req.headers
+            
+            const token = authorization.slice(7)
+
+            const data = jwt.verify(token, JWT_SECRET)
+
+            const userId = data.sub
+
+            const { image } = req.body
+
+            updateProfileImage(userId, image)
+                .then(() => res.status(201).send())
+                .catch(error => res.status(400).json({ error: error.message }))
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    })
+
+
+
 
     api.get('/posts', (req, res) => {
         try {
@@ -125,7 +150,7 @@ mongoose.connect(`${MONGODB_URL}/projectTest`)
         }
     })
 
-    api.patch('/posts/:postId', jsonBodyParser, (req, res) => {
+    api.patch('/users/email', jsonBodyParser, (req, res) => {
         try {
             const { authorization } = req.headers
             const token = authorization.slice(7)
@@ -134,11 +159,28 @@ mongoose.connect(`${MONGODB_URL}/projectTest`)
 
                 const userId = data.sub
 
-            const { postId } = req.params
+            const { email } = req.body
 
-            const { image, text } = req.body
+            updateProfileEmail(userId, email)
+                .then(() => res.status(204).send())
+                .catch(error => res.status(400).json({error: error.message}))
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    })
 
-            updatePost(userId, postId, image, text)
+    api.patch('/users/phone', jsonBodyParser, (req, res) => {
+        try {
+            const { authorization } = req.headers
+            const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+            const { phone } = req.body
+
+            updateProfilePhone(userId, phone)
                 .then(() => res.status(204).send())
                 .catch(error => res.status(400).json({error: error.message}))
         } catch (error) {
