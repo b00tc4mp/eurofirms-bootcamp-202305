@@ -1,76 +1,66 @@
 import React, { useState, useEffect } from 'react'
+import retrieveUser from '../../logic/retrieveUser'
 import LoginModal from '../modals/LoginModal'
 import RegisterModal from '../modals/RegisterModal'
 import context from '../../context'
 
 const Home = () => {
         const [modal, setModal] = useState(null)
-        const [showSignInButton, setShowSignInButton] = useState(true)
-        const [showCloseButton, setShowCloseButton] = useState(false)
-        const [showLogoutButton, setShowLogoutButton] = useState(false)
-        const [token, setToken] = useState(null)
+        const [user, setUser] = useState(null)
 
         useEffect(() => {
-                // Retrieve the token from sessionStorage on component mount
-                const storedToken = context.token;
-                setToken(storedToken);
-        })
+                try {
+                        context.token && retrieveUser(context.token)
+                                .then(user => setUser(user))
+                                .catch(error => alert(error.message))
+                } catch (error) { alert(error.message) }
+        }, [context.token])
 
         const handleNavigateToRegister = event => {
                 event.preventDefault()
                 setModal('register')
-                setShowSignInButton(false)
-                setShowCloseButton(true)
         }
 
         const handleNavigateToLogin = event => {
                 event.preventDefault()
                 setModal('login')
-                setShowSignInButton(false)
-                setShowCloseButton(true)
         }
 
         const handleClose = event => {
                 event.preventDefault()
                 setModal(null)
-                setShowSignInButton(true)
-                setShowCloseButton(false)
         }
 
-        const handleRegisterSuccess = () => {
+        const handleLoggedSuccess = () => {
                 setModal(null)
-                setShowLogoutButton(true)
-                setShowCloseButton(false)
         }
 
         const handleLogout = event => {
                 event.preventDefault()
-                                context.token = null
-                setShowLogoutButton(false)
+                context.token = null
                 setModal('login')
-                setShowSignInButton(false)
-                setShowCloseButton(true)
         }
 
         return (
                 <div className="home">
                         <header className="home-header">
-                                <p>Read, write, and talking!</p>
-                                {showSignInButton && (
+                                {!modal && !context.token && (
                                         <button type="button" onClick={handleNavigateToLogin} id="login">
                                                 Sign in
                                         </button>
                                 )}
-                                {showCloseButton && (
+                                {modal && (
                                         <button type="button" onClick={handleClose}>Close</button>
                                 )}
-                                {showLogoutButton && (
-                                <button type="button" onClick={handleLogout}>Logout</button>)}
-                                {modal === 'login' && <LoginModal onRegisterSuccess={handleRegisterSuccess} onNavigateToRegister={handleNavigateToRegister} />}
-                                {modal === 'register' && <RegisterModal onRegisterSuccess={handleRegisterSuccess} onNavigateToLogin={handleNavigateToLogin} />}
+                                {context.token && (<h3>Hi, {user?.nickname}!</h3>)}
+                                {context.token && (
+                                        <button type="button" onClick={handleLogout}>Logout</button>)}
+                                {modal === 'login' && <LoginModal onRegisterSuccess={handleLoggedSuccess} onNavigateToRegister={handleNavigateToRegister} />}
+                                {modal === 'register' && <RegisterModal onRegisterSuccess={handleLoggedSuccess} onNavigateToLogin={handleNavigateToLogin} />}
                         </header>
                         <main>
-                                <h1>Hello!{token}</h1>
+                                <h1>Read, write, and talking!</h1>
+                                <p>"Writing is the painting of the voice", Voltaire.</p>
                         </main>
                         <footer></footer>
                 </div>

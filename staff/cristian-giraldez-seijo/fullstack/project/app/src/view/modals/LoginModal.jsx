@@ -2,7 +2,7 @@ import React from 'react'
 import authenticateUser from '../../logic/authenticateUser'
 import context from '../../context'
 
-const LoginModal = ({ onNavigateToRegister, onRegisterSuccess }) => {
+const LoginModal = ({ onNavigateToRegister, onRegisterSuccess: onLoggedSuccess }) => {
 
     const handleNavigateToRegister = event => {
         event.preventDefault()
@@ -18,7 +18,7 @@ const LoginModal = ({ onNavigateToRegister, onRegisterSuccess }) => {
             authenticateUser(email, password)
                 .then((token) => {
                     context.token = token
-                    onRegisterSuccess()
+                    onLoggedSuccess()
                 })
                 .catch(error => alert(error.message))
         } catch (error) { alert(error.message) }

@@ -56,5 +56,5 @@ Comment
 - DONE implement app login component
 - DONNE implement api retrieve user logic
 - DONE implement api route for retrieve user
-- TODO implement app retrieve user logic
-- TODO implement retrieve user on app Home
+- DONE implement app retrieve user logic
+- DONE implement retrieve user on app Home
