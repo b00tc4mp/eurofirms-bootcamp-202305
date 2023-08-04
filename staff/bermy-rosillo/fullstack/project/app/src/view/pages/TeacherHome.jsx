@@ -7,7 +7,7 @@ import CreateTest from "../components/teacher/CreateTest"
 function TeacherHome(props) {
     console.log('TeacherHome->render')
 
-    const [homeView,setHomeView] = useState()
+    const [homeView, setHomeView] = useState()
 
 
     const userState = useState() //null
@@ -32,13 +32,13 @@ function TeacherHome(props) {
     }
     //--------------
     const handleTestsList = () => {
-       /*  try {
-                retrieveTestsList(context.token)
-                .then(testsList => setTest(testsList))
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        } */
+        /*  try {
+                 retrieveTestsList(context.token)
+                 .then(testsList => setTest(testsList))
+                 .catch(error => alert(error.message))
+         } catch (error) {
+             alert(error.message)
+         } */
     }
     const handleCreateTest = () => {
         setHomeView('create-test')
@@ -50,25 +50,13 @@ function TeacherHome(props) {
         <header className="home-header">
             <h1 className="home-title">Welcome, {user ? user.name : 'User'} </h1>
             <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
-
-            <button className="home-create-test-button" onClick={handleCreateTest}>New test</button>
-            <button className="home-list-tests-button" onClick={handleTestsList} >List tests</button> 
-            
         </header>
-        
 
-
-         {homeView === 'create-test' && <CreateTest />} 
-        
-
-
-    
-
-       
-
+        {homeView === 'create-test' && <CreateTest userName={user.name} />}
 
         <footer className="home-footer">
-            
+            <button className="home-create-test-button" onClick={handleCreateTest}>New test</button>
+            <button className="home-list-tests-button" onClick={handleTestsList} >List tests</button>
         </footer>
     </div>
 }

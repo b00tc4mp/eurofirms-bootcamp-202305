@@ -178,4 +178,12 @@ button:hover {
 }
 .create-test-view{
     margin-top: 60px;
+   
+}
+.create-test-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }

@@ -9,12 +9,12 @@ const bodyParser = require('body-parser')
 const registerUser = require('./logic/registerUser')
 const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
-
+const createTest = require('./logic/createTest')
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
 mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
     .then(() => {
-        
+
         const api = express()
 
         const jsonBodyParser = bodyParser.json()
@@ -23,10 +23,10 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
         //manejador de respuestas
         api.post('/users', jsonBodyParser, (req, res) => {
-            const { name, password,email,role } = req.body
+            const { name, password, email, role } = req.body
 
             try {
-                registerUser(name,password,email,role)
+                registerUser(name, password, email, role)
                     .then(() => { res.status(201).send() })
                     .catch((error) => res.status(400).json({ error: error.message }))
 
@@ -44,8 +44,8 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                         //se crea un obj y se guarda el id
                         const data = { sub: user.id, role: user.role }
                         //creo el token y convierto el obj a json con sign
-                        const token = jwt.sign(data,process.env.JWT_SECRET)
-                        
+                        const token = jwt.sign(data, process.env.JWT_SECRET)
+
                         res.json(token)
                     })
                     .catch(error => {
@@ -62,7 +62,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 const authorization = req.headers.authorization
 
                 const token = authorization.slice(7)
-                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
                 const userId = data.sub
 
                 retrieveUser(userId)
@@ -76,7 +76,24 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
             }
         })
-     
+        //---
+        api.post('/tests', jsonBodyParser, (req, res) => {
+            try {
+                const authorization = req.headers.authorization
+                const token = authorization.slice(7)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
+                const userId = data.sub
+                const {subject,title,description,attemps} = req.body
+
+                createTest(subject, title, description, userId, attemps)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+
+        })
+
         //retrievePosts
         /*api.get('/posts', (req, res) => {
             const authorization = req.headers.authorization
@@ -115,5 +132,5 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
         })*/
 
 
-        api.listen(process.env.PORT , () => console.log(`API running in PORT ${process.env.PORT}`))
+        api.listen(process.env.PORT, () => console.log(`API running in PORT ${process.env.PORT}`))
     })
