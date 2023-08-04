@@ -59,7 +59,7 @@ const story = new Schema({
     },
     origin: {
 type: ObjectId,
-ref: Story
+ref: 'Story'
     },
     question: {
         type: String,
@@ -73,7 +73,7 @@ ref: Story
         }],
     links: [{
         type: ObjectId,
-        ref: Story
+        ref: 'Story'
     }],
     islink: {
         type: Boolean,
@@ -81,7 +81,7 @@ ref: Story
     },
     linkstory: {
         type: ObjectId,
-        ref: Story
+        ref: 'Story'
     },
     datecreated: {
         type: Date,
