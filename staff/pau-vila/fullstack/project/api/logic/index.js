@@ -3,7 +3,9 @@ module.exports = {
     authenticateUser: require('./authenticateUser'),
     retrieveUser: require('./retrieveUser'),
     createArtwork: require('./createArtwork'),
-    retrieveArtwork: require('./retrieveArtwork')
-    
-
+    retrieveArtwork: require('./retrieveArtwork'),
+    retrieveArtworks: require('./retrieveArtworks'),
+    deleteArtwork: require('./deleteArtwork'),
+    toggleFavArtwork: require('./toggleFavArtwork'),
+    updateArtwork: require('./updateArtwork')
 }

@@ -1,6 +1,6 @@
 require('dotenv').config
 const mongoose = require('mongoose')
-const { User, Post } = require('./index')
+const { User, artwork, workshop } = require('./index')
 
 mongoose.connect(`${process.env.MONGODB_URL}/tornorecicla`)
     .then(() => {

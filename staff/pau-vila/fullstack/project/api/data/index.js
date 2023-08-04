@@ -54,9 +54,9 @@ const artwork = new Schema({
         required: true
     },
      date: {
-        type: String,
+        type: Date,
         required: true,
-        default: Date.now()
+        default: Date.now
 
     },
     

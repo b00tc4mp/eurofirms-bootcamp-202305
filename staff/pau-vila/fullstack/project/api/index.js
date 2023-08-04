@@ -12,6 +12,7 @@ const {
     updateArtwork,
     deleteArtwork,
     retrieveArtworks,
+    toggleFavArtwork,
     createWorkshop,
     updateWorkshop,
     deleteWorkshop,
@@ -94,9 +95,7 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const data = jwt.verify(token, JWT_SECRET)
-
-                const userId = data.sub
+                const userId = jwt.verify(token, JWT_SECRET).sub
 
                 const { image, description, typeWork, typeMaterial } = req.body
 
@@ -126,7 +125,80 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
             }
         })
 
+        api.get('/artworks', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
 
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                retrieveArtworks(userId)
+                    .then((artworks) => res.json(artworks))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+        api.patch('/artworks/:artworkId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                const { artworkId } = req.params
+
+                const { image, description } = req.body
+
+                updateArtwork(userId, artworkId, image, description)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.delete('/artworks/:artworkId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                const { artworkId } = req.params
+
+                deleteArtwork(userId, artworkId)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+        
+        api.put('/artworks/:artworkId/favs', (req, res) => {
+            try {
+            const { authorization } = req.headers
+            const token = authorization.slice(7)
+
+            const data = jwt.verify(token, JWT_SECRET)
+
+            const userId = data.sub
+            const {artworkId} = req.params
+
+            toggleFavArtwork(userId, artworkId)
+                .then (() => res.status(204).send())
+                .catch(error => res.status(400).json({ error: error.message}))
+        } catch (error) {
+            res.status(400).json({ error: error.message})
+        }
+        })
 
         api.listen(PORT, () => console.log(`API running in port ${PORT}`))
 

@@ -66,7 +66,7 @@ function validateText(description) {
 }
 
 function validateDate(date) {
-    if (typeof date !== 'string') throw new Error('date is not a string')
+    if (typeof date !== 'date') throw new Error('date is not a date')
     if (date === '') throw new Error('date is empty')
 }
 
