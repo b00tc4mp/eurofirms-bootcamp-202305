@@ -520,3 +520,22 @@ a {
   margin: 5px;
   margin-left: 10px;
 }
+
+
+
+.input-and-button {
+  position: absolute;
+  bottom: 70px;
+  display: flex;
+  justify-content: space-around; 
+  padding: 10px;
+  width: 93%;
+}
+
+.input-send-message {
+  border-radius: 25px;
+  width: 90%;
+  border: 3px solid;
+  margin-right: 10px;
+  padding-left: 10px;
+}
