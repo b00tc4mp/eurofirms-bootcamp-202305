@@ -521,10 +521,8 @@ a {
   margin-left: 10px;
 }
 
-
-
 .input-and-button {
-  position: absolute;
+  position: fixed;
   bottom: 70px;
   display: flex;
   justify-content: space-around; 
@@ -538,4 +536,30 @@ a {
   border: 3px solid;
   margin-right: 10px;
   padding-left: 10px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 10px;
+  padding-bottom: 120px;
+}
+
+.message-user {
+  margin-left: 15%;
+  display: flex;
+  justify-content: end;
+}
+
+.message-other-user {
+  margin-right: 15%;
+  display: flex;
+}
+
+.message-text {
+  margin: 5px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  background-color:#f9e79f;
+  width: auto
 }
