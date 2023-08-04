@@ -1,5 +1,6 @@
 module.exports = {
     authenticateUser: require('./user-logic/authenticateUser'),
+    createChat: require('./chats-logic/createChat'),
     createPost: require('./post-logic/createPost'),
     deletePost: require('./post-logic/deletePost'),
     editPost: require('./post-logic/editPost'),
@@ -16,7 +17,7 @@ module.exports = {
     retrieveUserById: require('./user-logic/retrieveUserById'),
     retrieveUsersNotFollowed: require('./user-logic/retrieveUsersNotFollowed'),
     searchUser: require('./user-logic/searchUser'),
-    sendMessageAndCreateChat: require('./chats-logic/sendMessageAndCreateChat'),
+    /* sendMessageAndCreateChat: require('./chats-logic/sendMessageAndCreateChat'), */
     toggleFavPost: require('./post-logic/toggleFavPost'),
     toggleFollowUser: require('./user-logic/toggleFollowUser')
 }

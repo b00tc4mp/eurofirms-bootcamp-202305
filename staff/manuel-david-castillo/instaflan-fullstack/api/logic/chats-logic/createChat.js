@@ -1,10 +1,9 @@
 const { Chat } = require("../../data/models");
-const { validateId, validateText } = require("../helpers/validators");
+const { validateId } = require("../helpers/validators");
 const { ObjectId } = require('mongodb')
 
-function createChat(userId, othersUsers, text) {
+function createChat(userId, othersUsers) {
     validateId(userId)
-    validateText(text)
 
     othersUsers.forEach(user => {
         validateId(user)

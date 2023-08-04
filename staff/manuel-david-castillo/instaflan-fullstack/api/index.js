@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
 const {authenticateUser, 
+    createChat,
     createPost, 
     deletePost,
     editPost,
@@ -23,7 +24,6 @@ const {authenticateUser,
     retrieveUserById,
     retrieveUsersNotFollowed,
     searchUser,
-    sendMessageAndCreateChat,
     toggleFavPost,
     toggleFollowUser
     } = require('./logic/index')
@@ -333,6 +333,25 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
             }
         })
 
+
+        api.post('/chats', jsonBodyParser, (req, res)=>{
+            try{
+                const { authorization } = req.headers 
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {othersUsers} = req.body
+
+                createChat(userId, othersUsers)
+                .then((chatId)=> {res.json(chatId)})
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
         api.get('/chats/:chatId', (req, res) => {
             try {
                 const {authorization} = req.headers
@@ -367,23 +386,7 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
             }
         })
 
-        api.post('/chats', jsonBodyParser, (req, res)=>{
-            try{
-                const { authorization } = req.headers 
-                const token = authorization.slice(7)
-
-                const data = jwt.verify(token, JWT_SECRET)
-                const userId = data.sub
-
-                const {othersUsers, text} = req.body
-
-                sendMessageAndCreateChat(userId, othersUsers, text)
-                .then(()=> {res.status(201).send()})
-                .catch((error) => res.status(400).json({error: error.message}))
-            } catch (error) {
-                res.status(400).json({error: error.message})
-            }
-        })
+        
 
         api.listen(PORT, () => console.log('Servidor lanzado en puerto 8000'))
     })
