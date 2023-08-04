@@ -10,12 +10,15 @@ import createChat from "../../logic/createChat";
 import retrieveUserById from "../../logic/retrieveUserById";
 import toggleFollowUser from "../../logic/toggleFollowUser";
 import { AppContext } from "../../AppContext";
+import extractUserIdFromToken from "../helpers/extractUserIdFromToken";
 
 export default function Profile() {
+    console.log('profile')
     const navigate = context.navigate
 
     const params = useParams()
     const { userIdProfile } = params
+    const userId = extractUserIdFromToken(context.token)
 
     const [modal, setModal] = useState(null)
 
@@ -23,6 +26,10 @@ export default function Profile() {
     const [userProfile, setUserProfile] = useState(null)
 
     useEffect(() => {
+        if (userIdProfile === userId) {
+            setUserProfile(user)
+            return
+        }
         try {
             retrieveUserById(context.token, userIdProfile)
                 .then(userProfile => {
@@ -76,7 +83,7 @@ export default function Profile() {
 
     const handleSendMessageModal = () => {
         try {
-            createChat(context.token, [userIdProfile])
+            createChat(context.token, userIdProfile)
                 .then(chatId => {
                     console.log(chatId)
                     return navigate(`/messages/${chatId}`)

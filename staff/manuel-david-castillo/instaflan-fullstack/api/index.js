@@ -343,9 +343,9 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
-                const {othersUsers} = req.body
+                const {otherUser} = req.body
 
-                createChat(userId, othersUsers)
+                createChat(userId, otherUser)
                 .then((chatId)=> {res.json(chatId)})
                 .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
