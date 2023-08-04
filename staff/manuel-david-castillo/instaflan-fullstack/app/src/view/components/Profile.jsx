@@ -2,11 +2,11 @@ import { useEffect, useState, useContext } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 
 import EditUserModal from "../modals/EditUserModal";
-import SendMessageModal from "../modals/SendMessageModal";
 import ProfilePosts from "./ProfilePosts";
 import ProfileFavPosts from "./ProfileFavPosts";
 
 import context from "../../context";
+import createChat from "../../logic/createChat";
 import retrieveUserById from "../../logic/retrieveUserById";
 import toggleFollowUser from "../../logic/toggleFollowUser";
 import { AppContext } from "../../AppContext";
@@ -74,7 +74,18 @@ export default function Profile() {
         }
     }
 
-    const handleSendMessageModal = () => setModal('send-message-modal')
+    const handleSendMessageModal = () => {
+        try {
+            createChat(context.token, [userIdProfile])
+                .then(chatId => {
+                    console.log(chatId)
+                    return navigate(`/messages/${chatId}`)
+                })
+                .catch((error) => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     return <section className="profile">
         <div className="profile-image-name-button">
