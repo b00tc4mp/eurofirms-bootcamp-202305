@@ -20,16 +20,22 @@ class Panel {
 
         // Panel limits
         const origin = new Dimension2D(0, 0)
+        console.log('Está en el panel', pos.intoArea(origin, this.size))
         if (!pos.intoArea(origin, this.size)) return false
 
-        // Check if it is inside another item
-        const intoItem = this.blocks.some(b => {
-            if (b.isPlaced()) {
-                const posEnd = b.orientation ? b.pos.add(b.size) : b.pos.add(b.size.tr())
-                return pos.intoArea(b.pos, posEnd)
-            } else { return false }
+        // Check if it is inside any placed block
+        const intoBlock = this.blocks.some(block => {
+            if (block.isPlaced()) {
+                const posEnd = (block.orientation === 0) ? block.pos.add(block.size) : block.pos.add(block.size.tr())
+                console.log('blockpos', block.pos.x.value, '-', block.pos.y.value)
+                console.log('posEnd', posEnd.x.value, '-', posEnd.y.value)
+                const d = pos.intoArea(block.pos, posEnd)
+                console.log('pos', pos.x.value, '-', pos.y.value,'>',d)
+                if (d) return true
+            }
+            return false
         })
-        return !intoItem
+        return !intoBlock
     }
     // Check if all blocks are placed
     blocskPlacedAll() {
@@ -40,28 +46,28 @@ class Panel {
         if (!(pos instanceof Dimension2D)) throw new Error('pos !Dimension2D in quadFree')
         if (typeof quad !== 'number') throw new Error('quad isNaN in quadFree')
 
-        const vert = new Dimension2D(pos.x.value, pos.y.value)
+        const vertex = new Dimension2D(pos.x.value, pos.y.value)
         switch (quad) {
             case Panel.QUADRANT_I:
-                vert.x.value++
-                vert.y.value++
+                vertex.x.value++
+                vertex.y.value++
                 break
             case Panel.QUADRANT_II:
-                vert.x.value--
-                vert.y.value++
+                vertex.x.value--
+                vertex.y.value++
                 break
             case Panel.QUADRANT_III:
-                vert.x.value--
-                vert.y.value--
+                vertex.x.value--
+                vertex.y.value--
                 break
             case Panel.QUADRANT_IV:
-                vert.x.value++
-                vert.y.value--
+                vertex.x.value++
+                vertex.y.value--
                 break
             default:
                 throw new Error('wrong quadrant')
         }
-        return this.posFree(vert)
+        return this.posFree(vertex)
     }
     // Return de max height of a panel
     heightMax() {

@@ -22,7 +22,6 @@ class Dimension2D {
     // Return the addition of pos to 'this'
     add(pos) {
         if (!(pos instanceof Dimension2D)) throw new Error('pos !Dimension2D in add')
-
         return new Dimension2D(this.x.value + pos.x.value, this.y.value + pos.y.value)
     }
     // Check if 'this' is between 'pos1' and 'pos2'
@@ -31,10 +30,10 @@ class Dimension2D {
         if (!(pos2 instanceof Dimension2D)) throw new Error('pos2 !Dimension2D in intoArea')
 
         return (
-            this.x.value > pos1.x.value &&
-            this.x.value < pos2.x.value &&
-            this.y.value > pos1.y.value &&
-            this.y.value < pos2.y.value
+            this.x.value >= pos1.x.value &&
+            this.x.value <= pos2.x.value &&
+            this.y.value >= pos1.y.value &&
+            this.y.value <= pos2.y.value
         )
     }
 }

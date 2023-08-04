@@ -3,10 +3,16 @@ const { Dimension2D, Block, Panel } = require('../classes')
 
 const cep = function (panelInit) {
     // Copy Panel
-    // console.count('Nesting')
-    const blocksList = panelInit.blocks.map(({ pos, size, orientation }) => {
-        return new Block(pos.x.toNumber(), pos.y.toNumber(), size.x.toNumber(), size.y.toNumber(), orientation)
-    })
+    console.count('Nesting')
+    const blocksList = panelInit.blocks.map(({ pos, size, orientation }) =>
+        new Block(
+            pos.x.value,
+            pos.y.value,
+            size.x.value,
+            size.y.value,
+            orientation
+        )
+    )
     const panel = new Panel(
         panelInit.reference,
         panelInit.owner,
@@ -30,10 +36,9 @@ const cep = function (panelInit) {
     } else {
         // Vertex calculation
         const vertexs = []
-        if (!panel.blocks.some(block => block.isPlaced())) vertexs.push(new Dimension2D(0n, 0n))
-
+        vertexs.push(new Dimension2D(0n, 0n))
         panel.blocks.forEach(block => {
-            if (!block.isPlaced()) {
+            if (block.isPlaced()) {
                 let widthBlk, heightBlk
                 if (block.orientation === 0) {
                     widthBlk = block.size.x.value
@@ -42,7 +47,6 @@ const cep = function (panelInit) {
                     widthBlk = block.size.y.value
                     heightBlk = block.size.x.value
                 }
-                vertexs.push(new Dimension2D(block.pos.x.value, block.pos.y.value))
                 vertexs.push(new Dimension2D(block.pos.x.value + widthBlk, block.pos.y.value))
                 vertexs.push(new Dimension2D(block.pos.x.value + widthBlk, block.pos.y.value + heightBlk))
                 vertexs.push(new Dimension2D(block.pos.x.value, block.pos.y.value + heightBlk))
@@ -102,8 +106,8 @@ const cep = function (panelInit) {
                             }
                 }
             })
-        }
-}
+        })
+    }
 }
 
 const optimizePanel = function () {

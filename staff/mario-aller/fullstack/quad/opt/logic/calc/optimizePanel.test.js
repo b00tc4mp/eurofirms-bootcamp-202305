@@ -9,7 +9,7 @@ try {
         .then(panel => {
             context.mainPanel = panel
             
-            console.log(context.mainPanel)
+            // console.log(context.mainPanel)
 
             optimizePanel()
         })
