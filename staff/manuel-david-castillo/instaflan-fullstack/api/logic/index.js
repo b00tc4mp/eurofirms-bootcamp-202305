@@ -17,7 +17,7 @@ module.exports = {
     retrieveUserById: require('./user-logic/retrieveUserById'),
     retrieveUsersNotFollowed: require('./user-logic/retrieveUsersNotFollowed'),
     searchUser: require('./user-logic/searchUser'),
-    /* sendMessageAndCreateChat: require('./chats-logic/sendMessageAndCreateChat'), */
+    sendMessage: require('./chats-logic/sendMessage'),
     toggleFavPost: require('./post-logic/toggleFavPost'),
     toggleFollowUser: require('./user-logic/toggleFollowUser')
 }

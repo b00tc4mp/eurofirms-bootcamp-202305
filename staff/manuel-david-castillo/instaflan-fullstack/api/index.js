@@ -24,6 +24,7 @@ const {authenticateUser,
     retrieveUserById,
     retrieveUsersNotFollowed,
     searchUser,
+    sendMessage,
     toggleFavPost,
     toggleFollowUser
     } = require('./logic/index')
@@ -386,7 +387,25 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
             }
         })
 
-        
+        api.post('/chats/:chatId', jsonBodyParser, (req, res)=>{
+            try{
+                const { authorization } = req.headers 
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {chatId} = req.params 
+
+                const {text} = req.body
+
+                sendMessage(userId, chatId, text)
+                .then((chatId)=> {res.json(chatId)})
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
 
         api.listen(PORT, () => console.log('Servidor lanzado en puerto 8000'))
     })
