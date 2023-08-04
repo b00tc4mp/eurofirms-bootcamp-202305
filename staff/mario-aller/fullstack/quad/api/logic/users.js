@@ -1,5 +1,5 @@
-const { UserModel } = require('../data')
-const { validateString } = require('./helpers')
+const { models: { UserModel } } = require('dat')
+const { validators: { validateString } } = require('com')
 /**
  * The function registers a new user by validating the input data and creating a new user in the
  * database if the user does not already exist.
@@ -71,7 +71,7 @@ function updateUser(userId, name, surname, zip) {
     validateString(zip, validateString.INTEGER)
 
     return UserModel.findById(userId, '_id')
-        .then( user => {
+        .then(user => {
             if (!user) throw new Error('User do not exists')
 
             user.name = name
@@ -84,8 +84,8 @@ function updateUser(userId, name, surname, zip) {
 }
 
 module.exports = {
-    registerUserModel,
-    authenticateUserModel,
-    retrieveUserModel,
+    registerUser,
+    authenticateUser,
+    retrieveUser,
     updateUser
 }

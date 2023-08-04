@@ -63,6 +63,17 @@ class Panel {
         }
         return this.posFree(vert)
     }
+    // Return de max height of a panel
+    heightMax() {
+        let height = 0n
+        this.blocks.forEach((block => {
+            if (block.isPlaced()) {
+                const heightBlock = (block.orientation === 0) ? block.size.y.value : block.size.x.value
+                if (block.pos.y + heightBlock > height) height = block.pos.y + heightBlock
+            }
+        }))
+        return height
+    }
 }
 
 Panel.QUADRANT_I = 1

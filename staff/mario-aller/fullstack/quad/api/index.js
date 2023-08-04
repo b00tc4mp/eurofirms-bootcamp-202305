@@ -7,7 +7,7 @@ const {
 } = process.env
 
 // Modules
-const mongoose = require('mongoose')
+const { mongoose } = require('dat')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -200,4 +200,3 @@ mongoose.connect(MONGOOSE_URL)
 
         api.listen(API_PORT, () => console.log(`API working in port ${API_PORT} ...`))
     })
-    

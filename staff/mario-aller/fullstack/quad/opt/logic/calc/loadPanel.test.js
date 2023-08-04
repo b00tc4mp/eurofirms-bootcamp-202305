@@ -1,4 +1,4 @@
-const context = require('../context')
+const context = require('../../context')
 const { loadPanel } = require('./loadPanel')
 
 const panelId = '64c7d65750067e34034f5d2d'

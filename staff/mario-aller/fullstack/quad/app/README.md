@@ -1,16 +1,10 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-
 # app
 
 ## To execute the app
-Run
-- place in app root directory ~/quad/app
-- npm run dev (and 'o' option)
+
+Place in app root directory ~/quad/app
+
+```sh
+npm run dev
+```
+To open the browser navigator press key 'o'

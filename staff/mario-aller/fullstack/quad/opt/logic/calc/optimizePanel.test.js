@@ -4,12 +4,12 @@ const { optimizePanel } = require('./optimizePanel')
 
 const panelId = '64c7d65750067e34034f5d2d'
 
-console.log(panelId)
-
 try {
     loadPanel(panelId)
         .then(panel => {
             context.mainPanel = panel
+            
+            console.log(context.mainPanel)
 
             optimizePanel()
         })
