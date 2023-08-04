@@ -5,6 +5,6 @@
 Place in app root directory ~/quad/app
 
 ```sh
-npm run dev
+./bin/app.sh
 ```
 To open the browser navigator press key 'o'

@@ -6,14 +6,11 @@ MONGOOSE_URL = mongodb address
 
 ## Modules to be installed previosly
 - dotenv
-- mongoose
+- dat
 
 ## To execute the optimization
-Run
-- place in opt root directory ~/quad/opt
-- 
+Place in opt root directory ~/quad/opt
 
-Debug
-- place in opt root directory ~/quad/opt
-- 
-
+```sh
+./bin/opt.sh
+```

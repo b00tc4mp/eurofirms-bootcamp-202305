@@ -13,13 +13,12 @@ MONGOOSE_URL = mongodb address
 - dotenv
 - express
 - jsonwebtoken
-- mongoose
+- dat
 
 ## To execute the api
-Run
-- place in api root directory ~/quad/api
-- npm start
 
-Debug
-- place in api root directory ~/quad/api
-- npm run debug
+Place in api root directory ~/quad/api
+
+```sh
+./bin/api.sh
+```

@@ -1,17 +1,10 @@
 // Enviroment
 require('dotenv').config()
-const {
-    MONGOOSE_URL
-} = process.env
+const { MONGOOSE_URL } = process.env
 
 // Modules
-const mongoose = require('mongoose')
+const { mongoose, models: { PanelModel } } = require('dat')
 
-// User defined modules
-const { UserModel, PanelModel } = require('./data')
-const { Dimension, Dimension2D, Block, Panel } = require('./logic/classes')
-const { loadPanel, optimizePanel } = require('./logic/calc')
-const { sleep, display } = require('./logic/helpers')
 
 // main
 mongoose.connect(MONGOOSE_URL)
