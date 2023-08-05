@@ -1,5 +1,7 @@
 import createTest from '../../../logic/createTest'
+//import TeacherHome from '../../pages/TeacherHome'
 import context from '../../../context'
+import { useState } from 'react'
 function CreateTest(props) {
     console.log('Create test->render')
    
@@ -13,14 +15,18 @@ function CreateTest(props) {
             const attemps = event.target.attemps.value
            
             createTest(context.token, subject,title,description,attemps)
-            .then(()=>alert('Created test'))
+            .then(()=>{
+                alert('Created test')
+                props.onReturnHome() //vuelvo al teacherHome
+            })
             .catch(error=>alert(error.message))
+
         }catch(error){
             alert(error.message)
     
         }
     }
-
+    //---
     return <main className="create-test-view">
         <h1>Create Test</h1>
 
@@ -46,7 +52,7 @@ function CreateTest(props) {
             <button type="submit" >Create</button>
         </form>
     </main>
-
+    
 }
 
 export default CreateTest

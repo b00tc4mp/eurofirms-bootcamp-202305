@@ -59,7 +59,7 @@ Answer
 
 ### IN PROGRESS
 - teacher home
-- create test interface
+
 ### DONE
 - data model
 - figma
@@ -70,6 +70,8 @@ Answer
 - logic register user, login , home in app
 - logic retrieve user in app
 - logic extractRoleFromToken
+- create test interface
+- logic create Test
 
  
 

@@ -43,6 +43,9 @@ function TeacherHome(props) {
     const handleCreateTest = () => {
         setHomeView('create-test')
     }
+    const handleOnReturnHome =()=>{
+        setHomeView(null)
+    }
     //--------------------------------------------
     const userId = extractUserIdFromToken(context.token)
 
@@ -52,7 +55,7 @@ function TeacherHome(props) {
             <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
         </header>
 
-        {homeView === 'create-test' && <CreateTest userName={user.name} />}
+        {homeView === 'create-test' && <CreateTest userName={user.name} onReturnHome={handleOnReturnHome} />}
 
         <footer className="home-footer">
             <button className="home-create-test-button" onClick={handleCreateTest}>New test</button>
