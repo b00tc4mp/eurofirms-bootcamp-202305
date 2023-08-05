@@ -24,7 +24,8 @@ const savePanel = function (panelId) {
                              orientation : block.orientation
                             }
                     })
-                    panelRetrieved.status = 5
+                    panelRetrieved.status = 2
+                    panelRetrieved.date = new Date()
                     return panelRetrieved.save()
                 })
         })

@@ -1,27 +1,29 @@
 const context = require('../../context')
 const { Dimension2D, Block, Panel } = require('../classes')
 
-const cep = function (panelInit) {
-    // Copy Panel
+const cep = function (panel) {
     console.count('Nesting')
-    const blocksList = panelInit.blocks.map(({ pos, size, orientation }) =>
-        new Block(
-            pos.x.value,
-            pos.y.value,
-            size.x.value,
-            size.y.value,
-            orientation
-        )
-    )
-    const panel = new Panel(
-        panelInit.reference,
-        panelInit.owner,
-        panelInit.size.x.value,
-        panelInit.size.y.value,
-        blocksList,
-        3
-    )
+
+    // Copy Panel
+    // const blocksList = panelInit.blocks.map(({ pos, size, orientation }) =>
+    //     new Block(
+    //         pos.x.value,
+    //         pos.y.value,
+    //         size.x.value,
+    //         size.y.value,
+    //         orientation
+    //     )
+    // )
+    // const panel = new Panel(
+    //     panelInit.reference,
+    //     panelInit.owner,
+    //     panelInit.size.x.value,
+    //     panelInit.size.y.value,
+    //     blocksList,
+    //     3
+    // )
     // Check if panel is finished
+
     if (panel.blocskPlacedAll()) {
         panel.status = 4
         if (!context.heightBlocks) context.heightBlocks = panel.size.y.value + 1n
@@ -54,7 +56,7 @@ const cep = function (panelInit) {
         })
         // Place free blocks
         vertexs.forEach(vertex => {
-            panel.blocks.forEach(block => {
+            panel.blocks.forEach((block, indexBlock) => {
                 if (!block.isPlaced()) {
                     const posIni = new Dimension2D(vertex.x.value, vertex.y.value)
                     for (let quadrant = 1; quadrant < 5; quadrant++)
@@ -96,12 +98,29 @@ const cep = function (panelInit) {
                                         }
                                     if (!validBlock) break
                                 }
-                                // Place block
+                                // Place block in new panel
                                 if (validBlock) {
-                                    block.pos.x.value = posIni.x.value
-                                    block.pos.y.value = posIni.y.value
-                                    block.orientation = rotation
-                                    cep(panel)
+                                    const blocksList2 = panel.blocks.map(({ pos, size, orientation }) =>
+                                        new Block(
+                                            pos.x.value,
+                                            pos.y.value,
+                                            size.x.value,
+                                            size.y.value,
+                                            orientation
+                                        )
+                                    )
+                                    const panel2 = new Panel(
+                                        panel.reference,
+                                        panel.owner,
+                                        panel.size.x.value,
+                                        panel.size.y.value,
+                                        blocksList2,
+                                        3
+                                    )
+                                    panel2.blocks[indexBlock].pos.x.value = posIni.x.value
+                                    panel2.blocks[indexBlock].pos.y.value = posIni.y.value
+                                    panel2.blocks[indexBlock].orientation = rotation
+                                    cep(panel2)
                                 }
                             }
                 }

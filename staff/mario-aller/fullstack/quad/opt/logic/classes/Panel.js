@@ -74,7 +74,7 @@ class Panel {
         this.blocks.forEach((block => {
             if (block.isPlaced()) {
                 const heightBlock = (block.orientation === 0) ? block.size.y.value : block.size.x.value
-                if (block.pos.y + heightBlock > height) height = block.pos.y + heightBlock
+                if (block.pos.y.value + heightBlock > height) height = block.pos.y.value + heightBlock
             }
         }))
         return height

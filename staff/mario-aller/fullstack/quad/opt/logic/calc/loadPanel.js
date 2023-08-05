@@ -12,20 +12,20 @@ const loadPanel = function (panelId) {
     return mongoose.connect(MONGOOSE_URL)
         .then(() => {
             return PanelModel.findOne({ _id: panelId })
-                .then(panelRetreived => {
-                    if (!panelRetreived) throw new Error('panel does not exist')
+                .then(panelRetrieved => {
+                    if (!panelRetrieved) throw new Error('panel does not exist')
 
-                    const blocks = panelRetreived.blocks.map(({ x, y, width, height, orientation }) => {
+                    const blocks = panelRetrieved.blocks.map(({ x, y, width, height, orientation }) => {
                         return new Block(x, y, width, height, orientation)
                     })
 
                     const panelMemory = new Panel(
-                        panelRetreived.reference,
-                        panelRetreived.owner,
-                        panelRetreived.width,
-                        panelRetreived.height,
+                        panelRetrieved.reference,
+                        panelRetrieved.owner,
+                        panelRetrieved.width,
+                        panelRetrieved.height,
                         blocks,
-                        panelRetreived.status
+                        panelRetrieved.status
                     )
                     context.mainPanel = panelMemory
                 })
