@@ -1,19 +1,21 @@
-/* Global Scope */
 
 const context = {
-    set userId(value){  
-        if (value === null){
-            delete sessionStorage.userId
-        } else {
-        sessionStorage.userId = value
+    set token(token) {
+        if (token) {
+            sessionStorage.token = token
+
+            return
         }
+
+        delete sessionStorage.token
     },
 
-    get userId(){
-        if (sessionStorage.userId){
-            return sessionStorage.userId
-        }       
-    return null
+    get token() {
+        if (sessionStorage.token)
+            return sessionStorage.token
+
+        return null
     }
 }
+
 export default context

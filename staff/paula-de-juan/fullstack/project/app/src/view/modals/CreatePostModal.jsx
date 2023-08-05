@@ -11,7 +11,7 @@ function CreatePostModal({ onCreatePostCancelled, onPostCreated}){
         const text = event.target.text.value
 
         try {
-            createPost(context.userId, image, text)
+            createPost(context.token, image, text)
                 .then(() => onPostCreated())
                 .catch(error => alert(error.message))
         } catch (error) {
