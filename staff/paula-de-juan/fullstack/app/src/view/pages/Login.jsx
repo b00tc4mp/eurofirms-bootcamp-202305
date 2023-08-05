@@ -1,52 +1,49 @@
-import context from '../../context'
 import authenticateUser from '../../logic/authenticateUser'
+import context from '../../context'
 
+function Login({ onRegisterClick, onLoggedIn }) {
+    console.log('Login -> render')
 
-function Login({onRegisterClick, onLoggedIn}) {
-  const handleRegisterClick = event => {
-    event.preventDefault()
+    const handleRegisterClick = event => {
+        event.preventDefault()
 
-    onRegisterClick()
-  }
-
-  const handleLoginSubmit = event => {
-    event.preventDefault()
-
-    const email = event.target['login-email'].value
-    const password = event.target['login-password'].value
-
-    try {
-      authenticateUser(email, password)
-        .then(userId => {
-
-          context.userId = userId
-
-          onLoggedIn()
-        })
-        .catch(error => alert(error.message))
-    } catch (error) {
-      alert(error.message)
+        onRegisterClick()
     }
-  }
 
-  return <main className="login-view">
-    <h1>Login</h1>
-    <form action="submit" className="login-form" onSubmit={handleLoginSubmit} >
-      <label htmlFor="login-email" type="text">Email</label>
-      <input type="text" name="email" id="login-email" placeholder="e-mail" />
+    const handleLoginSubmit = event => {
+        event.preventDefault()
 
-      <label htmlFor="login-password" type="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="login-password"
-        placeholder="password"
-      />
+        const email = event.target.email.value
+        const password = event.target.password.value
 
-      <button type="submit">Login</button>
-    </form>
-    <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick} >Register</a></p>
-  </main>
+        try {
+            authenticateUser(email, password)
+                .then(token => {
+                    context.token = token
 
+                    onLoggedIn()
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    return <main className="flex flex-col items-center">
+        <h1>Login</h1>
+
+        <form className="flex flex-col" onSubmit={handleLoginSubmit}>
+            <label htmlFor="email">E-mail</label>
+            <input id="email" type="email" />
+
+            <label htmlFor="password">Password</label>
+            <input id="password" type="password" />
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Go to <a href="" onClick={handleRegisterClick}>Register</a></p>
+    </main>
 }
+
 export default Login

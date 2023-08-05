@@ -1,5 +1,5 @@
-function updatePost(userId, postId, image, text) {
-    if (typeof userId !== 'string') throw new Error('userId is not a string')
+function updatePost(token, postId, image, text) {
+    if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof postId !== 'string') throw new Error('postId is not a string')
     if (typeof image !== 'string') throw new Error('image is not a string')
     if (typeof text !== 'string') throw new Error('text is not a string')
@@ -7,7 +7,7 @@ function updatePost(userId, postId, image, text) {
     return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         method: 'PATCH',
         headers: {
-            Authorization: `Bearer ${userId}`,
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ image, text })

@@ -1,7 +1,8 @@
-import context from '../../context'
 import registerUser from '../../logic/registerUser'
 
-function Register(props){
+function Register(props) {
+    console.log('Register -> render')
+
     const handleLoginClick = event => {
         event.preventDefault()
 
@@ -9,43 +10,39 @@ function Register(props){
     }
 
     const handleRegisterSubmit = event => {
-          event.preventDefault()
+        event.preventDefault()
 
-          const name = event.target['register-name'].value
-          const email = event.target['register-email'].value
-          const password = event.target['register-password'].value
+        const name = event.target.name.value
+        const email = event.target.email.value
+        const password = event.target.password.value
 
-        const result = registerUser(name, email, password)
-
-        if (result === false){
-            alert ('User already registered')
-        } else {
-            props.onRegistered()
+        try {
+            registerUser(name, email, password)
+                .then(() => props.onRegistered())
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
         }
     }
 
+    return <main className="flex flex-col items-center">
+        <h1>Register</h1>
 
+        <form className="flex flex-col" onSubmit={handleRegisterSubmit}>
+            <label htmlFor="name">Name</label>
+            <input id="name" type="text"></input>
 
-    return <main className="register-view">
-    <h1>Register</h1>
-    <form action="submit" className="register-form" onSubmit={handleRegisterSubmit}>
-      <label htmlFor="register-name">Name</label>
-      <input type="text" name="name" id="register-name" placeholder="Name"></input>
-      <label htmlFor="register-email" type="text">Email</label>
-      <input
-        type="text"
-        name="email"
-        id="register-email"
-        placeholder="e-mail"></input>
-      <label htmlFor="register-password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="register-password"
-        placeholder="password"></input>
-      <button type="submit">Register</button>
-    </form>
-    <p>Go to <a className="register-login-link" href=""     onClick={handleLoginClick}>Login</a></p>
-  </main>
+            <label htmlFor="email">E-mail</label>
+            <input id="email" type="email"></input>
+
+            <label htmlFor="password">Password</label>
+            <input id="password" type="password"></input>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
+    </main>
 }
+
 export default Register

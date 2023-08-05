@@ -1,9 +1,9 @@
-function retrieveUser(userId) {
-if (typeof userId !== 'string') throw new Error ('userId is not a string')
+function retrieveUser(token) {
+if (typeof token !== 'string') throw new Error ('token is not a string')
 
 return fetch(`${import.meta.env.VITE_API_URL}/users`, {
     headers: {
-        Authorization: `Bearer ${userId}`
+        Authorization: `Bearer ${token}`
     }
 })
     .then(res => {

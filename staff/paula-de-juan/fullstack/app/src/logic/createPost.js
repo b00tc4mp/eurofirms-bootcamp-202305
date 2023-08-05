@@ -1,5 +1,5 @@
-function createPost(userId, image, text) {
-    if (typeof userId !== 'string') throw new Error('userId is not a a string')
+function createPost(token, image, text) {
+    if (typeof token !== 'string') throw new Error('userId is not a a string')
     if (typeof image !== 'string') throw new Error('image is not a string')
     if (typeof text !== 'string') throw new Error('text is not a string')
     
