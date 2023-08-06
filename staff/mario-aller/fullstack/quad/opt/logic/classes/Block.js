@@ -18,6 +18,18 @@ class Block {
     isPlaced() {
         return !this.pos.x.isNegative()
     }
+    // Return the coor of block end point taking into orientation
+    coorEnd() {
+        let width, height
+        if (this.orientation === 0) {
+            width = this.size.x.value
+            height = this.size.y.value
+        } else {
+            width = this.size.y.value
+            height = this.size.x.value
+        }
+        return new Dimension2D(this.pos.x.value + width, this.pos.y.value + height)
+    }
 }
 
 Block.REGULAR = 0

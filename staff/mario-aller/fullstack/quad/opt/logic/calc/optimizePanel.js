@@ -6,20 +6,22 @@ const cep = function (panel) {
     context.times++
     console.log('Nesting:', context.nesting, '> Times:', context.times)
 
+    const heightMax = panel.heightMax()
+    const widthMax = panel.widthMax()
+
     if (panel.blocskPlacedAll()) {
         panel.status = 4
         if (!context.heightBlocks) context.heightBlocks = panel.size.y.value + 1n
 
         // Save Panel if blocks height is lower
-        const heightPanel = panel.heightMax()
-        if (heightPanel < context.heightBlocks) {
+        if (heightMax < context.heightBlocks) {
             context.optPanel = panel
-            context.heightBlocks = heightPanel
+            context.heightBlocks = heightMax
         }
         context.nesting -= 1
         return
     } else {
-        // Vertex calculation
+        // Regular Vertex calculation
         const vertexs = []
         vertexs.push(new Dimension2D(0n, 0n))
         panel.blocks.forEach(block => {
@@ -37,7 +39,43 @@ const cep = function (panel) {
                 vertexs.push(new Dimension2D(block.pos.x.value, block.pos.y.value + heightBlk))
             }
         })
-        // Clean duplicated vertexs if exist
+        // Add vertexs outside blocks area
+        vertexs.push(new Dimension2D(widthMax, heightMax))
+        vertexs.push(new Dimension2D(0n, heightMax))
+        vertexs.push(new Dimension2D(widthMax, 0n))
+
+        // Add medium point for each placed block
+        for (let i = 0; i < panel.blocks.length; i++) {
+            const block = panel.blocks[i]
+            if (block.isPlaced()) {
+                const posIni = block.pos
+                const posEnd = block.coorEnd()
+                for (let j = 0; j < panel.blocks.length; j++) {
+                    const block2 = panel.blocks[j]
+                    if (j !== i && block2.isPlaced()) {
+                        const posIni2 = block2.pos
+                        const posEnd2 = block2.coorEnd()
+                        if (posIni.x.value > posIni2.x.value && posIni.x.value < posEnd2.x.value) {
+                            vertexs.push(new Dimension2D(posIni.x.value,posIni2.y.value))
+                            vertexs.push(new Dimension2D(posIni.x.value,posEnd2.y.value))                 
+                        }
+                        if (posEnd.x.value > posIni2.x.value && posEnd.x.value < posEnd2.x.value) {
+                            vertexs.push(new Dimension2D(posEnd.x.value,posIni2.y.value))
+                            vertexs.push(new Dimension2D(posEnd.x.value,posEnd2.y.value))                 
+                        }
+                        if (posIni.y.value > posIni2.y.value && posIni.y.value < posEnd2.y.value) {
+                            vertexs.push(new Dimension2D(posIni2.x.value,posIni.y.value))
+                            vertexs.push(new Dimension2D(posEnd2.x.value,posIni.y.value))                 
+                        }
+                        if (posEnd.y.value > posIni2.y.value && posEnd.y.value < posEnd2.y.value) {
+                            vertexs.push(new Dimension2D(posIni2.x.value,posEnd.y.value))
+                            vertexs.push(new Dimension2D(posEnd2.x.value,posEnd.y.value))                 
+                        }
+                    }
+                }
+            }
+        }
+        // Clean duplicated vertexs if there is anyone
         for (let i = 0; i < vertexs.length; i++) {
             const x = vertexs[i].x.value
             const y = vertexs[i].y.value

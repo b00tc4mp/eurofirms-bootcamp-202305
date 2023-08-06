@@ -29,7 +29,9 @@ const resetPanel = function (panelId) {
                     )
                     context.mainPanel = panelMemory
                     context.optPanel = null
-
+                    context.nesting = 0
+                    context.times = 0
+                
                     panelRetrieved.blocks = panelMemory.blocks.map(block => {
                         return {
                              x: block.pos.x.toNumber(),
