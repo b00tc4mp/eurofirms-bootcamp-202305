@@ -79,6 +79,17 @@ class Panel {
         }))
         return height
     }
+    // Return de max width of a panel
+    widthMax() {
+        let width = 0n
+        this.blocks.forEach((block => {
+            if (block.isPlaced()) {
+                const widthBlock = (block.orientation === 0) ? block.size.x.value : block.size.y.value
+                if (block.pos.x.value + widthBlock > width) width = block.pos.x.value + widthBlock
+            }
+        }))
+        return width
+    }
 }
 
 Panel.QUADRANT_I = 1

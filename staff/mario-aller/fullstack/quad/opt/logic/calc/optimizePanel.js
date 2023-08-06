@@ -2,27 +2,9 @@ const context = require('../../context')
 const { Dimension2D, Block, Panel } = require('../classes')
 
 const cep = function (panel) {
-    console.count('Nesting')
-
-    // Copy Panel
-    // const blocksList = panelInit.blocks.map(({ pos, size, orientation }) =>
-    //     new Block(
-    //         pos.x.value,
-    //         pos.y.value,
-    //         size.x.value,
-    //         size.y.value,
-    //         orientation
-    //     )
-    // )
-    // const panel = new Panel(
-    //     panelInit.reference,
-    //     panelInit.owner,
-    //     panelInit.size.x.value,
-    //     panelInit.size.y.value,
-    //     blocksList,
-    //     3
-    // )
-    // Check if panel is finished
+    context.nesting++
+    context.times++
+    console.log('Nesting:', context.nesting, '> Times:', context.times)
 
     if (panel.blocskPlacedAll()) {
         panel.status = 4
@@ -34,6 +16,7 @@ const cep = function (panel) {
             context.optPanel = panel
             context.heightBlocks = heightPanel
         }
+        context.nesting -= 1
         return
     } else {
         // Vertex calculation
@@ -54,6 +37,16 @@ const cep = function (panel) {
                 vertexs.push(new Dimension2D(block.pos.x.value, block.pos.y.value + heightBlk))
             }
         })
+        // Clean duplicated vertexs if exist
+        for (let i = 0; i < vertexs.length; i++) {
+            const x = vertexs[i].x.value
+            const y = vertexs[i].y.value
+            for (j = i + 1; j < vertexs.length; j++)
+                if (x === vertexs[j].x.value && y === vertexs[j].y.value) {
+                    vertexs.splice(j, 1)
+                    j--
+                }
+        }
         // Place free blocks
         vertexs.forEach(vertex => {
             panel.blocks.forEach((block, indexBlock) => {
