@@ -1,5 +1,4 @@
-//to do tester
-function retrieveTestsList(token) {
+function retrieveTeacherListTests(token) {
     if (typeof token !== 'string') throw new Error('token is not a string')
 
     return fetch(`${import.meta.env.VITE_API_URL}/tests`, {
@@ -24,4 +23,4 @@ function retrieveTestsList(token) {
     })
 
 }
-export default retrieveTestsList
+export default retrieveTeacherListTests

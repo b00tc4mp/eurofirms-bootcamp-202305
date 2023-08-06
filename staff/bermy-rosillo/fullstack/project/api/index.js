@@ -10,6 +10,7 @@ const registerUser = require('./logic/registerUser')
 const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
 const createTest = require('./logic/createTest')
+const retrieveTeacherListTests  = require('./logic/retrieveTeacherListTests')
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
 mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
@@ -93,6 +94,22 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
             }
 
         })
+        //--
+        api.get('/tests', jsonBodyParser, (req, res) => {
+            try {
+                const authorization = req.headers.authorization
+                const token = authorization.slice(7)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
+                const userId = data.sub
+                //const {subject,title,description,attemps} = req.body
+
+                retrieveTeacherListTests(userId)
+                    .then((tests) => res.json(tests))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })    
 
         //retrievePosts
         /*api.get('/posts', (req, res) => {
