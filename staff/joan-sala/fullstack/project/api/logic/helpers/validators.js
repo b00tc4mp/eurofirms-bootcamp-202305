@@ -83,11 +83,11 @@ function validateUrl(url) {
  * The function `validateVideo` checks if a given URL is a valid video URL.
  * @param url - The `url` parameter is a string that represents the URL of a video.
  */
-function validateVideo(url) {
+/*function validateVideo(url) {
     if (typeof url !== 'string') throw new Error('url is not a string')
     if (url === '') throw new Error('url is empty')
     if (!url.startsWith('http')) throw new Error('url does not start with http')
-}
+}*/
 
 /**
  * The function `validateText` checks if a given input is a non-empty string.
@@ -107,5 +107,5 @@ module.exports = {
     validateName,
     validateId,
     validateUrl,
-    validateText
+    validateText,
 }

@@ -42,7 +42,7 @@ const meetup = new Schema({
     },
     video: {
         type: String,
-    //     required: optional
+        optional: true
     },
     //description
     text: {

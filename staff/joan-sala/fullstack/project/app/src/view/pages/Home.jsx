@@ -118,20 +118,20 @@ function Home({onLoggedOut}) {
 
     const userId = extractUserIdFromToken(context.token) //importante el context
 
-    //'key={post.id}' se utiliza para asignar una clave única a cada elemento de una lista o conjunto de componentes renderizados dinámicamente. Esto ayuda a React a realizar actualizaciones eficientes en la lista al identificar los cambios en los elementos y evitar renderizaciones innecesarias
+    //'key={post.id}' para asignar una clave única a cada elemento de una lista o conjunto de componentes renderizados dinámicamente. Ayuda a React a realizar actualizaciones eficientes en la lista al identificar los cambios en los elementos y evitar renderizaciones innecesarias
     return (
-        <div className="home-view">
+        <div className="fixed top-0 h-[3rem] home-view">
             <header className="home-header">
-                <h1 className="home-title">{user ? user.name : 'World'}!</h1>
+                <h1 className="home-title">{user ? user.name : 'World'}</h1>
 
                 <button className="home-logout-button" onClick={handleLogoutClick}>Logout</button>
             </header>
         
-            <main className="home-main">
-                <section className="home-meetups">
-                    {meetups && meetups.map(meetup => <article key={meetup.id} className="home-meetup">
+            <main className="py-[3rem]">
+                <section className="flex flex-col items-center gap-10">
+                    {meetups && meetups.map(meetup => <article key={meetup.id} className="w-[65%] bg-[#eeeeee] rounded-xl p-10">
                             <h2>{meetup.author?.name}</h2>
-                            <img className="home-meetup-image"
+                            <img className="w-full"
                                 src={meetup.image}
                                 alt={meetup.text} />
                             <p>{meetup.text}</p>
@@ -145,11 +145,11 @@ function Home({onLoggedOut}) {
                         </article>)}
                 </section>
             </main>
-
-            <footer className="home-footer">
-                <button className="home-create-meetup-button" onClick={handleCreateMeetupClick}>+</button>
+                  
+            <footer className=" text-white bg-[#d9d9d9] fixed flex bottom-0 w-full h-[3rem] flex justify-center align-center">
+                <button className="border-solid border-2 bg-[#2C2A2A] br-30 p-5 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>+</button>
             </footer>
-
+          
             {modal === 'create-meetup' && <CreateMeetupModal onMeetupCreated={handleMeetupCreated} onCreateMeetupCancelled={handleCreateMeetupCancelled} />}
 
             {modal === 'edit-meetup' && <EditMeetupModal meetupId={meetupId} onMeetupEdited={handleMeetupEdited} onEditMeetupCancelled={handleEditMeetupCancelled} />}

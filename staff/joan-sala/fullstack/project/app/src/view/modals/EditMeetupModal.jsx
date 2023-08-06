@@ -6,8 +6,8 @@ import updateMeetup from '../../logic/updateMeetup'
 function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) { //Sacado del Home - linia 111  
     console.log('EditMeetupModal -> render')
 
-    //const postState = useState(null) //inicialmente el post es nuulo
-    //const post = postState[0] //posición actual   
+    //const meetupState = useState(null) //inicialmente el meetup es nuulo
+    //const meetup = postState[0] //posición actual   
     //const setPost = postState[1] //seter del estado
     const [meetup, setPost] = useState(null)
     
@@ -15,7 +15,7 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) { //
     useEffect(() =>{
         try{
             retrieveMeetup(context.token, meetupId)
-            .then(post => setPost(post))
+            .then(meetup => setPost(meetup))
             .catch(error => alert(error.message))        
         }catch(error){
               alert(error.message)
@@ -43,7 +43,7 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) { //
         <div className="home-edit-meetup-container">
             <h2>Edit meetup</h2>
  
-            {post && <form className="home-edit-meetup-form" onSubmit={handleSubmit}>
+            {meetup && <form className="home-edit-meetup-form" onSubmit={handleSubmit}>
                 <label htmlFor="image">Image</label>
                 <input id="image" type="url" defaultValue={meetup.image}></input>
 
@@ -51,7 +51,7 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) { //
                 <textarea id="text" defaultValue={meetup.text}></textarea>
 
                 <button type="submit">Save</button>
-                <button type="button" className="home-edit-post-cancel-button" onClick={handleCancelClick}>Cancel</button>
+                <button type="button" className="home-edit-meetup-cancel-button" onClick={handleCancelClick}>Cancel</button>
             </form>}
         </div>
     </div>

@@ -27,28 +27,27 @@ function Register(props) {
 
     return (
         <main className="register-view">
-            <h1>Register</h1>
+            <h1 class="text-black-900 font-extrabold text-3xl text-center">Register</h1>
 
             <form className="register-form" onSubmit={handleRegisterSubmit}>
                 <label htmlFor="name">Name</label>
-                <input id="name" type="text" alt="name"></input>
+                <input class="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="name" type="text" alt="name"></input>
 
                 <label htmlFor="email">E-mail</label>
-                <input id="email" type="email" alt="email"></input>
+                <input class="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="email" type="email" alt="email"></input>
 
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password" alt="password"></input>
+                <input class="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="password" type="password" alt="password"></input>
 
-                <label htmlFor="image">Image</label>
-                <input id="image" type="image" alt="image"></input>
+                <label htmlFor="url">Image</label>
+                <input class="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="url" type="url" alt="url"></input>
 
-                <button type="submit">Register</button>
+                <button class="home-logout-button" type="submit">Register</button>
             </form>
 
             <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
             <footer className="initial-page-footer" >
-                <p><img src="public/logo03.png" alt="MeetupBikers" width="60%" /></p>
-
+                <p><img  src="public/logo03.png" alt="MeetupBikers" width="60%" /></p>
             </footer>
         </main>
     )
