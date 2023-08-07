@@ -10,7 +10,6 @@
 html,
 body {
   box-sizing: border-box;
-  width: 100vw;
   height: 100vh;
   background-color: beige;
   font-family: sans-serif;
@@ -18,7 +17,6 @@ body {
 
 #root {
   height: 100%;
-  width: 100%;
 }
 
 /* ------ */
@@ -95,14 +93,11 @@ body {
 }
 
 .basic-head {
-  margin: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: lightgray;
   border-radius: 2rem;
-  position: fixed;
-  top: 1rem;
   box-shadow: 0.5rem 0.5rem 0.5rem darkgray;
   padding: 1rem;
   width: 70%;
@@ -203,23 +198,20 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 10fr 1fr;
-  justify-content: center;
-  align-content: center;
-
 }
 
 .home-header {
-  grid-column: 1/2;
-  grid-row: 1/2;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  padding: 2rem 0 2rem 0;
+  width: 100%;
 }
 
 .home-view {
-  grid-column: 1/2;
-  grid-row: 2/3;
-  margin-top: 1rem;
+  margin-top: 8rem;
+  padding-bottom: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -227,8 +219,6 @@ body {
 }
 
 .home-nav {
-  grid-column: 1/2;
-  grid-row: 3/4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -268,28 +258,31 @@ body {
 .panel-button {
   font-size: 2.5rem;
   margin-right: 0.3rem;
-  border:none;
+  border: none;
   justify-content: center;
   align-items: center;
   background-color: antiquewhite;
   margin: 0.2rem;
 }
+
 .panel-button-cancel {
   font-size: 1.1rem;
   margin-left: 1rem;
   justify-content: center;
   align-items: center;
-  border:none;
+  border: none;
   background-color: antiquewhite;
 }
+
 .panel-block-button {
   font-size: 1.7rem;
   margin-left: 1rem;
   justify-content: center;
   align-items: center;
-  border:none;
+  border: none;
   background-color: antiquewhite;
 }
+
 .panel-block {
   font-size: 0.9rem;
   justify-content: center;

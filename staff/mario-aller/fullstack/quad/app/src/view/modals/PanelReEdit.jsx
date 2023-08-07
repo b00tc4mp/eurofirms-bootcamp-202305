@@ -16,7 +16,7 @@ export function PanelReEdit({ onReEditedPanel, onExitModal, panelId }) {
     return <>
         {<div className="basic-modal">
             <form className="basic-form" action="submit" onSubmit={handleUpdatePost}>
-                <h4>Edit panel again</h4>
+                <h4>Duplicate panel</h4>
 
                 <div className="flex-hor">
                     <button type="submit" className="basic-button">Yes</button>

@@ -108,13 +108,21 @@ function Home({ onLogout }) {
                             {panel.status === 0 && <button className="panel-block-button" type="button" onClick={() => handleDeleteBlock(panel.id, block.id)}>🗑️</button>}
                         </div>)}
                         <footer className="flex-center">
-                            {panel.status === 0 && <button className="panel-button" type="button" onClick={() => handleCreateBlock(panel.id)}>📦</button>}
-                            {panel.status === 0 && <button className="panel-button" type="button" onClick={() => handleEditPanel(panel.id)}>📝</button>}
-                            {panel.status === 0 && <button className="panel-button" type="button" onClick={() => handleToOptimizePanel(panel.id)}>📭</button>}
-                            {panel.status === 1 && <p className="panel-button">📬</p>}
-                            {panel.status === 2 && <button className="panel-button" type="button" onClick={() => handleViewPanel(panel.id)}>🎁</button>}
-                            {panel.status === 0 && <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>}
-                            {panel.status === 2 && <button className="panel-button-cancel" type="button" onClick={() => handleReEditPanel(panel.id)}>🛠️</button>}
+                            {panel.status === 0 && <>
+                                <button className="panel-button" type="button" onClick={() => handleCreateBlock(panel.id)}>📦</button>
+                                <button className="panel-button" type="button" onClick={() => handleEditPanel(panel.id)}>📝</button>
+                                <button className="panel-button" type="button" onClick={() => handleToOptimizePanel(panel.id)}>📭</button>
+                                <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
+                            </>}
+                            {panel.status === 1 && <>
+                                <p className="panel-button">📬</p>
+                                <button className="panel-button-cancel" type="button" onClick={handleRefresh}>❓</button>
+                            </>}
+                            {panel.status === 2 && <>
+                                <button className="panel-button" type="button" onClick={() => handleViewPanel(panel.id)}>🎁</button>
+                                <button className="panel-button-cancel" type="button" onClick={() => handleReEditPanel(panel.id)}>🗄️</button>
+                                <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
+                            </>}
                         </footer>
                     </article>)}
                 </section>
@@ -123,6 +131,7 @@ function Home({ onLogout }) {
             <footer className="home-nav">
                 <div className="basic-nav">
                     <button type="button" className="basic-button" onClick={() => setModal('create-panel')}>New Panel</button>
+                    <button type="button" className="basic-button" onClick={() => setModal('create-panel')}>Optimize</button>
                     <button type="button" className="basic-button" onClick={() => setModal('edit-user')}>Edit Profile</button>
                     <button type="button" className="basic-button" onClick={handleLogout}>Salir</button>
                 </div>
