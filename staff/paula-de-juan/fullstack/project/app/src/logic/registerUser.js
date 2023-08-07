@@ -1,4 +1,4 @@
-function registerUser(name, email, password) {
+function registerUser(name, nickname, email, phone, password) {
     if (typeof name !== 'string') throw new Error ('name is not a string')
     if (typeof email !== 'string') throw new Error ('email is not a string')
     if (typeof password !== 'string') throw new Error ('password is not a string')
@@ -8,7 +8,7 @@ function registerUser(name, email, password) {
         headers:  {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ name, nickname, email, phone, password })
     })
     .then(res => {
         if (res.status === 201){

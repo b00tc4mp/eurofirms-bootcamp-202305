@@ -70,16 +70,19 @@ function Register(props) {
             </input> 
             </div>
             <div className="display-flex">
-              <button type="submit" className="background-personalized-register">Register</button>
+              <button type="submit" className="background-personalized-button1">Register</button>
             </div>
         <br/>
           <div className="text-center">
             <p className="text-sm">Do you have an account? <button onClick={handleLoginClick} type="submit"
-                className="background-personalized-login">Login</button></p>
+                className="background-personalized-button2">Login</button></p>
           </div>
         </form>
         </div>
-      </div>   
+      </div>
+      <div className="flex items-center justify-center less-margin">
+          <img src="../../../../../public/match.png" alt="legendary social network target users boy and girl" />
+        </div>   
    </main>
 }
 

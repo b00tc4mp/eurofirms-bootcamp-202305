@@ -15,7 +15,7 @@
       background-color: #F9A221;
     }
 
-    .background-personalized-register {
+    .background-personalized-button1 {
       background-color: #3785E5;
       color: white;
       padding: 10px;
@@ -23,21 +23,29 @@
       padding-right: 25px;
     }
 
-    .background-personalized-register:hover {
+    .background-personalized-button1:hover {
       background-color: blue;
     }
 
-    .background-personalized-login {
+    .background-personalized-button2 {
       background-color: #3785E5;
       color: white;
       padding: 10px;
     }
 
-    .background-personalized-login:hover {
+    .background-personalized-button2:hover {
       background-color: rgb(210, 73, 23);
     }
 
     .display-flex {
       display: flex;
       justify-content: space-around;
+    }
+
+    .position-center {
+      justify-content: center;
+    }
+
+    .less-margin {
+      margin: 0px;
     }
