@@ -8,14 +8,14 @@ function DeleteMeetupModal(props) {
 
     const handleSubmit = event => {
         event.preventDefault()
-        
-        try{
+
+       try{
             deleteMeetup(context.token, props.meetupId)
             .then(()=> props.onMeetupDeleted())
             .catch(error=> alert(error.message))
-        }catch(error){
-                alert(error.message)
-        }
+       }catch(error){
+            alert(error.message)
+       }
     }
 
     return <div className="home-delete-meetup-modal">

@@ -118,9 +118,9 @@ function Home({onLoggedOut}) {
 
     const userId = extractUserIdFromToken(context.token) //importante el context
 
-    //'key={meetup.id}' para asignar una clave única a cada elemento de una lista o conjunto de componentes
+    //'key={post.id}' para asignar una clave única a cada elemento de una lista o conjunto de componentes renderizados dinámicamente. Ayuda a React a realizar actualizaciones eficientes en la lista al identificar los cambios en los elementos y evitar renderizaciones innecesarias
     return (
-        <div className="home-view">
+        <div className="fixed top-0 h-[3rem] home-view">
             <header className="home-header">
                 <h1 className="home-title">{user ? user.name : 'World'}</h1>
 
@@ -130,20 +130,10 @@ function Home({onLoggedOut}) {
             <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10">
                     {meetups && meetups.map(meetup => <article key={meetup.id} className="w-[65%] bg-[#eeeeee] rounded-xl p-10">
-                            <h2 className="uppercase text-lg font-extrabold">{meetup.author?.name}</h2>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Image: </p>
+                            <h2>{meetup.author?.name}</h2>
                             <img className="w-full"
                                 src={meetup.image}
                                 alt={meetup.text} />
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Video: </p>
-                            <video controls className="w-full"
-                                src={meetup.video}
-                                alt={meetup.text} />
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Description: </p>
-                            <p>{meetup.text}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Adress:</p>
-                            <p> {meetup.text}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Date: </p>
                             <p>{meetup.text}</p>
 
                             {meetup.author.id === userId && <>
