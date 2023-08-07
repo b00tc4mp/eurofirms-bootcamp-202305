@@ -1,4 +1,4 @@
-import { updatePanelStatus } from '../../logic/panels'
+import { updatePanelStatusToOptimize } from '../../logic/panels'
 import context from '../../context'
 
 export function PanelToOptimize({ onToOptimizePanel, onExitModal, panelId }) {
@@ -7,7 +7,7 @@ export function PanelToOptimize({ onToOptimizePanel, onExitModal, panelId }) {
         event.preventDefault()
 
         try {
-            updatePanelStatus(context.tokenUser, panelId)
+            updatePanelStatusToOptimize(context.tokenUser, panelId)
                 .then(() => onToOptimizePanel())
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }

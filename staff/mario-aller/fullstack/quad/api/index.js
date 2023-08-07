@@ -29,7 +29,8 @@ const {
     retrievePanels,
     retrievePanelOne,
     updatePanel,
-    updatePanelStatus,
+    updatePanelStatusToOptimize,
+    updatePanelStatusReEdit,
     deletePanel,
     createBlock,
     deleteBlock
@@ -145,14 +146,27 @@ mongoose.connect(MONGOOSE_URL)
             } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
-        // updatePanelStatus
-        api.patch('/panels/status/:panelId', (req, res) => {
+        // updatePanelStatusToOptimize
+        api.patch('/panels/status/tooptimize/:panelId', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
                 const userId = jwt.verify(token, JWT_SECRET).sub
                 const { panelId } = req.params
 
-                updatePanelStatus(userId, panelId)
+                updatePanelStatusToOptimize(userId, panelId)
+                    .then(() => res.send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        // updatePanelStatusReEdit
+        api.patch('/panels/status/reedit/:panelId', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+                const { panelId } = req.params
+
+                updatePanelStatusReEdit(userId, panelId)
                     .then(() => res.send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }

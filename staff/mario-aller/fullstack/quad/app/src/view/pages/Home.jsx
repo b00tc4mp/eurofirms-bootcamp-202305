@@ -7,6 +7,7 @@ import { PanelEdit } from '../modals/PanelEdit'
 import { PanelDelete } from '../modals/PanelDelete'
 import { PanelToOptimize } from '../modals/PanelToOptimize'
 import { PanelView } from '../modals/PanelView'
+import { PanelReEdit } from '../modals/PanelReEdit'
 import { BlockCreate } from '../modals/BlockCreate'
 import { BlockDelete } from '../modals/BlockDelete'
 import { UserEdit } from '../modals/UserEdit'
@@ -50,6 +51,10 @@ function Home({ onLogout }) {
     const handleDeletePanel = (panelId) => {
         setPanelId(panelId)
         setModal('delete-panel')
+    }
+    const handleReEditPanel = (panelId) => {
+        setPanelId(panelId)
+        setModal('reedit-panel')
     }
     const handleCreateBlock = (panelId) => {
         setPanelId(panelId)
@@ -109,7 +114,7 @@ function Home({ onLogout }) {
                             {panel.status === 1 && <p className="panel-button">📬</p>}
                             {panel.status === 2 && <button className="panel-button" type="button" onClick={() => handleViewPanel(panel.id)}>🎁</button>}
                             {panel.status === 0 && <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>}
-                            {panel.status === 2 && <button className="panel-button" type="button" onClick={() => handleViewPanel(panel.id)}>🛠️</button>}
+                            {panel.status === 2 && <button className="panel-button-cancel" type="button" onClick={() => handleReEditPanel(panel.id)}>🛠️</button>}
                         </footer>
                     </article>)}
                 </section>
@@ -128,6 +133,7 @@ function Home({ onLogout }) {
             {modal === 'delete-panel' && <PanelDelete onDeletedPanel={handleRefresh} onExitModal={() => setModal(null)} panelId={panelId} />}
             {modal === 'optimize-panel' && <PanelToOptimize onToOptimizePanel={handleRefresh} onExitModal={() => setModal(null)} panelId={panelId} />}
             {modal === 'view-panel' && <PanelView onExitModal={() => setModal(null)} panelId={panelId} />}
+            {modal === 'reedit-panel' && <PanelReEdit onReEditedPanel={handleRefresh} onExitModal={() => setModal(null)} panelId={panelId} />}
             {modal === 'create-block' && <BlockCreate onCreatedBlock={handleRefresh} onExitModal={() => setModal(null)} panelId={panelId} />}
             {modal === 'delete-block' && <BlockDelete onDeletedBlock={handleRefresh} onExitModal={() => setModal(null)} panelId={panelId} blockId={blockId} />}
             {modal === 'edit-user' && <UserEdit onUpdatedUser={handleEditedUser} onExitModal={() => setModal(null)} />}

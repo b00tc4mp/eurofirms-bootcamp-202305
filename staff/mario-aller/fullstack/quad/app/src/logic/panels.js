@@ -68,11 +68,27 @@ export const updatePanel = function (token, panelId, reference, width, height) {
             else return res.json().then(body => { throw new Error(body.error) })
         })
 }
-export const updatePanelStatus = function (token, panelId) {
+export const updatePanelStatusToOptimize = function (token, panelId) {
     validateString(token)
     validateString(panelId)
 
-    return fetch(import.meta.env.VITE_API_URL + '/panels/status/' + panelId, {
+    return fetch(import.meta.env.VITE_API_URL + '/panels/status/tooptimize/' + panelId, {
+        method: 'PATCH',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(res => {
+            if (res.status === 200) return
+            else return res.json().then(body => { throw new Error(body.error) })
+        })
+}
+export const updatePanelStatusReEdit = function (token, panelId) {
+    validateString(token)
+    validateString(panelId)
+
+    return fetch(import.meta.env.VITE_API_URL + '/panels/status/reedit/' + panelId, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${token}`,
@@ -90,6 +106,21 @@ export const deletePanel = function (token, panelId) {
 
     return fetch(import.meta.env.VITE_API_URL + '/panels/' + panelId, {
         method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    })
+        .then(res => {
+            if (res.status === 200) return
+            else return res.json().then(body => { throw new Error(body.error) })
+        })
+}
+export const reEditPanel = function (token, panelId) {
+    validateString(token)
+    validateString(panelId)
+
+    return fetch(import.meta.env.VITE_API_URL + '/panels/status/' + panelId, {
+        method: 'PATCH',
         headers: {
             Authorization: `Bearer ${token}`
         },
