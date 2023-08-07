@@ -86,7 +86,7 @@ function validateAttendantsLimit(attendantsLimit) {
 }
 
 function validateOrnaments(ornaments) {
-    if (!(ornaments instanceof Array)) throw new Error('type material is not an array')
+    if (!(ornaments instanceof Array)) throw new Error('type ornaments is not an array')
 
     for (let i = 0; i < ornaments.length; i++) {
         if(typeof ornaments[i] !== 'string') throw new error(`${ornaments[i]} is not a string`)
@@ -97,6 +97,12 @@ function validateMaterial(material) {
     if (typeof material !== 'string') throw new Error ('material is not a string')
     if (typeof material === '') throw new Error ('material is empty')
 }
+
+//function validateVideo(url) {
+    //const videoURLPattern = /^(http(s)?:\/\/)?(www\.)?.+\.(mp4|avi|mkv|mov|flv)$/i;
+   // return videoURLPattern.test(url);
+ // }
+
 module.exports = {
     validateEmail,
     validateId,
@@ -109,6 +115,7 @@ module.exports = {
     validateZip,
     validateAttendantsLimit,
     validateMaterial,
-    validateOrnaments
+    validateOrnaments,
+    //validateVideo
 }
 

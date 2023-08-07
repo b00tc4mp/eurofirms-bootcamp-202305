@@ -59,15 +59,14 @@ const artwork = new Schema({
         default: Date.now
 
     },
-    
-    material:  {
+    materials:  {
         type: String, 
         required: true
     },
-    ornaments: {
-        type: [String],
+    ornaments: [{
+        type: String,
         required: true
-    }
+    }]
 })
 
 const workshop = new Schema({

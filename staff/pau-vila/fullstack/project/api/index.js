@@ -44,7 +44,7 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
         })
 
         api.post('/users', jsonBodyParser, (req, res) => {
-            const { name, email, password, date, zip, phone } = req.body
+            const { name, email, password, zip, phone } = req.body
 
             try {
                 registerUser(name, email, password, zip, phone)
@@ -90,16 +90,16 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
             }
         })
 
-        api.post('/artwork', jsonBodyParser, (req, res) => {
+        api.post('/artworks', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
                 const userId = jwt.verify(token, JWT_SECRET).sub
 
-                const { image, description, typeWork, typeMaterial } = req.body
+                const { image, description, materials, ornaments } = req.body
 
-                createArtwork(userId, image, description, typeWork, typeMaterial)
+                createArtwork(userId, image, description, materials , ornaments )
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -152,9 +152,9 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
 
                 const { artworkId } = req.params
 
-                const { image, description } = req.body
+                const { image, description, materials, ornaments } = req.body
 
-                updateArtwork(userId, artworkId, image, description)
+                updateArtwork(userId, artworkId, image, description, materials, ornaments)
                     .then(() => res.status(204).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {

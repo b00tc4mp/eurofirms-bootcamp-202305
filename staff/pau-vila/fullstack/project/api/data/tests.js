@@ -4,7 +4,7 @@ const { User, artwork, workshop } = require('./index')
 
 mongoose.connect(`${process.env.MONGODB_URL}/tornorecicla`)
     .then(() => {
-        return User.create({ name: 'Bermy Yava', email: 'bermy@yava.com', password: '123123123', zip: '17820', phone: '631954200' })
+        return User.create({ name: 'Bermy Yava', email: 'bermyo@yava.com', password: '123123123', zip: '17820', phone: '631954200' })
             .then(user => {
                 console.log(user)
 

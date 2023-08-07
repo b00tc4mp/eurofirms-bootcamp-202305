@@ -2,7 +2,7 @@ function retrieveArtwork(token, ArtworkId) {
     if (typeof token !== 'string') throw new Error('userId is not a string')
     if (typeof ArtworkId !== 'string') throw new Error('ArtworkId is not a string')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/posts/${ArtworkId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/artworks/${ArtworkId}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },

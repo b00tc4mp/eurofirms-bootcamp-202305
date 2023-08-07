@@ -67,11 +67,11 @@ function Home({ onLoggedOut }) {
 
     const handleArtworkEdited = () => {
         try {
-            retrieveArtwork(context.token)
+            retrieveArtworks(context.token)
                 .then(artworks => {
-                    setArtworks(posts)
+                    setArtworks(artworks)
                     setModal(null)
-                    setArtworksId(null)
+                    setArtworkId(null)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -131,14 +131,24 @@ function Home({ onLoggedOut }) {
                             src={artwork.image}
                             alt={artwork.description}></img>
 
-                        <p>{artwork.description}</p>
+                        <p className="home-description">Description:{artwork.description}</p>
 
+                        <p>Materials:{artwork.materials}</p>
+
+                        {artwork.ornaments.map((ornament,index) => {
+                            return <p className="home-ornament" key={artwork.id+index}>Ornament: {ornament}</p>
+                        })
+
+                        }
                         {artwork.author.id === userId && <>
                             <button onClick={() => handleEditArtworkClick(artwork.id)}>Edit</button>
                             <button onClick={() => handleDeleteArtworkClick(artwork.id)}>Delete</button>
                         </>}
-                        <button onClick={() => handleToggleArtworkClick(artwork.id)}>{artwork.fav ? '💗': '🤍'}</button>
+                        <button onClick={() => handleToggleArtworkClick(artwork.id)}>{artwork.fav ? '💗' : '🤍'}</button>
                     </article>)}
+            </section>
+            <section>
+                <h3>space workshops</h3>
             </section>
         </main>
 

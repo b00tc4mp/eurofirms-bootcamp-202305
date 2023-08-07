@@ -1,11 +1,13 @@
-const { validateId, validateUrl, validateText } = require('./helpers/validators')
+const { validateId, validateUrl, validateText, validateOrnaments } = require('./helpers/validators')
 const { User, Artwork } = require('../data')
 
-function updateArtwork(userId, artworkId, image, description) {
+function updateArtwork(userId, artworkId, image, description, materials, ornaments) {
     validateId(userId)
     validateId(artworkId)
     validateUrl(image)
     validateText(description)
+    validateText(materials)
+    validateOrnaments(ornaments)
 
     return Promise.all([User.findById(userId).lean(), Artwork.findById(artworkId)])
         .then(([user, artwork]) => {
@@ -15,7 +17,9 @@ function updateArtwork(userId, artworkId, image, description) {
             if (artwork.author.toString() !== userId) throw new Error('artwork does not belong to user')
 
             artwork.image = image
-            artwork.Text = description
+            artwork.description = description
+            artwork.materials = materials
+            artwork.ornaments = ornaments
 
             return artwork.save()
         })

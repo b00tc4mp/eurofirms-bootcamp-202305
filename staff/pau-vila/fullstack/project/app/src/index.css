@@ -3,7 +3,8 @@
 @import 'tailwindcss/utilities';*/
 /* resets */
 * {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Acaya Telivigala';
+    font-size: 22px;
 }
 
 html,
@@ -14,6 +15,7 @@ body {
 body {
     margin: 0;
     box-sizing: border-box;
+    background: linear-gradient(135deg, #90f8b1, #e0fde2);
 }
 
 /* register */
@@ -36,7 +38,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color:cadetblue
+    color: cadetblue
 }
 
 .login-form {
@@ -48,7 +50,7 @@ body {
 .home-header {
     position: fixed;
     top: 0;
-    height: 3rem;
+    height: 4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -57,8 +59,11 @@ body {
     padding: 0 1rem;
     box-sizing: border-box;
 }
+
 .home-title {
     font-size: 1.5rem;
+    font-family: 'Acaya Telivigala';
+    font-size: 20px;
 }
 
 .home-main {
@@ -76,7 +81,7 @@ body {
     height: 3rem;
 }
 
-.home-create-post-modal {
+.home-create-artwork-modal {
     background-color: rgba(0, 0, 0, 0.497);
     position: fixed;
     width: 100%;
@@ -87,12 +92,12 @@ body {
     justify-content: center;
 }
 
-.home-create-post-container {
-    background-image: linear-gradient(135deg, rgb(245, 65, 173), rgb(255, 204, 242));
+.home-create-artwork-container {
+    background-image: linear-gradient(135deg, rgb(242, 20, 116), rgb(244, 138, 186));
     padding: 1rem;
 }
 
-.home-create-post-form {
+.home-create-artwork-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,7 +105,7 @@ body {
     gap: 1rem;
 }
 
-.home-edit-post-modal {
+.home-edit-artwork-modal {
     background-color: rgba(241, 176, 161, 0.457);
     position: fixed;
     width: 100%;
@@ -111,19 +116,20 @@ body {
     justify-content: center;
 }
 
-.home-edit-post-container {
+.home-edit-artwork-container {
     background-image: linear-gradient(135deg, rgba(243, 181, 114, 0.868), rgba(255, 239, 213, 0.868));
     padding: 1rem;
 }
 
-.home-edit-post-form {
+.home-edit-artwork-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
 }
-.home-delete-post-modal {
+
+.home-delete-artwork-modal {
     background-color: rgba(197, 246, 247, 0.883);
     position: fixed;
     width: 100%;
@@ -134,12 +140,12 @@ body {
     justify-content: center;
 }
 
-.home-delete-post-container {
-    background-image: linear-gradient(135deg, rgb(249, 153, 19), rgb(255, 218, 166));
+.home-delete-artwork-container {
+    background-image: linear-gradient(135deg, rgb(9, 168, 123), rgb(166, 255, 211));
     padding: 1rem;
 }
 
-.home-delete-post-form {
+.home-delete-artwork-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -147,22 +153,27 @@ body {
     gap: 1rem;
 }
 
-.home-posts {
+.home-artworks {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
 }
 
-.home-post {
-    width: 65%;
+.home-artwork {
+    width: 40%;
 }
-.home-post-image {
+
+.home-artwork-image {
     width: 100%;
 }
 
 /* cosos */
 
-.off {
-    display: none;
+.home-description {
+    font-style: italic;
+}
+
+.home-ornament {
+    font-size: 0.7rem;
 }

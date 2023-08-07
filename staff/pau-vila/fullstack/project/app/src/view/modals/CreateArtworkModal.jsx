@@ -4,16 +4,19 @@ import createArtwork from "../../logic/createArtwork"
 
 function CreateArtworkModal(props) {
     console.log('CreateArtworkModal -> render')
-   
+  
+    const artwork = {}
+
     const handleSubmit = event => {
         event.preventDefault()
 
         const image = event.target.image.value
         const description = event.target.description.value
-        const material = event.target.material.value 
-        const ornaments = event.target.ornaments.value 
+        const materials = event.target.materials.value 
+        const ornaments = JSON.parse(event.target.ornaments.value) 
+        
         try { 
-            createArtwork(context.token, image, description, material, ornaments)
+            createArtwork(context.token, image, description, materials, ornaments)
                 .then(() => props.onCreated())
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -34,6 +37,12 @@ function CreateArtworkModal(props) {
                 <label htmlFor="description">Description</label>
                 <textarea id="description"></textarea>
 
+                <label htmlFor="materials">Materials</label>
+                <input id="materials"></input>
+
+                <label htmlFor="ornaments">Ornaments</label>
+                <input id="ornaments"></input> 
+                
                 <button type="submit">Create</button>
                 <button className="home-create-artwork-cancel-button"onClick={handleCancelClick}>Cancel</button>
             </form>

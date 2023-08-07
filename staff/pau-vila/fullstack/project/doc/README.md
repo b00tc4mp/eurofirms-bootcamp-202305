@@ -45,8 +45,8 @@ Artwork
 - author (ObjectId, ref 'User', required)
 - image (photo file, optional)
 - description  (String, required)
-- type  (String, required)
-- materials  ([String], required),
+- materials  (String, required)
+- ornaments  ([String], required),
 - Date  (Date, required)
 
 Workshop 
