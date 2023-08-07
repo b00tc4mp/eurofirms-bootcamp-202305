@@ -94,25 +94,25 @@ export default function Profile() {
         }
     }
 
-    return <section className="profile">
-        <div className="profile-image-name-button">
-            <div className="profile-image-name">
-                <img className="profile-image-post" src={userProfile?.image} alt={userProfile?.name} />
-                <h3 className="name-post">{userProfile?.name}</h3>
+    return <section className=" pb-16">
+        <div className="flex justify-between items-center py-2 px-3">
+            <div className="flex items-center">
+                <img className="w-12 h-12 rounded-full object-cover mr-2" src={userProfile?.image} alt={userProfile?.name} />
+                <h3 className="font-semibold text-color1 text-xl">{userProfile?.name}</h3>
             </div>
             {user?.name === userProfile?.name ?
-                <button onClick={handleEditUserModal} className="button button-modal">Edit profile</button>
+                <button onClick={handleEditUserModal} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Edit profile</button>
                 :
-                <div className="user-buttons-profile">
-                    <button onClick={handleFollowUser} className="button button-modal edit-profile-button">{userProfile?.followed ? 'Unfollow' : 'Follow'}</button>
-                    <button onClick={handleSendMessageModal} className="button button-modal edit-profile-button">Direct</button>
+                <div className="flex justify-around items-center gap-2">
+                    <button onClick={handleFollowUser} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3 edit-profile-button">{userProfile?.followed ? 'Unfollow' : 'Follow'}</button>
+                    <button onClick={handleSendMessageModal} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3 edit-profile-button">Direct</button>
                 </div>
             }
         </div>
-        <p className="description-profile">{userProfile?.description}</p>
-        <div className="two-buttons-profile">
-            <button onClick={() => handleProfilePosts()} className="button button-modal">{user?.name === userProfile?.name ? 'My posts' : 'Profile posts'}</button>
-            <button onClick={() => handleProfileFavPosts()} className="button button-modal">{user?.name === userProfile?.name ? 'My favorite posts' : 'Favorite profile posts'}</button>
+        <p className="text-color1 font-semibold border-y-2 border-y-gray-400 px-3 py-2">{userProfile?.description}</p>
+        <div className="flex justify-evenly p-2 border-b-2 border-b-gray-400">
+            <button onClick={() => handleProfilePosts()} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">{user?.name === userProfile?.name ? 'My posts' : 'Profile posts'}</button>
+            <button onClick={() => handleProfileFavPosts()} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">{user?.name === userProfile?.name ? 'My favorite posts' : 'Favorite profile posts'}</button>
         </div>
 
         <Routes>

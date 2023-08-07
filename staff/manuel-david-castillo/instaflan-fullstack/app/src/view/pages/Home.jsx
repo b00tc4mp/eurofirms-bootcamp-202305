@@ -141,23 +141,23 @@ export default function Home() {
         }
     }
 
-    return <div className="home">
-        <header className="header">
-            <div className="div-h2-img">
-                <h2 className="h2-header">{page}</h2>
-                {page === 'Instaflan' && <img className="icon-flan" src="./public/images/flan.png" alt="Icon flan" />}
+    return <div className="w-full h-full">
+        <header className="w-full h-16 bg-color5 fixed top-0 left-0 flex justify-between items-center pl-5">
+            <div className="flex items-center">
+                <h2 className="text-xl text-color1 font-semibold">{page}</h2>
+                {page === 'Instaflan' && <img className="w-16" src="./public/images/flan.png" alt="Icon flan" />}
             </div>
             {page === 'Profile' ?
                 <nav>
-                    <button onClick={handleLogout} className="button button-logout">Logout</button>
+                    <button onClick={handleLogout} className="bg-color4 text-white border-none rounded-xl px-3 py-1 mr-3 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Logout</button>
                 </nav>
                 :
-                <div className="div-search">
-                    <input ref={inputRef} onChange={handleSearchUsers} onFocus={() => setSearchModal('search-modal')} className="search-input" type="text" placeholder="search..." />
+                <div className="flex items-center justify-center mr-3">
+                    <input ref={inputRef} onChange={handleSearchUsers} onFocus={() => setSearchModal('search-modal')} className="h-8 w-32 rounded-3xl pl-2" type="text" placeholder="search..." />
                 </div>
             }
         </header>
-        <main className="main-home">
+        <main className="pt-16">
 
             <Routes>
                 <Route path='/home' element={<AllPosts posts={posts} />} />
@@ -169,16 +169,16 @@ export default function Home() {
             </Routes>
 
         </main>
-        <footer className="footer">
-            <Link className="footer-emogis" to='/home'>🏠</Link>
-            <Link className="footer-emogis" to='/explorer'>🌍</Link>
-            <a onClick={handleCreatePostModal} className="footer-emogis" href="#">➕</a>
-            <Link className="footer-emogis" to='/messages'>✉️</Link>
-            <Link className="footer-emogis" to='/notifications'>❤️</Link>
-            <Link onClick={handleProfilePage} className="footer-emogis" to={`/profile/${userIdProfile}/posts`}>
+        <footer className="w-full h-16 bg-color5 fixed bottom-0 left-0 flex justify-around items-center">
+            <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/home'>🏠</Link>
+            <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/explorer'>🌍</Link>
+            <a onClick={handleCreatePostModal} className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" href="#">➕</a>
+            <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/messages'>✉️</Link>
+            <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/notifications'>❤️</Link>
+            <Link onClick={handleProfilePage} className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to={`/profile/${userIdProfile}/posts`}>
                 {user && (
                     <img
-                        className="footer-profile-image"
+                        className="w-10 h-10 rounded-full mr-2 object-cover mb-px hover:scale-110"
                         src={user.image}
                         alt={user.name}
                     />

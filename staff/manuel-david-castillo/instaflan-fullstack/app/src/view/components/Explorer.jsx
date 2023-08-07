@@ -110,33 +110,33 @@ export default function Explorer() {
         }
     }
 
-    return <section className="explorer">
-        <article className="users-not-followed">
-            <h2 className="h2-explorer">Maybe you know</h2>
-            {users?.map(user => <article key={user.id} className="user">
-                <div className="user-img-a">
-                    <img className="profile-image-post" src={user.image} alt={user.name} />
-                    <a onClick={() => handleProfile(event, user.id)} className="name-post">{user.name}</a>
+    return <section className="pt-2 pb-20 flex flex-col items-center">
+        <article className="w-full flex flex-col items-center">
+            <h2 className="text-color1 font-semibold mb-2">Maybe you know</h2>
+            {users?.map(user => <article key={user.id} className="flex mb-4 w-80 bg-color5 rounded-full justify-between items-center pr-5 pl-2 pt-1 pb-1">
+                <div className="flex items-center">
+                    <img className="w-12 h-12 rounded-full object-cover mr-2" src={user.image} alt={user.name} />
+                    <a onClick={() => handleProfile(event, user.id)} className="font-semibold text-color1 text-xl">{user.name}</a>
                 </div>
-                <button onClick={() => handleFollowUser(user.id)} className="button button-modal edit-profile-button">Follow</button>
+                <button onClick={() => handleFollowUser(user.id)} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3 edit-profile-button">Follow</button>
             </article>)}
-            <button onClick={handleUpdateUsers} className="button update-button">Update users</button>
+            <button onClick={handleUpdateUsers} className="bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Update users</button>
         </article>
-        <article className="posts-users-not-followed">
-            <h2 className="h2-explorer">You might be interested</h2>
-            {posts?.map(post => <article key={post.id} className="post">
-                <div className="header-post">
-                    <div className="nameImageDiv">
-                        <img className="profile-image-post" src={post.author.image} alt={post.author.name} />
-                        <a onClick={(event) => handleProfile(event, post.author.id)} className="name-post">{post.author.name}</a>
+        <article className="w-full flex flex-col items-center mt-6">
+            <h2 className="text-color1 font-semibold mb-2">You might be interested</h2>
+            {posts?.map(post => <article key={post.id} className="bg-color5 mb-3">
+                <div className="flex justify-between items-center">
+                    <div className="flex justify-start items-center pl-3 py-1">
+                        <img className="w-12 h-12 rounded-full object-cover mr-2" src={post.author.image} alt={post.author.name} />
+                        <a onClick={(event) => handleProfile(event, post.author.id)} className="font-semibold text-color1 text-xl">{post.author.name}</a>
                     </div>
-                    <button onClick={() => handletoggleFavPost(post.id)} className="button favButton">{post.fav ? '🤍' : '♡'}</button>
+                    <button onClick={() => handletoggleFavPost(post.id)} className="bg-color4 w-10 h-9 text-white border-none rounded-xl px-2 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">{post.fav ? '🤍' : '♡'}</button>
                 </div>
-                <img className="img-post" src={post.image} alt={post.text} />
-                <p className="text-post">🤍{post.likes}</p>
-                <p className="text-post">{post.text}</p>
+                <img className="w-full" src={post.image} alt={post.text} />
+                <p className="m-2 text-color1 font-semibold ml-3">🤍{post.likes}</p>
+                <p className="m-2 text-color1 font-semibold ml-3">{post.text}</p>
             </article>)}
-            <button onClick={handleUpdatePosts} className="button update-button">Update posts</button>
+            <button onClick={handleUpdatePosts} className="bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Update posts</button>
         </article>
-    </section>
+    </section >
 }
