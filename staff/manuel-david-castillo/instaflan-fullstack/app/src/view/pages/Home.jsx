@@ -153,7 +153,7 @@ export default function Home() {
                 </nav>
                 :
                 <div className="flex items-center justify-center mr-3">
-                    <input ref={inputRef} onChange={handleSearchUsers} onFocus={() => setSearchModal('search-modal')} className="h-8 w-32 rounded-3xl pl-2" type="text" placeholder="search..." />
+                    <input ref={inputRef} onChange={handleSearchUsers} onFocus={() => setSearchModal('search-modal')} className="h-8 w-40 rounded-3xl pl-2" type="text" placeholder="search..." />
                 </div>
             }
         </header>

@@ -14,7 +14,7 @@ export default function UsersSearchModal(props) {
         navigate(`/profile/${userIdProfile}/posts`)
     }
 
-    return <div ref={props.modalRef} className="fixed top-14 left-40 flex flex-col items-center mr-2">
+    return <div ref={props.modalRef} className="fixed top-14 left-48 flex flex-col items-center mr-2">
         <div className="modal-peak"></div>
         {users?.length > 0 ?
             <div className="bg-white flex flex-col items-center justify-center rounded-xl">
