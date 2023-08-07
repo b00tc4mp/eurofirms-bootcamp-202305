@@ -20,6 +20,8 @@ function sendMessage(userId, chatId, text) {
 
             chat.messages.push(message)
 
+            chat.date = new Date()
+
             return chat.save()
         })
         .then(()=> { })

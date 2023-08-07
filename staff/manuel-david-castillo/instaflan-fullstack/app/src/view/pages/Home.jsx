@@ -13,7 +13,7 @@ import AllPosts from '../components/AllPosts'
 import Explorer from "../components/Explorer"
 import Notifications from "../components/Notifications"
 import Messages from "../components/Messages"
-import MessageChat from "../components/MessagesChat"
+import Chat from "../components/Chat"
 import Profile from "../components/Profile"
 
 import CreatePostModal from "../modals/CreatePostModal"
@@ -163,7 +163,7 @@ export default function Home() {
                 <Route path='/home' element={<AllPosts posts={posts} />} />
                 <Route path='/explorer' element={<Explorer />} />
                 <Route path='/messages' element={<Messages />} />
-                <Route path='/messages/:chatId' element={<MessageChat />} />
+                <Route path='/messages/:chatId' element={<Chat />} />
                 <Route path='/notifications' element={<Notifications />} />
                 <Route path='/profile/:userIdProfile/*' element={<Profile />} />
             </Routes>
