@@ -109,6 +109,7 @@ function Home({ onLogout }) {
                             {panel.status === 1 && <p className="panel-button">📬</p>}
                             {panel.status === 2 && <button className="panel-button" type="button" onClick={() => handleViewPanel(panel.id)}>🎁</button>}
                             {panel.status === 0 && <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>}
+                            {panel.status === 2 && <button className="panel-button" type="button" onClick={() => handleViewPanel(panel.id)}>🛠️</button>}
                         </footer>
                     </article>)}
                 </section>
