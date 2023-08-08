@@ -5,9 +5,12 @@ import retrieveChat from "../../logic/retrieveChat"
 import sendMessage from "../../logic/sendMessage"
 import context from "../../context"
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
+import EditDeleteMessageModal from "../modals/EditDeleteMessageModal"
 
 export default function Chat() {
     const [chat, setChat] = useState(null)
+    const [message, setMessage] = useState(null)
+    const [modal, setModal] = useState(null)
 
     const params = useParams()
     const { chatId } = params
@@ -21,12 +24,26 @@ export default function Chat() {
             retrieveChat(context.token, chatId)
                 .then(chat => {
                     setChat(chat)
-                    scrollToBottom()
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
+
+        const intervalId = setInterval(() => {
+            console.count('chat interval')
+            try {
+                retrieveChat(context.token, chatId)
+                    .then(chat => {
+                        setChat(chat)
+                    })
+                    .catch(error => alert(error.message))
+            } catch (error) {
+                alert(error.message)
+            }
+        }, 2000);
+
+        return () => clearInterval(intervalId)
     }, [])
 
     console.log('chat')
@@ -41,7 +58,6 @@ export default function Chat() {
                     .then(chat => {
                         event.target.message.value = ''
                         setChat(chat)
-                        scrollToBottom()
                     }))
                 .catch(error => {
                     alert(error.message)
@@ -60,14 +76,24 @@ export default function Chat() {
         navigate('/messages')
     }
 
-    const scrollToBottom = () => {
+    const handleEditDeleteModal = (message) => {
+        setMessage(message)
+        setModal('edit-delete-modal')
+    }
+
+    const handleHideEditDeleteModal = () => {
+        setMessage(null)
+        setModal(null)
+    }
+
+    useEffect(() => {
         const pageHeight = document.body.scrollHeight
 
         window.scroll({
             top: pageHeight,
             behavior: 'smooth',
         });
-    }
+    }, [chat])
 
     return <section className="flex flex-col">
         <div className="fixed w-full bg-white flex justify-between items-center border-b-2 border-gray-400 py-1 px-2">
@@ -79,12 +105,26 @@ export default function Chat() {
         </div>
         <div className="flex flex-col mx-2 my-1 pb-28 pt-14">
             {chat?.messages.map(message => <article key={message.id} className={message.author === userId ? "ml-12 flex justify-end" : "mr-12 flex"}>
-                <p className="m-1 py-1 px-2 w-auto rounded-xl bg-color5">{message?.text}</p>
+                {message.delete ? <p className="italic text-gray-600 m-1 py-1 px-2 w-auto rounded-xl bg-color5">Message deleted</p> :
+                    message.edit ? <div className="flex flex-col items-end bg-color5 w-auto m-1 px-2 py-1 rounded-xl">
+                        <div className="flex ">
+                            <p className="">{message?.text}</p>
+                            {message.author === userId && <button onClick={() => handleEditDeleteModal(message)} className="ml-2 rounded-lg hover:bg-color4 hover:scale-110 ">✏️</button>}
+                        </div>
+                        <p className="italic text-gray-600 text-xs">Edited</p>
+                    </div> :
+                        <div className="flex flex-start items-end bg-color5 w-auto m-1 px-2 py-1 rounded-xl">
+                            <p className="">{message?.text}</p>
+                            {message.author === userId && <button onClick={() => handleEditDeleteModal(message)} className="ml-2 rounded-lg hover:bg-color4 hover:scale-110 ">✏️</button>}
+                        </div>
+                }
             </article>)}
         </div>
         <form onSubmit={handleSendMessage} className="fixed bottom-14 flex justify-around p-3 w-full">
             <input id="message" placeholder=" ..." className="w-full rounded-full border-4 mr-3 pl-3 border-black" type="text" />
             <button className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Send</button>
         </form>
+
+        {modal === 'edit-delete-modal' && <EditDeleteMessageModal message={message} onHideEditDeletePost={handleHideEditDeleteModal} />}
     </section>
 }
