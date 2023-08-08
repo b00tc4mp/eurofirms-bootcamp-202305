@@ -1,10 +1,9 @@
 const {Chat, User} = require("../../data/models")
-const { validateId, validateText } = require("../helpers/validators")
+const { validateId } = require("../helpers/validators")
 
-function editMessage(userId, messageId, text) {
+function deleteMessage(userId, messageId) {
     validateId(userId)
     validateId(messageId)
-    validateText(text)
 
     return Promise.all([User.findById(userId, '-__v').lean(), Chat.findOne({"messages._id": messageId},'-__v')])
     .then(([user, chat]) => {
@@ -15,11 +14,14 @@ function editMessage(userId, messageId, text) {
 
         if (chat.messages[indexMessage].author.toString() !== userId) throw new Error('author of message and user are diferent')
 
-        chat.messages[indexMessage].text = text
-        chat.messages[indexMessage].edit = true 
-        
+        if (!chat.messages[indexMessage].delete) chat.messages[indexMessage].delete = false 
+        if (chat.messages[indexMessage].delete === true) throw new Error('message already deleted')
+
+        chat.messages[indexMessage].text = ''
+        chat.messages[indexMessage].delete = true 
+
         return chat.save()
     })
 }
 
-module.exports = editMessage
+module.exports = deleteMessage

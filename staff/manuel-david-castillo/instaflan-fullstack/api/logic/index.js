@@ -3,6 +3,7 @@ module.exports = {
     createChat: require('./chats-logic/createChat'),
     createPost: require('./post-logic/createPost'),
     deletePost: require('./post-logic/deletePost'),
+    deleteMessage: require('./chats-logic/deleteMessage'),
     editPost: require('./post-logic/editPost'),
     editMessage: require('./chats-logic/editMessage'),
     editUser: require('./user-logic/editUser'),
