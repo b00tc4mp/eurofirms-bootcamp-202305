@@ -12,8 +12,8 @@ function retrieveMeetup(userId, meetupId) {
             if (!user) throw new Error('User not found')
             if (!meetup) throw new Error('Post not found')
 
-            if (meetup.author.toString() !== userId) throw new Error('post does not belong to user')
-            //detcta si el userId no es igual al string del autor del post
+            if (meetup.author.toString() !== userId) throw new Error('Meetup does not belong to user')
+            //detcta si el userId no es igual al string del autor del meetup
 
             delete meetup._id
             delete meetup.author

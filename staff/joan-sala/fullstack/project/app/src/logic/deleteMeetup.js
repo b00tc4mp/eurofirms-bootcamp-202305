@@ -7,7 +7,7 @@ function deleteMeetup(token, meetupId) {
         headers:{Authorization:`Bearer ${token}`        }
     })
     .then(res =>{
-        if(res.status ===200)
+        if(res.status ===204)
             return
         else if(res.status===400)
             return res.json()

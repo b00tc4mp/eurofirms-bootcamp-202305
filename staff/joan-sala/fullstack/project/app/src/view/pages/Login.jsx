@@ -42,9 +42,8 @@ function Login(props) {
             </form>
 
             <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
-            <footer class="bg-[#D9D9D9] flex p10 h-40" >
-                <p><img class="object-center md:object-top" src="public/logo03.png" alt="MeetupBikers" width="60%"/></p>
-                
+            <footer className="initial-page-footer" >
+                <p><img  src="public/logo03.png" alt="MeetupBikers" width="60%" /></p>
             </footer>
     </main >
 

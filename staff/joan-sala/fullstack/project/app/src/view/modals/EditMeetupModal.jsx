@@ -7,15 +7,15 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) { //
     console.log('EditMeetupModal -> render')
 
     //const meetupState = useState(null) //inicialmente el meetup es nuulo
-    //const meetup = postState[0] //posición actual   
-    //const setPost = postState[1] //seter del estado
-    const [meetup, setPost] = useState(null)
+    //const meetup = meuettappState[0] //posición actual   
+    //const setMeenup = postState[1] //seter del estado
+    const [meetup, setMeetup] = useState(null)
     
     //al crear el componente llama a esta función 
     useEffect(() =>{
         try{
             retrieveMeetup(context.token, meetupId)
-            .then(meetup => setPost(meetup))
+            .then(meetup => setMeetup(meetup))
             .catch(error => alert(error.message))        
         }catch(error){
               alert(error.message)

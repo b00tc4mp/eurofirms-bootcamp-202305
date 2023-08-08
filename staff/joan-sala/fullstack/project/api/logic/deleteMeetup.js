@@ -11,9 +11,9 @@ function deleteMeetup(userId, meetupId) {
             if (!user) throw new Error('User not found')
             if(!meetup) throw new Error('Meetup not found')
 
-            if(meetup.name.toString() !== userId) throw Error('Meetup does not belong to use')
+            if(meetup.author.toString() !== userId) throw Error('Meetup does not belong to use')
             return Meetup.deleteOne({ _id: meetup._id })
         })
-        .then(() => {}) //No devuelve nada
+        .then(() => {})
 }
 module.exports = deleteMeetup

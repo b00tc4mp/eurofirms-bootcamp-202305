@@ -17,7 +17,7 @@ function Home({onLoggedOut}) {
     const [meetups, setMeetups] = useState(null)
 
     //Sólo se ejecuta una vez se pinta el Home
-    useEffect(() => { //Para efectos secundarios como consecuéncia de llama a una api.
+    useEffect(() => { //Para efectos secundarios como consecuéncia de llamar a una api.
         try {
             retrieveUser(context.token)
                 .then(user => setUser(user))
@@ -33,7 +33,7 @@ function Home({onLoggedOut}) {
         } catch (error) {
             alert(error.message)
         }
-    }, []) //Para pasar el array vacío si o si, sólo una vez
+    }, []) 
 
     const handleLogoutClick = () => {
         context.token = null
@@ -129,8 +129,9 @@ function Home({onLoggedOut}) {
         
             <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10">
-                    {meetups && meetups.map(meetup => <article key={meetup.id} className="w-[65%] bg-[#eeeeee] rounded-xl p-10">
-                            <h2 className="uppercase text-lg font-extrabold">{meetup.author?.name}</h2>
+                    {meetups && meetups.map(meetup => <article key={meetup.id} 
+                    className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
+                            <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
                             <p className="mt-8 font-semibold text-[#2C2A2A]">Image: </p>
                             <img className="w-full"
                                 src={meetup.image}
@@ -156,7 +157,7 @@ function Home({onLoggedOut}) {
                 </section>
             </main>
                   
-            <footer className=" text-white bg-[#d9d9d9] fixed flex bottom-0 w-full h-[3rem] flex justify-center align-center">
+            <footer className=" text-white bg-[#d9d9d9] flex bottom-0 w-full h-[3rem] flex justify-center align-center">
                 <button className="border-solid border-2 bg-[#2C2A2A] br-30 p-5 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>+</button>
             </footer>
           

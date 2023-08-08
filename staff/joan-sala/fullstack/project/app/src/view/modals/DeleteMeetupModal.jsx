@@ -1,17 +1,17 @@
 import context from '../../context'
 import deleteMeetup from '../../logic/deleteMeetup'
 
-function DeleteMeetupModal(props) {
+function DeleteMeetupModal([meetupId, onMeetupDeleted, onDeleteMeetupCancelled]) {
     console.log('DeleteMeetupModal -> render')
 
-    const handleCancelClick = () => props.onDeleteMeetupCancelled()
+    const handleCancelClick = () => onDeleteMeetupCancelled()
 
     const handleSubmit = event => {
         event.preventDefault()
         
         try{
-            deleteMeetup(context.token, props.meetupId)
-            .then(()=> props.onMeetupDeleted())
+            deleteMeetup(context.token, meetupId)
+            .then(()=> onMeetupDeleted())
             .catch(error=> alert(error.message))
         }catch(error){
                 alert(error.message)
