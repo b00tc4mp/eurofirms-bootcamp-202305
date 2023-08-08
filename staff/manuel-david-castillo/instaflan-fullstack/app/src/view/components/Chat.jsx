@@ -19,12 +19,17 @@ export default function Chat() {
     useEffect(() => {
         try {
             retrieveChat(context.token, chatId)
-                .then(chat => setChat(chat))
+                .then(chat => {
+                    setChat(chat)
+                    scrollToBottom()
+                })
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
     }, [])
+
+    console.log('chat')
 
     const handleSendMessage = (event) => {
         event.preventDefault()
@@ -36,6 +41,7 @@ export default function Chat() {
                     .then(chat => {
                         event.target.message.value = ''
                         setChat(chat)
+                        scrollToBottom()
                     }))
                 .catch(error => {
                     alert(error.message)
@@ -52,6 +58,15 @@ export default function Chat() {
 
     const handleBack = () => {
         navigate('/messages')
+    }
+
+    const scrollToBottom = () => {
+        const pageHeight = document.body.scrollHeight
+
+        window.scroll({
+            top: pageHeight,
+            behavior: 'smooth',
+        });
     }
 
     return <section className="flex flex-col">

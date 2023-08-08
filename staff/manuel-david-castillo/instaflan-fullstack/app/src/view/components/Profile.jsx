@@ -109,7 +109,7 @@ export default function Profile() {
                 </div>
             }
         </div>
-        <p className="text-color1 font-semibold border-y-2 border-y-gray-400 px-3 py-2">{userProfile?.description}</p>
+        <p className="text-color1 font-semibold border-b-2 border-b-gray-400 px-3 py-2 pt-0">{userProfile?.description}</p>
         <div className="flex justify-evenly p-2 border-b-2 border-b-gray-400">
             <button onClick={() => handleProfilePosts()} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">{user?.name === userProfile?.name ? 'My posts' : 'Profile posts'}</button>
             <button onClick={() => handleProfileFavPosts()} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">{user?.name === userProfile?.name ? 'My favorite posts' : 'Favorite profile posts'}</button>
