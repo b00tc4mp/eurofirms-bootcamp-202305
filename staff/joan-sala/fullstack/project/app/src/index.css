@@ -109,7 +109,7 @@ body {
     height: 3rem;
 }
  */
-.home-create-meetup-modal, .home-edit-post-modal, .home-delete-post-modal {
+.home-create-meetup-modal, .home-edit-meetup-modal, .home-delete-meetup-modal {
     background-color: rgba(0, 0, 0, 0.497);
     position: fixed;
     width: 100%;
@@ -121,11 +121,11 @@ body {
 
 }
 
-.home-create-meetup-button {
+.home-create-meetup-button, .home-edit-meetup-button, .home-delete-meetup-button {
     border-top: 20%;
 }
 
-.home-create-meetup-container, .home-edit-post-container, .home-delete-post-container {
+.home-create-meetup-container, .home-edit-meetup-container, .home-delete-meetup-container {
     background-color: white;
     padding: 5rem;
 }

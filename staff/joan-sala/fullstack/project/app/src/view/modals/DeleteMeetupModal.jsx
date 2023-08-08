@@ -1,7 +1,7 @@
 import context from '../../context'
 import deleteMeetup from '../../logic/deleteMeetup'
 
-function DeleteMeetupModal([meetupId, onMeetupDeleted, onDeleteMeetupCancelled]) {
+function DeleteMeetupModal({meetupId, onMeetupDeleted, onDeleteMeetupCancelled}) {
     console.log('DeleteMeetupModal -> render')
 
     const handleCancelClick = () => onDeleteMeetupCancelled()
@@ -23,8 +23,8 @@ function DeleteMeetupModal([meetupId, onMeetupDeleted, onDeleteMeetupCancelled])
             <h2>Delete meetup</h2>
 
             <form className="home-delete-meetup-form" onSubmit={handleSubmit}>
-                <button type="submit">Delete</button>
-                <button type="button" className="home-delete-post-cancel-button" onClick={handleCancelClick}>Cancel</button>
+                <button className="button" type="submit">Delete</button>
+                <button type="button" className="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
     </div>

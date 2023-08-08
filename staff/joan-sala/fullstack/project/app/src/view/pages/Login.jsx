@@ -41,7 +41,7 @@ function Login(props) {
                 <button class="home-logout-button" type="submit">Login</button>
             </form>
 
-            <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
+            <p>Go to <a className="login-register-link underline-offset-8" href="" onClick={handleRegisterClick}>Register</a></p>
             <footer className="initial-page-footer" >
                 <p><img  src="public/logo03.png" alt="MeetupBikers" width="60%" /></p>
             </footer>

@@ -15,9 +15,10 @@ function Register(props) {
         const name = event.target.name.value
         const email = event.target.email.value
         const password = event.target.password.value
+        const image = event.target.url.value
 
         try { //Se envian los  mismos campos pero e speramos una promesa
-            registerUser(name, email, password)
+            registerUser(name, email, password, image)
                 .then(() => props.onRegistered())
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -27,7 +28,7 @@ function Register(props) {
 
     return (
         <main className="register-view">
-            <h1 class="text-black-900 font-extrabold text-3xl text-center">Register</h1>
+            <h1 className="text-black-900 font-extrabold text-3xl text-center">Register</h1>
 
             <form className="register-form" onSubmit={handleRegisterSubmit}>
                 <label htmlFor="name">Name</label>

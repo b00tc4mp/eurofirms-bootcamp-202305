@@ -146,7 +146,7 @@ function Home({onLoggedOut}) {
                             <p> {meetup.text}</p>
                             <p className="mt-8 font-semibold text-[#2C2A2A]">Date: </p>
                             <p>{meetup.text}</p>
-
+                        
                             {meetup.author.id === userId && <>
                                 <button className="button" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
                                 <button className="button" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>

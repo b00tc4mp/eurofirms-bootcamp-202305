@@ -10,7 +10,7 @@ function retrieveMeetup(userId, meetupId) {
     return Promise.all([User.findById(userId).lean(), Post.findById(meetupId, '-date -__v').lean()])
         .then(([user, meetup]) => { //DESTRUCTURAR    
             if (!user) throw new Error('User not found')
-            if (!meetup) throw new Error('Post not found')
+            if (!meetup) throw new Error('Meetup not found')
 
             if (meetup.author.toString() !== userId) throw new Error('Meetup does not belong to user')
             //detcta si el userId no es igual al string del autor del meetup
