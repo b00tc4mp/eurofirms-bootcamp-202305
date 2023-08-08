@@ -104,7 +104,7 @@ export default function Profile() {
                 <button onClick={handleEditUserModal} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Edit profile</button>
                 :
                 <div className="flex justify-around items-center gap-2">
-                    <button onClick={handleFollowUser} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3 edit-profile-button">{userProfile?.followed ? 'Unfollow' : 'Follow'}</button>
+                    <button onClick={handleFollowUser} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3 edit-profile-button">{userProfile?.follow ? 'Unfollow' : 'Follow'}</button>
                     <button onClick={handleSendMessageModal} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3 edit-profile-button">Direct</button>
                 </div>
             }

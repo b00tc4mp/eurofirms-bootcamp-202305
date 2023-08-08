@@ -14,9 +14,9 @@ function retrieveUser(userId, userIdProfile) {
             const usersFollowing = user.following.map((user) => user.toString());
 
             if(!user.following) {
-                userProfile.followed = false
+                userProfile.follow = false
             } else {
-                userProfile.followed = usersFollowing.includes(userProfile._id.toString())
+                userProfile.follow = usersFollowing.includes(userProfile._id.toString())
             }
 
             delete userIdProfile._id
