@@ -1,5 +1,6 @@
 const { models: { UserModel, PanelModel } } = require('dat')
 const { validators: { validateString } } = require('com')
+
 /**
  * The function creates a panel with the specified user ID, reference, width, and height, after
  * validating the input parameters.
@@ -141,8 +142,10 @@ function updatePanelStatusToOptimize(userId, panelId) {
             panel.status = 1
             panel.date = new Date()
             return panel.save()
+                .then(() => { })
+                .catch((error) => console.error(error))
         })
-        .then(() => { })
+
 }
 /**
  * The function `updatePanelStatusReEdit` updates the status of a panel to 0 and saves the current

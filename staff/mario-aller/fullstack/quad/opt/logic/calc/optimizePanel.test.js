@@ -1,19 +1,19 @@
-const { loadPanel } = require('./loadPanel')
-const { optimizePanel } = require('./optimizePanel')
-const { savePanel } = require('./savePanel')
-const { resetPanel } = require('./resetPanel')
-const context = require('../../context')
+// Enviroment
+require('dotenv').config()
+const { MONGOOSE_URL } = process.env
+const optimizePanel = require('./optimizePanel')
+const savePanel = require('./savePanel')
+const resetPanel = require('./resetPanel')
 
-const panelId = '64c7d65750067e34034f5d2d'
+// Modules
+const { mongoose } = require('dat')
 
-try {
-    resetPanel(panelId)
-        .then(() => {
-            optimizePanel()
+const panelId = '64d107da2b4f0263e9c8a33e'
 
-            savePanel(panelId)
-
-            // console.log(context.mainPanel)
-        })
-        .catch((error) => console.error(error))
-} catch (error) { console.error(error) }
+// main
+mongoose.connect(MONGOOSE_URL)
+    .then(() => resetPanel(panelId))
+    .then((panel) => optimizePanel(panel))
+    .then((panel) => savePanel(panelId))
+    .catch(error => console.error(error))
+    .finally(() => mongoose.disconnect())

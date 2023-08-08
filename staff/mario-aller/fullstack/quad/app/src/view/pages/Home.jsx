@@ -30,6 +30,8 @@ function Home({ onLogout }) {
                 })
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
+
+        setInterval(handleRefresh, 5000);
     }, [])
     // const getPanelStatus = (panelId) => panels.find(panel => panel.id === panelId).status
     const handleLogout = () => {

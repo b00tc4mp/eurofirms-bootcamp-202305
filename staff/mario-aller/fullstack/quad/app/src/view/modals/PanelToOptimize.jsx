@@ -8,7 +8,9 @@ export function PanelToOptimize({ onToOptimizePanel, onExitModal, panelId }) {
 
         try {
             updatePanelStatusToOptimize(context.tokenUser, panelId)
-                .then(() => onToOptimizePanel())
+                .then(() => {
+                    onToOptimizePanel()
+                })
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
     }

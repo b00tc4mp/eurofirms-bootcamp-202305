@@ -1,11 +1,10 @@
-const context = require('../../context')
 const { Dimension2D, Block, Panel } = require('../classes')
 
 const displayProcess = function (processId, nest, iteration) {
     console.log('Start:', processId.toString().padStart(4), '| Nesting:', nest, '> Times:', iteration)
 }
 
-const cep = function (panel) {
+const cep = function (panel, context) {
     context.nesting++
     context.times++
     const processId = context.times
@@ -155,6 +154,7 @@ const cep = function (panel) {
                                         )
                                     )
                                     const panel2 = new Panel(
+                                        panel.id,
                                         panel.reference,
                                         panel.owner,
                                         panel.size.x.value,
@@ -165,7 +165,7 @@ const cep = function (panel) {
                                     panel2.blocks[indexBlock].pos.x.value = posIni.x.value
                                     panel2.blocks[indexBlock].pos.y.value = posIni.y.value
                                     panel2.blocks[indexBlock].orientation = rotation
-                                    cep(panel2)
+                                    cep(panel2, context)
                                 }
                             }
                 }
@@ -176,12 +176,18 @@ const cep = function (panel) {
     displayProcess(processId, context.nesting, context.times)
 }
 
-const optimizePanel = function () {
+const optimizePanel = function (panel) {
+    const context = {
+        optPanel: null,
+        heightBlocks: null,
+        nesting: 0,
+        times: 0
+    }
     console.log('Start...')
-    cep(context.mainPanel)
+    cep(panel, context)
     console.log('Finished... Iterations:', context.times)
     console.log(context.optPanel)
-    return true
+    return context.optPanel
 }
 
-module.exports = { optimizePanel }
+module.exports = optimizePanel

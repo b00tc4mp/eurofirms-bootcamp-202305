@@ -72,7 +72,7 @@ export const updatePanelStatusToOptimize = function (token, panelId) {
     validateString(token)
     validateString(panelId)
 
-    return fetch(import.meta.env.VITE_API_URL + '/panels/status/tooptimize/' + panelId, {
+    return fetch(import.meta.env.VITE_API_URL + '/panels/' + panelId + '/optimize', {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${token}`,

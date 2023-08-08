@@ -1,1 +1,1 @@
-node --inspect-brk logic/calc/optimizePanel.test
+node --inspect-brk logic/processAll

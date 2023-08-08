@@ -1,1 +1,1 @@
-node logic/calc/optimizePanel.test
+node logic/processAll

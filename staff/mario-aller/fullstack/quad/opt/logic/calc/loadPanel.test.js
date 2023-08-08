@@ -1,15 +1,17 @@
-const context = require('../../context')
-const { loadPanel } = require('./loadPanel')
+// Enviroment
+require('dotenv').config()
+const { MONGOOSE_URL } = process.env
+const loadPanel = require('./loadPanel')
 
-const panelId = '64c7d65750067e34034f5d2d'
+// Modules
+const { mongoose } = require('dat')
 
-console.log(panelId)
+const panelId = '64d107da2b4f0263e9c8a33e'
 
-try {
-    loadPanel(panelId)
-        .then(panel => {
-            context.mainPanel = panel
-            console.log(context.mainPanel)
-        })
-        .catch((error) => console.error(error))
-} catch (error) { console.error(error) }
+// main
+mongoose.connect(MONGOOSE_URL)
+        .then(() => loadPanel(panelId))
+        .then(result => console.log(result))
+        .catch(error => console.error(error))
+        .finally(() => mongoose.disconnect())
+

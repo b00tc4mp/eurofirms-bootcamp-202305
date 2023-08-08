@@ -4,10 +4,11 @@ const Block = require('./Block')
 /* The `Panel` class represents a panel with a reference, owner, size, blocks, and status, and provides
 methods to check if a position is free, if all blocks are placed, and if a quadrant is free. */
 class Panel {
-    constructor(reference, owner, width, height, blocks, status) {
+    constructor(id, reference, owner, width, height, blocks, status) {
         if (!(typeof width === 'number' || typeof width === 'bigint')) throw new Error('width isNaN in Panel')
         if (!(typeof height === 'number' || typeof height === 'bigint')) throw new Error('height isNaN in Panel')
 
+        this.id = id
         this.reference = reference
         this.owner = owner
         this.size = new Dimension2D(width, height)
