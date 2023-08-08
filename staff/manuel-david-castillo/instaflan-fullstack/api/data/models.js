@@ -33,6 +33,12 @@ const user = new Schema({
             type: ObjectId,
             ref: 'User'
         }
+    ],
+    followed: [
+        {
+            type: ObjectId,
+            ref: 'User'
+        }
     ]
 })
 

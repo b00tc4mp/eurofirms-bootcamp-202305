@@ -13,8 +13,10 @@ function registerUser(name, image, description, email, password) {
         if (user) throw new Error('user already exists')
 
         const favPosts = []
+        const following = []
+        const followed = []
 
-        return User.create({name, image, description, email, password, favPosts})
+        return User.create({name, image, description, email, password, favPosts, following, followed})
     })
     .then(()=>{ })
 }

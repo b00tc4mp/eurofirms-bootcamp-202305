@@ -8,7 +8,7 @@ function retrievePosts(userId) {
     .then(user => {
         if(!user) throw new Error('user not found')
 
-        const followingUsers = user.following
+        const followingUsers = user.following ? user.following : []
         followingUsers.push(user._id)
 
         return Promise.all([User.findById(userId).lean(), 

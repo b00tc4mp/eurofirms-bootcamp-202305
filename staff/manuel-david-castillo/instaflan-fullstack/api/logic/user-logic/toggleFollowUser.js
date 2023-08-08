@@ -10,6 +10,7 @@ function toggleFollowUser(userId, userIdProfile) {
         if (!user) throw new Error ('user not found')
         if(!userProfile) throw new Error('userProfile not found')
 
+        /* Modificar array de usuarios seguidos del usuario que realiza el follow */
         const followingUsers = user.following ? user.following : []
 
         const index = followingUsers.findIndex((id) => userIdProfile === id.toString())
@@ -20,7 +21,18 @@ function toggleFollowUser(userId, userIdProfile) {
            followingUsers.splice(index, 1)
         }
 
-        return user.save()
+        /* Modificar array de usuarios seguidores del usuario que ha sido seguido */
+        const followedUsers = userProfile.followed ? userProfile.followed : []
+
+        const indexUser = followedUsers.findIndex((id) => userId === id.toString())
+
+        if(indexUser === -1) {
+            followedUsers.push(user._id)
+        } else  {
+           followedUsers.splice(indexUser, 1)
+        }
+
+        return Promise.all([user.save(), userProfile.save()])
     })
     .then(()=> {})
 }

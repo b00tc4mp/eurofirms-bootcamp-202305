@@ -8,7 +8,7 @@ function retrievePostsNotFollowed(userId) {
     .then(user => {
         if(!user) throw new Error('user not found')
 
-        const usersFollowed = user.following
+        const usersFollowed = user.following ? user.following : []
         usersFollowed.push(user._id)
 
         return Promise.all([Post.aggregate([
