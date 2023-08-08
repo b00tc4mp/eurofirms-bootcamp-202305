@@ -73,6 +73,14 @@ const message = new Schema({
     date: {
         type: Date, 
         default: Date.now
+    },
+    edit: {
+        type: Boolean,
+        require: true
+    },
+    delete: {
+        type: Boolean,
+        require: true
     }
 })
 

@@ -10,6 +10,7 @@ const {authenticateUser,
     createChat,
     createPost, 
     deletePost,
+    editMessage,
     editPost,
     editUser,
     registerUser, 
@@ -348,6 +349,25 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 createChat(userId, otherUser)
                 .then((chatId)=> {res.json(chatId)})
                 .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.patch('/chats/:messageId', jsonBodyParser, (req, res) => {
+            const {authorization} = req.headers
+            const token = authorization.slice(7)
+
+            const data = jwt.verify(token, JWT_SECRET)
+            const userId = data.sub
+
+            const {text} = req.body
+            const {messageId} = req.params
+
+            try{
+                editMessage(userId, messageId, text)
+                .then(()=> res.status(200).send())
+                .catch(error => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})
             }

@@ -15,7 +15,9 @@ function sendMessage(userId, chatId, text) {
             const message = {
                 author: user._id,
                 text: text,
-                date: new Date()
+                date: new Date(),
+                edit: false,
+                delete: false
             }
 
             chat.messages.push(message)
