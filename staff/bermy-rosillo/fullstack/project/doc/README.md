@@ -56,9 +56,15 @@ Answer
 ## tasks
 ### TODO
 - student home interface
+- student's test view
+- look for student test logic / view
+- cancel buttons 
+
 
 ### IN PROGRESS
 - teacher home
+- StudentResponse view
+- retrieveStudentsList logic
 
 ### DONE
 - data model
@@ -72,6 +78,7 @@ Answer
 - logic extractRoleFromToken
 - create test interface
 - logic create Test
+- Program logo
 
  
 

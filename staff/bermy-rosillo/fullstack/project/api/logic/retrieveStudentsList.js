@@ -14,13 +14,21 @@ function retrieveStudentsList(userId, testId) {
 
             return Answer.find({ test: testId }, 'student').populate('student', 'name').lean()
                 .then(answers => {
-                   const students =  answers.map(answer => {
-                    answer.student.id = answer.student._id.toString()
-                    delete answer.student._id
+                    const students = []
 
-                    return answer.student
-                })
-                //TODO clean repetead students
+                    answers.forEach(answer=>{
+                        if(answer.student._id){
+                        answer.student.id = answer.student._id.toString()
+                        delete answer.student._id
+                        }
+
+                        const studentIsRepeated = students.some(student=> student.id === answer.student.id)
+
+                        if(!studentIsRepeated){
+                            students.push(answer.student)
+                        }
+                    })
+
                     return students
                 })
         })

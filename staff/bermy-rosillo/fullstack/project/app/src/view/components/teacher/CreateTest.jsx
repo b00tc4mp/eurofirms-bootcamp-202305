@@ -28,10 +28,9 @@ function CreateTest(props) {
     }
     //---
     return <main className="create-test-view">
-        <h1>Create Test</h1>
-
+        
         <form className="create-test-form" onSubmit={handleSubmitCreateTest}  >
-
+        <h1>Create Test</h1>
         <label htmlFor="teacher">Teacher {props.userName}</label>
         
             <label htmlFor="subject">Subject</label>
