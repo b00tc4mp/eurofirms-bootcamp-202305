@@ -31,7 +31,7 @@ function Home({ onLogout }) {
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
 
-        const RefreshInterval = setInterval(handleRefreshNoModals, 5000);
+        const RefreshInterval = setInterval(handleRefreshNoModal, 5000);
 
         return () => clearInterval(RefreshInterval)
     }, [])
@@ -69,23 +69,23 @@ function Home({ onLogout }) {
         setBlockId(blockId)
         setModal('delete-block')
     }
+    const handleRefreshNoModal = () => {
+        try {
+            retrievePanels(context.tokenUser)
+                .then(panels => {
+                    setPanels(panels)
+                })
+                .catch(error => alert('Error: ' + error.message))
+        } catch (error) { alert('Error: ' + error.message) }
+    }  
     const handleRefresh = () => {
         try {
             retrievePanels(context.tokenUser)
                 .then(panels => {
                     setPanels(panels)
-                    // setPanelId(null)
-                    // setBlockId(null)
+                    setPanelId(null)
+                    setBlockId(null)
                     setModal(null)
-                })
-                .catch(error => alert('Error: ' + error.message))
-        } catch (error) { alert('Error: ' + error.message) }
-    }
-    const handleRefreshNoModals = () => {
-        try {
-            retrievePanels(context.tokenUser)
-                .then(panels => {
-                    setPanels(panels)
                 })
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
@@ -122,7 +122,7 @@ function Home({ onLogout }) {
                         </div>)}
                         <footer className="flex-center">
                             {panel.status === 0 && <>
-                                <button className="panel-button" type="button" onClick={() => handleCreateBlock(panel.id)}>📦</button>
+                                <button className="panel-button" type="button" onClick={() => handleCreateBlock(panel.id)}>🧱</button>
                                 <button className="panel-button" type="button" onClick={() => handleEditPanel(panel.id)}>📝</button>
                                 <button className="panel-button" type="button" onClick={() => handleToOptimizePanel(panel.id)}>📭</button>
                                 <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
@@ -133,7 +133,7 @@ function Home({ onLogout }) {
                             </>}
                             {panel.status === 2 && <>
                                 <button className="panel-button" type="button" onClick={() => handleViewPanel(panel.id)}>🎁</button>
-                                <button className="panel-button-cancel" type="button" onClick={() => handleReEditPanel(panel.id)}>🗄️</button>
+                                <button className="panel-button-cancel" type="button" onClick={() => handleReEditPanel(panel.id)}>🖇️</button>
                                 <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
                             </>}
                         </footer>
