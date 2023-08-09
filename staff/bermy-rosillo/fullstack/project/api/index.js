@@ -10,7 +10,8 @@ const registerUser = require('./logic/registerUser')
 const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
 const createTest = require('./logic/createTest')
-const retrieveTeacherListTests  = require('./logic/retrieveTeacherListTests')
+const retrieveTeacherListTests = require('./logic/retrieveTeacherListTests')
+const retrieveStudentsList = require('./logic/retrieveStudentsList')
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
 mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
@@ -84,7 +85,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 const token = authorization.slice(7)
                 const data = jwt.verify(token, process.env.JWT_SECRET)
                 const userId = data.sub
-                const {subject,title,description,attemps} = req.body
+                const { subject, title, description, attemps } = req.body
 
                 createTest(subject, title, description, userId, attemps)
                     .then(() => res.status(201).send())
@@ -109,7 +110,24 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
             } catch (error) {
                 res.status(400).json({ error: error.message })
             }
-        })    
+        })
+        //-retrieveStudentsList
+        api.get('/students/list/:testId', jsonBodyParser, (req, res) => {
+            try {
+                const authorization = req.headers.authorization
+                const token = authorization.slice(7)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
+                const userId = data.sub
+
+                const testId = req.params.testId
+
+                retrieveStudentsList(userId,testId)
+                    .then(students => res.json(students))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
 
         //retrievePosts
         /*api.get('/posts', (req, res) => {

@@ -8,7 +8,7 @@ function retrieveStudentsList(userId, testId) {
         .then(([teacher, test]) => {
             if (!teacher) throw new Error('teacher not found')
             if (!test) throw new Error('test not found')
-            if (test.teacher.toString() !== teacher.id) throw new Error('test dont belong to teacher')
+            if (test.teacher.toString() !== teacher.id) throw new Error('test do not belong to teacher')
             if (teacher.role !== 'teacher') throw new Error('user is not a teacher')
 
 
