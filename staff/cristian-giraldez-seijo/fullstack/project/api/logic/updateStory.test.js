@@ -1,0 +1,18 @@
+require('dotenv').config()
+const { mongo, default: mongoose } = require('mongoose')
+const updateStory = require('./updateStory')
+
+mongoose.connect(`${process.env.MONGODB_URL}/test`)
+    .then(() => updateStory('64c7746cbc155714c1fecf58', '64d355be4b1333d5de746ab4', 'KROARIS', 'this is a try', '"Long ago, in a magical and fantastic world, there was a powerful and enigmatic witch named Kroaris. She was known for her ability to weave ancient spells and incantations few dared to utter. She lived deep in the Forest of Shadows, a place full of mystery and danger, where dragons soared in the skies and Vikings sailed the oceans.\
+    Dragons were ancient guardians of the land and protected the magical creatures that inhabited the forest. But with the passage of time, the balance between the dragons and the inhabitants was threatened by a dark force that sought to dominate the entire kingdom. Kroaris witnessed this growing threat, and she knew that she must intervene to preserve peace and harmony.\
+    In her quest to stop the darkness, Kroaris discovered an ancient prophecy that spoke of a group of brave Vikings who would carry the power of the gods of Olympus. These Vikings would be chosen to face the darkness and return the light to the kingdom.\
+    Determined to help fulfill the prophecy, Kroaris embarked on a quest to find the Vikings destined for this mission. Her traces led her through faraway and dangerous lands, where she encountered mythological beasts and other magical beings. However, her perseverance and wisdom allowed her to find the chosen Vikings: Adira, the brave warrior; Garling the learned scholar; and Vlad, the intrepid sea captain.\
+    The Vikings, at first, were not sure they trusted the mysterious witch, but Kroaris demonstrated her kindness and her genuine desire to protect the kingdom. The dragons, impressed by her bravery, decided to join her cause. Together, Kroaris, the Vikings, and the dragons formed a unique alliance to face the darkness.\
+    With the help of dragons, the Vikings used the gifts of the gods of Olympus that had been given to them. Adira wielded Poseidon\'s trident, Garling held Zeus\' thunderbolt, and Vlad carried Ares\' spear. United, they became an invincible force against the darkness.\
+    The ensuing battle was epic and fierce. The darkness unleashed its army of malevolent creatures and monstrosities that faced dragons and vikings. But the combined bravery and magic of Kroaris and the Vikings proved more powerful.\
+    In one last showdown, Kroaris faced the leader of the darkness, a fearsome and ancient being. Unfolding all of her magic, Kroaris fought valiantly, and in the end, she managed to lock the darkness away in a remote corner of the realm.\
+    With the darkness defeated and the kingdom safe once more, the Vikings and dragons thanked Kroaris for her bravery and wisdom. They became eternal allies and vowed to protect the kingdom together.\
+    From that day on, the legend of Kroaris, the witch who joined dragons and Vikings to defeat the darkness, was told throughout the kingdom.The alliance between such disparate beings reminded everyone that true strength is found in friendship, union and wisdom, and that even the gods of Olympus can join the fight when it is necessary to preserve balance and peace."', 'Who is the brave who dares to make chapters of history?'))
+    .then(() => console.log('story updated'))
+    .catch(error => console.error(error))
+    .finally(() => mongoose.disconnect())

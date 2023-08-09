@@ -44,9 +44,9 @@ function validatePassword(password) {
     if (password.length < 8) throw new Error('password length is lower than 8')
 }
 
-function validateNickname(nickname) {
-    if (typeof nickname !== 'string') throw new Error('nickname is not a string')
-    if (nickname === '') throw new Error('nickname is empty')
+function validateString(string) {
+    if (typeof string !== 'string') throw new Error('string is not a string')
+    if (string === '') throw new Error('string is empty')
 }
 
 function validateId(id) {
@@ -54,9 +54,15 @@ function validateId(id) {
     if (id === '') throw new Error('id is empty')
 }
 
+function validateShortcut(shortcut, text) {
+    if (!shortcut && !text) throw new Error('You must to put a link or a text')
+    if (shortcut && text) throw new Error('You must choose to put a link or a text')
+}
 module.exports = {
     validateEmail,
     validatePassword,
-    validateNickname,
-    validateId
+    validateString,
+    validateId,
+    validateUseLinkOrText: validateShortcut,
+    
 }

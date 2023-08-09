@@ -70,7 +70,7 @@ Comment
 - TODO implement api route for create story
 - TODO implement app logic for create story
 - TODO implement create story on the app home component
-- TODO implement api logic for update story
+- DONE implement api logic for update story
 - TODO implement api route for update story
 - TODO implement app logic for update story
 - TODO implement update story on the app home component
