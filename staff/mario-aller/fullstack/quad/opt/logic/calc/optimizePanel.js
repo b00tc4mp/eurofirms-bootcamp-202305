@@ -1,7 +1,8 @@
 const { Dimension2D, Block, Panel } = require('../classes')
 
 const displayProcess = function (processId, nest, iteration) {
-    console.log('Start:', processId.toString().padStart(4), '| Nesting:', nest, '> Times:', iteration)
+    if (processId % 100 === 1)
+        console.log('Start:', processId.toString().padStart(4), '| Nesting:', nest, '> Times:', iteration)
 }
 
 const cep = function (panel, context) {
