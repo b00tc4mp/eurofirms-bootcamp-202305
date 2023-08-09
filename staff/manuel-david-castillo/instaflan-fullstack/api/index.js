@@ -18,6 +18,8 @@ const {authenticateUser,
     retrieveChat,
     retrieveChats,
     retrieveFavPosts,
+    retrieveFollowed,
+    retrieveFollowing,
     retrievePost,
     retrievePosts,
     retrievePostsOfUser,
@@ -101,6 +103,42 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
 
                 retrieveUser(userId)
                 .then((user)=> res.json(user))
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.get('/users/:userIdProfile/followed', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {userIdProfile} = req.params
+
+                retrieveFollowed(userId, userIdProfile)
+                .then((users)=> res.json(users))
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.get('/users/:userIdProfile/following', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {userIdProfile} = req.params
+
+                retrieveFollowing(userId, userIdProfile)
+                .then((users)=> res.json(users))
                 .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})

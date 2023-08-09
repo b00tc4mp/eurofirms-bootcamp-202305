@@ -11,6 +11,8 @@ module.exports = {
     retrieveChats: require('./chats-logic/retrieveChats'),
     registerUser: require('./user-logic/registerUser'),
     retrieveFavPosts: require('./post-logic/retrieveFavPosts'),
+    retrieveFollowed: require('./user-logic/retrieveFollowed'),
+    retrieveFollowing: require('./user-logic/retrieveFollowing'),
     retrievePost: require('./post-logic/retrievePost'),
     retrievePosts: require('./post-logic/retrievePosts'),
     retrievePostsOfUser: require('./post-logic/retrievePostsOfUser'),

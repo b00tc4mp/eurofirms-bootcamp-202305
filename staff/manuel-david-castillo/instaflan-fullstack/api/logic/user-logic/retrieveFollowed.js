@@ -1,18 +1,21 @@
 const { User } = require("../../data/models");
 const { validateId } = require("../helpers/validators");
 
-function retrieveFollowed(userId) {
+function retrieveFollowed(userId, userIdProfile) {
     validateId(userId)
+    validateId(userIdProfile)
 
-    return User.findById(userId, '-__v').populate('followed', 'name image').lean()
-    .then(user => {
+    return Promise.all([User.findById(userId, '-__v').lean(),
+        User.findById(userIdProfile, '-__v').populate('followed', 'name image').lean()]) 
+    .then(([user, userProfile]) => {
         if(!user) throw new Error('user not found')
+        if(!userProfile) throw new Error('userProfile not found')
 
-        const followed = user.followed
+        const followed = userProfile.followed
 
-        followed.forEach(user => {
-            user.id = user._id.toString()
-            delete user._id
+        followed.forEach(userProfile => {
+            userProfile.id = userProfile._id.toString()
+            delete userProfile._id
         });
 
         return followed
