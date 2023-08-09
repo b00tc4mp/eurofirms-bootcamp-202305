@@ -33,10 +33,13 @@ User
 
 Story
 - author(object id, required, unique)
+- title(string, required)
 - sumary(string)
-- text(string, required)
-- date(date, required)
-- children(array of object ids)
+- text(string)
+- shortcut(boolean)
+- dateCreated(date, required)
+- dateUpdated(date, required)
+- options(array of object ids)
 - comments(array of comments)
 
 Comment
@@ -58,3 +61,11 @@ Comment
 - DONE implement api route for retrieve user
 - DONE implement app retrieve user logic
 - DONE implement retrieve user on app Home
+- DONE implement api logic for create story
+- TODO implement api route for create story
+- TODO implement app logic for create story
+- TODO implement create story on the app home component
+- TODO implement api logic for update story
+- TODO implement api route for update story
+- TODO implement app logic for update story
+- TODO implement update story on the app home component

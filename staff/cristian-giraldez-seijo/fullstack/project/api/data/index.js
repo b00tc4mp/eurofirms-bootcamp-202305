@@ -58,8 +58,8 @@ const story = new Schema({
         type: String
     },
     origin: {
-type: ObjectId,
-ref: 'Story'
+        type: ObjectId,
+        ref: 'Story'
     },
     question: {
         type: String,
@@ -71,17 +71,9 @@ ref: 'Story'
             type: ObjectId,
             ref: 'Story'
         }],
-    links: [{
-        type: ObjectId,
-        ref: 'Story'
-    }],
-    islink: {
+    shortcut: {
         type: Boolean,
         default: false
-    },
-    linkstory: {
-        type: ObjectId,
-        ref: 'Story'
     },
     datecreated: {
         type: Date,
