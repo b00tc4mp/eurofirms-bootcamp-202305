@@ -1,0 +1,67 @@
+
+    /*ESTILOS NAVBAR*/
+    .layout__navbar {
+      width: 100%;
+      grid-area: nav;
+      background-color: #3785E5;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 2rem;
+      height: 5.3rem;
+    }
+
+    .bg-orange {
+      background-color: #F9A221;
+    }
+
+    .bg-red {
+      background-color: #F73535;
+    }
+
+    .bg-black {
+      background-color: black;
+    }
+
+    .background-personalized-button1 {
+      background-color: #3785E5;
+      color: white;
+      padding: 10px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    .background-personalized-button1:hover {
+      background-color: blue;
+    }
+
+    .background-personalized-button2 {
+      background-color: #3785E5;
+      color: white;
+      padding: 10px;
+    }
+
+    .background-personalized-button2:hover {
+      background-color: rgb(210, 73, 23);
+    }
+
+    .display-flex {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .position-center {
+      justify-content: center;
+    }
+
+    .less-margin {
+      margin: 0px;
+    }
+
+    .hello-user {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+
+      width: 200px;
+    }
