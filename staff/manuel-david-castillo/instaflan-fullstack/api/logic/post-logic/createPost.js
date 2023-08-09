@@ -13,8 +13,9 @@ function createPost(userId, image, text) {
         const author = user._id
         const date = new Date()
         const likes = 0
+        const comments = []
 
-        return Post.create({author, image, text, likes, date})
+        return Post.create({author, image, text, likes, date, comments})
         })
     .then(()=>{})
 }

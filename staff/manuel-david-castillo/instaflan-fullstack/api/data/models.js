@@ -42,6 +42,22 @@ const user = new Schema({
     ]
 })
 
+const comments = new Schema({
+    author: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date, 
+        default: Date.now
+    }
+})
+
 const post = new Schema({
     text: {
         type: String,
@@ -63,7 +79,8 @@ const post = new Schema({
         type: ObjectId,
         ref: 'User',
         required: true
-    }
+    },
+    comments: [comments]
 })
 
 const message = new Schema({
@@ -87,7 +104,7 @@ const message = new Schema({
     delete: {
         type: Boolean,
         require: true
-    }
+    },
 })
 
 const chat = new Schema({
@@ -103,6 +120,7 @@ const chat = new Schema({
         default: Date.now
     } 
 })
+
 
 
 

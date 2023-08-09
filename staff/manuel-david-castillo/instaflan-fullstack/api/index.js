@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 
 const {authenticateUser, 
     createChat,
+    createComment,
     createPost, 
     deletePost,
     deleteMessage,
@@ -478,6 +479,26 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
 
                 sendMessage(userId, chatId, text)
                 .then((chatId)=> {res.json(chatId)})
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.post('/posts/:postId/comments', jsonBodyParser, (req, res)=>{
+            try{
+                const { authorization } = req.headers 
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                const {postId} = req.params 
+
+                const {text} = req.body
+
+                createComment(userId, postId, text)
+                .then(()=> res.status(200).json().send())
                 .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})

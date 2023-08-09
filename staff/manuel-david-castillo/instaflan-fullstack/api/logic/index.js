@@ -1,6 +1,7 @@
 module.exports = {
     authenticateUser: require('./user-logic/authenticateUser'),
     createChat: require('./chats-logic/createChat'),
+    createComment: require('./commets-logic/createComment'),
     createPost: require('./post-logic/createPost'),
     deletePost: require('./post-logic/deletePost'),
     deleteMessage: require('./chats-logic/deleteMessage'),
