@@ -37,6 +37,7 @@ function retrievePostsNotFollowed(userId) {
                     text: 1,
                     image: 1,
                     likes: 1,
+                    comments: 1, 
                     "author.name" : 1,
                     "author.image": 1,
                     "author.id": {$toString: "$author._id"}
