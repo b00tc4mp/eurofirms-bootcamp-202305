@@ -1,4 +1,4 @@
-import { validateString } from './helpers/validators'
+import { validateString } from 'com'
 
 /**
  * The `registerUser` function is used to register a user by sending a POST request to the API with the

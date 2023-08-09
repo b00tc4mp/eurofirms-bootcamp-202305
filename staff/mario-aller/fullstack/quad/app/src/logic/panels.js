@@ -1,4 +1,4 @@
-import { validateString } from './helpers/validators'
+import { validateString } from 'com'
 
 export const createPanel = function (token, reference, width, height) {
     validateString(token, validateString.REGULAR)

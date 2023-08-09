@@ -31,7 +31,9 @@ function Home({ onLogout }) {
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
 
-        setInterval(handleRefreshNoModals, 5000);
+        const RefreshInterval = setInterval(handleRefreshNoModals, 5000);
+
+        return () => clearInterval(RefreshInterval)
     }, [])
     // const getPanelStatus = (panelId) => panels.find(panel => panel.id === panelId).status
     const handleLogout = () => {
@@ -72,13 +74,13 @@ function Home({ onLogout }) {
             retrievePanels(context.tokenUser)
                 .then(panels => {
                     setPanels(panels)
-                    setPanelId(null)
-                    setBlockId(null)
+                    // setPanelId(null)
+                    // setBlockId(null)
                     setModal(null)
                 })
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
-    }    
+    }
     const handleRefreshNoModals = () => {
         try {
             retrievePanels(context.tokenUser)

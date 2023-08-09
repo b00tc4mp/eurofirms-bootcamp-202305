@@ -92,4 +92,4 @@ validateString.URL = 3
 validateString.NAME = 4
 validateString.INTEGER = 5
 
-module.exports = { validateString }
+module.exports = validateString
