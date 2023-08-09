@@ -132,21 +132,24 @@ function Home({onLoggedOut}) {
                     {meetups && meetups.map(meetup => <article key={meetup.id} 
                     className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
                             <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
+                            <a className="mt-2 text-sm text-[#2C2A2A] font-style: italic">{meetup.date}</a>
                             <p className="mt-8 font-semibold text-[#2C2A2A]">Image: </p>
                             <img className="w-full"
                                 src={meetup.image}
-                                alt={meetup.text} />
+                                alt={meetup.text}/>
                             <p className="mt-8 font-semibold text-[#2C2A2A]">Video: </p>
                             <video controls className="w-full"
                                 src={meetup.video}
                                 alt={meetup.text} />
                             <p className="mt-8 font-semibold text-[#2C2A2A]">Description: </p>
                             <p>{meetup.text}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Adress:</p>
-                            <p> {meetup.text}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Date: </p>
-                            <p>{meetup.text}</p>
-                        
+                            <p className="mt-8 font-semibold text-[#2C2A2A]">Type:</p>
+                            <p> {meetup.type}</p>
+                            <p className="mt-8 font-semibold text-[#2C2A2A]">Adress: </p>
+                            <p>{meetup.adress}</p>
+                            <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
+                            <p>{meetup.date}</p>
+
                             {meetup.author.id === userId && <>
                                 <button className="button" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
                                 <button className="button" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>

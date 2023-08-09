@@ -59,8 +59,7 @@ const meetup = new Schema({
         default: Date.now
     },
     adress:{
-        type: ObjectId,
-        ref: 'name'
+        type: String
     }
 })
 const User = model('User', user)

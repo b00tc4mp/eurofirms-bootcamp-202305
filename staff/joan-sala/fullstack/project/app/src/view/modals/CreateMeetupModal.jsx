@@ -11,9 +11,11 @@ function CreateMeetupModal(props){
         const image = event.target.image.value
         const video = event.target.video.value
         const text = event.target.text.value
+        const type = event.target.type.value
+        const adress = event.target.adress.value
 
         try{
-            createMeetup(context.token, image, video, text)
+            createMeetup(context.token, image, video, text, type, adress)
             .then(()=> props.onMeetupCreated())
             .catch(error => alert(error.message))
         }catch(error){
@@ -34,10 +36,13 @@ function CreateMeetupModal(props){
                 <label htmlFor="video">Video</label>
                 <textarea className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="video" type="url"></textarea>
 
-                <label htmlFor="text">Type</label>
+                <label htmlFor="text">Description</label>
                 <input className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="text" type="text"></input>
+                
+                <label htmlFor="type">Type</label>
+                <input className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="type" type="text"></input>
 
-                <label htmlFor="text">Adress</label>
+                <label htmlFor="adress">Adress</label>
                 <input className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="adress" type="text"></input>
                 
                 <button className="button" type="submit">Create</button>

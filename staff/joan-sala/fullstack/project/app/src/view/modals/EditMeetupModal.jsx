@@ -3,7 +3,7 @@ import context from '../../context'
 import retrieveMeetup from '../../logic/retrieveMeetup'
 import updateMeetup from '../../logic/updateMeetup'
 
-function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) { //Sacado del Home - linia 111  
+function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) { 
     console.log('EditMeetupModal -> render')
 
     //const meetupState = useState(null) //inicialmente el meetup es nuulo
@@ -28,10 +28,11 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) { //
         event.preventDefault()
 
         const image = event.target.image.value
+        const video = event.target.video.value
         const text = event.target.text.value
         
         try{
-            updateMeetup(context.token, meetupId, image, text)
+            updateMeetup(context.token, meetupId, image, video, text)
             .then(() =>  onMeetupEdited())
             .catch(error=> error.message)
         }catch(error){
