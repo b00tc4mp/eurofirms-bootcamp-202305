@@ -1,4 +1,5 @@
 import registerUser from '../../logic/registerUser'
+import context from '../../context'
 
 function Register(props) {
     console.log('Register -> render')
@@ -13,11 +14,14 @@ function Register(props) {
         event.preventDefault()
 
         const name = event.target.name.value
+        const nickname = event.target.nickname.value
         const email = event.target.email.value
+        const phone = event.target.phone.value
         const password = event.target.password.value
 
+
         try {
-            registerUser(name, email, password)
+            registerUser(name, nickname, email, phone, password)
                 .then(() => props.onRegistered())
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -47,7 +51,7 @@ function Register(props) {
             </div>
             <div className="mb-4">
               <label htmlFor="nickname" className="block mb-2 text-sm text-black-600">Nickname</label>
-              <input type="text" id="nickname" name="nickname"
+              <input type="nickname" id="nickname" name="nickname"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
              </input> 
             </div>
