@@ -6,7 +6,7 @@ function retrieveUser(userId, userIdProfile) {
     validateId(userIdProfile)
 
     return Promise.all([User.findById(userId, 'following -_id').lean(), 
-        User.findById(userIdProfile, 'name email image description ').lean()]) 
+        User.findById(userIdProfile, 'name email image description followed following').lean()]) 
         .then(([user, userProfile]) => {
             if(!user) throw new Error('user not found')
             if(!userProfile) throw new Error('userProfile not found')

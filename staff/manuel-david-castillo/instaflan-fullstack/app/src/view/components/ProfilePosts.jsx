@@ -113,7 +113,7 @@ export default function ProfilePosts() {
         }
     }
 
-    return <section className="pt-2">
+    return <section className="">
         {posts?.map(post => <article key={post.id} className="bg-color5 mb-3">
             <div className="flex justify-between items-center">
                 <div className="flex justify-start items-center pl-3 py-1">
