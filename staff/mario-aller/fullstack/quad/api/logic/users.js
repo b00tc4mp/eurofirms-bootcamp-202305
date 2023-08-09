@@ -1,5 +1,7 @@
 const { models: { UserModel } } = require('dat')
-const { validators: { validateString } } = require('com')
+const { validateString } = require('com')
+//const { validators: { validateString } } = require('com')
+
 /**
  * The function registers a new user by validating the input data and creating a new user in the
  * database if the user does not already exist.

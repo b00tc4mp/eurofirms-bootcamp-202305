@@ -1,5 +1,6 @@
 const { models: { UserModel, PanelModel } } = require('dat')
-const { validators: { validateString } } = require('com')
+const { validateString } = require('com')
+// const { validators: { validateString } } = require('com')
 
 /**
  * The function creates a panel with the specified user ID, reference, width, and height, after
