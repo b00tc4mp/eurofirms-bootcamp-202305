@@ -42,7 +42,7 @@ const user = new Schema({
     ]
 })
 
-const comments = new Schema({
+const comment = new Schema({
     author: {
         type: ObjectId,
         ref: 'User',
@@ -80,7 +80,7 @@ const post = new Schema({
         ref: 'User',
         required: true
     },
-    comments: [comments]
+    comments: [comment]
 })
 
 const message = new Schema({

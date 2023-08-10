@@ -5,7 +5,10 @@ function retrievePostsOfUser(userId, userIdProfile) {
     validateId(userId)
 
     return Promise.all([User.findById(userId).lean(), 
-        Post.find({author: userIdProfile}, '-__v').populate('author', 'name image').sort({ date: -1 }).lean()])
+        Post.find({author: userIdProfile}, '-__v')
+            .populate('author', 'name image')
+            .populate({path: 'comments.author', select: 'name image'})
+            .sort({ date: -1 }).lean()])
     .then(([user, posts])=>{
         if(!user) throw new Error('user not found')
 
@@ -24,6 +27,18 @@ function retrievePostsOfUser(userId, userIdProfile) {
             })
 
            post.fav = favPosts.includes(post.id) 
+
+           if(post.comments) {
+            post.comments.forEach(comment => {
+            comment.id = comment._id.toString()
+            delete comment._id
+
+            if(comment.author._id) {
+                comment.author.id = comment.author._id
+                delete comment.author._id
+            }
+           })
+           }
         })
 
         return posts

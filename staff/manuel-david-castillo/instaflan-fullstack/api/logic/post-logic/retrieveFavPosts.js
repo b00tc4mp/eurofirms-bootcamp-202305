@@ -1,4 +1,3 @@
-const { truncate } = require('fs/promises')
 const {User, Post} = require('../../data/models')
 const {validateId} = require('../helpers/validators')
 
@@ -13,7 +12,10 @@ function retrieveFavPosts(userId, userIdProfile) {
 
         const favPosts = userProfile.favPosts
 
-        return  Post.find({_id: favPosts}, '-__v').populate('author', 'name image').sort({ date: -1 }).lean()
+        return  Post.find({_id: favPosts}, '-__v')
+        .populate('author', 'name image')
+        .populate({path: 'comments.author', select: 'name image'})
+        .sort({ date: -1 }).lean()
     })
     .then((posts)=>{
         posts.forEach(post => {
@@ -27,6 +29,18 @@ function retrieveFavPosts(userId, userIdProfile) {
             }
 
            post.fav = true
+
+           if(post.comments) {
+            post.comments.forEach(comment => {
+            comment.id = comment._id.toString()
+            delete comment._id
+
+            if(comment.author._id) {
+                comment.author.id = comment.author._id
+                delete comment.author._id
+            }
+           })
+           }
         })
 
         return posts
