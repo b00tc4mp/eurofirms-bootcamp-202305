@@ -17,7 +17,7 @@ function validateEmail(email) {
     if (indexOfAt > indexOfDot) throw new Error('@ is after .')
     if (indexOfDot - indexOfAt === 1) throw new Error('. is next to @')
 
-    const dictionary = 'abcdefghijklmnopqrstuvwxyz0123456789_-$'
+    const dictionary = 'abcdefghijklmnopqrstuvwxyz0123456789_-$.'
 
     for (let i = 0; i < indexOfAt; i++) {
         const char = email[i]
