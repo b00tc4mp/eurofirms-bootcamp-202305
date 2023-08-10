@@ -2,9 +2,10 @@
 
 ## Intro
 
+This application focuses on providing users with tools and resources that allow them to unleash their creativity and artistic expression through story writing.
+
 ## Functional description
 
-This application focuses on providing users with tools and resources that allow them to unleash their creativity and artistic expression through story writing.
 Choose Your Own Adventure" stories are accessible to all users, but by registering, users can embark on an exciting literary journey, creating original plots or derived from existing stories.
 What adventure will you choose? Do you dare to write your own?
 
@@ -26,7 +27,7 @@ TODO Value AI interactions posibility
 
 ## Technical description
 
-Unregistered users can access and read content on the aplication. Registered users have more options: explore, create and improve stories. They can write complete stories or add answers to existent questions. They can also answer questions or add subplots that start at a specific point and end at a "shortcut," facilitating transitions. Only the author sees messages about unconventional chapters, which are links to other segments. These shortcuts can include time jumps and give readers choice about which parts to read.
+Unregistered users can access and read content on the aplication. Registered users have more options: explore, create and improve stories. They can write complete stories or add answers to the existing questions. They can also answer questions or add subplots that start at a specific point and end at a "shortcut," facilitating transitions. Only the author sees messages about unconventional chapters, which are links to other segments. These shortcuts can include time jumps and give readers choice about which parts to read.
 
 ### Data model
 
