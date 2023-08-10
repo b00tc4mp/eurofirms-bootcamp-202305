@@ -37,7 +37,7 @@ export default function EditPostModal(props) {
 
     const handleCancelEditPost = () => props.onHideEditPost()
 
-    return <div className="fixed top-0 left-0 right-0 bottom-0 m-auto bg-black bg-opacity-60 w-full h-full z-2 flex flex-col items-center justify-center">
+    return <div className="fixed z-10 top-0 left-0 right-0 bottom-0 m-auto bg-black bg-opacity-60 w-full h-full z-2 flex flex-col items-center justify-center">
         {post && <form onSubmit={handleSubmitPost} className="flex flex-col justify-center items-center p-6 bg-color5 border-3 border-solid border-black border-4 rounded-lg w-64" action="">
             <h3 className="font-bold text-xl text-color1 mb-4">Edit post</h3>
             <p className="m-1 text-color1 font-semibold">Image</p>

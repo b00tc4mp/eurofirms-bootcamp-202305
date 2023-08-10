@@ -7,6 +7,8 @@ import toggleFollowUser from "../../logic/toggleFollowUser"
 
 import context from "../../context"
 
+import createComment from "../../logic/createComment"
+
 export default function Explorer() {
     const [users, setUsers] = useState()
     const [posts, setPosts] = useState()
@@ -138,5 +140,7 @@ export default function Explorer() {
             </article>)}
             <button onClick={handleUpdatePosts} className="bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Update posts</button>
         </article>
+
+        {modal === "comment-modal" && <CreateCommentModal postId={postId} onCreateComment={handleCreateComment} onHideCreateComment={handleCancelCommentModal} />}
     </section >
 }

@@ -1,8 +1,8 @@
-import { validateId, validateUrl, validateText } from "./helpers/validators";
+import { validateId, validateText } from "./helpers/validators";
 
 export default function createComment(userId, postId, text) {
   validateId(userId)
-  validateUrl(postId)
+  validateId(postId)
   validateText(text)
 
  return fetch(`http://localhost:8000/posts/${postId}/comments`,{
