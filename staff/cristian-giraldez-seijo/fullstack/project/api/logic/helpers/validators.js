@@ -54,15 +54,10 @@ function validateId(id) {
     if (id === '') throw new Error('id is empty')
 }
 
-function validateShortcut(shortcut, text) {
-    if (!shortcut && !text) throw new Error('You must to put a link or a text')
-    if (shortcut && text) throw new Error('You must choose to put a link or a text')
-}
 module.exports = {
     validateEmail,
     validatePassword,
     validateString,
     validateId,
-    validateUseLinkOrText: validateShortcut,
-    
+
 }

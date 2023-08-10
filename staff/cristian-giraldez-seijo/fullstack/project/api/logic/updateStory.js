@@ -4,7 +4,8 @@ const { validateId, validateUseLinkOrText: validateShortcut, validateString } = 
 function updateStory(userId, storyId, title, sumary, text, question, shortcut, origin) {
     validateId(userId)
     validateId(storyId)
-    validateShortcut(shortcut, text)
+    if (!shortcut && !text) throw new Error('You must to put a link or a text')
+    if (shortcut && text) throw new Error('You must choose to put a link or a text')
     // TODO validates
     //if(text) validateText(text)
     validateString(title)

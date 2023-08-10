@@ -2,7 +2,8 @@ const { Story, User } = require('../data')
 const { validateId, validateUseLinkOrText: validateShortcut, validateString } = require('./helpers/validators')
 
 function createStory(userId, title, sumary, text, question, shortcut, origin) {
-    validateShortcut(shortcut, text)
+    if (!shortcut && !text) throw new Error('You must to put a link or a text')
+    if (shortcut && text) throw new Error('You must choose to put a link or a text')
     // TODO validates
     //if(text) validateText(text)
 
