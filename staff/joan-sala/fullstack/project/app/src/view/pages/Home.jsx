@@ -160,7 +160,7 @@ function Home({onLoggedOut}) {
                 </section>
             </main>
                   
-            <footer className=" text-white bg-[#d9d9d9] flex bottom-0 w-full h-[3rem] flex justify-center align-center">
+            <footer className=" text-white bg-[#d9d9d9] flex bottom-0 w-full h-[3rem] justify-center align-center">
                 <button className="border-solid border-2 bg-[#2C2A2A] br-30 p-5 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>+</button>
             </footer>
           

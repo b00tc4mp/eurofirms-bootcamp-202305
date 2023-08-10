@@ -13,12 +13,9 @@ function createMeetup(userId, image, video, text, type, adress) {
 
     return User.findById(userId)
         .then(user => {
-
-            const date = new Date.now()
-
             if (!user) throw new Error('User not found')
 
-            return Meetup.create({ author: userId, image, video, text, type, adress, date })
+            return Meetup.create({ author: userId, image, video, text, type, adress})
         })
         .then(() => { })
 }

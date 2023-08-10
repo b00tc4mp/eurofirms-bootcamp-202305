@@ -11,6 +11,7 @@ mongoose. connect(`${process.env.MONGODB_URL}/testMeetupBikers`)
         'traveling with my bike PRUEBA',
         'mountainbike',
         'calle P'
+        //'2023/08/31'
     ))
     .then(() => console.log('Meetup created'))
     .catch(error => console.error(error))

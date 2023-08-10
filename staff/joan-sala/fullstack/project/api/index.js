@@ -28,20 +28,19 @@ mongoose.connect(`${MONGODB_URL}/data`)
 
         api.use(cors()) //añadir cabecera 
 
-        //end point 01, proceso en la ruta raiz, controlador    
-        api.get('/', (req, res) => { //htp://localhost:9000/
+        //01. process in root path    
+        api.get('/', (req, res) => { 
             res.send('hola mundo')
         })
 
-        //end point EJEMPLE
         api.get('/search', (req, res) => {
             const q = req.query.q
 
             res.send(`You requested me to search: ${q}`)
         })
 
-        //end point 02 REGISTER USER
-        api.post('/users', jsonBodyParser, (req, res) => { //req:request=petición | res:respuesta si va bien o no
+        //02. REGISTER USER
+        api.post('/users', jsonBodyParser, (req, res) => { //req:request | res:answer if it works or not
             //debugger 
             const { name, email, password, image } = req.body
 
@@ -55,13 +54,13 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
 
-        //end point 03 AUTHENTICATE USER  aclarar que es author
+        //03. AUTHENTICATE USER
         api.post('/users/auth', jsonBodyParser, (req, res) => {
             const { email, password } = req.body 
 
             try {
                 authenticateUser(email, password)
-                    .then(userId => {//sub: . el token tiene 3 partes, es una propiedad del peyload
+                    .then(userId => {  
                         const data = { sub: userId }
                         const token = jwt.sign(data, JWT_SECRET)
 
@@ -70,11 +69,11 @@ mongoose.connect(`${MONGODB_URL}/data`)
                     .catch((error) => res.status(400).json({ error: error.message }))
 
             } catch (error) {
-                res.status(400).json({ error: error.message }) // para mostrar sólo el 'message' del error
+                res.status(400).json({ error: error.message }) 
             }
         })
         
-        //end point 04 RETRIEVE USER
+        //04. RETRIEVE USER
         api.get('/users', (req, res) => {
             try {
                 const token = req.headers.authorization.slice(7)
@@ -90,7 +89,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
         
-        //end point 05 CREATE MEETUPS
+        //05. CREATE MEETUPS
         api.post('/meetups', jsonBodyParser, (req, res) => {
 
             try {
@@ -100,7 +99,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
-                createMeetup(userId, image, video, text, type, adress)
+                createMeetup(userId, image, video, text, type, adress)//, dateMeetup)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -108,7 +107,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
         
-        //end point 06 UPDATE MEETUP
+        //06. UPDATE MEETUP
         api.patch('/meetups/:meetupId',jsonBodyParser, (req, res)=>{
             try{
                 const token = req.headers.authorization.slice(7)
@@ -126,7 +125,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
         
-        //end point 07 DELETE MEETUP
+        //07. DELETE MEETUP
         api.delete('/meetups/:meetupId', (req, res)=>{
             try{
                 const { meetupId } = req.params
@@ -142,7 +141,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
 
-        //end point 08 RETRIEVE MEETUP siempre en plural
+        //08. RETRIEVE MEETUP always in the plural
         api.get('/meetups/:meetupId', (req, res) => {
             try {
                 const { meetupId } = req.params
@@ -159,7 +158,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
 
-         //end point 09 RETRIEVE POSTS
+        //09 RETRIEVE POSTS
          api.get('/meetups', (req, res) =>{
             try{
                 const token = req.headers.authorization.slice(7)
@@ -174,7 +173,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
             }
         })
 
-        //estrella
+        //10. STAR
         api.put('/meetups/:meetupId/favs', (req, res) =>{
             try{
                 const { authorization } = req.headers
@@ -182,7 +181,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 const data = jwt.verify(token, JWT_SECRET)
                 
                 const userId = data.sub
-                const meetupId = req.params.meetupId
+                //const meetupId = req.params.meetupId
 
                 toggleFavMeetup(userId, meetupId)
                 .then(()=> res.status(204).send())

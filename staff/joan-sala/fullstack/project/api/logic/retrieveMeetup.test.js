@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const retrievePost = require('./retrieveMeetup')
+const retrieveMeetup = require('./retrieveMeetup')
 const mongoose = require('mongoose')
 
 mongoose. connect(`${process.env.MONGODB_URL}/testMeetupBikers`)

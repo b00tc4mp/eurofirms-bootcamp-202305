@@ -6,9 +6,7 @@ import updateMeetup from '../../logic/updateMeetup'
 function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) { 
     console.log('EditMeetupModal -> render')
 
-    //const meetupState = useState(null) //inicialmente el meetup es nuulo
-    //const meetup = meuettappState[0] //posición actual   
-    //const setMeenup = postState[1] //seter del estado
+    
     const [meetup, setMeetup] = useState(null)
     
     //al crear el componente llama a esta función 
@@ -20,7 +18,7 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) {
         }catch(error){
               alert(error.message)
         }    
-    }, []) //sólo una vez
+    }, [])
 
     const handleCancelClick = () => onEditMeetupCancelled()
 
@@ -30,9 +28,11 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) {
         const image = event.target.image.value
         const video = event.target.video.value
         const text = event.target.text.value
-        
+        const type = event.target.type.value
+        const adress = event.target.adress.value
+
         try{
-            updateMeetup(context.token, meetupId, image, video, text)
+            updateMeetup(context.token, meetupId, image, video, text, type, adress)
             .then(() =>  onMeetupEdited())
             .catch(error=> error.message)
         }catch(error){
@@ -40,19 +40,28 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) {
       }    
     }
 
-    return <div className="home-edit-meetup-modal">
-        <div className="home-edit-meetup-container">
+    return <div className="home-create-meetup-modal">
+        <div className="home-create-meetup-container">
             <h2>Edit meetup</h2>
  
-            {meetup && <form className="home-edit-meetup-form" onSubmit={handleSubmit}>
-                <label htmlFor="image">Image</label>
-                <input id="image" type="url" defaultValue={meetup.image}></input>
+            {meetup && <form className="home-delete-meetup-form" onSubmit={handleSubmit}>
+            <label htmlFor="image">Image</label>
+                <input className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="image" type="url" defaultValue={meetup.image}></input>
 
-                <label htmlFor="text">Text</label>
-                <textarea id="text" defaultValue={meetup.text}></textarea>
+                <label htmlFor="video">Video</label>
+                <textarea className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="video" type="url" defaultValue={meetup.video}></textarea>
 
-                <button type="submit">Save</button>
-                <button type="button" className="home-edit-meetup-cancel-button" onClick={handleCancelClick}>Cancel</button>
+                <label htmlFor="text">Description</label>
+                <textarea className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="text" type="text" defaultValue={meetup.text}></textarea>
+
+                <label htmlFor="type">Type</label>
+                <textarea className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="type" type="text" defaultValue={meetup.type}></textarea>
+
+                <label htmlFor="adress">Adress</label>
+                <textarea className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="adress" type="text" defaultValue={meetup.adress}></textarea>
+
+                <button className="button" type="submit">Save</button>
+                <button className="button" type="button" onClick={handleCancelClick}>Cancel</button>
             </form>}
         </div>
     </div>

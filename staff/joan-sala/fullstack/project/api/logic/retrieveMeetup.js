@@ -7,7 +7,7 @@ function retrieveMeetup(userId, meetupId) {
 
     
     //Búsqueda completa, devuelve una cadena de promesas. DOCUMENTO
-    return Promise.all([User.findById(userId).lean(), Post.findById(meetupId, '-date -__v').lean()])
+    return Promise.all([User.findById(userId).lean(), Meetup.findById(meetupId, '-date -__v').lean()])
         .then(([user, meetup]) => { //DESTRUCTURAR    
             if (!user) throw new Error('User not found')
             if (!meetup) throw new Error('Meetup not found')
@@ -19,7 +19,7 @@ function retrieveMeetup(userId, meetupId) {
             delete meetup.author
             meetup.fav = user.favs.some(fav => fav.toString() === meetup.id)
 
-            return post
+            return meetup
             
         })
         

@@ -8,16 +8,14 @@ function retrieveMeetups(userId) {
         .then(user => {
             if (!user) throw new Error('user not found')
 
-            //te trae el objeto completo del usuario relacionado con el post   
-            //return Post.find({}, '-__v').populate('name', '-email -password -favs -__v').lean()
-            return Meetup.find({}, '-__v').populate('author', 'name').lean()  
+                        return Meetup.find({}, '-__v').populate('author', 'name').lean()  
                        
             .then(meetups => {
                 meetups.forEach(meetup => {
             
                 meetup.id = meetup._id.toString()
 
-                const date = new Date(meetup.date).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric", hour:"numeric", minute: "numeric"})
+                const date = new Date(meetup.date).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) //, hour:"numeric", minute: "numeric"
                 
                 meetup.date = date
         
@@ -32,7 +30,8 @@ function retrieveMeetups(userId) {
                 }
                 meetup.fav = user.favs.some(fav => fav.toString() === meetup.id)
             })
-            return meetups        })
-})
+            return meetups        
+        })
+    })
 }
 module.exports = retrieveMeetups
