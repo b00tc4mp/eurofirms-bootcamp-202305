@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import CreateCommentModal from "../modals/CreateCommentModal";
 import DeletePostModal from "../modals/DeletePostModal"
 import EditPostModal from "../modals/EditPostModal"
 
@@ -119,6 +120,29 @@ export default function ProfileFavPosts() {
         navigate(`/profile/${userIdProfile}/posts`)
     }
 
+    const handleCommentModal = postId => {
+        setPostId(postId)
+        setModal("comment-modal")
+    }
+
+    const handleCancelCommentModal = () => setModal(null)
+
+    const handleCreateComment = () => {
+        try {
+            retrieveFavPosts(context.token, userIdProfile)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
+                .catch(error => {
+                    alert(error.message)
+                })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     return <section className="">
         {posts?.map(post => <article key={post.id} className="bg-color5 mb-3">
             <div className="flex justify-between items-center">
@@ -131,14 +155,25 @@ export default function ProfileFavPosts() {
             <img className="w-full" src={post.image} alt={post.text} />
             <p className="m-2 text-color1 font-semibold ml-3">🤍{post.likes}</p>
             <p className="m-2 text-color1 font-semibold ml-3">{post.text}</p>
-            <div className="flex justify-end pr-4 pb-2 gap-4">
-                {userId === post.author.id && <button onClick={() => handleEditPostModal(post.id)} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Edit</button>}
-                {userId === post.author.id && <button onClick={() => handleDeletePostModal(post.id)} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Delete</button>}
+            {post.comments && <div className="border-x-color5 border-x-8 bg-white p-1">
+                {post?.comments.map(comment => <article className="flex items-center m-1" key={comment.id}>
+                    <img className="w-4 h-4 rounded-full object-cover mr-1" src={comment.author.image} alt="" />
+                    <a onClick={(event) => handleProfile(event, comment.author.id)} className="text-xs text-color1 font-bold" href="">{comment.author.name}</a>
+                    <p className="text-xs">{': ' + comment.text}</p>
+                </article>)}
+            </div>}
+            <div className="flex justify-between w-full px-4 pb-2">
+                <button onClick={() => handleCommentModal(post.id)} className="button bg-color4 text-white border-none rounded-xl px-3 py-0.5 mt-2 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Comment</button>
+                <div className="flex justify-between gap-2">
+                    {userId === post.author.id && <button onClick={() => handleEditPostModal(post.id)} className="bg-color4 text-white border-none rounded-xl px-3 py-0.5 mt-2 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Edit</button>}
+                    {userId === post.author.id && <button onClick={() => handleDeletePostModal(post.id)} className="button bg-color4 text-white border-none rounded-xl px-3 mt-2 py-0.5 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Delete</button>}
+                </div>
             </div>
         </article>)
         }
 
         {modal === "delete-post-modal" && <DeletePostModal postId={postId} onDeletePost={handleDeletePost} onHideDeletePost={handleCancelDeletePostModal} />}
         {modal === "edit-post-modal" && <EditPostModal postId={postId} onEditPost={handleEditPost} onHideEditPost={handleCancelEditPostModal} />}
+        {modal === "comment-modal" && <CreateCommentModal postId={postId} onCreateComment={handleCreateComment} onHideCreateComment={handleCancelCommentModal} />}
     </section >
 }

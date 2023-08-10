@@ -7,11 +7,13 @@ import toggleFollowUser from "../../logic/toggleFollowUser"
 
 import context from "../../context"
 
-import createComment from "../../logic/createComment"
+import CreateCommentModal from "../modals/CreateCommentModal"
 
 export default function Explorer() {
     const [users, setUsers] = useState()
     const [posts, setPosts] = useState()
+    const [postId, setPostId] = useState()
+    const [modal, setModal] = useState(null)
 
     const navigate = context.navigate
 
@@ -112,6 +114,29 @@ export default function Explorer() {
         }
     }
 
+    const handleCommentModal = postId => {
+        setPostId(postId)
+        setModal("comment-modal")
+    }
+
+    const handleCancelCommentModal = () => setModal(null)
+
+    const handleCreateComment = () => {
+        try {
+            retrievePostsNotFollowed(context.token)
+                .then(posts => {
+                    setPosts(posts)
+                    setModal(null)
+                    setPostId(null)
+                })
+                .catch(error => {
+                    alert(error.message)
+                })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     return <section className="pt-2 pb-20 flex flex-col items-center">
         <article className="w-full flex flex-col items-center">
             <h2 className="text-color1 font-semibold mb-2">Maybe you know</h2>
@@ -137,6 +162,16 @@ export default function Explorer() {
                 <img className="w-full" src={post.image} alt={post.text} />
                 <p className="m-2 text-color1 font-semibold ml-3">🤍{post.likes}</p>
                 <p className="m-2 text-color1 font-semibold ml-3">{post.text}</p>
+                {post.comments && <div className="border-x-color5 border-x-8 bg-white p-1">
+                    {post?.comments.map(comment => <article className="flex items-center m-1" key={comment.id}>
+                        <img className="w-4 h-4 rounded-full object-cover mr-1" src={comment.author.image} alt="" />
+                        <a onClick={(event) => handleProfile(event, comment.author.id)} className="text-xs text-color1 font-bold" href="">{comment.author.name}</a>
+                        <p className="text-xs">{': ' + comment.text}</p>
+                    </article>)}
+                </div>}
+                <div className="flex justify-start w-full px-4 pb-2">
+                    <button onClick={() => handleCommentModal(post.id)} className="button bg-color4 text-white border-none rounded-xl px-3 py-0.5 mt-2 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Comment</button>
+                </div>
             </article>)}
             <button onClick={handleUpdatePosts} className="bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Update posts</button>
         </article>
