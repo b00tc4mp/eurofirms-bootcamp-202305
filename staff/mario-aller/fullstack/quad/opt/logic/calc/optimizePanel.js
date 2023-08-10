@@ -45,12 +45,23 @@ const cep = function (panel, context) {
         vertexs.push(new Dimension2D(0n, heightMax))
         vertexs.push(new Dimension2D(widthMax, 0n))
 
-        // Add medium point for each placed block
+        // Add medium points
         for (let i = 0; i < panel.blocks.length; i++) {
             const block = panel.blocks[i]
             if (block.isPlaced()) {
                 const posIni = block.pos
                 const posEnd = block.coorEnd()
+                // Add medium points for the panel edge
+                vertexs.push(new Dimension2D(posIni.x.value, 0n))
+                vertexs.push(new Dimension2D(posIni.x.value, heightMax))
+                vertexs.push(new Dimension2D(posEnd.x.value, 0n))
+                vertexs.push(new Dimension2D(posEnd.x.value, heightMax))
+
+                vertexs.push(new Dimension2D(0n, posIni.y.value))
+                vertexs.push(new Dimension2D(widthMax, posIni.y.value))
+                vertexs.push(new Dimension2D(0n, posEnd.y.value))
+                vertexs.push(new Dimension2D(widthMax, posEnd.y.value))
+                // Add medium point for every placed block
                 for (let j = 0; j < panel.blocks.length; j++) {
                     const block2 = panel.blocks[j]
                     if (j !== i && block2.isPlaced()) {
