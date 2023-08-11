@@ -12,6 +12,7 @@ function TeacherHome(props) {
 
     const [homeView, setHomeView] = useState('list-test')
     const [tests, setTests] = useState()
+    const [testId, setTestId] = useState()
 
     const userState = useState() //null
     const user = userState[0]
@@ -40,6 +41,8 @@ function TeacherHome(props) {
 
     const handleLoggedOut = () => {
         context.token = null
+        setUser(null)
+        
 
         props.onLoggedOutClick()
     }
@@ -52,9 +55,9 @@ function TeacherHome(props) {
         setHomeView(null)
     }
     //--
-    const handleRetrieveStudentsList =event =>{
+    const handleRetrieveStudentsList =(event,testId) =>{
         event.preventDefault()
-
+        setTestId(testId)
         setHomeView('retrieve-students-list')
     }
     //--------------------------------------------
@@ -62,7 +65,7 @@ function TeacherHome(props) {
 
     return <div className="home-view ">
         <header className="home-header">
-            <h1 className="home-title">Welcome, {user ? user.name : 'User'} </h1>
+            <h1 className="home-title">Welcome, {user ?user.name : 'User'} </h1>
             <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
         </header>
         
@@ -73,13 +76,13 @@ function TeacherHome(props) {
                 {tests && tests.map(test => {
                     return <article key={test.id}>
                         <h3>Subject: {test.subject}</h3>
-                        <h3>Title: <a href="" onClick={handleRetrieveStudentsList}>{test.title}</a></h3>
+                        <h3>Title: <a href="" onClick={(event)=>handleRetrieveStudentsList(event,test.id)}>{test.title}</a></h3>
                     </article>
                 })}
             </section>}
 
             {homeView === 'create-test' && <CreateTest userName={user.name} onReturnHome={handleOnReturnHome} />}
-            {homeView === 'retrieve-students-list' && <RetrieveStudentsList onReturnHome={handleOnReturnHome} />}
+            {homeView === 'retrieve-students-list' && <RetrieveStudentsList user={user} testId={testId} onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />}
         </main>
        
         <footer className="home-footer">

@@ -4,7 +4,11 @@ import context from '../../../context'
 import { useState } from 'react'
 function CreateTest(props) {
     console.log('Create test->render')
-   
+
+   const handleCancelCreateTest =()=>{
+        //event.preventDefault()
+        props.onReturnHome()
+   }
     const handleSubmitCreateTest = event=>{
         event.preventDefault()
 
@@ -49,6 +53,7 @@ function CreateTest(props) {
             <input id="attemps" type="text" />
 
             <button type="submit" >Create</button>
+            <button type="button" onClick={handleCancelCreateTest} >Cancel </button>
         </form>
     </main>
     

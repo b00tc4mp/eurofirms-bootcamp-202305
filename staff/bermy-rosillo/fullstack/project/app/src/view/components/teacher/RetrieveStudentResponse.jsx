@@ -1,4 +1,7 @@
 function RetrieveStudentResponse(props){
+    const handleCancelStudentResponse =()=>{
+
+    }
     return <main className="create-test-view">
     <h1>Student response</h1>
 
@@ -30,7 +33,7 @@ function RetrieveStudentResponse(props){
         <textarea id="assessment" type="text" rows="4" cols="50"></textarea> 
 
         <button type="submit" >Send</button>
-        <button type="submit" >Cancel</button>
+        <button type="submit" >Cancel onClick={handleCancelStudentResponse}</button>
     </form>
 </main>
 
