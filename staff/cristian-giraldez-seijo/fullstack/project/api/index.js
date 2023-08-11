@@ -9,6 +9,7 @@ const {
     retrieveUser,
     createStory,
     updateStory,
+    retrieveStory,
 } = require('./logic')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
@@ -106,6 +107,17 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 res.status(400).json({ error: error.message })
             }
         })
+
+api.get('/stories/:storyId', (req, res) => {
+    try {
+        const { storyId } = req.params
+        retrieveStory(storyId)
+        .then(story => res.json(story))
+        .catch(error => res.status(400).json({ error: error.message }))
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
 
         api.listen(PORT, () => console.log(`API running in port ${PORT}`))
     })

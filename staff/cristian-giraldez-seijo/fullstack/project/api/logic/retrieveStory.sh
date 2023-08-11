@@ -1,0 +1,1 @@
+curl -v http://localhost:9000/stories/64d5040314b84b286df2daf8

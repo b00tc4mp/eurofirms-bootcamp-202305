@@ -63,7 +63,7 @@ Comment
 - DONE implement api route for authenticate user
 - DONE implement app authenticate user logic
 - DONE implement app login component
-- DONNE implement api retrieve user logic
+- DONE implement api retrieve user logic
 - DONE implement api route for retrieve user
 - DONE implement app retrieve user logic
 - DONE implement retrieve user on app Home
@@ -76,6 +76,6 @@ Comment
 - TODO implement app logic for update story
 - TODO implement update story on the app home component
 - DONE implement api logic for retrieve story
-- TODO implement api route for retrieve story
+- DONE implement api route for retrieve story
 - TODO implement app logic for retrieve story
 - TODO implement retrieve story component
