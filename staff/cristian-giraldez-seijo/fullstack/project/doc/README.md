@@ -79,3 +79,7 @@ Comment
 - DONE implement api route for retrieve story
 - TODO implement app logic for retrieve story
 - TODO implement retrieve story component
+- DONE implement api logic for retrieve stories
+- TODO implement api route for retrieve stories
+- TODO implement app logic for retrieve stories
+- TODO implement retrieve stories on home component
