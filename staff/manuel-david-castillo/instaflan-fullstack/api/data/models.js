@@ -118,10 +118,14 @@ const chat = new Schema({
     date: {
         type: Date, 
         default: Date.now
-    } 
+    },
+    unreadFor: [
+        {
+            type: ObjectId,
+            ref: 'User'
+        }
+    ]
 })
-
-
 
 
 const User = model('User', user)

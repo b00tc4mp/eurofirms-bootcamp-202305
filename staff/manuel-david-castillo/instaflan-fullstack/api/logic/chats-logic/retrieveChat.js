@@ -1,12 +1,27 @@
-const { Chat } = require("../../data/models");
+const { Chat, User } = require("../../data/models");
 const { validateId } = require("../helpers/validators");
 
 function retrieveChat(userId, chatId) {
     validateId(userId)
     validateId(chatId)
 
-    return Chat.findById(chatId, '-__v')
-    .populate('users', 'name image').sort({date: -1}).lean()
+    return Promise.all([Chat.findById(chatId, '-__v'), User.findById(userId, '-__v').lean()])
+    .then(([chat, user]) => {
+        if(!chat) throw new Error('empty chats')
+        if(!user) throw new Error('user not found')
+
+        if(!chat.unreadFor) chat.unreadFor = []
+        const index = chat.unreadFor.findIndex(userId => userId.toString() === user._id.toString()) 
+        if(index > -1) {
+            chat.unreadFor.splice(index, 1)
+        }
+
+        return chat.save()
+    })
+    .then(()=> {
+        return Chat.findById(chatId, '-__v')
+        .populate('users', 'name image').sort({date: -1}).lean()
+    })
     .then(chat => {
         if(!chat) throw new Error('empty chats')
 
@@ -29,7 +44,6 @@ function retrieveChat(userId, chatId) {
                 delete message._id
                 }
             })
-        
 
         return chat
     })

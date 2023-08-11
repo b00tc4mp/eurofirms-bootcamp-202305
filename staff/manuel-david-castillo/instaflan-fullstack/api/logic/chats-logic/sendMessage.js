@@ -24,6 +24,10 @@ function sendMessage(userId, chatId, text) {
 
             chat.date = new Date()
 
+            chat.unreadFor = chat.users
+            const index = chat.unreadFor.findIndex(userId => userId.toString() === user._id.toString())
+            chat.unreadFor.splice(index, 1)
+
             return chat.save()
         })
         .then(()=> { })
