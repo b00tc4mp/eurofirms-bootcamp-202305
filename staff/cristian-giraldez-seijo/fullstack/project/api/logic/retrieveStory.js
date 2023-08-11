@@ -1,13 +1,11 @@
 const { validateId } = require('./helpers/validators')
-const { User, Story } = require('../data')
+const { Story } = require('../data')
 
-function retrieveStory(userId, storyId) {
-    validateId(userId)
+function retrieveStory(storyId) {
     validateId(storyId)
 
-    return Promise.all([User.findById(userId).lean(), Story.findById(storyId, '-__v').lean()])
-        .then(([user, story]) => {
-            if (!user) throw new Error('user not found!')
+    return Story.findById(storyId, '-__v').lean()
+        .then(story => {
             if (!story) throw new Error('story not found!')
 
             return story
