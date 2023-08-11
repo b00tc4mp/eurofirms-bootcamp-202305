@@ -4,4 +4,5 @@ module.exports = {
     retrieveUser: require('./retrieveUser'),
     createStory: require('./createStory'),
     updateStory: require('./updateStory'),
+    retrieveStory: require('./retrieveStory')
 }

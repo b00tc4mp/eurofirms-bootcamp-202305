@@ -80,8 +80,27 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 const userId = data.sub
 
                 const { title, sumary, text, shortcut, question, origin } = req.body
-createStory(userId, title, sumary, text, question, shortcut, origin)
-.then(() => res.status(201).send())
+                createStory(userId, title, sumary, text, question, shortcut, origin)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.patch('/stories/:storyId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                const { storyId } = req.params
+                const { title, sumary, text, shortcut, question, origin } = req.body
+                updateStory(userId, storyId, title, sumary, text, question, shortcut, origin)
+                    .then(() => res.status(204).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })

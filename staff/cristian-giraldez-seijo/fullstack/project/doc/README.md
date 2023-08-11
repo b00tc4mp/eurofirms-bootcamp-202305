@@ -72,6 +72,10 @@ Comment
 - TODO implement app logic for create story
 - TODO implement create story on the app home component
 - DONE implement api logic for update story
-- TODO implement api route for update story
+- DONE implement api route for update story
 - TODO implement app logic for update story
 - TODO implement update story on the app home component
+- DONE implement api logic for retrieve story
+- TODO implement api route for retrieve story
+- TODO implement app logic for retrieve story
+- TODO implement retrieve story component
