@@ -49,7 +49,8 @@ Artwork
 - ornaments  ([String], required),
 - Date  (Date, required)
 
-Workshop 
+Workshop
+- planner (String) 
 - attendants (Array of User id, required)
 - place (String, required)
 - ZIP code (String, required)

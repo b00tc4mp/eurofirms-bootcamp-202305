@@ -159,7 +159,7 @@ function Home({ onLoggedOut }) {
         {modal === 'create-artwork' && <CreateArtworkModal onArtworkCreated={handleArtworkCreated} onCreateArtworkCancelled={handleCreateArtworkCancelled} />}
         {modal === 'edit-artwork' && <EditArtworkModal artworkId={artworkId} onArtworkEdited={handleArtworkEdited} onEditArtworkCancelled={handleEditArtworkCancelled} />}
         {modal === 'delete-artwork' && <DeleteArtworkModal artworkId={artworkId} onArtworkDeleted={handleArtworkDeleted} onDeleteArtworkCancelled={handleDeleteArtworkCancelled} />}
-
+        {modal === 'create-workshop' && <CreateWorkshopModal onWorkshopCreated={handleWorkshopCreated} onCreateWorkshopCancelled={handleCreateWorkshopCancelled} />}
     </div>
 
 }

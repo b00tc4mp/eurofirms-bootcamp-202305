@@ -71,15 +71,17 @@ const artwork = new Schema({
 
 const workshop = new Schema({
     planner: {
+    //author   
         type: ObjectId,
         required: true,
         ref: 'User'
     },
     
-    attendants: {
+    attendants: [{
         type: ObjectId,  
+        ref: user,
         required: true 
-    }, 
+    }], 
     place: {
         type: String,
         required: true
@@ -88,11 +90,11 @@ const workshop = new Schema({
         type: String, 
         required: true
     },
-    datestart: {
+    dateStart: {
         type: Date, 
         required: true
     },
-    dateend: {
+    dateEnd: {
         type: Date, 
         required: true
     },

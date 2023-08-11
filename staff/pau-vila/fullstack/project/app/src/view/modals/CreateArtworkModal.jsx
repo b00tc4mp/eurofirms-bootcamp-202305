@@ -13,11 +13,11 @@ function CreateArtworkModal(props) {
         const image = event.target.image.value
         const description = event.target.description.value
         const materials = event.target.materials.value 
-        const ornaments = JSON.parse(event.target.ornaments.value) 
+        const ornaments = event.target.ornaments.value.split(',').map ((ornament) => ornament.trim())
         
         try { 
             createArtwork(context.token, image, description, materials, ornaments)
-                .then(() => props.onCreated())
+                .then(() => props.onArtworkCreated())
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)

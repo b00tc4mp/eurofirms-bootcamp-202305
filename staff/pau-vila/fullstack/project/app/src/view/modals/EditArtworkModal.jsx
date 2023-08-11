@@ -26,7 +26,6 @@ function EditArtworkModal({ artworkId, onEditArtworkCancelled, onArtworkEdited }
         const image = event.target.image.value
         const description = event.target.description.value
         const materials = event.target.materials.value 
-        
         const ornaments = event.target.ornaments.value.split(',').map ((ornament) => ornament.trim())
 
         try {

@@ -66,9 +66,9 @@ function validateText(description) {
 }
 
 function validateDate(date) {
-    if (typeof date !== 'date') throw new Error('date is not a date')
-    if (date === '') throw new Error('date is empty')
-}
+    if (!(date instanceof Date)) {
+      throw new Error('date is not a Date')
+    }}
 
 function validateZip(zip) {
     if (typeof zip !== 'string') throw new Error('zip is not a string')
@@ -82,9 +82,13 @@ function validatePhone(phone) {
 
 function validateAttendantsLimit(attendantsLimit) {
     if (typeof attendantsLimit !== 'number') throw new Error('attendantsLimit is not a number')
-    if (attendantsLimit === '') throw new Error('attendantsLimit is empty')
+    if (attendantsLimit <= 0 || attendantsLimit > 13) 
+      throw new Error('attendants out of limits ') 
 }
 
+function validatePlace(place){ 
+    if (typeof place !== 'string')throw new Error('Place must be a string')
+}  
 function validateOrnaments(ornaments) {
     if (!(ornaments instanceof Array)) throw new Error('type ornaments is not an array')
 
@@ -93,15 +97,10 @@ function validateOrnaments(ornaments) {
         if(ornaments[i] === '') throw new error(`${ornaments[i]} is empty`)
     }
 }
-function validateMaterial(material) {
-    if (typeof material !== 'string') throw new Error ('material is not a string')
-    if (typeof material === '') throw new Error ('material is empty')
+function validateMaterials(materials) {
+    if (typeof materials !== 'string') throw new Error ('materials is not a string')
+    if (typeof materials === '') throw new Error ('materials is empty')
 }
-
-//function validateVideo(url) {
-    //const videoURLPattern = /^(http(s)?:\/\/)?(www\.)?.+\.(mp4|avi|mkv|mov|flv)$/i;
-   // return videoURLPattern.test(url);
- // }
 
 module.exports = {
     validateEmail,
@@ -114,8 +113,8 @@ module.exports = {
     validatePhone,
     validateZip,
     validateAttendantsLimit,
-    validateMaterial,
+    validateMaterials,
     validateOrnaments,
-    //validateVideo
+    validatePlace
 }
 

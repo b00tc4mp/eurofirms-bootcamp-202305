@@ -99,7 +99,7 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
 
                 const { image, description, materials, ornaments } = req.body
 
-                createArtwork(userId, image, description, materials , ornaments )
+                createArtwork(userId, image, description, materials, ornaments)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -181,23 +181,60 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
                 res.status(400).json({ error: error.message })
             }
         })
-        
+
         api.put('/artworks/:artworkId/favs', (req, res) => {
             try {
-            const { authorization } = req.headers
-            const token = authorization.slice(7)
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
 
-            const data = jwt.verify(token, JWT_SECRET)
+                const data = jwt.verify(token, JWT_SECRET)
 
-            const userId = data.sub
-            const {artworkId} = req.params
+                const userId = data.sub
+                const { artworkId } = req.params
 
-            toggleFavArtwork(userId, artworkId)
-                .then (() => res.status(204).send())
-                .catch(error => res.status(400).json({ error: error.message}))
-        } catch (error) {
-            res.status(400).json({ error: error.message})
-        }
+                toggleFavArtwork(userId, artworkId)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.post('/workshops', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const userId = jwt.verify(token, JWT_SECRET).sub
+
+                const { description, place, codeZIP, dateStart, 
+                    dateEnd, attendantsLimit, image, video } = req.body
+
+                createWorkshop(userId, description, place, codeZIP, new Date(dateStart),
+                    new Date(dateEnd), attendantsLimit, image, video)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.get('/workshops/:workshopId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+                const { workshopId } = req.params
+
+                retrieveWorkshop(userId, workshopId)
+                    .then((workshop) => res.json(workshop))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
         })
 
         api.listen(PORT, () => console.log(`API running in port ${PORT}`))

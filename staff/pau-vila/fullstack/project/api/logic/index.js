@@ -7,5 +7,7 @@ module.exports = {
     retrieveArtworks: require('./retrieveArtworks'),
     deleteArtwork: require('./deleteArtwork'),
     toggleFavArtwork: require('./toggleFavArtwork'),
-    updateArtwork: require('./updateArtwork')
+    updateArtwork: require('./updateArtwork'),
+    createWorkshop: require ('./createWorkshop'),
+    retrieveWorkshop: require ('./retrieveWorkshop'),
 }
