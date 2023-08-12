@@ -50,7 +50,7 @@ function RetrieveStudentsList(props){
         <header className="home-header">
             <h1 className="home-title">Welcome, {user ? user.name : 'User'} </h1>
             <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
-            <button className="retrieve-students-list-cancel-button" onClick={handleRetrieveStudentsListCancelButton}>Cancellll</button>  
+            <button className="retrieve-students-list-cancel-button" onClick={handleRetrieveStudentsListCancelButton}>Cancel</button>  
         </header>
         
         <main className="home-main">

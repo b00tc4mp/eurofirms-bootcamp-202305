@@ -1,9 +1,12 @@
 import createTest from '../../../logic/createTest'
 //import TeacherHome from '../../pages/TeacherHome'
 import context from '../../../context'
+import retrieveTeacherListTest from '../../../logic/retrieveTeacherListTests'
 import { useState } from 'react'
 function CreateTest(props) {
     console.log('Create test->render')
+
+    const {tests,setTests} = useState()
 
    const handleCancelCreateTest =()=>{
         //event.preventDefault()
@@ -22,6 +25,13 @@ function CreateTest(props) {
             .then(()=>{
                 alert('Created test')
                 props.onReturnHome() //vuelvo al teacherHome
+                try{
+                    retrieveTeacherListTest(context.token)
+                    .then(tests=> setTests(tests))
+                    .catch(error => alert(error.message))
+                }catch(error){
+                    alert(error.message)
+                }
             })
             .catch(error=>alert(error.message))
 

@@ -52,7 +52,8 @@ function TeacherHome(props) {
     }
     //--
     const handleOnReturnHome =()=>{
-        setHomeView(null)
+        setHomeView('list-test')
+        
     }
     //--
     const handleRetrieveStudentsList =(event,testId) =>{
