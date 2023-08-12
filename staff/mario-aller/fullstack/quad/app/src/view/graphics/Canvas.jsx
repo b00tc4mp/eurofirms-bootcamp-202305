@@ -23,9 +23,9 @@ const Canvas = props => {
     ctx.lineWidth = 2
 
     panel.blocks.forEach(block => {
-      const originX = Number(block.x) * escala
-      const originY = Number(block.y) * escala
-      if (originX !== -1) {
+      if (Number(block.x) !== -1) {
+        const originX = Number(block.x) * escala
+        const originY = Number(block.y) * escala
         let finX, finY
         if (block.orientation === 0) {
           finX = originX + Number(block.width) * escala

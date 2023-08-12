@@ -1,5 +1,7 @@
 const { models: { UserModel, PanelModel } } = require('dat')
 const { validateString } = require('com')
+const fs = require('fs')
+
 // const { validators: { validateString } } = require('com')
 
 /**
@@ -85,6 +87,38 @@ function retrievePanelOne(userId, panelId) {
                 })
         })
 
+}
+/**
+ * The function retrieves a panel's working data for a given user and panel ID, including the panel's
+ * blocks and coordinates.
+ * @param userId - The `userId` parameter is the unique identifier of the user whose panel is being
+ * retrieved.
+ * @param panelId - The `panelId` parameter is the unique identifier of the panel you want to retrieve.
+ * @returns a Promise that resolves to the retrieved panel object.
+ */
+function retrievePanelWorking(userId, panelId) {
+    validateString(userId)
+
+    return UserModel.findById(userId).lean()
+        .then(user => {
+            if (!user) throw new Error('User does not exist')
+
+            return PanelModel.findById(panelId, '-__v').sort('-date').lean()
+                .then(panel => {
+                    if (!panel) throw new Error('Panel does not exist')
+                    
+                    panel.id = panel._id.toString()
+                    delete panel._id
+
+                    let coors = JSON.parse(fs.readFileSync('../opt/wrkpanel.txt', 'utf8'))
+                    if (!(panel.id === coors.id && panel.owner.toString() === coors.user))
+                        coors = JSON.parse(fs.readFileSync('../opt/wrkpanel-null.txt', 'utf8'))
+                    panel.blocks = coors.blocks
+                    console.log(coors)
+                    console.log(panel)
+                    return panel
+                })
+        })
 }
 /**
  * The function `updatePanel` updates the reference, width, and height of a panel in a database,
@@ -250,6 +284,7 @@ module.exports = {
     createPanel,
     retrievePanels,
     retrievePanelOne,
+    retrievePanelWorking,
     updatePanel,
     updatePanelStatusToOptimize,
     updatePanelStatusReEdit,

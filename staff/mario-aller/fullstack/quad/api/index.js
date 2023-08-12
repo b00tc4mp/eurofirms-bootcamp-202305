@@ -28,6 +28,7 @@ const {
     createPanel,
     retrievePanels,
     retrievePanelOne,
+    retrievePanelWorking,
     updatePanel,
     updatePanelStatusToOptimize,
     updatePanelStatusReEdit,
@@ -127,6 +128,19 @@ mongoose.connect(MONGOOSE_URL)
 
                 retrievePanelOne(userId, panelId)
                     .then(panel => res.json(panel))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
+        })
+
+        // retrievePanelWorking
+        api.get('/panels/:panelId/work', (req, res) => {
+            try {
+                const token = req.headers.authorization.slice(7)
+                const userId = jwt.verify(token, JWT_SECRET).sub
+                const { panelId } = req.params
+
+                retrievePanelWorking(userId, panelId)
+                    .then(coors => res.json(coors))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) { res.status(400).json({ error: error.message }) }
         })

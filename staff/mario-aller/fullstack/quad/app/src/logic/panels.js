@@ -48,6 +48,21 @@ export const retrievePanelOne = function (token, panelId) {
             else return res.json().then(body => { throw new Error(body.error) })
         })
 }
+export const retrievePanelWorking = function (token, panelId) {
+    validateString(token)
+    validateString(panelId)
+
+    return fetch(import.meta.env.VITE_API_URL + '/panels/' + panelId + '/work', {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+        .then(res => {
+            if (res.status === 200) return res.json().then(panel => panel)
+            else return res.json().then(body => { throw new Error(body.error) })
+        })
+}
 export const updatePanel = function (token, panelId, reference, width, height) {
     validateString(token)
     validateString(panelId)

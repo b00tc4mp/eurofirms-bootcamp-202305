@@ -1,16 +1,42 @@
 const { Dimension2D, Block, Panel } = require('../classes')
+const fs = require('fs')
+// const savePanel = require('./savePanel')
 
-const displayProcess = function (processId, nest, iteration) {
-    if (processId % 100 === 1)
-        console.log('Start:', processId.toString().padStart(4), '| Nesting:', nest, '> Times:', iteration)
+const displayProcess = function (State, processId, nest, iteration) {
+    if (processId % 100 === 0)
+        if (State === 0)
+            console.log('Start:', processId.toString().padStart(5),
+                '| Nesting:', nest, '> Times:', iteration)
+        else
+            console.log('--End:', processId.toString().padStart(5),
+                '| Nesting:', nest, '> Times:', iteration)
 }
-
 const cep = function (panel, context) {
-    context.nesting++
     context.times++
     const processId = context.times
 
-    displayProcess(processId, context.nesting, context.times)
+    // Save panel coordinates each time after 100 iterations
+    if (processId % 100 === 0) {
+        const panelWork = {}
+        panelWork.id = panel.id
+        panelWork.user = panel.owner
+        panelWork.blocks = panel.blocks.map(block => {
+            return {
+                x: block.pos.x.toNumber(),
+                y: block.pos.y.toNumber(),
+                width: block.size.x.toNumber(),
+                height: block.size.y.toNumber(),
+                orientation: block.orientation
+            }
+        })
+        const data = JSON.stringify(panelWork)
+        try {
+            fs.writeFileSync(`wrkpanel.txt`, data)
+        }
+        catch (error) { console.error(error) }
+    }
+
+    displayProcess(0, processId, context.nesting, context.times)
 
     const heightMax = panel.heightMax()
     const widthMax = panel.widthMax()
@@ -18,14 +44,29 @@ const cep = function (panel, context) {
     if (panel.blocskPlacedAll()) {
         panel.status = 4
         if (!context.heightBlocks) context.heightBlocks = panel.size.y.value + 1n
+        if (!context.surfaceFreeBlocks) context.surfaceFreeBlocks = 0n
 
-        // Save Panel if blocks height is lower
-        if (heightMax < context.heightBlocks) {
+        // Calculate free panel surface
+        let surfaceTotal = 0n
+        let surfacePartial = 0n
+        for (let x = 0n; x < panel.size.x.value; x++) {
+            for (let y = heightMax - 1n; y >= 0n; y--) {
+                pos = new Dimension2D(x, y)
+                if (panel.posFree(pos)) surfacePartial++
+                else break
+            }
+            surfaceTotal += surfacePartial
+            surfacePartial = 0n
+        }
+        // Choose the best panel
+        if (heightMax < context.heightBlocks ||
+            (heightMax === context.heightBlocks && surfaceTotal > context.surfaceFreeBlocks)) {
             context.optPanel = panel
             context.heightBlocks = heightMax
+            context.surfaceFreeBlocks = surfaceTotal
         }
         context.nesting -= 1
-        displayProcess(processId, context.nesting, context.times)
+        displayProcess(1, processId, context.nesting, context.times)
         return
     } else {
         // Regular Vertex calculation
@@ -51,6 +92,7 @@ const cep = function (panel, context) {
             if (block.isPlaced()) {
                 const posIni = block.pos
                 const posEnd = block.coorEnd()
+
                 // Add medium points for the panel edge
                 vertexs.push(new Dimension2D(posIni.x.value, 0n))
                 vertexs.push(new Dimension2D(posIni.x.value, heightMax))
@@ -61,6 +103,7 @@ const cep = function (panel, context) {
                 vertexs.push(new Dimension2D(widthMax, posIni.y.value))
                 vertexs.push(new Dimension2D(0n, posEnd.y.value))
                 vertexs.push(new Dimension2D(widthMax, posEnd.y.value))
+
                 // Add medium point for every placed block
                 for (let j = 0; j < panel.blocks.length; j++) {
                     const block2 = panel.blocks[j]
@@ -126,7 +169,7 @@ const cep = function (panel, context) {
         }
         // Place free blocks
         vertexs.forEach(vertex => {
-            panel.blocks.forEach((block, indexBlock) => {
+            panel.blocks.forEach(async (block, indexBlock) => {
                 if (!block.isPlaced()) {
                     const posIni = new Dimension2D(vertex.x.value, vertex.y.value)
                     for (let quadrant = 1; quadrant < 5; quadrant++)
@@ -191,6 +234,9 @@ const cep = function (panel, context) {
                                     panel2.blocks[indexBlock].pos.x.value = posIni.x.value
                                     panel2.blocks[indexBlock].pos.y.value = posIni.y.value
                                     panel2.blocks[indexBlock].orientation = rotation
+                                    panel2.status = 3
+
+                                    context.nesting++
                                     cep(panel2, context)
                                 }
                             }
@@ -199,20 +245,26 @@ const cep = function (panel, context) {
         })
     }
     context.nesting -= 1
-    displayProcess(processId, context.nesting, context.times)
+    displayProcess(1, processId, context.nesting, context.times)
 }
 
 const optimizePanel = function (panel) {
     const context = {
         optPanel: null,
         heightBlocks: null,
+        surfaceFreeBlocks: null,
         nesting: 0,
         times: 0
     }
     console.log('Start...')
-    cep(panel, context)
+    try {
+        cep(panel, context)
+
+        const data = fs.readFileSync('wrkpanel-null.txt','utf8')
+        fs.writeFileSync('wrkpanel.txt', data)
+    }
+    catch (error) { console.error(error) }
     console.log('Finished... Iterations:', context.times)
-    console.log(context.optPanel)
     return context.optPanel
 }
 

@@ -27,7 +27,7 @@ const { sleep } = require('com')
 mongoose.connect(MONGOOSE_URL)
     .then(() => new Promise((resolve, reject) => {
         (function repeat() {
-            console.count('optimize check:')
+            console.count('optimize check')
 
             retrieveIdsFromPanelsToOptimize()
                 .then(panelIds => Promise.all(

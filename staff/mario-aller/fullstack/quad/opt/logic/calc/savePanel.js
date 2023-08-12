@@ -3,6 +3,7 @@ const { models: { PanelModel } } = require('dat')
 
 // main
 const savePanel = function (panel) {
+    console.log(panel.id)
     return PanelModel.findById(panel.id)
         .then(panelRetrieved => {
             if (!panelRetrieved) throw new Error('panel does not exist')
