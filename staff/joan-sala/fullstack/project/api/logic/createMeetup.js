@@ -1,7 +1,7 @@
 const { validateId, validateUrl, validateText } = require('./helpers/validators')
 const { User, Meetup } = require('../data')
 
-function createMeetup(userId, image, video, text, type, adress) {
+function createMeetup(userId, image, video, text, type, adress, dateMeetup) {
     validateId(userId)
     validateUrl(image)
     if (video) {
@@ -10,12 +10,13 @@ function createMeetup(userId, image, video, text, type, adress) {
     validateText(text)
     validateText(type)
     validateText(adress)
+    validateText(dateMeetup)
 
     return User.findById(userId)
         .then(user => {
             if (!user) throw new Error('User not found')
 
-            return Meetup.create({ author: userId, image, video, text, type, adress})
+            return Meetup.create({ author: userId, image, video, text, type, adress, dateMeetup: new Date(dateMeetup)})
         })
         .then(() => { })
 }

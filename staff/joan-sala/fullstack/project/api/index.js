@@ -115,9 +115,9 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 const userId = data.sub
 
                 const { meetupId } = req.params
-                const { image, text } = req.body
+                const { image, text, type, adress } = req.body
 
-                updateMeetup(userId, meetupId, image, text )
+                updateMeetup(userId, meetupId, image, text, type, adress )
                 .then(()=> res.status(204).send())
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){

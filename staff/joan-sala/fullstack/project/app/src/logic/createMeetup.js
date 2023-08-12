@@ -1,4 +1,4 @@
-function createMeetup(token, image, video, text, type, adress){
+function createMeetup(token, image, video, text, type, adress, dateMeetup){
     if(typeof token !== 'string') throw new Error('token is not a string')
     if(typeof image !== 'string') throw new Error('Image is not a string')
     if(typeof video !== 'string') throw new Error('Video is not a string')
@@ -21,7 +21,7 @@ function createMeetup(token, image, video, text, type, adress){
         else if(res.status === 400)
             return res.json()
             .then(body =>{
-                const message = body.error //no necesario
+                const message = body.error
 
                 throw new Error(message)
             })

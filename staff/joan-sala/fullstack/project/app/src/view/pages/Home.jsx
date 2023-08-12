@@ -8,13 +8,15 @@ import EditMeetupModal from '../modals/EditMeetupModal'
 import DeleteMeetupModal from '../modals/DeleteMeetupModal'
 import toggleFavMeetup from '../../logic/toggleFavMeetup'
 
-function Home({onLoggedOut}) {
+function Home({ onLoggedOut }) {
     console.log('Home ->render')
 
     const [modal, setModal] = useState(null)
     const [meetupId, setMeetupId] = useState(null)
     const [user, setUser] = useState(null)
     const [meetups, setMeetups] = useState(null)
+
+    const [image, setImage] = useState(null)
 
     //Sólo se ejecuta una vez se pinta el Home
     useEffect(() => { //Para efectos secundarios como consecuéncia de llamar a una api.
@@ -33,7 +35,7 @@ function Home({onLoggedOut}) {
         } catch (error) {
             alert(error.message)
         }
-    }, []) 
+    }, [])
 
     const handleLogoutClick = () => {
         context.token = null
@@ -105,7 +107,7 @@ function Home({onLoggedOut}) {
         }
     }
 
-    const handleToggleMeetupClick = meetupId => { 
+    const handleToggleMeetupClick = meetupId => {
         try {
             toggleFavMeetup(context.token, meetupId)
                 .then(() => retrieveMeetups(context.token))
@@ -119,51 +121,57 @@ function Home({onLoggedOut}) {
     const userId = extractUserIdFromToken(context.token) //importante el context
 
     //'key={meetup.id}' para asignar una clave única a cada elemento de una lista o conjunto de componentes
+    //<img src={user.image} id="url" height="50" />
     return (
         <div className="home-view">
             <header className="home-header">
-                <h1 className="home-title">{user ? user.name : 'World'}</h1>
-
-                <button className="home-logout-button" onClick={handleLogoutClick}>Logout</button>
+                <h1 className="home-title">{user ? user.name : 'World'} </h1>
+                <div class="flex flex-wrap justify-center">
+                    <div class="w-6/12 sm:w-4/12 px-8">
+                        <img src={user.image} id="url" alt="..." class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
+                    </div>
+                </div>
+                
+                <button className="home-logout-button" onClick={handleLogoutClick} >Logout</button>
             </header>
-        
+
             <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10">
-                    {meetups && meetups.map(meetup => <article key={meetup.id} 
-                    className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
-                            <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
-                            <a className="mt-2 text-sm text-[#2C2A2A] font-style: italic">{meetup.date}</a>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Image: </p>
-                            <img className="w-full"
-                                src={meetup.image}
-                                alt={meetup.text}/>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Video: </p>
-                            <video controls className="w-full"
-                                src={meetup.video}
-                                alt={meetup.text} />
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Description: </p>
-                            <p>{meetup.text}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Type:</p>
-                            <p> {meetup.type}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Adress: </p>
-                            <p>{meetup.adress}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
-                            <p>{meetup.date}</p>
+                    {meetups && meetups.map(meetup => <article key={meetup.id}
+                        className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
+                        <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
+                        <a className="mt-2 text-sm text-[#2C2A2A] font-style: italic">{meetup.date}</a>
+                        <p className="mt-8 font-semibold text-[#2C2A2A]">Image: </p>
+                        <img className="w-full"
+                            src={meetup.image}
+                            alt={meetup.text} />
+                        <p className="mt-8 font-semibold text-[#2C2A2A]">Video: </p>
+                        <video controls className="w-full"
+                            src={meetup.video}
+                            alt={meetup.text} />
+                        <p className="mt-8 font-semibold text-[#2C2A2A]">Description: </p>
+                        <p>{meetup.text}</p>
+                        <p className="mt-8 font-semibold text-[#2C2A2A]">Type:</p>
+                        <p> {meetup.type}</p>
+                        <p className="mt-8 font-semibold text-[#2C2A2A]">Adress: </p>
+                        <p>{meetup.adress}</p>
+                        <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
+                        <p>{meetup.date}</p>
 
-                            {meetup.author.id === userId && <>
-                                <button className="button" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
-                                <button className="button" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
-                            </>
-                            }
-                            <button className="button" onClick={() => handleToggleMeetupClick(meetup.id)}>{meetup.fav ? '♥' : '♡'}</button>
-                        </article>)}
+                        {meetup.author.id === userId && <>
+                            <button className="button" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
+                            <button className="button" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
+                        </>
+                        }
+                        <button className="button" onClick={() => handleToggleMeetupClick(meetup.id)}>{meetup.fav ? '♥' : '♡'}</button>
+                    </article>)}
                 </section>
             </main>
-                  
-            <footer className=" text-white bg-[#d9d9d9] flex bottom-0 w-full h-[3rem] justify-center align-center">
-                <button className="border-solid border-2 bg-[#2C2A2A] br-30 p-5 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>+</button>
+
+            <footer className="text-white bg-[#d9d9d9] flex bottom-0 w-full h-[3rem] justify-center">
+                <button className="bg-[#2C2A2A] br-30 p-5 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>New Meetup</button>
             </footer>
-          
+
             {modal === 'create-meetup' && <CreateMeetupModal onMeetupCreated={handleMeetupCreated} onCreateMeetupCancelled={handleCreateMeetupCancelled} />}
 
             {modal === 'edit-meetup' && <EditMeetupModal meetupId={meetupId} onMeetupEdited={handleMeetupEdited} onEditMeetupCancelled={handleEditMeetupCancelled} />}

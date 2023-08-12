@@ -10,8 +10,8 @@ mongoose. connect(`${process.env.MONGODB_URL}/testMeetupBikers`)
         'https://v4.cdnpk.net/videvo_files/video/free/video0454/large_watermarked/_import_60657a020fbb52.19886494_FPpreview.mp4',
         'traveling with my bike PRUEBA',
         'mountainbike',
-        'calle P'
-        //'2023/08/31'
+        'calle P',
+        '2023/12/12'
     ))
     .then(() => console.log('Meetup created'))
     .catch(error => console.error(error))
