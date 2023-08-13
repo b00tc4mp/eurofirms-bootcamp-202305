@@ -21,4 +21,4 @@ function retrieveWorkshop(token, WorkshopId) {
                 throw new Error('server error')
         })
 }
-export default retrieveWorshop
+export default retrieveWorkshop

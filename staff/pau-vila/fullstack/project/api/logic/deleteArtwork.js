@@ -15,7 +15,7 @@ function deleteArtwork(userId, artworkId) {
             return Artwork.deleteOne({_id: artwork._id})
 
         })
-        .then(() => { })
+        //.then(() => { })
         
 }
 module.exports = deleteArtwork

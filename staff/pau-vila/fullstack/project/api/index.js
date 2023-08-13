@@ -207,7 +207,7 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
 
                 const userId = jwt.verify(token, JWT_SECRET).sub
 
-                const { description, place, codeZIP, dateStart, 
+                const { description, place, codeZIP, dateStart,
                     dateEnd, attendantsLimit, image, video } = req.body
 
                 createWorkshop(userId, description, place, codeZIP, new Date(dateStart),
@@ -232,6 +232,66 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
                 retrieveWorkshop(userId, workshopId)
                     .then((workshop) => res.json(workshop))
                     .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.get('/workshops', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                retrieveWorkshops(userId)
+                    .then((workshops) => res.json(workshops))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.patch('/workshops/:workshopId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                const { workshopId } = req.params
+
+                const { place, codeZIP, dateStart, dateEnd, image, video,
+                    description, attendantsLimit } = req.body
+
+                updateWorkshop(userId, workshopId, place,
+                    codeZIP, new Date(dateStart), new Date(dateEnd), image, video, description, attendantsLimit)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.delete('/workshops/:workshopId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                const { workshopId } = req.params
+
+                deleteWorkshop(userId, workshopId)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+
             } catch (error) {
                 res.status(400).json({ error: error.message })
             }

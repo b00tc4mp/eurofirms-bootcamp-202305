@@ -1,7 +1,6 @@
 import context from "../../context"
 import createArtwork from "../../logic/createArtwork"
 
-
 function CreateArtworkModal(props) {
     console.log('CreateArtworkModal -> render')
   

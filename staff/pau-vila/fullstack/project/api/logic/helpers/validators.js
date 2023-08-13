@@ -82,8 +82,7 @@ function validatePhone(phone) {
 
 function validateAttendantsLimit(attendantsLimit) {
     if (typeof attendantsLimit !== 'number') throw new Error('attendantsLimit is not a number')
-    if (attendantsLimit <= 0 || attendantsLimit > 13) 
-      throw new Error('attendants out of limits ') 
+    if (attendantsLimit <= 0 || attendantsLimit > 13) throw new Error('attendants out of limits ') 
 }
 
 function validatePlace(place){ 

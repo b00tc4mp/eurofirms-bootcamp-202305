@@ -10,4 +10,7 @@ module.exports = {
     updateArtwork: require('./updateArtwork'),
     createWorkshop: require ('./createWorkshop'),
     retrieveWorkshop: require ('./retrieveWorkshop'),
+    retrieveWorkshops: require ('./retrieveWorkshops'),
+    updateWorkshop: require ('./updateWorkshop'),
+    deleteWorkshop: require ('./deleteWorkshop')
 }
