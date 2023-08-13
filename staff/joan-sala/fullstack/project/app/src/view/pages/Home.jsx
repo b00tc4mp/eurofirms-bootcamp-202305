@@ -126,14 +126,12 @@ function Home({ onLoggedOut }) {
         <div className="home-view">
             <header className="home-header">
                 <h1 className="home-title">{user ? user.name : 'Check in'} </h1>
-                
-                <div className="flex flex-wrap justify-center">
+                <div className="flex flex-wrap justify-end">
                     <div className="w-6/12 sm:w-4/12 px-14">
                         <img src={user.image} id="url" alt="image of user" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
                     </div>
                     <button className="home-logout-button" onClick={handleLogoutClick} >Logout</button>
                 </div>    
-                
             </header>
                 <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10">
