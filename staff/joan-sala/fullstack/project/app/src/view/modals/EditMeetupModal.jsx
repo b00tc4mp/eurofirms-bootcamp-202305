@@ -30,9 +30,10 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) {
         const text = event.target.text.value
         const type = event.target.type.value
         const adress = event.target.adress.value
+        const dateMeetup = event.target.dateMeetup.value
 
         try{
-            updateMeetup(context.token, meetupId, image, video, text, type, adress)
+            updateMeetup(context.token, meetupId, image, video, text, type, adress, dateMeetup)
             .then(() =>  onMeetupEdited())
             .catch(error=> error.message)
         }catch(error){
@@ -60,7 +61,8 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) {
                 <label htmlFor="adress">Adress</label>
                 <textarea className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="adress" type="text" defaultValue={meetup.adress}></textarea>
 
-                <input type="date"/>
+                <label htmlFor="adress">Date meetup</label>
+                <input className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="adress" type="date" defaultValue={meetup.dateMeetup}/>
 
                 <button className="button" type="submit">Save</button>
                 <button className="button" type="button" onClick={handleCancelClick}>Cancel</button>

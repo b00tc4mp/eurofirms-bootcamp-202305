@@ -121,21 +121,21 @@ function Home({ onLoggedOut }) {
     const userId = extractUserIdFromToken(context.token) //importante el context
 
     //'key={meetup.id}' para asignar una clave única a cada elemento de una lista o conjunto de componentes
-    //<img src={user.image} id="url" height="50" />
     return (
+        
         <div className="home-view">
             <header className="home-header">
-                <h1 className="home-title">{user ? user.name : 'World'} </h1>
-                <div class="flex flex-wrap justify-center">
-                    <div class="w-6/12 sm:w-4/12 px-8">
-                        <img src={user.image} id="url" alt="..." class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
-                    </div>
-                </div>
+                <h1 className="home-title">{user ? user.name : 'Check in'} </h1>
                 
-                <button className="home-logout-button" onClick={handleLogoutClick} >Logout</button>
+                <div className="flex flex-wrap justify-center">
+                    <div className="w-6/12 sm:w-4/12 px-14">
+                        <img src={user.image} id="url" alt="image of user" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
+                    </div>
+                    <button className="home-logout-button" onClick={handleLogoutClick} >Logout</button>
+                </div>    
+                
             </header>
-
-            <main className="py-[3rem]">
+                <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10">
                     {meetups && meetups.map(meetup => <article key={meetup.id}
                         className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
