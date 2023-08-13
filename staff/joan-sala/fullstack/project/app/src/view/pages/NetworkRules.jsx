@@ -8,8 +8,8 @@ import EditMeetupModal from '../modals/EditMeetupModal'
 import DeleteMeetupModal from '../modals/DeleteMeetupModal'
 import toggleFavMeetup from '../../logic/toggleFavMeetup'
 
-function Home({ onLoggedOut }) {
-    console.log('Home ->render')
+function NetworkRules({ onLoggedOut }) {
+    console.log('Meetup networ rules ->render')
 
     const [modal, setModal] = useState(null)
     const [meetupId, setMeetupId] = useState(null)
@@ -138,47 +138,27 @@ function Home({ onLoggedOut }) {
             </header>
             <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10">
-                    {meetups && meetups.map(meetup => 
-                    <article key={meetup.id}
-                        className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
-                        <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
-                        <a className="mt-2 text-sm text-[#2C2A2A] font-style: italic">{meetup.date}</a>
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Image: </p>
-                        <img className="w-full"
-                            src={meetup.image}
-                            alt={meetup.text} />
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Video: </p>
-                        <video controls className="w-full"
-                            src={meetup.video}
-                            alt={meetup.text} />
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Description: </p>
-                        <p>{meetup.text}</p>
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Type:</p>
-                        <p> {meetup.type}</p>
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Adress: </p>
-                        <p>{meetup.adress}</p>
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
-                        <p>{meetup.date}</p>
-
-                        {meetup.author.id === userId && <>
-                            <button className="button" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
-                            <button className="button" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
-                        </>
-                        }
-                        <button className="button" onClick={() => handleToggleMeetupClick(meetup.id)}>{meetup.fav ? '♥' : '♡'}</button>
-                    </article>)}
+                       
+                   <p className="mt-8 font-semibold text-[#2C2A2A]">Rules of use</p>
+                   <p>Dear user,
+                    <br>I hope this letter finds you well. By means of the present, I want to clarify in a formal and unequivocal way that I do not assume any responsibility in relation to this website or any activity, content or situation related to it.
+                    <br>After careful consideration, I have decided that it is in my best interest and the interest of all parties involved that I completely disassociate myself from any involvement or liability with respect to 'Meetup Bikers'. This decision is based on personal and professional factors that have led me to focus my efforts and attention in other areas.
+                    <br>Therefore, I want to emphasize that I am not willing to assume or accept any obligation, legal, financial, operational or any other type of responsibility in relation to 'Meetup Bikers'. As of the date of this letter, I completely disassociate myself from any connection, contribution or participation in the aforementioned website.
+                    <br>This communication is intended to clearly and definitively establish my position on this matter.
+                    <br>If you have any questions or concerns about my decision, you can contact me at my email address. However, I want to reiterate that my disclaimer position in relation to 'Meetup Bikers' is final and immutable.
+                    <br>
+                    I appreciate your understanding and respect in this matter. I wish you success in your future endeavors and endeavors.
+                    <br>Sincerely,  
+                    <br>Joan</p>
+                        
+                        
+                    
                 </section>
             </main>
 
             <footer className="text-white bg-[#d9d9d9] flex bottom-0 w-full h-[3rem] justify-center">
                 <button className="bg-[#2C2A2A] br-30 p-5 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>New Meetup</button>
             </footer>
-
-            {modal === 'create-meetup' && <CreateMeetupModal onMeetupCreated={handleMeetupCreated} onCreateMeetupCancelled={handleCreateMeetupCancelled} />}
-
-            {modal === 'edit-meetup' && <EditMeetupModal meetupId={meetupId} onMeetupEdited={handleMeetupEdited} onEditMeetupCancelled={handleEditMeetupCancelled} />}
-
-            {modal === 'delete-meetup' && <DeleteMeetupModal meetupId={meetupId} onMeetupDeleted={handleMeetupDeleted} onDeleteMeetupCancelled={handleDeleteMeetupCancelled} />}
         </div>
     )
 }
