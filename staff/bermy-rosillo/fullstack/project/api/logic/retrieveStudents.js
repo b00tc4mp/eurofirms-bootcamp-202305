@@ -1,6 +1,6 @@
 const { User, Test, Answer } = require('../data/index')
 const { validateId } = require('./helpers/validators')
-function retrieveStudentsList(userId, testId) {
+function retrieveStudents(userId, testId) {
     validateId(userId)
     validateId(testId)
 
@@ -33,4 +33,4 @@ function retrieveStudentsList(userId, testId) {
                 })
         })
 }
-module.exports = retrieveStudentsList
+module.exports = retrieveStudents

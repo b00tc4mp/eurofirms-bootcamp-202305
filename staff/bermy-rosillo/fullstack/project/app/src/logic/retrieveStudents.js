@@ -1,4 +1,4 @@
-function retrieveStudentsList(token,testId) {
+function retrieveStudents(token,testId) {
     if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof testId !== 'string') throw new Error('testId is not a string')
 
@@ -24,4 +24,4 @@ function retrieveStudentsList(token,testId) {
     })
 
 }
-export default retrieveStudentsList
+export default retrieveStudents

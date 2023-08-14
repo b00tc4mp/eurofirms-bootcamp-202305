@@ -11,7 +11,8 @@ const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
 const createTest = require('./logic/createTest')
 const retrieveTeacherListTests = require('./logic/retrieveTeacherListTests')
-const retrieveStudentsList = require('./logic/retrieveStudentsList')
+const retrieveStudents = require('./logic/retrieveStudents')
+const retrieveTest = require('./logic/retrieveTest')
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
 mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
@@ -121,7 +122,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
                 const testId = req.params.testId
 
-                retrieveStudentsList(userId,testId)
+                retrieveStudents(userId,testId)
                     .then(students => res.json(students))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -129,42 +130,23 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
             }
         })
 
-        //retrievePosts
-        /*api.get('/posts', (req, res) => {
-            const authorization = req.headers.authorization
-            const token = authorization.slice(7)
-                const data = jwt.verify(token,process.env.JWT_SECRET)
-                const userId = data.sub
-            try {
-                retrievePosts(userId)
-                    .then(posts => res.json(posts))
-                    .catch(error => {
-                        res.status(400).json({ error: error.message })
-                    })
-
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-
-            }
-        })*/
-
-        //retrievePost
-        /*api.get('/posts/:postId', (req, res) => {
+        //retrieveTest
+        api.get('/tests/:testId', (req, res) => {
             try {
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
                 const data = jwt.verify(token,process.env.JWT_SECRET)
                 const userId = data.sub
-                const postId = req.params.postId
+                const testId = req.params.testId
 
-                retrievePost(userId, postId)
-                    .then(post => res.json(post))
+                retrieveTest(userId, testId)
+                    .then(test => res.json(test))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
 
             }
-        })*/
+        })
 
 
         api.listen(process.env.PORT, () => console.log(`API running in PORT ${process.env.PORT}`))

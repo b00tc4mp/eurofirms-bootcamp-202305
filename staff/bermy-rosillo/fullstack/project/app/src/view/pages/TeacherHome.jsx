@@ -42,7 +42,6 @@ function TeacherHome(props) {
     const handleLoggedOut = () => {
         context.token = null
         setUser(null)
-        
 
         props.onLoggedOutClick()
     }
@@ -69,8 +68,6 @@ function TeacherHome(props) {
             <h1 className="home-title">Welcome, {user ?user.name : 'User'} </h1>
             <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
         </header>
-        
-        
         
         <main className="home-main">
             { homeView === 'list-test' && <section className="home-tests">

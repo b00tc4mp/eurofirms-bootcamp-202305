@@ -33,7 +33,7 @@ function RetrieveStudentResponse(props){
         <textarea id="assessment" type="text" rows="4" cols="50"></textarea> 
 
         <button type="submit" >Send</button>
-        <button type="submit" >Cancel onClick={handleCancelStudentResponse}</button>
+        <button type="submit" onClick={handleCancelStudentResponse} >Cancel </button>
     </form>
 </main>
 

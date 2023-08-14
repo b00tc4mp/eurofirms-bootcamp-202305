@@ -19,7 +19,7 @@ function CreateTest(props) {
             const subject = event.target.subject.value
             const title = event.target.title.value
             const description = event.target.description.value
-            const attemps = event.target.attemps.value
+            const attemps = parseInt(event.target.attemps.value)
            
             createTest(context.token, subject,title,description,attemps)
             .then(()=>{

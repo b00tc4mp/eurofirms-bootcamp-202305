@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import context from '../../../context'
-import retrieveStudentsList from '../../../logic/retrieveStudentsList'
+import retrieveStudents from '../../../logic/retrieveStudents'
 //components
 import RetrieveStudentResponse from './RetrieveStudentResponse'
 
@@ -16,7 +16,7 @@ function RetrieveStudentsList(props){
 
     useEffect(()=>{
         try{
-            retrieveStudentsList(context.token,props.testId)
+            retrieveStudents(context.token,props.testId)
             .then((students=>setStudentsList(students)))
             .catch(error=>alert(error.message))
     

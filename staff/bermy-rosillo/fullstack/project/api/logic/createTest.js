@@ -1,12 +1,12 @@
 const{User,Test} = require('../data/index')
-const {validateId, validateText} = require('./helpers/validators')
+const {validateId, validateText,validateNumber} = require('./helpers/validators')
 
 function createTest(subject,title,description,teacher,attemps){
     validateText(subject)
     validateText(title)
     validateText(description)
     validateId(teacher)
-    validateText(attemps)
+    validateNumber(attemps)
 
     return User.findById(teacher)
     .then(user=>{

@@ -3,7 +3,7 @@ function createTest(token, subject, title, description, attemps) {
     if (typeof title !== 'string') throw new Error('title is not a string')
     if (typeof description !== 'string') throw new Error('description is not a string')
     if (typeof token !== 'string') throw new Error('token is not a string')
-    if (typeof attemps !== 'string') throw new Error('attemps is not a string')
+    if (typeof attemps !== 'number') throw new Error('attemps is not a number')
 
     return fetch(`${import.meta.env.VITE_API_URL}/tests`, {
         method: 'POST',

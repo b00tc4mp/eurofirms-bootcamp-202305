@@ -55,16 +55,16 @@ Answer
 ## project planning
 ## tasks
 ### TODO
-- student home interface
+-  craete answers(student)
 - student's test view
-- look for student test logic / view
-- cancel buttons 
+- cancel buttons student views
+- edit ccs 
 
 
 ### IN PROGRESS
-- teacher home
-- StudentResponse view
-- retrieveStudentsList logic
+- student home interface
+- retrieveAnswerStudentList logic (search test)
+
 
 ### DONE
 - data model
@@ -79,6 +79,12 @@ Answer
 - create test interface
 - logic create Test
 - Program logo
+- teacher home
+
+- retrieveStudentsList logic / view
+- look for student test logic / view
+- StudentResponse view
+- cancel buttons teacher views
 
  
 

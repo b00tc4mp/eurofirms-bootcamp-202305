@@ -65,6 +65,10 @@ function validateText(text) {
     if (text === '') throw new Error('text is empty')
 }
 
+function validateNumber(number) {
+    if (typeof number !== 'number') throw new Error('number is not a number')
+}
+
 // ...
 
 module.exports = {
@@ -73,5 +77,6 @@ module.exports = {
     validateName,
     validateId,
     validateUrl,
-    validateText
+    validateText,
+    validateNumber
 }
