@@ -14,5 +14,13 @@ SAVE_EVERY_TIMES = times for saving working panel in optimization process
 Place in opt root directory ~/quad/opt
 
 ```sh
-./bin/opt.sh
+node process/all
 ```
+
+## To reset the optimization
+Place in opt root directory ~/quad/opt
+
+```sh
+node process/reset
+```
+

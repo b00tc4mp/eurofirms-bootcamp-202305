@@ -116,8 +116,6 @@ function retrievePanelWorking(userId, panelId) {
                     if (!(panel.id === coors.id && panel.owner === coors.user))
                         coors = JSON.parse(fs.readFileSync('../opt/wrkpanel-null.txt', 'utf8'))
                     panel.blocks = coors.blocks
-                    console.log(coors)
-                    console.log(panel)
                     return panel
                 })
         })
