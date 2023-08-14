@@ -38,7 +38,7 @@ const cep = function (panel, context) {
     context.times++
     const processId = context.times
 
-    // Save panel coordinates each time after 100 iterations
+    // Save panel coordinates each time after enviroment variable iterations
     if (processId % parseInt(SAVE_EVERY_TIMES) === 0) {
         const panelWork = {}
         panelWork.id = panel.id

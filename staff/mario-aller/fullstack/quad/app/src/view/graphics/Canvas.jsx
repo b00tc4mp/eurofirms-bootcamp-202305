@@ -20,9 +20,9 @@ const Canvas = props => {
     // ctx.fillStyle = '#00ffff'
     // ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
-    ctx.fillStyle = '#aaaaaa'
+    ctx.fillStyle = '#bfa27d'
     ctx.fillRect(0, 0, Number(panel.width) * escala, Number(panel.height) * escala)
-    ctx.fillStyle = '#777777'
+    ctx.fillStyle = '#EABE3F'
     ctx.lineWidth = 2
 
     panel.blocks.forEach(block => {
