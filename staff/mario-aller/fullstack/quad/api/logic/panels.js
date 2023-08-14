@@ -49,6 +49,7 @@ function retrievePanels(userId) {
                     panels.forEach((panel => {
                         panel.id = panel._id.toString()
                         delete panel._id
+                        panel.owner = panel.owner.toString()
                         panel.blocks.forEach(block => {
                             block.id = block._id.toString()
                             delete block._id
@@ -78,6 +79,7 @@ function retrievePanelOne(userId, panelId) {
                 .then(panel => {
                     panel.id = panel._id.toString()
                     delete panel._id
+                    panel.owner = panel.owner.toString()
                     panel.blocks.forEach(block => {
                         block.id = block._id.toString()
                         delete block._id
@@ -108,9 +110,10 @@ function retrievePanelWorking(userId, panelId) {
                     
                     panel.id = panel._id.toString()
                     delete panel._id
+                    panel.owner = panel.owner.toString()
 
                     let coors = JSON.parse(fs.readFileSync('../opt/wrkpanel.txt', 'utf8'))
-                    if (!(panel.id === coors.id && panel.owner.toString() === coors.user))
+                    if (!(panel.id === coors.id && panel.owner === coors.user))
                         coors = JSON.parse(fs.readFileSync('../opt/wrkpanel-null.txt', 'utf8'))
                     panel.blocks = coors.blocks
                     console.log(coors)
