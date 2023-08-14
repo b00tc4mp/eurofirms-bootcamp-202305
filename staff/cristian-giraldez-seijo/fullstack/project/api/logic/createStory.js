@@ -9,10 +9,9 @@ function createStory(userId, title, sumary, text, question, shortcut = false, or
     validateString(text)
     validateRequiredString(question)
     validateBoolean(shortcut)
-    
+
     if (!shortcut && text === '') throw new Error('You must to put a link or a text')
     if (shortcut && text !== '') throw new Error('You must choose to put only a link or a text')
-
 
     return User.findById(userId)
         .then(user => {

@@ -1,15 +1,18 @@
 const { Story, User } = require('../data')
-const { validateId, validateUseLinkOrText: validateShortcut, validateString } = require('./helpers/validators')
+const { validateId, validateRequiredString, validateString, validateBoolean } = require('./helpers/validators')
 
-function updateStory(userId, storyId, title, sumary, text, question, shortcut, origin) {
+function updateStory(userId, storyId, title, sumary, text, question, shortcut = false, origin = null) {
     validateId(userId)
     validateId(storyId)
-    if (!shortcut && !text) throw new Error('You must to put a link or a text')
-    if (shortcut && text) throw new Error('You must choose to put a link or a text')
     // TODO validates
-    //if(text) validateText(text)
-    validateString(title)
-    validateString(question)
+    validateRequiredString(title)
+    validateString(sumary)
+    validateString(text)
+    validateRequiredString(question)
+    validateBoolean(shortcut)
+
+    if (!shortcut && text === '') throw new Error('You must to put a link or a text')
+    if (shortcut && text !== '') throw new Error('You must choose to put only a link or a text')
 
     return Promise.all([User.findById(userId).lean(), Story.findById(storyId)])
         .then(([user, story]) => {
@@ -20,20 +23,14 @@ function updateStory(userId, storyId, title, sumary, text, question, shortcut, o
 
             story.title = title
             story.question = question
-            if (text) {
-                validateString(text)
-                story.text = text
-            }
-            if (sumary) {
-                validateString(sumary)
-                story.sumary = sumary
-            }
+            story.sumary = sumary
+            story.text = text
             if (shortcut) { }
             if (origin) {
                 validateId(origin)
                 story.origin = origin
             }
-story.dateupdated = new Date()
+            story.dateupdated = new Date()
             return Story.updateOne(story)
         })
         .then(() => { })
