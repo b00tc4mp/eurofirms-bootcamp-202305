@@ -22,8 +22,8 @@ export default function Chat() {
     useEffect(() => {
         try {
             retrieveChat(context.token, chatId)
-                .then(chat => {
-                    setChat(chat)
+                .then(newChat => {
+                    setChat(newChat)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -34,8 +34,8 @@ export default function Chat() {
             console.count('chat interval')
             try {
                 retrieveChat(context.token, chatId)
-                    .then(chat => {
-                        setChat(chat)
+                    .then(newChat => {
+                        if (newChat !== chat) setChat(newChat)
                     })
                     .catch(error => alert(error.message))
             } catch (error) {
@@ -45,8 +45,6 @@ export default function Chat() {
 
         return () => clearInterval(intervalId)
     }, [])
-
-    console.log('chat')
 
     const handleSendMessage = (event) => {
         event.preventDefault()
@@ -86,6 +84,7 @@ export default function Chat() {
         setModal(null)
     }
 
+
     useEffect(() => {
         const pageHeight = document.body.scrollHeight
 
@@ -93,7 +92,8 @@ export default function Chat() {
             top: pageHeight,
             behavior: 'smooth',
         });
-    }, [chat])
+
+    }, [chat?.messages.length])
 
     return <section className="flex flex-col">
         <div className="fixed w-full bg-white flex justify-between items-center border-b-2 border-gray-400 py-1 px-2">
