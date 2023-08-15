@@ -5,6 +5,7 @@ import context from "../../context"
 import { AppContext } from "../../AppContext"
 
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
+import numberChatsNotReading from "../../logic/numberChatsNotReading"
 import retrievePosts from "../../logic/retrievePosts"
 import retrieveUser from "../../logic/retrieveUser"
 import searchUser from "../../logic/searchUser"
@@ -18,6 +19,7 @@ import Profile from "../components/Profile"
 
 import CreatePostModal from "../modals/CreatePostModal"
 import UsersSearchModal from "../modals/UsersSearchModal"
+
 
 export default function Home() {
     const userId = extractUserIdFromToken(context.token)
@@ -40,6 +42,7 @@ export default function Home() {
     const [posts, setPosts] = useState(null)
 
     const [messagesNotReading, setMessagesNotReading] = useState(0)
+    console.log(messagesNotReading)
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside)
@@ -51,8 +54,9 @@ export default function Home() {
 
     useEffect(() => {
         try {
-            retrieveUser(context.token)
-                .then((user) => {
+            Promise.all([numberChatsNotReading(context.token), retrieveUser(context.token)])
+                .then(([count, user]) => {
+                    setMessagesNotReading(count)
                     setUser(user)
 
                     let header = null
@@ -175,7 +179,10 @@ export default function Home() {
             <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/home'>🏠</Link>
             <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/explorer'>🌍</Link>
             <a onClick={handleCreatePostModal} className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" href="#">➕</a>
-            <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/messages'>✉️</Link>
+            <div className="flex justify-end">
+                {messagesNotReading > 0 && <div className="fixed rounded-full text-sm font-bold text-white bg-red-600 w-4 h-4 text-center flex justify-center items-center mr-1">{messagesNotReading}</div>}
+                <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/messages'>✉️</Link>
+            </div>
             <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/notifications'>❤️</Link>
             <Link onClick={handleProfilePage} className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to={`/profile/${userIdProfile}/posts`}>
                 {user && (

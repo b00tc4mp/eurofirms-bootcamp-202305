@@ -10,7 +10,6 @@ function numberChatsNotReading(userId) {
 
         let count = 0
 
-        
         chats.forEach(chat => {
             if(chat.unreadFor) {
                  chat.unreadFor.forEach(id => {
