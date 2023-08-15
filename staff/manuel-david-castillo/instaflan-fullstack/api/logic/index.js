@@ -8,6 +8,7 @@ module.exports = {
     editPost: require('./post-logic/editPost'),
     editMessage: require('./chats-logic/editMessage'),
     editUser: require('./user-logic/editUser'),
+    numberChatsNotReading: require('./chats-logic/numberChatsNotReading'),
     retrieveChat: require('./chats-logic/retrieveChat'),
     retrieveChats: require('./chats-logic/retrieveChats'),
     registerUser: require('./user-logic/registerUser'),

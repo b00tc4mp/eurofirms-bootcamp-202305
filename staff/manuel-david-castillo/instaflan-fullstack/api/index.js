@@ -15,6 +15,7 @@ const {authenticateUser,
     editMessage,
     editPost,
     editUser,
+    numberChatsNotReading,
     registerUser, 
     retrieveChat,
     retrieveChats,
@@ -459,6 +460,22 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
 
                 retrieveChats(userId)
                 .then((chats)=> res.json(chats))
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.get('/chats-not-reading', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                numberChatsNotReading(userId)
+                .then((number)=> res.json(number))
                 .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})

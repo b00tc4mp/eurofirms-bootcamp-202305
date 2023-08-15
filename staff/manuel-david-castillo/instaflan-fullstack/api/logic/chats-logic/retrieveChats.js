@@ -7,7 +7,7 @@ function retrieveChats(userId) {
     return Chat.find({users: userId}, '-__v')
     .populate('users', 'name image').sort({date: -1}).lean()
     .then(chats => {
-        if(!chats) throw new Error('empty chats')
+        if(!chats) throw new Error('chats not found')
 
         chats.forEach(chat => {
             chat.id = chat._id

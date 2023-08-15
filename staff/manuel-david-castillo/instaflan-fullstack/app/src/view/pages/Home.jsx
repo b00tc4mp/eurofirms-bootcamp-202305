@@ -39,7 +39,7 @@ export default function Home() {
     const [users, setUsers] = useState(null)
     const [posts, setPosts] = useState(null)
 
-    let messagesNotReading = 0
+    const [messagesNotReading, setMessagesNotReading] = useState(0)
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside)
