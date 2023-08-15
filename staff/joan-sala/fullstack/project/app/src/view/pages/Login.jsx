@@ -29,7 +29,7 @@ function Login(props) {
 
     return (
         <main className="flex flex-col items-center">
-            <h1 class="text-black-900 font-extrabold text-3xl text-center">Login</h1>
+            <h1 class="text-black-900 font-extrabold text-3xl text-center pt-12 p-4">Login</h1>
 
             <form className="login-form" onSubmit={handleLoginSubmit}>
                 <label htmlFor="email">E-mail</label>
@@ -41,9 +41,9 @@ function Login(props) {
                 <button class="home-logout-button" type="submit">Login</button>
             </form>
 
-            <p>Go to <a className="login-register-link underline-offset-8" href="" onClick={handleRegisterClick}>Register</a></p>
-            <footer className="initial-page-footer" >
-                <p><img src="public/logo03.png" alt="MeetupBikers" width="60%" /></p>
+            <p>Go to <a className="login-register-link underline" href="" onClick={handleRegisterClick}>Register</a></p>
+            <footer className="initial-page-footer justify-center underline-offset-8" >
+                <p><img className="bg-contain bg-center h-20" src="public/logo03.png" alt="MeetupBikers" /></p>
             </footer>
     </main >
 

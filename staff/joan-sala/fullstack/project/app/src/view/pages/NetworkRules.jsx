@@ -7,6 +7,7 @@ import CreateMeetupModal from '../modals/CreateMeetupModal'
 import EditMeetupModal from '../modals/EditMeetupModal'
 import DeleteMeetupModal from '../modals/DeleteMeetupModal'
 import toggleFavMeetup from '../../logic/toggleFavMeetup'
+//import NetworkRules from '../pages/NetworkRules'
 
 function NetworkRules({ onLoggedOut }) {
     console.log('Meetup networ rules ->render')
@@ -15,7 +16,6 @@ function NetworkRules({ onLoggedOut }) {
     const [meetupId, setMeetupId] = useState(null)
     const [user, setUser] = useState(null)
     const [meetups, setMeetups] = useState(null)
-
     const [image, setImage] = useState(null)
 
     //Sólo se ejecuta una vez se pinta el Home
@@ -139,27 +139,23 @@ function NetworkRules({ onLoggedOut }) {
             <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10">
                        
-                   <p className="mt-8 font-semibold text-[#2C2A2A]">Rules of use</p>
-                   <p>Dear user,
-                    <br>I hope this letter finds you well. By means of the present, I want to clarify in a formal and unequivocal way that I do not assume any responsibility in relation to this website or any activity, content or situation related to it.
-                    <br>After careful consideration, I have decided that it is in my best interest and the interest of all parties involved that I completely disassociate myself from any involvement or liability with respect to 'Meetup Bikers'. This decision is based on personal and professional factors that have led me to focus my efforts and attention in other areas.
-                    <br>Therefore, I want to emphasize that I am not willing to assume or accept any obligation, legal, financial, operational or any other type of responsibility in relation to 'Meetup Bikers'. As of the date of this letter, I completely disassociate myself from any connection, contribution or participation in the aforementioned website.
-                    <br>This communication is intended to clearly and definitively establish my position on this matter.
-                    <br>If you have any questions or concerns about my decision, you can contact me at my email address. However, I want to reiterate that my disclaimer position in relation to 'Meetup Bikers' is final and immutable.
-                    <br>
-                    I appreciate your understanding and respect in this matter. I wish you success in your future endeavors and endeavors.
-                    <br>Sincerely,  
-                    <br>Joan</p>
-                        
-                        
-                    
+                   <p className="mt-8 font-semibold text-[#2C2A2A]">Rules of use </p>                  
+                   <p>Dear user,</p>
+                   <p>I hope this letter finds you well. By means of the present, I want to clarify in a formal and unequivocal way that I do not assume any responsibility in relation to this website or any activity, content or situation related to it.</p>
+                   <p>After careful consideration, I have decided that it is in my best interest and the interest of all parties involved that I completely disassociate myself from any involvement or liability with respect to 'Meetup Bikers'. This decision is based on personal and professional factors that have led me to focus my efforts and attention in other areas.</p>
+                   <p>Therefore, I want to emphasize that I am not willing to assume or accept any obligation, legal, financial, operational or any other type of responsibility in relation to 'Meetup Bikers'. As of the date of this letter, I completely disassociate myself from any connection, contribution or participation in the aforementioned website.</p>
+                   <p>This communication is intended to clearly and definitively establish my position on this matter.</p>
+                   <p>If you have any questions or concerns about my decision, you can contact me at my email address. However, I want to reiterate that my disclaimer position in relation to 'Meetup Bikers' is final and immutable.</p>
+                   <p>
+                    I appreciate your understanding and respect in this matter. I wish you success in your future endeavors and endeavors.</p>
+                   <p>Sincerely,  </p>
+                   <p>Joan</p>                                            
                 </section>
             </main>
-
-            <footer className="text-white bg-[#d9d9d9] flex bottom-0 w-full h-[3rem] justify-center">
-                <button className="bg-[#2C2A2A] br-30 p-5 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>New Meetup</button>
+            <footer className="initial-page-footer justify-center underline-offset-8" >
+                <p><img className="bg-contain bg-center h-20" src="public/logo03.png" alt="MeetupBikers" /></p>
             </footer>
         </div>
     )
 }
-export default Home
+export default NetworkRules

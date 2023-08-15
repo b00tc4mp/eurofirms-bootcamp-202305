@@ -7,6 +7,7 @@ import CreateMeetupModal from '../modals/CreateMeetupModal'
 import EditMeetupModal from '../modals/EditMeetupModal'
 import DeleteMeetupModal from '../modals/DeleteMeetupModal'
 import toggleFavMeetup from '../../logic/toggleFavMeetup'
+import NetworkRules from '../pages/NetworkRules'
 
 function Home({ onLoggedOut }) {
     console.log('Home ->render')
@@ -15,7 +16,6 @@ function Home({ onLoggedOut }) {
     const [meetupId, setMeetupId] = useState(null)
     const [user, setUser] = useState(null)
     const [meetups, setMeetups] = useState(null)
-
     const [image, setImage] = useState(null)
 
     //Sólo se ejecuta una vez se pinta el Home
@@ -123,17 +123,16 @@ function Home({ onLoggedOut }) {
     //'key={meetup.id}' para asignar una clave única a cada elemento de una lista o conjunto de componentes
     return (
         
-        <div className="home-view">
-            <header className="home-header">
-                <h1 className="home-title">{user ? user.name : 'Check in'} </h1>
-                <div className="flex flex-wrap justify">
-                    <div className="w-6/12 sm:w-4/12 px-14">
-                        <img src={user.image} id="url" alt="image of user" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
-                    </div>
-                    <button className="home-logout-button" onClick={handleLogoutClick} >Logout</button>
+        <div>
+            <header className="fixed top-0 h-[5rem] flex items-center justify-between bg-[rgb(217,217,217)] w-full py-[1rem] lg:-ml-2 lg:pl-2">
+                <h1 className="font-extrabold p-5">{user ? user.name : 'Check in'} </h1>
+                <div className="flex justify-center items-center gap-x-5">                 
+                        <img  src={user ? user.image : "" } id="url" 
+                        alt="image of user" className="shadow-lg rounded-full w-1/6 h-auto align-middle border-none" w-16 md:w-32 lg:w-48/>
+                    <button className="text-[#fff] text-center justify-center w-1/6 py-2 ring-1 inline-flex #707070 rounded-lg bg-[#2C2A2A] max-w-sm  hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
                 </div>    
-                <div className="flex flex-wrap justify-end w-10">
-                    <img src="public//tools.png" alt="settings"/>
+                <div className="flex flex-wrap justify-end w-1/6 pr-5 w-16 md:w-32 lg:w-48">
+                    <img src="public/tools.png" alt="settings" />
                 </div>
             </header>
             <main className="py-[3rem]">

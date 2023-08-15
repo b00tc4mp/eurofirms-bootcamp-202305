@@ -28,7 +28,7 @@ function Register(props) {
 
     return (
         <main className="register-view">
-            <h1 className="text-black-900 font-extrabold text-3xl text-center">Register</h1>
+            <h1 className="text-black-900 font-extrabold text-3xl text-center pt-12 p-4">Register</h1>
 
             <form className="register-form" onSubmit={handleRegisterSubmit}>
                 <label htmlFor="name">Name</label>
@@ -46,9 +46,9 @@ function Register(props) {
                 <button className="home-logout-button" type="submit">Register</button>
             </form>
 
-            <p>Go to <a className="login-register-link" href="" onClick={handleLoginClick}>Login</a></p>
-            <footer className="initial-page-footer" >
-                <p><img  src="public/logo03.png" alt="MeetupBikers" width="60%" /></p>
+            <p>Go to <a className="login-register-link underline" href="" onClick={handleLoginClick}>Login</a></p>
+            <footer className="initial-page-footer justify-center underline-offset-8" >
+                <p><img className="bg-contain bg-center h-20" src="public/logo03.png" alt="MeetupBikers" /></p>
             </footer>
         </main>
     )
