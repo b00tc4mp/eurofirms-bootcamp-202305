@@ -18,7 +18,7 @@ class Block {
     isPlaced() {
         return !this.pos.x.isNegative()
     }
-    // Return the coor of block end point taking into orientation
+    // Return the coor of block opposite vertex taking into orientation
     coorEnd() {
         let width, height
         if (this.orientation === 0) {

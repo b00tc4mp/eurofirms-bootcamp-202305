@@ -286,15 +286,23 @@ const optimizePanel = function (panel) {
         nesting: 0,
         times: 0
     }
+
     console.log('Start...')
+    const dateStart = new Date()
+
     try {
         cep(panel, context)
 
-        const data = fs.readFileSync('wrkpanel-null.txt','utf8')
+        const data = fs.readFileSync('wrkpanel-null.txt', 'utf8')
         fs.writeFileSync('wrkpanel.txt', data)
     }
     catch (error) { console.error(error) }
+
     console.log('Finished... Iterations:', context.times)
+    const dateFinish = new Date()
+    duration = parseInt((dateFinish - dateStart) / 1000 + 0.5)
+    console.log('Duration:', duration, 'seconds')
+    
     return context.optPanel
 }
 

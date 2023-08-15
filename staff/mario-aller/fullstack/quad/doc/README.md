@@ -39,6 +39,18 @@ Later, the final distribution solution is given to the user.
 
 ## Technical Specs.
 
+### Process
+
+#### Client Side
+
+- See [App](../app/README.md)
+
+#### Server Side
+
+- See [Api](../api/README.md)
+- See [Opt](../opt/README.md)
+- MongoDB Storage
+
 ### Data model
 
 #### Block
@@ -90,7 +102,7 @@ type of blocks and panels dimensions
 - Methods
     - value(): Return a Number with the value of dimension
     - isNegative(): Check if dimension is negative
-    - isValid2(): Check if dimension if bigger or equal to 2
+    - isGreaterThan2(): Check if dimension if bigger or equal to 2
 
 #### Dimension2D
 (Dimension x Dimension) set
@@ -98,18 +110,19 @@ type of blocks and panels dimensions
     - x:BigInt - 1st dimension value
     - y:BigInt - 2nd dimension value
 - Methods
-    - tr(): Return the transpose
+    - tr(): Return the 'transpose'
     - add(pos): Return the addition of pos to it
     - intoArea(pos1, pos2): Check if it is between 'pos1' and 'pos2'
 
 #### Block
 Item to be placed
 - Properties
-    - position: Dimension2D - block position (required, default null)
+    - pos: Dimension2D - block position (required, default null)
     - size: Dimension2D (required)- block size
     - orientation: Integer enum[REGULAR, ROTATED90] (required, default REGULAR) - block rotation
 - Methods
     - isPlace(): Return if block is placed
+    - coorEnd(): Return the coor of block opposite vertex taking into orientation
 - Const
     - REGULAR = 0
     - ROTATED90 = 1
@@ -126,6 +139,8 @@ Area where items are placed
     - posFree(pos): Check if 'pos' is free in the panel
     - blocskPlacedAll(): Check if all blocks are placed
     - quadFree(pos, quad): Check if quadrant 'quad' is free in 'pos'
+    - heightMax(): Return de max height of a panel
+    - widthMax(): Return de max width of a panel
 - Const
     - QUADRANT_I = 1
     - QUADRANT_II = 2
@@ -135,15 +150,6 @@ Area where items are placed
     - ON_PROGRESS = 1
     - FINISHED = 2
 
-
-
 ## Planning
 
 - See [Trello](https://trello.com/b/ogoAH6mE/quad-scrum)
-
-
-## Others README
-
-- [App](../app/README.md)
-- [Api](../api/README.md)
-- [Opt](../opt/README.md)

@@ -25,7 +25,7 @@ export function PanelWorking({ onExitModal, panelId }) {
                 .catch(error => alert('Error: ' + error.message))
         } catch (error) { alert('Error: ' + error.message) }
 
-        const RefreshWorkingInterval = setInterval(handleRefreshPanelWorking, parseInt(import.meta.env.VITE_REFRESH_RATE));
+        const RefreshWorkingInterval = setInterval(handleRefreshPanelWorking, parseInt(import.meta.env.VITE_REFRESH_INTERVAL));
         return () => clearInterval(RefreshWorkingInterval)
     }, [])
 

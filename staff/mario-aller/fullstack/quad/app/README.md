@@ -1,4 +1,9 @@
 # app
+
+## Functional Description (FDS)
+
+This process manage the user interface for panels CRUD
+
 ## Enviroment Variables
 
 VITE_API_URL = API adress
@@ -13,3 +18,5 @@ Place in app root directory ~/quad/app
 ./bin/app.sh
 ```
 To open the browser navigator press key 'o'
+
+[Home](../doc/README.md)
