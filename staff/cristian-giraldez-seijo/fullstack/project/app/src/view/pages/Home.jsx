@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import retrieveUser from '../../logic/retrieveUser'
 import LoginModal from '../modals/LoginModal'
 import RegisterModal from '../modals/RegisterModal'
+import ShowStories from './ShowStories'
+import ShowStory from './ShowStory'
 import context from '../../context'
 
 const Home = () => {
+        const [view, setView] = useState('Stories')
         const [modal, setModal] = useState(null)
         const [user, setUser] = useState(null)
+        const [storyId, setStoryId] = useState(null)
 
         useEffect(() => {
                 try {
@@ -14,7 +18,7 @@ const Home = () => {
                                 .then(user => setUser(user))
                                 .catch(error => alert(error.message))
                 } catch (error) { alert(error.message) }
-        }, [context.token])
+        }, [])
 
         const handleNavigateToRegister = event => {
                 event.preventDefault()
@@ -25,7 +29,10 @@ const Home = () => {
                 event.preventDefault()
                 setModal('login')
         }
-
+        const handleStories = event => {
+                event.preventDefault()
+                setView('Stories')
+        }
         const handleClose = event => {
                 event.preventDefault()
                 setModal(null)
@@ -40,6 +47,10 @@ const Home = () => {
                 context.token = null
                 setModal('login')
         }
+        const handleShowStory = (storyId) => {
+                setStoryId(storyId)
+                setView('Story')
+        }
 
         return (
                 <div className="home">
@@ -52,6 +63,9 @@ const Home = () => {
                                 {modal && (
                                         <button type="button" onClick={handleClose}>Close</button>
                                 )}
+                                {view === 'Story' && (
+                                        <button type="button" onClick={handleStories}>Stories</button>
+                                )}
                                 {context.token && (<h3>Hi, {user?.nickname}!</h3>)}
                                 {context.token && (
                                         <button type="button" onClick={handleLogout}>Logout</button>)}
@@ -61,6 +75,8 @@ const Home = () => {
                         <main>
                                 <h1>Read, write, and talking!</h1>
                                 <p>"Writing is the painting of the voice", Voltaire.</p>
+                                {view === 'Stories' && <ShowStories onShowStory={handleShowStory} />}
+                                {view === 'Story' && <ShowStory storyId={storyId} />}
                         </main>
                         <footer></footer>
                 </div>
