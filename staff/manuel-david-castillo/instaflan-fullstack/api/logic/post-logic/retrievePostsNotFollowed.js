@@ -72,6 +72,7 @@ function retrievePostsNotFollowed(userId) {
                                 },
                                 text: "$$comment.text",
                                 date: "$$comment.date",
+                                id: "$$comment._id"
                             }
                         }
                     }
