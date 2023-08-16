@@ -55,8 +55,9 @@ function TeacherHome(props) {
         
     }
     //--
-    const handleRetrieveStudentsList =(event) =>{
+    const handleRetrieveStudentsList =(event,testId) =>{
         event.preventDefault()
+        setTestId(testId)
         setHomeView('retrieve-students-list')
     }
     //--------------------------------------------
@@ -73,13 +74,13 @@ function TeacherHome(props) {
                 {tests && tests.map(test => {
                     return <article key={test.id}>
                         <h3>Subject: {test.subject}</h3>
-                        <h3>Title: <a href="" onClick={handleRetrieveStudentsList}>{test.title}</a></h3>
+                        <h3>Title: <a href="" onClick={(event)=>handleRetrieveStudentsList(event,test.id)}>{test.title}</a></h3>
                     </article>
                 })}
             </section>}
 
             {homeView === 'create-test' && <CreateTest userName={user.name} onReturnHome={handleOnReturnHome} />}
-            {homeView === 'retrieve-students-list' && <RetrieveStudentsList user={user}   onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />}
+            {homeView === 'retrieve-students-list' && <RetrieveStudentsList testId={testId}    onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />}
         </main>
        
         <footer className="home-footer">

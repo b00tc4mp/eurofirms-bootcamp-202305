@@ -9,14 +9,11 @@ function RetrieveStudentsList(props){
     
     const[viewStudentsList, setViewStudentsList]= useState('list-students')
     const[students, setStudentsList] = useState()
-
-    const userState = useState(props.user) //null
-    const user = userState[0]
-    const setUser = userState[1]
+    const[studentId, setStudentId] = useState()
 
     useEffect(()=>{
         try{
-            retrieveStudents(context.token) //testID 2do param
+            retrieveStudents(context.token,props.testId) 
             .then((students=>setStudentsList(students)))
             .catch(error=>alert(error.message))
     
@@ -26,19 +23,9 @@ function RetrieveStudentsList(props){
     },
     [])
 
-    const handleRetrieveStudentsListCancelButton =()=>{
-        props.onReturnHome()
-    }
-
-    const handleLoggedOut = () => {
-        context.token = null
-        setUser(null)
-
-        props.onLoggedOutClick()
-    }
-    
-    const handleRetrieveStudentResponse =(event)=>{
+    const handleRetrieveStudentResponse =(event,studentId)=>{
         event.preventDefault()
+        setStudentId(studentId)
         setViewStudentsList('retrieve-student-response')
     }
 
@@ -46,31 +33,18 @@ function RetrieveStudentsList(props){
         setViewStudentsList(null)
     }
     //-------------------------------
-    return <div className="home-view ">
-        <header className="home-header">
-            <h1 className="home-title">Welcome, {user ? user.name : 'User'} </h1>
-            <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
-            <button className="retrieve-students-list-cancel-button" onClick={handleRetrieveStudentsListCancelButton}>Cancel</button>  
-        </header>
-        
-        <main className="home-main">
+    return  <div>
             { viewStudentsList === 'list-students' && <section className="list-student">
                 {students && students.map(student => {
                     return <article key={student.id}>
-                        <h3>Student: <a href="" onClick={handleRetrieveStudentResponse}>{student.name}</a></h3>
+                        <h3>Student: <a href="" onClick={(event)=>handleRetrieveStudentResponse(event,student.id)}>{student.name}</a></h3>
                     </article>
                 })}
             </section>}
 
-            {viewStudentsList === 'retrieve-student-response' && <RetrieveStudentResponse onReturnStudentList={handleOnReturnStudentList} />}
+            {viewStudentsList === 'retrieve-student-response' && <RetrieveStudentResponse testId={props.testId} studentId={studentId}  onReturnStudentList={handleOnReturnStudentList} />}
         
-        </main>
-       
-        <footer className="home-footer">
-            {/*  <button className="retrieve-students-list-cancel-button" onClick={handleRetrieveStudentsListCancelButton}>Cancel</button> */}
-             
-        </footer>
-    </div>
+        </div>
 }
 
 export default RetrieveStudentsList
