@@ -1,17 +1,30 @@
 import { useState, useEffect } from 'react'
 import retrieveStory from '../../logic/retrieveStory'
+import context from '../../context'
+import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
+import EditStoryModal from '../modals/EditStoryModal'
 
 const ShowStory = (props) => {
     const [story, setStory] = useState(null)
 
     useEffect(() => {
         try {
-            if (!props.storyId) throw new Error('Story not found')
             retrieveStory(props.storyId)
-                .then(story => setStory(story))
+                .then(story => {
+                    setStory(story)
+                })
                 .catch(error => alert(error.message))
         } catch (error) { alert(error.message) }
-    }, [props.storyId])
+    }, [])
+
+    const handleBackToStories = () => {
+        props.onBackToStories()
+    }
+
+    let userId
+
+    if (context.token)
+        userId = extractUserIdFromToken(context.token)
 
     return (
         <div className='story-container'>
@@ -21,10 +34,19 @@ const ShowStory = (props) => {
                     <h4>{story.author.nickname}</h4>
                     <p>{story.summary}</p>
                     <p>{story.text}</p>
+                    {story.author.id === userId && <>
+                        <button>Edit</button>
+                        <EditStoryModal story={story} />
+                    </>}
                     <h2>{story.question}</h2>
                 </>
             ) : (
                 <p>Loading story...</p>
+            )}
+            {props.view === 'Story' && (
+                <button type="button" onClick={handleBackToStories}>
+                    Back to Stories
+                </button>
             )}
         </div>
 
