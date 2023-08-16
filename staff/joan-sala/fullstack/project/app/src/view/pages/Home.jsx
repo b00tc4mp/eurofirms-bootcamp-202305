@@ -135,7 +135,7 @@ function Home({ onLoggedOut }) {
                 </div>
             </header>
             <main className="py-[3rem]">
-                <section className="flex flex-col items-center gap-10">
+                <section className="flex flex-col items-center gap-10 pt-12 pb-10">
                     {meetups && meetups.map(meetup => 
                     <article key={meetup.id}
                         className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
@@ -168,8 +168,8 @@ function Home({ onLoggedOut }) {
                 </section>
             </main>
 
-            <footer className="text-white bg-[#d9d9d9] flex bottom-0 w-full h-[3rem] justify-center">
-                <button className="bg-[#2C2A2A] br-30 p-5 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>New Meetup</button>
+            <footer className="text-white bg-[#d9d9d9] fixed flex bottom-0 w-full h-[4rem] items-center justify-center">
+                <button className="bg-[#2C2A2A]px-4 py-2 font-semibold text-sm rounded-md shadow-sm hover:bg-[#707070]" onClick={handleCreateMeetupClick}>New Meetup</button>
             </footer>
 
             {modal === 'create-meetup' && <CreateMeetupModal onMeetupCreated={handleMeetupCreated} onCreateMeetupCancelled={handleCreateMeetupCancelled} />}
