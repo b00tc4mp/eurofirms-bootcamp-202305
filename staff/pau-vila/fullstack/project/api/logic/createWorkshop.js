@@ -20,7 +20,7 @@ function createWorkshop(userId, description, place,
     return User.findById(userId)
         .then(user => {
             if (!user) throw new Error('user not founded')
-
+            const attendants = [user._id]
             const data = {
                 planner: userId, description, place,
                 codeZIP, dateStart, dateEnd, attendantsLimit
@@ -28,6 +28,7 @@ function createWorkshop(userId, description, place,
 
             if (video) data.video = video
             if (image) data.image = image
+            data.attendants = attendants
 
             return Workshop.create(data)
         })

@@ -8,9 +8,9 @@ function retrieveWorkshops(userId) {
         .then(user => {
             if (!user) throw new Error('user not found')
 
-            return Workshop.find({}, '-__v').populate('author', 'name').lean()
-                .then(workshop => {
-                    
+            return Workshop.find({}, '-__v').populate('planner', 'name').lean()
+                .then(workshops => {
+
                     workshops.forEach(workshop => {
                         workshop.id = workshop._id.toString()
                         delete workshop._id
@@ -22,7 +22,6 @@ function retrieveWorkshops(userId) {
                             delete planner._id
                         }
 
-                        workshop.fav = user.favs.some(fav => fav.toString() === workshop.id)
                     })
 
                     return workshops

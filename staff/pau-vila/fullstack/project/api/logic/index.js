@@ -12,5 +12,6 @@ module.exports = {
     retrieveWorkshop: require ('./retrieveWorkshop'),
     retrieveWorkshops: require ('./retrieveWorkshops'),
     updateWorkshop: require ('./updateWorkshop'),
-    deleteWorkshop: require ('./deleteWorkshop')
+    deleteWorkshop: require ('./deleteWorkshop'),
+    toggleAttendants: require ('./toggleAttendants')
 }

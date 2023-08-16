@@ -17,7 +17,8 @@ const {
     updateWorkshop,
     deleteWorkshop,
     retrieveWorkshop,
-    retrieveWorkshops
+    retrieveWorkshops,
+    toggleAttendants
 } = require('./logic')
 
 const cors = require('cors')
@@ -292,6 +293,24 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
                     .then(() => res.status(204).send())
                     .catch(error => res.status(400).json({ error: error.message }))
 
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        api.put('/workshops/:workshopId/attendants', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+                const { workshopId } = req.params
+
+                toggleAttendants(userId, workshopId)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
             }
