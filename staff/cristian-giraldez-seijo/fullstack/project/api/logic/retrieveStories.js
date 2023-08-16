@@ -2,7 +2,7 @@ const { validateId } = require('./helpers/validators')
 const { Story } = require('../data')
 
 function retrieveStories() {
-    return Story.find({}, '-__v').populate('author', 'nickname').lean()
+    return Story.find({}, 'title sumary').populate('author', 'nickname').lean()
         .then(stories => {
             // sanitize
             stories.forEach(story => {
