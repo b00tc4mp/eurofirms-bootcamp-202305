@@ -16,7 +16,7 @@ function RetrieveStudentsList(props){
 
     useEffect(()=>{
         try{
-            retrieveStudents(context.token,props.testId)
+            retrieveStudents(context.token) //testID 2do param
             .then((students=>setStudentsList(students)))
             .catch(error=>alert(error.message))
     

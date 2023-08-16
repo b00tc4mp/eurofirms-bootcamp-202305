@@ -93,7 +93,6 @@ const answer = new Schema({
 
     assessmentDate: {
         type: Date,
-        default: Date.now
     }
 })
 

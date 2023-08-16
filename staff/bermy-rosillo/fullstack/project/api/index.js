@@ -13,6 +13,8 @@ const createTest = require('./logic/createTest')
 const retrieveTeacherListTests = require('./logic/retrieveTeacherListTests')
 const retrieveStudents = require('./logic/retrieveStudents')
 const retrieveTest = require('./logic/retrieveTest')
+const retrieveAnswers = require('./logic/retrieveAnswers')
+const createAnswer = require('./logic/createAnswer')
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
 mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
@@ -140,6 +142,44 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 const testId = req.params.testId
 
                 retrieveTest(userId, testId)
+                    .then(test => res.json(test))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+
+            }
+        })
+        //--
+        //retrieveAnswers
+        api.get('/answers/:studentId/:testId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const userId = data.sub
+                const studentId = req.params.studentId
+                const testId = req.params.testId
+
+                retrieveAnswers(userId, studentId,testId)
+                    .then(test => res.json(test))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+
+            }
+        })
+        //create answer
+        api.post('/answers/:studentId/:testId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const userId = data.sub
+                const studentId = req.params.studentId
+                const testId = req.params.testId
+                const {answer} = req.body
+
+                createAnswer(studentId,testId,answer)
                     .then(test => res.json(test))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
