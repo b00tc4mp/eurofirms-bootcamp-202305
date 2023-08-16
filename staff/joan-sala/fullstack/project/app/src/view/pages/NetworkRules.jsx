@@ -12,12 +12,8 @@ import toggleFavMeetup from '../../logic/toggleFavMeetup'
 function NetworkRules({ onLoggedOut }) {
     console.log('Meetup networ rules ->render')
 
-    const [modal, setModal] = useState(null)
-    const [meetupId, setMeetupId] = useState(null)
     const [user, setUser] = useState(null)
-    const [meetups, setMeetups] = useState(null)
-    const [image, setImage] = useState(null)
-
+    
     //Sólo se ejecuta una vez se pinta el Home
     useEffect(() => { //Para efectos secundarios como consecuéncia de llamar a una api.
         try {
@@ -43,84 +39,8 @@ function NetworkRules({ onLoggedOut }) {
         onLoggedOut()
     }
 
-    const handleCreateMeetupClick = () => setModal('create-meetup')
-
-    const handleMeetupCreated = () => {
-        try {
-            retrieveMeetups(context.token)
-                .then(meetups => {
-                    setModal(null)
-                    setMeetups(meetups)
-                })
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-
-    const handleEditMeetupClick = meetupId => {
-        setMeetupId(meetupId)
-        setModal('edit-meetup')
-    }
-
-    const handleCreateMeetupCancelled = () => setModal(null)
-
-    const handleEditMeetupCancelled = () => {
-        setModal(null) //refrescar pantalla
-        setMeetupId(null)
-    }
-
-    const handleMeetupEdited = () => {
-        try {
-            retrieveMeetups(context.token)
-                .then(meetups => {
-                    setMeetups(meetups)
-                    setModal(null)
-                    setMeetupId(null)
-                })
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-    const handleDeleteMeetupClick = meetupId => {
-        setMeetupId(meetupId)
-        setModal('delete-meetup')
-    }
-
-    const handleDeleteMeetupCancelled = () => {
-        setModal(null)
-        setMeetupId(null)
-    }
-
-    const handleMeetupDeleted = () => {
-        try {
-            retrieveMeetups(context.token)
-                .then(meetups => {
-                    setMeetups(meetups)
-                    setModal(null)
-                    setMeetupId(null)
-                })
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-
-    const handleToggleMeetupClick = meetupId => {
-        try {
-            toggleFavMeetup(context.token, meetupId)
-                .then(() => retrieveMeetups(context.token))
-                .then(meetups => setMeetups(meetups))
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-
     const userId = extractUserIdFromToken(context.token) //importante el context
 
-    //'key={meetup.id}' para asignar una clave única a cada elemento de una lista o conjunto de componentes
     return (
         
         <div className="home-view">
