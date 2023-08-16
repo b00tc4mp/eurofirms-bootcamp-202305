@@ -7,7 +7,7 @@ function RetrieveStudentResponse(props) {
     console.log('retrieve student response')
 
     const [test, setTest] = useState()
-    const[answers, setAnswers] = useState()
+    const [answers, setAnswers] = useState()
 
     useEffect(() => {
         try {
@@ -19,7 +19,7 @@ function RetrieveStudentResponse(props) {
         }
 
         try {
-            retrieveAnswers(context.token, props.studentId,props.testId)
+            retrieveAnswers(context.token, props.studentId, props.testId)
                 .then(answers => setAnswers(answers))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -34,44 +34,44 @@ function RetrieveStudentResponse(props) {
         //props.on
     }
 
-    // TODO useeffect  retrieve test y retrive answer con un promise all
-
-
-
-    return <main className="create-test-view">
-        <h1>Student response</h1>
+    return <div className="student-test-view">
+        <h1>Test</h1>
         {test && answers &&
-            <form className="create-test-form" >
-               
+            <form className="student-test-form" >
 
-                <label htmlFor="subject">Subject</label>
-                <input id="subject" type="text" defaultValue={test.subject} />
-
-                <label htmlFor="title">Title</label>
-                <input id="title" type="text" defaultValue={test.title} />
-
-                <label htmlFor="descrption">Description</label>
-                <textarea id="descrption" type="text" rows="4" cols="50" defaultValue={test.description}></textarea>
-
-                <label htmlFor="attemps">Attemps</label>
-                <input id="attemps" type="text" defaultValue={test.attemps}/>
-
-                <label>Answers</label>
+                <h3>Subject: {test.subject}</h3> 
+                <h3>Title: {test.title}</h3>
+                <h3>Description: {test.description}</h3>
+                <h3>Attemps: {test.attemps}</h3>
                 
-                <label htmlFor="description-response">Description</label>
-                <textarea id="description-response" type="text" rows="4" cols="50" ></textarea>
+                <div className="student-answers-view">
+                    <form className="student-answers-form">
+                        
+                        <h1>Student answers</h1>
+                        {answers && answers.map(answer=>{
+                            return <article key={answer.id}>
+                                <h3>Name: {answer.student.name}</h3>
+                                <h3>Answer:{answer.description}</h3> 
+                                {/* <label htmlFor="answer">Description</label>
+                                <textarea id="answer" type="text" rows="4" cols="50" deafaultValue={answer.description}></textarea> */}
+                                <h3>Date:{answer.date}</h3>
+                            </article>
+                        })}
+                        
+                        <label htmlFor="score">Score: </label>
+                        <input id="score" type="text" />
 
-                <label htmlFor="score">Score</label>
-                <input id="score" type="text" />
-
-                <label htmlFor="assessment">assessment</label>
-                <textarea id="assessment" type="text" rows="4" cols="50" ></textarea>
+                        <label htmlFor="assessment">assessment: </label>
+                        <textarea id="assessment" type="text" rows="4" cols="20" ></textarea>
+                        
+                    </form>
+                </div>
 
                 <button type="submit" >Send</button>
                 <button type="submit" onClick={handleCancelStudentResponse} >Cancel </button>
             </form>
         }
-    </main>
+    </div>
 
 }
 

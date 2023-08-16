@@ -20,7 +20,7 @@ return Promise.all([User.findById(userId), User.findById(studentId), Test.findBy
     if (user.role !== 'teacher') throw new Error('User is not a teacher')
 
 
-    return Answer.find({ test: testId, student: studentId }).lean()
+    return Answer.find({ test: testId, student: studentId },'-__v').populate('student','name','description').lean()
         .then(answers => {
             
             answers.forEach(answer=>{
@@ -29,9 +29,14 @@ return Promise.all([User.findById(userId), User.findById(studentId), Test.findBy
                 answer.id = answer._id.toString() 
                 delete answer._id
 
-                answer.student = answer.student.toString()
+                if(answer.student._id){
+               
+                answer.student.id = answer.student._id.toString()
+                delete answer.student._id
+                }
                 
                 answer.test = answer.test.toString()
+
             })
 
             return answers
