@@ -155,7 +155,7 @@ function Home({ onLogout }) {
             <footer className="home-nav">
                 <div className="basic-nav">
                     <button type="button" className="basic-button" onClick={() => setModal('create-panel')}>New Panel</button>
-                    <button type="button" className="basic-button" onClick={() => setModal('create-panel')}>Optimize</button>
+                    {/* <button type="button" className="basic-button" onClick={() => setModal('create-panel')}>Optimize</button> */}
                     <button type="button" className="basic-button" onClick={() => setModal('edit-user')}>Edit Profile</button>
                     <button type="button" className="basic-button" onClick={handleLogout}>Salir</button>
                 </div>

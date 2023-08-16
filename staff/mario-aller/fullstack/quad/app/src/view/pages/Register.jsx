@@ -57,7 +57,7 @@ function Register({ onGotoLog, onRegisteredUser }) {
             <footer className="reg-nav">
                 <div className="basic-nav">
                     <button type="submit" className="button-tolog basic-button" onClick={handleOnGotoLog}>Login</button>
-                    <button type="button" className="basic-button">Settings</button>
+                    {/* <button type="button" className="basic-button">Settings</button> */}
                 </div>
             </footer>
 

@@ -49,7 +49,7 @@ function Login({ onGotoReg, onLogged }) {
             <footer className="log-nav">
                 <div className="basic-nav">
                     <button type="submit" className="basic-button" onClick={handleOnGotoReg}>Register</button>
-                    <button type="button" className="basic-button">Settings</button>
+                    {/* <button type="button" className="basic-button">Settings</button> */}
                 </div>
             </footer>
         </div>
