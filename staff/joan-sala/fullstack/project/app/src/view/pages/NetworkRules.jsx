@@ -152,8 +152,9 @@ function NetworkRules({ onLoggedOut }) {
                    <p>Joan</p>                                            
                 </section>
             </main>
-            <footer className="initial-page-footer justify-center underline-offset-8" >
-                <p><img className="bg-contain bg-center h-20" src="public/logo03.png" alt="MeetupBikers" /></p>
+
+            <footer className="initial-page-footer justify-center" >
+                <p><img src="public/logo03.png" alt="MeetupBikers" width="60%" /></p>
             </footer>
         </div>
     )

@@ -1,13 +1,15 @@
-const { validateId, validateText, validateUrl } = require('./helpers/validators')
+const { validateId, validateText, validateUrl, validateDate } = require('./helpers/validators')
 const { User, Meetup } = require('../data')
 
-function updateMeetup(userId, meetupId, image, text, type, adress) {
+function updateMeetup(userId, meetupId, image, text, type, adress, dateMeetup, video) {
     validateId(userId)
     validateId(meetupId)
     validateUrl(image)
+    if(video) validateUrl(video)
     validateText(text)
     validateText(type)
     validateText(adress)
+    validateText(dateMeetup) //aquí ssólo strinds
 
     return Promise.all([User.findById(userId).lean(), Meetup.findById(meetupId)])
         .then(([user, meetup]) => {
@@ -19,6 +21,7 @@ function updateMeetup(userId, meetupId, image, text, type, adress) {
             meetup.text = text
             meetup.type = type
             meetup.adress = adress
+            meetup.dateMeetup = new Date(dateMeetup)//hacer si o si la conversión de string a fecha
 
             return meetup.save()
         })

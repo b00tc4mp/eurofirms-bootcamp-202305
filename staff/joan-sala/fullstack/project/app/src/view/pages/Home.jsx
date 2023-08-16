@@ -16,8 +16,7 @@ function Home({ onLoggedOut }) {
     const [meetupId, setMeetupId] = useState(null)
     const [user, setUser] = useState(null)
     const [meetups, setMeetups] = useState(null)
-    const [image, setImage] = useState(null)
-
+          
     //Sólo se ejecuta una vez se pinta el Home
     useEffect(() => { //Para efectos secundarios como consecuéncia de llamar a una api.
         try {
@@ -122,17 +121,17 @@ function Home({ onLoggedOut }) {
 
     //'key={meetup.id}' para asignar una clave única a cada elemento de una lista o conjunto de componentes
     return (
-        
         <div>
-            <header className="fixed top-0 h-[5rem] flex items-center justify-between bg-[rgb(217,217,217)] w-full py-[1rem] lg:-ml-2 lg:pl-2">
+            <header className="fixed top-0 h-[5rem] flex items-center justify-between bg-[rgb(217,217,217)] w-full py-[1rem]">
                 <h1 className="font-extrabold p-5">{user ? user.name : 'Check in'} </h1>
                 <div className="flex justify-center items-center gap-x-5">                 
                         <img  src={user ? user.image : "" } id="url" 
-                        alt="image of user" className="shadow-lg rounded-full w-1/6 h-auto align-middle border-none" w-16 md:w-32 lg:w-48/>
-                    <button className="text-[#fff] text-center justify-center w-1/6 py-2 ring-1 inline-flex #707070 rounded-lg bg-[#2C2A2A] max-w-sm  hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
+                        alt="image of user" className="shadow-lg rounded-full w-1/6 h-auto align-middle border-none"/>
+                    <button className="text-[#fff] text-center justify-center align-middle w-1/6 py-2 md:py-19 ring-12 inline-flex #707070 rounded-lg bg-[#2C2A2A] max-w-sm hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
                 </div>    
-                <div className="flex flex-wrap justify-end w-1/6 pr-5 w-16 md:w-32 lg:w-48">
-                    <img src="public/tools.png" alt="settings" />
+                <div className="flex flex-wrap justify-end w-1/6 pr-5">
+                    <img src="public/tools.png" alt="settings"  // onClick={handleLogoutClick} 
+                    />
                 </div>
             </header>
             <main className="py-[3rem]">
@@ -157,7 +156,7 @@ function Home({ onLoggedOut }) {
                         <p className="mt-8 font-semibold text-[#2C2A2A]">Adress: </p>
                         <p>{meetup.adress}</p>
                         <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
-                        <p>{meetup.date}</p>
+                        <p>{meetup.dateMeetup}</p>
 
                         {meetup.author.id === userId && <>
                             <button className="button" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>

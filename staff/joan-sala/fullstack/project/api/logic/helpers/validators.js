@@ -1,17 +1,17 @@
 function validateEmail(email) {
     if (typeof email !== 'string') throw new Error('email is not a string')
-    if (email === '') throw new Error('Email is empty')
+    if (email === '') throw new Error('email is empty')
 
     const indexOfAt = email.indexOf('@')
 
-    if (indexOfAt < 0) throw new Error('Email does not have @')
-    if (indexOfAt === 0) throw new Error('Email starts with @')
+    if (indexOfAt < 0) throw new Error('email does not have @')
+    if (indexOfAt === 0) throw new Error('email starts with @')
     if (indexOfAt === email.length - 1) throw new Error('email ends with @')
 
     const indexOfDot = email.lastIndexOf('.')
 
-    if (indexOfDot < 0) throw new Error('Email does not have .')
-    if (indexOfDot === 0) throw new Error('Email starts with .')
+    if (indexOfDot < 0) throw new Error('email does not have .')
+    if (indexOfDot === 0) throw new Error('email starts with .')
     if (indexOfDot === email.length - 1) throw new Error('Email ends with .')
 
     if (indexOfAt > indexOfDot) throw new Error('@ is after .')
@@ -46,9 +46,9 @@ function validateEmail(email) {
  * @param password - The parameter "password" is a string that represents the password to be validated.
  */
 function validatePassword(password) {
-    if (typeof password !== 'string') throw new Error('Password is not a string')
-    if (password === '') throw new Error('Password is empty')
-    if (password.length < 8) throw new Error('Password length is lower than 8')
+    if (typeof password !== 'string') throw new Error('ppassword is not a string')
+    if (password === '') throw new Error('password is empty')
+    if (password.length < 8) throw new Error('password length is lower than 8')
 }
 
 /**
@@ -57,7 +57,7 @@ function validatePassword(password) {
  */
 function validateName(name) {
     if (typeof name !== 'string') throw new Error('Name is not a string')
-    if (name === '') throw new Error('Name is empty')
+    if (name === '') throw new Error('name is empty')
 }
 
 /**
@@ -98,6 +98,10 @@ function validateText(text) {
     if (text === '') throw new Error('text is empty')
 }
 
+function validateDate(value) {
+    if (!(value instanceof Date)) throw new Error('value is not a date')
+}
+
 /* In JavaScript, `module.exports` is a special object that is used to define the public interface of a
 module. It allows you to export functions, objects, or values from a module so that they can be used
 in other parts of your code. */
@@ -108,4 +112,5 @@ module.exports = {
     validateId,
     validateUrl,
     validateText,
+    validateDate
 }

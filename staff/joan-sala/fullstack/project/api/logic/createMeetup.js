@@ -1,7 +1,7 @@
 const { validateId, validateUrl, validateText } = require('./helpers/validators')
 const { User, Meetup } = require('../data')
 
-function createMeetup(userId, image, video, text, type, adress, dateMeetup) {
+function createMeetup(userId, image, text, type, adress, dateMeetup, video) {
     validateId(userId)
     validateUrl(image)
     if (video) {

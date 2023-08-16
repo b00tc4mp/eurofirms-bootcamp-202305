@@ -60,6 +60,10 @@ const meetup = new Schema({
     },
     adress:{
         type: String
+    },
+    dateMeetup: {
+        type: Date,
+        require: true
     }
 })
 const User = model('User', user)

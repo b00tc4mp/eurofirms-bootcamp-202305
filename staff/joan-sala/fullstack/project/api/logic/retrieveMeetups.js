@@ -15,10 +15,8 @@ function retrieveMeetups(userId) {
             
                 meetup.id = meetup._id.toString()
 
-                const date = new Date(meetup.date).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) //, hour:"numeric", minute: "numeric"
+                meetup.dateMeetup = new Date(meetup.dateMeetup).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) //, hour:"numeric", minute: "numeric"
                 
-                meetup.date = date
-        
                 //sanitaize
                 delete meetup._id
    

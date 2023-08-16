@@ -29,14 +29,14 @@ function Login(props) {
 
     return (
         <main className="flex flex-col items-center">
-            <h1 class="text-black-900 font-extrabold text-3xl text-center pt-12 p-4">Login</h1>
+            <h1 className="text-black-900 font-extrabold text-3xl text-center pt-12 p-4">Login</h1>
 
             <form className="login-form" onSubmit={handleLoginSubmit}>
                 <label htmlFor="email">E-mail</label>
-                <input class="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="email" type="email" alt="email"></input>
+                <input class="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949]] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="email" type="email" alt="email"></input>
 
                 <label htmlFor="password">Password</label>
-                <input class="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  id="password" type="password" alt ="password"></input>
+                <input class="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500"  id="password" type="password" alt ="password"></input>
 
                 <button class="home-logout-button" type="submit">Login</button>
             </form>

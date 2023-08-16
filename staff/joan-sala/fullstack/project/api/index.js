@@ -93,13 +93,13 @@ mongoose.connect(`${MONGODB_URL}/data`)
         api.post('/meetups', jsonBodyParser, (req, res) => {
 
             try {
-                const { image, video, text, type, adress} = req.body
+                const { image, video, text, type, adress, dateMeetup} = req.body
             
                 const token = req.headers.authorization.slice(7)
                 const data = jwt.verify(token, JWT_SECRET)
                 const userId = data.sub
 
-                createMeetup(userId, image, video, text, type, adress)//, dateMeetup)
+                createMeetup(userId, image, text, type, adress, dateMeetup, video)//, dateMeetup)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -115,9 +115,9 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 const userId = data.sub
 
                 const { meetupId } = req.params
-                const { image, text, type, adress } = req.body
+                const { image, text, type, adress, dateMeetup } = req.body
 
-                updateMeetup(userId, meetupId, image, text, type, adress )
+                updateMeetup(userId, meetupId, image, text, type, adress, dateMeetup )
                 .then(()=> res.status(204).send())
                 .catch(error=> res.status(400).json({error:error.message}))
             }catch(error){
