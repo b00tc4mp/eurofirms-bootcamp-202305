@@ -9,13 +9,16 @@ function retrieveStory(storyId) {
             if (!story) throw new Error('story not found!')
 
             // sanitize
-            if (story.author._id) {
-                story.author.id = story.author._id.toString()
-                delete story.author._id
-            }
 
             story.id = story._id.toString()
             delete story._id
+
+            const { author } = story
+
+            if (author._id) {
+                author.id = author._id.toString()
+                delete author._id
+            }
 
             return story
         })
