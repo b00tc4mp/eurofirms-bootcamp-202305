@@ -28,6 +28,16 @@ function toggleFollowUser(userId, userIdProfile) {
 
         if(indexUser === -1) {
             followedUsers.push(user._id)
+
+            if(!userProfile.notifications) userProfile.notifications = []
+
+            const notification = {
+                text: 'Follow',
+                user: user._id,
+                date: new Date()
+            }
+
+            userProfile.notifications.push(notification)
         } else  {
            followedUsers.splice(indexUser, 1)
         }

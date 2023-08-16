@@ -1,5 +1,26 @@
 const {Schema, model, ObjectId} = require('mongoose')
 
+const notification = new Schema({
+    text: {
+        type: String,
+        required: true
+    },
+    user: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
+    post: {
+        type: ObjectId,
+        ref: 'Post',
+        required: false
+    },
+    date: {
+        type: Date, 
+        default: Date.now
+    }
+})
+
 const user = new Schema({
     name: {
         type: String,
@@ -39,7 +60,8 @@ const user = new Schema({
             type: ObjectId,
             ref: 'User'
         }
-    ]
+    ],
+    notifications: [notification]
 })
 
 const comment = new Schema({

@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const { validateId, validateText } = require("../helpers/validators")
 const { User, Post } = require("../../data/models")
 
@@ -7,7 +8,7 @@ function createComment(userId, postId, text) {
     validateText(text)
 
     return Promise.all([Post.findById(postId, '-__v'), 
-        User.findById(userId, '-__v').lean()])
+        User.findById(userId, '-__v')])
         .then(([post, user]) => {
             if (!post) throw new Error('post not found')
             if (!user) throw new Error('user not found')
@@ -21,6 +22,25 @@ function createComment(userId, postId, text) {
             if (!post.comments) post.comments = []
 
             post.comments.push(comment)
+
+            User.findById(post.author)
+            .then(user => {
+                if (!user) throw new Error ('user of post not found')
+
+                if(!user.notifications) user.notifications = []
+
+                const notification = {
+                    text: 'Comment',
+                    user: user._id,
+                    post: new ObjectId(postId),
+                    date: new Date()
+                }
+
+                user.notifications.push(notification)
+
+               return user.save()
+            })
+            .then(()=> { })
 
             return post.save()
         })

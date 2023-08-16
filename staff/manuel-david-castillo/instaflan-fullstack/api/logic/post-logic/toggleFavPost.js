@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const {User, Post} = require('../../data/models')
 const {validateId} = require('../helpers/validators')
 
@@ -17,6 +18,26 @@ function toggleFavPost(userId, postId) {
         if(index === -1) {
             favPosts.push(post._id)
             post.likes++
+
+            User.findById(post.author)
+            .then(user => {
+                if (!user) throw new Error ('user of post not found')
+
+                if(!user.notifications) user.notifications = []
+
+                const notification = {
+                    text: 'Like',
+                    user: user._id,
+                    post: new ObjectId(postId),
+                    date: new Date()
+                }
+
+                user.notifications.push(notification)
+
+               return user.save()
+            })
+            .then(()=> { })
+
         } else  {
            favPosts.splice(index, 1)
            post.likes--
