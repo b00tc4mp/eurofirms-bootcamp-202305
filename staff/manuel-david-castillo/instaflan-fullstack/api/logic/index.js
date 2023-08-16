@@ -19,6 +19,7 @@ module.exports = {
     retrievePosts: require('./post-logic/retrievePosts'),
     retrievePostsOfUser: require('./post-logic/retrievePostsOfUser'),
     retrievePostsNotFollowed: require('./post-logic/retrievePostsNotFollowed'),
+    retrieveNotifications: require('./notifications-logic/retrieveNotifications'),
     retrieveUser: require('./user-logic/retrieveUser'),
     retrieveUserById: require('./user-logic/retrieveUserById'),
     retrieveUsersNotFollowed: require('./user-logic/retrieveUsersNotFollowed'),

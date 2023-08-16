@@ -26,6 +26,7 @@ const {authenticateUser,
     retrievePosts,
     retrievePostsOfUser,
     retrievePostsNotFollowed,
+    retrieveNotifications, 
     retrieveUser,
     retrieveUserById,
     retrieveUsersNotFollowed,
@@ -516,6 +517,22 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
 
                 createComment(userId, postId, text)
                 .then(()=> res.status(200).json().send())
+                .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.get('/notifications', (req, res) => {
+            try {
+                const {authorization} = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+                const userId = data.sub
+
+                retrieveNotifications(userId)
+                .then((notifications)=> res.json(notifications))
                 .catch((error) => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})
