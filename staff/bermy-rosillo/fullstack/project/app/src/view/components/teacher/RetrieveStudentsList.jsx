@@ -30,7 +30,7 @@ function RetrieveStudentsList(props){
     }
 
     const handleOnReturnStudentList =()=>{
-        setViewStudentsList(null)
+        setViewStudentsList('list-students')
     }
     //-------------------------------
     return  <div>

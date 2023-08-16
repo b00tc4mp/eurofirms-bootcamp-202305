@@ -65,16 +65,18 @@ function TeacherHome(props) {
 
     return <div className="home-view ">
         <header className="home-header">
-            <h1 className="home-title">Welcome, {user ?user.name : 'User'} </h1>
-            <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
+            <h1 className="home-title">Teacher {user ?user.name : 'User'} </h1>
+            <button className="btn-teacher-home" onClick={handleLoggedOut}>Logout </button>
         </header>
         
         <main className="home-main">
+           
             { homeView === 'list-test' && <section className="home-tests">
+            <h1>Choose a test</h1>
                 {tests && tests.map(test => {
                     return <article key={test.id}>
-                        <h3>Subject: {test.subject}</h3>
-                        <h3>Title: <a href="" onClick={(event)=>handleRetrieveStudentsList(event,test.id)}>{test.title}</a></h3>
+                        <h3>{test.subject}</h3>
+                        <h3><a className="btn-math" href="" onClick={(event)=>handleRetrieveStudentsList(event,test.id)}>{test.title}</a></h3>
                     </article>
                 })}
             </section>}
@@ -84,7 +86,7 @@ function TeacherHome(props) {
         </main>
        
         <footer className="home-footer">
-            <button className="home-create-test-button" onClick={handleCreateTest}>New test</button>
+            <button className="btn-teacher-home" onClick={handleCreateTest}>New test</button>
         </footer>
     </div>
 }

@@ -28,10 +28,10 @@ function RetrieveStudentResponse(props) {
 
     }, [])
 
-    const handleCancelStudentResponse = (event) => {
+    const handleCancelResponse =(event)=>{
         event.preventDefault()
-        //setView(null)
-        //props.on
+        props.onReturnStudentList()
+
     }
 
     return <div className="student-test-view">
@@ -68,7 +68,7 @@ function RetrieveStudentResponse(props) {
                 </div>
 
                 <button type="submit" >Send</button>
-                <button type="submit" onClick={handleCancelStudentResponse} >Cancel </button>
+                <button type="submit"onClick={handleCancelResponse} >Cancel </button>
             </form>
         }
     </div>

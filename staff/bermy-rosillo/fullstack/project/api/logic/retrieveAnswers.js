@@ -20,7 +20,7 @@ return Promise.all([User.findById(userId), User.findById(studentId), Test.findBy
     if (user.role !== 'teacher') throw new Error('User is not a teacher')
 
 
-    return Answer.find({ test: testId, student: studentId },'-__v').populate('student','name','description').lean()
+    return Answer.find({ test: testId, student: studentId },'-__v').populate('student','name description').lean()
         .then(answers => {
             
             answers.forEach(answer=>{
