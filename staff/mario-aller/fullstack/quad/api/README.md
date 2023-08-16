@@ -4,22 +4,24 @@
 
 This process manage the connection of database to theuser interface
 
-## Enviroment Variables
+## Technical Specs.
 
-API_PORT = port of API
+### Enviroment Variables
 
-JWT_SECRET = secret string for jsonwebtoken
+- API_PORT = port of API
+
+- JWT_SECRET = secret string for jsonwebtoken
 
 MONGOOSE_URL = mongodb address
 
-## Modules to be installed previosly
+### Modules to be installed previosly
 - cors
 - dotenv
 - express
 - jsonwebtoken
 - dat
 
-## To execute the api
+### To execute the api
 
 Place in api root directory ~/quad/api
 

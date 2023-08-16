@@ -4,13 +4,15 @@
 
 This process manage the user interface for panels CRUD
 
-## Enviroment Variables
+## Technical Specs.
 
-VITE_API_URL = API adress
+### Enviroment Variables
 
-VITE_REFRESH_INTERVAL = miliseconds between refresh in working panel
+- VITE_API_URL = API adress
 
-## To execute the app
+- VITE_REFRESH_INTERVAL = miliseconds between refresh in working panel
+
+### To execute the app
 
 Place in app root directory ~/quad/app
 
