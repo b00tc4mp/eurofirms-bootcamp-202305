@@ -28,9 +28,10 @@ function retrieveNotifications(userId) {
 
             notification.id = notification._id.toString()
             delete notification._id
+            delete notification.date
         })
 
-        return user.notifications
+        return user.notifications.reverse()
     })
 }
 

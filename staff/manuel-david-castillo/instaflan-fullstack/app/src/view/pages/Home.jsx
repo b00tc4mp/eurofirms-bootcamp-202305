@@ -179,7 +179,7 @@ export default function Home() {
             <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/explorer'>🌍</Link>
             <a onClick={handleCreatePostModal} className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" href="#">➕</a>
             <div className="flex justify-end">
-                {messagesNotReading > 0 && <div className="fixed rounded-full text-sm font-bold text-white bg-red-600 w-4 h-4 text-center flex justify-center items-center mr-1">{messagesNotReading}</div>}
+                {messagesNotReading > 0 && <div className="fixed z-10 rounded-full text-sm font-bold text-white bg-red-600 w-4 h-4 text-center flex justify-center items-center mr-1">{messagesNotReading}</div>}
                 <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/messages'>✉️</Link>
             </div>
             <Link className="text-white text-2xl mx-2 no-underline border-b-2 border-transparent transition-transform duration-200 hover:scale-125" to='/notifications'>❤️</Link>
