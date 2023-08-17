@@ -1,11 +1,11 @@
-# MeetupBikers (BiciQuedadas)
+# MeetupBikers
 
 ## Intro
 
-![](https://i.giphy.com/media/ZciYhNqc9iFtC0yUTS/giphy.webp)
+![](https://raw.githubusercontent.com/joansalabaucells/eurofirms-bootcamp-202305/cdd5d4ea01254439a71ab040e010155c495810bf/staff/joan-sala/fullstack/project/logoMeetupBikers_400.webp)
 
 A platform for meeting mountain bikers in Barcelona and its surroundings.
-Said application would have registered users and different proposed routes such as posts of meeting places with their description and area, where people can sign up, refuse and/or to attend the meetings to carry out the activity in the determined place. 
+Said application would have registered users and different proposed routes such as posts  of meeting places with their description and area, where people can sign up, refuse and/or to attend the meetings to carry out the activity in the determined place. 
 
 Log in to the USER application (manager and user), search for people by emai, add them to X group as a normal user, this allows you to see the posts of other users and at the same time propose meetings.
 
@@ -39,7 +39,7 @@ User
 - name (String, required)
 - email (String, required, unique)
 - password (String, required, minLength: 8)
-- image (photo file, optional)
+- image (photo file, obliigatory)
 
 Meetup
 - title (String, required)
