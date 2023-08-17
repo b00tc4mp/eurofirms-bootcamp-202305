@@ -98,7 +98,7 @@ p a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color:#F8DE22;
+    background-color:#07ca7b;
     width: 100%;
     padding: 0 1rem;
     box-sizing: border-box;
@@ -114,7 +114,7 @@ p a {
 }
 
 .home-footer {
-    background-color:#F8DE22;
+    background-color:#07ca7b;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -124,23 +124,12 @@ p a {
     height: 3rem;
 }
 
-.home-create-post-modal, .home-edit-post-modal, .home-delete-post-modal {
-    background-color: rgba(0, 0, 0, 0.497);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .home-create-post-container, .home-edit-post-container, .home-delete-post-container {
     background-color: white;
     padding: 1rem;
 }
 
-.home-create-post-form, .home-edit-post-form, .home-delete-post-form {
+.student-test-view, .home-edit-post-form, .home-delete-post-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,6 +174,7 @@ p a {
     text-decoration:none;
     border-radius:5px;
     border-color:#7f69a5;
+    box-shadow: #000;
 }
 .btn-teacher-home{
     background-color:#ffd952;

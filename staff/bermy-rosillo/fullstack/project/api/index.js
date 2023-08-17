@@ -15,6 +15,7 @@ const retrieveStudents = require('./logic/retrieveStudents')
 const retrieveTest = require('./logic/retrieveTest')
 const retrieveAnswers = require('./logic/retrieveAnswers')
 const createAnswer = require('./logic/createAnswer')
+const updateAnswerScore = require('./logic/updateAnswerScore')
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
 mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
@@ -180,6 +181,25 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 const {answer} = req.body
 
                 createAnswer(studentId,testId,answer)
+                    .then(test => res.json(test))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+
+            }
+        })
+        //updateAnswerScore
+        api.patch('/asnswers/score/:studentId/:asnswerId/:testId',jsonBodyParser,(req,res)=>{
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const userId = data.sub
+                const studentId = req.params.studentId
+                const testId = req.params.testId
+                const {score,assessment} = req.body
+
+                updateAnswerScore(studentId,testId,answer)
                     .then(test => res.json(test))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {

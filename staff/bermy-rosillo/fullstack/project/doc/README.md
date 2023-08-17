@@ -55,15 +55,17 @@ Answer
 ## project planning
 ## tasks
 ### TODO
--  craete answers(student)
+
 - student's test view
 - cancel buttons student views
+- accept buttons student views
 - edit ccs 
+- retrieveAnswerStudentList logic (search test)
 
 
 ### IN PROGRESS
 - student home interface
-- retrieveAnswerStudentList logic (search test)
+- craete answers(student)
 
 
 ### DONE
@@ -76,6 +78,8 @@ Answer
 - logic register user, login , home in app
 - logic retrieve user in app
 - logic extractRoleFromToken
+- logic retrieve test
+- logic retrieve answers
 - create test interface
 - logic create Test
 - Program logo
