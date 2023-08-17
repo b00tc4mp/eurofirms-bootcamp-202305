@@ -27,7 +27,7 @@ function toggleFavPost(userId, postId) {
 
                 const notification = {
                     text: 'Like',
-                    user: user._id,
+                    user: userId,
                     post: new ObjectId(postId),
                     date: new Date()
                 }

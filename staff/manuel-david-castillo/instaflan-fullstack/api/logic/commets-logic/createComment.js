@@ -31,7 +31,7 @@ function createComment(userId, postId, text) {
 
                 const notification = {
                     text: 'Comment',
-                    user: user._id,
+                    user: userId,
                     post: new ObjectId(postId),
                     date: new Date()
                 }
