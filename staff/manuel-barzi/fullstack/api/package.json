@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node .",
     "test": "npx mocha ./logic/*.spec.js",
-    "test-inspect": "npx mocha --inspect-brk ./logic/*.spec.js"
+    "test-inspect": "npx mocha --inspect-brk ./logic/*.spec.js",
+    "test-coverage": "npx nyc --reporter=text --reporter=html npm run test"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.7",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
   }
 }
