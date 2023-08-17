@@ -5,6 +5,8 @@ module.exports = {
     createPost: require('./post-logic/createPost'),
     deletePost: require('./post-logic/deletePost'),
     deleteMessage: require('./chats-logic/deleteMessage'),
+    deleteNotification: require('./notifications-logic/deleteNotification'),
+    deleteAllNotifications: require('./notifications-logic/deleteAllNotifications'),
     editPost: require('./post-logic/editPost'),
     editMessage: require('./chats-logic/editMessage'),
     editUser: require('./user-logic/editUser'),

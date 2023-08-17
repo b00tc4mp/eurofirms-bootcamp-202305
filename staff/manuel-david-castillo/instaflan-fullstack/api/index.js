@@ -10,8 +10,10 @@ const {authenticateUser,
     createChat,
     createComment,
     createPost, 
+    deleteAllNotifications,
     deletePost,
     deleteMessage,
+    deleteNotification,
     editMessage,
     editPost,
     editUser,
@@ -518,6 +520,40 @@ mongoose.connect(`${MONGODB_URL}/instaflan-data`)
                 createComment(userId, postId, text)
                 .then(()=> res.status(200).json().send())
                 .catch((error) => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
+        api.delete('/notifications', jsonBodyParser, (req, res) => {
+            const {authorization} = req.headers
+            const token = authorization.slice(7)
+
+            const data = jwt.verify(token, JWT_SECRET)
+            const userId = data.sub
+
+            try{
+                deleteAllNotifications(userId)
+                .then(()=> res.status(200).send())
+                .catch(error => res.status(400).json({error: error.message}))
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+    
+        api.delete('/notifications/:notificationId', jsonBodyParser, (req, res) => {
+            const {authorization} = req.headers
+            const token = authorization.slice(7)
+
+            const data = jwt.verify(token, JWT_SECRET)
+            const userId = data.sub
+
+            const {notificationId} = req.params
+
+            try{
+                deleteNotification(userId, notificationId)
+                .then(()=> res.status(200).send())
+                .catch(error => res.status(400).json({error: error.message}))
             } catch (error) {
                 res.status(400).json({error: error.message})
             }
