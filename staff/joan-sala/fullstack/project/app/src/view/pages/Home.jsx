@@ -16,7 +16,8 @@ function Home({ onLoggedOut }) {
     const [meetupId, setMeetupId] = useState(null)
     const [user, setUser] = useState(null)
     const [meetups, setMeetups] = useState(null)
-          
+    const [view, setView] = useState('home')
+
     //Sólo se ejecuta una vez se pinta el Home
     useEffect(() => { //Para efectos secundarios como consecuéncia de llamar a una api.
         try {
@@ -116,6 +117,10 @@ function Home({ onLoggedOut }) {
             alert(error.message)
         }
     }
+    //
+    const handleNavigateToNetworkRules = () => setView('network-rules')
+
+    const handleNavigateToHome = () => setView('home')
 
     const userId = extractUserIdFromToken(context.token) //importante el context
 
@@ -124,59 +129,62 @@ function Home({ onLoggedOut }) {
         <div>
             <header className="fixed top-0 h-[5rem] flex items-center justify-between bg-[rgb(217,217,217)] w-full py-[1rem]">
                 <h1 className="font-extrabold p-5">{user ? user.name : 'Check in'} </h1>
-                <div className="flex justify-center items-center gap-x-5">                 
-                        <img  src={user ? user.image : "" } id="url" 
-                        alt="image of user" className="shadow-lg rounded-full w-1/6 h-auto align-middle border-none"/>
+                <div className="flex justify-center items-center gap-x-5">
+                    <img src={user ? user.image : ""} id="url"
+                        alt="image of user" className="shadow-lg rounded-full w-1/6 h-auto align-middle border-none" />
                     <button className="text-[#fff] text-center justify-center align-middle w-1/6 py-2 md:py-19 ring-12 inline-flex #707070 rounded-lg bg-[#2C2A2A] max-w-sm hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
-                </div>    
+                </div>
                 <div className="flex flex-wrap justify-end w-1/6 pr-5">
-                    <img src="public/tools.png" alt="settings"  // onClick={handleLogoutClick} 
+                    <img src="public/tools.png" alt="settings" onClick={handleNavigateToNetworkRules}
                     />
                 </div>
             </header>
-            <main className="py-[3rem]">
+            {view === 'home' && <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10 pt-12 pb-10">
-                    {meetups && meetups.map(meetup => 
-                    <article key={meetup.id}
-                        className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
-                        <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
-                        <a className="mt-2 text-sm text-[#2C2A2A] font-style: italic">{meetup.date}</a>
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Image: </p>
-                        <img className="w-full"
-                            src={meetup.image}
-                            alt={meetup.text} />
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Video: </p>
-                        <video controls className="w-full"
-                            src={meetup.video}
-                            alt={meetup.text} />
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Description: </p>
-                        <p>{meetup.text}</p>
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Type:</p>
-                        <p> {meetup.type}</p>
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Adress: </p>
-                        <p>{meetup.adress}</p>
-                        <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
-                        <p>{meetup.dateMeetup}</p>
+                    {meetups && meetups.map(meetup =>
+                        <article key={meetup.id}
+                            className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
+                            <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
+                            <a className="mt-2 text-sm text-[#2C2A2A] font-style: italic">{meetup.date}</a>
+                            <p className="mt-8 font-semibold text-[#2C2A2A]">Image: </p>
+                            <img className="w-full"
+                                src={meetup.image}
+                                alt={meetup.text} />
+                            <p className="mt-8 font-semibold text-[#2C2A2A]">Video: </p>
+                            <video controls className="w-full"
+                                src={meetup.video}
+                                alt={meetup.text} />
+                            <p className="mt-8 font-semibold text-[#2C2A2A]">Description: </p>
+                            <p>{meetup.text}</p>
+                            <p className="mt-8 font-semibold text-[#2C2A2A]">Type:</p>
+                            <p> {meetup.type}</p>
+                            <p className="mt-8 font-semibold text-[#2C2A2A]">Adress: </p>
+                            <p>{meetup.adress}</p>
+                            <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
+                            <p>{meetup.dateMeetup}</p>
 
-                        {meetup.author.id === userId && <>
-                            <button className="button" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
-                            <button className="button" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
-                        </>
-                        }
-                        <button className="button" onClick={() => handleToggleMeetupClick(meetup.id)}>{meetup.fav ? '♥' : '♡'}</button>
-                    </article>)}
+                            {meetup.author.id === userId && <>
+                                <button className="button" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
+                                <button className="button" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
+                            </>
+                            }
+                            <button className="button" onClick={() => handleToggleMeetupClick(meetup.id)}>{meetup.fav ? '♥' : '♡'}</button>
+                        </article>)}
                 </section>
-            </main>
+            </main>}
+            {view === 'network-rules' && <NetworkRules />}
 
             <footer className="text-white bg-[#d9d9d9] fixed flex bottom-0 w-full h-[4rem] items-center justify-center">
-                <button className="bg-[#2C2A2A]px-4 py-2 font-semibold text-sm rounded-md shadow-sm hover:bg-[#707070]" onClick={handleCreateMeetupClick}>New Meetup</button>
+                <button className="bg-[#2C2A2A]px-4 py-2 text-sm rounded-md shadow-sm hover:bg-[#707070]" onClick={handleNavigateToHome}>Home</button>
+                <button className="bg-[#2C2A2A]px-4 py-2 text-sm rounded-md shadow-sm hover:bg-[#707070]" onClick={handleCreateMeetupClick}>New Meetup</button>
             </footer>
 
             {modal === 'create-meetup' && <CreateMeetupModal onMeetupCreated={handleMeetupCreated} onCreateMeetupCancelled={handleCreateMeetupCancelled} />}
 
             {modal === 'edit-meetup' && <EditMeetupModal meetupId={meetupId} onMeetupEdited={handleMeetupEdited} onEditMeetupCancelled={handleEditMeetupCancelled} />}
 
-            {modal === 'delete-meetup' && <DeleteMeetupModal meetupId={meetupId} onMeetupDeleted={handleMeetupDeleted} onDeleteMeetupCancelled={handleDeleteMeetupCancelled} />}
+            {modal === 'delete-meetup' && <DeleteMeetupModal meetupId={meetupId} onMeetupDeleted={handleMeetupDeleted} onDeleteMeetupCancelled={handleDeleteMeetupCancelled}
+            />}
         </div>
     )
 }

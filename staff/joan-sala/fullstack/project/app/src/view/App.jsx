@@ -20,14 +20,10 @@ function App(){
 
     const handleLoggedOut = () => setView('login')
 
-    const handleNetworkRulesClick = () => setView('network')
-
     if(view ==='login')  
         return <Login onRegisterClick = {handleRegisterClick} onLoggedIn={handleLoggedIn}/>
     else if (view === 'register')
         return <Register onLoginClick = {handleLoginClick} onRegistered={handleRegistered}/>
-    else if(view ==='network')
-        return <NetworkRules onNetworkRulesClick = {handleNetworkRulesClick} onRegistered={handleNetworked}/>
     else if(view === 'home')
         return <Home onLoggedOut={handleLoggedOut}/>
 }

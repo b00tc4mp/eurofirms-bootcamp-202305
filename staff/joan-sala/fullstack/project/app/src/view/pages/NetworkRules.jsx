@@ -1,61 +1,11 @@
-import { useState, useEffect } from 'react'
-import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
-import context from '../../context'
-import retrieveUser from '../../logic/retrieveUser'
-import retrieveMeetups from '../../logic/retrieveMeetups'
-import CreateMeetupModal from '../modals/CreateMeetupModal'
-import EditMeetupModal from '../modals/EditMeetupModal'
-import DeleteMeetupModal from '../modals/DeleteMeetupModal'
-import toggleFavMeetup from '../../logic/toggleFavMeetup'
 //import NetworkRules from '../pages/NetworkRules'
 
 function NetworkRules({ onLoggedOut }) {
-    console.log('Meetup networ rules ->render')
-
-    const [user, setUser] = useState(null)
-    
-    //Sólo se ejecuta una vez se pinta el Home
-    useEffect(() => { //Para efectos secundarios como consecuéncia de llamar a una api.
-        try {
-            retrieveUser(context.token)
-                .then(user => setUser(user))
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-
-        try {
-            retrieveMeetups(context.token)
-                .then(meetups => setMeetups(meetups))
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }, [])
-
-    const handleLogoutClick = () => {
-        context.token = null
-
-        onLoggedOut()
-    }
-
-    const userId = extractUserIdFromToken(context.token) //importante el context
+    console.log('Meetup network rules ->render')
 
     return (
-        
         <div className="home-view">
-            <header className="home-header">
-                <h1 className="home-title">{user ? user.name : 'Check in'} </h1>
-                <div className="flex flex-wrap justify">
-                    <div className="w-6/12 sm:w-4/12 px-14">
-                        <img src={user.image} id="url" alt="image of user" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
-                    </div>
-                    <button className="home-logout-button" onClick={handleLogoutClick} >Logout</button>
-                </div>    
-                <div className="flex flex-wrap justify-end w-10">
-                    <img src="public//tools.png" alt="settings"/>
-                </div>
-            </header>
+            
             <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10">
                        
@@ -72,10 +22,6 @@ function NetworkRules({ onLoggedOut }) {
                    <p>Joan</p>                                            
                 </section>
             </main>
-
-            <footer className="initial-page-footer justify-center" >
-                <p><img src="public/logo03.png" alt="MeetupBikers" width="60%" /></p>
-            </footer>
         </div>
     )
 }

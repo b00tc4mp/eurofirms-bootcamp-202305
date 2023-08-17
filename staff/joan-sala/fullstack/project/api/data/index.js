@@ -19,7 +19,7 @@ const user = new Schema({
     
     image: {
         type: String,
-        require: false
+        require: true
         //required: optional
     },
     favs: [
