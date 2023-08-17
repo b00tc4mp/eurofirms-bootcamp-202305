@@ -21,6 +21,16 @@ const ShowStory = (props) => {
         props.onBackToStories()
     }
 
+const handleEditedStory = () => {
+    try {
+        retrieveStory(props.storyId)
+            .then(story => {
+                setStory(story)
+            })
+            .catch(error => alert(error.message))
+    } catch (error) { alert(error.message) }
+}
+
     let userId
 
     if (context.token)
@@ -36,7 +46,7 @@ const ShowStory = (props) => {
                     <p>{story.text}</p>
                     {story.author.id === userId && <>
                         <button>Edit</button>
-                        <EditStoryModal story={story} />
+                        <EditStoryModal story={story} onStoryEdited={handleEditedStory}/>
                     </>}
                     <h2>{story.question}</h2>
                 </>

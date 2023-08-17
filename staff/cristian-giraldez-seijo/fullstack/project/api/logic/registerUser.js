@@ -1,8 +1,8 @@
 const { User } = require('../data')
-const { validateEmail, validatePassword, validateString } = require('./helpers/validators')
+const { validateEmail, validatePassword, validateString: validateRequiredString } = require('./helpers/validators')
 
 function registerUser(nickname, email, password) {
-    validateString(nickname)
+    validateRequiredString(nickname)
     validateEmail(email)
     validatePassword(password)
 

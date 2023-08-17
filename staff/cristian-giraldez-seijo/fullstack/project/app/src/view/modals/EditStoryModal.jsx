@@ -1,5 +1,5 @@
 import context from '../../context'
-//import updateStory from '../../logic/updateStory'
+import updateStory from '../../logic/updateStory'
 
 const EditStoryModal = ({ story, onEditStoryCancelled, onStoryEdited }) => {
 
@@ -12,7 +12,7 @@ const EditStoryModal = ({ story, onEditStoryCancelled, onStoryEdited }) => {
         const question = event.target.question.value
 
         try {
-            updateStory(context.token, storyId, title, sumary, text, question)
+            updateStory(context.token, story.id, title, sumary, text, question, story.shortcut, story.origin)
                 .then(() => onStoryEdited())
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -29,6 +29,9 @@ const EditStoryModal = ({ story, onEditStoryCancelled, onStoryEdited }) => {
                     <h2 className='text-red-700'>Edit story</h2>
 <label htmlFor="title">Title</label>
 <input type="text" id='title' defaultValue={story.title}/>
+
+<label htmlFor="sumary">Sumary</label>
+<textarea id="sumary" cols="30" rows="10" defaultValue={story.sumary}></textarea>
 
                     <label htmlFor="text">Text</label>
                     <textarea id="text" defaultValue={story.text}></textarea>
