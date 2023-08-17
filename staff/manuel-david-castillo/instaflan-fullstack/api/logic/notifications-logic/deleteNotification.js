@@ -12,7 +12,7 @@ function deleteNotification(userId, notificationId) {
        const index = user.notifications.findIndex(notification => notification._id.toString() === notificationId)
 
        if(index === -1) throw new Error('notification not found')
-       if(index > 0) user.notifications.splice(index, 1)
+       if(index > -1) user.notifications.splice(index, 1)
 
        user.save()
     })
