@@ -132,7 +132,7 @@ function Home({ onLoggedOut }) {
                 <div className="flex justify-center items-center gap-x-5">
                     <img src={user ? user.image : ""} id="url"
                         alt="image of user" className="shadow-lg rounded-full w-1/6 h-auto align-middle border-none" />
-                    <button className="text-[#fff] text-center justify-center align-middle w-1/6 py-2 md:py-19 ring-12 inline-flex #707070 rounded-lg bg-[#2C2A2A] max-w-sm hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
+                    <button className="bg-[#2C2A2A]px-4 py-2 text-sm rounded-md shadow-sm hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
                 </div>
                 <div className="flex flex-wrap justify-end w-1/6 pr-5">
                     <img src="public/tools.png" alt="settings" onClick={handleNavigateToNetworkRules}
