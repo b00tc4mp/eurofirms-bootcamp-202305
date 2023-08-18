@@ -27,8 +27,8 @@ function EditWorkshopModal({ workshopId, onEditWorkshopCancelled, onWorkshopEdit
         const description = event.target.description.value
         const place = event.target.place.value
         const codeZIP = event.target.codeZIP.value
-        const dateStart = Date.parse(event.target.datestart.value)
-        const dateEnd = Date.parse(event.target.dateend.value)
+        const dateStart = new Date(event.target.dateStart.value)
+        const dateEnd = new Date(event.target.dateEnd.value)
         const video = event.target.video.value
         const attendantsLimit = Number(event.target.attendantslimit.value)
 
@@ -42,11 +42,11 @@ function EditWorkshopModal({ workshopId, onEditWorkshopCancelled, onWorkshopEdit
         }
     }
 
-    return <div className="home-edit-artwork-modal">
-        <div className="home-edit-artwork-container">
+    return <div className="home-edit-workshop-modal">
+        <div className="home-edit-workshop-container">
             <h2>Edit workshop</h2>
 
-            {workshop && <form className="home-edit-artwork-form" onSubmit={handleSubmit}>
+            {workshop && <form className="home-edit-workshop-form" onSubmit={handleSubmit}>
                 <label htmlFor="image">Image</label>
                 <input id="image" type="url"></input>
 
@@ -56,8 +56,8 @@ function EditWorkshopModal({ workshopId, onEditWorkshopCancelled, onWorkshopEdit
                 <label htmlFor="place">Lugar</label>
                 <input type="text" id="place"></input>
 
-                <label htmlFor="zip">Código Postal</label>
-                <input type="text" id="zip"></input>
+                <label htmlFor="codeZIP">Código Postal</label>
+                <input type="text" id="codeZIP"></input>
 
                 <label htmlFor="dateStart">Fecha de inicio</label>
                 <input type="date" id="dateStart"></input>

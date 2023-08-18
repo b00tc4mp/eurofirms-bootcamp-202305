@@ -1,4 +1,4 @@
-import context from "../../context"
+
 import createWorkshop from "../../logic/createworkshop"
 
 function CreateWorkshopModal(props) {
@@ -13,13 +13,13 @@ function CreateWorkshopModal(props) {
         const description = event.target.description.value
         const place  = event.target.place.value 
         const codeZIP = event.target.codeZIP.value
-        const dateStart = Date.parse(event.target.datestart.value)
-        const dateEnd = Date.parse(event.target.dateend.value)
+        const dateStart = new Date(event.target.dateStart.value)
+        const dateEnd = new Date(event.target.dateEnd.value)
         const video = event.target.video.value
-        const attendantsLimit = Number(event.target.attendantslimit.value)
+        const attendantsLimit = Number(event.target.attendantsLimit.value)
        
         try { 
-            createWorkshop(context.token, description, place,
+            createWorkshop(description, place,
             codeZIP, dateStart, dateEnd, attendantsLimit, image, video  )
                 .then(() => props.onWorkshopCreated())
                 .catch(error => alert(error.message))
@@ -41,22 +41,22 @@ function CreateWorkshopModal(props) {
                 <label htmlFor="description">Description</label>
                 <textarea id="description"></textarea>
 
-                <label for="place">Lugar</label>
+                <label htmlFor="place">Lugar</label>
                 <input type="text" id="place"></input>
 
-                <label for="zip">Código Postal</label>
-                <input type="text" id="zip"></input>
+                <label htmlFor="codeZIP">Código Postal</label>
+                <input type="text" id="codeZIP"></input>
 
-                <label for="dateStart">Fecha de inicio</label>
+                <label htmlFor="dateStart">Fecha de inicio</label>
                 <input type="date" id="dateStart"></input>
 
-                <label for="dateEnd">Fecha de finalización</label>
+                <label htmlFor="dateEnd">Fecha de finalización</label>
                 <input type="date" id="dateEnd"></input>
 
-                <label for="video">Video</label>
-                <input type="file" id="video" accept="video/*" ></input>
+                <label htmlFor="video">Video</label>
+                <input type="url" id="video"></input>
 
-                <label for="attendantsLimit">Límite de asistentes</label>
+                <label htmlFor="attendantsLimit">Límite de asistentes</label>
                 <input type="number" id="attendantsLimit" min="1" max="13"></input>
                 
                 <button type="submit">Create</button>

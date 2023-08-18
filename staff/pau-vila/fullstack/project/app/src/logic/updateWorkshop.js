@@ -4,10 +4,11 @@ function updateWorkshop(token, workshopId, place,
     if (typeof workshopId !== 'string') throw new Error('workshopId is not a string')
     if (typeof url !== 'string') throw new Error('url is not a string')
     if (typeof description !== 'string') throw new Error('description is not a string')
-    if (zip === '') throw new Error('zip is empty')
+    if (codeZIP === '') throw new Error('codeZIP is empty')
     if (attendantsLimit <= 0 || attendantsLimit > 13) throw new Error('attendants out of limits') 
     if (typeof place !== 'string')throw new Error('Place must be a string')
-    if (!(date instanceof Date)) throw new Error('date is not a Date')
+    if (!(dateStart instanceof Date))throw new Error('dateStart is not a Date')
+    if (!(dateEnd instanceof Date))throw new Error('dateEnd is not a Date')
 
     return fetch(`${import.meta.env.VITE_API_URL}/workshops/${workshopId}`, {
         method: 'PATCH',

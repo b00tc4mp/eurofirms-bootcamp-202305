@@ -215,7 +215,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 0rem;
+    overflow: auto;
+    max-height: 400px;
 }
 
 .home-delete-workshop-modal {
@@ -255,30 +257,26 @@ body {
 }
 
 /* cosos */
+/*artworks*/
 
-.home-description {
+.home-descriptionA {
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
-
 .home-materials {
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.8rem
 }
-
 .home-ornament {
     font-style: italic;
-    font-size: 0.7rem
+    font-size: 0.8rem
 }
-
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-   
+    height: 100vh;  
 }
-
 .image-container {
     flex: 1;
     padding: 120px;
@@ -288,8 +286,40 @@ body {
     height: auto;
     display: block;
 }
-
 .form-container {
     display: flex;
     flex-direction: center;
+}
+
+/*workshops*/
+
+.home-descriptionW{
+    font-style: italic;
+    font-size: 0.8rem  
+}
+.home-lugar{
+    font-style: italic;
+    font-size: 0.8rem  
+}
+.home-fechainicio{
+    font-style: italic;
+    font-size: 0.8rem  
+}
+.home-fechafin{
+    font-style: italic;
+    font-size: 0.8rem  
+}
+.home-limiteasistentes{
+    font-style: italic;
+    font-size: 0.8rem 
+}
+.home-zip{
+    font-style: italic;
+    font-size: 0.8rem   
+}
+
+/*butoms*/
+
+.home-logout-button{
+    
 }

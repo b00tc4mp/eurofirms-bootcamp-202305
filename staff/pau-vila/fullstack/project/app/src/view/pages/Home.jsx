@@ -220,7 +220,7 @@ function Home({ onLoggedOut }) {
                             src={artwork.image}
                             alt={artwork.description}></img>
 
-                        <p className="home-description">Description:{artwork.description}</p>
+                        <p className="home-descriptionA">Description:{artwork.description}</p>
 
                         <p>Materials:{artwork.materials}</p>
 
@@ -238,22 +238,16 @@ function Home({ onLoggedOut }) {
                 {workshops && workshops.map(workshop => (
                     <article key={workshop.id}>
                         <h2>{workshop.planner.name}</h2>
-                        <img className="home-workshop-image"
-                            src={workshop.image}
-                            alt={workshop.description}></img>
-                        {workshop.image !== '' && <img className="home-workshop-img"
-                            src={workshop.image} />}
-                         <video className="home-workshop-video"
-                         src={workshop.video}
-                         alt={workshop.description}></video>   
-                        {workshop.video !== '' && <video className="home-workshop-video"
+                        {workshop.image !== '' && <img className="home-workshop-image"
+                            src={workshop.image} />} 
+                        {workshop.video !== '' && <video controls className="home-workshop-video"
                             src={workshop.video} />}
-                        <p>Descripción: {workshop.description}</p>
-                        <p>Lugar: {workshop.place}</p>
-                        <p>Fecha de inicio: {workshop.dateStart.toLocaleString('es-ES')}</p>
-                        <p>Fecha de finalización: {workshop.dateEnd.toLocaleString('es-ES')}</p>
-                        <p>Límite de asistentes: {workshop.attendantsLimit}</p>
-                        <p>ZIP: {workshop.zip}</p>
+                        <p className="home-descriptionW"> Descripción: {workshop.description}</p>
+                        <p className="home-lugar"> Lugar: {workshop.place}</p>
+                        <p className="home-fechainicio">Fecha de inicio: {workshop.dateStart.toLocaleString('es-ES')}</p>
+                        <p className="home-fechafin">Fecha de finalización: {workshop.dateEnd.toLocaleString('es-ES')}</p>
+                        <p className="home-limiteasistentes">Límite de asistentes: {workshop.attendantsLimit}</p>
+                        <p className="home-zip">ZIP: {workshop.codeZIP}</p>
                         <button onClick={() => handleToggleAttendantsClick(workshop.id)}>{workshop.attendants.includes(userId) ? 'Unjoin' : 'Join'}</button>
                         {workshop.planner.id === userId && <>
                             <button onClick={() => handleEditWorkshopClick(workshop.id)}>Edit</button>
