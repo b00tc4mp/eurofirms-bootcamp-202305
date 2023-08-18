@@ -242,6 +242,18 @@ body {
     gap: 1rem;
 }
 
+.home-workshop {
+    width: 40%;
+}
+
+.home-workshop-image {
+    width: 100%;
+}
+
+.home-workshop-video{
+    width: 100%;
+}
+
 /* cosos */
 
 .home-description {
@@ -259,3 +271,25 @@ body {
     font-size: 0.7rem
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   
+}
+
+.image-container {
+    flex: 1;
+    padding: 120px;
+}
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: center;
+}

@@ -238,8 +238,14 @@ function Home({ onLoggedOut }) {
                 {workshops && workshops.map(workshop => (
                     <article key={workshop.id}>
                         <h2>{workshop.planner.name}</h2>
+                        <img className="home-workshop-image"
+                            src={workshop.image}
+                            alt={workshop.description}></img>
                         {workshop.image !== '' && <img className="home-workshop-img"
                             src={workshop.image} />}
+                         <video className="home-workshop-video"
+                         src={workshop.video}
+                         alt={workshop.description}></video>   
                         {workshop.video !== '' && <video className="home-workshop-video"
                             src={workshop.video} />}
                         <p>Descripción: {workshop.description}</p>

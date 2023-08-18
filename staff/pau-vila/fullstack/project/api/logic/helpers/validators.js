@@ -58,6 +58,7 @@ function validateUrl(url) {
     if (typeof url !== 'string') throw new Error('url is not a string')
     if (url === '') throw new Error('url is empty')
     if (!url.startsWith('http')) throw new Error('url is not valid')
+    if (!validUrl.isWebUri(url)) throw new Error('url is not valid')
 }
 
 function validateText(description) {

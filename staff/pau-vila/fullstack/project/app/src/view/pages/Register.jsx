@@ -14,8 +14,8 @@ function Register(props) {
         const name = event.target.name.value
         const email = event.target.email.value
         const password = event.target.password.value
-        const zip = event.target.zip.value 
-        const phone = event.target.phone.value 
+        const zip = event.target.zip.value
+        const phone = event.target.phone.value
 
         try {
             registerUser(name, email, password, zip, phone)
@@ -25,7 +25,7 @@ function Register(props) {
             alert(error.message)
         }
     }
-    return <main className="register-view">
+    return <><main className="register-view">
         <h1>Register</h1>
 
         <form className="register-form" onSubmit={handleRegisterSubmit}>
@@ -49,6 +49,12 @@ function Register(props) {
         </form>
 
         <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
-    </main>
+    </main><footer>
+    <div class="container">
+    <div class="image-container">
+      <img src="../../../public/logo-tornorecicla.png"></img>
+    </div></div>
+        </footer>
+        </>
 }
 export default Register 

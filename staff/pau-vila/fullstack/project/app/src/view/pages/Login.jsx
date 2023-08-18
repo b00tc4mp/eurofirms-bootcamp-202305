@@ -18,19 +18,19 @@ function Login(props) {
 
         try {
             authenticateUser(email, password)
-            .then(token => {
-                context.token = token
+                .then(token => {
+                    context.token = token
 
-                props.onLoggedIn()
+                    props.onLoggedIn()
 
-            })
-            .catch(error => alert(error.message))
+                })
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
     }
-   
-    return <main className="login-view">
+
+    return <><main className="login-view">
         <h1>Login</h1>
 
         <form className="login-form" onSubmit={handleLoginSubmit}>
@@ -45,6 +45,13 @@ function Login(props) {
 
         <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
 
-    </main>
+    </main><footer>
+            <div class="container">
+                <div class="image-container">
+                    <img src="../../../public/logo-tornorecicla.png"></img>
+                </div></div>
+        </footer>
+
+    </>
 }
 export default Login 
