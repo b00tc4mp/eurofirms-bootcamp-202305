@@ -39,17 +39,18 @@ Later, the final distribution solution is given to the user.
 
 ## Technical Specs.
 
-### Process
+### Modules
 
 #### Client Side
 
-- See [App](../app/README.md)
+- [app](../app/README.md): client application
 
 #### Server Side
 
-- See [Api](../api/README.md)
-- See [Opt](../opt/README.md)
-- MongoDB Storage
+- [api](../api/README.md): server to client process
+- [opt](../opt/README.md): optimization process
+- [dat](../dat/README.MD): data models and MongoDB Storage
+- [com](../com/README.MD): common functions
 
 ### Data model
 

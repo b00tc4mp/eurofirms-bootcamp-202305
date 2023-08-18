@@ -1,0 +1,1 @@
+node logic/processAll

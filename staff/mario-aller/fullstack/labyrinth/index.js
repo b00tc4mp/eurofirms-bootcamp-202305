@@ -83,11 +83,6 @@ const ppal = function (lab) {
     const numFil = lab.length
     const numCol = lab[0].length
     let i, j
-
-    for (i = 1; i < numFil; i++)
-        if (lab[i].length !== numCol) throw new Error('Labyrinth is not a matrix')
-    if (numCol < 2 || numFil < 2) throw new Error('Labyrinth is a small matrix')
-
     const lab2 = copyLab(lab)
     let flag = false
     for (i = 0; i < numFil; i++) {

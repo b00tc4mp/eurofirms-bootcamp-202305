@@ -47,7 +47,7 @@ function validateString(data, option = 0) {
 
             const atPos = data.indexOf('@')
             const dotPos = data.lastIndexOf('.')
-            if (atPos < 0) throw new Error('Correo sin @')
+            if (atPos < 0) throw new Error('email with no @')
             if (atPos === 0) throw new Error('Correo con @ al principio')
             if (atPos === data.length - 1) throw new Error('Correo con @ al final')
             if (dotPos < 0) throw new Error('Correo sin .')
