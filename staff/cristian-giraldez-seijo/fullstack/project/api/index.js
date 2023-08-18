@@ -11,6 +11,7 @@ const {
     updateStory,
     retrieveStory,
     retrieveStories,
+    deleteStory,
 } = require('./logic')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
@@ -128,6 +129,22 @@ mongoose.connect(`${MONGODB_URL}/data`)
             } catch (error) {
                 res.status(400).json({ error: error.message })
             }
+        })
+
+        api.delete('/stories/:storyId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const data = jwt.verify(token, JWT_SECRET)
+
+                const userId = data.sub
+
+                const { storyId } = req.params          
+deleteStory(userId, storyId)
+.then(() => res.send())
+.catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) { res.status(400).json({ error: error.message }) }
         })
 
         api.listen(PORT, () => console.log(`API running in port ${PORT}`))

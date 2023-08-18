@@ -14,6 +14,7 @@ function deleteStory(userId, storyId) {
 
             return Story.deleteOne({ _id: story._id })
         })
+        .then(() => { })
 }
 
 module.exports = deleteStory
