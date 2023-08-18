@@ -129,9 +129,36 @@ describe('authenticateUser', () => {
         }
     })
 
+    it('fails on invalid email (dot is the next element from @)', () => {
+        try {
+            return authenticateUser(`holamundo@.com`, password)
+        } catch (error) {
+            expect(error).to.be.instanceOf(Error)
+            expect(error.message).to.equal('dot is the next element from @')
+        }
+    })
+
     it('fails on invalid email (incorrect character)', () => {
         try {
             return authenticateUser(`hola%mundo@gmail.com`, password)
+        } catch (error) {
+            expect(error).to.be.instanceOf(Error)
+            expect(error.message).to.equal('incorrect character %')
+        }
+    })
+
+    it('fails on invalid email (incorrect character)', () => {
+        try {
+            return authenticateUser(`holamundo@gma%il.com`, password)
+        } catch (error) {
+            expect(error).to.be.instanceOf(Error)
+            expect(error.message).to.equal('incorrect character %')
+        }
+    })
+
+    it('fails on invalid email (incorrect character)', () => {
+        try {
+            return authenticateUser(`holamundo@gmail.c%om`, password)
         } catch (error) {
             expect(error).to.be.instanceOf(Error)
             expect(error.message).to.equal('incorrect character %')

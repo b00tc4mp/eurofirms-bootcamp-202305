@@ -54,11 +54,11 @@ function validateId(id) {
     if (id === '') throw new Error('id is empty')
 }
 
-function validateUrl(url) {
-    if (typeof url !== 'string') throw new Error('url is not a string')
-    if (url === '') throw new Error('url is empty')
+function validateImage(image) {
+    if (typeof image !== 'string') throw new Error('image is not a string')
+    if (image === '') throw new Error('image is empty')
 
-    if (!url.startsWith('http')) throw new Error('url not start with http')
+    if (!image.startsWith('http')) throw new Error('image not start with http')
 }
 
 
@@ -68,5 +68,5 @@ module.exports = {
     validateName,
     validateText,
     validateId,
-    validateUrl
+    validateImage: validateImage
 }

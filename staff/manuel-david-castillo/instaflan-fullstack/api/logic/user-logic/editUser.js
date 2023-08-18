@@ -1,5 +1,5 @@
-const {User} = require('../../data/models')
-const { validateId, validateName, validateUrl, validateText } = require('../helpers/validators')
+const { User } = require('../../data/models')
+const { validateId, validateName, validateImage: validateUrl, validateText } = require('../helpers/validators')
 
 function editUser(userId, name, image, description) {
     validateId(userId)
@@ -8,16 +8,16 @@ function editUser(userId, name, image, description) {
     validateText(description)
 
     return User.findById(userId)
-    .then(user => {
-        if(!user) throw new Error ('user not found')
+        .then(user => {
+            if (!user) throw new Error('user not found')
 
-        user.name = name
-        user.image = image
-        user.description = description
+            user.name = name
+            user.image = image
+            user.description = description
 
-        return user.save()
-    })
-    .then(()=>{ })
+            return user.save()
+        })
+        .then(() => { })
 }
 
 module.exports = editUser
