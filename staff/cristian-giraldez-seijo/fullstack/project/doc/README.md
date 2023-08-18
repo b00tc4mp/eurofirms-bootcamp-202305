@@ -83,3 +83,7 @@ Comment
 - DONE implement app logic for retrieve stories
 - DONE implement retrieve stories component
 - DONE implement user logged on app retrieve story component
+- DONE implement api logic for delete story
+- TODO implement api route for delete story
+- TODO implement app logic for delete story
+- TODO implement delete story component

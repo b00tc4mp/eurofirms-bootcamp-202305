@@ -6,4 +6,5 @@ module.exports = {
     updateStory: require('./updateStory'),
     retrieveStory: require('./retrieveStory'),
     retrieveStories: require('./retrieveStories'),
+    deleteStory: require('./deleteStory'),
 }
