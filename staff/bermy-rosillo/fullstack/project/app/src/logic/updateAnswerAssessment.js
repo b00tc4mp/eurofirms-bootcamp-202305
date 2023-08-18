@@ -1,10 +1,10 @@
 function updateAnswerAssessment(token,studentId,testId,answerId,score,assessment){
-    if(token !== 'string') throw new Error('token is not a string')
-    if(studentId !== 'string') throw new Error('studentId is not a string')
-    if(testId !== 'string') throw new Error('testId is not a string')
-    if(answerId !== 'string') throw new Error('answerId is not a string')
-    if(score !== 'number') throw new Error('score is not a number')
-    if(assessment !== 'string') throw new Error('assessment is not a string')
+    if(typeof token  !== 'string') throw new Error('token is not a string')
+    if(typeof studentId !== 'string') throw new Error('studentId is not a string')
+    if( typeof testId !== 'string') throw new Error('testId is not a string')
+    if( typeof answerId !== 'string') throw new Error('answerId is not a string')
+    if( typeof score !== 'number') throw new Error('score is not a number')
+    if( typeof assessment !== 'string') throw new Error('assessment is not a string')
 
     return fetch(`${import.meta.env.VITE_API_URL}/students/${studentId}/tests/${testId}/answers/${answerId}`, {
         method: 'PUT',
