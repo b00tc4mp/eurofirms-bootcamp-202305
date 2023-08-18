@@ -20,12 +20,12 @@ This purpose will be achieved by using posts from different users, which are dis
 
 ### Use Cases
 
-- list meetups
-- publish meetup
-- update meetup
-- delete meetup
-- toggle join meetup
-- search meetups
+- DONE - list meetups
+- DONE - publish meetup
+- DONE - update meetup
+- DONE - delete meetup
+- TODO - toggle join meetup
+- TODO - search meetups
 
 ### UI Design
 

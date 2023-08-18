@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* resets */
+
+/* styles (BEM) */
+
+/* register */
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* login */
+
+.register-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+.home-logout-button, .button{
+    color:#fff;
+    padding:5px 5px;
+    border:1px solid #000;
+    border-radius: 30px;
+    display:block;
+    width:100px;
+    text-align:center;
+    margin:20px;
+    background-color:#2C2A2A;
+}
+/*.home-logout-button:hover{
+    background-color:#707070;
+}*/
+button{
+    color:#fff;
+    padding:5px 5px;
+    border:1px solid #000;
+    border-radius: 30px;
+    display:block;
+    width:100px;
+    text-align:center;
+    margin:10px;
+    background-color:#2C2A2A;
+}
+/*.home-logout-button:hover{
+    background-color:#707070;
+}*/
+/* home */
+
+/*.home-title {
+    font-size: 1.5rem;
+}*/
+
+/* .home-main {
+    padding: 3rem 0;
+} */
+
+/* .home-footer {
+    background-color: #D9D9D9;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+}*/
+
+.home-create-meetup-modal, .home-edit-meetup-modal, .home-delete-meetup-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.home-create-meetup-button, .home-edit-meetup-button, .home-delete-meetup-button {
+    border-top: 20%;
+}
+
+.home-create-meetup-container, .home-edit-meetup-container, .home-delete-meetup-container {
+    background-color: white;
+    padding: 5rem;
+}
+
+.home-create-meetup-form, .home-edit-meetup-form, .home-delete-meetup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-meetups {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.home-meetup-image {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* utils */
+
+.off {
+    display: none;
+}
+.initial-page-footer{
+    background-color: #D9D9D9;
+    src: local('../../../images/logo03.png');
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    text-align: center;
+}
+.imgRound {
+    width:40px;
+    height:40px;
+    border-radius:160px;
+    border:5px solid #666;
+}
