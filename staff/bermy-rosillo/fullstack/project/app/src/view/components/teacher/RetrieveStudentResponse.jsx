@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import context from '../../../context'
 import retrieveTest from '../../../logic/retrieveTest'
 import retrieveAnswers from "../../../logic/retrieveAnswers"
+import updateAnswerAssessment from "../../../logic/updateAnswerAssessment"
 
 function RetrieveStudentResponse(props) {
     console.log('retrieve student response')
@@ -33,6 +34,23 @@ function RetrieveStudentResponse(props) {
         props.onReturnStudentList()
 
     }
+    //--
+    const handleSubmitAnswerAssessment =(event)=>{
+        event.preventDefault()
+        try{
+            const score = event.target.score.value
+            const assessment = event.target.assessment.value
+            updateAnswerAssessment(context.token,props.studentId,props.testId,'answerid',score,assessment)
+            .then(()=>{
+                alert('assessment sent')
+                //props.onreturn
+            })
+            .catch(error=>alert(error.message))
+
+        }catch(error){
+            alert(error.message)
+        }
+    }
 
     return <div className="student-test-view">
         <h1>Test</h1>
@@ -45,7 +63,7 @@ function RetrieveStudentResponse(props) {
                 <h3>Attemps: {test.attemps}</h3>
                 
                 <div className="student-answers-view">
-                    <form className="student-answers-form">
+                    <form className="student-answers-form" onSubmit={handleSubmitAnswerAssessment}>
                         
                         <h1>Student answers</h1>
                         {answers && answers.map(answer=>{
