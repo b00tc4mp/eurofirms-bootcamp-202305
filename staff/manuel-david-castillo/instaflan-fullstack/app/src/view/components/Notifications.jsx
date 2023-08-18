@@ -72,7 +72,6 @@ export default function Notifications() {
                 <p>like your post</p>
                 <div className="flex flex-col ml-4 items-center border-3">
                     <img className="w-14 object-contain" src={notification.post.image} alt="" />
-                    <p className="text-xs">{notification.post.text}</p>
                 </div>
                 <button onClick={() => handleDeleteNotification(notification.id)} className="ml-auto rounded-lg hover:bg-color4 hover:scale-110 ">🗑️</button>
             </div>}
@@ -82,7 +81,6 @@ export default function Notifications() {
                 <p>comment your post</p>
                 <div className="flex flex-col ml-4 items-center border-3">
                     <img className="w-14 object-contain" src={notification.post.image} alt="" />
-                    <p className="text-xs">{notification.post.text}</p>
                 </div>
                 <button onClick={() => handleDeleteNotification(notification.id)} className="ml-auto rounded-lg hover:bg-color4 hover:scale-110 ">🗑️</button>
             </div>}

@@ -4,7 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "npx mocha ./logic/**/*.spec.js",
+        "test-inspect": "npx mocha --inspect-brk",
+        "test-coverage": "npx nyc --reporter=text --reporter=html npm run test"
     },
     "keywords": [],
     "author": "",
@@ -16,5 +18,10 @@
         "jsonwebtoken": "^9.0.1",
         "mongodb": "^5.6.0",
         "mongoose": "^7.4.0"
+    },
+    "devDependencies": {
+        "chai": "^4.3.7",
+        "mocha": "^10.2.0",
+        "nyc": "^15.1.0"
     }
 }
