@@ -15,10 +15,6 @@ body {
   font-family: sans-serif;
 }
 
-#root {
-  height: 100%;
-}
-
 /* ------ */
 /* Styles */
 /* ------ */
@@ -295,4 +291,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.root-react {
+  height: 100%;
 }

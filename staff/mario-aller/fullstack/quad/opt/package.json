@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node process/all",
+    "dev": "node process/all",
+    "reset": "node process/reset",
     "debug": "node --inspect-brk process/all"
   },
   "keywords": [],

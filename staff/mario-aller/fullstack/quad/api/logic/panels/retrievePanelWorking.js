@@ -15,11 +15,11 @@ function retrievePanelWorking(userId, panelId) {
 
     return UserModel.findById(userId).lean()
         .then(user => {
-            if (!user) throw new Error('User does not exist')
+            if (!user) throw new Error('user does not exist')
 
             return PanelModel.findById(panelId, '-__v').sort('-date').lean()
                 .then(panel => {
-                    if (!panel) throw new Error('Panel does not exist')
+                    if (!panel) throw new Error('panel does not exist')
                     
                     panel.id = panel._id.toString()
                     delete panel._id

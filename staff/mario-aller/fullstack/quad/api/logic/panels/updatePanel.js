@@ -23,9 +23,9 @@ function updatePanel(userId, panelId, reference, width, height) {
 
     return Promise.all([UserModel.findById(userId, '_id').lean(), PanelModel.findById(panelId)])
         .then(([user, panel]) => {
-            if (!user) throw new Error('User does not exist')
-            if (!panel) throw new Error('Panel does not exist')
-            if (panel.owner.toString() !== userId) throw new Error('You can only modify your panels!')
+            if (!user) throw new Error('user does not exist')
+            if (!panel) throw new Error('panel does not exist')
+            if (panel.owner.toString() !== userId) throw new Error('you can only modify your panels!')
 
             panel.reference = reference
             panel.width = width

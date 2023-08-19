@@ -14,8 +14,8 @@ const { validateString } = require('com')
 function createBlock(userId, panelId, width, height) {
     return Promise.all([UserModel.findById(userId, '_id').lean(), PanelModel.findById(panelId)])
         .then(([user, panel]) => {
-            if (!user) throw new Error('User does not exist')
-            if (!panel) throw new Error('Panel does not exist')
+            if (!user) throw new Error('user does not exist')
+            if (!panel) throw new Error('panel does not exist')
 
             const x = -1
             const y = -1

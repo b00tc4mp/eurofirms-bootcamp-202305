@@ -18,10 +18,10 @@ function deleteBlock(userId, panelId, blockId) {
 
     return Promise.all([UserModel.findById(userId, '_id').lean(), PanelModel.findById(panelId)])
         .then(([user, panel]) => {
-            if (!user) throw new Error('User does not exist')
-            if (!panel) throw new Error('Panel does not exist')
+            if (!user) throw new Error('user does not exist')
+            if (!panel) throw new Error('panel does not exist')
             const index = panel.blocks.findIndex(block => (block._id.toString() === blockId))
-            if (index === - 1) throw new Error('Block does not exist')
+            if (index === - 1) throw new Error('block does not exist')
             panel.blocks.splice(index, 1)
             panel.status = 0
             return panel.save()

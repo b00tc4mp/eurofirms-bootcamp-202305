@@ -1,4 +1,4 @@
-const { models: { UserModel, PanelModel } } = require('dat')
+    const { models: { UserModel, PanelModel } } = require('dat')
 const { validateString } = require('com')
 
 /**
@@ -19,7 +19,7 @@ function createPanel(userId, reference, width, height) {
 
     return UserModel.findById(userId, '_id').lean()
         .then((user) => {
-            if (!user) throw new Error('User does not exist')
+            if (!user) throw new Error('user does not exist')
             const blocks = []
             const status = 0
 
