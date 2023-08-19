@@ -75,12 +75,14 @@ describe('deletePanel', () => {
             }))
 
     it('fails on user cannot delete', () => UserModel.create({ name, surname, zip, email: email2, password })
+        .then(() => UserModel.findOne({ email: email2 }))
         .then(user => {
             userId2 = user.id
             return deletePanel(userId2, panelId)
                 .catch(error => {
                     expect(error).to.be.instanceOf(Error)
                     expect(error.message).to.equal('you can only modify your panels!')
+                    return UserModel.findByIdAndDelete(userId2)
                 })
         }))
 

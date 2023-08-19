@@ -41,36 +41,44 @@ npm run start
 
 ### Test Coverage
 
-File                             | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
----------------------------------|---------|----------|---------|---------|-------------------
-All files                        |   79.53 |    37.93 |   81.61 |   81.03 |                   
- panels                          |   68.09 |       25 |   69.51 |   70.43 |                   
-  createBlock.js                 |     100 |      100 |     100 |     100 |                   
-  createBlock.spec.js            |     100 |      100 |     100 |     100 |                   
-  createPanel.js                 |     100 |      100 |     100 |     100 |                   
-  createPanel.spec.js            |     100 |      100 |     100 |     100 |                   
-  deleteBlock.js                 |     100 |      100 |     100 |     100 |                   
-  deleteBlock.spec.js            |     100 |      100 |     100 |     100 |                   
-  deletePanel.js                 |   23.07 |        0 |       0 |      30 | 13-22             
-  index.js                       |     100 |      100 |     100 |     100 |                   
-  retrievePanelOne.js            |      20 |        0 |       0 |   21.42 | 13-28             
-  retrievePanelWorking.js        |   21.05 |        0 |       0 |   23.52 | 14-32             
-  retrievePanels.js              |   18.75 |        0 |       0 |      20 | 12-29             
-  updatePanel.js                 |   14.28 |        0 |       0 |   16.66 | 18-35             
-  updatePanelStatusReEdit.js     |   15.78 |        0 |       0 |   18.75 | 13-29             
-  updatePanelStatusToOptimize.js |   18.75 |        0 |       0 |   23.07 | 13-26             
- users                           |     100 |      100 |     100 |     100 |                   
-  authenticateUser.js            |     100 |      100 |     100 |     100 |                   
-  authenticateUser.spec.js       |     100 |      100 |     100 |     100 |                   
-  index.js                       |     100 |      100 |     100 |     100 |                   
-  registerUser.js                |     100 |      100 |     100 |     100 |                   
-  registerUser.spec.js           |     100 |      100 |     100 |     100 |                   
-  retrieveUser.js                |     100 |      100 |     100 |     100 |                   
-  retrieveUser.spec.js           |     100 |      100 |     100 |     100 |                   
-  updateUser.js                  |     100 |      100 |     100 |     100 |                   
-  updateUser.spec.js             |     100 |      100 |     100 |     100 |        
+File                                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------------------|---------|----------|---------|---------|-------------------
+All files                             |     100 |      100 |     100 |     100 |                   
+ panels                               |     100 |      100 |     100 |     100 |                   
+  createBlock.js                      |     100 |      100 |     100 |     100 |                   
+  createBlock.spec.js                 |     100 |      100 |     100 |     100 |                   
+  createPanel.js                      |     100 |      100 |     100 |     100 |                   
+  createPanel.spec.js                 |     100 |      100 |     100 |     100 |                   
+  deleteBlock.js                      |     100 |      100 |     100 |     100 |                   
+  deleteBlock.spec.js                 |     100 |      100 |     100 |     100 |                   
+  deletePanel.js                      |     100 |      100 |     100 |     100 |                   
+  deletePanel.spec.js                 |     100 |      100 |     100 |     100 |                   
+  index.js                            |     100 |      100 |     100 |     100 |                   
+  retrievePanelOne.js                 |     100 |      100 |     100 |     100 |                   
+  retrievePanelOne.spec.js            |     100 |      100 |     100 |     100 |                   
+  retrievePanelWorking.js             |     100 |      100 |     100 |     100 |                   
+  retrievePanelWorking.spec.js        |     100 |      100 |     100 |     100 |                   
+  retrievePanels.js                   |     100 |      100 |     100 |     100 |                   
+  retrievePanels.spec.js              |     100 |      100 |     100 |     100 |                   
+  updatePanel.js                      |     100 |      100 |     100 |     100 |                   
+  updatePanel.spec.js                 |     100 |      100 |     100 |     100 |                   
+  updatePanelStatusReEdit.js          |     100 |      100 |     100 |     100 |                   
+  updatePanelStatusReEdit.spec.js     |     100 |      100 |     100 |     100 |                   
+  updatePanelStatusToOptimize.js      |     100 |      100 |     100 |     100 |                   
+  updatePanelStatusToOptimize.spec.js |     100 |      100 |     100 |     100 |                   
+ users                                |     100 |      100 |     100 |     100 |                   
+  authenticateUser.js                 |     100 |      100 |     100 |     100 |                   
+  authenticateUser.spec.js            |     100 |      100 |     100 |     100 |                   
+  index.js                            |     100 |      100 |     100 |     100 |                   
+  registerUser.js                     |     100 |      100 |     100 |     100 |                   
+  registerUser.spec.js                |     100 |      100 |     100 |     100 |                   
+  retrieveUser.js                     |     100 |      100 |     100 |     100 |                   
+  retrieveUser.spec.js                |     100 |      100 |     100 |     100 |                   
+  updateUser.js                       |     100 |      100 |     100 |     100 |                   
+  updateUser.spec.js                  |     100 |      100 |     100 |     100 |
 
-
-
+Lines	
+- panels 630/630
+- users 153/153
 
 [Home](../doc/README.md)

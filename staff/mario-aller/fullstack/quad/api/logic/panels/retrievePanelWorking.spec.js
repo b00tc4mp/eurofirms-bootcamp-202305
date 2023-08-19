@@ -3,6 +3,7 @@ const { MONGOOSE_URL } = process.env
 const { retrievePanelWorking } = require('.')
 const { mongoose, models: { UserModel, PanelModel } } = require('dat')
 const { expect } = require('chai')
+const fs = require('fs')
 
 debugger
 describe('retrievePanelWorking', () => {
@@ -15,6 +16,7 @@ describe('retrievePanelWorking', () => {
     let userId, panelId, blockId
     let reference, width, height
     let panel, blocks, status
+    let data
 
     // to do before each test
     beforeEach(() => {
@@ -51,23 +53,34 @@ describe('retrievePanelWorking', () => {
         return PanelModel.findByIdAndDelete(panelId)
             .then(() => UserModel.findByIdAndDelete(userId))
     })
-
-    it('succeeds on retrievePanelWorking', () =>
-        retrievePanelWorking(userId, panelId)
-            .then(panel => expect(panel.id).to.equal(panelId)))
-
+    it('succeeds on exists workingPanel', () => {
+        data = JSON.stringify({id: panelId, user: userId, blocks:[]})
+        fs.writeFileSync(`../opt/wrkpanel.txt`, data)
+        return retrievePanelWorking(userId, panelId)
+            .then(panel => expect(panel.id).to.equal(panelId))
+    })
+    it('succeeds on does not exist workingPanel', () => {
+        data = `{"id":null,"user":null,"blocks":[]}`
+        fs.writeFileSync(`../opt/wrkpanel.txt`, data)
+        return retrievePanelWorking(userId, panelId)
+            .then(panel => expect(panel.id).to.equal(panelId))
+    })
     it('fails on user does not exist', () =>
         retrievePanelWorking(userId.slice(6) + 'ffffff', panelId)
             .catch(error => {
                 expect(error).to.be.instanceOf(Error)
                 expect(error.message).to.equal('user does not exist')
             }))
-
     it('fails on panel does not exist', () =>
         retrievePanelWorking(userId, panelId.slice(6) + 'ffffff')
             .catch(error => {
                 expect(error).to.be.instanceOf(Error)
                 expect(error.message).to.equal('panel does not exist')
             }))
-    after(() => mongoose.disconnect())
+
+            after(() => {
+        data = `{"id":null,"user":null,"blocks":[]}`
+        fs.writeFileSync(`../opt/wrkpanel.txt`, data)
+        mongoose.disconnect()
+    })
 })

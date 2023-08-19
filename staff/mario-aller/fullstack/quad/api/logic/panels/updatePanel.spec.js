@@ -12,7 +12,7 @@ describe('updatePanel', () => {
     // global
     let name, surname, zip
     let email, password, email2
-    let userId, panelId, blockId
+    let userId, panelId, blockId, userId2
     let reference, width, height
     let panel, blocks, status
 
@@ -75,13 +75,15 @@ describe('updatePanel', () => {
                 expect(error.message).to.equal('panel does not exist')
             })
     )
-    it('fails on user cannot delete', () => UserModel.create({ name, surname, zip, email: email2, password })
+    it('fails on user cannot update', () => UserModel.create({ name, surname, zip, email: email2, password })
+        .then(() => UserModel.findOne({ email: email2 }))
         .then(user => {
             userId2 = user.id
             return updatePanel(userId2, panelId, reference + 'k', width, height)
                 .catch(error => {
                     expect(error).to.be.instanceOf(Error)
                     expect(error.message).to.equal('you can only modify your panels!')
+                    return UserModel.findByIdAndDelete(userId2)
                 })
         }))
 
