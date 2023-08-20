@@ -44,7 +44,8 @@ function RetrieveStudentResponse(props) {
             updateAnswerAssessment(context.token, props.studentId, props.testId, answerId, score, assessment)
                 .then(() => {
                     alert('assessment sent')
-                    //props.onreturn
+                    
+                    props.onReturnStudentList()
                 })
                 .catch(error => alert(error.message))
 

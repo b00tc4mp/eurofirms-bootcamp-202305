@@ -187,3 +187,8 @@ p a {
 .home-tests{
     text-align: center;
 }
+.search-tests{
+    top:100px;
+    height:30px;
+    text-align: center;
+}
