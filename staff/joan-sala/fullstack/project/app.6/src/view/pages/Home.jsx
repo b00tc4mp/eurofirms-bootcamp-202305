@@ -6,8 +6,8 @@ import retrieveMeetups from '../../logic/retrieveMeetups'
 import CreateMeetupModal from '../modals/CreateMeetupModal'
 import EditMeetupModal from '../modals/EditMeetupModal'
 import DeleteMeetupModal from '../modals/DeleteMeetupModal'
-import NetworkRules from '../pages/NetworkRules'
 import toggleFavMeetup from '../../logic/toggleFavMeetup'
+import NetworkRules from '../pages/NetworkRules'
 
 function Home({ onLoggedOut }) {
     console.log('Home ->render')
@@ -162,15 +162,13 @@ function Home({ onLoggedOut }) {
                             <p>{meetup.adress}</p>
                             <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
                             <p>{meetup.dateMeetup}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Likes:</p>
-                            <p>{meetup.contLikes}</p>
+
                             {meetup.author.id === userId && <>
                                 <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-1/5 my-10 hover:bg-[#707070]" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
                                 <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-1/5 mx-10 hover:bg-[#707070]" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
                             </>
                             }
-                            <button className="bg-[#2C2A2A] text-[#ffffff] px-4 py-2 text-sm text-center rounded-full shadow-sm w-1/5 my-10 hover:bg-[#707070]" onClick={() => { 
-                                handleToggleFavMeetupClick(meetup.id)}}>{meetup.fav ? '♥' : '♡'}</button>
+                            <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-1/5 my-10 hover:bg-[#707070]" onClick={() => handleToggleMeetupClick(meetup.id)}>{meetup.fav ? '♥' : '♡'}</button>
                         </article>)}
                 </section>
             </main>}
