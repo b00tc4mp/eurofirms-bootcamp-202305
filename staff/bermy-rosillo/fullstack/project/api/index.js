@@ -17,6 +17,7 @@ const retrieveTest = require('./logic/retrieveTest')
 const retrieveAnswers = require('./logic/retrieveAnswers')
 const createAnswer = require('./logic/createAnswer')
 const updateAnswerAssessment = require('./logic/updateAnswerAssessment')
+const retrieveStudentAnswers = require('./logic/retrieveStudentAnswers')
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
 mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
@@ -209,6 +210,23 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
             }
         })
+        //retrieveStudentAnswers
+        api.get('/students/tests', (req,res)=>{
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const userId = data.sub
+                
+                retrieveStudentAnswers(userId)
+                    .then((tests) =>res.json(tests))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+
+            }
+        })
+
 
 
         api.listen(process.env.PORT, () => console.log(`API running in PORT ${process.env.PORT}`))

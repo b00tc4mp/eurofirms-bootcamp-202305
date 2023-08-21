@@ -8,7 +8,7 @@ function updateAnswerAssessment(userId, studentId,testId,answerId, score,assessm
     validateNumber(score)
     validateText(assessment)
 
-    return Promise.all([User.findById(userId), User.findById(studentId), Answer.findById(answerId), Test.findById(testId)])
+    return Promise.all([User.findById(userId).lean(), User.findById(studentId).lean(), Answer.findById(answerId), Test.findById(testId).lean()])
         .then(([user, student, answer, test]) => {
             if (!user) throw new Error('user not found')
             if (!student) throw new Error('student not found')
