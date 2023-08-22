@@ -5,9 +5,11 @@ import retrieveUser from '../../logic/retrieveUser'
 import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
 import retrieveStudentAnswers from '../../logic/retrieveStudentAnswers'
 //components
+import SendAnswer from "../components/student/SendAnswer"
+
 function StudentHome(props) {
     console.log('student home-render')
-    const [view, setview] = useState()
+    const [view, setView] = useState('student-home')
     const [user, setUser] = useState(null)
     const [answers, setAnswers] = useState()
 
@@ -37,6 +39,15 @@ function StudentHome(props) {
         props.onLoggedOutClick()
     }
     //--
+    const handleOnReturnHome =()=>{
+        setView('student-home')
+    }
+
+    const handleSendAnswer =(event,answerId)=>{
+        event.preventDefault()
+        setAnswers(answerId)
+        setView('send-answer')
+    }
 
     //--------------------------------------------
     const userId = extractUserIdFromToken(context.token)
@@ -52,14 +63,12 @@ function StudentHome(props) {
                 {answers && answers.map(answer => {
                     return <article key={answer.id}>
                         
-                           <h3>Test: <a href="">{answer.test.subject}</a></h3> 
+                           <h3>Test: <a href="" onClick={(event)=>handleSendAnswer(event,answer.id)}>{answer.test.subject}</a></h3> 
                           {/* <h3>Description: <a href="" >{answer.description}</a></h3>  */}
                     </article>
                 })}
-            
 
-            {/* {homeView === 'create-test' && <CreateTest userName={user.name} onReturnHome={handleOnReturnHome} />}
-        {homeView === 'retrieve-students-list' && <RetrieveStudentsList user={user} testId={testId} onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />} */}
+        {view === 'send-answer' && <SendAnswer user={user} testId={testId} onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />} 
         </div>
 
         <footer className="home-footer">

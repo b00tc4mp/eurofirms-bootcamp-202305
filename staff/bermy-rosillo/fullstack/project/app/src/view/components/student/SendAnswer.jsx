@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"
 import context from '../../../context'
 import retrieveTest from '../../../logic/retrieveTest'
 import retrieveAnswers from "../../../logic/retrieveAnswers"
-import updateAnswerAssessment from "../../../logic/updateAnswerAssessment"
+import createAnswer from '../../../logic/createAnswer' //TODO
 
 function SendAnswer(props) {
-    console.log('editar')
+    console.log('Send answer->render')
 
     const [test, setTest] = useState()
     const [answers, setAnswers] = useState()
@@ -29,23 +29,23 @@ function SendAnswer(props) {
 
     }, [])
 
-    const handleCancelResponse = () => {
+    const handleCancelAnswer = () => {
 
-        props.onReturnStudentList()
+        props.onReturnHome()
 
     }
     //--
-    const handleSubmitAnswerAssessment = (event) => {
+    const handleSubmitAnswer = (event) => {
         event.preventDefault()
         try {
-            const score = Number(event.target.score.value)
-            const assessment = event.target.assessment.value
-            const answerId = event.target.answerId.value
-            updateAnswerAssessment(context.token, props.studentId, props.testId, answerId, score, assessment)
+            
+            //const answerId = event.target.answerId.value
+            //updateAnswerAssessment(context.token, props.studentId, props.testId, answerId, score, assessment)
+            createAnswer() //TODO
                 .then(() => {
-                    alert('assessment sent')
+                    alert('answer sent')
                     
-                    props.onReturnStudentList()
+                    props.onReturnHome()
                 })
                 .catch(error => alert(error.message))
 
@@ -66,7 +66,6 @@ function SendAnswer(props) {
 
                 <div className="student-answers-view">
 
-
                     <h1>Student answers</h1>
                     {answers && answers.map(answer => {
                         return <article key={answer.id}>
@@ -75,14 +74,13 @@ function SendAnswer(props) {
                             {/* <label htmlFor="answer">Description</label>
                                 <textarea id="answer" type="text" rows="4" cols="50" deafaultValue={answer.description}></textarea> */}
                             <h3>Date:{answer.date}</h3>
-                            <form className="student-answers-form" onSubmit={handleSubmitAnswerAssessment}>
+                            <form className="student-answers-form" onSubmit={handleSubmitAnswer}>
                                 <input type="hidden" id="answerId" defaultValue={answer.id}></input>
-                                <label htmlFor="score">Score: </label>
-                                <input id="score" type="text" />
-
-                                <label htmlFor="assessment">assessment: </label>
-                                <textarea id="assessment" type="text" rows="4" cols="20" ></textarea>
+                                
+                                <label htmlFor="answer">answer: </label>
+                                <textarea id="answer" type="text" rows="4" cols="20" ></textarea>
                                 <button type="submit" >Send</button>
+                                <button onClick={handleCancelAnswer} >Cancel </button>
                             </form>
                         </article>
                     })}
@@ -90,7 +88,7 @@ function SendAnswer(props) {
                 </div>
 
                
-                <button onClick={handleCancelResponse} >Cancel </button>
+               
             </div>
         }
    
