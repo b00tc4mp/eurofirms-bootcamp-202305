@@ -181,7 +181,7 @@ mongoose.connect(`${MONGODB_URL}/data`)
                 const data = jwt.verify(token, JWT_SECRET)
                 
                 const userId = data.sub
-                //const meetupId = req.params.meetupId
+                const meetupId = req.params.meetupId
 
                 toggleFavMeetup(userId, meetupId)
                 .then(()=> res.status(204).send())

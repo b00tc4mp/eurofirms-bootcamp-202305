@@ -132,9 +132,9 @@ function Home({ onLoggedOut }) {
                 <div className="flex justify-center items-center gap-x-5">
                     <img src={user ? user.image : ""} id="url"
                         alt="image of user" className="shadow-lg rounded-full w-1/6 h-auto align-middle border-none" />
-                    <button class="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-lg shadow-sm w-1/5 mx-10 hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
+                    <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-lg shadow-sm w-32 mx-10 hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
                 </div>
-                <div className="flex flex-wrap justify-end w-1/6 pr-5 bg-cover sm:.125rem lg:.5em">
+                <div className="flex flex-wrap justify-end w-24 pr-5 bg-cover sm:125rem lg:.5em">
                     <img src="public/tools.png" alt="settings"onClick={handleNavigateToNetworkRules}
                     />
                 </div>
@@ -163,22 +163,22 @@ function Home({ onLoggedOut }) {
                             <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
                             <p>{meetup.dateMeetup}</p>
                             <p className="mt-8 font-semibold text-[#2C2A2A]">Likes:</p>
-                            <p>{meetup.contLikes}</p>
+                            <p>{meetup.likes}</p>
                             {meetup.author.id === userId && <>
-                                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-1/5 my-10 hover:bg-[#707070]" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
-                                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-1/5 mx-10 hover:bg-[#707070]" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
+                                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 my-10 hover:bg-[#707070]" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
+                                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 mx-10 hover:bg-[#707070]" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
                             </>
                             }
-                            <button className="bg-[#2C2A2A] text-[#ffffff] px-4 py-2 text-sm text-center rounded-full shadow-sm w-1/5 my-10 hover:bg-[#707070]" onClick={() => { 
-                                handleToggleFavMeetupClick(meetup.id)}}>{meetup.fav ? '♥' : '♡'}</button>
+                            <button className="bg-[#2C2A2A] text-[#ffffff] px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 my-10 hover:bg-[#707070]" onClick={() => { 
+                                handleToggleMeetupClick(meetup.id)}}>{meetup.fav ? '♥' : '♡'}</button>
                         </article>)}
                 </section>
             </main>}
             {view === 'network-rules' && <NetworkRules />}
 
             <footer className="text-white bg-[#d9d9d9] fixed flex bottom-0 w-full h-[4rem] items-center justify-center">
-                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-lg shadow-sm w-1/5 mx-10 hover:bg-[#707070]" onClick={handleNavigateToHome}>Home</button>
-                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-lg shadow-sm w-1/5 my-10 mx-10 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>New Meetup</button>
+                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-lg shadow-sm w-32 mx-10 hover:bg-[#707070]" onClick={handleNavigateToHome}>Home</button>
+                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-lg shadow-sm w-32 my-10 mx-10 hover:bg-[#707070]" onClick={handleCreateMeetupClick}>New Meetup</button>
             </footer>
 
             {modal === 'create-meetup' && <CreateMeetupModal onMeetupCreated={handleMeetupCreated} onCreateMeetupCancelled={handleCreateMeetupCancelled} />}

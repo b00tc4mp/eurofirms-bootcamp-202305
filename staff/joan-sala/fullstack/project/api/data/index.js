@@ -19,7 +19,7 @@ const user = new Schema({
     
     image: {
         type: String,
-        require: true
+        required: true
         //required: optional
     },
     favs: [
@@ -51,11 +51,11 @@ const meetup = new Schema({
     },
     type: {
         type: String,
-        require: true
+        required: true
     },
     date: {
         type: Date,
-        require: true,
+        required: true,
         default: Date.now
     },
     adress:{
@@ -63,8 +63,14 @@ const meetup = new Schema({
     },
     dateMeetup: {
         type: Date,
-        require: true
+        required: true
+    },
+    likes:{
+        type:Number,
+        required: true,
+        default: 0
     }
+ 
 })
 const User = model('User', user)
 const Meetup = model('Meetup', meetup)

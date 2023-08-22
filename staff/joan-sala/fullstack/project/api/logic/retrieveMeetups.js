@@ -27,7 +27,7 @@ function retrieveMeetups(userId) {
                
                 if (author?._id) {
                     author.id = author._id.toString()
-                    //contLikes++
+                    
                     delete author._id
                 }
                 meetup.fav = user.favs.some(fav => fav.toString() === meetup.id)

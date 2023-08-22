@@ -68,7 +68,7 @@ const meetup = new Schema({
     contLikes: {
         type:Number,
         require: true, 
-        default: 0 // para o dar problemas
+        default: 0 // para no dar problemas
     }
 })
 const User = model('User', user)
