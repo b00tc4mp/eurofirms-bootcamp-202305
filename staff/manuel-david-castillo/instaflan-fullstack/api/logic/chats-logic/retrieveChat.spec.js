@@ -1,6 +1,7 @@
+debugger
 require('dotenv').config()
 
-const retrieveChats = require('./retrieveChats')
+const retrieveChat = require('./retrieveChat')
 const mongoose = require('mongoose')
 
 const { MONGODB_URL } = process.env
@@ -9,7 +10,7 @@ const { User } = require('../../data/models')
 const { Chat } = require('../../data/models')
 const { expect } = require('chai')
 
-describe('retrieveChats', () => {
+describe('retrieveChat', () => {
     before(() => mongoose.connect(`${MONGODB_URL}/instaflan-test`))
 
     let name
@@ -22,10 +23,7 @@ describe('retrieveChats', () => {
     let password2
     let userId2
 
-    let name3
-    let email3
-    let password3
-    let userId3
+    let chatId
 
     beforeEach(() => {
         name = `name-${Math.random()}`
@@ -36,42 +34,43 @@ describe('retrieveChats', () => {
         email2 = `user-${Math.random()}@gmail.com`
         password2 = `pass-${Math.random()}`
 
-        name3 = `name-${Math.random()}`
-        email3 = `user-${Math.random()}@gmail.com`
-        password3 = `pass-${Math.random()}`
-
-        text = `test-${Math.random()}`
-
         return Promise.all([User.create({ name, email, password }),
-        User.create({ name: name2, email: email2, password: password2 }),
-        User.create({ name: name3, email: email3, password: password3 })])
-            .then(([user, user2, user3]) => {
+        User.create({ name: name2, email: email2, password: password2 })])
+            .then(([user, user2]) => {
                 userId = user.id
                 userId2 = user2.id
-                userId3 = user3.id
 
                 const date = new Date()
                 const messages = []
                 const users = [user._id, user2._id]
-                const users2 = [user._id, user3._id]
 
-                return Promise.all([Chat.create({ users, messages, date }),
-                Chat.create({ users: users2, messages, date })])
+                return Chat.create({ users, messages, date })
+            })
+            .then(chat => {
+                chatId = chat.id
             })
     })
 
     it('retrieve chats correct', () =>
-        retrieveChats(userId)
-            .then(chats => {
-                expect(chats.length).to.equal(2)
+        retrieveChat(userId, chatId)
+            .then(chat => {
+                expect(chat.id).to.be.equal(chatId)
             })
     )
 
-    it('fail for chats not found', () =>
-        retrieveChats('123456123456123456123456')
+    it('fail for chat not found', () =>
+        retrieveChat(userId, '123456123456123456123456')
             .catch(error => {
                 expect(error).to.be.instanceOf(Error)
-                expect(error.message).to.equal('chats not found')
+                expect(error.message).to.equal('chat not found')
+            })
+    )
+
+    it('fail for user not found', () =>
+        retrieveChat('123456123456123456123456', chatId)
+            .catch(error => {
+                expect(error).to.be.instanceOf(Error)
+                expect(error.message).to.equal('user not found')
             })
     )
 

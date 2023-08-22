@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const retrieveChats = require('./retrieveChats')
+const numberChatsNotReading = require('./numberChatsNotReading')
 const mongoose = require('mongoose')
 
 const { MONGODB_URL } = process.env
@@ -9,7 +9,7 @@ const { User } = require('../../data/models')
 const { Chat } = require('../../data/models')
 const { expect } = require('chai')
 
-describe('retrieveChats', () => {
+describe('numberChatsNotReading', () => {
     before(() => mongoose.connect(`${MONGODB_URL}/instaflan-test`))
 
     let name
@@ -22,10 +22,7 @@ describe('retrieveChats', () => {
     let password2
     let userId2
 
-    let name3
-    let email3
-    let password3
-    let userId3
+    let chatId
 
     beforeEach(() => {
         name = `name-${Math.random()}`
@@ -36,39 +33,32 @@ describe('retrieveChats', () => {
         email2 = `user-${Math.random()}@gmail.com`
         password2 = `pass-${Math.random()}`
 
-        name3 = `name-${Math.random()}`
-        email3 = `user-${Math.random()}@gmail.com`
-        password3 = `pass-${Math.random()}`
-
         text = `test-${Math.random()}`
 
         return Promise.all([User.create({ name, email, password }),
-        User.create({ name: name2, email: email2, password: password2 }),
-        User.create({ name: name3, email: email3, password: password3 })])
-            .then(([user, user2, user3]) => {
+        User.create({ name: name2, email: email2, password: password2 })])
+            .then(([user, user2]) => {
                 userId = user.id
                 userId2 = user2.id
-                userId3 = user3.id
 
                 const date = new Date()
                 const messages = []
                 const users = [user._id, user2._id]
-                const users2 = [user._id, user3._id]
+                const unreadFor = [user._id]
 
-                return Promise.all([Chat.create({ users, messages, date }),
-                Chat.create({ users: users2, messages, date })])
+                return Chat.create({ users, messages, date, unreadFor })
             })
     })
 
-    it('retrieve chats correct', () =>
-        retrieveChats(userId)
-            .then(chats => {
-                expect(chats.length).to.equal(2)
+    it('retrieve number of chats not reading correct', () =>
+        numberChatsNotReading(userId)
+            .then(count => {
+                expect(count).to.be.equal(1)
             })
     )
 
-    it('fail for chats not found', () =>
-        retrieveChats('123456123456123456123456')
+    it('chats not found', () =>
+        numberChatsNotReading('123456123456123456123456')
             .catch(error => {
                 expect(error).to.be.instanceOf(Error)
                 expect(error.message).to.equal('chats not found')
