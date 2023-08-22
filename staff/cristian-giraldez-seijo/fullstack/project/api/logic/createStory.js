@@ -1,9 +1,11 @@
 const { Story, User } = require('../data')
 const { validateId, validateRequiredString, validateString, validateBoolean } = require('./helpers/validators')
 
-function createStory(userId, title, sumary, text, question, shortcut = false, origin = null) {
+function createStory(userId, title, sumary, text, question, storyId = null, origin = null, shortcut = false) {
     // TODO validate
     validateId(userId)
+    if (storyId)
+        validateId(storyId)
     validateRequiredString(title)
     validateString(sumary)
     validateString(text)
@@ -32,7 +34,20 @@ function createStory(userId, title, sumary, text, question, shortcut = false, or
 
             return Story.create(data)
         })
-        .then(() => { })
+        .then((story) => {
+            return Promise.all([Story.findById(storyId), Story.findById(story._id.toString(), '-__v')])
+                .then(([parentStory, childStory]) => {
+                    if (!parentStory)
+                        return
+                    if (!(parentStory.origin))
+                        childStory.origin = parentStory._id
+                    else
+                        childStory.origin = parentStory.origin
+                    parentStory.options.push(childStory._id)
+                    return Promise.all([parentStory.save(), childStory.save()])
+                })
+                .then(() => { })
+        })
 }
 
 module.exports = createStory

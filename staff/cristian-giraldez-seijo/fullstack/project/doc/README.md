@@ -87,3 +87,4 @@ Comment
 - DONE implement api route for delete story
 - DONE implement app logic for delete story
 - DONE implement delete story component
+- DONE implement api logic for create story options(Child stories)
