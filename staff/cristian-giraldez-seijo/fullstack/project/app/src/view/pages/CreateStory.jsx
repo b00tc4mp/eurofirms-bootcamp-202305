@@ -1,7 +1,7 @@
 import context from '../../context'
 import createStory from '../../logic/createStory'
 
-const CreateStoryModal = ({ onStoryCreated }) => {
+const CreateStory = ({ onStoryCreated }) => {
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -42,4 +42,4 @@ const CreateStoryModal = ({ onStoryCreated }) => {
     )
 }
 
-export default CreateStoryModal
+export default CreateStory

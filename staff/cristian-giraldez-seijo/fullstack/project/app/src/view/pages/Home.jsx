@@ -4,6 +4,8 @@ import LoginModal from '../modals/LoginModal'
 import RegisterModal from '../modals/RegisterModal'
 import ShowStories from './ShowStories'
 import ShowStory from './ShowStory'
+import CreateStory from './CreateStory'
+import EditStory from './EditStory'
 import context from '../../context'
 
 const Home = () => {
@@ -11,6 +13,7 @@ const Home = () => {
     const [modal, setModal] = useState(null)
     const [user, setUser] = useState(null)
     const [storyId, setStoryId] = useState(null)
+    const [story, setStory] = useState(null)
 
     useEffect(() => {
         try {
@@ -18,16 +21,11 @@ const Home = () => {
                 .then(user => setUser(user))
                 .catch(error => alert(error.message))
         } catch (error) { alert(error.message) }
-    }, [context.token])
+    }, [])
 
     const handleNavigateToRegister = () => setModal('register')
 
     const handleNavigateToLogin = () => setModal('login')
-
-    const handleStories = event => {
-        event.preventDefault()
-        setView('Stories')
-    }
 
     const handleClose = () => setModal(null)
 
@@ -39,21 +37,30 @@ const Home = () => {
         context.token = null
         setUser(null)
         setModal('login')
+        setView('Stories')
     }
 
     const handleShowStory = (storyId) => {
         setStoryId(storyId)
-        setView('Story')
+        setView('Story') 
     }
 
+    const handleShowEditStory = (story) => {
+        setStory(story)
+        setView('EditStory')
+    }
+
+    const handleShowCreateStory = () => setView('CreateStory')
+const handleStoryCreated = () => setView('Stories')
     const handleBackToStories = () => {
-        setStoryId(null)
-        setView('Stories')
+setStoryId(null)
+setView('Stories')
     }
 
     return (
         <div className="home">
-            <header className="home-header">
+            <header className="">
+            <a className="cursor-pointer" onClick={handleBackToStories}>Talking characters!</a>
                 {!modal && !context.token && (
                     <button type="button" onClick={handleNavigateToLogin} id="login">
                         Sign in
@@ -69,13 +76,13 @@ const Home = () => {
                 {modal === 'register' && <RegisterModal onRegisterSuccess={handleLoggedSuccess} onNavigateToLogin={handleNavigateToLogin} />}
             </header>
             <main>
-                <h1>Read, write, and talking!</h1>
-                <p>"Writing is the painting of the voice", Voltaire.</p>
-                {view === 'Stories' && <ShowStories onShowStory={handleShowStory} />}
-                {view === 'Story' && <ShowStory storyId={storyId} onBackToStories={handleBackToStories} view={view} />}
+            {view === 'Stories' && <ShowStories onShowStory={handleShowStory} onShowCreateStory={handleShowCreateStory} />}
+                {view === 'Story' && <ShowStory storyId={storyId} onShowEditStory={handleShowEditStory} />}
+                {view === 'CreateStory' && <CreateStory onStoryCreated={handleStoryCreated}/>}
+                {view === 'EditStory' && <EditStory story={story} onStoryEdited={handleShowStory} onStoryDeleted={handleBackToStories}/>}
+                    
             </main>
-            <footer></footer>
-        </div>
+                    </div>
     )
 }
 

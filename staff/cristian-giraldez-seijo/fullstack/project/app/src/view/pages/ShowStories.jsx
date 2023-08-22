@@ -2,10 +2,9 @@ import { useState, useEffect } from "react"
 import context from "../../context"
 import retrieveStories from '../../logic/retrieveStories'
 import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
-import CreateStoryModal from "../modals/CreateStoryModal"
+import CreateStory from "./CreateStory"
 
-const ShowStories = (props) => {
-    const [storyId, setStoryId] = useState(null)
+const ShowStories = ({ onShowStory, onShowCreateStory }) => {
     const [stories, setStories] = useState(null)
 
     useEffect(() => {
@@ -18,15 +17,12 @@ const ShowStories = (props) => {
 
     const handleShowStory = (event, storyId) => {
         event.preventDefault()
-        props.onShowStory(storyId)
+        onShowStory(storyId)
     }
 
-    const handleStoryCreated = () => {
-        try {
-            retrieveStories()
-                .then(stories => setStories(stories))
-                .catch(error => alert(error.message))
-        } catch (error) { alert(error.message) }
+    const handleShowCreateStory = (event) => {
+        event.preventDefault()
+        onShowCreateStory()
     }
 
     let userId
@@ -35,25 +31,28 @@ const ShowStories = (props) => {
         userId = extractUserIdFromToken(context.token)
 
     return (
-        <section className='stories-container'>
-            <h2>New updated stories</h2>
-            {userId && <>
-                <a href="">write your story</a>
-<CreateStoryModal onStoryCreated={handleStoryCreated}/>
-            </>}
-            {stories && stories.map(story => {
-                return <article key={story.id}>
-                    <h4><a href="" onClick={event => handleShowStory(event, story.id)}>{story.title}</a></h4>
-                    <p>Author: {story.author.nickname}</p>
-                    {story.sumary !== '' && (
-                        <>
-                            <p>Sumary:</p>
-                            <p>{story.sumary}</p>
-                        </>
-                    )}
-                </article>
-            })}
-        </section>
+        <>
+            <h1>Read, write, and talking!</h1>
+            <p>"Writing is the painting of the voice", Voltaire.</p>
+            <section className='stories-container'>
+                <h2>New updated stories</h2>
+                {userId && <>
+                    <a href="" onClick={handleShowCreateStory}>write your story</a>
+                </>}
+                {stories && stories.map(story => {
+                    return <article key={story.id}>
+                        <h4><a href="" onClick={(event) => handleShowStory(event, story.id)}>{story.title}</a></h4>
+                        <p>Author: {story.author.nickname}</p>
+                        {story.sumary !== '' && (
+                            <>
+                                <p>Sumary:</p>
+                                <p>{story.sumary}</p>
+                            </>
+                        )}
+                    </article>
+                })}
+            </section>
+        </>
     )
 }
 
