@@ -10,7 +10,6 @@ function retrieveChat(userId, chatId) {
             if (!chat) throw new Error('chat not found')
             if (!user) throw new Error('user not found')
 
-            if (!chat.unreadFor) chat.unreadFor = []
             const index = chat.unreadFor.findIndex(userId => userId.toString() === user._id.toString())
             if (index > -1) {
                 chat.unreadFor.splice(index, 1)
@@ -23,7 +22,6 @@ function retrieveChat(userId, chatId) {
                 .populate('users', 'name image').sort({ date: -1 }).lean()
         })
         .then(chat => {
-            if (!chat) throw new Error('empty chats')
 
             chat.id = chat._id.toString()
             delete chat._id
@@ -32,17 +30,13 @@ function retrieveChat(userId, chatId) {
             chat.users.splice(index, 1)
 
             chat.users.forEach(user => {
-                if (user._id) {
-                    user.id = user._id
-                    delete user._id
-                }
+                user.id = user._id
+                delete user._id
             })
 
             chat.messages.forEach(message => {
-                if (message._id) {
-                    message.id = message._id
-                    delete message._id
-                }
+                message.id = message._id.toString()
+                delete message._id
             })
 
             return chat

@@ -16,13 +16,30 @@ describe('retrieveUserById', () => {
     let password
     let userId
 
+    let name2
+    let email2
+    let password2
+    let userId2
+
     beforeEach(() => {
         name = `name-${Math.random()}`
         email = `user-${Math.random()}@gmail.com`
         password = `pass-${Math.random()}`
 
-        return User.create({ name, email, password })
-            .then(user => userId = user.id)
+        name2 = `name-${Math.random()}`
+        email2 = `user-${Math.random()}@gmail.com`
+        password2 = `pass-${Math.random()}`
+
+        return Promise.all([User.create({ name, email, password }),
+        User.create({ name: name2, email: email2, password: password2 })])
+            .then(([user, user2]) => {
+                userId = user.id
+                userId2 = user2.id
+
+                user.following.push(user2._id)
+
+                return user.save()
+            })
     })
 
     it('user retrieve correct', () =>

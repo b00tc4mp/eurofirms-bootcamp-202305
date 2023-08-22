@@ -24,6 +24,7 @@ describe('retrieveChat', () => {
     let userId2
 
     let chatId
+    let chatId2
 
     beforeEach(() => {
         name = `name-${Math.random()}`
@@ -43,11 +44,24 @@ describe('retrieveChat', () => {
                 const date = new Date()
                 const messages = []
                 const users = [user._id, user2._id]
+                const unreadFor = [user._id]
 
-                return Chat.create({ users, messages, date })
+                const message = {
+                    author: user._id,
+                    text: text,
+                    date: new Date(),
+                    edit: false,
+                    delete: false
+                }
+
+                messages.push(message)
+
+                return Promise.all([Chat.create({ users, messages, date }),
+                Chat.create({ users, messages, date, unreadFor })])
             })
-            .then(chat => {
+            .then(([chat, chat2]) => {
                 chatId = chat.id
+                chatId2 = chat2.id
             })
     })
 
@@ -55,6 +69,13 @@ describe('retrieveChat', () => {
         retrieveChat(userId, chatId)
             .then(chat => {
                 expect(chat.id).to.be.equal(chatId)
+            })
+    )
+
+    it('retrieve chats correct', () =>
+        retrieveChat(userId, chatId2)
+            .then(chat => {
+                expect(chat.id).to.be.equal(chatId2)
             })
     )
 

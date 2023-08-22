@@ -1,4 +1,4 @@
-const {Schema, model, ObjectId} = require('mongoose')
+const { Schema, model, ObjectId } = require('mongoose')
 
 const notification = new Schema({
     text: {
@@ -16,7 +16,7 @@ const notification = new Schema({
         required: false
     },
     date: {
-        type: Date, 
+        type: Date,
         default: Date.now
     }
 })
@@ -29,10 +29,10 @@ const user = new Schema({
     },
     image: {
         type: String
-    }, 
+    },
     description: {
         type: String
-    }, 
+    },
     email: {
         type: String,
         required: true,
@@ -45,23 +45,29 @@ const user = new Schema({
     },
     favPosts: [
         {
-            type: ObjectId, 
-            ref: 'Post'
+            type: ObjectId,
+            ref: 'Post',
+            required: true
         }
     ],
     following: [
         {
             type: ObjectId,
-            ref: 'User'
+            ref: 'User',
+            required: true
         }
     ],
     followed: [
         {
             type: ObjectId,
-            ref: 'User'
+            ref: 'User',
+            required: true
         }
     ],
-    notifications: [notification]
+    notifications: {
+        type: [notification],
+        required: true
+    }
 })
 
 const comment = new Schema({
@@ -75,7 +81,7 @@ const comment = new Schema({
         required: true
     },
     date: {
-        type: Date, 
+        type: Date,
         default: Date.now
     }
 })
@@ -83,18 +89,18 @@ const comment = new Schema({
 const post = new Schema({
     text: {
         type: String,
-        required: true 
+        required: true
     },
     image: {
         type: String,
         required: true
-    }, 
+    },
     likes: {
         type: Number,
         required: true
     },
     date: {
-        type: Date, 
+        type: Date,
         default: Date.now
     },
     author: {
@@ -116,7 +122,7 @@ const message = new Schema({
         require: true
     },
     date: {
-        type: Date, 
+        type: Date,
         default: Date.now
     },
     edit: {
@@ -136,9 +142,9 @@ const chat = new Schema({
             ref: 'User'
         }
     ],
-    messages: [ message ],
+    messages: [message],
     date: {
-        type: Date, 
+        type: Date,
         default: Date.now
     },
     unreadFor: [
@@ -155,4 +161,4 @@ const Post = model('Post', post)
 const Chat = model('Chat', chat)
 /* const Message = model('Message', message) */
 
-module.exports = {User, Post, Chat}
+module.exports = { User, Post, Chat }

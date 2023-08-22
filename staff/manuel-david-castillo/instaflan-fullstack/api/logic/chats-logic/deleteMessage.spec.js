@@ -24,6 +24,7 @@ describe('deleteMessage', () => {
     let userId2
 
     let chatId
+    let messageId
 
     beforeEach(() => {
         name = `name-${Math.random()}`
@@ -60,8 +61,57 @@ describe('deleteMessage', () => {
             })
             .then(chat => {
                 chatId = chat.id
+                return Chat.findById(chatId, '-__v').lean()
+            })
+            .then(chat => {
+                messageId = chat.messages[0]._id.toString()
             })
     })
+
+    it('delete message correct', () =>
+        deleteMessage(userId, messageId)
+            .then(() => {
+                return Chat.findById(chatId, '-__v').lean()
+            })
+            .then(chat => {
+                expect(chat.messages[0].text).to.equal('')
+            })
+    )
+
+    it('fails for user not found', () =>
+        deleteMessage('123456123456123456123456', messageId)
+            .catch(error => {
+                expect(error).to.be.instanceOf(Error)
+                expect(error.message).to.equal('user not found')
+            })
+    )
+
+    it('fails for chat not found', () =>
+        deleteMessage(userId, '123456123456123456123456')
+            .catch(error => {
+                expect(error).to.be.instanceOf(Error)
+                expect(error.message).to.equal('chat not found')
+            })
+    )
+
+    it('fails for message author is different of user', () =>
+        deleteMessage(userId2, messageId)
+            .catch(error => {
+                expect(error).to.be.instanceOf(Error)
+                expect(error.message).to.equal('author of message and user are diferent')
+            })
+    )
+
+    it('fails for message already deleted', () =>
+        deleteMessage(userId, messageId)
+            .then(() => {
+                return deleteMessage(userId, messageId)
+            })
+            .catch(error => {
+                expect(error).to.be.instanceOf(Error)
+                expect(error.message).to.equal('message already deleted')
+            })
+    )
 
     after(() => mongoose.disconnect())
 })

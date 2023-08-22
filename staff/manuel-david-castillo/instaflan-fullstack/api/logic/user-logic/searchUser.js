@@ -9,7 +9,6 @@ function searchUser(userId, text) {
 
     return User.find({ name: { $regex: regex } }, { name: 1, image: 1 }).lean()
         .then(users => {
-            if (!users) throw new Error('users not found')
 
             users.forEach(user => {
                 user.id = user._id.toString()

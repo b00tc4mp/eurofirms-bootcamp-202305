@@ -68,13 +68,5 @@ describe('retrieveUsersNotFollowed', () => {
             })
     )
 
-    it('fail for users not found', () =>
-        retrieveUsersNotFollowed('123456123456123456123456')
-            .catch(error => {
-                expect(error).to.be.instanceOf(Error)
-                expect(error.message).to.equal('users not found')
-            })
-    )
-
     after(() => mongoose.disconnect())
 })

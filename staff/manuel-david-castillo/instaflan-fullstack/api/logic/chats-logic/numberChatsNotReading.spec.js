@@ -46,7 +46,8 @@ describe('numberChatsNotReading', () => {
                 const users = [user._id, user2._id]
                 const unreadFor = [user._id]
 
-                return Chat.create({ users, messages, date, unreadFor })
+                return Promise.all([Chat.create({ users, messages, date, unreadFor }),
+                Chat.create({ users, messages, date })])
             })
     })
 
@@ -54,14 +55,6 @@ describe('numberChatsNotReading', () => {
         numberChatsNotReading(userId)
             .then(count => {
                 expect(count).to.be.equal(1)
-            })
-    )
-
-    it('chats not found', () =>
-        numberChatsNotReading('123456123456123456123456')
-            .catch(error => {
-                expect(error).to.be.instanceOf(Error)
-                expect(error.message).to.equal('chats not found')
             })
     )
 

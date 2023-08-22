@@ -43,5 +43,11 @@ describe('createChat', () => {
             .then(chatId => expect(chatId).to.exist)
     )
 
+    it('chat already exists correct', () =>
+        createChat(userId, userId2)
+            .then(() => createChat(userId, userId2))
+            .then(chatId => expect(chatId).to.exist)
+    )
+
     after(() => mongoose.disconnect())
 })

@@ -32,13 +32,5 @@ describe('searchUser', () => {
             })
     )
 
-    it('fail for user not found', () =>
-        searchUser(userId, '123456123456123456123456')
-            .catch(error => {
-                expect(error).to.be.instanceOf(Error)
-                expect(error.message).to.equal('users not found')
-            })
-    )
-
     after(() => mongoose.disconnect())
 })

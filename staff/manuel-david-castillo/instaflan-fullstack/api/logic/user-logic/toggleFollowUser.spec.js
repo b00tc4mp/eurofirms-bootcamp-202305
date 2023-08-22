@@ -35,12 +35,30 @@ describe('toggleFollowUser', () => {
             .then(([user, user2]) => {
                 userId = user.id
                 userId2 = user2.id
+
+                user.following.push(user2._id)
+                user2.followed.push(user._id)
+
+                return Promise.all([user.save(), user2.save()])
             })
     })
 
     it('users retrieve correct', () =>
         toggleFollowUser(userId, userId2)
-            .then(user => {
+            .then(() => {
+
+                return Promise.all([User.findById(userId, '-__v').lean(),
+                User.findById(userId2, '-__v').lean()])
+            })
+            .then(([user, user2]) => {
+
+                expect(user.following.includes(user2._id.toString())).to.be.false
+            })
+    )
+
+    it('users retrieve correct', () =>
+        toggleFollowUser(userId2, userId)
+            .then(() => {
 
                 return Promise.all([User.findById(userId, '-__v').lean(),
                 User.findById(userId2, '-__v').lean()])

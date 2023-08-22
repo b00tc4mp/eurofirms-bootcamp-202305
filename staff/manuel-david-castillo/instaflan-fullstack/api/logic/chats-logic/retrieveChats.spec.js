@@ -55,6 +55,16 @@ describe('retrieveChats', () => {
                 const users = [user._id, user2._id]
                 const users2 = [user._id, user3._id]
 
+                const message = {
+                    author: user._id,
+                    text: text,
+                    date: new Date(),
+                    edit: false,
+                    delete: false
+                }
+
+                messages.push(message)
+
                 return Promise.all([Chat.create({ users, messages, date }),
                 Chat.create({ users: users2, messages, date })])
             })
@@ -64,14 +74,6 @@ describe('retrieveChats', () => {
         retrieveChats(userId)
             .then(chats => {
                 expect(chats.length).to.equal(2)
-            })
-    )
-
-    it('fail for chats not found', () =>
-        retrieveChats('123456123456123456123456')
-            .catch(error => {
-                expect(error).to.be.instanceOf(Error)
-                expect(error.message).to.equal('chats not found')
             })
     )
 
