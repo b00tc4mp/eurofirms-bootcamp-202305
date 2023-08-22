@@ -9,13 +9,11 @@ export default function Register() {
         event.preventDefault()
 
         const name = event.target.name.value
-        const image = event.target.image.value
-        const description = event.target.description.value
         const email = event.target.email.value
         const password = event.target.password.value
 
         try {
-            registerUser(name, image, description, email, password)
+            registerUser(name, email, password)
                 .then(() => {
                     navigate('/login')
                 })
@@ -33,14 +31,6 @@ export default function Register() {
             <div className="flex flex-col justify-start items-start mb-4">
                 <label className="block text-xl font-semibold text-color1 mb-1 ml-1" htmlFor="name">Name:</label>
                 <input id="name" className="p-2 rounded-xl border-color2 border-2 w-full" placeholder="name" type="text" />
-            </div>
-            <div className="flex flex-col justify-start items-start mb-4">
-                <label className="block text-xl font-semibold text-color1 mb-1 ml-1" htmlFor="image">Image:</label>
-                <input type="text" id="image" className="p-2 rounded-xl border-color2 border-2 w-full" placeholder="image url" />
-            </div>
-            <div className="flex flex-col justify-start items-start mb-4">
-                <label className="block text-xl font-semibold text-color1 mb-1 ml-1" htmlFor="description">Description:</label>
-                <input type="text" id="description" className="p-2 rounded-xl border-color2 border-2 w-full" placeholder="description" />
             </div>
             <div className="flex flex-col justify-start items-start mb-4">
                 <label className="block text-xl font-semibold text-color1 mb-1 ml-1" htmlFor="email">Email:</label>
