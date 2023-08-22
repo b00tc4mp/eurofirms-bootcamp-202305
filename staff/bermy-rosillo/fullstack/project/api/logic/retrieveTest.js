@@ -10,7 +10,7 @@ function retrieveTest(userId, testId) {
             if (!user) throw new Error('user not found')
             if (!test) throw new Error('test not found')
 
-            if (test.teacher.toString() !== userId) throw new Error('test does not belong to user')
+            //if (test.teacher.toString() !== userId) throw new Error('test does not belong to user')
 
             delete test._id
             delete test.teacher

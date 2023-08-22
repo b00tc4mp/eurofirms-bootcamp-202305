@@ -171,19 +171,19 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
             }
         })
-        //create answer
-        api.post('/answers/:studentId/:testId', jsonBodyParser, (req, res) => {
+        //create answer 
+        api.post('/answers/tests/:testId', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
                 const data = jwt.verify(token,process.env.JWT_SECRET)
                 const userId = data.sub
-                const studentId = req.params.studentId
+                //const studentId = req.params.studentId
                 const testId = req.params.testId
                 const {answer} = req.body
 
-                createAnswer(studentId,testId,answer)
-                    .then(test => res.json(test))
+                createAnswer(userId,testId,answer)
+                    .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })

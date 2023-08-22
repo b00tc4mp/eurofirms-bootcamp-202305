@@ -27,17 +27,17 @@ function TeacherHome(props) {
             alert(error.message)
         }
 
-        try{
+        try {
             retrieveTeacherListTest(context.token)
-            .then(tests=> setTests(tests))
-            .catch(error => alert(error.message))
-        }catch(error){
+                .then(tests => setTests(tests))
+                .catch(error => alert(error.message))
+        } catch (error) {
             alert(error.message)
         }
 
-    }, 
+    },
 
-    [])
+        [])
 
     const handleLoggedOut = () => {
         context.token = null
@@ -50,12 +50,20 @@ function TeacherHome(props) {
         setHomeView('create-test')
     }
     //--
-    const handleOnReturnHome =()=>{
-        setHomeView('list-test')
-        
+    const handleOnReturnHome = () => {
+        try {
+            retrieveTeacherListTest(context.token)
+                .then(tests => {
+                    setTests(tests)
+                    setHomeView('list-test')
+                })
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
     }
     //--
-    const handleRetrieveStudentsList =(event,testId) =>{
+    const handleRetrieveStudentsList = (event, testId) => {
         event.preventDefault()
         setTestId(testId)
         setHomeView('retrieve-students-list')
@@ -65,26 +73,26 @@ function TeacherHome(props) {
 
     return <div className="home-view ">
         <header className="home-header">
-            <h1 className="home-title">Teacher {user ?user.name : 'User'} </h1>
+            <h1 className="home-title">Teacher {user ? user.name : 'User'} </h1>
             <button className="btn-teacher-home" onClick={handleLoggedOut}>Logout </button>
         </header>
-        
+
         <main className="home-main">
-           
-            { homeView === 'list-test' && <section className="home-tests">
-            <h1>Choose a test</h1>
+
+            {homeView === 'list-test' && <section className="home-tests">
+                <h1>Choose a test</h1>
                 {tests && tests.map(test => {
                     return <article key={test.id}>
                         <h3>{test.subject}</h3>
-                        <h3><a className="btn-math" href="" onClick={(event)=>handleRetrieveStudentsList(event,test.id)}>{test.title}</a></h3>
+                        <h3><a className="btn-math" href="" onClick={(event) => handleRetrieveStudentsList(event, test.id)}>{test.title}</a></h3>
                     </article>
                 })}
             </section>}
 
             {homeView === 'create-test' && <CreateTest userName={user.name} onReturnHome={handleOnReturnHome} />}
-            {homeView === 'retrieve-students-list' && <RetrieveStudentsList testId={testId}    onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />}
+            {homeView === 'retrieve-students-list' && <RetrieveStudentsList testId={testId} onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />}
         </main>
-       
+
         <footer className="home-footer">
             <button className="btn-teacher-home" onClick={handleCreateTest}>New test</button>
         </footer>

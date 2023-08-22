@@ -78,10 +78,10 @@ function RetrieveStudentResponse(props) {
                             <form className="student-answers-form" onSubmit={handleSubmitAnswerAssessment}>
                                 <input type="hidden" id="answerId" defaultValue={answer.id}></input>
                                 <label htmlFor="score">Score: </label>
-                                <input id="score" type="text" />
-
+                                <input id="score" type="text" defaultValue={answer.score} /> 
+                            
                                 <label htmlFor="assessment">assessment: </label>
-                                <textarea id="assessment" type="text" rows="4" cols="20" ></textarea>
+                                <textarea id="assessment" type="text" rows="4" cols="20" defaultValue={answer.assessment} ></textarea>
                                 <button type="submit" >Send</button>
                             </form>
                         </article>
