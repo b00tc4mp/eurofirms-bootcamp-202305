@@ -14,7 +14,7 @@ function checkDictio(dictionary, str) {
         invalid = str[i]
         break
     }
-    if (invalid !== '') throw new Error('Caracter ' + invalid + ' no válido')
+    if (invalid !== '') throw new Error('char ' + invalid + ' not valid')
     return true
 }
 /**
@@ -27,8 +27,8 @@ function checkDictio(dictionary, str) {
  * `option` are defined as constants in the `validateString` function. Here are the available options
  */
 function validateString(data, option = 0) {
-    if (typeof data !== 'string') throw new Error('El parámetro no es una cadena')
-    if (data === '') throw new Error('La cadena está vacía')
+    if (typeof data !== 'string') throw new Error('param is not a string')
+    if (data === '') throw new Error('the string is empty')
 
     const charsValid1 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     const charsValid2 = '+/,;:._-$'
@@ -48,12 +48,12 @@ function validateString(data, option = 0) {
             const atPos = data.indexOf('@')
             const dotPos = data.lastIndexOf('.')
             if (atPos < 0) throw new Error('email with no @')
-            if (atPos === 0) throw new Error('Correo con @ al principio')
-            if (atPos === data.length - 1) throw new Error('Correo con @ al final')
-            if (dotPos < 0) throw new Error('Correo sin .')
-            if (dotPos === 0) throw new Error('Correo con . al principio')
-            if (dotPos === data.length - 1) throw new Error('Correo con . al final')
-            if (dotPos - atPos < 2) throw new Error('@ y . mal colocados')
+            if (atPos === 0) throw new Error('email with @ at the beginning')
+            if (atPos === data.length - 1) throw new Error('email with @ at the end')
+            if (dotPos < 0) throw new Error('email without .')
+            if (dotPos === 0) throw new Error('email with . at the beginning')
+            if (dotPos === data.length - 1) throw new Error('email with . at the end')
+            if (dotPos - atPos < 2) throw new Error('@ and . wrong placed')
 
             const strAux1 = data.slice(0, atPos)
             const strAux2 = data.slice(atPos + 1)
@@ -63,13 +63,13 @@ function validateString(data, option = 0) {
             break
         case validateString.PASSWORD:
             checkDictio(charsValid1 + charsValid2 + charsValid4 + '@', data)
-            if (data.length < 3) throw new Error('La clave debe tener 3 o más caracteres')
+            if (data.length < 3) throw new Error('the password has to be 3 o more chars length')
 
             break
         case validateString.URL:
             checkDictio(charsValid1 + charsValid2 + charsValid5, data)
             if (data.slice(0, 4).toLowerCase() !== 'http')
-                throw new Error('La dirección no empieza por http')
+                throw new Error('address do not begin with http')
 
             break
         case validateString.NAME:
@@ -78,10 +78,10 @@ function validateString(data, option = 0) {
             break
         case validateString.INTEGER:
             checkDictio(charsValid6, data)
-            if (data.length > 15) throw new Error('Número muy grande')
+            if (data.length > 15) throw new Error('number too big')
 
             break
-        default: throw new Error('Opción no definida')
+        default: throw new Error('option not defined')
     }
 }
 

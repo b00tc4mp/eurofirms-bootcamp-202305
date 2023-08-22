@@ -1,1 +1,0 @@
-{"id":"64d76594289934e6e08faa97","user":"64c7d50153318e2b671fdcc7","blocks":[{"x":0,"y":0,"width":40,"height":30,"orientation":0},{"x":90,"y":90,"width":30,"height":120,"orientation":0},{"x":40,"y":90,"width":50,"height":70,"orientation":0},{"x":40,"y":30,"width":60,"height":56,"orientation":1}]}
