@@ -64,6 +64,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
           'padding': '0.1rem 0.8rem',
           'border-radius': '0.5rem',
           'background-color': 'lightgray',
+          'box-shadow': '0.3rem 0.3rem 0.4rem gray',
         },
       
         '.basic-label': {
