@@ -18,8 +18,10 @@ function retrieveNotifications(userId) {
                 }
 
                 if (notification.post) {
-                    notification.post.id = notification.post._id.toString()
-                    delete notification.post._id
+                    if (notification.post._id) {
+                        notification.post.id = notification.post._id.toString()
+                        delete notification.post._id
+                    }
                 }
 
                 notification.id = notification._id.toString()

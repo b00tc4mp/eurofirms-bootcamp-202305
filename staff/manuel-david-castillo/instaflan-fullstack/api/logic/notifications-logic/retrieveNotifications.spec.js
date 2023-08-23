@@ -66,10 +66,11 @@ describe('retrieveNotifications', () => {
                 comments.push(comment2)
 
                 return Promise.all([Post.create({ author: user._id, image, text, likes, comments }),
+                Post.create({ author: user._id, image, text, likes, comments }),
                 User.findById(userId2, '-__v'),
                 User.findById(userId, '-__v')])
             })
-            .then(([post, user, user2]) => {
+            .then(([post, post2, user, user2]) => {
                 postId = post.id
 
                 const notification = {
@@ -85,8 +86,14 @@ describe('retrieveNotifications', () => {
                     date: new Date()
                 }
 
-                user.notifications.push(notification)
-                user.notifications.push(notification2)
+                const notification3 = {
+                    text: 'Like',
+                    user: user2._id,
+                    post: post._id,
+                    date: new Date()
+                }
+
+                user.notifications.push(notification, notification2, notification3)
 
                 return user.save()
             })
@@ -98,7 +105,7 @@ describe('retrieveNotifications', () => {
 
     it('retrieve notifications correct', () =>
         retrieveNotifications(userId2)
-            .then(notifications => expect(notifications.length).to.equal(2))
+            .then(notifications => expect(notifications.length).to.equal(3))
     )
 
     it('fail for user not found', () =>

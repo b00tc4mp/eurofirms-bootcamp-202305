@@ -22,10 +22,10 @@ function retrieveFavPosts(userId, userIdProfile) {
                 post.id = post._id.toString()
                 delete post._id
 
-
-                post.author.id = post.author._id.toString()
-                delete post.author._id
-
+                if (post.author._id) {
+                    post.author.id = post.author._id.toString()
+                    delete post.author._id
+                }
 
                 post.fav = true
 

@@ -155,7 +155,7 @@ export default function ProfileFavPosts() {
             <img className="w-full" src={post.image} alt={post.text} />
             <p className="m-2 text-color1 font-semibold ml-3">🤍{post.likes}</p>
             <p className="m-2 text-color1 font-semibold ml-3">{post.text}</p>
-            {post.comments && <div className="border-x-color5 border-x-8 bg-white p-1">
+            {post.comments.length > 0 && <div className="border-x-color5 border-x-8 bg-white p-1">
                 {post?.comments.map(comment => <article className="flex items-center m-1" key={comment.id}>
                     <img className="w-4 h-4 rounded-full object-cover mr-1" src={comment.author.image} alt="" />
                     <a onClick={(event) => handleProfile(event, comment.author.id)} className="text-xs text-color1 font-bold" href="">{comment.author.name}</a>

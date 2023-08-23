@@ -3,7 +3,6 @@ import context from "../../context"
 import { Link } from "react-router-dom"
 
 export default function Login() {
-    console.log('hola login')
 
     const handleLoginSubmit = event => {
         event.preventDefault()

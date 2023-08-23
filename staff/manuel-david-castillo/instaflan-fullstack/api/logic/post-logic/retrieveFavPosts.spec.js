@@ -70,6 +70,7 @@ describe('retrieveFavPosts', () => {
                 postId = post.id
 
                 user.favPosts.push(post._id)
+                user.favPosts.push(post2._id)
 
                 return user.save()
             })
@@ -78,9 +79,9 @@ describe('retrieveFavPosts', () => {
     it('retrieve favPost correct', () =>
         retrieveFavPosts(userId, userId)
             .then(() => {
-                return Post.find({ author: userId }, '-__v')
+                return User.findById(userId, '-__v')
             })
-            .then(posts => expect(posts.length).to.equal(2))
+            .then(user => expect(user.favPosts.length).to.equal(2))
     )
 
     it('fail for user not found', () =>

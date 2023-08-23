@@ -15,7 +15,6 @@ import FollowingModal from "../modals/FollowingModal";
 import FollowedModal from "../modals/FollowedModal";
 
 export default function Profile() {
-    console.log('profile')
     const navigate = context.navigate
 
     const params = useParams()
