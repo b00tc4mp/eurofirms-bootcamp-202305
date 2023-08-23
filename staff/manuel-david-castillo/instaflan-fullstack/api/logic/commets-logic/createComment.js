@@ -7,8 +7,8 @@ function createComment(userId, postId, text) {
     validateId(postId)
     validateText(text)
 
-    return Promise.all([Post.findById(postId, '-__v'), 
-        User.findById(userId, '-__v')])
+    return Promise.all([Post.findById(postId, '-__v'),
+    User.findById(userId, '-__v')])
         .then(([post, user]) => {
             if (!post) throw new Error('post not found')
             if (!user) throw new Error('user not found')
@@ -19,32 +19,27 @@ function createComment(userId, postId, text) {
                 date: new Date()
             }
 
-            if (!post.comments) post.comments = []
-
             post.comments.push(comment)
 
             User.findById(post.author)
-            .then(user => {
-                if (!user) throw new Error ('user of post not found')
+                .then(user => {
 
-                if(!user.notifications) user.notifications = []
+                    const notification = {
+                        text: 'Comment',
+                        user: userId,
+                        post: new ObjectId(postId),
+                        date: new Date()
+                    }
 
-                const notification = {
-                    text: 'Comment',
-                    user: userId,
-                    post: new ObjectId(postId),
-                    date: new Date()
-                }
+                    user.notifications.push(notification)
 
-                user.notifications.push(notification)
-
-               return user.save()
-            })
-            .then(()=> { })
+                    return user.save()
+                })
+                .then(() => { })
 
             return post.save()
         })
-        .then(()=>{ })
+        .then(() => { })
 }
 
 module.exports = createComment
