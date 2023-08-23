@@ -54,17 +54,17 @@ function RetrieveStudentResponse(props) {
         }
     }
 
-    return <div className="student-test-view">
-        <h1>Test</h1>
+    return <div className="test-view">
+
         {test && answers &&
-            <div className="student-test-form" >
+            <div className="test-form" >
 
                 <h3>Subject: {test.subject}</h3>
                 <h3>Title: {test.title}</h3>
                 <h3>Description: {test.description}</h3>
                 <h3>Attemps: {test.attemps}</h3>
 
-                <div className="student-answers-view">
+                <div className="answers-view">
 
 
                     <h1>Student answers</h1>
@@ -75,22 +75,20 @@ function RetrieveStudentResponse(props) {
                             {/* <label htmlFor="answer">Description</label>
                                 <textarea id="answer" type="text" rows="4" cols="50" deafaultValue={answer.description}></textarea> */}
                             <h3>Date:{answer.date}</h3>
-                            <form className="student-answers-form" onSubmit={handleSubmitAnswerAssessment}>
+                            <form className="answers-form" onSubmit={handleSubmitAnswerAssessment}>
                                 <input type="hidden" id="answerId" defaultValue={answer.id}></input>
                                 <label htmlFor="score">Score: </label>
                                 <input id="score" type="text" defaultValue={answer.score} /> 
                             
                                 <label htmlFor="assessment">assessment: </label>
                                 <textarea id="assessment" type="text" rows="4" cols="20" defaultValue={answer.assessment} ></textarea>
-                                <button type="submit" >Send</button>
+                                <button type="submit"className="btn-send" >Send</button>
                             </form>
                         </article>
                     })}
 
                 </div>
-
-               
-                <button onClick={handleCancelResponse} >Cancel </button>
+                <button className="btn-cancel" onClick={handleCancelResponse} >Cancel </button>
             </div>
         }
     </div>

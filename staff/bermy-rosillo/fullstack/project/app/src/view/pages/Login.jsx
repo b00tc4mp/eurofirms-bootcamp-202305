@@ -35,7 +35,7 @@ return <main className="login-view">
             <label htmlFor="password">Password</label>
             <input id="password" type="password" />
 
-            <button type="submit">Login</button>
+            <button type="submit" className="btn-send">Login</button>
         </form>
         <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick} > Register</a></p>
     </main>

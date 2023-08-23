@@ -41,9 +41,9 @@ function RetrieveStudentsList(props){
                     </article>
                 })}
             </section>}
-
+    
             {viewStudentsList === 'retrieve-student-response' && <RetrieveStudentResponse testId={props.testId} studentId={studentId}  onReturnStudentList={handleOnReturnStudentList} />}
-        
+            <button className="btn-cancel">Cancel sin handle</button>
         </div>
 }
 

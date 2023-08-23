@@ -54,16 +54,12 @@ function StudentHome(props) {
         setView('student-home')
     }
 
-    /* const handleSendAnswer =(event,testId)=>{
-        event.preventDefault()
-        setTestId(testId)
-        setView('send-answer')
-    } */
     //--
     const handleretrieveTests = (event, testId) => {
         event.preventDefault()
         setTestId(testId)
-        setView('student-home')
+        setView('send-answer')
+        
     }
 
     //--------------------------------------------
@@ -71,8 +67,8 @@ function StudentHome(props) {
 
     return <div className="home-view ">
         <header className="home-header">
-            <h1 className="home-title">Welcome, {user ? user.name : 'User'} </h1>
-            <button className="home-logout-button" onClick={handleLoggedOut}>Logout </button>
+            <h1 className="home-title">Student {user ? user.name : 'User'} </h1>
+            <button className="btn-student-home" onClick={handleLoggedOut}>Logout </button>
         </header>
 
         <div className="search-tests">
@@ -82,7 +78,7 @@ function StudentHome(props) {
                     <h3>{test.subject}</h3>
 
                     {/* <h3>Test: <a href="" className="btn-math" onClick={(event)=>handleSendAnswer(event,answer.test.id)}>{answer.test.subject}</a></h3> */}
-                    <h3><a href="" className="btn-math" onClick={(event) => handleretrieveTests(test.id)}>{test.title}</a></h3>
+                    <h3><a href="" className="btn-test" onClick={(event) => handleretrieveTests(event,test.id)}>{test.title}</a></h3>
                 </article>
             })}
             </section>}
@@ -92,7 +88,7 @@ function StudentHome(props) {
         </div>
 
         <footer className="home-footer">
-        <button className="">Replied</button>
+        <button className="btn-student-home">Replied</button>
         </footer>
     </div>
 }

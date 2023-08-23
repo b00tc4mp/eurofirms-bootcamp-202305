@@ -1,3 +1,4 @@
+
 function authenticateUser(email,password){
     if(typeof email !== 'string') throw new Error('email is not a string')
     if(typeof password !== 'string') throw new Error('password is not a string')
@@ -7,6 +8,7 @@ function authenticateUser(email,password){
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({email,password})
     })
+    /* The `.then(res=>{...})` block is handling the response from the API request. */
     .then(res=>{
         if(res.status === 200)
             return res.json()

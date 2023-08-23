@@ -36,8 +36,7 @@ function CreateTest(props) {
 
         <form className="create-test-form" onSubmit={handleSubmitCreateTest}  >
             <h1>Create Test</h1>
-            <label htmlFor="teacher">Teacher {props.userName}</label>
-
+           
             <label htmlFor="subject">Subject</label>
             <input id="subject" type="text" />
 
@@ -53,8 +52,8 @@ function CreateTest(props) {
             <label htmlFor="attemps">Attemps</label>
             <input id="attemps" type="text" />
 
-            <button type="submit" >Create</button>
-            <button type="button" onClick={handleCancelCreateTest} >Cancel </button>
+            <button type="submit" className="btn-send">Create</button>
+            <button type="button" className="btn-cancel" onClick={handleCancelCreateTest} >Cancel </button>
         </form>
     </main>
 

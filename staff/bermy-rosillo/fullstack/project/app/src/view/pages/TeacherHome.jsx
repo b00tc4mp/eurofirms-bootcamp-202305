@@ -84,7 +84,7 @@ function TeacherHome(props) {
                 {tests && tests.map(test => {
                     return <article key={test.id}>
                         <h3>{test.subject}</h3>
-                        <h3><a className="btn-math" href="" onClick={(event) => handleRetrieveStudentsList(event, test.id)}>{test.title}</a></h3>
+                        <h3><a className="btn-test" href="" onClick={(event) => handleRetrieveStudentsList(event, test.id)}>{test.title}</a></h3>
                     </article>
                 })}
             </section>}
