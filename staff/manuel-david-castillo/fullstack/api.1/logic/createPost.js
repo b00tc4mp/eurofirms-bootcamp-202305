@@ -1,22 +1,22 @@
 const context = require('./context')
 const { ObjectId } = require('mongodb')
-const {validateId, validateUrl, validateText} = require('./helpers/validators')
+const { validateId, validateImage, validateText } = require('./helpers/validators')
 
 function createPost(userId, image, text) {
     validateId(userId)
-    validateUrl(image)
+    validateImage(image)
     validateText(text)
 
-    return context.users.findOne({_id: new ObjectId(userId)}) 
-    .then(user => {
-        if(!user) throw new Error ('userId not found')
+    return context.users.findOne({ _id: new ObjectId(userId) })
+        .then(user => {
+            if (!user) throw new Error('userId not found')
 
-        const author = user._id
-        const date = new Date()
+            const author = user._id
+            const date = new Date()
 
-        return context.posts.insertOne({author, image, text, date})
+            return context.posts.insertOne({ author, image, text, date })
         })
-    .then(()=>{})
+        .then(() => { })
 }
 
 module.exports = createPost
