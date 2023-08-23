@@ -67,8 +67,8 @@ describe('deleteNotification', () => {
                 comments.push(comment2)
 
                 return Promise.all([Post.create({ author: user._id, image, text, likes, comments }),
-                User.findById(userId2, '-__v'),
-                User.findById(userId, '-__v')])
+                User.findById(userId, '-__v'),
+                User.findById(userId2, '-__v')])
             })
             .then(([post, user, user2]) => {
                 postId = post.id
@@ -93,7 +93,7 @@ describe('deleteNotification', () => {
                 return user.save()
             })
             .then(() => {
-                return User.findById(userId2, '-__v').lean()
+                return User.findById(userId, '-__v').lean()
             })
             .then(user => {
                 notificationId = user.notifications[0]._id.toString()
@@ -102,17 +102,19 @@ describe('deleteNotification', () => {
     })
 
     it('delete notification correct', () =>
-        deleteNotification(userId2, notificationId)
+        deleteNotification(userId, notificationId)
             .then(() => {
-                return User.findById(userId, '-__v')
+                return User.findById(userId, '-__v').lean()
             })
-            .then(user => expect(user.notifications.length).to.equal(1))
+            .then(user => {
+                expect(user.notifications.length).to.equal(1)
+            })
     )
 
     it('delete notification correct', () =>
-        deleteNotification(userId2, notificationId2)
+        deleteNotification(userId, notificationId2)
             .then(() => {
-                return User.findById(userId, '-__v')
+                return User.findById(userId, '-__v').lean()
             })
             .then(user => expect(user.notifications.length).to.equal(1))
     )
