@@ -40,6 +40,13 @@ describe('createPost', () => {
          .then(posts => expect(posts.length).to.equal(1))
    )
 
+   it('fail for user not found', () =>
+      createPost('123456123456123456123456', image, text)
+         .catch(error => {
+            expect(error).to.be.instanceOf(Error)
+            expect(error.message).to.equal('user not found')
+         })
+   )
 
    after(() => mongoose.disconnect())
 })
