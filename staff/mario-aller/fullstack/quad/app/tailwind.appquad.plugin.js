@@ -64,6 +64,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
           'padding': '0.1rem 0.8rem',
           'border-radius': '0.5rem',
           'background-color': 'lightgray',
+          'box-shadow': '0.3rem 0.3rem 0.4rem gray',
         },
       
         '.basic-label': {
@@ -187,10 +188,10 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
           'background-color': 'aliceblue',
         },
       
-        /* Home */
+        // Home
       
         '.home': {
-          '  width': '100%',
+          'width': '100%',
           'height': '100%',
           'display': 'grid',
           'grid-template-columns': '1fr',
@@ -203,7 +204,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
           'align-items': 'center',
           'position': 'fixed',
           'padding': '2rem 0 2rem 0',
-          '  width': '100%',
+          'width': '100%',
         },
       
         '.home-view': {
@@ -219,7 +220,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
           'display': 'flex',
           'justify-content': 'center',
           'align-items': 'center',
-          '/* display': 'flex',
+          'display': 'flex',
           'flex-direction': 'column',
           'justify-content': 'center'
         },
