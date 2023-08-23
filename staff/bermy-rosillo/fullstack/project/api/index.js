@@ -12,6 +12,8 @@ const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
 const createTest = require('./logic/createTest')
 const retrieveTeacherListTests = require('./logic/retrieveTeacherListTests')
+const retrieveStudentListTests = require('./logic/retrieveStudentListTests')
+const retrieveArrayStudentTests = require('./logic/retrieveArrayStudentTests')
 const retrieveStudents = require('./logic/retrieveStudents')
 const retrieveTest = require('./logic/retrieveTest')
 const retrieveAnswers = require('./logic/retrieveAnswers')
@@ -117,7 +119,39 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 res.status(400).json({ error: error.message })
             }
         })
-        //-retrieveStudentsList
+        /*retrieveStudentListTests */
+        api.get('/students/tests', jsonBodyParser, (req, res) => {
+            try {
+                const authorization = req.headers.authorization
+                const token = authorization.slice(7)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
+                const userId = data.sub
+              
+                retrieveStudentListTests(userId)
+                    .then((answers) => res.json(answers))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+        //retrieveArrayStudentTests
+        api.get('/students/tests', jsonBodyParser, (req, res) => {
+            try {
+                const authorization = req.headers.authorization
+                const token = authorization.slice(7)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
+                const userId = data.sub
+              
+                retrieveArrayStudentTests(userId)
+                    .then((answers) => res.json(answers))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+        
+        //----
+        //-retrieveStudents
         api.get('/students/list/:testId', jsonBodyParser, (req, res) => {
             try {
                 const authorization = req.headers.authorization
@@ -134,7 +168,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 res.status(400).json({ error: error.message })
             }
         })
-
+        
         //retrieveTest
         api.get('/tests/:testId', (req, res) => {
             try {
@@ -226,8 +260,6 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
             }
         })
-
-
 
         api.listen(process.env.PORT, () => console.log(`API running in PORT ${process.env.PORT}`))
     })

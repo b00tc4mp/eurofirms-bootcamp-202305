@@ -3,16 +3,16 @@ import { useState, useEffect } from "react"
 import context from '../../context'
 import retrieveUser from '../../logic/retrieveUser'
 import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
-import retrieveStudentAnswers from '../../logic/retrieveStudentAnswers'
 import retrieveTeacherListTests from '../../logic/retrieveTeacherListTests'
 //components
 import SendAnswer from "../components/student/SendAnswer"
+import RetrieveAssessments from "../components/student/RetrieveAssessments"
 
 function StudentHome(props) {
     console.log('student home-render')
     const [view, setView] = useState('student-home')
     const [user, setUser] = useState(null)
-    const [answers, setAnswers] = useState()
+   /*  const [answers, setAnswers] = useState() */
     const [testId, setTestId] = useState()
     const [tests, setTests] = useState()
 
@@ -24,14 +24,6 @@ function StudentHome(props) {
         } catch (error) {
             alert(error.message)
         }
-
-        /* try {
-            retrieveStudentAnswers(context.token)
-                .then(answers => setAnswers(answers))
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        } */
 
         try {
             retrieveTeacherListTests(context.token)
@@ -55,10 +47,16 @@ function StudentHome(props) {
     }
 
     //--
-    const handleretrieveTests = (event, testId) => {
+    const handleretrieveTest = (event, testId) => {
         event.preventDefault()
         setTestId(testId)
         setView('send-answer')
+        
+    }
+    
+    const handleAssessments =()=>{
+
+        setView('retrieve-assessments')
         
     }
 
@@ -72,23 +70,25 @@ function StudentHome(props) {
         </header>
 
         <div className="search-tests">
+           
         {view === 'student-home' && <section className="home-tests">
+        <h1>Tests available</h1>
             {tests && tests.map(test => {
                 return <article key={test.id}>
                     <h3>{test.subject}</h3>
 
-                    {/* <h3>Test: <a href="" className="btn-math" onClick={(event)=>handleSendAnswer(event,answer.test.id)}>{answer.test.subject}</a></h3> */}
-                    <h3><a href="" className="btn-test" onClick={(event) => handleretrieveTests(event,test.id)}>{test.title}</a></h3>
+                    <h3><a href="" className="btn-test" onClick={(event) => handleretrieveTest(event,test.id)}>{test.title}</a></h3>
+
                 </article>
             })}
             </section>}
 
-
-            {view === 'send-answer' && <SendAnswer user={user} testId={testId} onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />}
+            {view === 'send-answer' && <SendAnswer  user={user} testId={testId} onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />}
+            {view === 'retrieve-assessments' && <RetrieveAssessments  user={user} testId={testId} onLoggedOutClick={handleLoggedOut} onReturnHome={handleOnReturnHome} />}
         </div>
 
         <footer className="home-footer">
-        <button className="btn-student-home">Replied</button>
+        <button className="btn-student-home" onClick={handleAssessments}>Replied</button>
         </footer>
     </div>
 }
