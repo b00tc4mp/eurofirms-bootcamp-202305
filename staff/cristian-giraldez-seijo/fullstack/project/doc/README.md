@@ -89,3 +89,4 @@ Comment
 - DONE implement delete story component
 - DONE implement api logic for create story options(Child stories)
 - DONE implement api route for create story options(child stories)
+- DONE update api logic for retrieve stories without origin
