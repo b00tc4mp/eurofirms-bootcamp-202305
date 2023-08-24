@@ -82,8 +82,8 @@ mongoose.connect(`${MONGODB_URL}/data`)
 
                 const userId = data.sub
 
-                const { title, sumary, text, shortcut, question, origin } = req.body
-                createStory(userId, title, sumary, text, question, shortcut, origin)
+                const { title, sumary, text, shortcut, question, origin, storyId } = req.body
+                createStory(userId, title, sumary, text, question, storyId, origin, shortcut)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
