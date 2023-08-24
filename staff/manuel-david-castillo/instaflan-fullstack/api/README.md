@@ -11,7 +11,7 @@ This is where the app's requests to interact with the database are handled.
 - MONGODB_URL: address of mongodb
 - JWT_SECRET: secret word('string') for jsonwebtoken
 
-### Modules to be installed beforehand
+### Dependencies to be installed beforehand
 
 - cors
 - dotenv
@@ -19,7 +19,7 @@ This is where the app's requests to interact with the database are handled.
 - jsonwebtoken
 - mongoose
 
-### Modules to be installed to make the test
+### Dependencies to be installed to make the test
 
 - chai
 - mocha
@@ -38,7 +38,7 @@ This is where the app's requests to interact with the database are handled.
 
 `./bin/mongosh`
 
-- Place in the api of Instaflan and execute: 
+- Place in the api of Instaflan (~/instaflan-fullstack/api/) and execute: 
 
 `node .`
 
@@ -124,3 +124,5 @@ All files                          |     100 |      100 |     100 |     100 |
 - Notifications-logic: 175/175
 - Posts-logic: 540/540
 - User-logic: 549/549
+
+Back [origin readme](../README.md)
