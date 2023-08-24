@@ -154,10 +154,10 @@ export default function AllPosts(props) {
             <p className="m-2 text-color1 font-semibold ml-3">🤍{post.likes}</p>
             <p className="m-2 mb-0 text-color1 font-semibold ml-3">{post.text}</p>
             {post.comments.length > 0 && <div className="border-x-color5 border-x-8 bg-white p-1">
-                {post?.comments.map(comment => <article className="flex items-center m-1" key={comment.id}>
+                {post?.comments.map(comment => <article className="flex items-start m-1" key={comment.id}>
                     <img className="w-4 h-4 rounded-full object-cover mr-1" src={comment.author.image} alt="" />
-                    <a onClick={(event) => handleProfile(event, comment.author.id)} className="text-xs text-color1 font-bold" href="">{comment.author.name}</a>
-                    <p className="text-xs">{': ' + comment.text}</p>
+                    <a onClick={(event) => handleProfile(event, comment.author.id)} className="text-xs text-color1 font-bold whitespace-nowrap" href="">{comment.author.name + ':'}</a>
+                    <p className="text-xs ml-1">{comment.text}</p>
                 </article>)}
             </div>}
             <div className="flex justify-between w-full px-4 pb-2">
