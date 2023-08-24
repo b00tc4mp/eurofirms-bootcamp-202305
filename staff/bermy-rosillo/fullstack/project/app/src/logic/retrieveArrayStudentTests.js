@@ -1,7 +1,7 @@
 function retrieveArrayStudentTests(token) {
     if (typeof token !== 'string') throw new Error('token is not a string')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/students/tests`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/students/tests/array`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

@@ -1,13 +1,12 @@
 import createTest from '../../../logic/createTest'
-//import TeacherHome from '../../pages/TeacherHome'
 import context from '../../../context'
-import retrieveTeacherListTests from '../../../logic/retrieveTeacherListTests'
+//import retrieveTeacherListTests from '../../../logic/retrieveTeacherListTests'
 
 function CreateTest(props) {
     console.log('Create test->render')
 
     const handleCancelCreateTest = () => {
-        //event.preventDefault()
+        
         props.onReturnHome()
     }
     const handleSubmitCreateTest = event => {

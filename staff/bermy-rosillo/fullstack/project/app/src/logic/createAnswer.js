@@ -1,10 +1,9 @@
-//in app
 function createAnswer(token,testId,answer){
     if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof testId !== 'string') throw new Error('testId is not a string')
     if (typeof answer !== 'string') throw new Error('answer is not a string')
 
-    return fetch(`${import.meta.env.VITE_API_URL}answers/tests/${testId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/answers/tests/${testId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -12,7 +11,6 @@ function createAnswer(token,testId,answer){
         },
         body: JSON.stringify({ answer })
     })
-        //response
         .then(res => {
             if (res.status === 201)
                 return

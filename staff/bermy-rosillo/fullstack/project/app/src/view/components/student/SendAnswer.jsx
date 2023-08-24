@@ -53,8 +53,8 @@ function SendAnswer(props) {
                 
                 <form className="answers-form" onSubmit={handleSubmitAnswer}>
                 
-                    <label htmlFor="myAnswer">My Answer: </label>
-                    <textarea id="myAnswer" type="text" rows="4" cols="20" ></textarea>
+                    <label htmlFor="answer">My Answer: </label>
+                    <textarea id="answer" type="text" rows="4" cols="20" ></textarea>
                     <button type="submit" className="btn-send">Send</button>
                     <button className="btn-cancel"onClick={handleCancelAnswer} >Cancel </button>
                 </form>

@@ -5,8 +5,8 @@ const mongoose = require('mongoose')
 const express = require('express')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
-//logics
 const bodyParser = require('body-parser')
+//logics
 const registerUser = require('./logic/registerUser')
 const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
@@ -31,7 +31,6 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
         api.use(cors())
 
-        //manejador de respuestas
         api.post('/users', jsonBodyParser, (req, res) => {
             const { name, password, email, role } = req.body
 
@@ -110,8 +109,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 const token = authorization.slice(7)
                 const data = jwt.verify(token, process.env.JWT_SECRET)
                 const userId = data.sub
-                //const {subject,title,description,attemps} = req.body
-
+               
                 retrieveTeacherListTests(userId)
                     .then((tests) => res.json(tests))
                     .catch(error => res.status(400).json({ error: error.message }))
@@ -135,7 +133,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
             }
         })
         //retrieveArrayStudentTests
-        api.get('/students/tests', jsonBodyParser, (req, res) => {
+        api.get('/students/tests/array', jsonBodyParser, (req, res) => {
             try {
                 const authorization = req.headers.authorization
                 const token = authorization.slice(7)
@@ -186,7 +184,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
             }
         })
-        //--
+
         //retrieveAnswers
         api.get('/answers/:studentId/:testId', (req, res) => {
             try {
@@ -205,6 +203,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
             }
         })
+
         //create answer 
         api.post('/answers/tests/:testId', jsonBodyParser, (req, res) => {
             try {
@@ -212,7 +211,6 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 const token = authorization.slice(7)
                 const data = jwt.verify(token,process.env.JWT_SECRET)
                 const userId = data.sub
-                //const studentId = req.params.studentId
                 const testId = req.params.testId
                 const {answer} = req.body
 
@@ -224,7 +222,7 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
 
             }
         })
-        //updateAnswerScore
+        //updateAnswerAssessment
         api.put('/students/:studentId/tests/:testId/answers/:asnwerId',jsonBodyParser,(req,res)=>{
             try {
                 const { authorization } = req.headers
