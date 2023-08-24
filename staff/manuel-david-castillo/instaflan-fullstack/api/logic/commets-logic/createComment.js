@@ -23,15 +23,16 @@ function createComment(userId, postId, text) {
 
             User.findById(post.author)
                 .then(user => {
+                    if (userId !== user._id.toString()) {
+                        const notification = {
+                            text: 'Comment',
+                            user: userId,
+                            post: new ObjectId(postId),
+                            date: new Date()
+                        }
 
-                    const notification = {
-                        text: 'Comment',
-                        user: userId,
-                        post: new ObjectId(postId),
-                        date: new Date()
+                        user.notifications.push(notification)
                     }
-
-                    user.notifications.push(notification)
 
                     return user.save()
                 })

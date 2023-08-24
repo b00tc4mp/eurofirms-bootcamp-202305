@@ -19,17 +19,20 @@ function toggleFavPost(userId, postId) {
                 favPosts.push(post._id)
                 post.likes++
 
+
                 User.findById(post.author)
                     .then(user => {
 
-                        const notification = {
-                            text: 'Like',
-                            user: userId,
-                            post: new ObjectId(postId),
-                            date: new Date()
-                        }
+                        if (userId !== user._id.toString()) {
+                            const notification = {
+                                text: 'Like',
+                                user: userId,
+                                post: new ObjectId(postId),
+                                date: new Date()
+                            }
 
-                        user.notifications.push(notification)
+                            user.notifications.push(notification)
+                        }
 
                         return user.save()
                     })

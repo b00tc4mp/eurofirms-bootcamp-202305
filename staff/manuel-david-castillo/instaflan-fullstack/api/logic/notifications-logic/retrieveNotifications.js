@@ -12,6 +12,7 @@ function retrieveNotifications(userId) {
             if (!user) throw new Error('user not found')
 
             user.notifications.forEach(notification => {
+
                 if (notification.user._id) {
                     notification.user.id = notification.user._id.toString()
                     delete notification.user._id

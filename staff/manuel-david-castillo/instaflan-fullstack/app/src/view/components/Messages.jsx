@@ -26,7 +26,8 @@ export default function Messages() {
     }
 
     return <section className="flex flex-col items-center pb-20 w-full">
-        {chats?.map(chat => <article onClick={(event) => handleNavigateChat(event, chat.id)} key={chat.id} className={chat.unreadFor?.includes(userId) ? "w-full flex flex-col border-b-2 bg-slate-200  border-b-gray-400 p-1 hover:bg-gray-300 cursor-pointer" : "w-full flex flex-col border-b-2  border-b-gray-400 p-1 hover:bg-gray-300 cursor-pointer"}  >
+        {chats?.length === 0 && <h2 className="text-gray-500 mt-6 text-xl font-bold">Messages empty</h2>}
+        {chats?.length > 0 && chats?.map(chat => <article onClick={(event) => handleNavigateChat(event, chat.id)} key={chat.id} className={chat.unreadFor?.includes(userId) ? "w-full flex flex-col border-b-2 bg-slate-200  border-b-gray-400 p-1 hover:bg-gray-300 cursor-pointer" : "w-full flex flex-col border-b-2  border-b-gray-400 p-1 hover:bg-gray-300 cursor-pointer"}  >
             <div className="flex flex-col gap-1">
                 {chat.users.map(user => <article key={user.id} className="flex justify-start items-center pl-3">
                     <img className="w-12 h-12 rounded-full object-cover mr-2" src={user.image} alt="user profile image" />

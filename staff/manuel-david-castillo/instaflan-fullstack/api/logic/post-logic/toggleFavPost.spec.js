@@ -97,6 +97,16 @@ describe('toggleFavPost', () => {
             })
     )
 
+    it('toggleFavPost correct', () =>
+        toggleFavPost(userId2, postId)
+            .then(() => {
+                return User.findById(userId2, '-__v')
+            })
+            .then(user => {
+                expect(user.favPosts.length).to.equal(1)
+            })
+    )
+
     it('fail for user not found', () =>
         toggleFavPost('123456123456123456123456', postId)
             .catch(error => {

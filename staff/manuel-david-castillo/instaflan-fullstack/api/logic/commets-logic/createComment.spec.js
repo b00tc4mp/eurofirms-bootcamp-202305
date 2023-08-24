@@ -77,6 +77,14 @@ describe('createComment', () => {
             .then(posts => expect(posts[0].comments.length).to.equal(3))
     )
 
+    it('create comment correct', () =>
+        createComment(userId2, postId, text)
+            .then(() => {
+                return Post.find({ author: userId }, '-__v')
+            })
+            .then(posts => expect(posts[0].comments.length).to.equal(3))
+    )
+
     it('fail for user not found', () =>
         createComment('123456123456123456123456', postId, text)
             .catch(error => {
