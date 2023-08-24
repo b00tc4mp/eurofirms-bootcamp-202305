@@ -12,8 +12,13 @@ This process manage the user interface for panels CRUD
 
 - VITE_REFRESH_INTERVAL = miliseconds between refresh in working panel
 
-### To execute the app
+### Modules to be installed previosly
+- React
+- Vite
+- dat
+- tailwind framework
 
+### To execute the app
 Place in app root directory ~/quad/app
 
 ```sh

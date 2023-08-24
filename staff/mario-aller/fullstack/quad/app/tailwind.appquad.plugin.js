@@ -55,6 +55,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
           'align-items': 'center',
           'background-color': 'rgb(161, 195, 161)',
           'border-radius': '2rem',
+          'width': '80%',
           'box-shadow': '0.5rem 0.5rem 0.5rem rgb(66, 98, 86)',
           'padding': '1rem',
         },
@@ -233,6 +234,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
           'justify-content': 'center',
           'align-items': 'center',
           'margin': '0.5rem',
+          'width': '80%',
           'border-radius': '1rem',
           'background-color': 'antiquewhite',
         },
@@ -252,7 +254,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
         },
       
         '.panel-button': {
-          'font-size': '2.5rem',
+          'font-size': '2rem',
           'margin-right': '0.3rem',
           'border': 'none',
           'justify-content': 'center',
