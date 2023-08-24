@@ -42,11 +42,12 @@ function Login(props) {
             </form>
 
             <p>Go to <a className="login-register-link underline" href="" onClick={handleRegisterClick}>Register</a></p>
-            <footer className="initial-page-footer justify-center items-center flex underline-offset-8 text-center" >
-                <p><img className="bg-contain bg-center h-20" src="public/logo03.png" alt="MeetupBikers" /></p>
+            <footer className="initial-page-footer justify-center items-center flex underline-offset-8"//bg-[#D9D9D9] justify-center items-center flex text-center fixed b-0 w-full h-2/6"  //initial-page-footer justify-center items-center flex underline-offset-8 text-center
+            >
+                <p><img className="h-20" src="public/logo03.png" alt="MeetupBikers"//bg-contain bg-center h-20"
+                /></p>
             </footer>
     </main >
-
     )
 }
 export default Login

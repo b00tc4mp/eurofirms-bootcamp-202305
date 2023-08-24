@@ -24,7 +24,7 @@ This purpose will be achieved by using posts from different users, which are dis
 - DONE - publish meetup
 - DONE - update meetup
 - DONE - delete meetup
-- TODO - toggle join meetup
+- DONE - toggle join meetup
 - TODO - search meetups
 
 ### UI Design
@@ -39,17 +39,18 @@ User
 - name (String, required)
 - email (String, required, unique)
 - password (String, required, minLength: 8)
-- image (photo file, obliigatory)
+- image (photo file, obligatory)
 
 Meetup
 - title (String, required)
+- date (Date, required)
 - image (photo file, optional)
 - video (String: youtube URL or similar, optional)
 - description (String, required)
 - type (String, required)
-- date (Date, required)
-- address (String, require)
-- publisher (ObjectId, reference user)
+- dateMeetup (Date, required)
+- address (String, required)
+- likes (Integer, reference user)
 
 ## Planning
 

@@ -129,9 +129,10 @@ function Home({ onLoggedOut }) {
         <div>
             <header className="fixed top-0 h-[5rem] flex items-center justify-between bg-[rgb(217,217,217)] w-full py-[1rem]">
                 <h1 className="font-extrabold p-5">{user ? user.name : 'Check in'} </h1>
-                <div className="flex justify-center items-center gap-x-5">
+                <div className="flex justify-center items-center ">
                     <img src={user ? user.image : ""} id="url"
-                        alt="image of user" className="shadow-lg rounded-full w-1/6 h-auto align-middle border-none" />
+                        alt="image of user" className="w-20 h-20 rounded-full drop-shadow-1xl bg-[#2c2a2a] " //"shadow-lg rounded w-1/6 h-auto align-middle border-none" 
+                        />
                     <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-lg shadow-sm w-32 mx-10 hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
                 </div>
                 <div className="flex flex-wrap justify-end w-24 pr-5 bg-cover sm:125rem lg:.5em">
@@ -145,24 +146,24 @@ function Home({ onLoggedOut }) {
                         <article key={meetup.id}
                             className="w-[87%] bg-[#eeeeee] rounded-xl p-10">
                             <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
-                            <a className="mt-2 text-sm text-[#2C2A2A] font-style: italic">{meetup.date}</a>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Image: </p>
-                            <img className="w-full"
+                            <a className="mt-2 text-sm text-[#2c2a2a] font-style: italic">{meetup.date}</a>
+                            <p className="mt-6 font-semibold text-[#2c2a2a]">Image: </p>
+                            <img className="w-full rounded-xl border-8 border-sky-500"
                                 src={meetup.image}
                                 alt={meetup.text} />
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Video: </p>
-                            <video controls className="w-full"
+                            <p className="mt-6 font-semibold text-[#2C2A2A]">Video: </p>
+                            <video controls className="w-full rounded-xl z-auto"
                                 src={meetup.video}
                                 alt={meetup.text} />
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Description: </p>
+                            <p className="mt-6 font-semibold text-[#2C2A2A]">Description: </p>
                             <p>{meetup.text}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Type:</p>
+                            <p className="mt-6 font-semibold text-[#2C2A2A]">Type:</p>
                             <p> {meetup.type}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Adress: </p>
+                            <p className="mt-6 font-semibold text-[#2C2A2A]">Adress: </p>
                             <p>{meetup.adress}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Date meetup: </p>
+                            <p className="mt-6 font-semibold text-[#2C2A2A]">Date meetup: </p>
                             <p>{meetup.dateMeetup}</p>
-                            <p className="mt-8 font-semibold text-[#2C2A2A]">Likes:</p>
+                            <p className="mt-6 font-semibold text-[#2C2A2A]">Likes:</p>
                             <p>{meetup.likes}</p>
                             {meetup.author.id === userId && <>
                                 <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 my-10 hover:bg-[#707070]" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
