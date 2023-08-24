@@ -17,7 +17,7 @@ function Register(props) {
         const password = event.target.password.value
         const image = event.target.url.value
 
-        try { //Se envian los  mismos campos pero e speramos una promesa
+        try { //Se envian los  mismos campos pero seeperamos una promesa
             registerUser(name, email, password, image)
                 .then(() => props.onRegistered())
                 .catch(error => alert(error.message))
@@ -27,8 +27,7 @@ function Register(props) {
     }
 
     return (
-        <main className="flex flex-col items-center "
-        >
+        <main className="flex flex-col items-center">
             <h1 className="text-black-900 font-extrabold text-3xl text-center pt-12 p-4">Register</h1>
 
             <form className="free flex-col" onSubmit={handleRegisterSubmit}>
