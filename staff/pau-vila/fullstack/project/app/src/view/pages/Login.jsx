@@ -1,9 +1,13 @@
 import authenticateUser from "../../logic/authenticateUser"
 import context from "../../context"
+import React, { useState } from 'react'
+import ViewInfoPlus from '../modals/ViewInfoPlus'
 
 function Login(props) {
     console.log('Login -> render')
 
+    const [modal, setModal] = useState(null);
+    
     const handleRegisterClick = event => {
         event.preventDefault()
 
@@ -29,6 +33,12 @@ function Login(props) {
             alert(error.message)
         }
     }
+    const handleAboutClick = () => {
+        setModal('about')
+    }
+    const handleReturnView =() => {
+        setModal(null)
+    }
 
     return <><main className="login-view">
         <h1>Login</h1>
@@ -44,14 +54,14 @@ function Login(props) {
         </form>
 
         <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
-
+        <button onClick={handleAboutClick}>About</button>
     </main><footer>
             <div class="container">
                 <div class="image-container">
                     <img src="../../../public/logo-tornorecicla.png"></img>
                 </div></div>
         </footer>
-
+        {modal === 'about' && <ViewInfoPlus onReturned={handleReturnView}/>}
     </>
 }
 export default Login 

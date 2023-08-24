@@ -2,7 +2,7 @@ function deleteWorkshop(token, workshopId) {
     if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof workshopId !== 'string') throw new Error('workshopId is not a string')
 
-    return fetch(`http://localhost:9000/workshops/${workshopId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/workshops/${workshopId}`, {
         method: 'DELETE',   
         headers: {
             Authorization: `Bearer ${token}`,

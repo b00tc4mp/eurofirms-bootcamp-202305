@@ -2,7 +2,7 @@ function deleteArtwork(token, artworkId) {
     if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof artworkId !== 'string') throw new Error('artworkId is not a string')
 
-    return fetch(`http://localhost:9000/artworks/${artworkId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/artworks/${artworkId}`, {
         method: 'DELETE',   
         headers: {
             Authorization: `Bearer ${token}`,

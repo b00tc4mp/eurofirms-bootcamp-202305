@@ -35,10 +35,6 @@ mongoose.connect(`${MONGODB_URL}/testornorecicla`)
         api.use(cors())
 
         api.get('/', (req, res) => {
-            res.send('hola mundo ;)')
-        })
-
-        api.get('/', (req, res) => {
             const q = req.query.q
 
             res.send(`you requested me to search: ${q}`)

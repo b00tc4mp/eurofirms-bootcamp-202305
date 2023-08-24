@@ -222,7 +222,7 @@ function Home({ onLoggedOut }) {
 
                         <p className="home-descriptionA">Description:{artwork.description}</p>
 
-                        <p>Materials:{artwork.materials}</p>
+                        <p className="home-materials">Materials:{artwork.materials}</p>
 
                         {artwork.ornaments.map((ornament, index) => {
                             return <p className="home-ornament" key={artwork.id + index}>Ornament: {ornament}</p>

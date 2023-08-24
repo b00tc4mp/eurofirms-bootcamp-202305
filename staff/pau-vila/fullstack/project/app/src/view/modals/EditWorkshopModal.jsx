@@ -66,7 +66,7 @@ function EditWorkshopModal({ workshopId, onEditWorkshopCancelled, onWorkshopEdit
                 <input type="date" id="dateEnd"></input>
 
                 <label htmlFor="video">Video</label>
-                <input type="file" id="video" accept="video/*" ></input>
+                <input type="url" id="video"></input>
 
                 <label htmlFor="attendantsLimit">Límite de asistentes</label>
                 <input type="number" id="attendantsLimit" min="1" max="13"></input>
