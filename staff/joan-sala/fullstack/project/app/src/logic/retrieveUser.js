@@ -1,3 +1,11 @@
+/**
+ * The function `retrieveUser` retrieves user data from an API using a token for authentication.
+ * @param token - The `token` parameter is a string that represents the authentication token for the
+ * user. It is used to authorize the request to retrieve user information from the API.
+ * @returns The function `retrieveUser` returns a promise that resolves to the user object if the API
+ * request is successful (status code 200). If the API request returns a status code of 400, the
+ * function throws an error with the error message from the API response.
+ */
 function retrieveUser(token) {
     if (typeof token !== 'string') throw new Error('token is not a string')
 

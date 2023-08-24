@@ -25,7 +25,6 @@ This purpose will be achieved by using posts from different users, which are dis
 - DONE - update meetup
 - DONE - delete meetup
 - DONE - toggle join meetup
-- TODO - search meetups
 
 ### UI Design
 
@@ -56,6 +55,31 @@ Meetup
 
 Link of [Trello project](https://trello.com/b/rKJIeIsn/biciquedadas)
 
+## Technical Specs.
+Modules 
 
+Server Side
+- api: server to client
+
+Client Side
+- app: client aplication
+
+
+## TO DO Cases
+- search meetups
+- translation other languages
+- implement users
+- images
+ - videos
+- comments people (admin & companions of meetups)
+- planning routes
+
+###
+![](project/app/public/comp-1.gif)
+
+###
+-[ api README ](project/api/README.md)-
+
+-[ app README ](project/app/README.md)-
 
 

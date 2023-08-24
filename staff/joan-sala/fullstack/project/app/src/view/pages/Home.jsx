@@ -148,11 +148,11 @@ function Home({ onLoggedOut }) {
                             <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
                             <a className="mt-2 text-sm text-[#2c2a2a] font-style: italic">{meetup.date}</a>
                             <p className="mt-6 font-semibold text-[#2c2a2a]">Image: </p>
-                            <img className="w-full rounded-xl border-8 border-sky-500"
+                            <img className="w-full w-50rounded-xl border-8 border-[#2c2a2a]-500"
                                 src={meetup.image}
                                 alt={meetup.text} />
                             <p className="mt-6 font-semibold text-[#2C2A2A]">Video: </p>
-                            <video controls className="w-full rounded-xl z-auto"
+                            <video controls className="w-full rounded-xl z-auto border-8 border-[#2c2a2a]-500"
                                 src={meetup.video}
                                 alt={meetup.text} />
                             <p className="mt-6 font-semibold text-[#2C2A2A]">Description: </p>
