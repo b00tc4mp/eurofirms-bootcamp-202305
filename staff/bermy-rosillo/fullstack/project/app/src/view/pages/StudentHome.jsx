@@ -72,7 +72,7 @@ function StudentHome(props) {
         <div className="search-tests">
            
         {view === 'student-home' && <section className="home-tests">
-        <h1>Tests available</h1>
+        <h1>Available Tests</h1>
             {tests && tests.map(test => {
                 return <article key={test.id}>
                     <h3>{test.subject}</h3>

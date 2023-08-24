@@ -27,7 +27,7 @@ label {
     font-weight: bold;
 }
 
-input {
+input,textarea {
     padding: 5px;
     border-radius: 5px;
     font-weight: bold;
@@ -44,21 +44,22 @@ p {
 }
 
 p a {
-    color: #000;
+    color: #79155B;
 }
 
 /* styles (BEM) */
-
-/* register */
-
 .register-form,
 .login-form,.answers-form,.create-test-form{
     display: flex;
     flex-direction: column;
     background: #e280ff;
     padding: 15px;
-    border-top-left-radius: 15px;
-    box-shadow: 10px 10px;
+    /*border-top-left-radius: 15px;*/
+    border-radius: 15px;
+    box-shadow: 7px 7px #79155B;
+}
+.create-test-form{
+    margin-top:80px;
 }
 
 /* login */
@@ -111,14 +112,6 @@ p a {
     gap: 1rem;
 }
 
-/* .create-test-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #e280ff;
-    gap: 1rem;
-}  */
 .btn-test{
     background-color:#e280ff;
     color:#000;
@@ -137,25 +130,26 @@ p a {
     font-weight: bold;
 }
 .btn-send{
-    background-color:#658525;
+    background-color:#8affa6;
     color:#000;
     padding:5px;
     text-decoration:none;
-    border-radius:5px;
     font-weight: bold;
-    /*FF6969*/
 }
+
 .btn-cancel{
-    background-color:#FF6969;
+    background-color:#fe554d;
     color:#fff;
     padding:5px;
     text-decoration:none;
     border-radius:5px;
-    font-weight: bold;
-    
+    font-weight: bold;    
 }
-.home-tests{
+.home-tests,.list-student{
     text-align: center;
+}
+#students-list{
+    text-align:center;
 }
 .search-tests,.test-view{
     padding-top:50px;

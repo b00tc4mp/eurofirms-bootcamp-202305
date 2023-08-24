@@ -47,7 +47,7 @@ return <main className="register-view">
         <option value="student">Student</option>
     </select> */}
 
-    <button type="submit">Register</button>
+    <button type="submit" className='btn-send'>Register</button>
 </form>
 <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick} > Login</a></p>
 </main>

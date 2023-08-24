@@ -83,12 +83,12 @@ function RetrieveStudentResponse(props) {
                                 <label htmlFor="assessment">assessment: </label>
                                 <textarea id="assessment" type="text" rows="4" cols="20" defaultValue={answer.assessment} ></textarea>
                                 <button type="submit"className="btn-send" >Send</button>
+                                <button className="btn-cancel" onClick={handleCancelResponse} >Cancel </button>
                             </form>
                         </article>
                     })}
 
-                </div>
-                <button className="btn-cancel" onClick={handleCancelResponse} >Cancel </button>
+                </div>  
             </div>
         }
     </div>

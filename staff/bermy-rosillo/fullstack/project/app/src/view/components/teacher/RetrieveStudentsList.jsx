@@ -23,6 +23,10 @@ function RetrieveStudentsList(props){
     },
     [])
 
+    const handleCancelStudents =()=>{
+        props.onReturnHome()
+    }
+
     const handleRetrieveStudentResponse =(event,studentId)=>{
         event.preventDefault()
         setStudentId(studentId)
@@ -33,17 +37,18 @@ function RetrieveStudentsList(props){
         setViewStudentsList('list-students')
     }
     //-------------------------------
-    return  <div>
+    return  <div id="students-list">
             { viewStudentsList === 'list-students' && <section className="list-student">
+                <h1>Select a student</h1>
                 {students && students.map(student => {
                     return <article key={student.id}>
-                        <h3>Student: <a href="" onClick={(event)=>handleRetrieveStudentResponse(event,student.id)}>{student.name}</a></h3>
+                        <h3><a href="" className="btn-test" onClick={(event)=>handleRetrieveStudentResponse(event,student.id)}>{student.name}</a></h3>
                     </article>
                 })}
             </section>}
     
             {viewStudentsList === 'retrieve-student-response' && <RetrieveStudentResponse testId={props.testId} studentId={studentId}  onReturnStudentList={handleOnReturnStudentList} />}
-            <button className="btn-cancel">Cancel sin handle</button>
+            <button className="btn-cancel"onClick={handleCancelStudents}>Cancel</button>
         </div>
 }
 

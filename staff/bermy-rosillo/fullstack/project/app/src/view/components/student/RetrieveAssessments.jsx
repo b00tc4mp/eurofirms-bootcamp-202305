@@ -41,7 +41,7 @@ function RetrieveAssessments(props) {
                 <div className="answers-view">
 
                     {arrayTests && arrayTests.map(test => {
-                        //test information
+                        //test information TODO
                     })}
                     
                     {answers && answers.map(answer => {
@@ -54,7 +54,7 @@ function RetrieveAssessments(props) {
                         </article>
                     })}
 
-                    <button onClick={handleCancelButton} >Cancel </button>
+                    <button className="btn-cancel"onClick={handleCancelButton} >Cancel </button>
                 </div>
             </div>
         }
