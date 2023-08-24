@@ -31,7 +31,6 @@ export default function Chat() {
         }
 
         const intervalId = setInterval(() => {
-            console.count('chat interval')
             try {
                 retrieveChat(context.token, chatId)
                     .then(newChat => {

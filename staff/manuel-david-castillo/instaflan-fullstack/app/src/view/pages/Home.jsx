@@ -187,7 +187,7 @@ export default function Home() {
                 {user && (
                     <img
                         className="w-10 h-10 rounded-full mr-2 object-cover mb-px hover:scale-110"
-                        src={user.image}
+                        src={user.image ? user.image : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'}
                         alt={user.name}
                     />
                 )}

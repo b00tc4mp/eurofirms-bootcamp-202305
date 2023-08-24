@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import context from "../../context"
 import extractUserIdFromToken from "../helpers/extractUserIdFromToken"
@@ -142,7 +142,8 @@ export default function AllPosts(props) {
     }
 
     return <section className="pt-2 pb-16">
-        {posts.map(post => <article key={post.id} className="bg-color5 mb-3">
+        {posts.length === 0 && <h2 className="text-gray-500 mt-6 text-center text-xl font-bold">You do not follow anyone, <Link className="text-color3 mt-6 text-center text-xl font-bold" to='/explorer'>start exploring!!</Link></h2>}
+        {posts.length > 0 && posts.map(post => <article key={post.id} className="bg-color5 mb-3">
             <div className="flex justify-between items-center">
                 <div className="flex justify-start items-center pl-3 py-1">
                     <img className="w-12 h-12 rounded-full object-cover mr-2" src={post.author.image} alt={post.author.name} />

@@ -121,7 +121,11 @@ export default function Profile() {
     return <section className="flex flex-col items-center pb-16">
         <div className="flex w-full justify-between items-center py-2 px-3">
             <div className="flex items-center">
-                <img className="w-12 h-12 rounded-full object-cover mr-2" src={userProfile?.image} alt={userProfile?.name} />
+                {!userProfile?.image ?
+                    <img className="w-12 h-12 rounded-full object-cover mr-2" src={'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'} />
+                    :
+                    <img className="w-12 h-12 rounded-full object-cover mr-2" src={userProfile?.image} />
+                }
                 <h3 className="font-semibold text-color1 text-xl">{userProfile?.name}</h3>
             </div>
             <div className="flex gap-3">
