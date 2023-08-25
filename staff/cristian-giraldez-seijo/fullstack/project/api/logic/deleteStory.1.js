@@ -11,14 +11,10 @@ function deleteStory(userId, storyId) {
             if (!story) throw new Error('story not found')
 
             if (story.author.toString() !== userId) throw new Error('story does not belong to user')
-if (!story.shortcut && story.options.length>0) throw new Error('this story has options and cannot be deleted')
-            return Story.findOne({ options: storyId })
+
+            return Story.deleteOne({ _id: story._id })
         })
-        .then((parentStories) => {
-            const index = parentStories.options.findIndex(option => option.toString() === storyId)
-            parentStories.options.splice(index, 1)
-            return Promise.all([parentStories.save(), Story.deleteOne({ _id: storyId })])
-        })
+        .then(() => { })
 }
 
 module.exports = deleteStory
