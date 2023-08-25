@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import retrieveStory from '../../logic/retrieveStory'
+import createStory from '../../logic/createStory'
 import context from '../../context'
 import extractUserIdFromToken from '../helpers/extractUserIdFromToken'
 
-const ShowStory = ({ storyId, onShowEditStory, onShowStory }) => {
+const ShowStory = ({ storyId, onShowEditStory, onShowStory, onShowCreateStory }) => {
     const [story, setStory] = useState(null)
 
     useEffect(() => {
@@ -21,6 +22,11 @@ const ShowStory = ({ storyId, onShowEditStory, onShowStory }) => {
     const handleShowStory = (event, storyId) => {
         event.preventDefault()
         onShowStory(storyId)
+    }
+
+    const handleShowCreateStory = (event, storyId) => {
+        event.preventDefault()
+        onShowCreateStory(storyId)
     }
 
     let userId
@@ -47,7 +53,7 @@ const ShowStory = ({ storyId, onShowEditStory, onShowStory }) => {
                                 return <li key={option.id}><a href='' onClick={(event) => handleShowStory(event, option.id)}>{option.title}</a></li>
                             })
                         }
-                        {context.token && <li><a>add a new chapter</a></li>}
+                        {context.token && <li><a href='' onClick={(event) => handleShowCreateStory(event, story.id)}>add a new chapter</a></li>}
                     </ul>
                 </>
             ) : (

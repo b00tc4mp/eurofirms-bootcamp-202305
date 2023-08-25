@@ -1,7 +1,7 @@
 import context from '../../context'
 import createStory from '../../logic/createStory'
 
-const CreateStory = ({ onStoryCreated }) => {
+const CreateStory = ({ storyId, onStoryCreated }) => {
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -9,9 +9,8 @@ const CreateStory = ({ onStoryCreated }) => {
         const sumary = event.target.sumary.value
         const text = event.target.text.value
         const question = event.target.question.value
-
         try {
-            createStory(context.token, title, sumary, text, question)
+            createStory(context.token, title, sumary, text, question, storyId)
                 .then(() => onStoryCreated())
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -25,6 +24,7 @@ const CreateStory = ({ onStoryCreated }) => {
             <form className="flex flex-col justify-center items-center p-6 bg-white border-3 border-solid border-black border-4 rounded-lg w-64" onSubmit={handleSubmit}>
 
                 <h2 className='text-red-700'>New story</h2>
+                
                 <label htmlFor="title">Title</label>
                 <input type="text" id='title'/>
 

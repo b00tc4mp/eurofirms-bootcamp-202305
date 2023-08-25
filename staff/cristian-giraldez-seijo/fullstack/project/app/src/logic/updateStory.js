@@ -1,4 +1,4 @@
-function updateStory(token, storyId, title, sumary, text, question, shortcut, origin) {
+function updateStory(token, storyId, title, sumary, text, question) {
     if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof storyId !== 'string') throw new Error('storyId is not a string')
     if (typeof title !== 'string') throw new Error('title is not a string')

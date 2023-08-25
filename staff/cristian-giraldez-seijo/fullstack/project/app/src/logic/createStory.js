@@ -1,4 +1,4 @@
-function createStory(token, title, sumary, text, question, shortcut, origin) {
+function createStory(token, title, sumary, text, question, parentStoryId) {
     if (typeof token !== 'string') throw new Error('token is not a string')
     if (typeof title !== 'string') throw new Error('title is not a string')
     if (typeof sumary !== 'string') throw new Error('sumary is not a string')
@@ -11,7 +11,7 @@ function createStory(token, title, sumary, text, question, shortcut, origin) {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title, sumary, text, question, shortcut, origin })
+        body: JSON.stringify({ title, sumary, text, question, parentStoryId })
     })
         .then(res => {
             if (res.status === 201)

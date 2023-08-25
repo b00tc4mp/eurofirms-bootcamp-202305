@@ -50,7 +50,10 @@ const Home = () => {
         setView('EditStory')
     }
 
-    const handleShowCreateStory = () => setView('CreateStory')
+    const handleShowCreateStory = (storyId) => {
+        setStoryId(storyId)
+        setView('CreateStory')
+}
 const handleStoryCreated = () => setView('Stories')
     const handleBackToStories = () => {
 setStoryId(null)
@@ -77,8 +80,8 @@ setView('Stories')
             </header>
             <main>
             {view === 'Stories' && <ShowStories onShowStory={handleShowStory} onShowCreateStory={handleShowCreateStory} />}
-                {view === 'Story' && <ShowStory storyId={storyId} onShowEditStory={handleShowEditStory} onShowStory={handleShowStory}/>}
-                {view === 'CreateStory' && <CreateStory onStoryCreated={handleStoryCreated}/>}
+                {view === 'Story' && <ShowStory storyId={storyId} onShowEditStory={handleShowEditStory} onShowStory={handleShowStory} onShowCreateStory={handleShowCreateStory}/>}
+                {view === 'CreateStory' && <CreateStory onStoryCreated={handleStoryCreated} storyId={storyId}/>}
                 {view === 'EditStory' && <EditStory story={story} onStoryEdited={handleShowStory} onStoryDeleted={handleBackToStories}/>}
                     
             </main>
