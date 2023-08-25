@@ -92,5 +92,5 @@ Comment
 - DONE update api logic for retrieve stories without origin
 - DONE update api logic for retrieve story with options
 - DONE update app for retrieve stories with options
-- TONE update app for create and edit options
+- DONE update app for create and edit options
 - DONE update api for delete options and not allow to delete stories with options

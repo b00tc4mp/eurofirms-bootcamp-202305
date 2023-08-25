@@ -1,7 +1,7 @@
 const { Story, User } = require('../data')
 const { validateId, validateRequiredString, validateString, validateBoolean } = require('./helpers/validators')
 
-function updateStory(userId, storyId, title, sumary, text, question, shortcut = false, origin = null) {
+function updateStory(userId, storyId, title, sumary, text, question, shortcut = false) {
     validateId(userId)
     validateId(storyId)
     // TODO validates
@@ -26,10 +26,7 @@ function updateStory(userId, storyId, title, sumary, text, question, shortcut = 
             story.sumary = sumary
             story.text = text
             if (shortcut) { }
-            if (origin) {
-                validateId(origin)
-                story.origin = origin
-            }
+
             story.dateupdated = new Date()
             return Story.updateOne(story)
         })

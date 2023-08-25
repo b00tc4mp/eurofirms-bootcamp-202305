@@ -14,7 +14,7 @@ const EditStory = ({ story, onStoryEdited, onStoryDeleted }) => {
         const question = event.target.question.value
 
         try {
-            updateStory(context.token, story.id, title, sumary, text, question, story.shortcut, story.origin)
+            updateStory(context.token, story.id, title, sumary, text, question, story.shortcut)
                 .then(() => onStoryEdited())
                 .catch(error => alert(error.message))
         } catch (error) {
