@@ -20,11 +20,11 @@ This purpose will be achieved by using posts from different users, which are dis
 
 ### Use Cases
 
-- DONE - list meetups
-- DONE - publish meetup
-- DONE - update meetup
-- DONE - delete meetup
-- DONE - toggle join meetup
+- list meetups
+- publish meetup
+- update meetup
+- delete meetup
+- toggle join meetup
 
 ### UI Design
 
@@ -49,14 +49,10 @@ Meetup
 - type (String, required)
 - dateMeetup (Date, required)
 - address (String, required)
-- likes (Integer, reference user)
+- Atendants (Integer, reference user)
 
-## Planning
 
-Link of [Trello project](https://trello.com/b/rKJIeIsn/biciquedadas)
-
-## Technical Specs.
-Modules 
+### Modules
 
 Server Side
 - api: server to client
@@ -64,22 +60,15 @@ Server Side
 Client Side
 - app: client aplication
 
+## Planning
 
-## TO DO Cases
-- search meetups
-- translation other languages
-- implement users
-- images
- - videos
-- comments people (admin & companions of meetups)
-- planning routes
+Link of [Trello project](https://trello.com/b/rKJIeIsn/biciquedadas)
 
-###
-![](project/app/public/comp-1.gif)
 
-###
--[ api README ](project/api/README.md)-
 
--[ app README ](project/app/README.md)-
+## Other docs
+- [ api README ](../api/README.md)
+
+- [ app README ](../app/README.md)
 
 

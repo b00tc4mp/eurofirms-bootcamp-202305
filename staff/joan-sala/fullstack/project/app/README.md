@@ -1,6 +1,9 @@
 # app
 
 ## Technical Specs.
+# in .env
+- VITE_API_URL = http://localhost:9000
+
 Modules to be installed
 - React
 - Vite
@@ -16,6 +19,6 @@ npm run dev
 To open the browser navigation, press  key 'o
 
 ###
--[ General REDME ](../../README.md)-
+-[ General REDME ](../doc/README.md)
 
 -[ api ](../api/README.md)

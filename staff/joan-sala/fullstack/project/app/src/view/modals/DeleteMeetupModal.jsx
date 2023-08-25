@@ -24,7 +24,7 @@ function DeleteMeetupModal({meetupId, onMeetupDeleted, onDeleteMeetupCancelled})
          
             <form className="" onSubmit={handleSubmit} //home-create-meetup-form
             >
-                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm my-3 mt-6 hover:bg-[#707070]" type="submit">Delete</button>
+                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm my-2 mt-6 hover:bg-[#707070]" type="submit">Delete</button>
                 <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm hover:bg-[#707070]" type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>

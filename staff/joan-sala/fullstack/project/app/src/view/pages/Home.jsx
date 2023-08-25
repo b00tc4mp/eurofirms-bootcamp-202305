@@ -128,6 +128,7 @@ function Home({ onLoggedOut }) {
     return (
         <div>
             <header className="fixed top-0 h-[5rem] flex items-center justify-between bg-[rgb(217,217,217)] w-full py-[1rem]">
+                
                 <h1 className="font-extrabold p-5">{user ? user.name : 'Check in'} </h1>
                 <div className="flex justify-center items-center ">
                     <img src={user ? user.image : ""} id="url"
@@ -148,11 +149,11 @@ function Home({ onLoggedOut }) {
                             <h2 className="uppercase text-lg font-extrabold underline">{meetup.author?.name}</h2>
                             <a className="mt-2 text-sm text-[#2c2a2a] font-style: italic">{meetup.date}</a>
                             <p className="mt-6 font-semibold text-[#2c2a2a]">Image: </p>
-                            <img className="w-full w-50rounded-xl border-8 border-[#2c2a2a]-500"
+                            <img className="max-w-[15rem] rounded-xl border-8 border-[#2c2a2a]-500"
                                 src={meetup.image}
                                 alt={meetup.text} />
                             <p className="mt-6 font-semibold text-[#2C2A2A]">Video: </p>
-                            <video controls className="w-full rounded-xl z-auto border-8 border-[#2c2a2a]-500"
+                            <video controls className="max-w-[15rem] rounded-xl z-auto border-8 border-[#2c2a2a]-500"
                                 src={meetup.video}
                                 alt={meetup.text} />
                             <p className="mt-6 font-semibold text-[#2C2A2A]">Description: </p>
@@ -163,15 +164,22 @@ function Home({ onLoggedOut }) {
                             <p>{meetup.adress}</p>
                             <p className="mt-6 font-semibold text-[#2C2A2A]">Date meetup: </p>
                             <p>{meetup.dateMeetup}</p>
-                            <p className="mt-6 font-semibold text-[#2C2A2A]">Likes:</p>
+                            <p className="mt-6 font-semibold text-[#2C2A2A]">Atendants:</p>
                             <p>{meetup.likes}</p>
-                            {meetup.author.id === userId && <>
+                            <div>{meetup.author.id === userId && <>
+                                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full w-32 my-2 hover:bg-[#707070]" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
+                                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full w-32 mx-2 hover:bg-[#707070]" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
+                            </>
+                            }
+                            <button className="bg-[#2C2A2A] text-[#ffffff] px-4 py-2 text-sm text-center rounded-full w-32 my-2 hover:bg-[#707070]" onClick={() => { 
+                                handleToggleMeetupClick(meetup.id)}}>{meetup.fav ? 'Join' : 'No join'}</button></div>
+                            {/* {meetup.author.id === userId && <>
                                 <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 my-10 hover:bg-[#707070]" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
                                 <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 mx-10 hover:bg-[#707070]" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
                             </>
                             }
                             <button className="bg-[#2C2A2A] text-[#ffffff] px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 my-10 hover:bg-[#707070]" onClick={() => { 
-                                handleToggleMeetupClick(meetup.id)}}>{meetup.fav ? '♥' : '♡'}</button>
+                                handleToggleMeetupClick(meetup.id)}}>{meetup.fav ? 'Join' : 'No join'}</button> */}
                         </article>)}
                 </section>
             </main>}

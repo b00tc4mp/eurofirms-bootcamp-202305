@@ -4,10 +4,11 @@
 This process anage the connect of dataabase to the user interface.
 
 
-## Technical  Spec.
-- API_PORT = port of API
+## Technical  Spec. in .env
+- PORT = port of API
+- MONGODB_URL = mongodb adress
 - JWT_SECRET = secret string for jsonwebtoken
-- MONGOSEE_URL = mongodb adress
+
 
 Modules to be installed
 - cors
@@ -40,4 +41,4 @@ Ex: cd mongodb/mongosh-1.10.1-win32-x64/
 Ex: ./bin/mongosh
 ```
 ###
--[ General REDME ](../../README.md)-
+-[ General REDME ](../doc/README.md)
