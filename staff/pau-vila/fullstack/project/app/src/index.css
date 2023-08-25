@@ -176,7 +176,8 @@ body {
 }
 
 .home-artwork-image {
-    width: 100%;
+    width: 300px;
+    max-height: 400px;
     border-radius: 4px;
     font-weight: bold;
     box-shadow: 4px 4px 4px #973ebe;
@@ -263,7 +264,8 @@ body {
 }
 
 .home-workshop-image {
-    width: 100%;
+    width: 400px;
+    max-height: 500px;
     border-radius: 4px;
     font-weight: bold;
     box-shadow: 3px 3px 3px #813d9e;
@@ -272,6 +274,7 @@ body {
 
 .home-workshop-video {
     width: 100%;
+    max-height: 350px;
 }
 
 /* cosos */

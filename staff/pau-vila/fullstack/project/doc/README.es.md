@@ -9,7 +9,7 @@ La aplicación se dedicará a restaurar y reciclar muebles o cosas viejas de mad
 ## Descripción funcional
 
 El objetivo principal y las principales ventajas para los usuarios de esta aplicación es poder compartir sus obras de arte y cómo las han hecho.
-Este propósito se logrará utilizando los posts de diferentes usuarios, mostrados en forma de lista. Obviamente guardando otros campos como fecha de creación, autor del post, etc.
+Este propósito se logrará utilizando los posts de diferentes usuarios, mostrados en forma de lista. Obviamente guardando otros campos como la decripción, materiales, autor del post, etc.
 
 ## Casos prácticos
 - publicar obra o taller
@@ -17,7 +17,8 @@ Este propósito se logrará utilizando los posts de diferentes usuarios, mostrad
 - actualizar obras o talleres
 - eliminar obra o taller
 - unirse/desunirse a un taller
-- buscar obras o talleres
+- por hacer buscar obras o talleres
+- por hacer traducir a diversos lenguajes el boton de 'acerca de'
 
 ## Technical Description:
 
@@ -37,11 +38,9 @@ Usuario
 Obra de arte 
 - author (ObjectId, ref 'Usuario', obligatorio)
 - image (archivo de foto, obligatoria)
-- vídeo (cadena: URL de youtube o similar, opcional)
 - descripción (cadena, obligatoria)
-- tipo (String, obligatorio)
-- materiales ([String], obligatorio)
-- creationDate (Fecha, obligatorio)
+- materiales (String, obligatorio)
+- ornamentos ([String], obligatorio)
 
 Taller 
 - attendants (Array of User id, obligatorio)
@@ -49,7 +48,7 @@ Taller
 - código postal (cadena, obligatorio)
 - date start (Fecha, obligatorio)
 - fecha fin (Entero, obligatorio)
-- imagen (archivo de foto, opcional)
+- imagen (URL, opcional)
 - vídeo (cadena: URL de youtube o similar, opcional)
 - descripción (cadena, obligatoria)
 

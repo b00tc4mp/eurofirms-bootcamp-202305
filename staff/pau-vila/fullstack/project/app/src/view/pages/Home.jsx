@@ -214,7 +214,8 @@ function Home({ onLoggedOut }) {
             <section className="home-artworks">
                 {artworks && artworks.map(artwork =>
                     <article key={artwork.id}>
-                        <h2>{artwork.author.name}</h2>
+                        <h2>{artwork.title}</h2>
+                        <h2>Artwork de: {artwork.author.name}</h2>
 
                         <img className="home-artwork-image"
                             src={artwork.image}
@@ -237,7 +238,8 @@ function Home({ onLoggedOut }) {
             <section className="home-workshops">
                 {workshops && workshops.map(workshop => (
                     <article key={workshop.id}>
-                        <h2>{workshop.planner.name}</h2>
+                        <h2>{workshop.title}</h2>
+                        <h2>Workshop de: {workshop.planner.name}</h2>
                         {workshop.image !== '' && <img className="home-workshop-image"
                             src={workshop.image} />} 
                         {workshop.video !== '' && <video controls className="home-workshop-video"
