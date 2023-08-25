@@ -91,3 +91,4 @@ Comment
 - DONE implement api route for create story options(child stories)
 - DONE update api logic for retrieve stories without origin
 - DONE update api logic for retrieve story with options
+- DONE update app for retrieve stories with options

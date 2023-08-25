@@ -21,7 +21,7 @@ const Home = () => {
                 .then(user => setUser(user))
                 .catch(error => alert(error.message))
         } catch (error) { alert(error.message) }
-    }, [])
+    }, [context.token])
 
     const handleNavigateToRegister = () => setModal('register')
 
@@ -77,7 +77,7 @@ setView('Stories')
             </header>
             <main>
             {view === 'Stories' && <ShowStories onShowStory={handleShowStory} onShowCreateStory={handleShowCreateStory} />}
-                {view === 'Story' && <ShowStory storyId={storyId} onShowEditStory={handleShowEditStory} />}
+                {view === 'Story' && <ShowStory storyId={storyId} onShowEditStory={handleShowEditStory} onShowStory={handleShowStory}/>}
                 {view === 'CreateStory' && <CreateStory onStoryCreated={handleStoryCreated}/>}
                 {view === 'EditStory' && <EditStory story={story} onStoryEdited={handleShowStory} onStoryDeleted={handleBackToStories}/>}
                     
