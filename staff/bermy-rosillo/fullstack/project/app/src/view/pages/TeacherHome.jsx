@@ -73,11 +73,13 @@ function TeacherHome(props) {
 
     return <div className="home-view ">
         <header className="home-header">
-            <h1 className="home-title">Teacher {user ? user.name : 'User'} </h1>
-            <button className="btn-teacher-home" onClick={handleLoggedOut}>Logout </button>
+        
+            <h1 className="home-title">Teacher {user ? user.name : 'User'}  </h1> 
+            <button className="btn-teacher-home" onClick={handleLoggedOut}>Logout </button>  
+            <img src="../../../abcLogo.png" className="logo"></img>
         </header>
 
-        <main className="home-main">
+        <main className="home-main" >
 
             {homeView === 'list-test' && <section className="home-tests">
                 <h1>Choose a test</h1>

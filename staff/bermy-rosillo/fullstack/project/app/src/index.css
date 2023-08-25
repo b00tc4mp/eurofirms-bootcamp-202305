@@ -34,7 +34,7 @@ input,textarea {
 
 }
 
-h1 {
+h1,h2{
     text-shadow: 2px 2px 5px rgb(232, 243, 232);
 }
 
@@ -56,7 +56,7 @@ p a {
     padding: 15px;
     /*border-top-left-radius: 15px;*/
     border-radius: 15px;
-    box-shadow: 7px 7px #79155B;
+    box-shadow: 7px 7px 7px #79155B;
 }
 .create-test-form{
     margin-top:80px;
@@ -78,7 +78,7 @@ p a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color:#07ca7b;
+    background-color:#a7eb4a;
     width: 100%;
     padding: 0 1rem;
     box-sizing: border-box;
@@ -94,7 +94,7 @@ p a {
 }
 
 .home-footer {
-    background-color:#07ca7b;
+    background-color:#a7eb4a;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -122,31 +122,35 @@ p a {
     box-shadow: #000;
 }
 .btn-teacher-home,.btn-student-home{
-    background-color:#ffd952;
-    color:#000;
+    background-color:#216d19;
+    color:#fff;
     padding:5px;
     text-decoration:none;
     border-radius:5px;
     font-weight: bold;
 }
 .btn-send{
-    background-color:#2BD1FC;
+    background-color:#b7a194;
     color:#000;
     padding:5px;
     text-decoration:none;
+    border-radius:5px;
     font-weight: bold;
+    margin-top:5px;
 }
 
 .btn-cancel{
-    background-color:#fe554d;
-    color:#fff;
+    background-color:#cafaba;
+    color:#000;
     padding:5px;
     text-decoration:none;
     border-radius:5px;
-    font-weight: bold;    
+    font-weight: bold;  
+    margin-top:5px;  
 }
 .home-tests,.list-student{
     text-align: center;
+    
 }
 #students-list{
     text-align:center;
@@ -154,4 +158,14 @@ p a {
 .search-tests,.test-view{
     padding-top:50px;
     text-align: center;
+}
+.test-information{
+    border:2px solid black;
+    padding:10px;
+    background-color:#a8cc74;
+}
+.logo{
+    width:5%;
+    position:absolute;
+    left:0px;
 }

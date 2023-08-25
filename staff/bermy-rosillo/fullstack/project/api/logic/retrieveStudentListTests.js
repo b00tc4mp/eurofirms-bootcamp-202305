@@ -8,7 +8,7 @@ function retrieveStudentListTests(userId) {
         .then(user => {
             if (!user) throw new Error('User not found')
 
-            return Answer.find({}, '-__v').populate('test','subject title').populate('student','-__v').lean()
+            return Answer.find({student: userId}, '-__v').populate('test','-__v').populate('student','-__v').lean()
                 .then(answers => {
                     answers.forEach(answer => {
                         answer.id = answer._id.toString()

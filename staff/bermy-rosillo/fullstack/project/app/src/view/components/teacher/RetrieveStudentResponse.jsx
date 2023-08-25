@@ -58,16 +58,19 @@ function RetrieveStudentResponse(props) {
 
         {test && answers &&
             <div className="test-form" >
-
+                <h1>Assessments</h1>
+                
+                <div className="test-information">
                 <h3>Subject: {test.subject}</h3>
                 <h3>Title: {test.title}</h3>
                 <h3>Description: {test.description}</h3>
                 <h3>Attemps: {test.attemps}</h3>
+                </div>
 
                 <div className="answers-view">
 
 
-                    <h1>Student answers</h1>
+                    <h2>Student answers</h2>
                     {answers && answers.map(answer => {
                         return <article key={answer.id}>
                             <h3>Name: {answer.student.name}</h3>

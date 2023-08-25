@@ -50,8 +50,11 @@ function StudentHome(props) {
     const handleretrieveTest = (event, testId) => {
         event.preventDefault()
         setTestId(testId)
-        setView('send-answer')
-        
+        //crea funcion que devuelva un boleano, can pepito(token,testId)
+        const canGo= pepitogrillo(token,testId)
+
+        if (canGo) setView('send-answer')
+        else alert('Attemps limit reached')
     }
     
     const handleAssessments =()=>{

@@ -39,7 +39,8 @@ function RetrieveStudentsList(props){
     //-------------------------------
     return  <div id="students-list">
             { viewStudentsList === 'list-students' && <section className="list-student">
-                <h1>Select a student</h1>
+                <h1>Students list</h1>
+                <h2>Select</h2>
                 {students && students.map(student => {
                     return <article key={student.id}>
                         <h3><a href="" className="btn-test" onClick={(event)=>handleRetrieveStudentResponse(event,student.id)}>{student.name}</a></h3>

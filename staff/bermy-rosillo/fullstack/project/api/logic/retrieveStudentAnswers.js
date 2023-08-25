@@ -8,7 +8,7 @@ function retrieveStudentAnswers(userId) {
         .then(user => {
             if (!user) throw new Error('user not found')
 
-            return Answer.find({ student: userId, assessment: { $exists: true } }, '-__v').populate('test', 'subject title').lean()
+            return Answer.find({ student: userId, assessment: { $exists: true } }, '-__v').populate('test','-__v').lean()
                 .then(answers => {
 
                     answers.forEach(item => {

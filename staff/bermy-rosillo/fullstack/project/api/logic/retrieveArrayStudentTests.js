@@ -17,12 +17,13 @@ function retrieveArrayStudentTests(userId) {
         answers.forEach(answer => {
             if(!tests.some(test => test.id === answer.test.id)) {
                 const ansList= []
-                ansList.push(answer.description)
+                ansList.push(answer.description,answer.score? answer.score:'without score',answer.assessment?answer.assessment:'without assessment')
                 answer.test.ans = ansList
                 tests.push(answer.test)            
             } else {
                 const index = tests.findIndex((test)=> test.id===answer.test.id)
-                tests[index].ans.push(answer.description)
+                tests[index].ans.push(answer.description,answer.score? answer.score:'without score',answer.assessment?answer.assessment:'without assessment')
+                
             }
         })
         return tests 

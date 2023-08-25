@@ -7,7 +7,7 @@ function SendAnswer(props) {
     console.log('Send answer->render')
 
     const [test, setTest] = useState()
-   
+
     useEffect(() => {
         try {
             retrieveTest(context.token, props.testId)
@@ -43,20 +43,21 @@ function SendAnswer(props) {
     }
 
     return <div className="test-view">
-        <h1>Test</h1>
         {test && test &&
             <div className="test-form" >
+                <h1>Test</h1>
 
-                <h3>Title: {test.title}</h3>
-                <h3>Question: {test.description}</h3>
-                <h3>Attemps: {test.attemps}</h3>
-                
+                <div className="test-information">
+                    <h3>Title: {test.title}</h3>
+                    <h3>Question: {test.description}</h3>
+                    <h3>Attemps: {test.attemps}</h3>
+                </div>
                 <form className="answers-form" onSubmit={handleSubmitAnswer}>
-                
+
                     <label htmlFor="answer">My Answer: </label>
                     <textarea id="answer" type="text" rows="4" cols="20" ></textarea>
                     <button type="submit" className="btn-send">Send</button>
-                    <button className="btn-cancel"onClick={handleCancelAnswer} >Cancel </button>
+                    <button className="btn-cancel" onClick={handleCancelAnswer} >Cancel </button>
                 </form>
             </div>
         }

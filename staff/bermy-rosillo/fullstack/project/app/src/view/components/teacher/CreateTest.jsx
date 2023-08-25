@@ -34,7 +34,7 @@ function CreateTest(props) {
     return <main className="create-test-view">
 
         <form className="create-test-form" onSubmit={handleSubmitCreateTest}  >
-            <h1>Create Test</h1>
+            <h2>Create Test</h2>
            
             <label htmlFor="subject">Subject</label>
             <input id="subject" type="text" />
