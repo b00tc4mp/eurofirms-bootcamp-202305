@@ -26,34 +26,36 @@ function Register(props) {
         }
     }
     return <><main className="register-view">
-        <h1>Register</h1>
+
+        <img className="image-logo" src="../../../public/logo.jpg"></img>
+
+        <div><h1>Register</h1>
 
         <form className="register-form" onSubmit={handleRegisterSubmit}>
-            <label htmlFor="name">Name</label>
+            <label className="name-type" htmlFor="name">Name</label>
             <input id="name" type="text"></input>
 
-            <label htmlFor="email">E-mail</label>
+            <label className="email-type" htmlFor="email">E-mail</label>
             <input id="email" type="email"></input>
 
-            <label htmlFor="password">Password</label>
+            <label className="password-type" htmlFor="password">Password</label>
             <input id="password" type="password"></input>
 
-            <label htmlFor="zip">Zip</label>
+            <label className="zip-type" htmlFor="zip">Zip</label>
             <input id="zip" type="text"></input>
 
-            <label htmlFor="phone">Phone</label>
-            <input id="phone" type="text"></input>
+            <label className="phone-type" htmlFor="phone">Phone</label>
+            <input  id="phone" type="text"></input>
 
 
             <button type="submit">Register</button>
         </form>
 
         <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
+        </div>
+        <img className="image-logo" src="../../../public/logo.jpg"></img>
+
     </main><footer>
-    <div class="container">
-    <div class="image-container">
-      <img src="../../../public/logo-tornorecicla.png"></img>
-    </div></div>
         </footer>
         </>
 }

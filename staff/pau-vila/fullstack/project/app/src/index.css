@@ -11,32 +11,46 @@
     }
 }
 
-
 body {
     height: 100%;
     font-family: 'Open Sans';
     src: url('fonts/OpenSans-Regular.ttf') format('truetype');
     font-style: italic;
-    font-size: 0.8rem;
     margin: 0;
     box-sizing: border-box;
     background: linear-gradient(135deg, #ad4df2, #e7a4fd);
 }
 
-
-
 /* register */
-
+.register-login-link{
+    font-size: 1.1rem ; 
+}
 .register-form {
     display: flex;
     flex-direction: column;
 }
-
+.name-type {
+    font-size: 1.3rem ;
+}
+.email-type {
+    font-size: 1.3rem ; 
+}
+.password-type {
+    font-size: 1.3rem ; 
+}
+.zip-type {
+    font-size: 1.3rem ; 
+}
+.phone-type {
+    font-size: 1.3rem ; 
+}
 /* login */
-
+.login-register-link {
+    font-size: 1.1rem ;
+}
 .login-view {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     color: rgb(130, 7, 65);
     background: linear-gradient(to bottom, #f2358d, #f7c7e1);
@@ -44,7 +58,7 @@ body {
 
 .register-view {
     display: flex;
-    flex-direction: column;
+    justify-content:space-around;
     align-items: center;
     color: rgb(2, 86, 88);
     background: linear-gradient(to bottom, rgb(7, 200, 206), rgb(204, 246, 248))
@@ -59,7 +73,7 @@ body {
 .home-header {
     position: fixed;
     top: 0;
-    height: 4rem;
+    height: 4.2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -73,7 +87,7 @@ body {
     font-family: 'Open Sans';
     src: url('fonts/OpenSans-Regular.ttf') format('truetype');
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
 }
 
 .home-main {
@@ -88,7 +102,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3rem;
+    height: 3.7rem;
 }
 
 /*artworks*/
@@ -114,6 +128,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+}
+.home-create-artwork-form-description{
+   max-width: 80%;
 }
 
 .home-edit-artwork-modal {
@@ -197,6 +214,9 @@ body {
     font-style: italic;
     font-size: 0.8rem;
 }
+.home-create-workshop-form-description{
+    max-width: 80%;
+}
 
 .home-create-workshop-container {
     background-image: linear-gradient(135deg, rgb(8, 180, 59), rgb(155, 241, 163));
@@ -264,8 +284,8 @@ body {
 }
 
 .home-workshop-image {
-    width: 400px;
-    max-height: 500px;
+    max-width: 100%;
+    max-height: 350px;
     border-radius: 4px;
     font-weight: bold;
     box-shadow: 3px 3px 3px #813d9e;
@@ -273,7 +293,7 @@ body {
 }
 
 .home-workshop-video {
-    width: 100%;
+    max-width: 100%;
     max-height: 350px;
 }
 
@@ -282,17 +302,17 @@ body {
 
 .home-descriptionA {
     font-style: italic;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
 }
 
 .home-materials {
     font-style: italic;
-    font-size: 0.8rem
+    font-size: 1.2rem
 }
 
 .home-ornament {
     font-style: italic;
-    font-size: 0.8rem
+    font-size: 1.2rem
 }
 
 .container {
@@ -303,8 +323,12 @@ body {
 }
 
 .image-container {
-    flex: 1;
-    padding: 120px;
+    
+    width: 100%;
+}
+.image-logo {
+    width: 170px;
+
 }
 
 .image-container img {
@@ -322,49 +346,53 @@ body {
 
 .home-descriptionW {
     font-style: italic;
-    font-size: 0.8rem
+    font-size: 1.2rem
 }
 
 .home-lugar {
     font-style: italic;
-    font-size: 0.8rem
+    font-size: 1.2rem
 }
 
 .home-fechainicio {
     font-style: italic;
-    font-size: 0.8rem
+    font-size: 1.2rem
 }
 
 .home-fechafin {
     font-style: italic;
-    font-size: 0.8rem
+    font-size: 1.2rem
 }
 
 .home-limiteasistentes {
     font-style: italic;
-    font-size: 0.8rem
+    font-size: 1.2rem
 }
 
 .home-zip {
     font-style: italic;
-    font-size: 0.8rem
+    font-size: 1.2rem
 }
 
 /*about*/
 .moreinfo {
-    width: 100%;
-    border-radius: 3px;
-    font-weight: bold;
+    max-width: 100%;
+    border-radius: 8px;
+    font-weight:bold;
     border-style: inset;
-    font-size: 0.9rem;
-    justify-content: center;
+    font-size: 1.6rem;
+    justify-content:center;
     align-items: center;
-    display:inline-block;
-    
+    display:flexbox;
+    padding: 2rem;
+    color:rgb(243, 246, 246);
 }
 .moreinfo-image {
 box-shadow: 10px 10px 10px #893aab;
-border-radius: 2px;
+border-radius: 5px;
+max-width: 450%;
+max-height: 550px;
+justify-content:left;
 }
 
 /*butoms*/
@@ -373,8 +401,96 @@ button{
     border-radius: 9px;
     color: rgb(105, 20, 170);
     font-weight: bold;
-    padding: 5px;
+    font-size: 18px;
+    padding: 10px 20px;
     box-shadow: 2px 2px 2px #8f3cb2;
     box-decoration-break: clone;
 -webkit-box-decoration-break: clone;
+    margin: 0.3rem;
 }
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+.gracias-equipo{
+    color:antiquewhite;
+}
+#agradecimiento {
+    background-color:#9042b1;
+    padding-left: 12px;
+    border-radius: 7px;  
+}
+.reciclaje-arte {
+    color:antiquewhite; 
+}
+#arte {
+    background-color: #8f3cb2;
+    padding-left: 12px;
+    border-radius: 7px;
+}
+.reduce-estres {
+    color:antiquewhite; 
+}
+#estres {
+    background-color: #8e32b6;
+    padding-left: 12px;
+    border-radius: 7px; 
+}
+.sensacion-confort {
+    color:antiquewhite;
+}
+#confort {
+    background-color: #8727b0;
+    padding-left: 12px;
+    border-radius: 7px;  
+}
+.cualidad-haptica {
+    color:antiquewhite; 
+}
+#haptica {
+    background-color: #9130ba;
+    padding-left: 12px;
+    border-radius: 7px;   
+}
+.futuro-sostenible {
+    color:antiquewhite;
+}
+#sostenible {
+    background-color: #8e33b5;
+    padding-left: 12px;
+    border-radius: 7px;  
+}
+.medio-ambiente {
+    color:antiquewhite;
+}
+#ambiente {
+    background-color: #8d35b3;
+    padding-left: 12px;
+    border-radius: 7px;  
+}
+.aplicacion-creada {
+    color:antiquewhite; 
+}
+#aplicacion {
+    background-color: #9437bb;
+    padding-left: 12px;
+    border-radius: 7px;  
+}
+.title {
+    color:antiquewhite; 
+}
+#hablemos {
+    background-color: #8d37b1;
+    padding-left: 12px;
+    border-radius: 7px;  
+}  
+
+
+

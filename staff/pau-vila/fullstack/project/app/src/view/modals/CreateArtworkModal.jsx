@@ -34,7 +34,7 @@ function CreateArtworkModal(props) {
                 <input id="image" type="url"></input>
 
                 <label htmlFor="description">Description</label>
-                <textarea id="description"></textarea>
+                <textarea className="home-create-artwork-form-description" id="description"></textarea>
 
                 <label htmlFor="materials">Materials</label>
                 <input id="materials"></input>

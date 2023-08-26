@@ -7,7 +7,7 @@ function Login(props) {
     console.log('Login -> render')
 
     const [modal, setModal] = useState(null);
-    
+
     const handleRegisterClick = event => {
         event.preventDefault()
 
@@ -36,32 +36,34 @@ function Login(props) {
     const handleAboutClick = () => {
         setModal('about')
     }
-    const handleReturnView =() => {
+    const handleReturnView = () => {
         setModal(null)
     }
 
     return <><main className="login-view">
-        <h1>Login</h1>
 
-        <form className="login-form" onSubmit={handleLoginSubmit}>
-            <label htmlFor="email">E-mail</label>
-            <input id="email" type="email"></input>
+            <img className="image-logo" src="../../../public/logo.jpg"></img>
+        
+        <div className="login-container"><h1>Login</h1>
+            <form className="login-form" onSubmit={handleLoginSubmit}>
+                <label className="email-type" htmlFor="email">E-mail</label>
+                <input id="email" type="email"></input>
 
-            <label htmlFor="password">Password</label>
-            <input id="password" type="password"></input>
+                <label className="password-type" htmlFor="password">Password</label>
+                <input id="password" type="password"></input>
 
-            <button type="submit">Login</button>
-        </form>
+                <button type="submit">Login</button>
+            </form>
 
-        <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
-        <button onClick={handleAboutClick}>About</button>
+            <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
+            <button onClick={handleAboutClick}>About</button>
+        </div>
+        
+            <img className="image-logo" src="../../../public/logo.jpg"></img>
+        
     </main><footer>
-            <div class="container">
-                <div class="image-container">
-                    <img src="../../../public/logo-tornorecicla.png"></img>
-                </div></div>
         </footer>
-        {modal === 'about' && <ViewInfoPlus onReturned={handleReturnView}/>}
+        {modal === 'about' && <ViewInfoPlus onReturned={handleReturnView} />}
     </>
 }
 export default Login 

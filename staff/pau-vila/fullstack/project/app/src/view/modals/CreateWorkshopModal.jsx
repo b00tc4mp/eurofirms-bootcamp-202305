@@ -39,7 +39,7 @@ function CreateWorkshopModal(props) {
                 <input id="image" type="url"></input>
 
                 <label htmlFor="description">Description</label>
-                <textarea id="description"></textarea>
+                <textarea className="home-create-workshop-form-description" id="description"></textarea>
 
                 <label htmlFor="place">Lugar</label>
                 <input type="text" id="place"></input>
