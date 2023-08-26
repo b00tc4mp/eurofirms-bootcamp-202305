@@ -37,7 +37,7 @@ export function PanelWorking({ onExitModal, panelId }) {
                 <header>
                     <h4>View panel</h4>
                 </header>
-                {panel && panel.status === 3 && <h6>Optimization is not possible!.</h6>}
+                {panel && panel.status === 3 && <h6>Blokcs too big!</h6>}
                 {panel && panel.status === 1 && panel.blocks.length === 0 && <h6>At this moment, optimization is not working.</h6>}
                 {panel && panel.status === 1 && panel.blocks.length !== 0 && <Canvas panel={panel} width={context.panelPictureWidth} height={context.panelPictureHeight} />}
                 <footer className="flex-hor">

@@ -61,17 +61,18 @@ const cep = function (panel, context) {
 
     displayProcess(0, processId, context.nesting, context.times)
 
+    // Calculate if panel is ready to be optium
     const heightMax = panel.heightMax()
     const widthMax = panel.widthMax()
 
     if (panel.blocskPlacedAll()) {
         panel.status = 4
-        if (!context.heightBlocks) context.heightBlocks = panel.size.y.value + 1n
-        if (!context.surfaceFreeBlocks) context.surfaceFreeBlocks = 0n
 
         // Calculate free panel surface
         let surfaceTotal = 0n
         let surfacePartial = 0n
+        let surfacePartialMax = 0n
+
         for (let x = 0n; x < panel.size.x.value; x++) {
             for (let y = heightMax - 1n; y >= 0n; y--) {
                 pos = new Dimension2D(x, y)
@@ -79,14 +80,20 @@ const cep = function (panel, context) {
                 else break
             }
             surfaceTotal += surfacePartial
+            if (surfacePartial > surfacePartialMax) surfacePartialMax = surfacePartial
             surfacePartial = 0n
         }
         // Choose the best panel
         if (heightMax < context.heightBlocks ||
-            (heightMax === context.heightBlocks && surfaceTotal > context.surfaceFreeBlocks)) {
+            (heightMax === context.heightBlocks &&
+                surfaceTotal > context.surfaceFreeBlocks) ||
+            (heightMax === context.heightBlocks &&
+                surfaceTotal === context.surfaceFreeBlocks &&
+                surfacePartialMax > context.surfacePartialMax)) {
             context.optPanel = panel
             context.heightBlocks = heightMax
             context.surfaceFreeBlocks = surfaceTotal
+            context.surfacePartialMax = surfacePartialMax
         }
         context.nesting -= 1
         displayProcess(1, processId, context.nesting, context.times)
@@ -281,8 +288,9 @@ const cep = function (panel, context) {
 const optimizePanel = function (panel) {
     const context = {
         optPanel: null,
-        heightBlocks: null,
-        surfaceFreeBlocks: null,
+        heightBlocks: panel.size.y.value,
+        surfaceFreeBlocks: 0n,
+        surfacePartialFreeBlocks: 0n,
         nesting: 0,
         times: 0
     }
@@ -302,7 +310,7 @@ const optimizePanel = function (panel) {
     const dateFinish = new Date()
     duration = parseInt((dateFinish - dateStart) / 1000 + 0.5)
     console.log('Duration:', duration, 'seconds')
-    
+
     return context.optPanel
 }
 
