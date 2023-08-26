@@ -15,7 +15,7 @@ const EditStory = ({ story, onStoryEdited, onStoryDeleted }) => {
 
         try {
             updateStory(context.token, story.id, title, sumary, text, question, story.shortcut)
-                .then(() => onStoryEdited())
+                .then(() => onStoryEdited(story.id))
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)

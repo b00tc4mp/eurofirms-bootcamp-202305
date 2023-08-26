@@ -28,7 +28,7 @@ function updateStory(userId, storyId, title, sumary, text, question, shortcut = 
             if (shortcut) { }
 
             story.dateupdated = new Date()
-            return Story.updateOne(story)
+            return  story.save()
         })
         .then(() => { })
 }

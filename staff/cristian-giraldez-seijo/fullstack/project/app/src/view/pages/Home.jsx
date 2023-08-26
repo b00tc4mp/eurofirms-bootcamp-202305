@@ -61,7 +61,7 @@ setView('Stories')
     }
 
     return (
-        <div className="home">
+        <div className="bg-red-200">
             <header className="">
             <a className="cursor-pointer" onClick={handleBackToStories}>Talking characters!</a>
                 {!modal && !context.token && (

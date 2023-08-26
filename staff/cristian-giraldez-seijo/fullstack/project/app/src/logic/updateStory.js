@@ -5,7 +5,8 @@ function updateStory(token, storyId, title, sumary, text, question, shortcut) {
     if (typeof sumary !== 'string') throw new Error('sumary is not a string')
     if (typeof text !== 'string') throw new Error('text is not a string')
     if (typeof question !== 'string') throw new Error('question is not a string')
-if (typeof shortcut === 'boolean') throw new Error('shortcut is not a boolean')
+if (shortcut && typeof shortcut === 'boolean') throw new Error('shortcut is not a boolean')
+if (!shortcut) shortcut = false
 
     return fetch(`${import.meta.env.VITE_API_URL}/stories/${storyId}`, {
         method: 'PATCH',
