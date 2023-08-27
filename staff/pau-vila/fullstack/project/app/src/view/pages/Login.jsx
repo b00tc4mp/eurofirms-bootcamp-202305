@@ -42,8 +42,8 @@ function Login(props) {
 
     return <><main className="login-view">
 
-            <img className="image-logo" src="../../../public/logo.jpg"></img>
-        
+        <img className="image-logo" src="../../../public/logo.jpg"></img>
+
         <div className="login-container"><h1>Login</h1>
             <form className="login-form" onSubmit={handleLoginSubmit}>
                 <label className="email-type" htmlFor="email">E-mail</label>
@@ -56,11 +56,12 @@ function Login(props) {
             </form>
 
             <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
+            
             <button onClick={handleAboutClick}>About</button>
         </div>
-        
-            <img className="image-logo" src="../../../public/logo.jpg"></img>
-        
+
+        <img className="image-logo" src="../../../public/logo.jpg"></img>
+
     </main><footer>
         </footer>
         {modal === 'about' && <ViewInfoPlus onReturned={handleReturnView} />}

@@ -50,9 +50,11 @@ function Register(props) {
 
             <button type="submit">Register</button>
         </form>
-
         <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
+
+        
         </div>
+        
         <img className="image-logo" src="../../../public/logo.jpg"></img>
 
     </main><footer>

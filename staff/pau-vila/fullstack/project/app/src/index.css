@@ -14,7 +14,6 @@
 body {
     height: 100%;
     font-family: 'Open Sans';
-    src: url('fonts/OpenSans-Regular.ttf') format('truetype');
     font-style: italic;
     margin: 0;
     box-sizing: border-box;
@@ -23,11 +22,11 @@ body {
 
 /* register */
 .register-login-link{
-    font-size: 1.1rem ; 
+    font-size: 1.1rem ;
 }
 .register-form {
     display: flex;
-    flex-direction: column;
+    flex-direction:column;
 }
 .name-type {
     font-size: 1.3rem ;
@@ -59,7 +58,7 @@ body {
 .register-view {
     display: flex;
     justify-content:space-around;
-    align-items: center;
+    align-items:center;
     color: rgb(2, 86, 88);
     background: linear-gradient(to bottom, rgb(7, 200, 206), rgb(204, 246, 248))
 }
