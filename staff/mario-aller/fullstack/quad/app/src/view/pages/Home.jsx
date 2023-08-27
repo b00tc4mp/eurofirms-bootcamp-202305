@@ -122,35 +122,35 @@ function Home({ onLogout }) {
             </header>
 
             <main className="home-view">
-                <section className="panel-list basic-container">
+                <section className="panel-list basic-container bg-gradient-radial from-emerald-700">
                     {panels && panels.map(panel => <article className="panel" key={panel.id}>
                         <header>
                             <p className="panel-text">{`${panel.reference}: (${panel.width} x ${panel.height})`}</p>
                         </header>
                         {panel.blocks.map((block) => <div className="panel-block flex-center" key={block.id}>
                             <p>{`(${block.width}x${block.height})`}</p>
-                            {panel.status === 0 && <button className="panel-block-button" type="button" onClick={() => handleDeleteBlock(panel.id, block.id)}>🗑️</button>}
+                            {panel.status === 0 && <button className="panel-block-button hover:animate-spin" type="button" onClick={() => handleDeleteBlock(panel.id, block.id)}>🗑️</button>}
                         </div>)}
                         <footer className="flex-center">
                             {panel.status === 0 && <>
-                                <button className="panel-button" type="button" onClick={() => handleCreateBlock(panel.id)}>🧱</button>
-                                <button className="panel-button" type="button" onClick={() => handleEditPanel(panel.id)}>📝</button>
-                                <button className="panel-button" type="button" onClick={() => handleToOptimizePanel(panel.id)}>📭</button>
-                                <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
+                                <button className="panel-button hover:animate-bounce" type="button" onClick={() => handleCreateBlock(panel.id)}>🧱</button>
+                                <button className="panel-button hover:animate-bounce" type="button" onClick={() => handleEditPanel(panel.id)}>📝</button>
+                                <button className="panel-button hover:animate-bounce" type="button" onClick={() => handleToOptimizePanel(panel.id)}>📭</button>
+                                <button className="panel-button-cancel hover:animate-bounce" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
                             </>}
                             {panel.status === 1 && <>
-                                <button className="panel-button" type="button" onClick={() => handleWorkingPanel(panel.id)}>📬</button>                                
-                                <button className="panel-button-cancel" type="button" onClick={handleRefresh}>❓</button>
+                                <button className="panel-button hover:animate-bounce" type="button" onClick={() => handleWorkingPanel(panel.id)}>📬</button>                                
+                                <button className="panel-button-cancel hover:animate-bounce" type="button" onClick={handleRefresh}>❓</button>
                             </>}
                             {panel.status === 2 && <>
-                                <button className="panel-button" type="button" onClick={() => handleViewPanel(panel.id)}>🎁</button>
-                                <button className="panel-button-cancel" type="button" onClick={() => handleReEditPanel(panel.id)}>🖇️</button>
-                                <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
+                                <button className="panel-button hover:animate-bounce" type="button" onClick={() => handleViewPanel(panel.id)}>🎁</button>
+                                <button className="panel-button-cancel hover:animate-bounce" type="button" onClick={() => handleReEditPanel(panel.id)}>🖇️</button>
+                                <button className="panel-button-cancel hover:animate-bounce" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
                             </>}
                             {panel.status === 3 && <>
-                                <button className="panel-button" type="button" onClick={() => handleWorkingPanel(panel.id)}>🧨</button>
-                                <button className="panel-button-cancel" type="button" onClick={() => handleReEditPanel(panel.id)}>🖇️</button>
-                                <button className="panel-button-cancel" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
+                                <button className="panel-button hover:animate-bounce" type="button" onClick={() => handleWorkingPanel(panel.id)}>🧨</button>
+                                <button className="panel-button-cancel hover:animate-bounce" type="button" onClick={() => handleReEditPanel(panel.id)}>🖇️</button>
+                                <button className="panel-button-cancel hover:animate-bounce" type="button" onClick={() => handleDeletePanel(panel.id)}>❌</button>
                             </>}
                         </footer>
                     </article>)}

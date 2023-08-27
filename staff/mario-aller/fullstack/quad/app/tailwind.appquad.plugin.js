@@ -255,7 +255,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
       
         '.panel-button': {
           'font-size': '2rem',
-          'margin-right': '0.3rem',
+          'margin': '1rem',
           'border': 'none',
           'justify-content': 'center',
           'align-items': 'center',
@@ -265,7 +265,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
       
         '.panel-button-cancel': {
           'font-size': '1.1rem',
-          'margin-left': '1rem',
+          'margin': '1rem',
           'justify-content': 'center',
           'align-items': 'center',
           'border': 'none',
@@ -273,7 +273,7 @@ export default plugin(({ addBase, addComponents, addUtilities, theme }) => {
         },
       
         '.panel-block-button': {
-          'font-size': '1.7rem',
+          'font-size': '1.3rem',
           'margin-left': '1rem',
           'justify-content': 'center',
           'align-items': 'center',
