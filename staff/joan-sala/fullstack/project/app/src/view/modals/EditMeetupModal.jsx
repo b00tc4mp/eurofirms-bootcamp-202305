@@ -41,11 +41,11 @@ function EditMeetupModal({meetupId, onEditMeetupCancelled, onMeetupEdited}) {
       }    
     }
 
-    return <div className="bg-[rgba(0, 0, 0, 0.497)] fixed w-full h-full top-0 flex items-center justify-center">
-        <div className="bg-white px-20 pt-10">
+    return <div className="bg-[#2C2A2A] bg-opacity-90 fixed w-full h-full top-0 flex items-center justify-center">
+        <div className="bg-white  pt-10">
             <h2 className="bg-[#2C2A2A] text-white py-6 text-center">Edit meetup</h2>
  
-            {meetup && <form className="" onSubmit={handleSubmit}>
+            {meetup && <form className="bg-white px-20 pt-10" onSubmit={handleSubmit}>
             <label htmlFor="image">Image</label>
                 <input className="rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-md p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="image" type="url" defaultValue={meetup.image}></input>
 

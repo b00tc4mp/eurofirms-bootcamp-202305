@@ -18,13 +18,12 @@ function DeleteMeetupModal({meetupId, onMeetupDeleted, onDeleteMeetupCancelled})
         }
     }
 
-    return <div className="bg-[rgba(0, 0, 0, 0.497)] fixed w-full h-full top-0 flex items-center justify-center">
-        <div className="bg-white px-20 pt-10">
-        <h2 className="bg-[#2C2A2A] text-white py-6 text-center ">Delete meetup</h2>
-         
-            <form className="" onSubmit={handleSubmit} //home-create-meetup-form
+    return <div className="bg-[#2C2A2A] bg-opacity-90 fixed w-full h-full top-0 flex items-center justify-center">
+    <div className="bg-white opacity-100 pt-10">
+        <h2 className="bg-[#2C2A2A] text-white py-6 text-center">Delete meetup</h2>        
+            <form className="bg-white px-20 pt-10" onSubmit={handleSubmit} 
             >
-                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm my-2 mt-6 hover:bg-[#707070]" type="submit">Delete</button>
+                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full my-2 hover:bg-[#707070]" type="submit">Delete</button>
                 <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm hover:bg-[#707070]" type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>

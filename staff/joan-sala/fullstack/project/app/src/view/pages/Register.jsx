@@ -32,23 +32,25 @@ function Register(props) {
 
             <form className="free flex-col" onSubmit={handleRegisterSubmit}>
                 <label htmlFor="name">Name</label>
-                <input className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="name" type="text" alt="name"></input>
+                <input className="rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-md p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="name" type="text" alt="name"></input>
 
                 <label htmlFor="email">E-mail</label>
-                <input className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="email" type="email" alt="email"></input>
+                <input className="rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-md p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="email" type="email" alt="email"></input>
 
                 <label htmlFor="password">Password</label>
-                <input className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="password" type="password" alt="password"></input>
+                <input className="rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-md p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="password" type="password" alt="password"></input>
 
                 <label htmlFor="url">Image</label>
-                <input className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="url" type="url" alt="url"></input>
+                <input className="rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-md p-2.5 dark:bg-[#d9d9d9] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#494949] dark:focus:ring-blue-500 dark:focus:border-blue-500" id="url" type="url" alt="url"></input>
 
                 <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm my-5 hover:bg-[#707070]" type="submit">Register</button>
             </form>
 
             <p>Go to <a className="login-register-link underline" href="" onClick={handleLoginClick}>Login</a></p>
-            <footer className="initial-page-footer justify-center underline-offset-8" >
-                <p><img className="bg-contain bg-center h-20" src="public/logo03.png" alt="MeetupBikers" /></p>
+            <footer className="initial-page-footer justify-center items-center flex underline-offset-8"//bg-[#D9D9D9] justify-center items-center flex text-center fixed b-0 w-full h-2/6"  //initial-page-footer justify-center items-center flex underline-offset-8 text-center
+            >
+                <p><img className="h-20" src="public/logo03.png" alt="MeetupBikers"//bg-contain bg-center h-20"
+                /></p>
             </footer>
         </main>
     )

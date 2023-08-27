@@ -66,7 +66,7 @@ function Home({ onLoggedOut }) {
     const handleCreateMeetupCancelled = () => setModal(null)
 
     const handleEditMeetupCancelled = () => {
-        setModal(null) //refrescar pantalla
+        setModal(null) 
         setMeetupId(null)
     }
 
@@ -128,18 +128,15 @@ function Home({ onLoggedOut }) {
     return (
         <div>
             <header className="fixed top-0 h-[5rem] flex items-center justify-between bg-[rgb(217,217,217)] w-full py-[1rem]">
-                
-                <h1 className="font-extrabold p-5">{user ? user.name : 'Check in'} </h1>
+                <img className="w-32 px-4" src="public/logo02.png" alt="MeetupBikers" />
+                <h1 className="font-extrabold px-4 ">{user ? user.name : 'Check in'} </h1>
                 <div className="flex justify-center items-center ">
                     <img src={user ? user.image : ""} id="url"
-                        alt="image of user" className="w-14 h-14 rounded-full border-4 bg-[#2c2a2a] " box-border relative bg-stripes-sky w-32 h-32 p-5 ring ring-sky-300 ring-inset//"shadow-lg rounded w-1/6 h-auto align-middle border-none" 
-                        />
-                    <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-lg shadow-sm w-32 mx-10 hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
+                        alt="image of user" className="w-14 h-14 rounded-full border-4 bg-[#2c2a2a]  box-border relative p2" />
+                    <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-lg  w-30 mx-10 hover:bg-[#707070]" onClick={handleLogoutClick} >Logout</button>
                 </div>
-                <div className="flex flex-wrap justify-end w-16 pr-5 bg-cover sm:125rem lg:.5em">
-                    <img src="public/info.png" alt="settings"onClick={handleNavigateToNetworkRules}
-                    />
-                </div>
+                <img className="w-14 px-4 flex flex-wrap justify-end" src="public/info.png" alt="settings" onClick={handleNavigateToNetworkRules}
+                />
             </header>
             {view === 'home' && <main className="py-[3rem]">
                 <section className="flex flex-col items-center gap-10 pt-12 pb-10">
@@ -171,15 +168,10 @@ function Home({ onLoggedOut }) {
                                 <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full w-32 mx-2 hover:bg-[#707070]" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
                             </>
                             }
-                            <button className="bg-[#2C2A2A] text-[#ffffff] px-4 py-2 text-sm text-center rounded-full w-32 my-2 hover:bg-[#707070]" onClick={() => { 
-                                handleToggleMeetupClick(meetup.id)}}>{meetup.fav ? 'Join' : 'No join'}</button></div>
-                            {/* {meetup.author.id === userId && <>
-                                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 my-10 hover:bg-[#707070]" onClick={() => handleEditMeetupClick(meetup.id)}>Edit</button>
-                                <button className="bg-[#2C2A2A] text-white px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 mx-10 hover:bg-[#707070]" onClick={() => handleDeleteMeetupClick(meetup.id)}>Delete</button>
-                            </>
-                            }
-                            <button className="bg-[#2C2A2A] text-[#ffffff] px-4 py-2 text-sm text-center rounded-full shadow-sm w-32 my-10 hover:bg-[#707070]" onClick={() => { 
-                                handleToggleMeetupClick(meetup.id)}}>{meetup.fav ? 'Join' : 'No join'}</button> */}
+                                <button className="bg-[#2C2A2A] text-[#ffffff] px-4 py-2 text-sm text-center rounded-full w-32 my-2 hover:bg-[#707070]" onClick={() => {
+                                    handleToggleMeetupClick(meetup.id)
+                                }}>{meetup.fav ? 'Join' : 'No join'}</button>
+                            </div>
                         </article>)}
                 </section>
             </main>}
