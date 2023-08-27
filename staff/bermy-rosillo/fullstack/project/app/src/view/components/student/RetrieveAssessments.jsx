@@ -43,7 +43,7 @@ function RetrieveAssessments(props) {
                 <h3 className="description" key={test.id+indexItem+"1"}>Answer:{element.description}</h3>
                 <h3 className="score" key={test.id+indexItem+"2"}>Score: {element.score}</h3>
                 <h3 className="assessment" key={test.id+indexItem+"3"}>Assesstment: {element.assessment}</h3>
-                <h3>-----------------------------------------------</h3>
+                <h3>-----------------------------------------</h3>
                 </>})}
             </article>
         })}

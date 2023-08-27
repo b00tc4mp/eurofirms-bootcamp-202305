@@ -20,9 +20,7 @@ The main objective of this application will be to provide an easy to use tool wh
 
 
 ### UI design
-Link to [figma] (https://www.figma.com/file/GInAoUk9eW9vEcsBqC9Cp8/ABC-test?type=design&node-id=0-1&mode=design&t=u4JgqzBknTPlzzXi-0)
-
-
+Link to [figma] https://www.figma.com/file/GInAoUk9eW9vEcsBqC9Cp8/ABC-test?type=design&node-id=0-1&mode=design&t=ToDg2cUgc98hB5uo-0
 ## Technical description
 
 ### Data model
@@ -56,11 +54,6 @@ Answer
 ## tasks
 ### TODO
 
-- student's test view
-- cancel buttons student views
-- accept buttons student views
-- edit ccs 
-- retrieveAnswerStudentList logic (search test)
 
 
 ### IN PROGRESS
@@ -89,6 +82,13 @@ Answer
 - look for student test logic / view
 - StudentResponse view
 - cancel buttons teacher views
+
+- student's test view
+- cancel buttons student views
+- accept buttons student views
+- edit ccs 
+- retrieveAnswerStudentList logic (search test)
+
 
  
 

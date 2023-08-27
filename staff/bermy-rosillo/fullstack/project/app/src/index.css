@@ -6,16 +6,12 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-html,
-body {
-    height: 100%;
-}
-
 body {
     margin: 0;
     box-sizing: border-box;
     background:#cafc79;
     height: 100%;
+    overflow: auto;
 }
 #root{
     height:100%;
@@ -184,7 +180,7 @@ p a {
     color:#79155B
 }
 .logo{
-    width:5.5%;
+    width:50px;
     position:absolute;
     left:2px;
 }
