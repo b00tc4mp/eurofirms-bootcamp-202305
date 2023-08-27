@@ -26,7 +26,8 @@ function RetrieveAssessments(props) {
     }
     
     return <div className="test-view">
-        <h1>Test</h1>
+        <h1>Answered tests</h1>
+        <button className="btn-cancel"onClick={handleCancelButton} >Cancel </button> 
         {arrayTests && arrayTests.map(test => {
             return <article key={test.id} className="test-information">
                 <h3>{test.subject}</h3>
@@ -34,12 +35,18 @@ function RetrieveAssessments(props) {
                 <h3>{test.description}</h3>
                 <h3>{test.score}</h3>
                 <h3>{test.assessment}</h3>
+                <h3>-------------------</h3>
 
-                {test.ans.map((item,indexItem) => <h3 key={test.id+indexItem}>{item}</h3>)}
                 
+                {test.ans.map((element,indexItem) => {
+                return <>
+                <h3 className="description" key={test.id+indexItem+"1"}>Answer:{element.description}</h3>
+                <h3 className="score" key={test.id+indexItem+"2"}>Score: {element.score}</h3>
+                <h3 className="assessment" key={test.id+indexItem+"3"}>Assesstment: {element.assessment}</h3>
+                <h3>-----------------------------------------------</h3>
+                </>})}
             </article>
         })}
-        <button className="btn-cancel"onClick={handleCancelButton} >Cancel </button> 
         </div>
 
 

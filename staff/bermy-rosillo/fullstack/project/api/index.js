@@ -12,6 +12,7 @@ const authenticateUser = require('./logic/authenticateUser')
 const retrieveUser = require('./logic/retrieveUser')
 const createTest = require('./logic/createTest')
 const retrieveTeacherListTests = require('./logic/retrieveTeacherListTests')
+const retrieveAllTests = require('./logic/retrieveAllTests')
 const retrieveStudentListTests = require('./logic/retrieveStudentListTests')
 const retrieveArrayStudentTests = require('./logic/retrieveArrayStudentTests')
 const retrieveStudents = require('./logic/retrieveStudents')
@@ -20,6 +21,7 @@ const retrieveAnswers = require('./logic/retrieveAnswers')
 const createAnswer = require('./logic/createAnswer')
 const updateAnswerAssessment = require('./logic/updateAnswerAssessment')
 const retrieveStudentAnswers = require('./logic/retrieveStudentAnswers')
+const attempsCount = require('./logic/attempsCount')
 //const {PORT, MONGODB_URL, JWT_SECRET} = process.env
 
 mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
@@ -117,6 +119,22 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 res.status(400).json({ error: error.message })
             }
         })
+        //--retrieveAllTests
+        api.get('/tests/all', jsonBodyParser, (req, res) => {
+            try {
+                const authorization = req.headers.authorization
+                const token = authorization.slice(7)
+                const data = jwt.verify(token, process.env.JWT_SECRET)
+                const userId = data.sub
+               
+                retrieveAllTests(userId)
+                    .then((tests) => res.json(tests))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+        //--
         /*retrieveStudentListTests */
         api.get('/students/tests', jsonBodyParser, (req, res) => {
             try {
@@ -257,7 +275,26 @@ mongoose.connect(`${process.env.MONGODB_URL}/abctest`)
                 res.status(400).json({ error: error.message })
 
             }
+            
         })
+        //--attempsCount
+        api.get('/students/tests/:testId/attemps', (req,res)=>{
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const data = jwt.verify(token,process.env.JWT_SECRET)
+                const userId = data.sub
+                const testId =req.params.testId
 
+                return attempsCount(userId,testId)
+                    .then((attemps) =>res.json(attemps))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+
+            }
+            
+        })
+        
         api.listen(process.env.PORT, () => console.log(`API running in PORT ${process.env.PORT}`))
     })

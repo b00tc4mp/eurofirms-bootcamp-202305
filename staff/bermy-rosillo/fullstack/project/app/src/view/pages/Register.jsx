@@ -38,14 +38,15 @@ return <main className="register-view">
     <label htmlFor="email">E-mail</label>
     <input id="email" type="email"/>
 
-    <label htmlFor="role">Role</label>
-    <input id="role" type="text"/> 
-    
     {/* <label htmlFor="role">Role</label>
+    <input id="role" type="text"/>  */}
+    
+    <label htmlFor="role">Role</label>
     <select id="role">
+        <option value="" disabled>Select a role</option>
         <option value="teacher">Teacher</option>
         <option value="student">Student</option>
-    </select> */}
+    </select>
 
     <button type="submit" className='btn-send'>Register</button>
 </form>

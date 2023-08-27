@@ -27,7 +27,7 @@ label {
     font-weight: bold;
 }
 
-input,textarea {
+input,textarea,select{
     padding: 5px;
     border-radius: 5px;
     font-weight: bold;
@@ -54,7 +54,6 @@ p a {
     flex-direction: column;
     background: #e280ff;
     padding: 15px;
-    /*border-top-left-radius: 15px;*/
     border-radius: 15px;
     box-shadow: 7px 7px 7px #79155B;
 }
@@ -82,11 +81,13 @@ p a {
     width: 100%;
     padding: 0 1rem;
     box-sizing: border-box;
+    
 }
 
 .home-title {
     font-size: 1.5rem;
     text-shadow: 2px 2px 5px #fff;
+    margin:45px;
 }
 
 .home-main {
@@ -110,6 +111,8 @@ p a {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    width: 500px;
+    margin:auto;
 }
 
 .btn-test{
@@ -164,8 +167,24 @@ p a {
     padding:10px;
     background-color:#a8cc74;
 }
+.array-answer{
+    color: #000;
+    font-family: arial;
+    font-style: italic;
+    font-weight: bold;
+}
+.description{
+    color:#000;
+    font-weight: bold;
+}
+.score{
+    color:#204d18;
+}
+.assessment{
+    color:#79155B
+}
 .logo{
-    width:5%;
+    width:5.5%;
     position:absolute;
-    left:0px;
+    left:2px;
 }

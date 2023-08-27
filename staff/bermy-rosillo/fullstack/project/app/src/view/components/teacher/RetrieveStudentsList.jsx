@@ -46,11 +46,13 @@ function RetrieveStudentsList(props){
                         <h3><a href="" className="btn-test" onClick={(event)=>handleRetrieveStudentResponse(event,student.id)}>{student.name}</a></h3>
                     </article>
                 })}
-            </section>}
-    
-            {viewStudentsList === 'retrieve-student-response' && <RetrieveStudentResponse testId={props.testId} studentId={studentId}  onReturnStudentList={handleOnReturnStudentList} />}
             <button className="btn-cancel"onClick={handleCancelStudents}>Cancel</button>
+            </section>}
+            
+            {viewStudentsList === 'retrieve-student-response' && <RetrieveStudentResponse testId={props.testId} studentId={studentId}  onReturnStudentList={handleOnReturnStudentList} />}
+            
         </div>
+    
 }
 
 export default RetrieveStudentsList

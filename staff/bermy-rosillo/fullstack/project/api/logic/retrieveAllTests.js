@@ -1,14 +1,14 @@
 const { User, Test } = require('../data/index')
 const { validateId } = require('./helpers/validators')
-
-function retrieveTeacherListTest(userId) {
+//sin filtro
+function retrieveAllTests(userId) {
     validateId(userId)
 
     return User.findById(userId)
         .then(user => {
             if (!user) throw new Error('User not found')
 
-            return Test.find({teacher:userId }, '-__v').populate('teacher', 'subject').lean()
+            return Test.find({ }, '-__v').populate('teacher', 'subject').lean()
                 .then(tests => {
                     tests.forEach(test => {
                         test.id = test._id.toString()
@@ -25,4 +25,4 @@ function retrieveTeacherListTest(userId) {
                 })
         })
 }
-module.exports = retrieveTeacherListTest
+module.exports = retrieveAllTests
