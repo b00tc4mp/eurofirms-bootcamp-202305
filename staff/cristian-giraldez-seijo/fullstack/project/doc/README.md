@@ -20,11 +20,11 @@ User
 - Publish story
 - Edit story
 - Delete story
-- Toggle fav story
-- Add comment to story
-- Delete comment from story
-- Edit comment in story
-TODO Value AI interactions posibility
+- TODO Toggle fav story
+- TODO Add comment to story
+- TODO Delete comment from story
+- TODO Edit comment in story
+- TODO Value AI interactions posibility
 
 ## Technical description
 

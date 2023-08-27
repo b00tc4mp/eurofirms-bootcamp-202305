@@ -30,9 +30,9 @@ const RegisterModal = ({ onNavigateToLogin, onRegisterSuccess: onLoggedSuccess }
 
     return <div className="home-register-modal">
         <div className="home-register-container">
-            <h2>register.</h2>
+            <form className="register flex flex-col items-start p-2" onSubmit={handleRegisterSubmit}>
+                <h2 className="font-bold">Register</h2>
 
-            <form className="register" onSubmit={handleRegisterSubmit}>
                 <label htmlFor="nickname">Nickname</label>
                 <input id="nickname" type="text"></input>
 
@@ -42,10 +42,11 @@ const RegisterModal = ({ onNavigateToLogin, onRegisterSuccess: onLoggedSuccess }
                 <label htmlFor="password">Password</label>
                 <input id="password" type="password"></input>
 
-                <button type="submit">Register</button>
+                <button type="submit" className="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded my-3">Register</button>
             </form>
         </div>
-        <p>Have you already an account yet? <a className="register-login-link" href="" onClick={handleNavigateToLogin}>Login</a></p>
+        <p className="italic">Have you already an account yet? </p>
+        <a className="register-login-link text-blue-800 font-semibold" href="" onClick={handleNavigateToLogin}>Login</a>
     </div>
 }
 export default RegisterModal

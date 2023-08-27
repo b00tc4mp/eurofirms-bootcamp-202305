@@ -37,11 +37,12 @@ const ShowStories = ({ onShowStory, onShowCreateStory }) => {
             <section className='stories-container'>
                 <h2>New updated stories</h2>
                 {userId && <>
-                    <a href="" onClick={handleShowCreateStory}>write your story</a>
+                    <a href="" onClick={handleShowCreateStory} className="text-pink-700 font-bold">
+                        write your story</a>
                 </>}
                 {stories && stories.map(story => {
                     return <article key={story.id}>
-                        <h4><a href="" onClick={(event) => handleShowStory(event, story.id)}>{story.title}</a></h4>
+                        <h4><a href="" onClick={(event) => handleShowStory(event, story.id)} className="text-blue-800 font-bold">{story.title}</a></h4>
                         <p>Author: {story.author.nickname}</p>
                         {story.sumary !== '' && (
                             <>

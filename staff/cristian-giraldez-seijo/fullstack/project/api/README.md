@@ -1,0 +1,5 @@
+- install node 
+- to install dependencies use npm i command
+- to see all dependencies go to package.json
+- to run the api use node .
+- create file .env for to environment variables

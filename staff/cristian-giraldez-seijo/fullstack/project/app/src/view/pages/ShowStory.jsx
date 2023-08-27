@@ -24,9 +24,9 @@ const ShowStory = ({ storyId, onShowEditStory, onShowStory, onShowCreateStory })
         onShowStory(storyId)
     }
 
-    const handleShowCreateStory = (event, storyId) => {
+    const handleShowCreateStory = (event, storyId, previousQuestion) => {
         event.preventDefault()
-        onShowCreateStory(storyId)
+        onShowCreateStory(storyId, previousQuestion)
     }
 
     let userId
@@ -38,22 +38,27 @@ const ShowStory = ({ storyId, onShowEditStory, onShowStory, onShowCreateStory })
         <div className='story-container'>
             {story ? (
                 <>
-                    <h1>{story.title}</h1>
+                    <h1 className="text-black font-semibold">{story.title}</h1>
                     <p>By {story.author.nickname}</p>
                     <p>{story.summary}</p>
-                    <pre>{story.text}</pre>
+                    <div className="italic pl-6 pr-8"><pre>{story.text}</pre></div>
                     {story.author.id === userId && <>
-                        <button type="button" onClick={() => handleShowEditStory(story)}>Edit</button>
+                        <button type="button" onClick={() => handleShowEditStory(story)} className="bg-green-400 hover:bg-green-600 text-black font-semibold py-1 px-3 rounded my-3">
+                            Edit
+                        </button>
                     </>}
-                    <h2>{story.question}</h2>
+                    <div className="bg-pink-600 text-white p-2 rounded">
+                        <h2>{story.question}</h2>
+                    </div>
                     <ul>
-                        {(story.options.length === 0) ? <li>No further chapters</li> : <></>}
+                        {(story.options.length === 0) ? <li className="text-black font-semibold">No further chapters</li> : <></>}
                         {
                             story.options.map(option => {
-                                return <li key={option.id}><a href='' onClick={(event) => handleShowStory(event, option.id)}>{option.title}</a></li>
+                                return <li key={option.id}><a href='' onClick={(event) => handleShowStory(event, option.id)} className="text-black font-semibold">{option.title}</a></li>
                             })
                         }
-                        {context.token && <li><a href='' onClick={(event) => handleShowCreateStory(event, story.id)}>add a new chapter</a></li>}
+                        {context.token && <li><a href='' onClick={(event) => handleShowCreateStory(event, story.id, story.question)} className="text-pink-700 font-semibold">
+                            Add a new chapter</a></li>}
                     </ul>
                 </>
             ) : (
