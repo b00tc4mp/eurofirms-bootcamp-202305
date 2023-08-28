@@ -19,7 +19,6 @@ Modules to be installed
 
 
 ## To execcute the api
-
 Place in api root directory ~project/api
 
 ```sh
