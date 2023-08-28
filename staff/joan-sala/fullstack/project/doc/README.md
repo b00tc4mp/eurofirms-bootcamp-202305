@@ -7,11 +7,9 @@
 A platform for meeting mountain bikers in Barcelona and its surroundings.
 Said application would have registered users and different proposed routes such as posts  of meeting places with their description and area, where people can sign up, refuse and/or to attend the meetings to carry out the activity in the determined place. 
 
-Log in to the USER application (manager and user), search for people by emai, add them to X group as a normal user, this allows you to see the posts of other users and at the same time propose meetings.
+Log/Register in application, add them to X group as a normal user, this allows you to see the posts of other users and at the same time propose meetings.
 
-ROUTE(title, description, id, day, meeting time, sign up button)
-ROUTE HISTORY
-bike SPECS
+ROUTE(title, description, id, day, meeting time, sign up button).
 Users can propose visits and/or cancel the meeting.
 
 ## Functional Description

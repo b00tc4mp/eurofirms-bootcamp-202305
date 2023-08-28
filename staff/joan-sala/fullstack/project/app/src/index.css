@@ -2,38 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-.home-create-meetup-button, .home-edit-meetup-button, .home-delete-meetup-button {
-    border-top: 20%;
-}
-*/
-/*.home-create-meetup-container, .home-edit-meetup-container, .home-delete-meetup-container {
-    background-color: white;
-    padding: 5rem;
-}*/
-
-.home-create-meetup-form, .home-edit-meetup-form, .home-delete-meetup-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-/*
-.home-meetups {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-}*/
-
-/*.home-meetup-image {
-    width: 100%;
-    border-radius: 15px;
-}*/
-
-/* utils */
-
 .initial-page-footer{
     background-color: #D9D9D9;
     src: local('../../../images/logo03.png');
