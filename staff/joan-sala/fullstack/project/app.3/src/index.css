@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
+
+/* resets */
+
+* {
+    font-family: 'Roboto','Courier New', Courier, monospace;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.357);
+}
+
+/* styles (BEM) */
+
+/* register */
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* login */
+
+/* .login-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+  
+.register-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+.home-logout-button, .button{
+    color:#fff;
+    padding:5px 5px;
+    border:1px solid #000;
+    border-radius: 30px;
+    display:block;
+    width:100px;
+    text-align:center;
+    margin:20px;
+    background-color:#2C2A2A;
+}
+.home-logout-button:hover{
+    background-color:#707070;
+}
+.button{
+    color:#fff;
+    padding:5px 5px;
+    border:1px solid #000;
+    border-radius: 30px;
+    display:block;
+    width:100px;
+    text-align:center;
+    margin:10px;
+    background-color:#2C2A2A;
+}
+.home-logout-button:hover{
+    background-color:#707070;
+}
+/* home */
+
+.home-header {
+    position: fixed;
+    top: 0;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(217,217,217);
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.home-title {
+    font-size: 1.5rem;
+}
+
+/* .home-main {
+    padding: 3rem 0;
+} */
+
+/* .home-footer {
+    background-color: #D9D9D9;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+}
+ */
+.home-create-meetup-modal, .home-edit-post-modal, .home-delete-post-modal {
+    background-color: rgba(0, 0, 0, 0.497);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.home-create-meetup-button {
+    border-top: 20%;
+}
+
+.home-create-meetup-container, .home-edit-post-container, .home-delete-post-container {
+    background-color: white;
+    padding: 5rem;
+}
+
+.home-create-meetup-form, .home-edit-meetup-form, .home-delete-meetup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-meetups {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.home-meetup-image {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* utils */
+
+.off {
+    display: none;
+}
+.initial-page-footer{
+    background-color: #D9D9D9;
+    src: local('../../../images/logo03.png');
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    text-align: center;
+}
