@@ -24,22 +24,22 @@ const LoginModal = ({ onNavigateToRegister, onRegisterSuccess: onLoggedSuccess }
         } catch (error) { alert(error.message) }
     })
 
-    return <div className="home-login-modal">
-        <div className="home-login-container">
-            <form className="login  flex flex-col items-start p-2" onSubmit={handleLoginSubmit}>
+    return <div className='flex flex-col items-center'>
+        <div >
+            <form className="flex gap-2 items-start" onSubmit={handleLoginSubmit}>
                 <h2 className="font-bold">Login</h2>
 
                 <label htmlFor="email">E-mail</label>
-                <input id="email" type="email"></input>
+                <input id="email" type="email" placeholder="email"></input>
 
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password"></input>
+                <input id="password" type="password" placeholder="password"></input>
 
-                <button type="submit" className="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded my-3">Login</button>
+                <button type="submit" className="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded">Login</button>
             </form>
         </div>
         <p className="italic">Don't have you an account yet?</p>
-        <a className="login-register-link text-blue-800 font-semibold" href="" onClick={handleNavigateToRegister}>Register</a>
+        <a className="text-blue-800 font-semibold" href="" onClick={handleNavigateToRegister}>Register</a>
     </div>
 }
 export default LoginModal

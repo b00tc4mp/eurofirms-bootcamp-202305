@@ -31,17 +31,17 @@ const ShowStories = ({ onShowStory, onShowCreateStory }) => {
         userId = extractUserIdFromToken(context.token)
 
     return (
-        <>
-            <h1>Read, write, and talking!</h1>
-            <p>"Writing is the painting of the voice", Voltaire.</p>
-            <section className='stories-container'>
-                <h2>New updated stories</h2>
+        <div className="flex flex-col items-center gap-2 w-full">
+            <h1 className="font-bold text-xl">Read, write, and talking!</h1>
+            <h2 className="font-semibold text-lg">"Writing is the painting of the voice", Voltaire.</h2>
+            <section className='w-full flex flex-col items-center'>
+                <h2 className="font-semibold text-lg">New updated stories</h2>
                 {userId && <>
                     <a href="" onClick={handleShowCreateStory} className="text-pink-700 font-bold">
                         write your story</a>
                 </>}
                 {stories && stories.map(story => {
-                    return <article key={story.id}>
+                    return <article className="flex flex-col items-center gap-2 mt-4 border border-pink-700 rounded-xl p-8 w-1/2" key={story.id}>
                         <h4><a href="" onClick={(event) => handleShowStory(event, story.id)} className="text-blue-800 font-bold">{story.title}</a></h4>
                         <p>Author: {story.author.nickname}</p>
                         {story.sumary !== '' && (
@@ -53,7 +53,7 @@ const ShowStories = ({ onShowStory, onShowCreateStory }) => {
                     </article>
                 })}
             </section>
-        </>
+        </div>
     )
 }
 

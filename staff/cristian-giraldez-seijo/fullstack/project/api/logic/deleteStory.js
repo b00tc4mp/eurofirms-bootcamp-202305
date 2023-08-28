@@ -15,9 +15,13 @@ if (!story.shortcut && story.options.length>0) throw new Error('this story has o
             return Story.findOne({ options: storyId })
         })
         .then((parentStories) => {
+            if(parentStories){
             const index = parentStories.options.findIndex(option => option.toString() === storyId)
             parentStories.options.splice(index, 1)
             return Promise.all([parentStories.save(), Story.deleteOne({ _id: storyId })])
+            }
+
+            else return Story.deleteOne({_id: storyId})
         })
 }
 

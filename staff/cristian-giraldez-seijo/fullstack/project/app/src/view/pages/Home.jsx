@@ -24,7 +24,10 @@ const [previousQuestion, setPreviousQuestion] = useState(null)
         } catch (error) { alert(error.message) }
     }, [context.token])
 
-    const handleNavigateToRegister = () => setModal('register')
+    const handleNavigateToRegister = () =>{
+        setView('register')
+        setModal(null)
+    } 
 
     const handleNavigateToLogin = () => setModal('login')
 
@@ -64,35 +67,37 @@ setView('Stories')
     }
 
     return (
-        <div className="bg-gradient-to-br from-red-300 p-2">
-            <header className="flex flex-col items-start">
-            <a className="cursor-pointer text-purple-1000 font-semibold" onClick={handleBackToStories}>
+        <div className="min-h-screen bg-gradient-to-br from-red-300">
+            <header className="z-10 bg-pink-400 fixed w-full p-4 flex justify-between h-24">
+            <a className="cursor-pointer text-purple-900 font-bold" onClick={handleBackToStories}>
                 TALKING CHARACTERS!
                 </a>
                 {!modal && !context.token && (
-                    <button type="button" onClick={handleNavigateToLogin} id="login" className="bg-purple-400 hover:bg-purple-800 text-white font-semibold py-1 px-3 rounded my-3">
+                    <button type="button" onClick={handleNavigateToLogin} id="login" className="bg-purple-500 hover:bg-purple-900 text-white font-semibold py-1 px-3 rounded h-12">
                         Sign in
                     </button>
                 )}
-                {modal && (
-                    <button type="button" onClick={handleClose} className="bg-gray-300 hover:bg-grey-500 text-black font-semibold py-1 px-3 rounded my-3">
+                {user && (<h3 className="italic font-semibold text-lg">Hi, {user?.nickname}!</h3>)}
+                {context.token && (
+                    <button type="button" onClick={handleLogout} className="bg-gray-300 hover:bg-gray-500 text-black font-semibold py-1 px-3 rounded h-12">
+                        Logout
+                    </button>)}
+                 {modal === 'login' && <LoginModal onRegisterSuccess={handleLoggedSuccess} onNavigateToRegister={handleNavigateToRegister} />}
+                 {modal && (
+                    <button type="button" onClick={handleClose} className="bg-gray-300 hover:bg-grey-500 text-black font-semibold py-1 px-3 rounded h-12">
                         Close
                     </button>
                 )}
-                {user && (<h3 className="italic">Hi, {user?.nickname}!</h3>)}
-                {context.token && (
-                    <button type="button" onClick={handleLogout} className="bg-gray-300 hover:bg-gray-500 text-black font-semibold py-1 px-3 rounded my-3">
-                        Logout
-                    </button>)}
-                {modal === 'login' && <LoginModal onRegisterSuccess={handleLoggedSuccess} onNavigateToRegister={handleNavigateToRegister} />}
-                {modal === 'register' && <RegisterModal onRegisterSuccess={handleLoggedSuccess} onNavigateToLogin={handleNavigateToLogin} />}
             </header>
-            <main>
+            <main className='pt-32 pb-20'>
             {view === 'Stories' && <ShowStories onShowStory={handleShowStory} onShowCreateStory={handleShowCreateStory} />}
                 {view === 'Story' && <ShowStory storyId={storyId} onShowEditStory={handleShowEditStory} onShowStory={handleShowStory} onShowCreateStory={handleShowCreateStory}/>}
                 {view === 'CreateStory' && <CreateStory onStoryCreated={handleStoryCreated} storyId={storyId} previousQuestion={previousQuestion}/>}
                 {view === 'EditStory' && <EditStory story={story} onStoryEdited={handleShowStory} onStoryDeleted={handleBackToStories}/>}
                     
+
+                
+                {view === 'register' && <RegisterModal onRegisterSuccess={handleLoggedSuccess} onNavigateToLogin={handleNavigateToLogin} />}
             </main>
                     </div>
     )

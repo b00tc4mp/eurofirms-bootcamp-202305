@@ -8,5 +8,5 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 - tailwind to work with the style views 
-- to run the app  you need use, this command npm run
-- create file .env for to environment variables 
+- to run the app  you need use this command: npm run
+- create file .env for environment variables 

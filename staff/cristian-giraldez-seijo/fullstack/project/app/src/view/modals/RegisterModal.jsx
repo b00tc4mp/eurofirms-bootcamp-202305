@@ -45,8 +45,6 @@ const RegisterModal = ({ onNavigateToLogin, onRegisterSuccess: onLoggedSuccess }
                 <button type="submit" className="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded my-3">Register</button>
             </form>
         </div>
-        <p className="italic">Have you already an account yet? </p>
-        <a className="register-login-link text-blue-800 font-semibold" href="" onClick={handleNavigateToLogin}>Login</a>
     </div>
 }
 export default RegisterModal
