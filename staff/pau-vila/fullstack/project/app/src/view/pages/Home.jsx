@@ -246,8 +246,8 @@ function Home({ onLoggedOut }) {
                             src={workshop.video} />}
                         <p className="home-descriptionW"> Descripción: {workshop.description}</p>
                         <p className="home-lugar"> Lugar: {workshop.place}</p>
-                        <p className="home-fechainicio">Fecha de inicio: {workshop.dateStart.toLocaleString('es-ES')}</p>
-                        <p className="home-fechafin">Fecha de finalización: {workshop.dateEnd.toLocaleString('es-ES')}</p>
+                        <p className="home-fechainicio">Fecha de inicio: {workshop.dateStart.toLocaleString("es-ES")}</p>
+                        <p className="home-fechafin">Fecha de finalización: {workshop.dateEnd.toLocaleString("es-ES")}</p>
                         <p className="home-limiteasistentes">Límite de asistentes: {workshop.attendantsLimit}</p>
                         <p className="home-zip">ZIP: {workshop.codeZIP}</p>
                         <button onClick={() => handleToggleAttendantsClick(workshop.id)}>{workshop.attendants.includes(userId) ? 'Unjoin' : 'Join'}</button>

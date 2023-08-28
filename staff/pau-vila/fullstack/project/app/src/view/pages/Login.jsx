@@ -57,7 +57,7 @@ function Login(props) {
 
             <p>Go to <a className="login-register-link" href="" onClick={handleRegisterClick}>Register</a></p>
             
-            <button onClick={handleAboutClick}>About</button>
+            <button className="bounce" onClick={handleAboutClick}>About</button>
         </div>
 
         <img className="image-logo" src="../../../public/logo.jpg"></img>

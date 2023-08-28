@@ -29,7 +29,7 @@ function Register(props) {
 
         <img className="image-logo" src="../../../public/logo.jpg"></img>
 
-        <div><h1>Register</h1>
+        <div className="register-container"><h1>Register</h1>
 
         <form className="register-form" onSubmit={handleRegisterSubmit}>
             <label className="name-type" htmlFor="name">Name</label>
@@ -50,7 +50,7 @@ function Register(props) {
 
             <button type="submit">Register</button>
         </form>
-        <p>Go to <a className="register-login-link" href="" onClick={handleLoginClick}>Login</a></p>
+        <p className="register-login-link">Go to <a  href="" onClick={handleLoginClick}>Login</a></p>
 
         
         </div>
