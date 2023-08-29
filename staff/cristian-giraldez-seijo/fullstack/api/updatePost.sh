@@ -1,0 +1,1 @@
+curl -v -d '{ "image": "http://image.com", "text": "cris is not working!" }' -H 'Content-Type: application/json' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGFmYWZmM2E3NmJlMTY1NTlmYmI2NzUiLCJpYXQiOjE2ODk2ODQ5NTR9.8gUhCL5gxA2cOgqQbo_49dEwfw7JP_CSWkIMcpMweR8' http://localhost:9000/posts/64b68e360b85c9c319aa6478 -X PATCH
