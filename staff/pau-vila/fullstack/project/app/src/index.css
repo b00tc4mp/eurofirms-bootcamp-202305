@@ -1,0 +1,453 @@
+/*@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';*/
+/* resets */
+* {
+    @font-face {
+        font-family: 'Open Sans';
+        src: url('fonts/OpenSans-Regular.ttf') format('truetype');
+        font-style: normal;
+        font-weight: normal;
+    }
+}
+
+body {
+    height: 100%;
+    font-family: 'Open Sans';
+    font-style: italic;
+    margin: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #bd6ff4, #eabafb);
+}
+input {
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* register */
+.register-login-link{
+    font-size: 1.1rem ;
+}
+.register-form {
+    display: flex;
+    flex-direction:column;
+}
+.name-type {
+    font-size: 1.3rem ;
+}
+.email-type {
+    font-size: 1.3rem ; 
+}
+.password-type {
+    font-size: 1.3rem ; 
+}
+.zip-type {
+    font-size: 1.3rem ; 
+}
+.phone-type {
+    font-size: 1.3rem ; 
+}
+/* login */
+.login-register-link {
+    font-size: 1.1rem ;
+    justify-items: center;
+}
+.login-view {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: rgb(130, 7, 65);
+    background: linear-gradient(to bottom, #f2358d, #f7c7e1);
+}
+
+.register-view {
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    color: rgb(2, 86, 88);
+    background: linear-gradient(to bottom, rgb(7, 200, 206), rgb(204, 246, 248))
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* home */
+.home-header {
+    position: fixed;
+    top: 0;
+    height: 4.2rem;
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(135deg, rgba(83, 235, 232, 0.865), rgba(142, 160, 252, 0.865)); 
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.home-title {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-Regular.ttf') format('truetype');
+    font-style: italic;
+    text-align: center;
+}
+
+.home-main {
+    padding: 3rem 3rem;
+}
+
+.home-footer {
+    background-image: linear-gradient(135deg, rgba(83, 235, 232, 0.865), rgba(142, 160, 252, 0.865)); 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.7rem;
+}
+
+/*artworks*/
+.home-create-artwork-modal {
+    background-color: rgba(174, 222, 234, 0.906);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-create-artwork-container {
+    background-image: linear-gradient(135deg, rgb(183, 121, 246), rgb(130, 210, 245));
+    padding: 1rem;
+}
+
+.home-create-artwork-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.home-create-artwork-form-description{
+   max-width: 80%;
+}
+
+.home-edit-artwork-modal {
+    background-color: rgba(229, 155, 251, 0.915);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-edit-artwork-container {
+    background-image: linear-gradient(135deg, rgba(187, 66, 243, 0.933), rgba(167, 237, 246, 0.944));
+    padding: 1rem;
+}
+
+.home-edit-artwork-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-delete-artwork-modal {
+    background-color: rgba(17, 174, 166, 0.932);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-delete-artwork-container {
+    background-image: linear-gradient(135deg, rgb(203, 143, 244), rgb(159, 243, 201));
+    padding: 1rem;
+}
+
+.home-delete-artwork-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-artworks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.home-artwork {
+    width: 40%;
+}
+
+.home-artwork-image {
+    width: 300px;
+    max-height: 400px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px #8d36b3;
+}
+
+/*workshop*/
+.home-create-workshop-modal {
+    background-color: rgba(198, 143, 248, 0.951);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+.home-create-workshop-form-description{
+    max-width: 80%;
+}
+
+.home-create-workshop-container {
+    background-image: linear-gradient(135deg, rgb(124, 192, 232), rgb(232, 182, 248));
+    padding: 0.2rem;
+}
+
+.home-create-workshop-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.home-edit-workshop-modal {
+    background-color: rgba(225, 194, 249, 0.928);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-edit-workshop-container {
+    background-image: linear-gradient(135deg, rgba(218, 113, 242, 0.868), rgba(127, 245, 198, 0.868));
+    padding: 1rem;
+}
+
+.home-edit-workshop-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0rem;
+}
+
+.home-delete-workshop-modal {
+    background-color: rgba(251, 168, 215, 0.96);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-delete-workshop-container {
+    background-image: linear-gradient(135deg, rgb(135, 245, 210), rgb(192, 124, 237));
+    padding: 1rem;
+}
+
+.home-delete-workshop-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-workshop {
+    width: 40%;
+}
+
+.home-workshop-image {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 4px 4px 4px #813d9e;
+}
+
+.home-workshop-video {
+    max-width: 100%;
+    max-height: 350px;
+}
+
+/* cosos */
+/*artworks*/
+
+.home-descriptionA {
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.home-materials {
+    font-style: italic;
+    font-size: 1.2rem
+}
+
+.home-ornament {
+    font-style: italic;
+    font-size: 1.2rem
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.image-container {
+    
+    width: 100%;
+}
+.image-logo {
+    width: 170px;
+    box-shadow: 3px 3px 3px rgb(176, 51, 176);
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: center;
+}
+
+/*workshops*/
+
+.home-descriptionW {
+    font-style: italic;
+    font-size: 1.2rem
+}
+
+.home-lugar {
+    font-style: italic;
+    font-size: 1.2rem
+}
+
+.home-fechainicio {
+    font-style: italic;
+    font-size: 1.2rem
+}
+
+.home-fechafin {
+    font-style: italic;
+    font-size: 1.2rem
+}
+
+.home-limiteasistentes {
+    font-style: italic;
+    font-size: 1.2rem
+}
+
+.home-zip {
+    font-style: italic;
+    font-size: 1.2rem
+}
+
+/*about*/
+.moreinfo {
+    max-width: 100%;
+    border-radius: 8px;
+    font-weight:bold;
+    border-style: inset;
+    font-size: 1.6rem;
+    justify-content:center;
+    align-items: center;
+    display:flexbox;
+    padding: 2rem;
+    color:rgb(243, 246, 246);
+}
+.moreinfo-image {
+box-shadow: 10px 10px 10px #893aab;
+border-radius: 5px;
+max-width: 450%;
+max-height: 550px;
+justify-content:left;
+}
+
+/*butoms*/
+
+button{
+    border-radius: 9px;
+    color: rgb(105, 20, 170);
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 2px #8f3cb2;
+    box-decoration-break: clone;
+-webkit-box-decoration-break: clone;
+    margin: 0.3rem;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+.bounce {
+    animation: bounce 3s ease infinite;
+}
+@keyframes bounce {
+    70% { transform:translateY(0%); }
+    80% { transform:translateY(-15%); }
+    90% { transform:translateY(0%); }
+    95% { transform:translateY(-7%); }
+    97% { transform:translateY(0%); }
+    99% { transform:translateY(-3%); }
+    100% { transform:translateY(0); }
+}
+
+.about{
+    color:antiquewhite;
+    background-color:#9042b1;
+    padding-left: 25px;
+    border-radius: 7px;
+    padding-top:1px;
+    padding-bottom: 1px;
+}
+.title {
+    color:antiquewhite;
+    font-size:x-large;
+    text-align: center;
+}
+
+

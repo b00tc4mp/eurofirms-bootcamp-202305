@@ -1,0 +1,32 @@
+function block(millis) {
+    var before = Date.now()
+
+    for (; Date.now() - before < millis;) {
+    }
+}
+
+//The `setTimoutSync` function is a custom implementation of the `setTimeout` function in JavaScript. It takes two parameters: `callback`, which is the function to be executed after a certain delay, and `millis`, which is the delay in milliseconds.
+function setTimoutSync(callback, millis) {
+    block(millis)
+
+    callback()
+}
+
+console.log(1, 'start', new Date)
+setTimeoutSync(() => console.log('hola mon'), 2000)
+console.log(1, 'end', new Date)
+
+console.log(2, 'start', new Date)
+setTimeoutSync(() => console.log('hola mundo'), 3000)
+console.log(2, 'end', new Date)
+
+console.log(3, 'start', new Date)
+setTimeoutSync(() => console.log('hello world'), 4000)
+console.log(3, 'end', new Date)
+
+console.log(4, 'start', new Date)
+console.log('...')
+console.log(4, 'end', new Date)
+
+
+
