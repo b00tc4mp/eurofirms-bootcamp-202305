@@ -47,10 +47,10 @@ function Login(props) {
         <div className="login-container"><h1>Login</h1>
             <form className="login-form" onSubmit={handleLoginSubmit}>
                 <label className="email-type" htmlFor="email">E-mail</label>
-                <input id="email" type="email"></input>
+                <input id="email" type="email" placeholder="email"></input>
 
                 <label className="password-type" htmlFor="password">Password</label>
-                <input id="password" type="password"></input>
+                <input id="password" type="password" placeholder="password"></input>
 
                 <button type="submit">Login</button>
             </form>

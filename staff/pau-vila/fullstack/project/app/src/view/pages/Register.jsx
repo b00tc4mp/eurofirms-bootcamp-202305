@@ -33,19 +33,19 @@ function Register(props) {
 
         <form className="register-form" onSubmit={handleRegisterSubmit}>
             <label className="name-type" htmlFor="name">Name</label>
-            <input id="name" type="text"></input>
+            <input id="name" type="text" placeholder="name"></input>
 
             <label className="email-type" htmlFor="email">E-mail</label>
-            <input id="email" type="email"></input>
+            <input id="email" type="email" placeholder="email"></input>
 
             <label className="password-type" htmlFor="password">Password</label>
-            <input id="password" type="password"></input>
+            <input id="password" type="password" placeholder="password"></input>
 
             <label className="zip-type" htmlFor="zip">Zip</label>
-            <input id="zip" type="text"></input>
+            <input id="zip" type="text" placeholder="zip"></input>
 
             <label className="phone-type" htmlFor="phone">Phone</label>
-            <input  id="phone" type="text"></input>
+            <input  id="phone" type="text" placeholder="phone"></input>
 
 
             <button type="submit">Register</button>

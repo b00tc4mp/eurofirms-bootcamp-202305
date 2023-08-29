@@ -17,7 +17,12 @@ body {
     font-style: italic;
     margin: 0;
     box-sizing: border-box;
-    background: linear-gradient(135deg, #ad4df2, #e7a4fd);
+    background: linear-gradient(135deg, #bd6ff4, #eabafb);
+}
+input {
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
 /* register */
@@ -75,9 +80,8 @@ body {
     top: 0;
     height: 4.2rem;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background-image: linear-gradient(135deg, rgba(129, 250, 248, 0.865), rgba(142, 160, 252, 0.865));
+    background-image: linear-gradient(135deg, rgba(83, 235, 232, 0.865), rgba(142, 160, 252, 0.865)); 
     width: 100%;
     padding: 0 1rem;
     box-sizing: border-box;
@@ -87,7 +91,7 @@ body {
     font-family: 'Open Sans';
     src: url('fonts/OpenSans-Regular.ttf') format('truetype');
     font-style: italic;
-    font-size: 1.7rem;
+    text-align: center;
 }
 
 .home-main {
@@ -95,7 +99,7 @@ body {
 }
 
 .home-footer {
-    background-image: linear-gradient(135deg, rgb(241, 135, 35), rgb(251, 212, 139));
+    background-image: linear-gradient(135deg, rgba(83, 235, 232, 0.865), rgba(142, 160, 252, 0.865)); 
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -107,7 +111,7 @@ body {
 
 /*artworks*/
 .home-create-artwork-modal {
-    background-color: rgba(97, 209, 237, 0.906);
+    background-color: rgba(174, 222, 234, 0.906);
     position: fixed;
     width: 100%;
     height: 100%;
@@ -118,7 +122,7 @@ body {
 }
 
 .home-create-artwork-container {
-    background-image: linear-gradient(135deg, rgb(242, 20, 116), rgb(244, 138, 186));
+    background-image: linear-gradient(135deg, rgb(183, 121, 246), rgb(130, 210, 245));
     padding: 1rem;
 }
 
@@ -134,7 +138,7 @@ body {
 }
 
 .home-edit-artwork-modal {
-    background-color: rgba(248, 112, 112, 0.915);
+    background-color: rgba(229, 155, 251, 0.915);
     position: fixed;
     width: 100%;
     height: 100%;
@@ -145,7 +149,7 @@ body {
 }
 
 .home-edit-artwork-container {
-    background-image: linear-gradient(135deg, rgba(243, 181, 114, 0.868), rgba(255, 239, 213, 0.868));
+    background-image: linear-gradient(135deg, rgba(187, 66, 243, 0.933), rgba(167, 237, 246, 0.944));
     padding: 1rem;
 }
 
@@ -158,7 +162,7 @@ body {
 }
 
 .home-delete-artwork-modal {
-    background-color: rgba(244, 233, 82, 0.883);
+    background-color: rgba(17, 174, 166, 0.932);
     position: fixed;
     width: 100%;
     height: 100%;
@@ -169,7 +173,7 @@ body {
 }
 
 .home-delete-artwork-container {
-    background-image: linear-gradient(135deg, rgb(9, 168, 123), rgb(166, 255, 211));
+    background-image: linear-gradient(135deg, rgb(203, 143, 244), rgb(159, 243, 201));
     padding: 1rem;
 }
 
@@ -197,13 +201,12 @@ body {
     max-height: 400px;
     border-radius: 4px;
     font-weight: bold;
-    box-shadow: 4px 4px 4px #973ebe;
-    border-style: inset;
+    box-shadow: 5px 5px 5px #8d36b3;
 }
 
 /*workshop*/
 .home-create-workshop-modal {
-    background-color: rgba(219, 246, 192, 0.951);
+    background-color: rgba(198, 143, 248, 0.951);
     position: fixed;
     width: 100%;
     height: 100%;
@@ -219,7 +222,7 @@ body {
 }
 
 .home-create-workshop-container {
-    background-image: linear-gradient(135deg, rgb(8, 180, 59), rgb(155, 241, 163));
+    background-image: linear-gradient(135deg, rgb(124, 192, 232), rgb(232, 182, 248));
     padding: 0.2rem;
 }
 
@@ -232,7 +235,7 @@ body {
 }
 
 .home-edit-workshop-modal {
-    background-color: rgba(249, 135, 211, 0.867);
+    background-color: rgba(225, 194, 249, 0.928);
     position: fixed;
     width: 100%;
     height: 100%;
@@ -243,7 +246,7 @@ body {
 }
 
 .home-edit-workshop-container {
-    background-image: linear-gradient(135deg, rgba(100, 198, 246, 0.868), rgba(184, 231, 246, 0.868));
+    background-image: linear-gradient(135deg, rgba(218, 113, 242, 0.868), rgba(127, 245, 198, 0.868));
     padding: 1rem;
 }
 
@@ -256,7 +259,7 @@ body {
 }
 
 .home-delete-workshop-modal {
-    background-color: rgba(252, 138, 170, 0.96);
+    background-color: rgba(251, 168, 215, 0.96);
     position: fixed;
     width: 100%;
     height: 100%;
@@ -267,7 +270,7 @@ body {
 }
 
 .home-delete-workshop-container {
-    background-image: linear-gradient(135deg, rgb(153, 214, 10), rgb(218, 249, 145));
+    background-image: linear-gradient(135deg, rgb(135, 245, 210), rgb(192, 124, 237));
     padding: 1rem;
 }
 
@@ -288,8 +291,7 @@ body {
     max-height: 350px;
     border-radius: 4px;
     font-weight: bold;
-    box-shadow: 3px 3px 3px #813d9e;
-    border-style: inset;
+    box-shadow: 4px 4px 4px #813d9e;
 }
 
 .home-workshop-video {
@@ -328,7 +330,7 @@ body {
 }
 .image-logo {
     width: 170px;
-
+    box-shadow: 3px 3px 3px rgb(176, 51, 176);
 }
 
 .image-container img {
@@ -434,78 +436,18 @@ button{
     100% { transform:translateY(0); }
 }
 
-.gracias-equipo{
+.about{
     color:antiquewhite;
-}
-#agradecimiento {
     background-color:#9042b1;
-    padding-left: 12px;
-    border-radius: 7px;  
-}
-.reciclaje-arte {
-    color:antiquewhite; 
-}
-#arte {
-    background-color: #8f3cb2;
-    padding-left: 12px;
+    padding-left: 25px;
     border-radius: 7px;
-}
-.reduce-estres {
-    color:antiquewhite; 
-}
-#estres {
-    background-color: #8e32b6;
-    padding-left: 12px;
-    border-radius: 7px; 
-}
-.sensacion-confort {
-    color:antiquewhite;
-}
-#confort {
-    background-color: #8727b0;
-    padding-left: 12px;
-    border-radius: 7px;  
-}
-.cualidad-haptica {
-    color:antiquewhite; 
-}
-#haptica {
-    background-color: #9130ba;
-    padding-left: 12px;
-    border-radius: 7px;   
-}
-.futuro-sostenible {
-    color:antiquewhite;
-}
-#sostenible {
-    background-color: #8e33b5;
-    padding-left: 12px;
-    border-radius: 7px;  
-}
-.medio-ambiente {
-    color:antiquewhite;
-}
-#ambiente {
-    background-color: #8d35b3;
-    padding-left: 12px;
-    border-radius: 7px;  
-}
-.aplicacion-creada {
-    color:antiquewhite; 
-}
-#aplicacion {
-    background-color: #9437bb;
-    padding-left: 12px;
-    border-radius: 7px;  
+    padding-top:1px;
+    padding-bottom: 1px;
 }
 .title {
-    color:antiquewhite; 
+    color:antiquewhite;
+    font-size:x-large;
+    text-align: center;
 }
-#hablemos {
-    background-color: #8d37b1;
-    padding-left: 12px;
-    border-radius: 7px;  
-}  
-
 
 
