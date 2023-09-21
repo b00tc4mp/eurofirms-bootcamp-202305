@@ -116,7 +116,7 @@ function Home({ onLogout }) {
         <div className="home">
             <header className="home-header">
                 <div className="basic-head">
-                    <img className="logo" src="../../../public/logo-block.gif" alt="logo" />
+                    <img className="logo" src="../../../public/logo-quad.jpg" alt="logo" />
                     <h2>Hello, {userLogged ? userLogged.name : 'world'}</h2>
                 </div>
             </header>

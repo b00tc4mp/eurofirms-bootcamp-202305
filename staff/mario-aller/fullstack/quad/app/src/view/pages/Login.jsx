@@ -27,7 +27,7 @@ function Login({ onGotoReg, onLogged }) {
         <div className="login">
             <header className="log-header">
                 <div className="basic-head">
-                    <img className="logo" src="../../../public/logo-block.gif" alt="logo" />
+                    <img className="logo" src="../../../public/logo-quad.jpg" alt="logo" />
                     <h2>Quad Application</h2>
                 </div>
             </header>
