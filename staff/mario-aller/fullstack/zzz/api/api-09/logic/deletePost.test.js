@@ -1,0 +1,10 @@
+require('dotenv').config()
+const mongoose = require('mongoose')
+const authenticateUser = require('./authenticateUser')
+const deletePost = require('./deletePost')
+
+mongoose.connect(process.env.MONGOOSE_URL_TEST)
+    .then(() => authenticateUser('gollum@eriador.com','tesoro'))
+    .then((userId) => deletePost(userId, '64bbcfe93dfe56b439aab34b'))
+    .catch(error => console.error(error))
+    .finally(() => mongoose.disconnect())
