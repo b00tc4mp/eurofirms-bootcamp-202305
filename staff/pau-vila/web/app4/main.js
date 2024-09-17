@@ -1,0 +1,3 @@
+// globals
+
+let userId = null    
