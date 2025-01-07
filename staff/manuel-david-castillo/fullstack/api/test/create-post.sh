@@ -1,0 +1,1 @@
+curl -v -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer 649da1a35792d969ba2738cb' -d '{"image": "https://elcomercio.pe/resizer/Im9QMy_XRhgOMSlqfAAWSXkq4Q0=/1200x900/smart/filters:format(jpeg):quality(75)/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/NN6KSOGKKJHYVKEQCA6RFIFYTE.jpg","text": "Rickazo"}' http://localhost:9000/posts
